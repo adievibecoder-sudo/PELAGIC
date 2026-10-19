@@ -1,0 +1,3983 @@
+{
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": null
+  },
+  "backend": "native-webgpu",
+  "timestampQuery": true,
+  "settings": {
+    "windSpeed": 7,
+    "windDir": 118,
+    "fetchKm": 90,
+    "swellHs": 1.8,
+    "swellDir": 94,
+    "swellLength": 120,
+    "swellSpread": 48,
+    "choppy": 1.12,
+    "turbidity": 0.25,
+    "foam": 1,
+    "sunElev": 5,
+    "sunAzim": 4,
+    "exposure": 1.3,
+    "haze": 1.8,
+    "clouds": 0.32,
+    "veil": 0.14,
+    "bloom": 0.045,
+    "spray": 0.6,
+    "rain": 0,
+    "cloudDepth": 1.5,
+    "cloudType": 0,
+    "seed": 1307,
+    "quality": "Balanced",
+    "resolution": 1,
+    "adaptive": false,
+    "timeScale": 1,
+    "weatherRate": 60,
+    "paused": false,
+    "cameraMode": "free",
+    "astronomy": false,
+    "date": "2026-10-25",
+    "hour": 17,
+    "latitude": 32,
+    "longitude": -30,
+    "debug": 0,
+    "currentSpeed": 0.12,
+    "currentDir": 35,
+    "cameraSpeed": 6,
+    "fov": 58
+  },
+  "camera": {
+    "x": 0,
+    "y": 2,
+    "z": 0,
+    "yaw": 0.06981317007977318,
+    "pitch": -0.09599310885968812,
+    "fovY": 1.0122909661567112,
+    "speed": 6
+  },
+  "simulationTime": 30.62790000000034,
+  "frameIndex": 642,
+  "width": 1920,
+  "height": 1080,
+  "nodes": 712,
+  "errors": [],
+  "measurements": [
+    {
+      "gpu": 12.189696,
+      "simulation": 0.851968,
+      "atmosphere": 2.62144,
+      "surface": 8.060928,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 16,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 13.041664,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 9.109504,
+      "post": 0.393216,
+      "cpu": 0.30000000074505806,
+      "frame": 16.09999999962747,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.976128,
+      "simulation": 0.917504,
+      "atmosphere": 3.014656,
+      "surface": 8.323072,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 16.09999999962747,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.386304,
+      "simulation": 0.917504,
+      "atmosphere": 2.62144,
+      "surface": 8.060928,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 16,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 11.79648,
+      "simulation": 0.851968,
+      "atmosphere": 2.29376,
+      "surface": 7.995392,
+      "post": 0.32768,
+      "cpu": 0.30000000074505806,
+      "frame": 18.59999999962747,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 11.665408,
+      "simulation": 0.851968,
+      "atmosphere": 2.29376,
+      "surface": 7.86432,
+      "post": 0.32768,
+      "cpu": 0.40000000037252903,
+      "frame": 15.299999998882413,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.386304,
+      "simulation": 0.851968,
+      "atmosphere": 2.686976,
+      "surface": 8.126464,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 16.800000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 11.599872,
+      "simulation": 0.917504,
+      "atmosphere": 2.162688,
+      "surface": 7.86432,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 14.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.12416,
+      "simulation": 0.851968,
+      "atmosphere": 2.424832,
+      "surface": 8.192,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 16.40000000037253,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.386304,
+      "simulation": 0.851968,
+      "atmosphere": 2.686976,
+      "surface": 8.060928,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 14.199999999254942,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.058624,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.060928,
+      "post": 0.32768,
+      "cpu": 0.40000000037252903,
+      "frame": 15,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 11.927552,
+      "simulation": 0.917504,
+      "atmosphere": 2.29376,
+      "surface": 7.929856,
+      "post": 0.393216,
+      "cpu": 0.30000000074505806,
+      "frame": 16.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.517376,
+      "simulation": 0.851968,
+      "atmosphere": 2.752512,
+      "surface": 8.192,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 16.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.189696,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.257536,
+      "post": 0.393216,
+      "cpu": 0.6000000014901161,
+      "frame": 14.899999998509884,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.255232,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 8.192,
+      "post": 0.393216,
+      "cpu": 0.30000000074505806,
+      "frame": 15.199999999254942,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.45184,
+      "simulation": 0.917504,
+      "atmosphere": 2.752512,
+      "surface": 8.126464,
+      "post": 0.393216,
+      "cpu": 0.3999999985098839,
+      "frame": 16.100000001490116,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.058624,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.060928,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 15.800000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 11.79648,
+      "simulation": 0.917504,
+      "atmosphere": 2.29376,
+      "surface": 7.929856,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 17,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.45184,
+      "simulation": 0.851968,
+      "atmosphere": 2.752512,
+      "surface": 8.126464,
+      "post": 0.32768,
+      "cpu": 0.2999999988824129,
+      "frame": 16.300000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.320768,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 8.323072,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 14.800000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.12416,
+      "simulation": 0.851968,
+      "atmosphere": 2.424832,
+      "surface": 8.126464,
+      "post": 0.393216,
+      "cpu": 0.2999999988824129,
+      "frame": 14.099999999627471,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.517376,
+      "simulation": 0.917504,
+      "atmosphere": 2.62144,
+      "surface": 8.257536,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 20.59999999962747,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.320768,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 8.323072,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 14.800000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.255232,
+      "simulation": 0.917504,
+      "atmosphere": 2.29376,
+      "surface": 8.323072,
+      "post": 0.393216,
+      "cpu": 0.30000000074505806,
+      "frame": 14.799999998882413,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.976128,
+      "simulation": 0.98304,
+      "atmosphere": 2.818048,
+      "surface": 8.51968,
+      "post": 0.32768,
+      "cpu": 0.30000000074505806,
+      "frame": 17.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.189696,
+      "simulation": 0.917504,
+      "atmosphere": 2.228224,
+      "surface": 8.323072,
+      "post": 0.32768,
+      "cpu": 0.40000000037252903,
+      "frame": 16.40000000037253,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.45184,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.454144,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 15.199999999254942,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.648448,
+      "simulation": 0.917504,
+      "atmosphere": 2.62144,
+      "surface": 8.388608,
+      "post": 0.32768,
+      "cpu": 0.40000000037252903,
+      "frame": 17.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.45184,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.51968,
+      "post": 0.32768,
+      "cpu": 0.5,
+      "frame": 15.800000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.582912,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.585216,
+      "post": 0.393216,
+      "cpu": 0.599999999627471,
+      "frame": 15.799999998882413,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 13.500416,
+      "simulation": 0.917504,
+      "atmosphere": 2.818048,
+      "surface": 9.043968,
+      "post": 0.393216,
+      "cpu": 0.2999999988824129,
+      "frame": 14.800000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.845056,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 8.781824,
+      "post": 0.32768,
+      "cpu": 0.5,
+      "frame": 16.799999998882413,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.648448,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.716288,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 16.299999998882413,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 13.172736,
+      "simulation": 0.917504,
+      "atmosphere": 2.686976,
+      "surface": 8.781824,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 17.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.45184,
+      "simulation": 0.851968,
+      "atmosphere": 2.424832,
+      "surface": 8.51968,
+      "post": 0.393216,
+      "cpu": 0.2999999988824129,
+      "frame": 14.800000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.648448,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 8.585216,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 16.09999999962747,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.845056,
+      "simulation": 0.917504,
+      "atmosphere": 2.686976,
+      "surface": 8.454144,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 15.300000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.582912,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 8.454144,
+      "post": 0.458752,
+      "cpu": 0.30000000074505806,
+      "frame": 15.099999999627471,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.12416,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.126464,
+      "post": 0.393216,
+      "cpu": 0.30000000074505806,
+      "frame": 17.699999999254942,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.77952,
+      "simulation": 0.917504,
+      "atmosphere": 2.818048,
+      "surface": 8.323072,
+      "post": 0.393216,
+      "cpu": 0.2999999988824129,
+      "frame": 16.59999999962747,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.255232,
+      "simulation": 0.851968,
+      "atmosphere": 2.424832,
+      "surface": 8.192,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 13.800000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.320768,
+      "simulation": 0.851968,
+      "atmosphere": 2.424832,
+      "surface": 8.388608,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 14.899999998509884,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.582912,
+      "simulation": 0.917504,
+      "atmosphere": 2.686976,
+      "surface": 8.257536,
+      "post": 0.393216,
+      "cpu": 0.2999999988824129,
+      "frame": 14.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.320768,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 8.323072,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 16.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.12416,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.126464,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 17.199999999254942,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.582912,
+      "simulation": 0.917504,
+      "atmosphere": 2.752512,
+      "surface": 8.126464,
+      "post": 0.393216,
+      "cpu": 0.3999999985098839,
+      "frame": 15.200000001117587,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 11.993088,
+      "simulation": 0.917504,
+      "atmosphere": 2.29376,
+      "surface": 8.126464,
+      "post": 0.393216,
+      "cpu": 0.6999999992549419,
+      "frame": 15.099999999627471,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.255232,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 8.192,
+      "post": 0.393216,
+      "cpu": 0.6000000014901161,
+      "frame": 15.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.45184,
+      "simulation": 0.851968,
+      "atmosphere": 2.686976,
+      "surface": 8.192,
+      "post": 0.393216,
+      "cpu": 0.2999999988824129,
+      "frame": 14.800000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.320768,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 8.257536,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 16.800000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.255232,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.257536,
+      "post": 0.32768,
+      "cpu": 0.2999999988824129,
+      "frame": 17.59999999962747,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.45184,
+      "simulation": 0.917504,
+      "atmosphere": 2.686976,
+      "surface": 8.192,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 16.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.255232,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.323072,
+      "post": 0.32768,
+      "cpu": 0.30000000074505806,
+      "frame": 14.199999999254942,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.386304,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 8.323072,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 15.400000000372529,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.648448,
+      "simulation": 0.917504,
+      "atmosphere": 2.686976,
+      "surface": 8.323072,
+      "post": 0.32768,
+      "cpu": 0.5,
+      "frame": 15.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.45184,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 8.388608,
+      "post": 0.393216,
+      "cpu": 0.3999999985098839,
+      "frame": 16.600000001490116,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.255232,
+      "simulation": 0.851968,
+      "atmosphere": 2.424832,
+      "surface": 8.323072,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 16.90000000037253,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.713984,
+      "simulation": 0.917504,
+      "atmosphere": 2.752512,
+      "surface": 8.323072,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 15.099999999627471,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.255232,
+      "simulation": 0.98304,
+      "atmosphere": 2.359296,
+      "surface": 8.192,
+      "post": 0.32768,
+      "cpu": 0.30000000074505806,
+      "frame": 18.59999999962747,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.189696,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.192,
+      "post": 0.393216,
+      "cpu": 0.2999999988824129,
+      "frame": 17,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.386304,
+      "simulation": 0.851968,
+      "atmosphere": 2.752512,
+      "surface": 8.060928,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 15.300000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.12416,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.192,
+      "post": 0.393216,
+      "cpu": 0.2999999988824129,
+      "frame": 15.099999999627471,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 11.79648,
+      "simulation": 0.917504,
+      "atmosphere": 2.29376,
+      "surface": 7.86432,
+      "post": 0.393216,
+      "cpu": 0.2999999988824129,
+      "frame": 14.200000001117587,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.320768,
+      "simulation": 0.917504,
+      "atmosphere": 2.686976,
+      "surface": 7.929856,
+      "post": 0.393216,
+      "cpu": 0.30000000074505806,
+      "frame": 16.199999999254942,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.058624,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 7.995392,
+      "post": 0.393216,
+      "cpu": 0.30000000074505806,
+      "frame": 16.09999999962747,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.12416,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.060928,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 15.300000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.189696,
+      "simulation": 0.917504,
+      "atmosphere": 2.62144,
+      "surface": 7.929856,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 14.599999999627471,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.12416,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.126464,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 14.900000000372529,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.255232,
+      "simulation": 0.917504,
+      "atmosphere": 2.424832,
+      "surface": 8.192,
+      "post": 0.393216,
+      "cpu": 0.2000000011175871,
+      "frame": 16.40000000037253,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.386304,
+      "simulation": 0.917504,
+      "atmosphere": 2.686976,
+      "surface": 8.060928,
+      "post": 0.393216,
+      "cpu": 0.30000000074505806,
+      "frame": 16.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.058624,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.060928,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 14.299999998882413,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.12416,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.126464,
+      "post": 0.393216,
+      "cpu": 0.3999999985098839,
+      "frame": 14.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.320768,
+      "simulation": 0.851968,
+      "atmosphere": 2.752512,
+      "surface": 8.060928,
+      "post": 0.32768,
+      "cpu": 0.40000000037252903,
+      "frame": 14.299999998882413,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.386304,
+      "simulation": 0.98304,
+      "atmosphere": 2.424832,
+      "surface": 8.257536,
+      "post": 0.393216,
+      "cpu": 0.19999999925494194,
+      "frame": 15.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.12416,
+      "simulation": 0.917504,
+      "atmosphere": 2.359296,
+      "surface": 8.192,
+      "post": 0.32768,
+      "cpu": 0.40000000037252903,
+      "frame": 16.300000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.45184,
+      "simulation": 0.917504,
+      "atmosphere": 2.62144,
+      "surface": 8.126464,
+      "post": 0.393216,
+      "cpu": 0.2999999988824129,
+      "frame": 14.099999999627471,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 11.862016,
+      "simulation": 0.917504,
+      "atmosphere": 2.228224,
+      "surface": 7.995392,
+      "post": 0.393216,
+      "cpu": 2.599999999627471,
+      "frame": 25.40000000037253,
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "frameRecords": [
+    {
+      "frame": 18,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.300000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.199999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.59999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.90000000037253,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.300000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 21.59999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.300000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.699999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.200000001117587,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 19.199999999254942,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.800000000745058,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.799999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.200000001117587,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.299999998882413,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.700000001117587,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.899999998509884,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.600000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.899999998509884,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.700000001117587,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.59999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 19.90000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.59999999962747,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.699999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 21.100000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.299999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.699999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.099999999627471,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.200000001117587,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.799999998882413,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.90000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.699999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.300000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.900000000372529,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.699999999254942,
+      "cpu": 10.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 31.900000000372525,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.699999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.59999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.100000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.699999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.900000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.900000000372529,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.099999999627471,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.400000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.59999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.199999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.800000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.100000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.59999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.900000000372529,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.699999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 21.700000001117587,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.699999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.200000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.699999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.699999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 21.300000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.099999999627471,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 24.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.699999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 21.90000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.900000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 21.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.199999999254942,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.600000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.899999998509884,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.700000001117587,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.799999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.100000001490116,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.59999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.59999999962747,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 20,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.600000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.299999998882413,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.599999999627471,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.100000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.399999998509884,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.800000000745058,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.899999998509884,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.59999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 6.200000001117587,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.59999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.900000000372529,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.200000001117587,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 22.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.699999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.300000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.199999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.900000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.59999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 20.5,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.899999998509884,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.599999999627471,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.40000000037253,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.900000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.300000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.099999999627471,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.299999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.200000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.599999999627471,
+      "cpu": 5.199999999254942,
+      "visibility": "visible"
+    },
+    {
+      "frame": 20.59999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.699999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.40000000037253,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 23.100000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.799999998882413,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.599999999627471,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.200000001117587,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.899999998509884,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.100000001490116,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.799999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.300000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.09999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.800000000745058,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.299999998882413,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.200000001117587,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.199999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.59999999962747,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.400000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.299999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.900000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.900000000372529,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.199999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.200000001117587,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.799999998882413,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.200000001117587,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.59999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.599999999627471,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.200000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.699999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.900000000372529,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.799999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.09999999962747,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.899999998509884,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.800000000745058,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.799999998882413,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.800000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.799999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 19.100000001490116,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.699999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.900000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.899999998509884,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.700000001117587,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.699999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.700000001117587,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.59999999962747,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.799999998882413,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.700000001117587,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.699999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.299999998882413,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.600000001490116,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.299999998882413,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.59999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.59999999962747,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.600000001490116,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.699999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.199999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.299999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.700000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.699999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.40000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.300000000745058,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.900000000372529,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.09999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.799999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.699999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.40000000037253,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.799999998882413,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.400000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.800000000745058,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.699999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.300000000745058,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.599999999627471,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.699999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.400000000372529,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.599999999627471,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.300000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.799999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.700000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.59999999962747,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.200000001117587,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.799999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.200000001117587,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.799999998882413,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.899999998509884,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.400000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.300000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.899999998509884,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.700000001117587,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.199999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.700000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.299999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.700000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.799999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.700000001117587,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.799999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.700000001117587,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.199999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.900000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.299999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.700000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.200000001117587,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.299999998882413,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.100000001490116,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.099999999627471,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.40000000037253,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 21.5,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.6999999992549419,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.09999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.300000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.700000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.399999998509884,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.300000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.800000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.699999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.900000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.400000000372529,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.299999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.09999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.59999999962747,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.699999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.800000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.299999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.90000000037253,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.5,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.700000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.699999999254942,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.90000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.800000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.299999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.59999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.800000000745058,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.699999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.300000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.199999999254942,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.59999999962747,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.100000001490116,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.399999998509884,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.699999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.600000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.40000000037253,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.899999998509884,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.90000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.900000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.899999998509884,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.700000001117587,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.799999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.100000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.90000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.700000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.59999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.699999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.40000000037253,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.299999998882413,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.300000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.700000001117587,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.400000000372529,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.299999998882413,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.800000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.699999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.59999999962747,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.40000000037253,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.700000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.799999998882413,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.90000000037253,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.099999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.200000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.59999999962747,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.799999998882413,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.700000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.7000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.200000001117587,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.699999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.200000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.299999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.900000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.200000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.399999998509884,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.799999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.200000001117587,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.299999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.100000001490116,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.09999999962747,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.900000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.300000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.599999999627471,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.59999999962747,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.900000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.099999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.200000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.699999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.799999998882413,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.700000001117587,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.199999999254942,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.40000000037253,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.399999998509884,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.700000001117587,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.099999999627471,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.700000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.40000000037253,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.299999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18.59999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.100000001490116,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.699999999254942,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.300000000745058,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.59999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.800000000745058,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.09999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.600000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.299999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.800000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.699999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.899999998509884,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.200000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.299999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.100000001490116,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.799999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.099999999627471,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.300000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.299999998882413,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.400000000372529,
+      "cpu": 0.2000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.400000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.200000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.099999999627471,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.799999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.200000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 19.59999999962747,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.900000000372529,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.799999998882413,
+      "cpu": 11.400000000372529,
+      "visibility": "visible"
+    },
+    {
+      "frame": 25.40000000037253,
+      "cpu": 2.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 19.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.100000001490116,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    }
+  ],
+  "timingMode": "queue-completion capture throughput",
+  "memoryEstimate": {
+    "renderTargetsMiB": 117.7734375,
+    "note": "Analytic lower bound for main MSAA/depth/HDR/bloom/cloud render targets only. Excludes simulation, driver alignment, browser compositor, and transient resources."
+  }
+}

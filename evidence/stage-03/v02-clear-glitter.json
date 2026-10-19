@@ -1,0 +1,525 @@
+{
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": null
+  },
+  "backend": "native-webgpu",
+  "timestampQuery": true,
+  "settings": {
+    "windSpeed": 7,
+    "windDir": 118,
+    "fetchKm": 90,
+    "swellHs": 1.8,
+    "swellDir": 94,
+    "swellLength": 120,
+    "swellSpread": 48,
+    "choppy": 1.12,
+    "turbidity": 0.25,
+    "foam": 1,
+    "sunElev": 5,
+    "sunAzim": 4,
+    "exposure": 1.3,
+    "haze": 1.8,
+    "clouds": 0,
+    "veil": 0,
+    "bloom": 0.045,
+    "spray": 0.6,
+    "rain": 0,
+    "cloudDepth": 1.5,
+    "cloudType": 0,
+    "seed": 1307,
+    "quality": "Balanced",
+    "resolution": 1,
+    "adaptive": false,
+    "timeScale": 1,
+    "weatherRate": 60,
+    "paused": false,
+    "cameraMode": "free",
+    "astronomy": false,
+    "date": "2026-10-25",
+    "hour": 17,
+    "latitude": 32,
+    "longitude": -30,
+    "debug": 0,
+    "currentSpeed": 0.12,
+    "currentDir": 35,
+    "cameraSpeed": 6,
+    "fov": 58
+  },
+  "camera": {
+    "x": 0,
+    "y": 2,
+    "z": 0,
+    "yaw": 0.06981317007977318,
+    "pitch": -0.09599310885968812,
+    "fovY": 1.0122909661567112,
+    "speed": 6
+  },
+  "simulationTime": 21.666666666666572,
+  "frameIndex": 100,
+  "width": 1920,
+  "height": 1080,
+  "nodes": 712,
+  "errors": [],
+  "measurements": [
+    {
+      "gpu": 10.420224,
+      "simulation": 0.917504,
+      "atmosphere": 0.196608,
+      "surface": 8.650752,
+      "post": 0.32768,
+      "cpu": 0.30000000074505806,
+      "frame": 15.099999999627471,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 10.354688,
+      "simulation": 0.917504,
+      "atmosphere": 0.196608,
+      "surface": 8.454144,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 14.899999998509884,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 10.48576,
+      "simulation": 0.917504,
+      "atmosphere": 0.196608,
+      "surface": 8.650752,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 14.400000000372529,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 10.289152,
+      "simulation": 0.917504,
+      "atmosphere": 0.131072,
+      "surface": 8.454144,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 16.09999999962747,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 10.15808,
+      "simulation": 0.851968,
+      "atmosphere": 0.196608,
+      "surface": 8.323072,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 15.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 10.551296,
+      "simulation": 0.917504,
+      "atmosphere": 0.131072,
+      "surface": 8.781824,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 13.800000000745058,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 10.027008,
+      "simulation": 0.851968,
+      "atmosphere": 0.196608,
+      "surface": 7.995392,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 14.199999999254942,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 10.223616,
+      "simulation": 0.851968,
+      "atmosphere": 0.196608,
+      "surface": 8.454144,
+      "post": 0.393216,
+      "cpu": 0.5,
+      "frame": 15,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 10.354688,
+      "simulation": 0.917504,
+      "atmosphere": 0.196608,
+      "surface": 8.51968,
+      "post": 0.393216,
+      "cpu": 0.40000000037252903,
+      "frame": 14,
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "frameRecords": [
+    {
+      "frame": 12.700000001117587,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.099999999627471,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 12.599999999627471,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.200000001117587,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.399999998509884,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.800000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.899999998509884,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.800000000745058,
+      "cpu": 0.19999999925494194,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.900000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.6999999992549419,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.699999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 12.700000001117587,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.7000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.400000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 17.200000001117587,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.399999998509884,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.400000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.400000000372529,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 12.900000000372529,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.09999999962747,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.400000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.699999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.59999999962747,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.600000001490116,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.799999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.299999998882413,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.300000000745058,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.199999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.5,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.699999999254942,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.800000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.699999999254942,
+      "cpu": 0.8000000007450581,
+      "visibility": "visible"
+    },
+    {
+      "frame": 16.800000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.199999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.5,
+      "cpu": 0.7000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.400000000372529,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 18,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.199999999254942,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.700000001117587,
+      "cpu": 0.6999999992549419,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.400000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 12.899999998509884,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.700000001117587,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 12.199999999254942,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.700000001117587,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.099999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.599999999627471,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.300000000745058,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.299999998882413,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 12.400000000372529,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.900000000372529,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.400000000372529,
+      "cpu": 0.2999999988824129,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.399999998509884,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible"
+    },
+    {
+      "frame": 15.5,
+      "cpu": 0.7000000011175871,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.300000000745058,
+      "cpu": 0.5,
+      "visibility": "visible"
+    },
+    {
+      "frame": 13.599999999627471,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible"
+    },
+    {
+      "frame": 14.900000000372529,
+      "cpu": 0.599999999627471,
+      "visibility": "visible"
+    }
+  ],
+  "timingMode": "queue-completion capture throughput",
+  "memoryEstimate": {
+    "renderTargetsMiB": 117.7734375,
+    "note": "Analytic lower bound for main MSAA/depth/HDR/bloom/cloud render targets only. Excludes simulation, driver alignment, browser compositor, and transient resources."
+  }
+}

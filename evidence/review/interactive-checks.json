@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-20",
+  "method": "Browser UI actions and DOM/screenshot observations on localhost:8084; separate origin from existing development configurations.",
+  "backendObserved": "WEBGPU / NVIDIA",
+  "checks": [
+    {"name":"Pause", "status":"PASS", "observed":"PAUSED and Play controls; pause retained after restore and quality reload."},
+    {"name":"Wind control / developed sea", "status":"PASS", "observed":"Set 9.3 m/s, apply developed sea; saved/share URL contains windSpeed 9.3."},
+    {"name":"Save / restore", "status":"PASS", "observed":"Save free camera at 50 m, wind 9.3, swell 1.8, paused. Select Storm and reset camera. Restore recovers those settings and 50.0 m HUD."},
+    {"name":"Quality reload", "status":"PASS", "observed":"Balanced to High reload retains wind 9.3, swell 1.8, free camera 0,50,0,0,-12, paused true, time 57.0654."},
+    {"name":"Share", "status":"PASS", "observed":"Dialog URL has matching High configuration, camera and time."},
+    {"name":"Hide / show", "status":"PASS", "observed":"Cinematic view hides panels, captions and HUD; Show controls restores interface."},
+    {"name":"Capture", "status":"PASS", "observed":"Downloaded actual canvas PNG, 1255x884; copy retained as interactive-capture.png. This is not a 1080p benchmark."},
+    {"name":"Panel accessibility state", "status":"PASS", "observed":"After source correction and reload, Close controls leaves aria-expanded=false and panel class ui hidden."},
+    {"name":"Camera selector synchronization", "status":"PASS", "observed":"After source correction and reload, Reset camera selects surface; 50 m shortcut selects free."},
+    {"name":"Diagnostic control", "status":"PASS", "observed":"Water body selection changes displayed water contribution; screenshot inspected."},
+    {"name":"Gallery selectors", "status":"PASS", "observed":"Storm / 500 m / 75 degrees loads correct two 1920x1080 PNGs. Special / half-submerged loads matching pair and disables altitude/azimuth controls."},
+    {"name":"Gallery playback", "status":"PASS", "observed":"Final skim and storm selections play, reach their final timestamps; start/end browser samples inspected."},
+    {"name":"Console errors", "status":"PASS", "observed":"No error entries returned during the final application check."}
+  ],
+  "limits": [
+    "UI operation is not optical or oceanographic calibration.",
+    "Not every slider combination or browser was exhaustively tested.",
+    "JSON file import/export was not repeated in this final browser check; numerical URL/settings roundtrip remains covered by CPU tests.",
+    "Pointer-lock and multi-hour free-flight tests remain outside this final smoke check."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-20",
+  "sourceCommit": "33acb4bb2bc553d721a5a17fff7c5098c124e522",
+  "renderingCheckpoint": "d6366a8",
+  "renderingNote": "Later source changes add evidence readback, motion naming, UI state synchronization and packaging. Rendered algorithms match the completed matrix checkpoint.",
+  "checks": {
+    "cpuTests": {"status":"PASS", "passed":15, "failed":0, "log":"cpu-tests.txt"},
+    "javascriptSyntax": {"status":"PASS", "modules":29, "inlineHTMLModules":6},
+    "pythonSyntax": {"status":"PASS", "scripts":3},
+    "gitDiffCheck": {"status":"PASS", "note":"Staged diff has no whitespace errors."},
+    "stillReadbacks": {"status":"PASS", "captures":52, "hdrPassed":52, "spectralPassed":52, "width":1920, "height":1080},
+    "baselineInputs": {"status":"PASS", "pairs":48, "mismatches":0},
+    "preservedRelease": {"status":"PASS", "version":"0.1.0", "manifestFiles":202},
+    "referenceHarness": {"status":"PASS", "note":"Five shader files hash-identical to reference. Two-line main.js patch passes git apply --check."},
+    "continuousRecordings": {"status":"PASS", "clips":7, "note":"All frames decode; monotonic timestamps. Actual cadence and visual failures reported separately."},
+    "AAARealism": {"status":"FAIL", "note":"Procedural clouds, broad foam films, limited breaking geometry, weak distant swell, immersion discontinuities remain."},
+    "observationalCalibration": {"status":"UNVERIFIED", "note":"No calibrated directional slope or optical whitecap fit."}
+  },
+  "cleanup": "Owned test tabs closed; temporary browser visibility restored; local servers on ports 8082, 8083, 8084 stopped."
+}
