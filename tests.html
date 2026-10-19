@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Pelagic GPU verification</title><style>body{background:#101b20;color:#e6ede7;font:16px/1.6 Consolas,monospace;padding:40px}pre{white-space:pre-wrap}</style><h1>Native WebGPU verification</h1><pre id="results">Running independent FFT comparison...</pre><script type="module">
+import {verifyFFT} from './tests/gpu.js';
+const out=document.querySelector('#results');
+try {
+ if(!navigator.gpu)throw Error('WebGPU unavailable. No fallback.');
+ const adapter=await navigator.gpu.requestAdapter({powerPreference:'high-performance'});if(!adapter)throw Error('No native WebGPU adapter');
+ const device=await adapter.requestDevice();const errors=[];device.onuncapturederror=e=>errors.push(e.error.message);
+ const info=adapter.info;
+ const report={time:new Date().toISOString(),adapter:{vendor:info.vendor,architecture:info.architecture,device:info.device,description:info.description,isFallbackAdapter:adapter.isFallbackAdapter},tests:await verifyFFT(device),errors};
+ report.status=errors.length===0&&report.tests.every(t=>t.channels.every(c=>c.status==='PASS'))?'PASS':'FAIL';
+ out.textContent=JSON.stringify(report,null,2);
+ await fetch('/__evidence?stage=stage-01&name=gpu-fft.json',{method:'POST',body:out.textContent});
+ document.title='FFT '+report.status;device.destroy();
+}catch(e){out.textContent='FAIL: '+e.stack;document.title='FFT FAIL';}
+</script></html>

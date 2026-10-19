@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Pelagic dynamics verification</title><style>body{background:#101b20;color:#e6ede7;font:15px/1.6 Consolas,monospace;padding:40px}pre{white-space:pre-wrap}</style><h1>Native WebGPU dynamics verification</h1><pre id="results">Preparing...</pre><script type="module">
+import {verifyDynamics} from './tests/dynamics.js';
+const out=document.querySelector('#results');
+try{
+ if(!navigator.gpu)throw Error('WebGPU unavailable.');
+ const adapter=await navigator.gpu.requestAdapter({powerPreference:'high-performance'});const device=await adapter.requestDevice();const errors=[];device.onuncapturederror=e=>errors.push(e.error.message);
+ const tests=await verifyDynamics(device,s=>out.textContent=s);
+ const report={adapter:{vendor:adapter.info.vendor,architecture:adapter.info.architecture},tests,errors,status:tests.phase.every(x=>x.status==='PASS')&&tests.foam.every(x=>x.status==='PASS')&&!errors.length?'PASS':'FAIL'};
+ out.textContent=JSON.stringify(report,null,2);await fetch('/__evidence?stage=stage-01&name=gpu-dynamics.json',{method:'POST',body:out.textContent});document.title='DYNAMICS '+report.status;device.destroy();
+}catch(e){out.textContent=e.stack;document.title='DYNAMICS FAIL';}
+</script></html>

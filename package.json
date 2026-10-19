@@ -1,0 +1,9 @@
+{
+  "name": "pelagic-webgpu",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An instrumented open-ocean renderer for native WebGPU",
+  "scripts": { "start": "node server.mjs", "test": "node --test tests/*.test.mjs" },
+  "engines": { "node": ">=20" }
+}
