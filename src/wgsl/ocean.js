@@ -129,7 +129,7 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   return a * 0.78 + b * 0.22;
 }
 
-@fragment fn fs(in: VSOut) -> @location(0) vec4f {
+@fragment fn fs(in: VSOut, @builtin(front_facing) front:bool) -> @location(0) vec4f {
   let xz = in.xz;
   var s = vec2f(0.0);
   var jxx = 0.0;
@@ -302,7 +302,9 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   var col = body * (1.0 - Fr) + refl * Fr + spec;
   col = mix(col, foamLit, foamMask * 0.95);
 
-  let wet=waterFraction(-V,surfaceAtLens);
+  // First-hit triangle orientation identifies the incident medium. Normal-map
+  // backfacing is not medium classification; the near-plane estimate is only for sky rays.
+  let wet=select(1.0,0.0,front)*step(0.5,F.control.z);
   var submerged=col;
   if (wet>0.0) {
     var transmitted=vec3f(0);var total=0.0;
@@ -349,7 +351,9 @@ export const HEIGHT_PROBE = FRAME_WGSL + /* wgsl */ `
 fn dispAt(xz: vec2f) -> vec3f {
   var d = vec3f(0.0);
   for (var c = 0u; c < ${CASCADES}u; c++) {
-    d += textureSampleLevel(dispTex, samp, xz * F.cascInvL[c >> 2u][c & 3u], c, 0.0).xyz;
+    let texel=F.cascL[c>>2u][c&3u]/${N}.0;
+    let lod=log2(max((2.0/F.lodP.y)/texel,1.0))+0.5;
+    if(lod<8.0){d += textureSampleLevel(dispTex, samp, xz * F.cascInvL[c >> 2u][c & 3u], c, lod).xyz;}
   }
   return d;
 }
