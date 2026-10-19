@@ -1,0 +1,73 @@
+{
+  "instrumentationPreservesBeauty": true,
+  "cases": [
+    {
+      "name": "golden-eye",
+      "baseline": "golden-h2-a0",
+      "pixelIdentical": true,
+      "shaderErrors": [],
+      "mips": "PASS",
+      "maxMipEnergyLoss": 0.002704694903876922,
+      "expectedHs": 2.3329737303537,
+      "realizedHs": 2.342313668334866,
+      "omittedSlope": 2.143476281943809e-16
+    },
+    {
+      "name": "midday-eye",
+      "baseline": "midday-h2-a75",
+      "pixelIdentical": true,
+      "shaderErrors": [],
+      "mips": "PASS",
+      "maxMipEnergyLoss": 0.0026247654503445505,
+      "expectedHs": 2.7321392370341466,
+      "realizedHs": 2.69051410421397,
+      "omittedSlope": 2.9132441987625643e-16
+    },
+    {
+      "name": "midday-high",
+      "baseline": "midday-h500-a75",
+      "pixelIdentical": true,
+      "shaderErrors": [],
+      "mips": "PASS",
+      "maxMipEnergyLoss": 0.0026247654503445505,
+      "expectedHs": 2.7321392370341466,
+      "realizedHs": 2.69051410421397,
+      "omittedSlope": 2.9132441987625643e-16
+    },
+    {
+      "name": "storm-eye",
+      "baseline": "storm-h2-a75",
+      "pixelIdentical": true,
+      "shaderErrors": [],
+      "mips": "PASS",
+      "maxMipEnergyLoss": 0.0028234255904913586,
+      "expectedHs": 7.415394332530953,
+      "realizedHs": 7.758432363928844,
+      "omittedSlope": 8.390984190077573e-16
+    },
+    {
+      "name": "storm-medium",
+      "baseline": "storm-h50-a75",
+      "pixelIdentical": true,
+      "shaderErrors": [],
+      "mips": "PASS",
+      "maxMipEnergyLoss": 0.0028234255904913586,
+      "expectedHs": 7.415394332530953,
+      "realizedHs": 7.758432363928844,
+      "omittedSlope": 8.390984190077573e-16
+    },
+    {
+      "name": "calm-eye",
+      "baseline": "calm-h2-a75",
+      "pixelIdentical": true,
+      "shaderErrors": [],
+      "mips": "PASS",
+      "maxMipEnergyLoss": 0.00568131052951098,
+      "expectedHs": 0.6933596985427888,
+      "realizedHs": 0.6984254710516455,
+      "omittedSlope": 1.9516626858872298e-14
+    }
+  ],
+  "numerical": "PASS",
+  "visualImprovement": "Not claimed: measurement-only checkpoint."
+}

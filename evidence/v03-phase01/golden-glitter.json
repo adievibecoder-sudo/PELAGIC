@@ -1,0 +1,2196 @@
+{
+  "version": "0.3.0-dev.1",
+  "sourceCheckpoint": "development",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": null
+  },
+  "backend": "native-webgpu",
+  "timestampQuery": true,
+  "settings": {
+    "windSpeed": 7,
+    "windDir": 118,
+    "fetchKm": 90,
+    "swellHs": 1.8,
+    "swellDir": 94,
+    "swellLength": 120,
+    "swellSpread": 48,
+    "choppy": 1.12,
+    "turbidity": 0.25,
+    "foam": 1,
+    "sunElev": 5,
+    "sunAzim": 4,
+    "exposure": 1.3,
+    "haze": 1.8,
+    "clouds": 0.32,
+    "veil": 0.14,
+    "bloom": 0.045,
+    "spray": 0.6,
+    "rain": 0,
+    "cloudDepth": 1.5,
+    "cloudType": 0,
+    "seed": 1307,
+    "quality": "Balanced",
+    "resolution": 1,
+    "adaptive": false,
+    "timeScale": 1,
+    "weatherRate": 60,
+    "paused": false,
+    "cameraMode": "free",
+    "astronomy": false,
+    "date": "2026-10-25",
+    "hour": 17,
+    "latitude": 32,
+    "longitude": -30,
+    "debug": 8,
+    "currentSpeed": 0.12,
+    "currentDir": 35,
+    "cameraSpeed": 6,
+    "fov": 58
+  },
+  "camera": {
+    "x": 0,
+    "y": 2,
+    "z": 0,
+    "yaw": 0.06981317007977318,
+    "pitch": -0.09599310885968812,
+    "fovY": 1.0122909661567112,
+    "speed": 6
+  },
+  "simulationTime": 21.666666666666572,
+  "frameIndex": 100,
+  "width": 1920,
+  "height": 1080,
+  "nodes": 712,
+  "errors": [],
+  "measurements": [
+    {
+      "gpu": 13.43488,
+      "simulation": 0.917504,
+      "atmosphere": 3.211264,
+      "surface": 8.650752,
+      "post": 0.32768,
+      "cpu": 0.30000000447034836,
+      "frame": 19,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.517376,
+      "simulation": 0.851968,
+      "atmosphere": 2.424832,
+      "surface": 8.51968,
+      "post": 0.393216,
+      "cpu": 0.4000000059604645,
+      "frame": 15.899999998509884,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.910592,
+      "simulation": 1.114112,
+      "atmosphere": 2.162688,
+      "surface": 9.043968,
+      "post": 0.32768,
+      "cpu": 0.3999999985098839,
+      "frame": 15.699999995529652,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.713984,
+      "simulation": 0.851968,
+      "atmosphere": 2.686976,
+      "surface": 8.51968,
+      "post": 0.32768,
+      "cpu": 0.3999999985098839,
+      "frame": 18.200000002980232,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.648448,
+      "simulation": 1.114112,
+      "atmosphere": 2.359296,
+      "surface": 8.51968,
+      "post": 0.32768,
+      "cpu": 0.29999999701976776,
+      "frame": 17.600000001490116,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.713984,
+      "simulation": 1.114112,
+      "atmosphere": 2.490368,
+      "surface": 8.454144,
+      "post": 0.393216,
+      "cpu": 0.30000000447034836,
+      "frame": 16.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.386304,
+      "simulation": 1.31072,
+      "atmosphere": 2.031616,
+      "surface": 8.323072,
+      "post": 0.393216,
+      "cpu": 0.3999999985098839,
+      "frame": 14.700000002980232,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.77952,
+      "simulation": 0.917504,
+      "atmosphere": 2.162688,
+      "surface": 8.978432,
+      "post": 0.393216,
+      "cpu": 0.3999999985098839,
+      "frame": 16.100000001490116,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 12.713984,
+      "simulation": 0.917504,
+      "atmosphere": 2.162688,
+      "surface": 8.978432,
+      "post": 0.32768,
+      "cpu": 0.4000000059604645,
+      "frame": 16.5,
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "frameRecords": [
+    {
+      "frame": 15.199999995529652,
+      "cpu": 0.30000000447034836,
+      "visibility": "visible",
+      "time": 20.516666666666637,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 19,
+      "cpu": 0.30000000447034836,
+      "visibility": "visible",
+      "time": 20.533333333333303,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.600000001490116,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.54999999999997,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.899999998509884,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.566666666666634,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.100000001490116,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.5833333333333,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.200000002980232,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 20.599999999999966,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 15.699999995529652,
+      "cpu": 0.4000000059604645,
+      "visibility": "visible",
+      "time": 20.61666666666663,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 15.400000005960464,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 20.633333333333297,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.69999999552965,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.649999999999963,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 15.899999998509884,
+      "cpu": 0.4000000059604645,
+      "visibility": "visible",
+      "time": 20.66666666666663,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16,
+      "cpu": 0.4000000059604645,
+      "visibility": "visible",
+      "time": 20.683333333333294,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.100000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 20.69999999999996,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.700000002980232,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 20.716666666666626,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.799999997019768,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.73333333333329,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.200000002980232,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 20.749999999999957,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.600000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 20.766666666666623,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.399999998509884,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 20.78333333333329,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 15.699999995529652,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 20.799999999999955,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.80000000447035,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 20.81666666666662,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.19999999552965,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.833333333333286,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.600000001490116,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.84999999999995,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.80000000447035,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.866666666666617,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.69999999552965,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 20.883333333333283,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.100000001490116,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 20.89999999999995,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.799999997019768,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.916666666666615,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.200000002980232,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 20.93333333333328,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 15.399999998509884,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.949999999999946,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.899999998509884,
+      "cpu": 0.4000000059604645,
+      "visibility": "visible",
+      "time": 20.96666666666661,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18,
+      "cpu": 0.4000000059604645,
+      "visibility": "visible",
+      "time": 20.983333333333277,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.80000000447035,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 20.999999999999943,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.799999997019768,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.01666666666661,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.200000002980232,
+      "cpu": 0.29999999701976776,
+      "visibility": "visible",
+      "time": 21.033333333333275,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.899999998509884,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 21.04999999999994,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.600000001490116,
+      "cpu": 0.29999999701976776,
+      "visibility": "visible",
+      "time": 21.066666666666606,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.69999999552965,
+      "cpu": 0.4000000059604645,
+      "visibility": "visible",
+      "time": 21.08333333333327,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.700000002980232,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.099999999999937,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.116666666666603,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.5,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.13333333333327,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.149999999999935,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.29999999701976776,
+      "visibility": "visible",
+      "time": 21.1666666666666,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.399999998509884,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.183333333333266,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.30000000447034836,
+      "visibility": "visible",
+      "time": 21.199999999999932,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 15.200000002980232,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.216666666666598,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 19.19999999552965,
+      "cpu": 0.4000000059604645,
+      "visibility": "visible",
+      "time": 21.233333333333263,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 15.300000004470348,
+      "cpu": 0.29999999701976776,
+      "visibility": "visible",
+      "time": 21.24999999999993,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.799999997019768,
+      "cpu": 0.7000000029802322,
+      "visibility": "visible",
+      "time": 21.266666666666595,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.700000002980232,
+      "cpu": 0.29999999701976776,
+      "visibility": "visible",
+      "time": 21.28333333333326,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 20.5,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.299999999999926,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 20.19999999552965,
+      "cpu": 0.4000000059604645,
+      "visibility": "visible",
+      "time": 21.316666666666592,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 14.700000002980232,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.333333333333258,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.700000002980232,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.349999999999923,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.19999999552965,
+      "cpu": 0.30000000447034836,
+      "visibility": "visible",
+      "time": 21.36666666666659,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.600000001490116,
+      "cpu": 0.7000000029802322,
+      "visibility": "visible",
+      "time": 21.383333333333255,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.200000002980232,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.39999999999992,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.599999994039536,
+      "cpu": 0.7000000029802322,
+      "visibility": "visible",
+      "time": 21.416666666666586,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 15.900000005960466,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.433333333333252,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.399999998509884,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.449999999999918,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.100000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.466666666666583,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.48333333333325,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 15.599999994039536,
+      "cpu": 0.7000000029802322,
+      "visibility": "visible",
+      "time": 21.499999999999915,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 18.600000001490116,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 21.51666666666658,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 15.300000004470348,
+      "cpu": 0.29999999701976776,
+      "visibility": "visible",
+      "time": 21.533333333333246,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.099999994039536,
+      "cpu": 0.4000000059604645,
+      "visibility": "visible",
+      "time": 21.549999999999912,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.566666666666578,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 15,
+      "cpu": 0.4000000059604645,
+      "visibility": "visible",
+      "time": 21.583333333333243,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16.5,
+      "cpu": 0.4000000059604645,
+      "visibility": "visible",
+      "time": 21.59999999999991,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.5,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.616666666666575,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 16,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.63333333333324,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.900000005960464,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 21.649999999999906,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    },
+    {
+      "frame": 17.69999999552965,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 21.666666666666572,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ]
+    }
+  ],
+  "timingMode": "queue-completion capture throughput",
+  "memoryEstimate": {
+    "renderTargetsMiB": 117.7734375,
+    "note": "Analytic lower bound for main MSAA/depth/HDR/bloom/cloud render targets only. Excludes simulation, driver alignment, browser compositor, and transient resources."
+  },
+  "spectral": {
+    "status": "PASS",
+    "cascades": [
+      {
+        "patchMetres": 1103,
+        "height": {
+          "mean": 1.0758867574622855e-7,
+          "variance": 0.2815377247551861,
+          "min": -1.9443359375,
+          "max": 2.04296875,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": -2.827982825692743e-8,
+          "variance": 0.0004913391669363538,
+          "min": -0.1085205078125,
+          "max": 0.09344482421875,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": 7.30269675841555e-8,
+          "variance": 0.0019820894482019367,
+          "min": -0.182861328125,
+          "max": 0.15966796875,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.28171876223156417,
+        "spectralInstantVariance": 0.2817386294532345,
+        "significantHeightInstant": 2.122405144189718,
+        "parsevalRelative": 0.0007130889308231925,
+        "slopeParsevalRelative": [
+          0.000702659428734922,
+          0.0006999747317294774
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.0004916846537943066,
+          0.0019834778325656783,
+          -0.0005139588026836223
+        ],
+        "momentMaxAbsoluteRounding": 0.000008579343557357788,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 211.3,
+        "height": {
+          "mean": 2.1009327610954642e-8,
+          "variance": 0.058873705056043765,
+          "min": -0.8056640625,
+          "max": 0.85498046875,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": -3.006516635650769e-8,
+          "variance": 0.0023986983867179965,
+          "min": -0.1983642578125,
+          "max": 0.1866455078125,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -5.082256393507123e-8,
+          "variance": 0.004163887510580111,
+          "min": -0.266357421875,
+          "max": 0.264404296875,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.05925521208615772,
+        "spectralInstantVariance": 0.05891541018694282,
+        "significantHeightInstant": 0.9705561709126888,
+        "parsevalRelative": 0.0007078815333156159,
+        "slopeParsevalRelative": [
+          0.0006996031785783868,
+          0.0007062553347370866
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.0024003776985857157,
+          0.004166830356748509,
+          -0.0008770453008376459
+        ],
+        "momentMaxAbsoluteRounding": 0.000037297606468200684,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 39.7,
+        "height": {
+          "mean": 1.0783787729451433e-7,
+          "variance": 0.0023992090734539207,
+          "min": -0.174072265625,
+          "max": 0.158935546875,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": 3.2151547202374786e-8,
+          "variance": 0.0038804606992549956,
+          "min": -0.2191162109375,
+          "max": 0.2308349609375,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -1.1863085092045367e-7,
+          "variance": 0.003970234071428927,
+          "min": -0.219482421875,
+          "max": 0.2298583984375,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.002443382590458153,
+        "spectralInstantVariance": 0.002400885350929302,
+        "significantHeightInstant": 0.19592688732091554,
+        "parsevalRelative": 0.0006981913879112626,
+        "slopeParsevalRelative": [
+          0.0007056802998246537,
+          0.0007034324729135381
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.0038832009976993314,
+          0.003973028828923013,
+          -0.00014879190356799924
+        ],
+        "momentMaxAbsoluteRounding": 0.000043973326683044434,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 7.43,
+        "height": {
+          "mean": 3.0322553357109427e-9,
+          "variance": 0.00008914452608894835,
+          "min": -0.035369873046875,
+          "max": 0.035186767578125,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": 8.33742888062261e-8,
+          "variance": 0.0034690278700343882,
+          "min": -0.2255859375,
+          "max": 0.239990234375,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -3.570039552869275e-8,
+          "variance": 0.0034520594784195877,
+          "min": -0.2359619140625,
+          "max": 0.20263671875,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.0000888839604448545,
+        "spectralInstantVariance": 0.00008920738084213097,
+        "significantHeightInstant": 0.03776655156912229,
+        "parsevalRelative": 0.0007045913980352665,
+        "slopeParsevalRelative": [
+          0.000706302307205554,
+          0.0007059181998987199
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.003471479784215397,
+          0.0034544980714797603,
+          0.00007841686266373643
+        ],
+        "momentMaxAbsoluteRounding": 0.00005239248275756836,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 1.393,
+        "height": {
+          "mean": -7.548806024715304e-11,
+          "variance": 0.0000021743847715481915,
+          "min": -0.006256103515625,
+          "max": 0.0051727294921875,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": 5.9753801906481385e-9,
+          "variance": 0.0030003839754173646,
+          "min": -0.241455078125,
+          "max": 0.1922607421875,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -1.0716576070990413e-8,
+          "variance": 0.0030835613077711747,
+          "min": -0.2073974609375,
+          "max": 0.1978759765625,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.0000021157003638060997,
+        "spectralInstantVariance": 0.000002175912568638961,
+        "significantHeightInstant": 0.005898318094573322,
+        "parsevalRelative": 0.0007021408455419775,
+        "slopeParsevalRelative": [
+          0.0007051036092804257,
+          0.0007032940012309433
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.0030025010497444077,
+          0.0030857314842134315,
+          -0.00007781339494847293
+        ],
+        "momentMaxAbsoluteRounding": 0.00004087388515472412,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 0.2617,
+        "height": {
+          "mean": 5.093170329928398e-10,
+          "variance": 1.2475872673580254e-7,
+          "min": -0.001262664794921875,
+          "max": 0.0012750625610351562,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": 9.635186870582402e-9,
+          "variance": 0.004117844982400102,
+          "min": -0.222412109375,
+          "max": 0.267578125,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -6.529535312438384e-8,
+          "variance": 0.004474032394985947,
+          "min": -0.2457275390625,
+          "max": 0.2437744140625,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 1.198221506018218e-7,
+        "spectralInstantVariance": 1.248463906700194e-7,
+        "significantHeightInstant": 0.0014128480554443357,
+        "parsevalRelative": 0.0007021743579962741,
+        "slopeParsevalRelative": [
+          0.0007035804991303803,
+          0.0006975064436015537
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.0041207442577017245,
+          0.0044771552396145825,
+          -0.000020790685119927722
+        ],
+        "momentMaxAbsoluteRounding": 0.000057220458984375,
+        "status": "PASS"
+      }
+    ],
+    "continuousSpectrum": {
+      "windM0": 0.13513423472709912,
+      "windSlopeVariance": 0.03742539656489316,
+      "swellM0": 0.2025,
+      "windPeakPeriod": 5.342666093307551,
+      "combinedHs": 2.3242520852165724,
+      "model": "JONSWAP / Elfouhaily hybrid; normalized band-limited swell"
+    },
+    "measuredIndependentCascadeHs": 2.342313668334866,
+    "slopeVarianceLinear": 0.038483619292148885,
+    "coxMunkReferenceAtUnconvertedU10": 0.038840000000000006,
+    "observationalStatus": "UNVERIFIED: one realization, linear slopes; Cox-Munk uses U12.5, not U10; no ensemble confidence interval.",
+    "whitecapStatus": "UNVERIFIED: no long-duration, area-weighted coverage observation.",
+    "tolerance": "Parseval <0.0015 includes binary16 storage; conjugate coefficients <1e-7. Zero NaN/Inf in sampled fields."
+  },
+  "foam": {
+    "layers": [
+      {
+        "layer": 0,
+        "meanDensity": 0.0002734419208536565,
+        "maxDensity": 0.5096530914306641,
+        "invalid": 0,
+        "densityThresholds": [
+          0.05,
+          0.2,
+          0.5
+        ],
+        "areaFractions": [
+          0.0014190673828125,
+          0.00030517578125,
+          0.000003814697265625
+        ]
+      },
+      {
+        "layer": 1,
+        "meanDensity": 0.000004445097147254273,
+        "maxDensity": 0.32876574993133545,
+        "invalid": 0,
+        "densityThresholds": [
+          0.05,
+          0.2,
+          0.5
+        ],
+        "areaFractions": [
+          0.00002288818359375,
+          0.00000762939453125,
+          0
+        ]
+      }
+    ],
+    "interpretation": "Simulation-memory density over uniform parameter-space texels, not observed projected optical whitecap coverage. A single instant cannot validate a wind-coverage fit."
+  },
+  "hdr": {
+    "status": "PASS",
+    "invalid": 0,
+    "negative": 0,
+    "max": 113.8125,
+    "over60000": 0,
+    "pixels": 2073600,
+    "storageDivisor": 32,
+    "radianceBands": [
+      {
+        "verticalThird": 0,
+        "meanRGB": [
+          0.6399810638692643,
+          0.3817410933529889,
+          0.20991302481404056
+        ],
+        "meanLuminance": 0.42423692453625883,
+        "geometricMeanLuminance": 0.3003797344034364
+      },
+      {
+        "verticalThird": 1,
+        "meanRGB": [
+          0.6478564546257257,
+          0.32404441572449827,
+          0.10726182002160284
+        ],
+        "meanLuminance": 0.3772351517851494,
+        "geometricMeanLuminance": 1.5132780715167064e-9
+      },
+      {
+        "verticalThird": 2,
+        "meanRGB": [
+          0.09721459014824144,
+          0.04468979898426268,
+          0.011439968212335198
+        ],
+        "meanLuminance": 0.053455931803994716,
+        "geometricMeanLuminance": 6.851853578033544e-12
+      }
+    ],
+    "scope": "All RGB samples in pre-exposed resolved linear HDR, before bloom and tone mapping. Bands undo storage divisor, retain renderer-relative radiance units; no sky/ocean segmentation."
+  },
+  "discreteSpectrum": {
+    "cascades": [
+      {
+        "length": 1103,
+        "min": 0.002848225412890315,
+        "max": 0.17841510474681854,
+        "wavelength": [
+          35.216666862908234,
+          2206.0000162710267
+        ],
+        "occupied": 3084,
+        "elevationVariance": 0.2822228566689948,
+        "slopeCovariance": [
+          0.0005209477864553576,
+          0.0020112145447227343,
+          -0.0005424593531696066
+        ],
+        "phaseMeanVariance": 0.0003814410211152261
+      },
+      {
+        "length": 211.3,
+        "min": 0.17841510474681854,
+        "max": 0.9495998024940491,
+        "wavelength": [
+          6.616666611215899,
+          35.216666862908234
+        ],
+        "occupied": 3088,
+        "elevationVariance": 0.055448606466643596,
+        "slopeCovariance": [
+          0.0024560033224528496,
+          0.003952290301349497,
+          -0.000885562417272425
+        ],
+        "phaseMeanVariance": 0.000017576163104395274
+      },
+      {
+        "length": 39.7,
+        "min": 0.9495998024940491,
+        "max": 5.073904514312744,
+        "wavelength": [
+          1.2383333760924427,
+          6.616666611215899
+        ],
+        "occupied": 3120,
+        "elevationVariance": 0.0024067643309181367,
+        "slopeCovariance": [
+          0.0038584558065282285,
+          0.0040938824144668515,
+          -0.0001692768129074358
+        ],
+        "phaseMeanVariance": 1.3591386943960476e-8
+      },
+      {
+        "length": 7.43,
+        "min": 5.073904514312744,
+        "max": 27.06325340270996,
+        "wavelength": [
+          0.2321666657620116,
+          1.2383333760924427
+        ],
+        "occupied": 3100,
+        "elevationVariance": 0.00009231249248728687,
+        "slopeCovariance": [
+          0.003596314146311769,
+          0.003603140642095932,
+          -0.0000031568656461491
+        ],
+        "phaseMeanVariance": 1.9513489926877836e-11
+      },
+      {
+        "length": 1.393,
+        "min": 27.06325340270996,
+        "max": 144.0546875,
+        "wavelength": [
+          0.04361666681050963,
+          0.2321666657620116
+        ],
+        "occupied": 3084,
+        "elevationVariance": 0.000002234054573145677,
+        "slopeCovariance": [
+          0.003124668970614853,
+          0.0030897938089850373,
+          0.000025796357201161768
+        ],
+        "phaseMeanVariance": 8.619841775201439e-15
+      },
+      {
+        "length": 0.2617,
+        "min": 144.0546875,
+        "max": 3011.703369140625,
+        "wavelength": [
+          0.0020862563596269652,
+          0.04361666681050963
+        ],
+        "occupied": 49360,
+        "elevationVariance": 1.2764391167835856e-7,
+        "slopeCovariance": [
+          0.004306930355196846,
+          0.004244755600298142,
+          0.00004505163626348
+        ],
+        "phaseMeanVariance": 2.898905591565239e-17
+      }
+    ],
+    "expectedHs": 2.3329737303537,
+    "expectedM0": 0.3401729016575287,
+    "linearSlopeCovariance": [
+      0.017863320387559903,
+      0.020995077311918194,
+      -0.0015296074555309748
+    ],
+    "phaseAverageM0StandardDeviation": 0.019975755182938745,
+    "omittedWindSlopeAboveLastBand": 2.143476281943809e-16,
+    "note": "Expected discrete Gaussian ensemble, before choppy deformation, gust modulation or pixel filtering. Standard deviation describes the random phase-averaged m0 estimator, not observed wave-height uncertainty."
+  },
+  "slopeMipBudget": {
+    "status": "PASS",
+    "rows": [
+      {
+        "cascade": 0,
+        "level": 0,
+        "texelCount": 65536,
+        "resolvedMeanSquare": 0.00247342861514441,
+        "unresolvedVariance": 9.667008502994845e-7,
+        "secondMoment": 0.0024742819487073575,
+        "mipRelativeEnergyLoss": 0,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 1,
+        "level": 0,
+        "texelCount": 65536,
+        "resolvedMeanSquare": 0.006562585897301587,
+        "unresolvedVariance": 0.0000025805239554534793,
+        "secondMoment": 0.0065648904665067676,
+        "mipRelativeEnergyLoss": 0,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 2,
+        "level": 0,
+        "texelCount": 65536,
+        "resolvedMeanSquare": 0.007850694770699027,
+        "unresolvedVariance": 0.00000307890975969992,
+        "secondMoment": 0.007853456316297525,
+        "mipRelativeEnergyLoss": 0,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 3,
+        "level": 0,
+        "texelCount": 65536,
+        "resolvedMeanSquare": 0.006921087348462201,
+        "unresolvedVariance": 0.000002724936510105694,
+        "secondMoment": 0.006923529622326896,
+        "mipRelativeEnergyLoss": 0,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 4,
+        "level": 0,
+        "texelCount": 65536,
+        "resolvedMeanSquare": 0.006083945283188686,
+        "unresolvedVariance": 0.000002391575204670974,
+        "secondMoment": 0.00608608370021102,
+        "mipRelativeEnergyLoss": 0,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 5,
+        "level": 0,
+        "texelCount": 65536,
+        "resolvedMeanSquare": 0.008591877377390398,
+        "unresolvedVariance": 0.000003350414140213876,
+        "secondMoment": 0.00859487126035674,
+        "mipRelativeEnergyLoss": 0,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 0,
+        "level": 1,
+        "texelCount": 16384,
+        "resolvedMeanSquare": 0.002284767608272932,
+        "unresolvedVariance": 0.00018876241296125035,
+        "secondMoment": 0.0024735300212341826,
+        "mipRelativeEnergyLoss": 0.0003038972472671129,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 1,
+        "level": 1,
+        "texelCount": 16384,
+        "resolvedMeanSquare": 0.006273067411779377,
+        "unresolvedVariance": 0.000289917026581407,
+        "secondMoment": 0.006562984108313685,
+        "mipRelativeEnergyLoss": 0.00029038690025496466,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 2,
+        "level": 1,
+        "texelCount": 16384,
+        "resolvedMeanSquare": 0.007491631320433093,
+        "unresolvedVariance": 0.0003595425406937875,
+        "secondMoment": 0.007851173861126881,
+        "mipRelativeEnergyLoss": 0.00029063065721865103,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 3,
+        "level": 1,
+        "texelCount": 16384,
+        "resolvedMeanSquare": 0.006654429233672127,
+        "unresolvedVariance": 0.00026708596975819087,
+        "secondMoment": 0.006921515203430317,
+        "mipRelativeEnergyLoss": 0.00029095259303616605,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 4,
+        "level": 1,
+        "texelCount": 16384,
+        "resolvedMeanSquare": 0.0057857485132259455,
+        "unresolvedVariance": 0.00029852814106595227,
+        "secondMoment": 0.006084276654291898,
+        "mipRelativeEnergyLoss": 0.0002969144047525208,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 5,
+        "level": 1,
+        "texelCount": 16384,
+        "resolvedMeanSquare": 0.008223692562303927,
+        "unresolvedVariance": 0.0003686579661842408,
+        "secondMoment": 0.008592350528488168,
+        "mipRelativeEnergyLoss": 0.00029328326070435825,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 0,
+        "level": 2,
+        "texelCount": 4096,
+        "resolvedMeanSquare": 0.0016776800168616544,
+        "unresolvedVariance": 0.0007950679298784737,
+        "secondMoment": 0.002472747946740128,
+        "mipRelativeEnergyLoss": 0.0006199786439176124,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 1,
+        "level": 2,
+        "texelCount": 4096,
+        "resolvedMeanSquare": 0.005302168835768028,
+        "unresolvedVariance": 0.0012587634561364363,
+        "secondMoment": 0.006560932291904464,
+        "mipRelativeEnergyLoss": 0.0006029307910767574,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 2,
+        "level": 2,
+        "texelCount": 4096,
+        "resolvedMeanSquare": 0.006291519394567268,
+        "unresolvedVariance": 0.0015572302557257615,
+        "secondMoment": 0.00784874965029303,
+        "mipRelativeEnergyLoss": 0.0005993114133362494,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 3,
+        "level": 2,
+        "texelCount": 4096,
+        "resolvedMeanSquare": 0.0057517112910544545,
+        "unresolvedVariance": 0.0011676603133993178,
+        "secondMoment": 0.006919371604453772,
+        "mipRelativeEnergyLoss": 0.0006005633109035945,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 4,
+        "level": 2,
+        "texelCount": 4096,
+        "resolvedMeanSquare": 0.004792807527254223,
+        "unresolvedVariance": 0.001289534755498283,
+        "secondMoment": 0.0060823422827525064,
+        "mipRelativeEnergyLoss": 0.0006147495898526711,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 5,
+        "level": 2,
+        "texelCount": 4096,
+        "resolvedMeanSquare": 0.007048581858799644,
+        "unresolvedVariance": 0.0015411223275066908,
+        "secondMoment": 0.008589704186306335,
+        "mipRelativeEnergyLoss": 0.0006011810874047458,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 0,
+        "level": 3,
+        "texelCount": 1024,
+        "resolvedMeanSquare": 0.0005984315481684238,
+        "unresolvedVariance": 0.0018735338984341293,
+        "secondMoment": 0.002471965446602553,
+        "mipRelativeEnergyLoss": 0.0009362320676568807,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 1,
+        "level": 3,
+        "texelCount": 1024,
+        "resolvedMeanSquare": 0.003203910493919493,
+        "unresolvedVariance": 0.0033548956758586157,
+        "secondMoment": 0.006558806169778109,
+        "mipRelativeEnergyLoss": 0.000926793334892678,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 2,
+        "level": 3,
+        "texelCount": 1024,
+        "resolvedMeanSquare": 0.003686087752777789,
+        "unresolvedVariance": 0.004160206567410674,
+        "secondMoment": 0.007846294320188463,
+        "mipRelativeEnergyLoss": 0.0009119546630951866,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 3,
+        "level": 3,
+        "texelCount": 1024,
+        "resolvedMeanSquare": 0.0036051854693271435,
+        "unresolvedVariance": 0.0033119415895141446,
+        "secondMoment": 0.006917127058841288,
+        "mipRelativeEnergyLoss": 0.0009247542561183069,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 4,
+        "level": 3,
+        "texelCount": 1024,
+        "resolvedMeanSquare": 0.0026458763455814993,
+        "unresolvedVariance": 0.003434489859842571,
+        "secondMoment": 0.00608036620542407,
+        "mipRelativeEnergyLoss": 0.0009394374229114838,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 5,
+        "level": 3,
+        "texelCount": 1024,
+        "resolvedMeanSquare": 0.00452466922529382,
+        "unresolvedVariance": 0.0040622703153978534,
+        "secondMoment": 0.008586939540691674,
+        "mipRelativeEnergyLoss": 0.0009228433358450472,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 0,
+        "level": 4,
+        "texelCount": 256,
+        "resolvedMeanSquare": 0.0001706798821067418,
+        "unresolvedVariance": 0.0023004856166118776,
+        "secondMoment": 0.0024711654987186193,
+        "mipRelativeEnergyLoss": 0.0012595371317186787,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 1,
+        "level": 4,
+        "texelCount": 256,
+        "resolvedMeanSquare": 0.0010410691918369963,
+        "unresolvedVariance": 0.005515672701454477,
+        "secondMoment": 0.006556741893291473,
+        "mipRelativeEnergyLoss": 0.0012412352128138532,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 2,
+        "level": 4,
+        "texelCount": 256,
+        "resolvedMeanSquare": 0.0013106550467580913,
+        "unresolvedVariance": 0.006533211897554958,
+        "secondMoment": 0.00784386694431305,
+        "mipRelativeEnergyLoss": 0.00122103843177626,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 3,
+        "level": 4,
+        "texelCount": 256,
+        "resolvedMeanSquare": 0.0014765501511517787,
+        "unresolvedVariance": 0.005438393305498002,
+        "secondMoment": 0.00691494345664978,
+        "mipRelativeEnergyLoss": 0.001240142838333102,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 4,
+        "level": 4,
+        "texelCount": 256,
+        "resolvedMeanSquare": 0.0008867760681616765,
+        "unresolvedVariance": 0.005191772661258032,
+        "secondMoment": 0.006078548729419708,
+        "mipRelativeEnergyLoss": 0.0012380655874073302,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 5,
+        "level": 4,
+        "texelCount": 256,
+        "resolvedMeanSquare": 0.0014064459261868834,
+        "unresolvedVariance": 0.007177751684429801,
+        "secondMoment": 0.008584197610616684,
+        "mipRelativeEnergyLoss": 0.0012418626663191128,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 0,
+        "level": 5,
+        "texelCount": 64,
+        "resolvedMeanSquare": 0.000013312331205050931,
+        "unresolvedVariance": 0.0024570897158330274,
+        "secondMoment": 0.0024704020470380783,
+        "mipRelativeEnergyLoss": 0.0015680919756562864,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 1,
+        "level": 5,
+        "texelCount": 64,
+        "resolvedMeanSquare": 0.00007181825649116291,
+        "unresolvedVariance": 0.006483128046876452,
+        "secondMoment": 0.006554946303367615,
+        "mipRelativeEnergyLoss": 0.001514749284833716,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 2,
+        "level": 5,
+        "texelCount": 64,
+        "resolvedMeanSquare": 0.00008061712826545886,
+        "unresolvedVariance": 0.007760835827934187,
+        "secondMoment": 0.007841452956199646,
+        "mipRelativeEnergyLoss": 0.0015284175036371173,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 3,
+        "level": 5,
+        "texelCount": 64,
+        "resolvedMeanSquare": 0.00009066123376855195,
+        "unresolvedVariance": 0.006821957641734988,
+        "secondMoment": 0.00691261887550354,
+        "mipRelativeEnergyLoss": 0.0015758937158542958,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 4,
+        "level": 5,
+        "texelCount": 64,
+        "resolvedMeanSquare": 0.00005977412464108767,
+        "unresolvedVariance": 0.006017113125305507,
+        "secondMoment": 0.006076887249946594,
+        "mipRelativeEnergyLoss": 0.0015110620749607968,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 5,
+        "level": 5,
+        "texelCount": 64,
+        "resolvedMeanSquare": 0.00011304001635981109,
+        "unresolvedVariance": 0.008468434407048697,
+        "secondMoment": 0.008581474423408508,
+        "mipRelativeEnergyLoss": 0.0015587012931797821,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 0,
+        "level": 6,
+        "texelCount": 16,
+        "resolvedMeanSquare": 0.000002495361274501562,
+        "unresolvedVariance": 0.0024670591822206767,
+        "secondMoment": 0.0024695545434951782,
+        "mipRelativeEnergyLoss": 0.0019106170235162717,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 1,
+        "level": 6,
+        "texelCount": 16,
+        "resolvedMeanSquare": 0.000030118378621324382,
+        "unresolvedVariance": 0.006522518244761244,
+        "secondMoment": 0.006552636623382568,
+        "mipRelativeEnergyLoss": 0.0018665723650252407,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 2,
+        "level": 6,
+        "texelCount": 16,
+        "resolvedMeanSquare": 0.000014140478459268024,
+        "unresolvedVariance": 0.007824943193110556,
+        "secondMoment": 0.007839083671569824,
+        "mipRelativeEnergyLoss": 0.0018301043704635142,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 3,
+        "level": 6,
+        "texelCount": 16,
+        "resolvedMeanSquare": 0.000013845088233210845,
+        "unresolvedVariance": 0.006896359799156926,
+        "secondMoment": 0.006910204887390137,
+        "mipRelativeEnergyLoss": 0.0019245580886647661,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 4,
+        "level": 6,
+        "texelCount": 16,
+        "resolvedMeanSquare": 0.000016397274951174268,
+        "unresolvedVariance": 0.006058627329846189,
+        "secondMoment": 0.006075024604797363,
+        "mipRelativeEnergyLoss": 0.0018171119488996606,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 5,
+        "level": 6,
+        "texelCount": 16,
+        "resolvedMeanSquare": 0.000025198840333473527,
+        "unresolvedVariance": 0.008552624798582542,
+        "secondMoment": 0.008577823638916016,
+        "mipRelativeEnergyLoss": 0.0019834644317891607,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 0,
+        "level": 7,
+        "texelCount": 4,
+        "resolvedMeanSquare": 2.1921013093617603e-7,
+        "unresolvedVariance": 0.0024681283393075404,
+        "secondMoment": 0.0024683475494384766,
+        "mipRelativeEnergyLoss": 0.00239843291585313,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 1,
+        "level": 7,
+        "texelCount": 4,
+        "resolvedMeanSquare": 0.000001863294450288322,
+        "unresolvedVariance": 0.006548925584944243,
+        "secondMoment": 0.006550788879394531,
+        "mipRelativeEnergyLoss": 0.0021480308291784607,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 2,
+        "level": 7,
+        "texelCount": 4,
+        "resolvedMeanSquare": 0.0000012555048565232596,
+        "unresolvedVariance": 0.007836516864528242,
+        "secondMoment": 0.007837772369384766,
+        "mipRelativeEnergyLoss": 0.0019970757181410168,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 3,
+        "level": 7,
+        "texelCount": 4,
+        "resolvedMeanSquare": 0.0000018951611373552169,
+        "unresolvedVariance": 0.006907475261225926,
+        "secondMoment": 0.006909370422363281,
+        "mipRelativeEnergyLoss": 0.0020450840446980152,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 4,
+        "level": 7,
+        "texelCount": 4,
+        "resolvedMeanSquare": 5.533646856292762e-7,
+        "unresolvedVariance": 0.006073398356505777,
+        "secondMoment": 0.006073951721191406,
+        "mipRelativeEnergyLoss": 0.0019933966762884464,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 5,
+        "level": 7,
+        "texelCount": 4,
+        "resolvedMeanSquare": 3.3459744841479733e-7,
+        "unresolvedVariance": 0.008574151181360179,
+        "secondMoment": 0.008574485778808594,
+        "mipRelativeEnergyLoss": 0.0023718193013748784,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 0,
+        "level": 8,
+        "texelCount": 1,
+        "resolvedMeanSquare": 7.105427357601002e-15,
+        "unresolvedVariance": 0.0024681091308522696,
+        "secondMoment": 0.002468109130859375,
+        "mipRelativeEnergyLoss": 0.002494791610635719,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 1,
+        "level": 8,
+        "texelCount": 1,
+        "resolvedMeanSquare": 2.4158453015843406e-13,
+        "unresolvedVariance": 0.006547927856203728,
+        "secondMoment": 0.0065479278564453125,
+        "mipRelativeEnergyLoss": 0.002583837483351188,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 2,
+        "level": 8,
+        "texelCount": 1,
+        "resolvedMeanSquare": 3.197442310920451e-14,
+        "unresolvedVariance": 0.007837295532194588,
+        "secondMoment": 0.007837295532226562,
+        "mipRelativeEnergyLoss": 0.002057792571841927,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 3,
+        "level": 8,
+        "texelCount": 1,
+        "resolvedMeanSquare": 1.751487843648647e-12,
+        "unresolvedVariance": 0.006908416746295387,
+        "secondMoment": 0.006908416748046875,
+        "mipRelativeEnergyLoss": 0.0021828279944503,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 4,
+        "level": 8,
+        "texelCount": 1,
+        "resolvedMeanSquare": 1.4210854715202004e-13,
+        "unresolvedVariance": 0.0060729980467328915,
+        "secondMoment": 0.006072998046875,
+        "mipRelativeEnergyLoss": 0.002150094211745145,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      },
+      {
+        "cascade": 5,
+        "level": 8,
+        "texelCount": 1,
+        "resolvedMeanSquare": 4.618527782440651e-13,
+        "unresolvedVariance": 0.008571624755397522,
+        "secondMoment": 0.008571624755859375,
+        "mipRelativeEnergyLoss": 0.002704694903876922,
+        "invalid": 0,
+        "negativeRaw": 0,
+        "status": "PASS"
+      }
+    ],
+    "tolerance": "0.6% cumulative energy drift across eight binary16 mip stores; negative raw variance tolerance 0.2% or 2e-7 for independently rounded binary16 moments. No nonfinite samples.",
+    "scope": "Unmodulated parameter-space slope moments. This does not validate the final deformed, gust-modulated BRDF or observational Cox-Munk statistics."
+  }
+}

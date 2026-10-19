@@ -12,6 +12,8 @@ import { PARTICLE_COUNT, PARTICLE_UPDATE, PARTICLE_RENDER } from './wgsl/particl
 import { spectralReadback } from '../tests/spectral-readback.js';
 import { foamReadback } from '../tests/foam-readback.js';
 import { hdrReadback } from '../tests/hdr-readback.js';
+import { slopeMipReadback } from '../tests/slope-readback.js';
+import { discreteSpectrumLedger } from './ocean-contracts.js';
 import { SIM_INIT, SIM_EVOLVE, FFT_ROWS, FFT_COLS, SIM_MIPS, FOAM_TEX, RGBA8_MIPS, FOAM_UPDATE, ARRAY16_MIPS, FOAM_RES } from './wgsl/sim.js';
 import { TRANS_LUT, MS_LUT, SKYVIEW_LUT, ENV_CUBE, CUBE_MIPS, SUN_VIS, CLOUD_SCREEN, CLOUD_SHADOW } from './wgsl/sky.js';
 import { OCEAN, SKY_BG, HEIGHT_PROBE } from './wgsl/ocean.js';
@@ -968,7 +970,7 @@ async function main() {
     else requestAnimationFrame(frame);
   }
 
-  function evidenceReport(){return {version:'0.2.0',sourceCheckpoint:qs.get('revision')||'development',adapter:adapterInfo,backend:'native-webgpu',timestampQuery:hasTS,settings:{...P},camera:{...cam},simulationTime:simTime,frameIndex,width:W,height:H,nodes:nodeCount,errors,measurements,frameRecords,
+  function evidenceReport(){return {version:'0.3.0-dev.1',sourceCheckpoint:qs.get('revision')||'development',adapter:adapterInfo,backend:'native-webgpu',timestampQuery:hasTS,settings:{...P},camera:{...cam},simulationTime:simTime,frameIndex,width:W,height:H,nodes:nodeCount,errors,measurements,frameRecords,
     timingMode:qs.has('benchmark')?'requestAnimationFrame, display paced':'queue-completion capture throughput',
     memoryEstimate:{renderTargetsMiB:(W*H*56+(W>>1)*(H>>1)*8*4/3+cloudW*cloudH*8)/1048576,
       note:'Analytic lower bound for main MSAA/depth/HDR/bloom/cloud render targets only. Excludes simulation, driver alignment, browser compositor, and transient resources.'}};}
@@ -1000,7 +1002,11 @@ async function main() {
     const report=evidenceReport();
     if(qs.get('validate')==='1')report.spectral=await spectralReadback(device,{h0:h0Buf,specA,disp:dispTex,deriv:derivTex,mom:momTex},P);
     if(qs.get('validate')==='1')report.foam=await foamReadback(device,foamW[foamCur]);
-    if(qs.get('validate')==='1')report.hdr=await hdrReadback(device,hdrTex);
+    if(qs.get('validate')==='1')report.hdr=await hdrReadback(device,hdrTex,frameF[60]);
+    if(qs.get('contracts')==='1'){
+      report.discreteSpectrum=discreteSpectrumLedger(P);
+      report.slopeMipBudget=await slopeMipReadback(device,derivTex,momTex);
+    }
     await fetch('/__evidence?stage='+stage+'&name='+encodeURIComponent(nm.replace('.png','.json')),{method:'POST',body:JSON.stringify(report,null,2)});
     log('shot saved ' + nm + ' gpu ' + gpuMs.toFixed(2) + 'ms nodes ' + nodeCount);
     shotIdx++;

@@ -15,7 +15,7 @@ export const RANGES = Object.freeze({
   sunElev:[-30,89],sunAzim:[-180,180],exposure:[0.02,24],haze:[0.5,15],clouds:[0,1],veil:[0,1],
   bloom:[0,0.25],spray:[0,3],rain:[0,1],cloudDepth:[0.3,5],cloudType:[0,2],
   seed:[1,16777215],resolution:[0.5,1.5],timeScale:[0,20],weatherRate:[1,3600],
-  hour:[0,23.999],latitude:[-89,89],longitude:[-180,180],debug:[0,9],
+  hour:[0,23.999],latitude:[-89,89],longitude:[-180,180],debug:[0,12],
   currentSpeed:[0,2],currentDir:[0,360],cameraSpeed:[0.1,500],fov:[30,100],
 });
 export const PRESETS = Object.freeze({

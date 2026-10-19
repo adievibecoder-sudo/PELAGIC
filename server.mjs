@@ -19,7 +19,7 @@ const server = http.createServer(async (req, res) => {
         const name = url.searchParams.get('name') || 'capture.png';
         if (!/^[a-zA-Z0-9_-]+\.(png|webm|json)$/.test(name)) { res.writeHead(400).end('Invalid name'); return; }
         const stage = url.searchParams.get('stage') || 'stage-01';
-        if (!/^stage-0[1-4]$/.test(stage)) { res.writeHead(400).end(); return; }
+        if (!/^(stage-0[1-4]|v03-[a-z0-9-]{1,40})$/.test(stage)) { res.writeHead(400).end(); return; }
         const dir = path.join(root, 'evidence', stage);
         await fs.mkdir(dir, { recursive: true });
         await fs.writeFile(path.join(dir, name), body);

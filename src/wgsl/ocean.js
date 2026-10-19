@@ -299,6 +299,11 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let foamLit=foamAlb*(sunE*max(dot(nrm,Ld),0.0)/PI+foamAmb);
 
   if (F.post.w > 0.5) {
+    if (F.post.w > 7.5 && F.post.w < 8.5) { return vec4f(spec/F.windP[1].x,1.0); }
+    if (F.post.w > 8.5 && F.post.w < 9.5) { return vec4f((nrm*0.5+0.5)/F.windP[1].x,1.0); }
+    if (F.post.w > 9.5 && F.post.w < 10.5) { return vec4f(vec3f(cov.xy,abs(cov.z))*8.0/F.windP[1].x,1.0); }
+    if (F.post.w > 10.5 && F.post.w < 11.5) { return vec4f(vec3f(crest,foamMask,clamp(fwl.g,0.0,1.0))/F.windP[1].x,1.0); }
+    if (F.post.w > 11.5) { return vec4f((refl*Fr)/F.windP[1].x,1.0); }
     // debug: r = foam cover, g = clamp(J), b = world foam level-0 weight
     if (F.post.w < 1.5) { return vec4f(vec3f(cover, clamp(J * 0.5, 0.0, 1.0), w0 * 0.3)*0.2/F.windP[1].x, 1.0); }
     if (F.post.w > 2.5 && F.post.w < 3.5) { return vec4f(refl/F.windP[1].x, 1.0); }

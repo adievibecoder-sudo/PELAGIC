@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>PELAGIC 0.3 controlled comparisons</title>
+<style>body{margin:0;background:#101b20;color:#e6ede7;font:14px Consolas,monospace}header{display:flex;gap:20px;align-items:center;padding:12px}button{padding:8px}iframe{border:0;width:100vw;height:calc(100vh - 60px)}span{margin-left:auto}</style>
+<header><strong>PELAGIC / CONTROLLED COMPARISONS</strong><button id="run">Capture representative views</button><button id="stop">Stop after current</button><span id="status">Ready</span></header><iframe id="view" title="Controlled ocean capture"></iframe>
+<script type="module">
+const args=new URLSearchParams(location.search),stage=args.get('stage')||'v03-phase01';
+if(!/^v03-[a-z0-9-]{1,40}$/.test(stage))throw Error('Invalid evidence stage');
+const cases=[
+ ['golden-eye','golden',2,4,0],['midday-eye','midday',2,79,0],['midday-high','midday',500,79,0],
+ ['storm-eye','storm',2,79,0],['storm-medium','storm',50,79,0],['calm-eye','calm',2,79,0],
+ ['golden-glitter','golden',2,4,8],['midday-body','midday',2,79,5],['midday-reflection','midday',2,79,12],
+ ['storm-foam-light','storm',2,79,6],['storm-whitewater','storm',2,79,11],['midday-covariance','midday',2,79,10],
+];
+let index=0,running=false,view=document.querySelector('#view');const status=document.querySelector('#status');
+function next(){
+ if(!running||index===cases.length){running=false;document.title='LAB DONE';status.textContent=`${index}/${cases.length} complete`;return;}
+ const [name,scene,height,azimuth,debug]=cases[index];status.textContent=`${index+1}/${cases.length}: ${name}`;
+ const q=new URLSearchParams({preset:scene,cam:`0,${height},0,${azimuth},${height>40?-12:-5.5}`,cameraMode:'free',
+   w:1920,h:1080,seed:1307,t:20,frames:100,ui:0,adaptive:0,debug,stage,shot:name+'.png',validate:1,contracts:1,
+   revision:args.get('revision')||'development'});
+ const fresh=document.createElement('iframe');fresh.id='view';fresh.title='Controlled ocean capture';fresh.src='/?'+q;view.replaceWith(fresh);view=fresh;
+}
+document.querySelector('#run').onclick=()=>{if(running)return;running=true;index=0;next();};
+document.querySelector('#stop').onclick=()=>running=false;
+addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==view.contentWindow||e.data?.type!=='pelagic-capture')return;index++;next();});
+</script></html>
