@@ -1,13 +1,15 @@
 import {FRAME_WGSL,ATMO_CORE_WGSL,NOISE_WGSL,CASCADES} from './common.js';
 import {SKY_RENDER_FUNCS} from './sky.js';
+import {SHORT_WAVE_COUPLING} from './coupling.js';
 export const PARTICLE_COUNT=12288;
-export const PARTICLE_UPDATE=FRAME_WGSL+NOISE_WGSL+/* wgsl */`
+export const PARTICLE_UPDATE=FRAME_WGSL+NOISE_WGSL+SHORT_WAVE_COUPLING+/* wgsl */`
 struct Particle {p:vec4f,v:vec4f};
 @group(0) @binding(0) var<uniform> F:Frame;
 @group(0) @binding(1) var<storage,read_write> particles:array<Particle>;
 @group(0) @binding(2) var foam:texture_2d_array<f32>;
 @group(0) @binding(3) var disp:texture_2d_array<f32>;
 @group(0) @binding(4) var samp:sampler;
+@group(0) @binding(5) var derivatives:texture_2d_array<f32>;
 fn rnd(v:u32)->f32{return f32(pcgHash(v)>>8u)/16777216.0;}
 @compute @workgroup_size(64) fn main(@builtin(global_invocation_id) id:vec3u){
  let k=id.x;if(k>=${PARTICLE_COUNT}u){return;}
@@ -19,8 +21,9 @@ fn rnd(v:u32)->f32{return f32(pcgHash(v)>>8u)/16777216.0;}
    let seed=k*137u+u32(F.post.z)*197u;
    let r=vec3f(rnd(seed+1u),rnd(seed+2u),rnd(seed+3u));
    let xz=F.camPos.xz+(r.xz-0.5)*select(180.0,70.0,rain);
+   let amplitude=shortAmplitude(derivatives,samp,xz,F.windP[1].y);
    var d=vec3f(0);for(var c=0u;c<${CASCADES}u;c++){
-     d+=textureSampleLevel(disp,samp,xz*F.cascInvL[c>>2u][c&3u],c,0.0).xyz;
+     d+=textureSampleLevel(disp,samp,xz*F.cascInvL[c>>2u][c&3u],c,0.0).xyz*select(1.0,amplitude,c>=3u);
    }
    let fresh=textureSampleLevel(foam,samp,xz/F.lodP.z,0u,0.0).g;
    let spawn=select(fresh*F.weather.y*min(F.windP[0].z*0.07,2.0),F.weather.x,rain);

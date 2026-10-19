@@ -1,0 +1,51 @@
+{
+  "time": "2026-10-19T23:27:31.018Z",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": ""
+  },
+  "irradiance": {
+    "status": "PASS",
+    "cases": [
+      {
+        "mode": "isotropic",
+        "status": "PASS",
+        "maxRelative": 0.0003080137040323283,
+        "invalid": 0,
+        "tolerance": 0.0015
+      },
+      {
+        "mode": "linear angular gradient",
+        "status": "PASS",
+        "maxRelative": 0.0031498677975936307,
+        "invalid": 0,
+        "tolerance": 0.008
+      }
+    ],
+    "inputRadiance": [
+      0.25,
+      0.5,
+      1
+    ],
+    "expectedIrradiance": [
+      0.7853981633974483,
+      1.5707963267948966,
+      3.141592653589793
+    ],
+    "testedNormals": 1536,
+    "tolerance": "Isotropic: 0.15% includes binary16 rounding. Linear angular gradient: 0.8% includes finite 128-point quadrature and 32-pixel cubemap sampling. Analytic E(n)=pi*(0.5+n/6)."
+  },
+  "errors": [],
+  "coupling": {
+    "status": "PASS",
+    "amplitudeError": 0.00014635735576074005,
+    "gradientError": 0.00005820260367128498,
+    "invalid": 0,
+    "samples": 2048,
+    "tolerance": "Absolute amplitude 0.0003; derivative 0.00015 per metre. Includes binary16 samples and bilinear gradient changes across a 4.31 m cell; reference is analytic, not copied sampler code.",
+    "scope": "Manufactured long-wave convergence field. Not observational validation of the bounded modulation model."
+  },
+  "status": "PASS"
+}

@@ -9,7 +9,8 @@ try {
  const report={time:new Date().toISOString(),adapter:{vendor:info.vendor,architecture:info.architecture,device:info.device,description:info.description,isFallbackAdapter:adapter.isFallbackAdapter},tests:await verifyFFT(device),errors};
  report.status=errors.length===0&&report.tests.every(t=>t.channels.every(c=>c.status==='PASS'))?'PASS':'FAIL';
  out.textContent=JSON.stringify(report,null,2);
- await fetch('/__evidence?stage=stage-01&name=gpu-fft.json',{method:'POST',body:out.textContent});
+ const stage=new URLSearchParams(location.search).get('stage')||'stage-01';
+ await fetch('/__evidence?stage='+encodeURIComponent(stage)+'&name=gpu-fft.json',{method:'POST',body:out.textContent});
  document.title='FFT '+report.status;device.destroy();
 }catch(e){out.textContent='FAIL: '+e.stack;document.title='FFT FAIL';}
 </script></html>

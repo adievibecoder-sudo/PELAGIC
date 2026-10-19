@@ -267,8 +267,8 @@ async function main() {
   const particleBuf=mkBuf(PARTICLE_COUNT*32,GU.STORAGE,'spray and rain particles');
   const particleCompute=await computePipe(PARTICLE_UPDATE,'particle transport');
   const particleModule=await shader(PARTICLE_RENDER,'particle rendering');
-  const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim]));
-  const bgEnv = bg(envPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, lvl(envTex, 0),cloudNoiseView,cloudSampler], 'env');
+  const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim,fullArr(derivTex)]));
+  const bgEnv = bg(envPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, lvl(envTex, 0),cloudNoiseView,cloudSampler,irradianceView], 'env');
   const bgSunVis = bg(sunVisPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, { buffer: sunVisBuf },cloudNoiseView,cloudSampler], 'sunvis');
   const bgCubeMips = [];
   for (let m = 1; m < ENV_MIPS; m++) bgCubeMips.push(bg(cubeMipPipe, [lvl(envTex, m - 1), lvl(envTex, m)], 'cubemip' + m));
@@ -333,7 +333,7 @@ async function main() {
   // floating camera rides above passing crests instead of clipping into them.
   const probePipe = await computePipe(HEIGHT_PROBE, 'height probe');
   const probeRead = mkBuf(16, GU.MAP_READ | GU.COPY_DST, 'probe read');
-  const bgProbe = bg(probePipe, [{ buffer: frameUBO }, fullArr(dispTex), samplerSim, { buffer: probeOut }], 'probe');
+  const bgProbe = bg(probePipe, [{ buffer: frameUBO }, fullArr(dispTex), samplerSim, { buffer: probeOut },fullArr(derivTex)], 'probe');
   let probePending = false, waterH = 0;
   const onProbe = () => {
     waterH = new Float32Array(probeRead.getMappedRange(0, 16))[0];
@@ -673,6 +673,7 @@ async function main() {
     } else { f.set(f.subarray(32,35),108);f[111]=1-Math.max(0,Math.min(1,(P.sunElev+7)/7)); }
     // Preserve direct solar radiance in binary16 without sacrificing night precision.
     f[60] = f[35] > 0.01 ? 32 : 1;
+    f[61] = P.choppy;
     f[112]=P.rain;f[113]=P.spray;f[114]=P.cloudType;f[115]=P.cloudDepth;
     f[116]=Q.cloudSteps;f[117]=Q.cloudLightSteps;f[118]=P.cameraMode==='surface'?0:1;f[119]=astro.sidereal%(2*Math.PI);
     device.queue.writeBuffer(frameUBO, 0, f);
@@ -718,7 +719,7 @@ async function main() {
     recorder=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:16000000});movieChunks=[];movieStart=performance.now();
     recorder.ondataavailable=e=>{if(e.data.size)movieChunks.push(e.data);};
     recorder.onstop=async()=>{const blob=new Blob(movieChunks,{type:mime});stream.getTracks().forEach(t=>t.stop());document.getElementById('record').textContent='Record';
-      if(evidence){await fetch('/__evidence?stage=stage-04&name='+qs.get('video')+'.webm',{method:'POST',body:blob});await fetch('/__evidence?stage=stage-04&name='+qs.get('video')+'.json',{method:'POST',body:JSON.stringify(evidenceReport(),null,2)});document.title='VIDEO DONE';stopped=true;parent.postMessage({type:'pelagic-video'},location.origin);}
+      if(evidence){const stage=encodeURIComponent(qs.get('stage')||'stage-04');await fetch('/__evidence?stage='+stage+'&name='+qs.get('video')+'.webm',{method:'POST',body:blob});await fetch('/__evidence?stage='+stage+'&name='+qs.get('video')+'.json',{method:'POST',body:JSON.stringify(evidenceReport(),null,2)});document.title='VIDEO DONE';stopped=true;parent.postMessage({type:'pelagic-video'},location.origin);}
       else download(blob,'pelagic-'+Date.now()+'.webm');
     };
     recorder.start(1000);document.getElementById('record').textContent='Stop recording';ui.toast('Recording the rendered canvas');
@@ -787,6 +788,7 @@ async function main() {
     const drift = 0.03 * P.windSpeed;
     foamUF[32] = Math.cos(P.windDir * D2R) * drift + Math.cos(P.currentDir*D2R)*P.currentSpeed;
     foamUF[33] = Math.sin(P.windDir * D2R) * drift + Math.sin(P.currentDir*D2R)*P.currentSpeed;
+    foamUF[34] = P.choppy;
     device.queue.writeBuffer(foamUBO, 0, foamUArr);
   }
 

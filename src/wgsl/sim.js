@@ -1,5 +1,6 @@
 // FFT ocean simulation (Tessendorf): six cascades of 256^2.
 import { N, LOGN, CASCADES, NOISE_WGSL, PERIODIC_WGSL, Q } from './common.js';
+import { SHORT_WAVE_COUPLING } from './coupling.js';
 
 const SIM_STRUCT = /* wgsl */ `
 const N: u32 = ${N}u;
@@ -366,7 +367,7 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
 // World-space foam clipmaps (toroidally addressed, centred on the camera).
 // Foam is injected where the TOTAL surface Jacobian (all cascades) folds, then decays.
 export const FOAM_RES = Q.foam;
-export const FOAM_UPDATE = /* wgsl */ `
+export const FOAM_UPDATE = SHORT_WAVE_COUPLING + /* wgsl */ `
 const RES: i32 = ${FOAM_RES};
 struct FoamU {
   snap: array<vec4i, 2>,     // per level: current camera texel (x, z), previous (x, z)
@@ -400,25 +401,33 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
   var slope = vec2f(0.0);
   var orbital = vec2f(0.0);
   var growth = 0.0;
+  let amplitude=shortAmplitude(derivTex,samp,p,U.drift.z);
+  let amplitudeGradient=shortAmplitudeGradient(derivTex,samp,p,U.drift.z);
+  var shortDisp=vec3f(0);
   for (var c = 0u; c < ${CASCADES}u; c++) {
     let texel = U.cascL[c >> 2u][c & 3u] / ${N}.0;
     let lod = log2(max(ts / texel, 1.0));
     if (lod < 7.5) {
       let uv = p * U.cascInvL[c >> 2u][c & 3u];
-      let d = textureSampleLevel(derivTex, samp, uv, c, lod);
-      let a = textureSampleLevel(dispTex, samp, uv, c, lod);
-      let previous = textureSampleLevel(lastDisp, samp, uv, c, lod);
+      let gain=select(1.0,amplitude,c>=3u);
+      let d = textureSampleLevel(derivTex, samp, uv, c, lod)*gain;
+      let a = textureSampleLevel(dispTex, samp, uv, c, lod)*gain;
+      let previous = textureSampleLevel(lastDisp, samp, uv, c, lod)*gain;
       slope += d.xy;
       orbital += (a.xz - previous.xz) / max(U.p0.z, 0.001);
       growth += (a.y - previous.y) / max(U.p0.z, 0.001);
       jxx += d.z; jzz += d.w; jxz += a.w;
+      if(c>=3u){shortDisp+=a.xyz/gain;}
     }
   }
-  let J = (1.0 + jxx) * (1.0 + jzz) - jxz * jxz;
+  slope+=shortDisp.y*amplitudeGradient;
+  jxx+=shortDisp.x*amplitudeGradient.x;jzz+=shortDisp.z*amplitudeGradient.y;
+  let jzx=jxz+shortDisp.z*amplitudeGradient.x;jxz+=shortDisp.x*amplitudeGradient.y;
+  let J = (1.0 + jxx) * (1.0 + jzz) - jxz * jzx;
   var prev = vec4f(0.0);
   // Texture coordinates label material points. Orbital displacement is already
   // applied by the mesh; adding it here transported foam through the wave twice.
-  let inverseDeformation=mat2x2f(1.0+jzz,-jxz,-jxz,1.0+jxx)*(1.0/max(J,0.3));
+  let inverseDeformation=mat2x2f(1.0+jzz,-jzx,-jxz,1.0+jxx)*(1.0/max(J,0.3));
   let velocity = inverseDeformation*U.drift.xy;
   let source=vec2f(g)-velocity*U.p0.z/ts;
   // Require the complete bilinear footprint inside the previous clipmap window.
@@ -427,7 +436,7 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
     prev = textureSampleLevel(prevTex, sampPrev, back, lvl, 0.0);
   }
   let dt = U.p0.z;
-  let eigen=1.0+0.5*(jxx+jzz-sqrt((jxx-jzz)*(jxx-jzz)+4.0*jxz*jxz));
+  let eigen=1.0+0.5*(jxx+jzz-sqrt((jxx-jzz)*(jxx-jzz)+(jxz+jzx)*(jxz+jzx)));
   // Minimum principal stretch detects compressing crests, including the instant
   // where elevation slope is zero. This is an onset proxy, not overturning fluid.
   let compression=1.0-smoothstep(0.18,U.p1.x,eigen);

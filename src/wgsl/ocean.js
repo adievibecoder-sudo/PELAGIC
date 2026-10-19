@@ -2,6 +2,7 @@
 import { FRAME_WGSL, ATMO_CORE_WGSL, ENV_MIPS, ENV_SIZE, N, CASCADES } from './common.js';
 import { SKY_RENDER_FUNCS, SKY_CLOUD_FUNCS } from './sky.js';
 import { IMMERSION } from './immersion.js';
+import { SHORT_WAVE_COUPLING } from './coupling.js';
 
 const RENDER_BINDINGS = /* wgsl */ `
 @group(0) @binding(0) var<uniform> F: Frame;
@@ -47,7 +48,7 @@ export const OCEAN = FRAME_WGSL + ATMO_CORE_WGSL + RENDER_BINDINGS + /* wgsl */ 
 @group(0) @binding(11) var cloudShadow:texture_2d<f32>;
 @group(0) @binding(12) var<storage,read> surfaceAtLens:vec4f;
 @group(0) @binding(13) var skyIrradiance:texture_cube<f32>;
-` + SKY_RENDER_FUNCS + IMMERSION + /* wgsl */ `
+` + SKY_RENDER_FUNCS + IMMERSION + SHORT_WAVE_COUPLING + /* wgsl */ `
 const ENV_MAXMIP: f32 = ${ENV_MIPS - 1}.0;
 const ENV_TEXELS_PER_RAD: f32 = ${ENV_SIZE}.0 / 1.5708;
 const TEX_N: f32 = ${N}.0;
@@ -70,12 +71,13 @@ struct VSOut {
   let mk = clamp((d - 0.8 * R) / (0.2 * R), 0.0, 1.0);
   xz -= fract(g * 0.5) * 2.0 * spacing * mk;
   let eff = spacing * (1.0 + mk);
+  let amplitude=shortAmplitude(derivTex,sampR,xz,F.windP[1].y);
   var disp = vec3f(0.0);
   for (var c = 0u; c < ${CASCADES}u; c++) {
     let texel = F.cascL[c >> 2u][c & 3u] / TEX_N;
     let lod = log2(max(eff / texel, 1.0)) + 0.5;
     if (lod < 8.0) {
-      disp += textureSampleLevel(dispTex, sampR, xz * F.cascInvL[c >> 2u][c & 3u], c, lod).xyz;
+      disp += textureSampleLevel(dispTex, sampR, xz * F.cascInvL[c >> 2u][c & 3u], c, lod).xyz*select(1.0,amplitude,c>=3u);
     }
   }
   var o: VSOut;
@@ -136,15 +138,15 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   var jxx = 0.0;
   var jzz = 0.0;
   var jxz = 0.0;
+  var shortDisp=vec3f(0);
   var cov = vec3f(0.0);
-  // wind gusts ("cat's paws"): patches where the short ripples are stronger or calmer
-  let gustN = textureSample(foamTex, sampR, xz * 0.011 + F.windP[0].xy * (F.camPos.w * 0.0004)).b;
-  let gust = mix(0.35, 1.2, smoothstep(0.3, 0.72, gustN));
+  let amplitude=shortAmplitude(derivTex,sampR,xz,F.windP[1].y);
+  let amplitudeGradient=shortAmplitudeGradient(derivTex,sampR,xz,F.windP[1].y);
   let dxXZ=dpdx(xz);let dyXZ=dpdy(xz);
   let rasterNormal=normalize(cross(dpdy(in.rel),dpdx(in.rel)));
   for (var c = 0u; c < ${CASCADES}u; c++) {
     let uv = xz * F.cascInvL[c >> 2u][c & 3u];
-    let gk = mix(1.0, gust, select(0.0, select(0.5, 1.0, c >= 4u), c >= 3u));
+    let gk = select(1.0,amplitude,c>=3u);
     let invL=F.cascInvL[c >> 2u][c & 3u];
     let dx=dxXZ*invL;let dy=dyXZ*invL;
     let footprint=min(length(dx),length(dy))*TEX_N;
@@ -162,18 +164,25 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
     jxx += dv.z;
     jzz += dv.w;
     jxz += av.w;
+    if(c>=3u){shortDisp+=av.xyz/gk;}
     cov += vec3f(max(mv.x - dv.x * dv.x, 0.0), max(mv.y - dv.y * dv.y, 0.0), mv.z - dv.x * dv.y);
   }
   let dist = length(in.rel);
   let V = -in.rel / dist;
   let Ld = F.sunDir.xyz;
 
+  s+=shortDisp.y*amplitudeGradient;
+  jxx+=shortDisp.x*amplitudeGradient.x;
+  jzz+=shortDisp.z*amplitudeGradient.y;
+  let jzx=jxz+shortDisp.z*amplitudeGradient.x;
+  jxz+=shortDisp.x*amplitudeGradient.y;
+
   let jx = 1.0+jxx;
   let jz = 1.0+jzz;
-  let jac = jx*jz-jxz*jxz;
+  let jac = jx*jz-jxz*jzx;
   // Full inverse-transpose; regularization near folds is a geometric approximation.
   let invJ = 1.0 / max(jac, 0.18);
-  let A = mat2x2f(jz,-jxz,-jxz,jx)*invJ;
+  let A = mat2x2f(jz,-jxz,-jzx,jx)*invJ;
   let sl = A*s;
   let C = A*mat2x2f(cov.x,cov.z,cov.z,cov.y)*transpose(A);
   cov = positiveCovariance(vec3f(C[0][0],C[1][1],C[0][1]));
@@ -186,7 +195,7 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   cov=positiveCovariance(vec3f(localC[0][0],localC[1][1],localC[0][1])+vec3f(F.waterCol.w,F.waterCol.w,0));
   let Vl=vec3f(dot(V,tangent),dot(V,nrm),dot(V,bitangent));
   let Ll=vec3f(dot(Ld,tangent),dot(Ld,nrm),dot(Ld,bitangent));
-  let J = (1.0 + jxx) * (1.0 + jzz) - jxz * jxz;
+  let J = jac;
 
   let shadowUV=clamp((xz-F.camPos.xz)/40000.0+0.5,vec2f(0.001),vec2f(0.999));
   let cloudT=textureSampleLevel(cloudShadow,sampC,shadowUV,0.0).r;
@@ -252,7 +261,7 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let downwelling=diffuseUp*0.94+sunE*max(Ld.y,0.0)*(1.0-fresnelWater(Ld.y));
   var body = subsurfaceReflectance*downwelling/(1.333*1.333);
   // light transmitted through the thin upper part of backlit crests
-  let compression=0.5*(jx+jz-sqrt((jx-jz)*(jx-jz)+4.0*jxz*jxz));
+  let compression=0.5*(jx+jz-sqrt((jx-jz)*(jx-jz)+(jxz+jzx)*(jxz+jzx)));
   let crest=1.0-smoothstep(0.35,0.9,compression);
   let toSun = max(dot(Ld, -V), 0.0);
   let thin = pow(clamp(0.5 - 0.5 * dot(Ld, nrm), 0.0, 1.0), 3.0);
@@ -352,17 +361,19 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
 
 // Samples the displaced surface height under the camera (inverting the horizontal
 // displacement with a few fixed-point iterations).
-export const HEIGHT_PROBE = FRAME_WGSL + /* wgsl */ `
+export const HEIGHT_PROBE = FRAME_WGSL + SHORT_WAVE_COUPLING + /* wgsl */ `
 @group(0) @binding(0) var<uniform> F: Frame;
 @group(0) @binding(1) var dispTex: texture_2d_array<f32>;
 @group(0) @binding(2) var samp: sampler;
 @group(0) @binding(3) var<storage, read_write> outH: array<f32, 4>;
+@group(0) @binding(4) var derivTex:texture_2d_array<f32>;
 fn dispAt(xz: vec2f) -> vec3f {
   var d = vec3f(0.0);
+  let amplitude=shortAmplitude(derivTex,samp,xz,F.windP[1].y);
   for (var c = 0u; c < ${CASCADES}u; c++) {
     let texel=F.cascL[c>>2u][c&3u]/${N}.0;
     let lod=log2(max((2.0/F.lodP.y)/texel,1.0))+0.5;
-    if(lod<8.0){d += textureSampleLevel(dispTex, samp, xz * F.cascInvL[c >> 2u][c & 3u], c, lod).xyz;}
+    if(lod<8.0){d += textureSampleLevel(dispTex, samp, xz * F.cascInvL[c >> 2u][c & 3u], c, lod).xyz*select(1.0,amplitude,c>=3u);}
   }
   return d;
 }

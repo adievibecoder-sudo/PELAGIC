@@ -238,6 +238,7 @@ export const ENV_CUBE = FRAME_WGSL + ATMO_CORE_WGSL + /* wgsl */ `
 @group(0) @binding(2) var skyLUT: texture_2d<f32>;
 @group(0) @binding(3) var sampC: sampler;
 @group(0) @binding(4) var dst: texture_storage_2d_array<rgba16float, write>;
+@group(0) @binding(7) var diffuseCube:texture_cube<f32>;
 ` + SKY_RENDER_FUNCS + SKY_CLOUD_FUNCS + /* wgsl */ `
 const ENV: f32 = ${ENV_SIZE}.0;
 fn faceDir(face: u32, uv: vec2f) -> vec3f {
@@ -262,10 +263,17 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
   if (dir.y >= 0.0) {
     L = skyRadiance(dir, false, 1.5708 / ENV * 1.5);
   } else {
-    // below the horizon: what a reflected ray would see -> far, hazy ocean
-    let hz = skyRadiance(normalize(vec3f(dir.x, 0.004, dir.z)), false, 1.5708 / ENV * 1.5);
-    let body = F.waterCol.rgb * (sunIlluminance() * max(F.sunDir.y, 0.0) + skyAtmo(vec3f(0.0, 1.0, 0.0)) * 2.0);
-    L = mix(hz * 0.75, body, clamp(-dir.y * 6.0, 0.0, 1.0));
+    // First-bounce homogeneous sea approximation. Same dielectric and deep-water
+    // radiometry as the surface, using the preceding irradiance update.
+    let ci=max(-dir.y,0.00001);
+    let ct=sqrt(1.0-(1.0-ci*ci)/(1.333*1.333));
+    let rs=(ci-1.333*ct)/(ci+1.333*ct);let rp=(1.333*ci-ct)/(1.333*ci+ct);
+    let fresnel=0.5*(rs*rs+rp*rp);
+    let reflected=skyRadiance(vec3f(dir.x,-dir.y,dir.z),false,1.5708/ENV*1.5);
+    let ratio=F.backscatter.rgb/(F.absorption.rgb+F.backscatter.rgb);
+    let incoming=textureSampleLevel(diffuseCube,sampC,vec3f(0,1,0),0.0).rgb*0.94+sunIlluminance()*max(F.sunDir.y,0.0)*0.96;
+    let body=(0.0949*ratio+0.0794*ratio*ratio)*incoming/(1.333*1.333);
+    L=reflected*fresnel+body*(1.0-fresnel);
   }
   textureStore(dst, id.xy, face, vec4f(L, 1.0));
 }

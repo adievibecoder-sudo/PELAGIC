@@ -1,0 +1,103 @@
+{
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere"
+  },
+  "tests": {
+    "phase": [
+      {
+        "epoch": 0,
+        "steps": 7200,
+        "modes": 1530,
+        "maxPhaseErrorRadians": 0.0033423467045636344,
+        "maxNormError": 1.1516856746052184e-7,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "epoch": 21600,
+        "steps": 7200,
+        "modes": 1530,
+        "maxPhaseErrorRadians": 0.0033393551606828746,
+        "maxNormError": 1.2716920050337421e-7,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "epoch": 86400,
+        "steps": 7200,
+        "modes": 1530,
+        "maxPhaseErrorRadians": 0.003337114244592462,
+        "maxNormError": 1.279515721153146e-7,
+        "invalid": 0,
+        "status": "PASS"
+      }
+    ],
+    "foam": [
+      {
+        "case": "translation",
+        "hz": 60,
+        "steps": 8,
+        "relativeL1": 0,
+        "mass": 258.75,
+        "centroidX": 28,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "case": "decay-30",
+        "hz": 30,
+        "steps": 120,
+        "relativeL1": 0.000010322852507701787,
+        "mass": 107.32397049665451,
+        "centroidX": 20,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "case": "decay-60",
+        "hz": 60,
+        "steps": 240,
+        "relativeL1": 0.000019711306119587715,
+        "mass": 107.32296288013458,
+        "centroidX": 20,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "case": "decay-120",
+        "hz": 120,
+        "steps": 480,
+        "relativeL1": 0.000035997399119798,
+        "mass": 107.32121497392654,
+        "centroidX": 20,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "case": "paused",
+        "hz": 60,
+        "steps": 20,
+        "relativeL1": 0,
+        "mass": 258.75,
+        "centroidX": 20,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "case": "compressed-crest-zero-slope",
+        "actual": 0.8507081270217896,
+        "expected": 0.8507086433707286,
+        "relativeError": 6.069633159411225e-7,
+        "status": "PASS"
+      }
+    ],
+    "tolerances": {
+      "phase": "0.02 rad maximum over a 120 s epoch; unit norm 2e-6. Sparse modes cover six bands.",
+      "foam": "Translation/pause relative L1 <0.001; compensated decay and source response <0.2%."
+    },
+    "limitations": "Epoch tests evolve only 120 s at each epoch. Foam uses production RES=64. Constant horizontal displacement deliberately differs from previous displacement: unchanged translation verifies orbital motion is not double-counted. Manufactured compression tests source response, not oceanographic breaking accuracy. Whitecap coverage remains unvalidated."
+  },
+  "errors": [],
+  "status": "PASS"
+}
