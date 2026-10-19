@@ -26,6 +26,16 @@ Radiometric contract: the atmosphere uses relative RGB radiance normalized by a 
 
 ## Source-access ledger for 0.3
 
+### Phase 1/2 executed results
+
+Phase 1 added `src/ocean-contracts.js`, production slope/moment readback, isolated optical diagnostics, HDR band statistics and `lab.html`. CPU tests: 19/19 PASS. All six representative beauty images are pixel-identical to 0.2. Measured cumulative half-float mip energy loss: 0.226-0.568%, within the declared 0.6% budget. This validates the unmodulated mip chain only. Evidence: `evidence/v03-phase01/contracts-summary.json` and twelve 1920x1080 images/reports.
+
+Phase 2 replaces five-point diffuse lighting with a 16x16x6 cosine-convolved irradiance cube, 128 deterministic hemisphere samples per direction. Water uses horizontal downwelling irradiance; foam uses irradiance at its normal divided by pi. Direct sunlight remains separate. No physical radiance calibration is claimed. `optics.html` validates constant radiance and an independently derived linear angular field on native NVIDIA/Ampere WebGPU, 1536 normals each. Maximum relative errors: 0.0308% and 0.3150%; no invalid values or GPU errors. Analytic tolerances are 0.15% and 0.8%, including half-float quantization, cube resolution and finite quadrature.
+
+Twelve matched 1080p captures completed in `evidence/v03-phase02`. Bottom-third midday water-body radiance rises from 0.009988 to 0.010674 relative units. Final midday rises only 0.67%; storm changes -0.22%. This is a correctness improvement with modest visible impact, **not** the requested transformation. Storm clouds remain flat, crests lack whitewater, reflections remain synthetic. These visual gates stay FAIL. Capture timings are queue-throughput samples, not sustained FPS claims. Continuous motion validation remains pending for this stage.
+
+Next dependency: coherent short-wave derivatives, reflection visibility and whitewater; cloud morphology affects the incident-light field and must improve alongside surface shading.
+
 - Supplied `PELAGIC_0_3_RD_AND_EXECUTION_BRIEF.md`: entire document read; research suggestions are hypotheses, not proof of defects or mandatory algorithms.
 - GitHub official REST repository/release documentation and immutable-release documentation: endpoint schemas and immutability semantics consulted for publication.
 - Curcic (2025), *Revisiting the hydrodynamic modulation of short surface waves by longer waves*, https://doi.org/10.1017/jfm.2025.10376 . Publisher full-text HTML introduction, governing equations, analytical wavenumber discussion, numerical comparison and validity discussion inspected. Slowly varying wave-action assumptions fail for steep long waves; a stationary bounded modulation is not a storm breaking solver. No source code or figures copied.

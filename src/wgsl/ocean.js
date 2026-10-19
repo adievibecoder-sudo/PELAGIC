@@ -46,6 +46,7 @@ export const OCEAN = FRAME_WGSL + ATMO_CORE_WGSL + RENDER_BINDINGS + /* wgsl */ 
 @group(0) @binding(10) var foamWorld: texture_2d_array<f32>;
 @group(0) @binding(11) var cloudShadow:texture_2d<f32>;
 @group(0) @binding(12) var<storage,read> surfaceAtLens:vec4f;
+@group(0) @binding(13) var skyIrradiance:texture_cube<f32>;
 ` + SKY_RENDER_FUNCS + IMMERSION + /* wgsl */ `
 const ENV_MAXMIP: f32 = ${ENV_MIPS - 1}.0;
 const ENV_TEXELS_PER_RAD: f32 = ${ENV_SIZE}.0 / 1.5708;
@@ -191,13 +192,8 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let cloudT=textureSampleLevel(cloudShadow,sampC,shadowUV,0.0).r;
   let sunE = sunIlluminance() * cloudT;
   let skyUp = textureSampleLevel(envCube, sampC, vec3f(0.0, 1.0, 0.0), ENV_MAXMIP).rgb;
-  // average radiance of the whole upper hemisphere (incl. the bright horizon band)
-  let skyHemi = skyUp * 0.4 + 0.15 * (
-      textureSampleLevel(envCube, sampC, vec3f(0.94, 0.34, 0.0), ENV_MAXMIP - 1.0).rgb +
-      textureSampleLevel(envCube, sampC, vec3f(-0.94, 0.34, 0.0), ENV_MAXMIP - 1.0).rgb +
-      textureSampleLevel(envCube, sampC, vec3f(0.0, 0.34, 0.94), ENV_MAXMIP - 1.0).rgb +
-      textureSampleLevel(envCube, sampC, vec3f(0.0, 0.34, -0.94), ENV_MAXMIP - 1.0).rgb);
-  let skyN = textureSampleLevel(envCube, sampC, nrm, ENV_MAXMIP - 1.0).rgb;
+  let diffuseUp=textureSampleLevel(skyIrradiance,sampC,vec3f(0,1,0),0.0).rgb;
+  let diffuseN=textureSampleLevel(skyIrradiance,sampC,nrm,0.0).rgb;
 
   // ---- sun glitter: anisotropic Gaussian slope distribution ----
   let Hv = normalize(V + Ld);
@@ -246,7 +242,6 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let refl=reflected/max(fresnelSum,1e-6);
 
   // ---- water body: upwelling scatter + backlit subsurface glow ----
-  let ambient = skyUp * 1.3 + skyN * 0.5;
   let NdL = max(dot(nrm, Ld), 0.0);
   // upwelling light is diffuse: light it with smooth terms only (no per-pixel normal noise)
   // Three-wavelength, optically deep backscatter approximation; coefficients are 1/m.
@@ -254,7 +249,7 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let bb = F.backscatter.rgb;
   let scatterRatio = bb / (aWater + bb);
   let subsurfaceReflectance=0.0949*scatterRatio+0.0794*scatterRatio*scatterRatio;
-  let downwelling=skyHemi*PI*0.94+sunE*max(Ld.y,0.0)*(1.0-fresnelWater(Ld.y));
+  let downwelling=diffuseUp*0.94+sunE*max(Ld.y,0.0)*(1.0-fresnelWater(Ld.y));
   var body = subsurfaceReflectance*downwelling/(1.333*1.333);
   // light transmitted through the thin upper part of backlit crests
   let compression=0.5*(jx+jz-sqrt((jx-jz)*(jx-jz)+4.0*jxz*jxz));
@@ -289,13 +284,13 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let bubbleThickness=mix(0.08+2.0*pat*pat,0.85+0.3*pat,freshK);
   var foamMask=1.0-exp(-cover*3.6*bubbleThickness);
   // submerged bubbles brighten and tint the water just beneath foam
-  body += exp(-aWater*1.5)*(skyHemi+sunE*max(Ld.y,0.0)/PI)*fwl.g*0.12;
+  body += exp(-aWater*1.5)*(diffuseUp+sunE*max(Ld.y,0.0))/PI*fwl.g*0.12;
   // bubbly brightness variation inside the foam
   let bub = textureSample(foamTex, sampR, xz * 1.9 + vec2f(0.21, 0.53)).g;
   let foamAlb = vec3f(0.88) * (0.9 + 0.1 * bub);
   // diffuse: albedo * (sky irradiance / pi + sun * cos / pi); sky dominates at sunset
   // foam scatters light from the whole hemisphere (incl. the cool zenith): use a less saturated ambient
-  let foamAmb=skyHemi*0.8+skyN*0.2;
+  let foamAmb=diffuseN/PI;
   let foamLit=foamAlb*(sunE*max(dot(nrm,Ld),0.0)/PI+foamAmb);
 
   if (F.post.w > 0.5) {

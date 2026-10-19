@@ -1,0 +1,42 @@
+{
+  "time": "2026-10-19T23:16:03.317Z",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": ""
+  },
+  "irradiance": {
+    "status": "PASS",
+    "cases": [
+      {
+        "mode": "isotropic",
+        "status": "PASS",
+        "maxRelative": 0.0003080137040323283,
+        "invalid": 0,
+        "tolerance": 0.0015
+      },
+      {
+        "mode": "linear angular gradient",
+        "status": "PASS",
+        "maxRelative": 0.0031498677975936307,
+        "invalid": 0,
+        "tolerance": 0.008
+      }
+    ],
+    "inputRadiance": [
+      0.25,
+      0.5,
+      1
+    ],
+    "expectedIrradiance": [
+      0.7853981633974483,
+      1.5707963267948966,
+      3.141592653589793
+    ],
+    "testedNormals": 1536,
+    "tolerance": "Isotropic: 0.15% includes binary16 rounding. Linear angular gradient: 0.8% includes finite 128-point quadrature and 32-pixel cubemap sampling. Analytic E(n)=pi*(0.5+n/6)."
+  },
+  "errors": [],
+  "status": "PASS"
+}

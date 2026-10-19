@@ -19,6 +19,7 @@ import { TRANS_LUT, MS_LUT, SKYVIEW_LUT, ENV_CUBE, CUBE_MIPS, SUN_VIS, CLOUD_SCR
 import { OCEAN, SKY_BG, HEIGHT_PROBE } from './wgsl/ocean.js';
 import { BLOOM_DOWN, BLOOM_UP, COMPOSITE } from './wgsl/post.js';
 import { CLOUD_NOISE, CLOUD_NOISE_MIP } from './wgsl/cloud-noise.js';
+import { ENV_IRRADIANCE, IRRADIANCE_SIZE } from './wgsl/irradiance.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -240,6 +241,9 @@ async function main() {
     usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING,
   });
   const envCubeView = envTex.createView({ dimension: 'cube' });
+  const irradianceTex=device.createTexture({label:'hemispherical irradiance',size:[IRRADIANCE_SIZE,IRRADIANCE_SIZE,6],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING});
+  const irradianceView=irradianceTex.createView({dimension:'cube'});
+  const irradiancePipe=await computePipe(ENV_IRRADIANCE,'cosine irradiance');
   const sampClamp = device.createSampler({
     magFilter: 'linear', minFilter: 'linear', mipmapFilter: 'linear',
     addressModeU: 'clamp-to-edge', addressModeV: 'clamp-to-edge', addressModeW: 'clamp-to-edge',
@@ -268,6 +272,7 @@ async function main() {
   const bgSunVis = bg(sunVisPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, { buffer: sunVisBuf },cloudNoiseView,cloudSampler], 'sunvis');
   const bgCubeMips = [];
   for (let m = 1; m < ENV_MIPS; m++) bgCubeMips.push(bg(cubeMipPipe, [lvl(envTex, m - 1), lvl(envTex, m)], 'cubemip' + m));
+  const bgIrradiance=bg(irradiancePipe,[envCubeView,sampClamp,irradianceTex.createView({dimension:'2d-array'})]);
 
   // --------------------------------------------------------------------------------------
   // Render pipelines
@@ -321,7 +326,7 @@ async function main() {
   const probeOut = mkBuf(16, GU.STORAGE | GU.COPY_SRC, 'probe out');
   const bgOcean = [0, 1].map((i) => bg(oceanPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp,
     fullArr(dispTex), fullArr(derivTex), fullArr(momTex), foamTex.createView(), envCubeView, sampRepeat,
-    fullArr(foamW[i]), shadowView,{buffer:probeOut}], 'ocean' + i));
+    fullArr(foamW[i]), shadowView,{buffer:probeOut},irradianceView], 'ocean' + i));
   let bgSky, bgCloud, cloudTex;
 
   // Water height under the camera (async readback, a few frames of latency) so the
@@ -881,6 +886,8 @@ async function main() {
       cp.setBindGroup(0, bgCubeMips[m - 1]);
       cp.dispatchWorkgroups(Math.ceil(s / 8), Math.ceil(s / 8), 6);
     }
+    cp.setPipeline(irradiancePipe);cp.setBindGroup(0,bgIrradiance);
+    cp.dispatchWorkgroups(IRRADIANCE_SIZE/8,IRRADIANCE_SIZE/8,6);
     cp.end();
     for(let m=0;m<SIM_MIP_COUNT;m++)enc.copyTextureToTexture({texture:dispTex,mipLevel:m},{texture:lastDisp,mipLevel:m},[N>>m,N>>m,C]);
 
