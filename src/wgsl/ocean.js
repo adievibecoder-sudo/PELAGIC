@@ -109,6 +109,22 @@ fn lambdaSmith(w: vec3f, cov: vec3f) -> f32 {
   return (1.0 - 1.259 * a + 0.396 * a * a) / (3.535 * a + 2.181 * a * a);
 }
 
+fn positiveCovariance(c:vec3f)->vec3f {
+  let diagonal=max(c.xy,vec2f(1e-7));
+  let limit=0.999*sqrt(diagonal.x*diagonal.y);
+  return vec3f(diagonal,clamp(c.z,-limit,limit));
+}
+fn sourceCovariance(V:vec3f,L:vec3f)->vec3f {
+  // Linearized uniform solar disc in half-vector slope space. Angular variance
+  // belongs to the light, AFTER surface deformation and the tangent transform.
+  let axis=select(vec3f(0,1,0),vec3f(1,0,0),abs(L.y)>0.95);
+  let a=normalize(cross(L,axis));let b=cross(L,a);
+  let q=V+L;let den=max(q.y*q.y,1e-5);
+  let da=-(a.xz*q.y-q.xz*a.y)/den;
+  let db=-(b.xz*q.y-q.xz*b.y)/den;
+  return vec3f(da.x*da.x+db.x*db.x,da.y*da.y+db.y*db.y,da.x*da.y+db.x*db.y)*(SUN_ANG_R*SUN_ANG_R*0.25);
+}
+
 fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let a = textureSample(foamTex, sampR, xz * 0.23 + vec2f(0.013, 0.0) * t).r;
   let b = textureSample(foamTex, sampR, xz * 0.71 + vec2f(0.37, 0.71)).g;
@@ -152,11 +168,6 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let V = -in.rel / dist;
   let Ld = F.sunDir.xyz;
 
-  // slope statistics (LEAN): add unresolved capillary roughness + sun disk size
-  // Pixel-filtered variance owns resolved detail; only a declared residual floor is added.
-  let unres = F.waterCol.w + SUN_ANG_R * SUN_ANG_R / 16.0;
-  cov.x += unres;
-  cov.y += unres;
   let jx = 1.0+jxx;
   let jz = 1.0+jzz;
   let jac = jx*jz-jxz*jxz;
@@ -165,13 +176,16 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let A = mat2x2f(jz,-jxz,-jxz,jx)*invJ;
   let sl = A*s;
   let C = A*mat2x2f(cov.x,cov.z,cov.z,cov.y)*transpose(A);
-  cov = vec3f(C[0][0],C[1][1],C[0][1]);
+  cov = positiveCovariance(vec3f(C[0][0],C[1][1],C[0][1]));
   let nrm = normalize(vec3f(-sl.x, 1.0, -sl.y));
-  // specular anti-aliasing: slope variation across the pixel widens the lobe
-  let dsx = dpdx(sl);
-  let dsy = dpdy(sl);
-  let aa = vec3f(dsx.x * dsx.x + dsy.x * dsy.x, dsx.y * dsx.y + dsy.y * dsy.y, dsx.x * dsx.y + dsy.x * dsy.y) * 0.5;
-  cov += aa * min(1.0, 0.03 / max(max(aa.x, aa.y), 1e-8));
+  let tangent=normalize(vec3f(1.0,sl.x,0.0));
+  let bitangent=normalize(cross(tangent,nrm));
+  let scale=inverseSqrt(1.0+dot(sl,sl));
+  let B=mat2x2f(tangent.x,bitangent.x,tangent.z,bitangent.z)*scale;
+  let localC=B*mat2x2f(cov.x,cov.z,cov.z,cov.y)*transpose(B);
+  cov=positiveCovariance(vec3f(localC[0][0],localC[1][1],localC[0][1])+vec3f(F.waterCol.w,F.waterCol.w,0));
+  let Vl=vec3f(dot(V,tangent),dot(V,nrm),dot(V,bitangent));
+  let Ll=vec3f(dot(Ld,tangent),dot(Ld,nrm),dot(Ld,bitangent));
   let J = (1.0 + jxx) * (1.0 + jzz) - jxz * jxz;
 
   let shadowUV=clamp((xz-F.camPos.xz)/40000.0+0.5,vec2f(0.001),vec2f(0.999));
@@ -188,35 +202,41 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
 
   // ---- sun glitter: anisotropic Gaussian slope distribution ----
   let Hv = normalize(V + Ld);
-  let hs = -Hv.xz / max(Hv.y, 1e-3);
-  let dsl = hs - sl;
-  let det = max(cov.x * cov.y - cov.z * cov.z, 1e-10);
-  let e = (dsl.x * dsl.x * cov.y + dsl.y * dsl.y * cov.x - 2.0 * dsl.x * dsl.y * cov.z) / det;
+  let Hl=normalize(Vl+Ll);
+  let dsl=-Hl.xz/max(Hl.y,1e-4);
+  let sunCov=positiveCovariance(cov+sourceCovariance(Vl,Ll));
+  let det = max(sunCov.x * sunCov.y - sunCov.z * sunCov.z, 1e-12);
+  let e = (dsl.x * dsl.x * sunCov.y + dsl.y * dsl.y * sunCov.x - 2.0 * dsl.x * dsl.y * sunCov.z) / det;
   let pdf = exp(-0.5 * e) / (2.0 * PI * sqrt(det));
-  let hy2 = Hv.y * Hv.y;
+  let hy2 = Hl.y * Hl.y;
   let Dm = pdf / max(hy2 * hy2, 1e-6);
-  let G = 1.0 / (1.0 + lambdaSmith(V, cov) + lambdaSmith(Ld, cov));
+  let G = 1.0 / (1.0 + lambdaSmith(Vl, cov) + lambdaSmith(Ll, cov));
   let Fh = fresnelWater(dot(V, Hv));
-  let spec = sunE * (Fh * Dm * G / (4.0 * max(V.y, 0.02))) * step(0.0, Ld.y);
+  let spec = sunE * (Fh * Dm * G / (4.0 * max(Vl.y, 0.025))) * step(0.0, Ld.y)*step(0.0,Ll.y)*step(0.0,Vl.y);
 
   // ---- sky reflection ----
   // At grazing angles the *visible* facets are biased towards the viewer (projected-area
   // weighting + masking), so the effective reflector tilts up and sees higher, greyer sky.
   let sig = sqrt(max(cov.x + cov.y, 1e-6) * 0.5);
-  let vh = normalize(vec3f(V.x, 0.0, V.z) + vec3f(1e-5, 0.0, 0.0));
-  let sigV = sqrt(max(vh.x * vh.x * cov.x + vh.z * vh.z * cov.y + 2.0 * vh.x * vh.z * cov.z, 1e-6));
-  let aV = max(V.y, 1e-3) / max(sqrt(1.0 - V.y * V.y), 1e-3) / (1.4142 * sigV);
-  let tilt = 0.32 * sigV * (1.0 - smoothstep(0.0, 2.5, aV));
-  let nV = normalize(nrm + vh * tilt);
-  var R = reflect(-V, nV);
-  R = normalize(R);
-  let envLod = clamp(log2(max(2.0 * sig * ENV_TEXELS_PER_RAD, 1.0)), 0.0, ENV_MAXMIP);
-  let refl = textureSampleLevel(envCube, sampC, R, envLod).rgb;
-  let NdV = max(dot(nV, V), 0.0);
-  // Fresnel from a partially smoothed normal: the long-wave facet plus the grazing-angle
-  // statistics of everything finer (visible facets at grazing incidence stay highly reflective)
-  let nF = nV;
-  let Fr = fresnelWater(max(dot(nF, V), 0.0));
+  let envLod = clamp(log2(max(0.7 * sig * ENV_TEXELS_PER_RAD, 1.0)), 0.0, ENV_MAXMIP);
+  // Five-point covariance quadrature with projected visible-facet weighting.
+  // Small mip footprint integrates within each quadrature cell, not the whole lobe twice.
+  let ch0=vec2f(sqrt(cov.x),cov.z/sqrt(cov.x));
+  let ch1=vec2f(0.0,sqrt(max(cov.y-cov.z*cov.z/cov.x,1e-7)));
+  var reflected=vec3f(0);var fresnelSum=0.0;var weights=0.0;
+  for(var tap=0u;tap<5u;tap++) {
+    var off=vec2f(0);var w=1.0/3.0;
+    if(tap>0u){off=select(ch0,ch1,tap>2u)*select(-1.7320508,1.7320508,(tap&1u)==1u);w=1.0/6.0;}
+    let facet=normalize(nrm-tangent*off.x-bitangent*off.y);
+    let nv=max(dot(facet,V),0.0);
+    w*=nv;
+    let rf=reflect(-V,facet);
+    let f=fresnelWater(nv);
+    reflected+=textureSampleLevel(envCube,sampC,rf,envLod).rgb*f*w;
+    fresnelSum+=f*w;weights+=w;
+  }
+  let Fr=clamp(fresnelSum/max(weights,1e-6),0.0,1.0);
+  let refl=reflected/max(fresnelSum,1e-6);
 
   // ---- water body: upwelling scatter + backlit subsurface glow ----
   let ambient = skyUp * 1.3 + skyN * 0.5;
@@ -226,13 +246,16 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let aWater = F.absorption.rgb;
   let bb = F.backscatter.rgb;
   let scatterRatio = bb / (aWater + bb);
-  var body = scatterRatio * 0.33 * (skyHemi + sunE * max(Ld.y,0.0) / PI);
+  let subsurfaceReflectance=0.0949*scatterRatio+0.0794*scatterRatio*scatterRatio;
+  let downwelling=skyHemi*PI*0.94+sunE*max(Ld.y,0.0)*(1.0-fresnelWater(Ld.y));
+  var body = subsurfaceReflectance*downwelling/(1.333*1.333);
   // light transmitted through the thin upper part of backlit crests
-  let crest = clamp((in.height - 0.05) / 0.9, 0.0, 1.0);
+  let compression=0.5*(jx+jz-sqrt((jx-jz)*(jx-jz)+4.0*jxz*jxz));
+  let crest=1.0-smoothstep(0.35,0.9,compression);
   let toSun = max(dot(Ld, -V), 0.0);
   let thin = pow(clamp(0.5 - 0.5 * dot(Ld, nrm), 0.0, 1.0), 3.0);
   let k1 = F.sssCol.w * crest * crest * pow(toSun, 4.0) * thin * exp(-dist / 600.0);
-  let crestPath = 1.0 + 3.0*(1.0-crest);
+  let crestPath = 0.35 + 3.0*(1.0-crest);
   body += exp(-(aWater + bb*12.0)*crestPath) * sunE * k1 * 0.035;
 
   // ---- foam ----

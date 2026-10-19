@@ -77,6 +77,23 @@ fn cosSpread(theta: f32, s: f32) -> f32 {
   return q * pow(abs(cos(theta * 0.5)), 2.0 * s);
 }
 
+fn windSpectrumK(k:f32,U:f32,fetch:f32,wp:f32,alpha:f32)->f32 {
+  let kp=wp*wp/GRAV;
+  let cp=omegaOf(kp)/kp;
+  let age=U/cp;
+  let z0=3.7e-5*U*U/GRAV*pow(max(age,0.01),0.9);
+  let friction=0.41*U/log(10.0/max(z0,1e-8));
+  let km=sqrt(GRAV/SURF);
+  let cm=omegaOf(km)/km;
+  let c=omegaOf(k)/k;
+  let lpm=exp(-1.25*(kp/k)*(kp/k));
+  let am=max(0.0,0.01*(1.0+select(3.0,1.0,friction<cm)*log(max(friction/cm,1e-6))));
+  let bl=0.003*sqrt(age)*cp/c*lpm*exp(-age/sqrt(10.0)*(sqrt(k/kp)-1.0));
+  let bh=0.5*am*cm/c*exp(-0.25*(k/km-1.0)*(k/km-1.0))*lpm;
+  let blend=smoothstep(0.0,log(8.0),log(k));
+  return mix(jonswap(omegaOf(k),wp,alpha,S.wind.w)*dOmegaOf(k),(bl+bh)/(k*k*k),blend);
+}
+
 fn spectrum(k: vec2f) -> f32 {
   let kl = length(k);
   let w = omegaOf(kl);
@@ -88,7 +105,7 @@ fn spectrum(k: vec2f) -> f32 {
   if (U > 0.1) {
     let alpha = 0.076 * pow(U * U / (F * GRAV), 0.22);
     let wp = 22.0 * pow(GRAV * GRAV / (U * F), 1.0 / 3.0);
-    Sw = jonswap(w, wp, alpha, S.wind.w) * donelanBanner(wrapAngle(theta - S.wind.y), w, wp);
+    Sw = windSpectrumK(kl,U,F,wp,alpha)/dOmegaOf(kl) * donelanBanner(wrapAngle(theta - S.wind.y), w, wp);
   }
   // swell: narrow, long-crested JONSWAP
   if (S.swell.x > 0.001) {
@@ -96,7 +113,7 @@ fn spectrum(k: vec2f) -> f32 {
     let gs = 6.0;
     let hs4 = S.swell.x * 0.25;
     let alphaS = S.foamDecay[0].x;
-    Sw += jonswap(w, ws, alphaS, gs) * cosSpread(wrapAngle(theta - S.swell.y), S.swell.w);
+    Sw += jonswap(w, ws, alphaS, gs) * (1.0-smoothstep(1.5,3.0,w/ws)) * cosSpread(wrapAngle(theta - S.swell.y), S.swell.w);
   }
   // damp the very shortest waves
   let sc = S.misc.y;
@@ -108,9 +125,7 @@ fn amplitude(k: vec2f, c: u32) -> f32 {
   let kl = length(k);
   if (kl < 1e-5 || kl < S.kMin[c >> 2u][c & 3u] || kl >= S.kMax[c >> 2u][c & 3u]) { return 0.0; }
   let dk = 2.0 * PI / S.L[c >> 2u][c & 3u];
-  // the finest cascades are toned down (they otherwise read as crumpled foil)
-  let g = 1.0;
-  return sqrt(max(spectrum(k), 0.0)) * dk * 0.5 * g;
+  return sqrt(max(spectrum(k), 0.0)) * dk * 0.5;
 }
 
 @compute @workgroup_size(16, 16, 1)
@@ -155,7 +170,9 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
   // h0(k) travels along +k: h(k,t) = h0(k) e^{-iwt} + conj(h0(-k)) e^{iwt}
   let h = cmul(H0.xy, vec2f(e.x, -e.y)) + cmul(H0.zw, e);
   let ih = mulI(h);
-  let lam = S.misc.x;
+  // Capillary ripples do not inherit the trochoidal compression of gravity crests.
+  // Smooth scale separation is a geometric approximation, not a nonlinear solver.
+  let lam = S.misc.x * inverseSqrt(1.0+(kl/12.0)*(kl/12.0));
   let ik = 1.0 / kl;
   let Dx = ih * (lam * k.x * ik);
   let Dz = ih * (lam * k.y * ik);

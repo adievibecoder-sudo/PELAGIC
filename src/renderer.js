@@ -4,7 +4,8 @@ import {setupUI,download} from './ui.js';
 // Large per-frame arrays are reused; diagnostics and browser API descriptors still allocate.
 import { N, CASCADES, SKY_W, SKY_H, ENV_SIZE, ENV_MIPS, CONFIG, Q } from './wgsl/common.js';
 import { sanitize, preset, PRESETS, QUALITY, toURL, approachSea } from './settings.js';
-import { normalizedSwellAlpha, cosSpreadNorm, PATCHES, omega } from './numerics.js';
+import { cosSpreadNorm, PATCHES, omega } from './numerics.js';
+import { swellAlpha } from './sea-spectrum.js';
 import { celestial } from './astronomy.js';
 import { runtimeInput, validCamera } from './runtime-input.js';
 import { PARTICLE_COUNT, PARTICLE_UPDATE, PARTICLE_RENDER } from './wgsl/particles.js';
@@ -796,7 +797,7 @@ async function main() {
 
     writeFrame(simTime);
     writeSimStatic();
-    if(needSpectrum){simF[24]=normalizedSwellAlpha(P.swellHs,simF[46]);simF[25]=cosSpreadNorm(P.swellSpread);}
+    if(needSpectrum){simF[24]=swellAlpha(P.swellHs,simF[46]);simF[25]=cosSpreadNorm(P.swellSpread);}
     simF[52] = simTime; simF[53] = dt;
     device.queue.writeBuffer(simUBO, 0, simF);
     writeFoamUniforms(dt);

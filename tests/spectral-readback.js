@@ -1,5 +1,6 @@
 import {N,CASCADES} from '../src/wgsl/common.js';
 import {decodeHalf,stats,PATCHES,jonswap,logIntegral} from '../src/numerics.js';
+import {spectrumLedger} from '../src/sea-spectrum.js';
 export async function spectralReadback(device,{h0,specA,disp,deriv,mom},settings) {
  const B=GPUBufferUsage,n=N,C=CASCADES,size=n*n*C;
  const h=device.createBuffer({size:size*16,usage:B.COPY_DST|B.MAP_READ});
@@ -32,10 +33,10 @@ export async function spectralReadback(device,{h0,specA,disp,deriv,mom},settings
  }
  [h,sp,...arrays].forEach(b=>{b.unmap();b.destroy();});
  const U=settings.windSpeed,F=settings.fetchKm*1000,wp=22*(9.81**2/(U*F))**(1/3),alpha=.076*(U*U/(F*9.81))**.22;
- const windM0=logIntegral(w=>jonswap(w,wp,alpha),wp*.08,wp*100);
+ const ledger=spectrumLedger(settings),windM0=ledger.windM0;
  const observedM0=cascades.reduce((s,c)=>s+c.height.variance,0);
  return {status:cascades.every(c=>c.status==='PASS')?'PASS':'FAIL',cascades,
-   continuousGravitySpectrum:{windM0,windPeakPeriod:2*Math.PI/wp,swellTargetM0:(settings.swellHs/4)**2,combinedTargetHs:4*Math.sqrt(windM0+(settings.swellHs/4)**2)},
+   continuousSpectrum:ledger,
    measuredIndependentCascadeHs:4*Math.sqrt(observedM0),
    slopeVarianceLinear:cascades.reduce((s,c)=>s+c.slopeX.variance+c.slopeZ.variance,0),
    coxMunkReferenceAtUnconvertedU10:.003+.00512*U,
