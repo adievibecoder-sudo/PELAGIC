@@ -140,6 +140,7 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let gustN = textureSample(foamTex, sampR, xz * 0.011 + F.windP[0].xy * (F.camPos.w * 0.0004)).b;
   let gust = mix(0.35, 1.2, smoothstep(0.3, 0.72, gustN));
   let dxXZ=dpdx(xz);let dyXZ=dpdy(xz);
+  let rasterNormal=normalize(cross(dpdy(in.rel),dpdx(in.rel)));
   for (var c = 0u; c < ${CASCADES}u; c++) {
     let uv = xz * F.cascInvL[c >> 2u][c & 3u];
     let gk = mix(1.0, gust, select(0.0, select(0.5, 1.0, c >= 4u), c >= 3u));
@@ -236,8 +237,7 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   if(weights<1e-5){
     // A finite quadrature can miss every visible facet on a grazing normal map.
     // Use the actual rasterized facet instead of returning an unlit black strip.
-    var ng=normalize(cross(dpdy(in.rel),dpdx(in.rel)));
-    ng=select(-ng,ng,dot(ng,V)>=0.0);
+    let ng=select(-rasterNormal,rasterNormal,dot(rasterNormal,V)>=0.0);
     let f=fresnelWater(dot(ng,V));
     reflected=textureSampleLevel(envCube,sampC,reflect(-V,ng),envLod).rgb*f;
     fresnelSum=f;weights=1.0;
