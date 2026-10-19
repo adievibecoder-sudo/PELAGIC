@@ -1,0 +1,26 @@
+{
+  "nativeBackend": "native-webgpu",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": null
+  },
+  "shaderErrors": [],
+  "spectrum": "PASS",
+  "hdr": "PASS",
+  "meanAbsoluteRGBDifference8Bit": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "maxAbsoluteRGBDifference8Bit": [
+    0,
+    0,
+    0
+  ],
+  "samePixelBytes": true,
+  "reference": "0.2 stage-04/golden-h2-a0.png",
+  "settingsMatch": true
+}
