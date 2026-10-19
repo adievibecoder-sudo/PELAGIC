@@ -1,6 +1,8 @@
 // Original finite-volume cloud approximation. Distances in kilometres; extinction in 1/km.
 // Front-to-back Beer integration with sampled self-shadowing. Not a fluid cloud simulation.
 export const CLOUD_VOLUME = /* wgsl */ `
+@group(0) @binding(5) var cloudNoise:texture_3d<f32>;
+@group(0) @binding(6) var cloudNoiseSampler:sampler;
 fn hash3(p: vec3f) -> f32 {
   var q=fract(p*0.1031);
   q+=dot(q,q.yzx+33.33);
@@ -22,16 +24,22 @@ fn cloudDensityFiltered(p: vec3f, detail: bool, footprint:f32) -> f32 {
   let world=p+vec3f(F.camPos.x*0.001,0,F.camPos.z*0.001)-drift;
   let strat=select(0.0,1.0,F.weather.z>0.5 && F.weather.z<1.5);
   let storm=step(1.5,F.weather.z);
-  let scale=vec3f(mix(0.72,0.42,storm),mix(1.1,2.4,strat),mix(0.72,0.42,storm));
+  let scale=vec3f(mix(0.105,0.052,storm),mix(0.09,0.19,strat),mix(0.105,0.052,storm));
   let q=world*scale;
-  let fw=footprint*max(scale.x,scale.y);
-  let weather=filteredNoise(q*0.19+vec3f(21.3,1.1,9.7),fw*0.19);
-  let base=filteredNoise(q,fw)*0.55+0.27*filteredNoise(q*2.13+vec3f(17.2,4.3,7.1),fw*2.13)+0.18*filteredNoise(q*4.37+vec3f(3.2,17.1,9.4),fw*4.37);
-  let profile=smoothstep(0.0,0.08,h)*(1.0-smoothstep(mix(0.35,0.65,storm),mix(1.0,0.55,strat),h));
-  let threshold=0.76-F.cloudP.y*0.50+0.12*(weather-0.5);
-  var density=max(0.0,base-threshold-(1.0-profile)*0.22)*4.0*profile;
-  if(detail){density=max(0.0,density-(1.0-filteredNoise(q*12.3,fw*12.3))*0.14*(1.0-density));}
-  return clamp(density,0.0,1.0);
+  let weather=textureSampleLevel(cloudNoise,cloudNoiseSampler,vec3f(world.x*0.009,0.31,world.z*0.009),0.0).a;
+  let cover=clamp(F.cloudP.y*0.84+(weather-0.5)*0.65,0.0,1.0);
+  let top=mix(0.75,1.0,weather);
+  let profile=smoothstep(0.0,0.10,h)*(1.0-smoothstep(mix(0.30,0.55,storm),mix(top,0.52,strat),h));
+  let shape=textureSampleLevel(cloudNoise,cloudNoiseSampler,q+vec3f(h*h*0.026,0,0),0.0);
+  let ridge=textureSampleLevel(cloudNoise,cloudNoiseSampler,q*2.07+vec3f(0.27,0.13,0.39),0.0).g;
+  let base=shape.r*0.64+ridge*0.12+0.25;
+  var density=max(0.0,(base-(1.0-cover*profile))/max(cover,0.05));
+  if(detail && density>0.0){
+    let erosion=textureSampleLevel(cloudNoise,cloudNoiseSampler,q*5.71+vec3f(0.17,0.31,0.59),0.0).b;
+    let filtered=mix(erosion,0.48,smoothstep(0.06,0.3,footprint));
+    density=max(0.0,density-(1.0-filtered)*0.20*(1.0-density));
+  }
+  return clamp(density*2.1,0.0,1.0);
 }
 fn cloudDensity(p:vec3f,detail:bool)->f32{return cloudDensityFiltered(p,detail,0.0);}
 fn cloudShadowAt(p: vec3f) -> f32 {
@@ -40,8 +48,8 @@ fn cloudShadowAt(p: vec3f) -> f32 {
   let start=max(0.0,(F.cloudP.x-p.y)/light.y);
   let lengthRay=min(30.0,F.weather.w/max(light.y,0.03));
   var od=0.0;
-  for(var j=0u;j<4u;j++) {
-    od+=cloudDensity(p+light*(start+(f32(j)+0.5)*lengthRay/4.0),false)*lengthRay/4.0;
+  for(var j=0u;j<12u;j++) {
+    od+=cloudDensity(p+light*(start+(f32(j)+0.5)*lengthRay/12.0),true)*lengthRay/12.0;
   }
   return exp(-od*F.cloudP.z*1.8);
 }
@@ -64,13 +72,13 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
   let samples=u32(F.control.x);
   let ds=max(0.0,finish-start)/f32(samples);
   var trans=1.0;var radiance=vec3f(0);
-  let ambient=skyAtmo(vec3f(0,1,0))*0.38+skyAtmo(normalize(vec3f(dir.x,0.08,dir.z)))*0.06;
-  let phase=0.82*phaseHG(dot(dir,F.sunDir.xyz),0.72)+0.18*phaseHG(dot(dir,F.sunDir.xyz),-0.25);
+  let ambient=skyAtmo(vec3f(0,1,0))*0.7+skyAtmo(normalize(vec3f(dir.x,0.08,dir.z)))*0.12;
+  let phase=0.85*phaseHG(dot(dir,F.sunDir.xyz),0.68)+0.15*phaseHG(dot(dir,F.sunDir.xyz),-0.25);
   let jitter=hash3(floor(dir*8000.0))*0.8+0.1;
   for(var i=0u;i<samples && ds>0.0;i++) {
     let t=start+(f32(i)+jitter)*ds;
     let p=ro+dir*t;
-    let density=cloudDensityFiltered(p,true,max(ds*0.5,t*pixAng));
+    let density=cloudDensityFiltered(p,true,max(ds*0.06,t*pixAng));
     if(density>0.001) {
       let radial=vec3f(p.x,RG+p.y,p.z);
       let radius=length(radial);let mu=dot(radial,F.sunDir.xyz)/radius;
@@ -87,7 +95,8 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
       let optical=shadow*sigma;
       let direct=exp(-optical)*phase;
       let multi=0.45*exp(-optical*0.35)*phaseHG(dot(dir,F.sunDir.xyz),0.25)+0.12*exp(-optical*0.12)/(4.0*PI);
-      let light=ambient*(0.5+0.5*exp(-density*2.0))+sun*(direct+multi);
+      let height=clamp((p.y+dot(p.xz,p.xz)/(2.0*RG)-F.cloudP.x)/F.weather.w,0.0,1.0);
+      let light=ambient*mix(0.18,1.0,sqrt(height))+sun*(direct+multi);
       let stepT=exp(-density*sigma*ds);
       let aerial=exp(-t*(0.008+F.atmo.x*0.003));
       let fog=skyAtmo(dir);

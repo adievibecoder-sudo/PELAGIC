@@ -416,7 +416,10 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
   }
   let J = (1.0 + jxx) * (1.0 + jzz) - jxz * jxz;
   var prev = vec4f(0.0);
-  let velocity = U.drift.xy + clamp(orbital, vec2f(-4.0), vec2f(4.0));
+  // Texture coordinates label material points. Orbital displacement is already
+  // applied by the mesh; adding it here transported foam through the wave twice.
+  let inverseDeformation=mat2x2f(1.0+jzz,-jxz,-jxz,1.0+jxx)*(1.0/max(J,0.3));
+  let velocity = inverseDeformation*U.drift.xy;
   let source=vec2f(g)-velocity*U.p0.z/ts;
   // Require the complete bilinear footprint inside the previous clipmap window.
   if (all(source>=vec2f(plo)) && all(source<vec2f(plo+vec2i(RES-1)))) {
@@ -424,11 +427,14 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
     prev = textureSampleLevel(prevTex, sampPrev, back, lvl, 0.0);
   }
   let dt = U.p0.z;
-  let steep = smoothstep(0.12, 0.38, length(slope));
-  let growthWeight = mix(0.3, 1.0, smoothstep(-0.1, 0.7, growth));
-  let inject = clamp((U.p1.x - J) * U.p1.y, 0.0, 1.0) * steep * growthWeight * U.p1.w;
+  let eigen=1.0+0.5*(jxx+jzz-sqrt((jxx-jzz)*(jxx-jzz)+4.0*jxz*jxz));
+  // Minimum principal stretch detects compressing crests, including the instant
+  // where elevation slope is zero. This is an onset proxy, not overturning fluid.
+  let compression=1.0-smoothstep(0.18,U.p1.x,eigen);
+  let activity=mix(0.65,1.0,smoothstep(-0.3,0.5,growth));
+  let inject = smoothstep(0.04,0.28,compression)*activity*U.p1.w;
   var f = (prev.r+prev.a) * exp(-dt * U.p0.w);
-  f = min(f + (1.0 - exp(-dt * U.p1.z)) * inject, 1.0);
+  f = min(f + (1.0-f)*(1.0-exp(-dt*U.p1.z*inject)),1.0);
   // g: freshness (recently injected) used for brighter, denser crest foam
   let fresh = select(prev.g,max(prev.g * exp(-dt * 1.6), inject),dt>0.0);
   // Carry binary16 rounding residue so lifetime does not depend on render frame rate.

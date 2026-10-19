@@ -15,6 +15,7 @@ import { SIM_INIT, SIM_EVOLVE, FFT_ROWS, FFT_COLS, SIM_MIPS, FOAM_TEX, RGBA8_MIP
 import { TRANS_LUT, MS_LUT, SKYVIEW_LUT, ENV_CUBE, CUBE_MIPS, SUN_VIS, CLOUD_SCREEN, CLOUD_SHADOW } from './wgsl/sky.js';
 import { OCEAN, SKY_BG, HEIGHT_PROBE } from './wgsl/ocean.js';
 import { BLOOM_DOWN, BLOOM_UP, COMPOSITE } from './wgsl/post.js';
+import { CLOUD_NOISE } from './wgsl/cloud-noise.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -148,6 +149,11 @@ async function main() {
     label, layout: pipe.getBindGroupLayout(0),
     entries: entries.map((r, i) => ({ binding: i, resource: r })),
   });
+  const cloudNoise=device.createTexture({label:'periodic cloud morphology',size:[64,64,64],dimension:'3d',format:'rgba8unorm',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING});
+  const cloudNoiseView=cloudNoise.createView();
+  const cloudSampler=device.createSampler({magFilter:'linear',minFilter:'linear',addressModeU:'repeat',addressModeV:'repeat',addressModeW:'repeat'});
+  const cloudNoisePipe=await computePipe(CLOUD_NOISE,'cloud morphology cache');
+  {const e=device.createCommandEncoder(),p=e.beginComputePass();p.setPipeline(cloudNoisePipe);p.setBindGroup(0,bg(cloudNoisePipe,[cloudNoiseView]));p.dispatchWorkgroups(16,16,16);p.end();device.queue.submit([e.finish()]);}
   const bgInit = bg(initPipe, [{ buffer: simUBO }, { buffer: h0Buf }], 'init');
   const bgEvolve = bg(evolvePipe, [{ buffer: simUBO }, { buffer: h0Buf }, { buffer: specA }, { buffer: specB }, {buffer:phaseBuf}], 'evolve');
   const bgRows = bg(rowsPipe, [{ buffer: specA }, { buffer: specB }, { buffer: tmpA }, { buffer: tmpB }], 'rows');
@@ -236,7 +242,7 @@ async function main() {
   const skyView = skyLUT.createView();
   const shadowTex=mkLut(256,256,'spatial cloud transmittance');
   const shadowView=shadowTex.createView();
-  const bgShadow=device.createBindGroup({layout:shadowPipe.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:frameUBO}},{binding:4,resource:shadowView}]});
+  const bgShadow=device.createBindGroup({layout:shadowPipe.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:frameUBO}},{binding:4,resource:shadowView},{binding:5,resource:cloudNoiseView},{binding:6,resource:cloudSampler}]});
 
   const bgTrans = bg(transPipe, [{ buffer: atmoUBO }, transView], 'trans');
   const bgMS = bg(msPipe, [{ buffer: atmoUBO }, transView, sampClamp, msView], 'ms');
@@ -245,8 +251,8 @@ async function main() {
   const particleCompute=await computePipe(PARTICLE_UPDATE,'particle transport');
   const particleModule=await shader(PARTICLE_RENDER,'particle rendering');
   const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim]));
-  const bgEnv = bg(envPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, lvl(envTex, 0)], 'env');
-  const bgSunVis = bg(sunVisPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, { buffer: sunVisBuf }], 'sunvis');
+  const bgEnv = bg(envPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, lvl(envTex, 0),cloudNoiseView,cloudSampler], 'env');
+  const bgSunVis = bg(sunVisPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, { buffer: sunVisBuf },cloudNoiseView,cloudSampler], 'sunvis');
   const bgCubeMips = [];
   for (let m = 1; m < ENV_MIPS; m++) bgCubeMips.push(bg(cubeMipPipe, [lvl(envTex, m - 1), lvl(envTex, m)], 'cubemip' + m));
 
@@ -299,15 +305,15 @@ async function main() {
     fragment: { module: compMod, entryPoint: 'fs', targets: [{ format: swapFormat }] },
   });
 
+  const probeOut = mkBuf(16, GU.STORAGE | GU.COPY_SRC, 'probe out');
   const bgOcean = [0, 1].map((i) => bg(oceanPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp,
     fullArr(dispTex), fullArr(derivTex), fullArr(momTex), foamTex.createView(), envCubeView, sampRepeat,
-    fullArr(foamW[i]), shadowView], 'ocean' + i));
+    fullArr(foamW[i]), shadowView,{buffer:probeOut}], 'ocean' + i));
   let bgSky, bgCloud, cloudTex;
 
   // Water height under the camera (async readback, a few frames of latency) so the
   // floating camera rides above passing crests instead of clipping into them.
   const probePipe = await computePipe(HEIGHT_PROBE, 'height probe');
-  const probeOut = mkBuf(16, GU.STORAGE | GU.COPY_SRC, 'probe out');
   const probeRead = mkBuf(16, GU.MAP_READ | GU.COPY_DST, 'probe read');
   const bgProbe = bg(probePipe, [{ buffer: frameUBO }, fullArr(dispTex), samplerSim, { buffer: probeOut }], 'probe');
   let probePending = false, waterH = 0;
@@ -376,8 +382,10 @@ async function main() {
     const cloudScale=P.quality==='Cinematic'?1:P.quality==='Balanced'?3:2;
     cloudW=Math.ceil(W/cloudScale);cloudH=Math.ceil(H/cloudScale);
     cloudTex=mkLut(cloudW,cloudH,'cloud radiance and extinction');
-    bgCloud=bg(cloudPipe,[{buffer:frameUBO},transView,skyView,sampClamp,cloudTex.createView()]);
-    bgSky=bg(skyPipe,[{buffer:frameUBO},transView,skyView,sampClamp,cloudTex.createView()]);
+    bgCloud=bg(cloudPipe,[{buffer:frameUBO},transView,skyView,sampClamp,cloudTex.createView(),cloudNoiseView,cloudSampler]);
+    bgSky=device.createBindGroup({layout:skyPipe.getBindGroupLayout(0),entries:[
+      {binding:0,resource:{buffer:frameUBO}},{binding:1,resource:transView},{binding:2,resource:skyView},
+      {binding:3,resource:sampClamp},{binding:4,resource:cloudTex.createView()},{binding:7,resource:{buffer:probeOut}}]});
     for (const t of [colorMS, depthMS, hdrTex, bloomTex]) t && t.destroy();
     colorMS = device.createTexture({ size: [W, H], format: HDR, sampleCount: MSAA, usage: TU.RENDER_ATTACHMENT });
     depthMS = device.createTexture({ size: [W, H], format: 'depth32float', sampleCount: MSAA, usage: TU.RENDER_ATTACHMENT });
@@ -753,7 +761,7 @@ async function main() {
     }
     foamFirst = false;
     foamUF[10] = dt; foamUF[11] = 0.22;          // decay 1/s
-    foamUF[12] = 0.56; foamUF[13] = 3.0; foamUF[14] = 5.0; foamUF[15] = Math.min(P.foam,1);
+    foamUF[12] = 0.65+0.009*Math.min(P.windSpeed,25); foamUF[13] = 3.0; foamUF[14] = 5.0; foamUF[15] = Math.min(P.foam,1);
     for (let c = 0; c < C; c++) { foamUF[16 + c] = CASC_L[c]; foamUF[24 + c] = 1 / CASC_L[c]; }
     const drift = 0.03 * P.windSpeed;
     foamUF[32] = Math.cos(P.windDir * D2R) * drift + Math.cos(P.currentDir*D2R)*P.currentSpeed;

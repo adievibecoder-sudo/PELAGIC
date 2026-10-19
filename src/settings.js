@@ -27,10 +27,10 @@ export const PRESETS = Object.freeze({
   moonlit:{label:'Moon on the water',note:'Astronomical moonlight',windSpeed:5.5,fetchKm:70,swellHs:1.4,swellLength:135,choppy:1.08,clouds:0.16,veil:0.05,haze:1.2,astronomy:true,date:'2026-10-26',hour:2,latitude:32,longitude:-30,exposure:12,rain:0,spray:0.3},
 });
 export const QUALITY = Object.freeze({
-  Balanced:{env:128,foam:512,cloudSteps:40,cloudLightSteps:4,grid:24,scale:1},
-  High:{env:256,foam:512,cloudSteps:40,cloudLightSteps:4,grid:32,scale:1},
-  Ultra:{env:256,foam:1024,cloudSteps:64,cloudLightSteps:5,grid:40,scale:1.2},
-  Cinematic:{env:512,foam:1024,cloudSteps:96,cloudLightSteps:6,grid:48,scale:1.5},
+  Balanced:{env:128,foam:512,cloudSteps:64,cloudLightSteps:5,grid:24,scale:1},
+  High:{env:256,foam:512,cloudSteps:80,cloudLightSteps:6,grid:32,scale:1},
+  Ultra:{env:256,foam:1024,cloudSteps:112,cloudLightSteps:7,grid:40,scale:1.2},
+  Cinematic:{env:512,foam:1024,cloudSteps:160,cloudLightSteps:8,grid:48,scale:1.5},
 });
 
 export function sanitize(input, base = DEFAULTS) {

@@ -1,6 +1,7 @@
 // Ocean surface + sky background rendering.
 import { FRAME_WGSL, ATMO_CORE_WGSL, ENV_MIPS, ENV_SIZE, N, CASCADES } from './common.js';
 import { SKY_RENDER_FUNCS, SKY_CLOUD_FUNCS } from './sky.js';
+import { IMMERSION } from './immersion.js';
 
 const RENDER_BINDINGS = /* wgsl */ `
 @group(0) @binding(0) var<uniform> F: Frame;
@@ -11,7 +12,8 @@ const RENDER_BINDINGS = /* wgsl */ `
 
 // Full-resolution sky + clouds. Cloud silhouettes are anti-aliased analytically: the
 // screen-space derivative of each layer's edge function sets the width of its opacity edge.
-export const SKY_BG = FRAME_WGSL + ATMO_CORE_WGSL + RENDER_BINDINGS + `@group(0) @binding(4) var cloudScreen:texture_2d<f32>;` + SKY_RENDER_FUNCS + SKY_CLOUD_FUNCS + /* wgsl */ `
+export const SKY_BG = FRAME_WGSL + ATMO_CORE_WGSL + RENDER_BINDINGS + `@group(0) @binding(4) var cloudScreen:texture_2d<f32>;
+@group(0) @binding(7) var<storage,read> surfaceAtLens:vec4f;` + SKY_RENDER_FUNCS + SKY_CLOUD_FUNCS + IMMERSION + /* wgsl */ `
 struct VO { @builtin(position) pos: vec4f, @location(0) ndc: vec2f };
 @vertex fn vs(@builtin(vertex_index) i: u32) -> VO {
   let p = vec2f(f32((i << 1u) & 2u), f32(i & 2u)) * 2.0 - 1.0;
@@ -29,12 +31,7 @@ struct VO { @builtin(position) pos: vec4f, @location(0) ndc: vec2f };
   let cloudUV=in.pos.xy*F.screen.zw;
   let cl=textureSampleLevel(cloudScreen,sampC,cloudUV,0.0);
   var L=skyAtmo(dir)*(1.0-cl.a)+cl.rgb+(sunDisk(dir)+nightStars(dir))*(1.0-cl.a);
-  if(F.camPos.y<F.absorption.w && F.control.z>0.5) {
-    let depth=max(0.0,F.absorption.w-F.camPos.y);
-    let a=F.absorption.rgb+F.backscatter.rgb*12.0;
-    let water=F.backscatter.rgb/(F.absorption.rgb+F.backscatter.rgb)*skyAtmo(vec3f(0,1,0))*0.8;
-    L=water;
-  }
+  L=mix(L,volumeWater(dir,200.0,surfaceAtLens),waterFraction(dir,surfaceAtLens));
   return vec4f(L, 1.0);
 }
 `;
@@ -48,7 +45,8 @@ export const OCEAN = FRAME_WGSL + ATMO_CORE_WGSL + RENDER_BINDINGS + /* wgsl */ 
 @group(0) @binding(9) var sampR: sampler;
 @group(0) @binding(10) var foamWorld: texture_2d_array<f32>;
 @group(0) @binding(11) var cloudShadow:texture_2d<f32>;
-` + SKY_RENDER_FUNCS + /* wgsl */ `
+@group(0) @binding(12) var<storage,read> surfaceAtLens:vec4f;
+` + SKY_RENDER_FUNCS + IMMERSION + /* wgsl */ `
 const ENV_MAXMIP: f32 = ${ENV_MIPS - 1}.0;
 const ENV_TEXELS_PER_RAD: f32 = ${ENV_SIZE}.0 / 1.5708;
 const TEX_N: f32 = ${N}.0;
@@ -268,35 +266,28 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let fw0 = textureSample(foamWorld, sampR, xz / F.lodP.z, 0u);
   let fw1 = textureSample(foamWorld, sampR, xz / F.lodP.w, 1u);
   let fwl = mix(fw1, fw0, w0) * w1;
-  let fresh = clamp((F.foamP.x - J) * F.foamP.y, 0.0, 1.0);
-  var cover = clamp((max(fwl.r, fresh * (1.0 - w1 * 0.7)) + fwl.g * 0.4) * F.foamP.z, 0.0, 1.5);
+  let fresh=smoothstep(0.04,0.28,1.0-smoothstep(0.18,0.65+0.009*min(F.windP[0].z,25.0),compression))*min(F.foamP.z,1.0);
+  var cover = clamp((max(fwl.r+fwl.a, fresh*(1.0-w1)*0.45)+fwl.g*0.22)*F.foamP.z,0.0,2.0);
   // aged foam breaks into wind-aligned streaks; fresh crest foam stays dense
   let wd = F.windP[0].xy;
   let ws = vec2f(dot(xz, wd), dot(xz, vec2f(-wd.y, wd.x)));
   let streak = textureSample(foamTex, sampR, ws * vec2f(0.035, 0.11)).a;
   let freshK = clamp(fwl.g * 2.0 + fresh, 0.0, 1.0);
-  cover *= mix(smoothstep(0.25, 0.75, streak) * 1.5, 1.0, freshK);
+  cover *= mix(0.45+1.1*smoothstep(0.25,0.75,streak),1.0,freshK);
   let pat = foamPattern(xz, F.camPos.w);
-  let fw = fwidth(pat) + 0.03;
-  // soft threshold: thin foam is a translucent film, dense foam is opaque white
-  // dense foam has crisp edges, thin decaying foam a soft translucent margin
-  let soft = 0.04 + 0.14 * (1.0 - clamp(cover, 0.0, 1.0));
-  let fm = smoothstep(1.0 - cover - fw - soft, 1.0 - cover + fw + soft, pat);
-  var foamMask = clamp(fm * smoothstep(0.0, 0.5, cover), 0.0, 1.0) * (0.68 + 0.32 * smoothstep(0.3, 0.9, cover));
-  // freshly broken crests: dense, almost opaque core
-  foamMask = max(foamMask, smoothstep(0.35, 0.9, fwl.g) * smoothstep(0.25, 0.6, pat + 0.25) * 0.95) * min(F.foamP.z,1.0);
+  // Memory is optical thickness: thin films remain visible rather than being
+  // removed by a second density threshold. Bubble texture modulates extinction.
+  let bubbleThickness=mix(0.08+2.0*pat*pat,0.85+0.3*pat,freshK);
+  var foamMask=1.0-exp(-cover*3.6*bubbleThickness);
   // submerged bubbles brighten and tint the water just beneath foam
-  body += F.sssCol.rgb * (sunE * 0.05 + ambient * 0.35) * clamp(cover, 0.0, 1.0);
-  body += exp(-aWater*2.0) * skyUp * fwl.g * 0.06;
+  body += exp(-aWater*1.5)*(skyHemi+sunE*max(Ld.y,0.0)/PI)*fwl.g*0.12;
   // bubbly brightness variation inside the foam
   let bub = textureSample(foamTex, sampR, xz * 1.9 + vec2f(0.21, 0.53)).g;
-  let foamAlb = vec3f(0.82, 0.87, 0.92) * (0.78 + 0.3 * bub);
+  let foamAlb = vec3f(0.88) * (0.9 + 0.1 * bub);
   // diffuse: albedo * (sky irradiance / pi + sun * cos / pi); sky dominates at sunset
   // foam scatters light from the whole hemisphere (incl. the cool zenith): use a less saturated ambient
-  let foamAmb = skyHemi * 1.0 + skyN * 0.3;
-  let foamAmbN = mix(foamAmb, vec3f(dot(foamAmb, vec3f(0.2126, 0.7152, 0.0722))), 0.85);
-  // grazing sun is largely self-shadowed by the foam's lumpy micro-structure
-  let foamLit = foamAlb * (sunE * max(dot(nrm, Ld), 0.0) * 0.318 * 0.5 + foamAmbN * 1.55);
+  let foamAmb=skyHemi*0.8+skyN*0.2;
+  let foamLit=foamAlb*(sunE*max(dot(nrm,Ld),0.0)/PI+foamAmb);
 
   if (F.post.w > 0.5) {
     // debug: r = foam cover, g = clamp(J), b = world foam level-0 weight
@@ -311,7 +302,9 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   var col = body * (1.0 - Fr) + refl * Fr + spec;
   col = mix(col, foamLit, foamMask * 0.95);
 
-  if (F.camPos.y<F.absorption.w && F.control.z > 0.5) {
+  let wet=waterFraction(-V,surfaceAtLens);
+  var submerged=col;
+  if (wet>0.0) {
     let Nw=select(-nrm,nrm,dot(nrm,V)>0.0);
     let ci=clamp(dot(Nw,V),0.0,1.0);
     let sinT2=1.333*1.333*(1.0-ci*ci);
@@ -322,11 +315,10 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
     let through=refract(-V,Nw,1.333);
     let incident=textureSampleLevel(envCube,sampC,normalize(through+vec3f(0,0.000001,0)),envLod).rgb;
     let beam=exp(-(F.absorption.rgb+F.backscatter.rgb*12.0)*dist);
-    let deep=F.backscatter.rgb/(F.absorption.rgb+F.backscatter.rgb)*skyAtmo(vec3f(0,1,0))*0.8;
-    let transmitted=incident*(1.0-Funder)+deep*Funder;
-    col=transmitted*beam+deep*(1.0-beam);
-    col=mix(col,foamLit*beam,foamMask*0.6);
-    return vec4f(col,1.0);
+    let deep=volumeWater(reflect(-V,Nw),100.0,surfaceAtLens);
+    let transmitted=incident*(1.0-Funder)*(1.333*1.333)+deep*Funder;
+    submerged=transmitted*beam+volumeWater(-V,dist,surfaceAtLens);
+    submerged=mix(submerged,foamLit*beam,foamMask*0.6);
   }
   // ---- aerial perspective ----
   // aerial perspective: atmosphere extinction plus a marine haze floor
@@ -334,7 +326,7 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let hz = normalize(vec3f(-V.x, 0.002, -V.z));
   let fogCol = skyAtmo(hz);
   col = col * T + fogCol * (1.0 - T);
-  return vec4f(col, 1.0);
+  return vec4f(mix(col,submerged,wet), 1.0);
 }
 `;
 
@@ -360,6 +352,11 @@ fn main() {
     let d = dispAt(x0);
     x0 = goal - d.xz;
   }
-  outH[0] = dispAt(x0).y;
+  let d=dispAt(x0);
+  let ex=dispAt(x0+vec2f(0.08,0))-dispAt(x0-vec2f(0.08,0));
+  let ez=dispAt(x0+vec2f(0,0.08))-dispAt(x0-vec2f(0,0.08));
+  let tx=vec3f(0.16,0,0)+ex;let tz=vec3f(0,0,0.16)+ez;
+  let normal=normalize(cross(tz,tx));
+  outH[0]=d.y;outH[1]=-normal.x/max(normal.y,0.2);outH[2]=-normal.z/max(normal.y,0.2);outH[3]=0.0;
 }
 `;
