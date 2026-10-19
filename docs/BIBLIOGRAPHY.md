@@ -1,5 +1,7 @@
 # Consulted sources and provenance
 
+This is the preserved 0.1 bibliography. Additional sources actually accessed during 0.2, including access limits, are listed in `V02-STAGES.md`. No new image assets or third-party rendering code were copied in the 0.2 cycle.
+
 Research date: 2026-10-18. Access status is deliberately narrower than a reading list. Scientific publications are sources of methods, not redistributed licensed assets. Full formulas, units and caveats appear in PHYSICS-RESEARCH.md; source-level observations appear in REFERENCE-AUDIT.md.
 
 ## Rendering source actually inspected and reused

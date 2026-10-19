@@ -42,8 +42,9 @@ export function setupUI(P,cam,api) {
   }
   function setScene(id){$('scene-title').textContent=PRESETS[id]?.label||'Your ocean';$('scene-note').textContent=PRESETS[id]?.note||'A sea state of your own';document.querySelectorAll('.scene').forEach(el=>el.classList.toggle('selected',el.dataset.preset===id));}
   const initialQuery=new URLSearchParams(location.search);setScene(initialQuery.has('config')?null:initialQuery.get('preset')||'golden');
-  $('environment').onclick=()=>{const hidden=$('panel').classList.toggle('hidden');$('environment').setAttribute('aria-expanded',String(!hidden));};
-  $('close-panel').onclick=()=>$('panel').classList.add('hidden');
+  function panelOpen(open){$('panel').classList.toggle('hidden',!open);$('environment').setAttribute('aria-expanded',String(open));}
+  $('environment').onclick=()=>panelOpen($('panel').classList.contains('hidden'));
+  $('close-panel').onclick=()=>panelOpen(false);
   $('pause').onclick=()=>{P.paused=!P.paused;$('pause').textContent=P.paused?'Play':'Pause';};
   $('hide').onclick=()=>document.body.classList.add('cinema');$('restore-ui').onclick=()=>document.body.classList.remove('cinema');
   $('screenshot').onclick=()=>{api.capture();toast('Capturing full-resolution PNG');};$('record').onclick=()=>api.record();
@@ -55,10 +56,10 @@ export function setupUI(P,cam,api) {
   $('import').onchange=async(e)=>{try{const f=e.target.files[0];if(!f)return;const state=JSON.parse(await f.text());if(!state.settings)throw Error('Missing settings');api.restore(state);sync();setScene(null);toast('Configuration imported');}catch(e){toast('Import failed: '+e.message);}};
   $('quality').onchange=e=>api.quality(e.target.value);$('camera-mode').onchange=e=>api.change('cameraMode',e.target.value);$('debug').onchange=e=>api.change('debug',Number(e.target.value));
   $('astronomy').onchange=e=>api.change('astronomy',e.target.checked);$('adaptive').onchange=e=>api.change('adaptive',e.target.checked);$('date').onchange=e=>api.change('date',e.target.value);$('seed').onchange=e=>api.change('seed',Number(e.target.value));
-  $('developed').onclick=()=>{api.developed();toast('Target sea state applied');};$('reset-camera').onclick=()=>api.resetCamera();
-  document.querySelectorAll('[data-altitude]').forEach(b=>b.onclick=()=>api.altitude(Number(b.dataset.altitude)));
+  $('developed').onclick=()=>{api.developed();toast('Target sea state applied');};$('reset-camera').onclick=()=>{api.resetCamera();sync();};
+  document.querySelectorAll('[data-altitude]').forEach(b=>b.onclick=()=>{api.altitude(Number(b.dataset.altitude));sync();});
   $('gpu-tests').onclick=()=>window.open('/tests.html','_blank','noopener');
-  addEventListener('keydown',e=>{if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if(e.code==='KeyH')document.body.classList.toggle('cinema');if(e.code==='KeyP')$('pause').click();if(e.code==='KeyF')$('panel').classList.toggle('hidden');});
+  addEventListener('keydown',e=>{if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if(e.code==='KeyH')document.body.classList.toggle('cinema');if(e.code==='KeyP')$('pause').click();if(e.code==='KeyF')panelOpen($('panel').classList.contains('hidden'));});
   sync();if(new URLSearchParams(location.search).get('ui')==='0')document.body.classList.add('cinema');
   return {sync,toast,setScene,update(data){$('fps').textContent=data;$('altitude').textContent=cam.y.toFixed(1)+' m';$('backend').textContent='WEBGPU / '+api.adapter.vendor.toUpperCase();$('status').textContent=P.paused?'PAUSED':'LIVE';}};
 }

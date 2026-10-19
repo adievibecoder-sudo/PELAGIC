@@ -1,0 +1,17 @@
+diff --git a/js/main.js b/js/main.js
+--- a/js/main.js
++++ b/js/main.js
+@@ -435,5 +435,5 @@ async function main() {
+     simF[40] = P.windSpeed; simF[41] = P.windDir * D2R; simF[42] = P.fetchKm * 1000; simF[43] = 3.3;
+     const ks = 2 * Math.PI / P.swellLength;
+     simF[44] = P.swellHs; simF[45] = P.swellDir * D2R; simF[46] = Math.sqrt(9.81 * ks); simF[47] = P.swellSpread;
+-    simF[48] = P.choppy; simF[49] = 0.0012; simF[50] = LOOP; simF[51] = 1;
++    simF[48] = P.choppy; simF[49] = 0.0012; simF[50] = LOOP; simF[51] = 1307;
+     simF[54] = 2.2; simF[55] = 1.0;
+@@ -481,5 +481,5 @@ async function main() {
+     cam.x += mx * v; cam.y += my * v; cam.z += mz * v;
+     cam.y = Math.max(1.0, Math.min(3000, cam.y));
+     // keep clear of the actual (displaced) water surface under the camera
+-    if (cam.y < waterH + 0.9) cam.y += (waterH + 0.9 - cam.y) * Math.min(1, dt * 12);
++    if (!qs.has('free') && cam.y < waterH + 0.9) cam.y += (waterH + 0.9 - cam.y) * Math.min(1, dt * 12);
+   }

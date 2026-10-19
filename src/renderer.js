@@ -952,7 +952,14 @@ async function main() {
     if (doTs) { timingFrame={cpu:cpuMs,frame:frameMs,width:W,height:H};tsPending = true; tsRead.mapAsync(GPUMapMode.READ).then(onTsMapped, onTsFail); }
     if (readBuf) saveShot(readBuf, Math.ceil(W * 4 / 256) * 256, true);
     if(qs.has('benchmark') && frameIndex>=runtime.frames){
-      stopped=true;device.queue.onSubmittedWorkDone().then(async()=>{await fetch('/__evidence?stage=stage-04&name='+qs.get('benchmark')+'.json',{method:'POST',body:JSON.stringify(evidenceReport(),null,2)});document.title='BENCHMARK DONE';});return;
+      stopped=true;device.queue.onSubmittedWorkDone().then(async()=>{
+        const report=evidenceReport();
+        if(qs.get('validate')==='1'){
+          report.hdr=await hdrReadback(device,hdrTex);
+          report.foam=await foamReadback(device,foamW[foamCur]);
+        }
+        await fetch('/__evidence?stage=stage-04&name='+qs.get('benchmark')+'.json',{method:'POST',body:JSON.stringify(report,null,2)});document.title='BENCHMARK DONE';
+      });return;
     }
     if(!shooting) scheduleFrame();
   }

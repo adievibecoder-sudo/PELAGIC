@@ -9,6 +9,7 @@ const sha256 = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const paths = [];
 async function walk(directory) {
   for (const entry of await fs.readdir(directory, {withFileTypes: true})) {
+    if (entry.name === '.git' || entry.name === 'node_modules') continue;
     const filename = path.join(directory, entry.name);
     if (entry.isDirectory()) await walk(filename);
     else if (filename !== destination) paths.push(filename);
@@ -34,6 +35,6 @@ if (process.argv.includes('--verify')) {
   if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
   else console.log(`PASS: ${files.length} files match the release manifest.`);
 } else {
-  await fs.writeFile(destination, JSON.stringify({version: '0.1.0', generated: new Date().toISOString(), files}, null, 2) + '\n');
+  await fs.writeFile(destination, JSON.stringify({version: '0.2.0', generated: new Date().toISOString(), files}, null, 2) + '\n');
   console.log(`Wrote ${files.length} SHA-256 records.`);
 }

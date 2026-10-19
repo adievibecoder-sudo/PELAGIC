@@ -1,4 +1,6 @@
-# Pelagic: implementation plan
+# Pelagic: architecture and preserved foundation
+
+The initial plan below describes the 0.1 foundation. Implemented 0.2 changes and acceptance evidence are in `V02-STAGES.md` and `TECHNICAL-REPORT.md`.
 
 Local desktop-browser application. Native WebGPU only. No runtime packages, remote fonts, external textures, or WebGL fallback.
 
@@ -13,7 +15,7 @@ Start from inspected MIT-licensed Noniv/web-ocean kernels (commit a07c7fd522ef0a
 
 ## Frame graph
 
-Spectrum initialization on changed sea state; analytic spectral evolution; shared-memory row/column IFFTs; slope moment mips; advected foam; atmosphere LUTs; volumetric environment; camera-relative CDLOD water and sky into 16-bit HDR/4x MSAA; spray; bloom; AgX-family display transform. No conventional TAA: time-averaging the specular output would erase glints. Filter slope distributions before shading instead. Temporal cloud reconstruction is deferred unless a measured improvement justifies it.
+Spectrum initialization on changed sea state; analytic spectral evolution; shared-memory row/column IFFTs; slope moment mips; advected foam; atmosphere LUTs; volumetric environment; camera-relative CDLOD water and sky into pre-exposed 16-bit HDR/4x MSAA; spray; bloom; AgX-family display transform. Slope distributions are filtered before shading. TAA and temporal cloud reconstruction are not implemented; alternative temporal methods have not received a controlled comparison. This is a remaining investigation, not proof that temporal reconstruction cannot preserve glitter.
 
 ## Contracts
 
