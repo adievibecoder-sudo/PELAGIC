@@ -1,4 +1,5 @@
-import {FRAME_WGSL,NOISE_WGSL,CASCADES} from './common.js';
+import {FRAME_WGSL,ATMO_CORE_WGSL,NOISE_WGSL,CASCADES} from './common.js';
+import {SKY_RENDER_FUNCS} from './sky.js';
 export const PARTICLE_COUNT=12288;
 export const PARTICLE_UPDATE=FRAME_WGSL+NOISE_WGSL+/* wgsl */`
 struct Particle {p:vec4f,v:vec4f};
@@ -34,10 +35,17 @@ fn rnd(v:u32)->f32{return f32(pcgHash(v)>>8u)/16777216.0;}
  }
  particles[k]=p;
 }`;
-export const PARTICLE_RENDER=FRAME_WGSL+/* wgsl */`
+export const PARTICLE_RENDER=FRAME_WGSL+ATMO_CORE_WGSL+/* wgsl */`
 struct Particle {p:vec4f,v:vec4f};
 @group(0) @binding(0) var<uniform> F:Frame;
 @group(0) @binding(1) var<storage,read> particles:array<Particle>;
+@group(0) @binding(2) var environment:texture_cube<f32>;
+@group(0) @binding(3) var lightSampler:sampler;
+@group(0) @binding(4) var shadow:texture_2d<f32>;
+@group(0) @binding(5) var transLUT:texture_2d<f32>;
+@group(0) @binding(6) var sampC:sampler;
+@group(0) @binding(7) var skyLUT:texture_2d<f32>;
+`+SKY_RENDER_FUNCS+/* wgsl */`
 struct VOut{@builtin(position) p:vec4f,@location(0) uv:vec2f,@location(1) opacity:f32,@location(2) light:vec3f};
 @vertex fn vs(@builtin(vertex_index) v:u32,@builtin(instance_index) id:u32)->VOut{
  let corners=array<vec2f,6>(vec2f(-1,-1),vec2f(1,-1),vec2f(1,1),vec2f(-1,-1),vec2f(1,1),vec2f(-1,1));
@@ -48,8 +56,12 @@ struct VOut{@builtin(position) p:vec4f,@location(0) uv:vec2f,@location(1) opacit
  var o:VOut;o.p=F.viewProj*vec4f(world-F.camPos.xyz,1);o.uv=uv;
  o.opacity=smoothstep(0.0,0.3,p.p.w)*select(0.13,0.16,rain)*select(F.weather.y,F.weather.x,rain);
  let cosTheta=dot(normalize(p.p.xyz-F.camPos.xyz),F.sunDir.xyz);
- let forward=0.06+0.6*pow(max(cosTheta,0.0),8.0);
- o.light=vec3f(0.72,0.79,0.85)*F.sunDir.w*(0.012+forward*max(F.sunDir.y,0.0));return o;
+ let phase=0.07957747*(1.0-0.75*0.75)/pow(max(1.0+0.75*0.75-1.5*cosTheta,0.001),1.5);
+ let ambient=textureSampleLevel(environment,lightSampler,vec3f(0,1,0),6.0).rgb;
+ let shadowUV=clamp((p.p.xz-F.camPos.xz)/40000.0+0.5,vec2f(0.001),vec2f(0.999));
+ let sunlight=textureSampleLevel(shadow,lightSampler,shadowUV,0.0).r;
+ o.light=ambient*0.65+sunIlluminance()*sunlight*phase;
+ return o;
 }
 @fragment fn fs(i:VOut)->@location(0)vec4f{
  let alpha=exp(-dot(i.uv,i.uv)*3.0)*i.opacity;

@@ -305,18 +305,27 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let wet=waterFraction(-V,surfaceAtLens);
   var submerged=col;
   if (wet>0.0) {
-    let Nw=select(-nrm,nrm,dot(nrm,V)>0.0);
-    let ci=clamp(dot(Nw,V),0.0,1.0);
-    let sinT2=1.333*1.333*(1.0-ci*ci);
-    let ct=sqrt(max(0.0,1.0-sinT2));
-    let rs=(1.333*ci-ct)/max(1.333*ci+ct,0.00001);
-    let rp=(ci-1.333*ct)/max(ci+1.333*ct,0.00001);
-    let Funder=select(0.5*(rs*rs+rp*rp),1.0,sinT2>=1.0);
-    let through=refract(-V,Nw,1.333);
-    let incident=textureSampleLevel(envCube,sampC,normalize(through+vec3f(0,0.000001,0)),envLod).rgb;
+    var transmitted=vec3f(0);var total=0.0;
+    for(var tap=0u;tap<5u;tap++) {
+      var off=vec2f(0);var w=1.0/3.0;
+      if(tap>0u){off=select(ch0,ch1,tap>2u)*select(-1.7320508,1.7320508,(tap&1u)==1u);w=1.0/6.0;}
+      let facet=normalize(nrm-tangent*off.x-bitangent*off.y);
+      let Nw=select(-facet,facet,dot(facet,V)>0.0);
+      let ci=clamp(dot(Nw,V),0.0,1.0);
+      let sinT2=1.333*1.333*(1.0-ci*ci);
+      let ct=sqrt(max(0.0,1.0-sinT2));
+      let rs=(1.333*ci-ct)/max(1.333*ci+ct,0.00001);
+      let rp=(ci-1.333*ct)/max(ci+1.333*ct,0.00001);
+      let Funder=select(0.5*(rs*rs+rp*rp),1.0,sinT2>=1.0);
+      let through=refract(-V,Nw,1.333);
+      let refractionLod=clamp(envLod-log2(max(ct,0.08)),0.0,ENV_MAXMIP);
+      let incident=textureSampleLevel(envCube,sampC,normalize(through+vec3f(0,0.000001,0)),refractionLod).rgb;
+      let deep=volumeWater(reflect(-V,Nw),100.0,surfaceAtLens);
+      w*=ci;total+=w;
+      transmitted+=(incident*(1.0-Funder)*(1.333*1.333)+deep*Funder)*w;
+    }
+    transmitted/=max(total,1e-6);
     let beam=exp(-(F.absorption.rgb+F.backscatter.rgb*12.0)*dist);
-    let deep=volumeWater(reflect(-V,Nw),100.0,surfaceAtLens);
-    let transmitted=incident*(1.0-Funder)*(1.333*1.333)+deep*Funder;
     submerged=transmitted*beam+volumeWater(-V,dist,surfaceAtLens);
     submerged=mix(submerged,foamLit*beam,foamMask*0.6);
   }

@@ -39,12 +39,16 @@ export async function verifyDynamics(device,progress=()=>{}) {
   }
 
   progress('Foam: manufactured advection and decay');
-  const res=64,field=texture([256,256,6],T.TEXTURE_BINDING);
+  const res=64,field=texture([256,256,6],T.TEXTURE_BINDING|T.COPY_DST);
+  const displaced=texture([256,256,6],T.TEXTURE_BINDING|T.COPY_DST);
+  const displacement=new Uint16Array(256*256*6*4);
+  for(let i=0;i<256*256*6;i++)displacement[i*4]=half(.25);
+  device.queue.writeTexture({texture:displaced},displacement,{bytesPerRow:2048,rowsPerImage:256},[256,256,6]);
   const foam=[0,1].map(()=>texture([res,res,2],T.TEXTURE_BINDING|T.STORAGE_BINDING|T.COPY_DST|T.COPY_SRC));
   const fu=buffer(144,B.UNIFORM|B.COPY_DST),fr=buffer(res*res*2*8,B.MAP_READ|B.COPY_DST);
   const fp=await pipeline(FOAM_UPDATE.replace(/const RES: i32 = \d+;/,'const RES: i32 = 64;'));
   const samp=device.createSampler({magFilter:'linear',minFilter:'linear',addressModeU:'repeat',addressModeV:'repeat'});
-  const fbg=foam.map((t,i)=>group(fp,[{buffer:fu},foam[1-i].createView(),t.createView(),field.createView(),field.createView(),samp,samp,field.createView()]));
+  const fbg=foam.map((t,i)=>group(fp,[{buffer:fu},foam[1-i].createView(),t.createView(),displaced.createView(),field.createView(),samp,samp,field.createView()]));
   const data=new Uint16Array(res*res*2*4),original=new Float64Array(res*res);
   for(let y=0;y<res;y++)for(let x=0;x<res;x++){
     const v=(x>12&&x<28&&y>20&&y<44)?0.75:0;original[y*res+x]=v;
@@ -68,6 +72,20 @@ export async function verifyDynamics(device,progress=()=>{}) {
     fr.unmap();const relativeL1=l1/Math.max(signal,1e-20);
     results.push({case:name,hz,steps,relativeL1,mass,centroidX:xmoment/mass,invalid,status:relativeL1<(name.startsWith('decay')?.002:.001)&&!invalid?'PASS':'FAIL'});
   }
+  // A crest top has zero elevation slope. Compression alone must still emit foam.
+  const derivative=new Uint16Array(256*256*6*4);
+  for(let i=0;i<256*256;i++)derivative[i*4+2]=half(-.5);
+  device.queue.writeTexture({texture:field},derivative,{bytesPerRow:2048,rowsPerImage:256},[256,256,6]);
+  for(const t of foam)device.queue.writeTexture({texture:t},new Uint16Array(data.length),{bytesPerRow:res*8,rowsPerImage:res},[res,res,2]);
+  const bytes=new ArrayBuffer(144),fi=new Int32Array(bytes),ff=new Float32Array(bytes);fi.set([32,32,32,32,32,32,32,32]);
+  ff.set([1,1,1/60,0],8);ff.set([.83,3,5,1],12);ff.set(PATCHES,16);ff.set(PATCHES.map(x=>1/x),24);device.queue.writeBuffer(fu,0,bytes);
+  let cur=0;const e=device.createCommandEncoder(),pass=e.beginComputePass();pass.setPipeline(fp);
+  for(let i=0;i<30;i++){cur=1-cur;pass.setBindGroup(0,fbg[cur]);pass.dispatchWorkgroups(8,8,2);}pass.end();
+  e.copyTextureToBuffer({texture:foam[cur]},{buffer:fr,bytesPerRow:res*8,rowsPerImage:res},[res,res,2]);device.queue.submit([e.finish()]);await fr.mapAsync(GPUMapMode.READ);
+  const values=new Uint16Array(fr.getMappedRange()),off=(32*res+32)*4;
+  const actual=decodeHalf(values[off])+decodeHalf(values[off+3]);
+  const smooth=t=>t*t*(3-2*t),activity=.65+.35*smooth(.3/.8),expected=1-Math.exp(-5*activity*.5);
+  results.push({case:'compressed-crest-zero-slope',actual,expected,relativeError:Math.abs(actual/expected-1),status:Math.abs(actual/expected-1)<.002?'PASS':'FAIL'});fr.unmap();
   resources.forEach(r=>r.destroy());
-  return {phase:phaseResults,foam:results,tolerances:{phase:'0.02 rad maximum over a 120 s epoch, <=0.32% of a cycle; unit norm 2e-6. Sparse modes cover six bands, not every mode.',foam:'Translation/pause relative L1 <0.001. Compensated decay <0.2%, the research acceptance target; report all rates.'},limitations:'Epoch tests initialize at 6/24 hours then evolve 120 s. They do not simulate every intervening frame. Foam uses the production kernel with RES=64, zero wave fields, no injection. Whitecap coverage remains unvalidated.'};
+  return {phase:phaseResults,foam:results,tolerances:{phase:'0.02 rad maximum over a 120 s epoch; unit norm 2e-6. Sparse modes cover six bands.',foam:'Translation/pause relative L1 <0.001; compensated decay and source response <0.2%.'},limitations:'Epoch tests evolve only 120 s at each epoch. Foam uses production RES=64. Constant horizontal displacement deliberately differs from previous displacement: unchanged translation verifies orbital motion is not double-counted. Manufactured compression tests source response, not oceanographic breaking accuracy. Whitecap coverage remains unvalidated.'};
 }
