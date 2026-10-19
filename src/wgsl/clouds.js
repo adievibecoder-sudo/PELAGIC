@@ -40,6 +40,9 @@ fn cloudDensityFiltered(p: vec3f, detail: bool, footprint:f32) -> f32 {
   if(detail && density>0.0){
     let erosion=textureSampleLevel(cloudNoise,cloudNoiseSampler,q*5.71+vec3f(0.17,0.31,0.59),max(lod+2.51,0.0)).b;
     density=max(0.0,density-(1.0-erosion)*0.20*(1.0-density));
+  }else if(density>0.0){
+    // Coarse light rays must retain mean erosion, not shadow a denser cloud.
+    density=max(0.0,density-0.104*(1.0-density));
   }
   return clamp(density*2.1,0.0,1.0);
 }

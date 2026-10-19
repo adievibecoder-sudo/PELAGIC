@@ -124,7 +124,7 @@ fn sourceCovariance(V:vec3f,L:vec3f)->vec3f {
 }
 
 fn foamPattern(xz: vec2f, t: f32) -> f32 {
-  let a = textureSample(foamTex, sampR, xz * 0.23 + vec2f(0.013, 0.0) * t).r;
+  let a = textureSample(foamTex, sampR, xz * 0.23).r;
   let b = textureSample(foamTex, sampR, xz * 0.71 + vec2f(0.37, 0.71)).g;
   return a * 0.78 + b * 0.22;
 }
@@ -232,6 +232,15 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
     let f=fresnelWater(nv);
     reflected+=textureSampleLevel(envCube,sampC,rf,envLod).rgb*f*w;
     fresnelSum+=f*w;weights+=w;
+  }
+  if(weights<1e-5){
+    // A finite quadrature can miss every visible facet on a grazing normal map.
+    // Use the actual rasterized facet instead of returning an unlit black strip.
+    var ng=normalize(cross(dpdy(in.rel),dpdx(in.rel)));
+    ng=select(-ng,ng,dot(ng,V)>=0.0);
+    let f=fresnelWater(dot(ng,V));
+    reflected=textureSampleLevel(envCube,sampC,reflect(-V,ng),envLod).rgb*f;
+    fresnelSum=f;weights=1.0;
   }
   let Fr=clamp(fresnelSum/max(weights,1e-6),0.0,1.0);
   let refl=reflected/max(fresnelSum,1e-6);
