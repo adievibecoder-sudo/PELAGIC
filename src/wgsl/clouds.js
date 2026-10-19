@@ -30,14 +30,16 @@ fn cloudDensityFiltered(p: vec3f, detail: bool, footprint:f32) -> f32 {
   let cover=clamp(F.cloudP.y*0.84+(weather-0.5)*0.65,0.0,1.0);
   let top=mix(0.75,1.0,weather);
   let profile=smoothstep(0.0,0.10,h)*(1.0-smoothstep(mix(0.30,0.55,storm),mix(top,0.52,strat),h));
-  let shape=textureSampleLevel(cloudNoise,cloudNoiseSampler,q+vec3f(h*h*0.026,0,0),0.0);
-  let ridge=textureSampleLevel(cloudNoise,cloudNoiseSampler,q*2.07+vec3f(0.27,0.13,0.39),0.0).g;
+  // Filter the whole density hierarchy by both the pixel cone and march segment.
+  // Filtering only erosion left the base field aliasing into distant horizontal bands.
+  let lod=log2(max(footprint*max(scale.x,scale.y)*64.0,0.0001));
+  let shape=textureSampleLevel(cloudNoise,cloudNoiseSampler,q+vec3f(h*h*0.026,0,0),max(lod,0.0));
+  let ridge=textureSampleLevel(cloudNoise,cloudNoiseSampler,q*2.07+vec3f(0.27,0.13,0.39),max(lod+1.05,0.0)).g;
   let base=shape.r*0.64+ridge*0.12+0.25;
   var density=max(0.0,(base-(1.0-cover*profile))/max(cover,0.05));
   if(detail && density>0.0){
-    let erosion=textureSampleLevel(cloudNoise,cloudNoiseSampler,q*5.71+vec3f(0.17,0.31,0.59),0.0).b;
-    let filtered=mix(erosion,0.48,smoothstep(0.06,0.3,footprint));
-    density=max(0.0,density-(1.0-filtered)*0.20*(1.0-density));
+    let erosion=textureSampleLevel(cloudNoise,cloudNoiseSampler,q*5.71+vec3f(0.17,0.31,0.59),max(lod+2.51,0.0)).b;
+    density=max(0.0,density-(1.0-erosion)*0.20*(1.0-density));
   }
   return clamp(density*2.1,0.0,1.0);
 }
@@ -68,17 +70,21 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
   else if(inner.x>0.0){finish=inner.x;}
   let ground=raySphere(sphereOrigin,dir,RG);
   if(ground.x>0.0){finish=min(finish,ground.x);}
-  finish=min(finish,55.0);
-  let samples=u32(F.control.x);
-  let ds=max(0.0,finish-start)/f32(samples);
+  finish=min(finish,200.0);
+  let samples=u32(F.control.x*mix(1.0,1.7,1.0-smoothstep(0.04,0.22,abs(dir.y))));
+  let logRange=log(max((finish+1.0)/(start+1.0),1.0));
   var trans=1.0;var radiance=vec3f(0);
   let ambient=skyAtmo(vec3f(0,1,0))*0.7+skyAtmo(normalize(vec3f(dir.x,0.08,dir.z)))*0.12;
   let phase=0.85*phaseHG(dot(dir,F.sunDir.xyz),0.68)+0.15*phaseHG(dot(dir,F.sunDir.xyz),-0.25);
-  let jitter=hash3(floor(dir*8000.0))*0.8+0.1;
-  for(var i=0u;i<samples && ds>0.0;i++) {
-    let t=start+(f32(i)+jitter)*ds;
+  // Deterministic segment quadrature: no screen-space jitter to crawl in motion.
+  // Exponential spacing preserves nearby volume detail and reaches the curved horizon.
+  for(var i=0u;i<samples && logRange>0.0;i++) {
+    let a=(start+1.0)*exp(logRange*f32(i)/f32(samples))-1.0;
+    let b=(start+1.0)*exp(logRange*f32(i+1u)/f32(samples))-1.0;
+    let ds=b-a;
+    let t=(a+b)*0.5;
     let p=ro+dir*t;
-    let density=cloudDensityFiltered(p,true,max(ds*0.06,t*pixAng));
+    let density=cloudDensityFiltered(p,true,max(ds*0.35,t*pixAng));
     if(density>0.001) {
       let radial=vec3f(p.x,RG+p.y,p.z);
       let radius=length(radial);let mu=dot(radial,F.sunDir.xyz)/radius;
@@ -88,7 +94,7 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
       var lightStep=0.22;
       var lightDist=0.11;
       for(var j=0u;j<u32(F.control.y);j++) {
-        shadow+=cloudDensity(p+F.sunDir.xyz*lightDist,false)*lightStep;
+        shadow+=cloudDensityFiltered(p+F.sunDir.xyz*lightDist,false,lightStep*0.35)*lightStep;
         lightDist+=lightStep;lightStep*=2.1;
       }
       let sigma=F.cloudP.z*1.8;

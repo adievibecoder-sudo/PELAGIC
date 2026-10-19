@@ -17,7 +17,7 @@ struct P { texel: vec4f };   // xy = 1/src size, z = first pass (karis + thresho
 @group(0) @binding(2) var<uniform> U: P;
 fn luma(c: vec3f) -> f32 { return dot(c, vec3f(0.2126, 0.7152, 0.0722)); }
 fn tap(uv: vec2f) -> vec3f { return textureSampleLevel(src, samp, uv, 0.0).rgb; }
-fn karis(c: vec3f) -> f32 { return 1.0 / (1.0 + luma(c) * 0.25); }
+fn karis(c: vec3f) -> f32 { return 1.0 / (1.0 + luma(c) * U.texel.w * 0.25); }
 @fragment fn fs(in: VO) -> @location(0) vec4f {
   let t = U.texel.xy;
   let uv = in.uv;

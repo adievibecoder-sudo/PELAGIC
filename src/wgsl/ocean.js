@@ -32,7 +32,7 @@ struct VO { @builtin(position) pos: vec4f, @location(0) ndc: vec2f };
   let cl=textureSampleLevel(cloudScreen,sampC,cloudUV,0.0);
   var L=skyAtmo(dir)*(1.0-cl.a)+cl.rgb+(sunDisk(dir)+nightStars(dir))*(1.0-cl.a);
   L=mix(L,volumeWater(dir,200.0,surfaceAtLens),waterFraction(dir,surfaceAtLens));
-  return vec4f(L, 1.0);
+  return vec4f(L/F.windP[1].x, 1.0);
 }
 `;
 
@@ -291,13 +291,13 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
 
   if (F.post.w > 0.5) {
     // debug: r = foam cover, g = clamp(J), b = world foam level-0 weight
-    if (F.post.w < 1.5) { return vec4f(cover, clamp(J * 0.5, 0.0, 1.0), w0 * 0.3, 1.0) * 0.2; }
-    if (F.post.w > 2.5 && F.post.w < 3.5) { return vec4f(refl, 1.0); }
-    if (F.post.w > 3.5 && F.post.w < 4.5) { return vec4f(vec3f(Fr), 1.0) * 0.5; }
-    if (F.post.w > 4.5 && F.post.w < 5.5) { return vec4f(body * (1.0 - Fr), 1.0); }
-    if (F.post.w > 5.5 && F.post.w < 6.5) { return vec4f(foamLit, 1.0); }
-    if (F.post.w > 6.5 && F.post.w < 7.5) { return vec4f(skyUp, 1.0); }
-    return vec4f(fwl.r, fwl.g, fresh, 1.0) * 0.2;
+    if (F.post.w < 1.5) { return vec4f(vec3f(cover, clamp(J * 0.5, 0.0, 1.0), w0 * 0.3)*0.2/F.windP[1].x, 1.0); }
+    if (F.post.w > 2.5 && F.post.w < 3.5) { return vec4f(refl/F.windP[1].x, 1.0); }
+    if (F.post.w > 3.5 && F.post.w < 4.5) { return vec4f(vec3f(Fr)*0.5/F.windP[1].x, 1.0); }
+    if (F.post.w > 4.5 && F.post.w < 5.5) { return vec4f(body * (1.0 - Fr)/F.windP[1].x, 1.0); }
+    if (F.post.w > 5.5 && F.post.w < 6.5) { return vec4f(foamLit/F.windP[1].x, 1.0); }
+    if (F.post.w > 6.5 && F.post.w < 7.5) { return vec4f(skyUp/F.windP[1].x, 1.0); }
+    return vec4f(vec3f(fwl.r, fwl.g, fresh)*0.2/F.windP[1].x, 1.0);
   }
   var col = body * (1.0 - Fr) + refl * Fr + spec;
   col = mix(col, foamLit, foamMask * 0.95);
@@ -335,7 +335,7 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let hz = normalize(vec3f(-V.x, 0.002, -V.z));
   let fogCol = skyAtmo(hz);
   col = col * T + fogCol * (1.0 - T);
-  return vec4f(mix(col,submerged,wet), 1.0);
+  return vec4f(mix(col,submerged,wet)/F.windP[1].x, 1.0);
 }
 `;
 

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>Pelagic motion verification</title>
+<style>body{margin:0;background:#091e28;color:#e1e9e2;font:13px Consolas,monospace}header{height:46px;display:flex;align-items:center;gap:24px;padding:0 20px}button{background:#173a48;color:inherit;border:1px solid #59717b;padding:6px 12px;cursor:pointer}iframe{border:0;width:100vw;height:calc(100vh - 46px)}#status{margin-left:auto}</style>
+<header><strong>PELAGIC / CONTINUOUS MOTION</strong><button id="run">Record seven 1080p clips</button><button id="stop">Stop after current</button><span id="status">Ready / 10 seconds per clip</span></header><iframe id="view" title="Motion validation viewport"></iframe>
+<script type="module">
+const args=new URLSearchParams(location.search);
+const queue=[
+ {name:'v02-golden-motion',preset:'golden',cam:'0,2,0,4,-5.5'},
+ {name:'v02-storm-motion',preset:'storm',cam:'0,5,0,79,-9'},
+ {name:'v02-clear-glitter-motion',preset:'midday',cam:'0,2,0,4,-5.5',clouds:0,veil:0},
+ {name:'v02-flight-motion',preset:'golden',cam:'0,2,0,4,-5.5',motion:'fly'},
+ {name:'v02-waterline-motion',preset:'midday',cam:'0,2,0,4,5',motion:'waterline'},
+ {name:'v02-skim-motion',preset:'calm',cam:'0,0,0,4,1',motion:'skim'},
+ {name:'v02-weather-motion',preset:'calm',cam:'0,5,0,4,-5.5',motion:'weather'},
+];
+let running=false,index=0,view=document.querySelector('#view');const status=document.querySelector('#status');
+function next(){
+ if(!running||index>=queue.length){running=false;status.textContent=`${index}/${queue.length} saved`;document.title='MOTION SUITE DONE';return;}
+ const {name,...settings}=queue[index];status.textContent=`${index+1}/${queue.length}: ${name}`;
+ const q=new URLSearchParams({...settings,video:name,cameraMode:'free',w:1920,h:1080,t:20,ui:0,seed:1307,adaptive:0,revision:args.get('revision')||'development'});
+ const fresh=document.createElement('iframe');fresh.id='view';fresh.title='Motion validation viewport';fresh.src='/?'+q;view.replaceWith(fresh);view=fresh;
+}
+window.addEventListener('message',e=>{if(e.origin===location.origin&&e.source===view.contentWindow&&e.data?.type==='pelagic-video'){index++;next();}});
+document.querySelector('#run').onclick=()=>{if(running)return;running=true;index=Math.max(0,Math.min(queue.length,Number(args.get('start'))||0));next();};
+document.querySelector('#stop').onclick=()=>running=false;
+</script></html>

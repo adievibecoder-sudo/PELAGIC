@@ -30,3 +30,15 @@ fn worley(p:vec3f,period:i32)->f32 {
   let w=worley(p*8.0,8);let fine=0.625*worley(p*16.0,16)+0.375*worley(p*32.0,32);
   textureStore(dst,id,vec4f(clamp(base*1.5-0.2*(1.0-w),0.0,1.0),w,fine,perlin(p*4.0,4)));
 }`;
+
+export const CLOUD_NOISE_MIP = /* wgsl */ `
+@group(0) @binding(0) var src:texture_3d<f32>;
+@group(0) @binding(1) var dst:texture_storage_3d<rgba8unorm,write>;
+@compute @workgroup_size(4,4,4) fn main(@builtin(global_invocation_id) id:vec3u){
+  if(any(id>=textureDimensions(dst))){return;}
+  var sum=vec4f(0);
+  for(var z=0;z<2;z++){for(var y=0;y<2;y++){for(var x=0;x<2;x++){
+    sum+=textureLoad(src,vec3i(id)*2+vec3i(x,y,z),0);
+  }}}
+  textureStore(dst,id,sum*0.125);
+}`;

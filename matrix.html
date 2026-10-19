@@ -1,5 +1,6 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><title>Pelagic visual acceptance matrix</title><style>body{margin:0;background:#091e28;color:#e1e9e2;font:13px Consolas,monospace}header{height:46px;display:flex;align-items:center;gap:24px;padding:0 20px}button{background:#173a48;color:inherit;border:1px solid #59717b;padding:6px 12px;cursor:pointer}iframe{border:0;width:100vw;height:calc(100vh - 46px)}#status{margin-left:auto}</style><header><strong>PELAGIC / EVIDENCE MATRIX</strong><button id="run">Capture 48 views + 4 special views</button><button id="stop">Stop after current</button><span id="status">Ready / 1920 x 1080</span></header><iframe id="view" title="Ocean validation viewport"></iframe><script type="module">
 import {PRESETS,preset} from './src/settings.js';import {celestial} from './src/astronomy.js';
+const args=new URLSearchParams(location.search);
 const queue=[];let index=0,running=false;const status=document.querySelector('#status');let view=document.querySelector('#view');
 for(const scene of Object.keys(PRESETS))for(const height of [.5,2,50,500])for(const offset of [0,75]){
  const p=preset(scene);let az=p.sunAzim;
@@ -8,7 +9,7 @@ for(const scene of Object.keys(PRESETS))for(const height of [.5,2,50,500])for(co
 }
 queue.push({name:'underwater-window',scene:'midday',cam:'0,-3,0,4,55'},{name:'underwater-horizon',scene:'midday',cam:'0,-8,0,79,8'},{name:'half-submerged',scene:'midday',cam:'0,0,0,4,0'},{name:'close-wave',scene:'storm',cam:'0,0.5,0,79,-8'});
 function next(){if(!running||index>=queue.length){status.textContent=`${index}/${queue.length} complete`;running=false;document.title='MATRIX DONE';return;}const item=queue[index];status.textContent=`${index+1}/${queue.length}: ${item.name}`;
- const q=new URLSearchParams({preset:item.scene,cam:item.cam,cameraMode:'free',shot:item.name+'.png',stage:'stage-04',w:1920,h:1080,frames:100,t:20,ui:0,seed:1307,adaptive:0});
+ const q=new URLSearchParams({preset:item.scene,cam:item.cam,cameraMode:'free',shot:item.name+'.png',stage:'stage-04',w:1920,h:1080,frames:100,t:20,ui:0,seed:1307,adaptive:0,revision:args.get('revision')||'development',validate:args.get('validate')||0});
  const fresh=document.createElement('iframe');fresh.id='view';fresh.title='Ocean validation viewport';fresh.src='/?'+q;view.replaceWith(fresh);view=fresh;
 }
 window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==view.contentWindow||e.data?.type!=='pelagic-capture')return;index++;next();});

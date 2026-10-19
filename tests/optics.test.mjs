@@ -20,7 +20,7 @@ test('linearized solar-disc covariance matches independent uniform-disc integrat
     for(let j=0;j<2;j++){const v=squares[j]/N-(sums[j]/N)**2;assert.ok(Math.abs(v/analytic[j]-1)<.003);}
   }
 });
-test('five-facet quadrature conserves covariance and projected radiance for constant environment',()=>{
+test('five-facet quadrature conserves input slope covariance',()=>{
   for(const c of [[.001,.02,.003],[.04,.01,-.008],[1e-7,1e-7,0]]){
     const l0=[Math.sqrt(c[0]),c[2]/Math.sqrt(c[0])],l1=[0,Math.sqrt(c[1]-c[2]**2/c[0])];
     let xx=0,yy=0,xy=0;

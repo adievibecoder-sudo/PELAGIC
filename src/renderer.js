@@ -16,7 +16,7 @@ import { SIM_INIT, SIM_EVOLVE, FFT_ROWS, FFT_COLS, SIM_MIPS, FOAM_TEX, RGBA8_MIP
 import { TRANS_LUT, MS_LUT, SKYVIEW_LUT, ENV_CUBE, CUBE_MIPS, SUN_VIS, CLOUD_SCREEN, CLOUD_SHADOW } from './wgsl/sky.js';
 import { OCEAN, SKY_BG, HEIGHT_PROBE } from './wgsl/ocean.js';
 import { BLOOM_DOWN, BLOOM_UP, COMPOSITE } from './wgsl/post.js';
-import { CLOUD_NOISE } from './wgsl/cloud-noise.js';
+import { CLOUD_NOISE, CLOUD_NOISE_MIP } from './wgsl/cloud-noise.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -150,11 +150,21 @@ async function main() {
     label, layout: pipe.getBindGroupLayout(0),
     entries: entries.map((r, i) => ({ binding: i, resource: r })),
   });
-  const cloudNoise=device.createTexture({label:'periodic cloud morphology',size:[64,64,64],dimension:'3d',format:'rgba8unorm',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING});
+  const cloudNoise=device.createTexture({label:'periodic cloud morphology',size:[64,64,64],dimension:'3d',format:'rgba8unorm',mipLevelCount:7,usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING});
   const cloudNoiseView=cloudNoise.createView();
-  const cloudSampler=device.createSampler({magFilter:'linear',minFilter:'linear',addressModeU:'repeat',addressModeV:'repeat',addressModeW:'repeat'});
+  const cloudSampler=device.createSampler({magFilter:'linear',minFilter:'linear',mipmapFilter:'linear',addressModeU:'repeat',addressModeV:'repeat',addressModeW:'repeat'});
   const cloudNoisePipe=await computePipe(CLOUD_NOISE,'cloud morphology cache');
-  {const e=device.createCommandEncoder(),p=e.beginComputePass();p.setPipeline(cloudNoisePipe);p.setBindGroup(0,bg(cloudNoisePipe,[cloudNoiseView]));p.dispatchWorkgroups(16,16,16);p.end();device.queue.submit([e.finish()]);}
+  const cloudMipPipe=await computePipe(CLOUD_NOISE_MIP,'cloud footprint filtering');
+  {
+    const e=device.createCommandEncoder(),p=e.beginComputePass();
+    const view=m=>cloudNoise.createView({baseMipLevel:m,mipLevelCount:1});
+    p.setPipeline(cloudNoisePipe);p.setBindGroup(0,bg(cloudNoisePipe,[view(0)]));p.dispatchWorkgroups(16,16,16);
+    for(let m=1;m<7;m++){
+      p.setPipeline(cloudMipPipe);p.setBindGroup(0,bg(cloudMipPipe,[view(m-1),view(m)]));
+      const groups=Math.ceil((64>>m)/4);p.dispatchWorkgroups(groups,groups,groups);
+    }
+    p.end();device.queue.submit([e.finish()]);
+  }
   const bgInit = bg(initPipe, [{ buffer: simUBO }, { buffer: h0Buf }], 'init');
   const bgEvolve = bg(evolvePipe, [{ buffer: simUBO }, { buffer: h0Buf }, { buffer: specA }, { buffer: specB }, {buffer:phaseBuf}], 'evolve');
   const bgRows = bg(rowsPipe, [{ buffer: specA }, { buffer: specB }, { buffer: tmpA }, { buffer: tmpB }], 'rows');
@@ -355,6 +365,7 @@ async function main() {
   const linSamp = device.createSampler({ magFilter: 'linear', minFilter: 'linear', addressModeU: 'clamp-to-edge', addressModeV: 'clamp-to-edge' });
   const compUBO = mkBuf(32, GU.UNIFORM | GU.COPY_DST, 'composite ubo');
   const compData = new Float32Array(8);
+  const bloomFirstData = new Float32Array(4);
   const bloomUBOs = [];
   for (let i = 0; i < BLOOM_LEVELS * 2; i++) bloomUBOs.push(mkBuf(16, GU.UNIFORM | GU.COPY_DST, 'bloom ubo'));
 
@@ -653,6 +664,8 @@ async function main() {
       const night=1-Math.max(0,Math.min(1,(astro.sunElevation+7)/7));f[111]=night;
       if(astro.sunElevation < -7 && astro.moonElevation > 0) {f.set(astro.moon,32);f[35]=0.000055*Math.pow(astro.phase,2);}
     } else { f.set(f.subarray(32,35),108);f[111]=1-Math.max(0,Math.min(1,(P.sunElev+7)/7)); }
+    // Preserve direct solar radiance in binary16 without sacrificing night precision.
+    f[60] = f[35] > 0.01 ? 32 : 1;
     f[112]=P.rain;f[113]=P.spray;f[114]=P.cloudType;f[115]=P.cloudDepth;
     f[116]=Q.cloudSteps;f[117]=Q.cloudLightSteps;f[118]=P.cameraMode==='surface'?0:1;f[119]=astro.sidereal%(2*Math.PI);
     device.queue.writeBuffer(frameUBO, 0, f);
@@ -698,7 +711,7 @@ async function main() {
     recorder=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:16000000});movieChunks=[];movieStart=performance.now();
     recorder.ondataavailable=e=>{if(e.data.size)movieChunks.push(e.data);};
     recorder.onstop=async()=>{const blob=new Blob(movieChunks,{type:mime});stream.getTracks().forEach(t=>t.stop());document.getElementById('record').textContent='Record';
-      if(evidence){await fetch('/__evidence?stage=stage-04&name='+qs.get('video')+'.webm',{method:'POST',body:blob});await fetch('/__evidence?stage=stage-04&name='+qs.get('video')+'.json',{method:'POST',body:JSON.stringify(evidenceReport(),null,2)});document.title='VIDEO DONE';stopped=true;}
+      if(evidence){await fetch('/__evidence?stage=stage-04&name='+qs.get('video')+'.webm',{method:'POST',body:blob});await fetch('/__evidence?stage=stage-04&name='+qs.get('video')+'.json',{method:'POST',body:JSON.stringify(evidenceReport(),null,2)});document.title='VIDEO DONE';stopped=true;parent.postMessage({type:'pelagic-video'},location.origin);}
       else download(blob,'pelagic-'+Date.now()+'.webm');
     };
     recorder.start(1000);document.getElementById('record').textContent='Stop recording';ui.toast('Recording the rendered canvas');
@@ -797,6 +810,7 @@ async function main() {
       const blend=Math.min(1,(now-movieStart)/10000);
       Object.assign(targetSea,preset('storm'));transitionSea=true;
       P.clouds=0.12+0.8*blend;P.rain=0.65*blend;P.spray=0.3+1.2*blend;P.haze=1.4+5.6*blend;P.cloudDepth=1.5+2*blend;
+      if(frameIndex%4===0)needLUT=true;
     }
     if (fixedDt) dt = fixedDt;
     dt = P.paused ? 0 : Math.min(dt*P.timeScale,0.1);
@@ -882,6 +896,8 @@ async function main() {
     if(P.spray>0 || P.rain>0){rp.setPipeline(particlePipe);rp.setBindGroup(0,particleDrawBG);rp.draw(6,PARTICLE_COUNT);}
     rp.end();
 
+    bloomFirstData.set([1/W,1/H,1,frameF[60]]);
+    device.queue.writeBuffer(bloomUBOs[0],0,bloomFirstData);
     for (let m = 0; m < BLOOM_LEVELS; m++) {
       downPasses[m].timestampWrites=m===0&&hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:6}:undefined;
       const p = enc.beginRenderPass(downPasses[m]);
@@ -898,7 +914,7 @@ async function main() {
       p.end();
     }
 
-    compData[0] = P.exposure * (frameF[35]<0.01 ? 500 : 1); compData[1] = P.bloom; compData[2] = frameIndex % 64; compData[3] = 0.10;
+    compData[0] = P.exposure * frameF[60] * (frameF[35]<0.01 ? 500 : 1); compData[1] = P.bloom; compData[2] = frameIndex % 64; compData[3] = 0.10;
     compData[4] = 1.0; compData[5] = 1.0; compData[6] = 0; compData[7] = 0;
     device.queue.writeBuffer(compUBO, 0, compData);
     const swapTex = ctx.getCurrentTexture();

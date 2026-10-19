@@ -65,5 +65,5 @@ struct VOut{@builtin(position) p:vec4f,@location(0) uv:vec2f,@location(1) opacit
 }
 @fragment fn fs(i:VOut)->@location(0)vec4f{
  let alpha=exp(-dot(i.uv,i.uv)*3.0)*i.opacity;
- return vec4f(i.light,alpha);
+ return vec4f(i.light/F.windP[1].x,alpha);
 }`;
