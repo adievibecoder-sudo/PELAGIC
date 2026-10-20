@@ -3,6 +3,7 @@ import { FRAME_WGSL, ATMO_CORE_WGSL, ENV_MIPS, ENV_SIZE, N, CASCADES } from './c
 import { SKY_RENDER_FUNCS, SKY_CLOUD_FUNCS } from './sky.js';
 import { IMMERSION } from './immersion.js';
 import { SHORT_WAVE_COUPLING } from './coupling.js';
+import { WAVE_MAP_COORDS } from './wave-visibility.js';
 
 const RENDER_BINDINGS = /* wgsl */ `
 @group(0) @binding(0) var<uniform> F: Frame;
@@ -48,7 +49,8 @@ export const OCEAN = FRAME_WGSL + ATMO_CORE_WGSL + RENDER_BINDINGS + /* wgsl */ 
 @group(0) @binding(11) var cloudShadow:texture_2d<f32>;
 @group(0) @binding(12) var<storage,read> surfaceAtLens:vec4f;
 @group(0) @binding(13) var skyIrradiance:texture_cube<f32>;
-` + SKY_RENDER_FUNCS + IMMERSION + SHORT_WAVE_COUPLING + /* wgsl */ `
+@group(0) @binding(14) var waveShadow:texture_2d_array<f32>;
+` + SKY_RENDER_FUNCS + IMMERSION + SHORT_WAVE_COUPLING + WAVE_MAP_COORDS + /* wgsl */ `
 const ENV_MAXMIP: f32 = ${ENV_MIPS - 1}.0;
 const ENV_TEXELS_PER_RAD: f32 = ${ENV_SIZE}.0 / 1.5708;
 const TEX_N: f32 = ${N}.0;
@@ -126,10 +128,14 @@ fn sourceCovariance(V:vec3f,L:vec3f)->vec3f {
   return vec3f(da.x*da.x+db.x*db.x,da.y*da.y+db.y*db.y,da.x*da.y+db.x*db.y)*(SUN_ANG_R*SUN_ANG_R*0.25);
 }
 
-fn foamPattern(xz: vec2f, t: f32) -> f32 {
-  let a = textureSample(foamTex, sampR, xz * 0.23).r;
-  let b = textureSample(foamTex, sampR, xz * 0.71 + vec2f(0.37, 0.71)).g;
-  return a * 0.78 + b * 0.22;
+fn foamCoverage(uv:vec2f,area:f32)->f32 {
+  let rank=textureSample(foamTex,sampR,uv).r;
+  let edge=max(fwidth(rank),0.018);
+  let resolved=smoothstep(1.0-area-edge,1.0-area+edge,rank);
+  // Thresholding averaged mip values destroys area. Integrate unresolved holes
+  // as their expected coverage once the approximately 1/10-tile patches blur.
+  let footprint=max(length(dpdx(uv)),length(dpdy(uv)))*10.0;
+  return mix(resolved,area,smoothstep(0.12,0.6,footprint));
 }
 
 @fragment fn fs(in: VSOut, @builtin(front_facing) front:bool) -> @location(0) vec4f {
@@ -199,7 +205,13 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
 
   let shadowUV=clamp((xz-F.camPos.xz)/40000.0+0.5,vec2f(0.001),vec2f(0.999));
   let cloudT=textureSampleLevel(cloudShadow,sampC,shadowUV,0.0).r;
-  let sunE = sunIlluminance() * cloudT;
+  let displacedXZ=F.camPos.xz+in.rel.xz;
+  let nearUV=(displacedXZ-waveMapCentre(F.camPos.xz,0u))/128.0+0.5;
+  let farUV=(displacedXZ-waveMapCentre(F.camPos.xz,1u))/1024.0+0.5;
+  let nearWeight=1.0-smoothstep(0.34,0.46,max(abs(nearUV.x-0.5),abs(nearUV.y-0.5)));
+  let farWeight=1.0-smoothstep(0.35,0.47,max(abs(farUV.x-0.5),abs(farUV.y-0.5)));
+  let waveT=mix(1.0,mix(textureSampleLevel(waveShadow,sampC,farUV,1u,0.0).r,textureSampleLevel(waveShadow,sampC,nearUV,0u,0.0).r,nearWeight),farWeight);
+  let sunE = sunIlluminance() * cloudT * waveT;
   let skyUp = textureSampleLevel(envCube, sampC, vec3f(0.0, 1.0, 0.0), ENV_MAXMIP).rgb;
   let diffuseUp=textureSampleLevel(skyIrradiance,sampC,vec3f(0,1,0),0.0).rgb;
   let diffuseN=textureSampleLevel(skyIrradiance,sampC,nrm,0.0).rgb;
@@ -287,16 +299,24 @@ fn foamPattern(xz: vec2f, t: f32) -> f32 {
   let streak = textureSample(foamTex, sampR, ws * vec2f(0.035, 0.11)).a;
   let freshK = clamp(fwl.g * 2.0 + fresh, 0.0, 1.0);
   cover *= mix(0.45+1.1*smoothstep(0.25,0.75,streak),1.0,freshK);
-  let pat = foamPattern(xz, F.camPos.w);
-  // Memory is optical thickness: thin films remain visible rather than being
-  // removed by a second density threshold. Bubble texture modulates extinction.
-  let bubbleThickness=mix(0.08+2.0*pat*pat,0.85+0.3*pat,freshK);
-  var foamMask=1.0-exp(-cover*3.6*bubbleThickness);
+  // Memory controls occupied area; active crests and residual films have
+  // distinct optical thickness. Material coordinates carry the wave orbit.
+  // Mean current moves the sub-texel breakup pattern with the foam clipmap.
+  let material=xz-F.sssCol.xy*F.camPos.w;
+  let materialWind=vec2f(dot(material,wd),dot(material,vec2f(-wd.y,wd.x)));
+  let activeArea=clamp(fwl.g*F.foamP.z*0.9,0.0,1.0);
+  let residualArea=clamp(cover,0.0,1.0);
+  let activeCoverage=foamCoverage(material*0.29,activeArea);
+  let residualCoverage=foamCoverage(materialWind*vec2f(0.07,0.19),residualArea);
+  let activeOpacity=1.0-exp(-5.0*freshK);
+  let residualOpacity=1.0-exp(-1.8*sqrt(max(cover,0.0)));
+  var foamMask=1.0-(1.0-activeCoverage*activeOpacity)*(1.0-residualCoverage*residualOpacity);
   // submerged bubbles brighten and tint the water just beneath foam
-  body += exp(-aWater*1.5)*(diffuseUp+sunE*max(Ld.y,0.0))/PI*fwl.g*0.12;
+  let aeration=1.0-exp(-fwl.g*3.0);
+  body += exp(-aWater*0.65)*(diffuseUp+sunE*max(Ld.y,0.0))/PI*aeration*0.075;
   // bubbly brightness variation inside the foam
-  let bub = textureSample(foamTex, sampR, xz * 1.9 + vec2f(0.21, 0.53)).g;
-  let foamAlb = vec3f(0.88) * (0.9 + 0.1 * bub);
+  let bub = textureSample(foamTex, sampR, material * 1.9 + vec2f(0.21, 0.53)).g;
+  let foamAlb = vec3f(mix(0.48,0.66,freshK)) * (0.85 + 0.15 * bub);
   // diffuse: albedo * (sky irradiance / pi + sun * cos / pi); sky dominates at sunset
   // foam scatters light from the whole hemisphere (incl. the cool zenith): use a less saturated ambient
   let foamAmb=diffuseN/PI;

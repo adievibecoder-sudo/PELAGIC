@@ -16,35 +16,70 @@ fn noise3(p: vec3f) -> f32 {
 fn filteredNoise(p:vec3f, footprint:f32)->f32 {
   return mix(noise3(p),0.5,smoothstep(0.25,0.85,footprint));
 }
+fn thermalShape(world:vec3f,altitude:f32,coverage:f32,storm:f32)->f32 {
+  let size=mix(1.65,4.2,storm);
+  let cell=floor(world.xz/size);
+  var field=-1.0;
+  for(var j=-1;j<=1;j++){for(var i=-1;i<=1;i++){
+    let id=cell+vec2f(f32(i),f32(j));
+    let random=vec3f(hash3(vec3f(id,13.7)),hash3(vec3f(id.yx,29.3)),hash3(vec3f(id,71.9)));
+    let strength=smoothstep(random.z-0.12,random.z+0.12,coverage);
+    if(strength<0.01){continue;}
+    let centre=(id+0.2+random.xy*0.6)*size;
+    let depth=F.weather.w*(0.28+0.65*random.y);
+    let bottom=F.cloudP.x+F.weather.w*(0.015+0.08*random.x);
+    let h=(altitude-bottom)/max(depth,0.15);
+    let radius=size*(0.20+0.19*random.x)*pow(strength,0.333333);
+    let bend=F.windP[0].xy*h*h*depth*0.18;
+    let q=vec3f((world.xz-centre-bend)/radius,(h-0.24)/0.62);
+    let core=1.0-length(q);
+    let turret=1.0-length(vec3f((q.xy-(random.xy-0.5)*0.95)/(0.44+random.x*0.25),(h-0.52)/0.44));
+    let side=1.0-length(vec3f((q.xy+(random.yx-0.5)*1.4)/0.62,(h-0.31)/0.39));
+    let lobe=max(max(core,turret),side);
+    let base=smoothstep(-0.01,0.055,h);
+    field=max(field,mix(-1.0,lobe,base));
+  }}
+  return field;
+}
 fn cloudDensityFiltered(p: vec3f, detail: bool, footprint:f32) -> f32 {
   let altitude=p.y+dot(p.xz,p.xz)/(2.0*RG);
-  let h=(altitude-F.cloudP.x)/F.weather.w;
-  if(h<0.0 || h>1.0){return 0.0;}
+  if(altitude<F.cloudP.x || altitude>F.cloudP.x+F.weather.w){return 0.0;}
   let drift=vec3f(F.windP[0].x,0.0,F.windP[0].y)*F.cloudP.w*F.windP[0].z*0.00065;
   let world=p+vec3f(F.camPos.x*0.001,0,F.camPos.z*0.001)-drift;
   let strat=select(0.0,1.0,F.weather.z>0.5 && F.weather.z<1.5);
   let storm=step(1.5,F.weather.z);
-  let scale=vec3f(mix(0.105,0.052,storm),mix(0.09,0.19,strat),mix(0.105,0.052,storm));
-  let q=world*scale;
-  let weather=textureSampleLevel(cloudNoise,cloudNoiseSampler,vec3f(world.x*0.009,0.31,world.z*0.009),0.0).a;
-  let cover=clamp(F.cloudP.y*0.84+(weather-0.5)*0.65,0.0,1.0);
-  let top=mix(0.75,1.0,weather);
-  let profile=smoothstep(0.0,0.10,h)*(1.0-smoothstep(mix(0.30,0.55,storm),mix(top,0.52,strat),h));
-  // Filter the whole density hierarchy by both the pixel cone and march segment.
-  // Filtering only erosion left the base field aliasing into distant horizontal bands.
-  let lod=log2(max(footprint*max(scale.x,scale.y)*64.0,0.0001));
-  let shape=textureSampleLevel(cloudNoise,cloudNoiseSampler,q+vec3f(h*h*0.026,0,0),max(lod,0.0));
-  let ridge=textureSampleLevel(cloudNoise,cloudNoiseSampler,q*2.07+vec3f(0.27,0.13,0.39),max(lod+1.05,0.0)).g;
-  let base=shape.r*0.64+ridge*0.12+0.25;
-  var density=max(0.0,(base-(1.0-cover*profile))/max(cover,0.05));
-  if(detail && density>0.0){
-    let erosion=textureSampleLevel(cloudNoise,cloudNoiseSampler,q*5.71+vec3f(0.17,0.31,0.59),max(lod+2.51,0.0)).b;
-    density=max(0.0,density-(1.0-erosion)*0.20*(1.0-density));
-  }else if(density>0.0){
-    // Coarse light rays must retain mean erosion, not shadow a denser cloud.
-    density=max(0.0,density-0.104*(1.0-density));
+  // Separate mesoscale organisation from billows. Local depth and cloud base
+  // vary across each bank instead of sharing one repeated horizontal profile.
+  let weather=textureSampleLevel(cloudNoise,cloudNoiseSampler,vec3f(world.x*0.008,0.31,world.z*0.008),max(log2(max(footprint,0.001)*1.024),0.0));
+  let cell=textureSampleLevel(cloudNoise,cloudNoiseSampler,vec3f(world.x*0.047,0.67,world.z*0.047),max(log2(max(footprint,0.001)*6.016),0.0));
+  let cover=clamp(F.cloudP.y+(weather.a-0.5)*0.85+(cell.a-0.5)*0.45,0.0,1.0);
+  let baseHeight=F.cloudP.x+F.weather.w*(0.025+0.14*cell.a);
+  let depth=F.weather.w*mix(0.48+0.48*weather.r,0.22+0.15*cell.r,strat);
+  let h=(altitude-baseHeight)/max(depth,0.1);
+  if((strat>0.5 && (h<0.0 || h>1.0)) || cover<0.001){return 0.0;}
+  let profile=smoothstep(0.0,0.075,h)*(1.0-smoothstep(mix(0.6,0.7,storm),1.0,h));
+  let scale=vec3f(mix(0.62,0.24,storm),mix(0.60,0.42,strat),mix(0.62,0.24,storm));
+  let shear=vec3f(F.windP[0].x,0,F.windP[0].y)*(h*h*0.13*F.weather.w);
+  let q=(world+shear)*scale;
+  let lod=max(log2(max(footprint,0.001)*max(scale.x,scale.y)*128.0),0.0);
+  let shape=textureSampleLevel(cloudNoise,cloudNoiseSampler,q,lod);
+  let base=clamp((shape.r-0.5)*2.8+0.68-(1.0-shape.g)*0.12,0.0,1.0);
+  let probability=cover*profile;
+  var density=clamp((base-(1.0-probability))/max(probability,0.05),0.0,1.0);
+  if(strat<0.5){
+    let thermal=thermalShape(world,altitude,cover,storm);
+    let billow=(shape.r-0.5)*3.4+(shape.g-0.4)*0.65;
+    density=clamp((thermal+billow)*2.0,0.0,1.0);
+    // Storm banks merge into a connected lower deck as coverage approaches one.
+    let deck=clamp((base-(1.0-cover*profile))*2.6,0.0,1.0);
+    density=max(density,deck*storm*smoothstep(0.65,0.96,cover));
   }
-  return clamp(density*2.1,0.0,1.0);
+  if(density>0.0){
+    let erosion=textureSampleLevel(cloudNoise,cloudNoiseSampler,q*2.83+vec3f(0.17,0.31,0.59),lod+1.5).b;
+    let carve=(1.0-erosion)*mix(0.42,0.07,strat)*mix(1.3,0.65,smoothstep(0.0,0.3,h));
+    density=clamp((density-carve)/(1.0-carve),0.0,1.0);
+  }
+  return density;
 }
 fn cloudDensity(p:vec3f,detail:bool)->f32{return cloudDensityFiltered(p,detail,0.0);}
 fn cloudShadowAt(p: vec3f) -> f32 {
@@ -56,7 +91,7 @@ fn cloudShadowAt(p: vec3f) -> f32 {
   for(var j=0u;j<12u;j++) {
     od+=cloudDensity(p+light*(start+(f32(j)+0.5)*lengthRay/12.0),true)*lengthRay/12.0;
   }
-  return exp(-od*F.cloudP.z*1.8);
+  return exp(-od*F.cloudP.z*6.0);
 }
 fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
   *sunT=1.0;
@@ -77,7 +112,7 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
   let samples=u32(F.control.x*mix(1.0,1.7,1.0-smoothstep(0.04,0.22,abs(dir.y))));
   let logRange=log(max((finish+1.0)/(start+1.0),1.0));
   var trans=1.0;var radiance=vec3f(0);
-  let ambient=skyAtmo(vec3f(0,1,0))*0.7+skyAtmo(normalize(vec3f(dir.x,0.08,dir.z)))*0.12;
+  let ambient=skyAtmo(vec3f(0,1,0))*0.65+skyAtmo(normalize(vec3f(dir.x,0.25,dir.z)))*0.22;
   let phase=0.85*phaseHG(dot(dir,F.sunDir.xyz),0.68)+0.15*phaseHG(dot(dir,F.sunDir.xyz),-0.25);
   // Deterministic segment quadrature: no screen-space jitter to crawl in motion.
   // Exponential spacing preserves nearby volume detail and reaches the curved horizon.
@@ -87,23 +122,26 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
     let ds=b-a;
     let t=(a+b)*0.5;
     let p=ro+dir*t;
-    let density=cloudDensityFiltered(p,true,max(ds*0.35,t*pixAng));
+    // Two-point Gauss quadrature reduces coherent slice bands without moving
+    // screen-space jitter or temporal history that could smear cloud silhouettes.
+    let footprint=max(ds*0.22,t*pixAng);
+    let density=0.5*(cloudDensityFiltered(ro+dir*(a+ds*0.2113248654),true,footprint)+cloudDensityFiltered(ro+dir*(a+ds*0.7886751346),true,footprint));
     if(density>0.001) {
       let radial=vec3f(p.x,RG+p.y,p.z);
       let radius=length(radial);let mu=dot(radial,F.sunDir.xyz)/radius;
       var sun=sampleTrans(radius,mu)*F.sunDir.w;
       if(sunBelowHorizon(radius,mu)){sun=vec3f(0);}
       var shadow=0.0;
-      var lightStep=0.22;
-      var lightDist=0.11;
+      var lightStep=0.06;
+      var lightDist=0.03;
       for(var j=0u;j<u32(F.control.y);j++) {
         shadow+=cloudDensityFiltered(p+F.sunDir.xyz*lightDist,false,lightStep*0.35)*lightStep;
         lightDist+=lightStep;lightStep*=2.1;
       }
-      let sigma=F.cloudP.z*1.8;
+      let sigma=F.cloudP.z*6.0;
       let optical=shadow*sigma;
       let direct=exp(-optical)*phase;
-      let multi=0.45*exp(-optical*0.35)*phaseHG(dot(dir,F.sunDir.xyz),0.25)+0.12*exp(-optical*0.12)/(4.0*PI);
+      let multi=(0.6*exp(-optical*0.25)*phaseHG(dot(dir,F.sunDir.xyz),0.28)+0.3*exp(-optical*0.07)/(4.0*PI))*(1.0-exp(-density*5.0));
       let height=clamp((p.y+dot(p.xz,p.xz)/(2.0*RG)-F.cloudP.x)/F.weather.w,0.0,1.0);
       let light=ambient*mix(0.18,1.0,sqrt(height))+sun*(direct+multi);
       let stepT=exp(-density*sigma*ds);

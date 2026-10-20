@@ -1,4 +1,5 @@
 // Periodic volume built once on the GPU. Original implementation, no image assets.
+export const CLOUD_NOISE_SIZE=128;
 export const CLOUD_NOISE = /* wgsl */ `
 @group(0) @binding(0) var dst:texture_storage_3d<rgba8unorm,write>;
 fn hash(p:vec3i,period:i32)->vec3f {
@@ -25,10 +26,10 @@ fn worley(p:vec3f,period:i32)->f32 {
   return clamp(1.0-sqrt(nearest),0.0,1.0);
 }
 @compute @workgroup_size(4,4,4) fn main(@builtin(global_invocation_id) id:vec3u){
-  let p=(vec3f(id)+0.5)/64.0;
-  let base=0.625*perlin(p*8.0,8)+0.25*perlin(p*16.0,16)+0.125*perlin(p*32.0,32);
-  let w=worley(p*8.0,8);let fine=0.625*worley(p*16.0,16)+0.375*worley(p*32.0,32);
-  textureStore(dst,id,vec4f(clamp(base*1.5-0.2*(1.0-w),0.0,1.0),w,fine,perlin(p*4.0,4)));
+  let p=(vec3f(id)+0.5)/${CLOUD_NOISE_SIZE}.0;
+  let base=0.625*perlin(p*4.0,4)+0.25*perlin(p*8.0,8)+0.125*perlin(p*16.0,16);
+  let w=worley(p*4.0,4);let fine=0.625*worley(p*16.0,16)+0.375*worley(p*32.0,32);
+  textureStore(dst,id,vec4f(base,w,fine,perlin(p*4.0+vec3f(1.7,3.1,2.3),4)));
 }`;
 
 export const CLOUD_NOISE_MIP = /* wgsl */ `

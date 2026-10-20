@@ -14,12 +14,14 @@ import { foamReadback } from '../tests/foam-readback.js';
 import { hdrReadback } from '../tests/hdr-readback.js';
 import { slopeMipReadback } from '../tests/slope-readback.js';
 import { discreteSpectrumLedger } from './ocean-contracts.js';
+import { equalizeFoamPattern } from './foam-pattern.js';
 import { SIM_INIT, SIM_EVOLVE, FFT_ROWS, FFT_COLS, SIM_MIPS, FOAM_TEX, RGBA8_MIPS, FOAM_UPDATE, ARRAY16_MIPS, FOAM_RES } from './wgsl/sim.js';
 import { TRANS_LUT, MS_LUT, SKYVIEW_LUT, ENV_CUBE, CUBE_MIPS, SUN_VIS, CLOUD_SCREEN, CLOUD_SHADOW } from './wgsl/sky.js';
 import { OCEAN, SKY_BG, HEIGHT_PROBE } from './wgsl/ocean.js';
 import { BLOOM_DOWN, BLOOM_UP, COMPOSITE } from './wgsl/post.js';
-import { CLOUD_NOISE, CLOUD_NOISE_MIP } from './wgsl/cloud-noise.js';
+import { CLOUD_NOISE, CLOUD_NOISE_MIP, CLOUD_NOISE_SIZE } from './wgsl/cloud-noise.js';
 import { ENV_IRRADIANCE, IRRADIANCE_SIZE } from './wgsl/irradiance.js';
+import { WAVE_HEIGHT, WAVE_SHADOW, WAVE_MAP_SIZE } from './wgsl/wave-visibility.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -153,7 +155,8 @@ async function main() {
     label, layout: pipe.getBindGroupLayout(0),
     entries: entries.map((r, i) => ({ binding: i, resource: r })),
   });
-  const cloudNoise=device.createTexture({label:'periodic cloud morphology',size:[64,64,64],dimension:'3d',format:'rgba8unorm',mipLevelCount:7,usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING});
+  const cloudNoiseMips=Math.log2(CLOUD_NOISE_SIZE)+1;
+  const cloudNoise=device.createTexture({label:'periodic cloud morphology',size:[CLOUD_NOISE_SIZE,CLOUD_NOISE_SIZE,CLOUD_NOISE_SIZE],dimension:'3d',format:'rgba8unorm',mipLevelCount:cloudNoiseMips,usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING});
   const cloudNoiseView=cloudNoise.createView();
   const cloudSampler=device.createSampler({magFilter:'linear',minFilter:'linear',mipmapFilter:'linear',addressModeU:'repeat',addressModeV:'repeat',addressModeW:'repeat'});
   const cloudNoisePipe=await computePipe(CLOUD_NOISE,'cloud morphology cache');
@@ -161,10 +164,10 @@ async function main() {
   {
     const e=device.createCommandEncoder(),p=e.beginComputePass();
     const view=m=>cloudNoise.createView({baseMipLevel:m,mipLevelCount:1});
-    p.setPipeline(cloudNoisePipe);p.setBindGroup(0,bg(cloudNoisePipe,[view(0)]));p.dispatchWorkgroups(16,16,16);
-    for(let m=1;m<7;m++){
+    p.setPipeline(cloudNoisePipe);p.setBindGroup(0,bg(cloudNoisePipe,[view(0)]));p.dispatchWorkgroups(CLOUD_NOISE_SIZE/4,CLOUD_NOISE_SIZE/4,CLOUD_NOISE_SIZE/4);
+    for(let m=1;m<cloudNoiseMips;m++){
       p.setPipeline(cloudMipPipe);p.setBindGroup(0,bg(cloudMipPipe,[view(m-1),view(m)]));
-      const groups=Math.ceil((64>>m)/4);p.dispatchWorkgroups(groups,groups,groups);
+      const groups=Math.ceil((CLOUD_NOISE_SIZE>>m)/4);p.dispatchWorkgroups(groups,groups,groups);
     }
     p.end();device.queue.submit([e.finish()]);
   }
@@ -183,22 +186,33 @@ async function main() {
   const FOAM_SIZE = 512, FOAM_MIPS = 10;
   const foamTex = device.createTexture({
     label: 'foam detail', size: [FOAM_SIZE, FOAM_SIZE], format: 'rgba8unorm', mipLevelCount: FOAM_MIPS,
-    usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING,
+    usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING | TU.COPY_SRC | TU.COPY_DST,
   });
+  let foamPatternCalibration;
   {
     const enc = device.createCommandEncoder();
     const cp = enc.beginComputePass();
     cp.setPipeline(foamGenPipe);
     cp.setBindGroup(0, bg(foamGenPipe, [lvl(foamTex, 0, '2d')]));
     cp.dispatchWorkgroups(FOAM_SIZE / 8, FOAM_SIZE / 8);
-    cp.setPipeline(rgba8MipPipe);
+    cp.end();
+    const read=mkBuf(FOAM_SIZE*FOAM_SIZE*4,GU.COPY_DST|GU.MAP_READ,'foam coverage calibration');
+    enc.copyTextureToBuffer({texture:foamTex},{buffer:read,bytesPerRow:FOAM_SIZE*4},[FOAM_SIZE,FOAM_SIZE]);
+    device.queue.submit([enc.finish()]);
+    await read.mapAsync(GPUMapMode.READ);
+    const pixels=new Uint8Array(read.getMappedRange()).slice();
+    foamPatternCalibration=equalizeFoamPattern(pixels);
+    read.unmap();read.destroy();
+    device.queue.writeTexture({texture:foamTex},pixels,{bytesPerRow:FOAM_SIZE*4},[FOAM_SIZE,FOAM_SIZE]);
+    const mipEncoder=device.createCommandEncoder(),mipPass=mipEncoder.beginComputePass();
+    mipPass.setPipeline(rgba8MipPipe);
     for (let m = 1; m < FOAM_MIPS; m++) {
       const s = FOAM_SIZE >> m;
-      cp.setBindGroup(0, bg(rgba8MipPipe, [lvl(foamTex, m - 1, '2d'), lvl(foamTex, m, '2d')]));
-      cp.dispatchWorkgroups(Math.ceil(s / 8), Math.ceil(s / 8));
+      mipPass.setBindGroup(0, bg(rgba8MipPipe, [lvl(foamTex, m - 1, '2d'), lvl(foamTex, m, '2d')]));
+      mipPass.dispatchWorkgroups(Math.ceil(s / 8), Math.ceil(s / 8));
     }
-    cp.end();
-    device.queue.submit([enc.finish()]);
+    mipPass.end();
+    device.queue.submit([mipEncoder.finish()]);
   }
 
   // World-space foam clipmaps (ping-pong)
@@ -267,12 +281,18 @@ async function main() {
   const particleBuf=mkBuf(PARTICLE_COUNT*32,GU.STORAGE,'spray and rain particles');
   const particleCompute=await computePipe(PARTICLE_UPDATE,'particle transport');
   const particleModule=await shader(PARTICLE_RENDER,'particle rendering');
-  const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim,fullArr(derivTex)]));
+  const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim,fullArr(derivTex),fullArr(lastDisp)]));
   const bgEnv = bg(envPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, lvl(envTex, 0),cloudNoiseView,cloudSampler,irradianceView], 'env');
   const bgSunVis = bg(sunVisPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, { buffer: sunVisBuf },cloudNoiseView,cloudSampler], 'sunvis');
   const bgCubeMips = [];
   for (let m = 1; m < ENV_MIPS; m++) bgCubeMips.push(bg(cubeMipPipe, [lvl(envTex, m - 1), lvl(envTex, m)], 'cubemip' + m));
   const bgIrradiance=bg(irradiancePipe,[envCubeView,sampClamp,irradianceTex.createView({dimension:'2d-array'})]);
+  const waveHeight=device.createTexture({label:'resolved Eulerian gravity height',size:[WAVE_MAP_SIZE,WAVE_MAP_SIZE,2],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
+  const waveShadow=device.createTexture({label:'resolved gravity-wave solar visibility',size:[WAVE_MAP_SIZE,WAVE_MAP_SIZE,2],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
+  const waveHeightPipe=await computePipe(WAVE_HEIGHT,'gravity height atlas');
+  const waveShadowPipe=await computePipe(WAVE_SHADOW,'gravity light visibility');
+  const bgWaveHeight=bg(waveHeightPipe,[{buffer:frameUBO},fullArr(dispTex),samplerSim,waveHeight.createView()]);
+  const bgWaveShadow=bg(waveShadowPipe,[{buffer:frameUBO},waveHeight.createView(),sampClamp,waveShadow.createView()]);
 
   // --------------------------------------------------------------------------------------
   // Render pipelines
@@ -326,7 +346,7 @@ async function main() {
   const probeOut = mkBuf(16, GU.STORAGE | GU.COPY_SRC, 'probe out');
   const bgOcean = [0, 1].map((i) => bg(oceanPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp,
     fullArr(dispTex), fullArr(derivTex), fullArr(momTex), foamTex.createView(), envCubeView, sampRepeat,
-    fullArr(foamW[i]), shadowView,{buffer:probeOut},irradianceView], 'ocean' + i));
+    fullArr(foamW[i]), shadowView,{buffer:probeOut},irradianceView,waveShadow.createView()], 'ocean' + i));
   let bgSky, bgCloud, cloudTex;
 
   // Water height under the camera (async readback, a few frames of latency) so the
@@ -656,7 +676,10 @@ async function main() {
     const backscatter=[0.0007+0.006*P.turbidity,0.001+0.008*P.turbidity,0.0015+0.010*P.turbidity];
     for(let i=0;i<3;i++) {f[76+i]=0.33*backscatter[i]/(absorption[i]+backscatter[i]);f[96+i]=absorption[i];f[100+i]=backscatter[i];}
     f[79] = 0.00005; // declared residual molecular-scale floor, not a Cox-Munk target
-    f[80] = 0.035; f[81] = 0.120; f[82] = 0.085; f[83] = 2.6;
+    const surfaceDrift=0.03*P.windSpeed;
+    f[80]=Math.cos(P.windDir*D2R)*surfaceDrift+Math.cos(P.currentDir*D2R)*P.currentSpeed;
+    f[81]=Math.sin(P.windDir*D2R)*surfaceDrift+Math.sin(P.currentDir*D2R)*P.currentSpeed;
+    f[82]=0;f[83]=2.6;
     f[84] = 0.43; f[85] = 2.5; f[86] = P.foam; f[87] = 1.0;
     f[88] = (5.802e-3 + 4.40e-3 * P.haze) * 1e-3;
     f[89] = (13.558e-3 + 4.40e-3 * P.haze) * 1e-3;
@@ -865,6 +888,8 @@ async function main() {
     cp.setPipeline(probePipe);
     cp.setBindGroup(0, bgProbe);
     cp.dispatchWorkgroups(1);
+    cp.setPipeline(waveHeightPipe);cp.setBindGroup(0,bgWaveHeight);cp.dispatchWorkgroups(WAVE_MAP_SIZE/8,WAVE_MAP_SIZE/8,2);
+    cp.setPipeline(waveShadowPipe);cp.setBindGroup(0,bgWaveShadow);cp.dispatchWorkgroups(WAVE_MAP_SIZE/8,WAVE_MAP_SIZE/8,2);
     if(P.spray>0 || P.rain>0){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(PARTICLE_COUNT/64);}
     cp.end();
     cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:2,endOfPassWriteIndex:3}:undefined});
@@ -980,6 +1005,7 @@ async function main() {
   }
 
   function evidenceReport(){return {version:'0.3.0-dev.1',sourceCheckpoint:qs.get('revision')||'development',adapter:adapterInfo,backend:'native-webgpu',timestampQuery:hasTS,settings:{...P},camera:{...cam},simulationTime:simTime,frameIndex,width:W,height:H,nodes:nodeCount,errors,measurements,frameRecords,
+    foamPatternCalibration,
     timingMode:qs.has('benchmark')?'requestAnimationFrame, display paced':'queue-completion capture throughput',
     memoryEstimate:{renderTargetsMiB:(W*H*56+(W>>1)*(H>>1)*8*4/3+cloudW*cloudH*8)/1048576,
       note:'Analytic lower bound for main MSAA/depth/HDR/bloom/cloud render targets only. Excludes simulation, driver alignment, browser compositor, and transient resources.'}};}
