@@ -35,7 +35,7 @@ Published 0.3 1080p evidence: Golden Balanced 22.83 FPS, Golden High 9.85 FPS; S
 
 ## Protocol and acceptance
 
-1. Record commit SHA, exact browser/OS/driver, \`navigator.gpu\` adapter/limits, power mode, display Hz, page visibility, GPU flags, resolution, quality, scene seed, weather/time, camera.
+1. Record commit SHA, exact browser/OS/driver, `navigator.gpu` adapter/limits, power mode, display Hz, page visibility, GPU flags, resolution, quality, scene seed, weather/time, camera.
 2. Warm up; record sustained forward-frame intervals, p50/p95/p99/max, 1% low, GPU pass timings and CPU scheduling. Note thermals/power changes where visible; don't guess.
 3. Compare current implementation with saved baseline **at matched visual output** and 0.3 settings; report separately speed and visual difference.
 4. Test representative daylight broken clouds, low-sun, clear sea, fully overcast, storm/rain, lightning, waterline and distant views, including transitions.

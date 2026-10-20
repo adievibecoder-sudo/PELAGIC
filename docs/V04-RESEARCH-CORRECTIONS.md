@@ -12,7 +12,7 @@
 6. Nouguier/Choppy Wave Model may produce negligible or negative elevation skewness for broad spectra. Bound harmonics may be better motivated than Hark claimed, but double counting still requires measurement.
 7. The Hark mode/fold Monte Carlo must be **seeded**; count actual independent Hermitian-paired modes; a hybrid/JONSWAP ratio does **not** establish blend continuity.
 8. \(B=u_s/c_{\mathrm{crest}}\approx0.85\) is an onset indicator for specific wave conditions, not a universal hard-coded event generator; similarly, whitecap area cannot be inferred from a threshold eligibility count.
-9. Check actual scientific definition of Banner's \`b_T\` significant steepness epsilon before using any formula. Do not substitute H_p/h_s notation arbitrarily.
+9. Check actual scientific definition of Banner's `b_T` significant steepness epsilon before using any formula. Do not substitute H_p/h_s notation arbitrarily.
 10. Hark's spectral colour script used an approximate daylight illuminant; wider working gamut requires coherent AgX and white-point transforms.
 11. A 1-frame lag in cloud-inclusive irradiance is not proof of energy conservation or perceptual stability; test full darkening, bright transitions and feedback dynamics.
 12. Correct citation/source slips: confirm Horvath's precise JONSWAP/PM formulation from primary text; Curcic statements, platform release dates and API details independently. Do not quote exact Fresnel values until reference geometry is fixed.
@@ -24,7 +24,7 @@
 
 ## Disagreement protocol
 
-Record source/actual model definition, numeric reproduction, assumptions, confidence, visual significance, decision experiment and the exact action selected. "Verified in a CPU toy model" must remain distinct from "validated in PELAGIC GPU with a credible visual change". See \`docs/V04-PHASE0-KICKOFF.md\`.
+Record source/actual model definition, numeric reproduction, assumptions, confidence, visual significance, decision experiment and the exact action selected. "Verified in a CPU toy model" must remain distinct from "validated in PELAGIC GPU with a credible visual change". See `docs/V04-PHASE0-KICKOFF.md`.
 
 ## References mentioned by reviewer (verify primary content before adopting specifics)
 

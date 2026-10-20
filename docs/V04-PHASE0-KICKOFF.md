@@ -8,9 +8,9 @@ Convert the published 0.3 implementation, Hark research, GPT-5.5 corrections and
 
 ## Inputs (read in this order)
 
-1. Root \`AGENTS.md\` and \`docs/V04-STATE.md\`; the full 0.4 master execution brief.
-2. \`docs/V03-ACCEPTANCE.md\`, \`docs/V03-EVALUATION.md\`, \`docs/V03-STAGES.md\`, \`docs/V03-BRIEF.md\`.
-3. \`docs/V04-RESEARCH-INDEX.md\` and available research extracts and correction ledger. Distinguish previous 0.2 compendium material from the later 0.3-grounded Hark report. If the actual original PDF, figure or source cannot be examined, mark **SOURCE UNAVAILABLE** and request it rather than guessing.
+1. Root `AGENTS.md` and `docs/V04-STATE.md`; the full 0.4 master execution brief.
+2. `docs/V03-ACCEPTANCE.md`, `docs/V03-EVALUATION.md`, `docs/V03-STAGES.md`, `docs/V03-BRIEF.md`.
+3. `docs/V04-RESEARCH-INDEX.md` and available research extracts and correction ledger. Distinguish previous 0.2 compendium material from the later 0.3-grounded Hark report. If the actual original PDF, figure or source cannot be examined, mark **SOURCE UNAVAILABLE** and request it rather than guessing.
 4. Relevant WGSL, JS, tests, device diagnostics, published photo/video comparisons and profiler traces.
 
 ## Concrete objectives and experiments
@@ -45,13 +45,13 @@ Convert the published 0.3 implementation, Hark research, GPT-5.5 corrections and
 ### 0E — performance and browser reliability
 
 - Re-run published 0.3 profiling protocol where possible, separating median individual GPU pass times from true display-paced FPS; record stalls, overdraw, cloud/visibility expense, VRAM and device state.
-- Reconcile per-pass allocation with the preliminary envelope in \`docs/V04-PERFORMANCE-BUDGETS.md\`. These are negotiating budgets; refine from measurement, not speculation.
+- Reconcile per-pass allocation with the preliminary envelope in `docs/V04-PERFORMANCE-BUDGETS.md`. These are negotiating budgets; refine from measurement, not speculation.
 - Cinematic is **quality-first** and is not required to hit real-time budgets. Balanced/High must target genuine interactivity, with no false improvement from deleting phenomena.
 - For any experiments only executable on the owner's local RTX 3050, provide **exact copy-ready commands**, URL/flags, duration, test seeds, expected JSON/PNG/WebM outputs, upload instructions and known PASS/FAIL checks. Mark GPU untested here as UNVERIFIED, never PASS.
 
 ### 0F — reference and acceptance design
 
-- Build \`docs/V04-REFERENCE-BOARD.md\` into a real reference manifest, grounded in documented source photos/video. The initial slots are **not** purportedly verified photographs; fill provenance/camera/weather/exposure/licence explicitly.
+- Build `docs/V04-REFERENCE-BOARD.md` into a real reference manifest, grounded in documented source photos/video. The initial slots are **not** purportedly verified photographs; fill provenance/camera/weather/exposure/licence explicitly.
 - Match a **representative slice** (daylight, broken clouds, moderate wind sea) using geometry/sky/optics lookdev, with matching seed/camera and fixed exposure. This slice is a diagnostic vehicle, **not** a substitute for high-wind storm, sunset, cloudy night and immersion coverage.
 - Define independent scientific, numerical, natural-motion, visual craftsmanship, real hardware, application and stability acceptance criteria. **User is final judge of perceptual/visual success.** Numerical tests and Astra's own aesthetic rating cannot substitute.
 
@@ -62,7 +62,7 @@ Convert the published 0.3 implementation, Hark research, GPT-5.5 corrections and
 3. Decision log: retain / correct / extend / reconstruct / defer, with evidence, competing approaches, integration/performance costs and smallest decisive experiment.
 4. Experiment package: source changes/prototypes (if needed), reproducible commands, raw CPU/GPU results, numerical errors, full-resolution comparison images, representative original motion clips, manifest, hardware-unverified labels.
 5. Proposed Phase 1 scope and acceptance criteria with dependency justification, updated budgets, and explicit engineering/visual risks. **Proposal only** — no Phase 1 production work.
-6. Updated \`docs/V04-STATE.md\`; a prioritized list of exact commands the user can run locally on the RTX 3050.
+6. Updated `docs/V04-STATE.md`; a prioritized list of exact commands the user can run locally on the RTX 3050.
 
 ## Exit contract
 
