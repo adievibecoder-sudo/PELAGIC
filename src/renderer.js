@@ -1,5 +1,5 @@
 import {setupUI,download} from './ui.js';
-// WebGPU ocean — custom renderer.
+// WebGPU ocean â€” custom renderer.
 // FFT ocean (6 cascades) + CDLOD surface mesh + physically based sky + HDR post.
 // Large per-frame arrays are reused; diagnostics and browser API descriptors still allocate.
 import { N, CASCADES, SKY_W, SKY_H, ENV_SIZE, ENV_MIPS, CONFIG, Q } from './wgsl/common.js';
@@ -7,6 +7,7 @@ import { sanitize, preset, PRESETS, QUALITY, toURL, approachSea } from './settin
 import { cosSpreadNorm, PATCHES, omega } from './numerics.js';
 import { swellAlpha } from './sea-spectrum.js';
 import { celestial } from './astronomy.js';
+import { lunarLight, twilightExposure } from './celestial-light.js';
 import { runtimeInput, validCamera } from './runtime-input.js';
 import { PARTICLE_COUNT, PARTICLE_UPDATE, PARTICLE_RENDER } from './wgsl/particles.js';
 import { spectralReadback } from '../tests/spectral-readback.js';
@@ -22,6 +23,7 @@ import { BLOOM_DOWN, BLOOM_UP, COMPOSITE } from './wgsl/post.js';
 import { CLOUD_NOISE, CLOUD_NOISE_MIP, CLOUD_NOISE_SIZE } from './wgsl/cloud-noise.js';
 import { ENV_IRRADIANCE, IRRADIANCE_SIZE } from './wgsl/irradiance.js';
 import { WAVE_HEIGHT, WAVE_SHADOW, WAVE_MAP_SIZE } from './wgsl/wave-visibility.js';
+import { LENS_MEDIUM } from './wgsl/lens-medium.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -249,7 +251,7 @@ async function main() {
   });
   const transLUT = mkLut(256, 64, 'transmittance');
   const msLUT = mkLut(32, 32, 'multiscatter');
-  const skyLUT = mkLut(SKY_W, SKY_H, 'skyview');
+  const skyLUT = device.createTexture({label:'solar and lunar skyview',size:[SKY_W,SKY_H,2],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING});
   const envTex = device.createTexture({
     label: 'env cube', size: [ENV_SIZE, ENV_SIZE, 6], format: 'rgba16float', mipLevelCount: ENV_MIPS,
     usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING,
@@ -266,7 +268,7 @@ async function main() {
     magFilter: 'linear', minFilter: 'linear', mipmapFilter: 'linear',
     addressModeU: 'repeat', addressModeV: 'repeat', maxAnisotropy: P.quality==='Balanced'?4:8,
   });
-  const frameUBO = mkBuf(480, GU.UNIFORM | GU.COPY_DST, 'frame ubo');
+  const frameUBO = mkBuf(496, GU.UNIFORM | GU.COPY_DST, 'frame ubo');
   const sunVisBuf = mkBuf(16, GU.STORAGE, 'sun visibility');
   const transView = transLUT.createView();
   const msView = msLUT.createView();
@@ -344,9 +346,12 @@ async function main() {
   });
 
   const probeOut = mkBuf(16, GU.STORAGE | GU.COPY_SRC, 'probe out');
+  const lensMedium=device.createTexture({label:'curved near-plane medium',size:[128,72],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
+  const lensPipe=await computePipe(LENS_MEDIUM,'near-plane surface inversion');
+  const bgLens=bg(lensPipe,[{buffer:frameUBO},fullArr(dispTex),fullArr(derivTex),samplerSim,{buffer:probeOut},lensMedium.createView()]);
   const bgOcean = [0, 1].map((i) => bg(oceanPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp,
     fullArr(dispTex), fullArr(derivTex), fullArr(momTex), foamTex.createView(), envCubeView, sampRepeat,
-    fullArr(foamW[i]), shadowView,{buffer:probeOut},irradianceView,waveShadow.createView()], 'ocean' + i));
+    fullArr(foamW[i]), shadowView,{buffer:probeOut},irradianceView,waveShadow.createView(),lensMedium.createView(),waveHeight.createView()], 'ocean' + i));
   let bgSky, bgCloud, cloudTex;
 
   // Water height under the camera (async readback, a few frames of latency) so the
@@ -424,7 +429,7 @@ async function main() {
     bgCloud=bg(cloudPipe,[{buffer:frameUBO},transView,skyView,sampClamp,cloudTex.createView(),cloudNoiseView,cloudSampler]);
     bgSky=device.createBindGroup({layout:skyPipe.getBindGroupLayout(0),entries:[
       {binding:0,resource:{buffer:frameUBO}},{binding:1,resource:transView},{binding:2,resource:skyView},
-      {binding:3,resource:sampClamp},{binding:4,resource:cloudTex.createView()},{binding:7,resource:{buffer:probeOut}}]});
+      {binding:3,resource:sampClamp},{binding:4,resource:cloudTex.createView()},{binding:7,resource:{buffer:probeOut}},{binding:8,resource:lensMedium.createView()}]});
     for (const t of [colorMS, depthMS, hdrTex, bloomTex]) t && t.destroy();
     colorMS = device.createTexture({ size: [W, H], format: HDR, sampleCount: MSAA, usage: TU.RENDER_ATTACHMENT });
     depthMS = device.createTexture({ size: [W, H], format: 'depth32float', sampleCount: MSAA, usage: TU.RENDER_ATTACHMENT });
@@ -492,7 +497,7 @@ async function main() {
   // Uniform data
   // --------------------------------------------------------------------------------------
   const simF = new Float32Array(56);
-  const frameF = new Float32Array(120);
+  const frameF = new Float32Array(124);
   const atmoF = new Float32Array(4);
   const proj = new Float32Array(16), view = new Float32Array(16), viewProj = new Float32Array(16);
   const LOOP = 86400.0; // cloud-coordinate epoch only; wave phases do not loop
@@ -608,7 +613,7 @@ async function main() {
   function selectAll() {
     nodeCount = 0;
     ccx = cam.x; ccy = cam.y; ccz = cam.z;
-    // side planes from the camera-relative view-projection (rows 3±0, 3±1)
+    // side planes from the camera-relative view-projection (rows 3Â±0, 3Â±1)
     const m = viewProj;
     for (let i = 0; i < 4; i++) {
       const r = i >> 1, s = (i & 1) ? -1 : 1;
@@ -692,10 +697,12 @@ async function main() {
     if(P.astronomy) {
       f.set(astro.sun,32);
       const night=1-Math.max(0,Math.min(1,(astro.sunElevation+7)/7));f[111]=night;
-      if(astro.sunElevation < -7 && astro.moonElevation > 0) {f.set(astro.moon,32);f[35]=0.000055*Math.pow(astro.phase,2);}
     } else { f.set(f.subarray(32,35),108);f[111]=1-Math.max(0,Math.min(1,(P.sunElev+7)/7)); }
     // Preserve direct solar radiance in binary16 without sacrificing night precision.
-    f[60] = f[35] > 0.01 ? 32 : 1;
+    const solarElevation=Math.asin(f[33])/D2R;
+    const lunar=lunarLight(Array.from(f.subarray(32,35)),astro.moon,astro.moonDistanceKm);
+    f[120]=P.astronomy?lunar.irradiance:0;f[121]=lunar.radius;f[122]=lunar.phase;f[123]=twilightExposure(solarElevation);
+    f[60]=1+31*Math.max(0,Math.min(1,(solarElevation+10)/10));
     f[61] = P.choppy;
     f[112]=P.rain;f[113]=P.spray;f[114]=P.cloudType;f[115]=P.cloudDepth;
     f[116]=Q.cloudSteps;f[117]=Q.cloudLightSteps;f[118]=P.cameraMode==='surface'?0:1;f[119]=astro.sidereal%(2*Math.PI);
@@ -888,6 +895,7 @@ async function main() {
     cp.setPipeline(probePipe);
     cp.setBindGroup(0, bgProbe);
     cp.dispatchWorkgroups(1);
+    cp.setPipeline(lensPipe);cp.setBindGroup(0,bgLens);cp.dispatchWorkgroups(16,9);
     cp.setPipeline(waveHeightPipe);cp.setBindGroup(0,bgWaveHeight);cp.dispatchWorkgroups(WAVE_MAP_SIZE/8,WAVE_MAP_SIZE/8,2);
     cp.setPipeline(waveShadowPipe);cp.setBindGroup(0,bgWaveShadow);cp.dispatchWorkgroups(WAVE_MAP_SIZE/8,WAVE_MAP_SIZE/8,2);
     if(P.spray>0 || P.rain>0){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(PARTICLE_COUNT/64);}
@@ -895,7 +903,7 @@ async function main() {
     cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:2,endOfPassWriteIndex:3}:undefined});
     cp.setPipeline(skyViewPipe);
     cp.setBindGroup(0, bgSkyView);
-    cp.dispatchWorkgroups(Math.ceil(SKY_W / 8), Math.ceil(SKY_H / 8));
+    cp.dispatchWorkgroups(Math.ceil(SKY_W / 8), Math.ceil(SKY_H / 8),2);
     cp.setPipeline(cloudPipe);
     cp.setBindGroup(0,bgCloud);
     cp.dispatchWorkgroups(Math.ceil(cloudW/8),Math.ceil(cloudH/8));
@@ -950,7 +958,7 @@ async function main() {
       p.end();
     }
 
-    compData[0] = P.exposure * frameF[60] * (frameF[35]<0.01 ? 500 : 1); compData[1] = P.bloom; compData[2] = frameIndex % 64; compData[3] = 0.10;
+    compData[0] = P.exposure * frameF[60] * frameF[123]; compData[1] = P.bloom; compData[2] = frameIndex % 64; compData[3] = 0.10;
     compData[4] = 1.0; compData[5] = 1.0; compData[6] = 0; compData[7] = 0;
     device.queue.writeBuffer(compUBO, 0, compData);
     const swapTex = ctx.getCurrentTexture();
@@ -994,7 +1002,7 @@ async function main() {
           report.hdr=await hdrReadback(device,hdrTex);
           report.foam=await foamReadback(device,foamW[foamCur]);
         }
-        await fetch('/__evidence?stage=stage-04&name='+qs.get('benchmark')+'.json',{method:'POST',body:JSON.stringify(report,null,2)});document.title='BENCHMARK DONE';
+        await fetch('/__evidence?stage='+encodeURIComponent(qs.get('stage')||'v03-integrated')+'&name='+qs.get('benchmark')+'.json',{method:'POST',body:JSON.stringify(report,null,2)});document.title='BENCHMARK DONE';
       });return;
     }
     if(!shooting) scheduleFrame();
@@ -1058,4 +1066,4 @@ async function main() {
   scheduleFrame();
 }
 
-main().catch((e) => { const el=document.getElementById('err');el.style.display='block';el.textContent='Native WebGPU initialization failed.\n'+(e.message||e)+'\nUse current Chrome or Edge with hardware acceleration. No WebGL fallback.';log('init failed: ' + (e && e.stack || e)); });
+main().catch((e) => { const el=document.getElementById('err');el.style.display='block';el.textContent='Native WebGPU initialization failed.\n'+(e.message||e)+'\nUse current Chrome or Edge with hardware acceleration. No WebGL fallback.';log('init failed: ' + (e && e.stack || e)); });

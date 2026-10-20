@@ -3,19 +3,20 @@ import { FRAME_WGSL, ATMO_CORE_WGSL, ENV_MIPS, ENV_SIZE, N, CASCADES } from './c
 import { SKY_RENDER_FUNCS, SKY_CLOUD_FUNCS } from './sky.js';
 import { IMMERSION } from './immersion.js';
 import { SHORT_WAVE_COUPLING } from './coupling.js';
-import { WAVE_MAP_COORDS } from './wave-visibility.js';
+import { WAVE_SHADOW_CORE } from './wave-visibility.js';
 
 const RENDER_BINDINGS = /* wgsl */ `
 @group(0) @binding(0) var<uniform> F: Frame;
 @group(0) @binding(1) var transLUT: texture_2d<f32>;
-@group(0) @binding(2) var skyLUT: texture_2d<f32>;
+@group(0) @binding(2) var skyLUT: texture_2d_array<f32>;
 @group(0) @binding(3) var sampC: sampler;
 `;
 
 // Full-resolution sky + clouds. Cloud silhouettes are anti-aliased analytically: the
 // screen-space derivative of each layer's edge function sets the width of its opacity edge.
 export const SKY_BG = FRAME_WGSL + ATMO_CORE_WGSL + RENDER_BINDINGS + `@group(0) @binding(4) var cloudScreen:texture_2d<f32>;
-@group(0) @binding(7) var<storage,read> surfaceAtLens:vec4f;` + SKY_RENDER_FUNCS + SKY_CLOUD_FUNCS + IMMERSION + /* wgsl */ `
+@group(0) @binding(7) var<storage,read> surfaceAtLens:vec4f;
+@group(0) @binding(8) var lensMedium:texture_2d<f32>;` + SKY_RENDER_FUNCS + SKY_CLOUD_FUNCS + IMMERSION + /* wgsl */ `
 struct VO { @builtin(position) pos: vec4f, @location(0) ndc: vec2f };
 @vertex fn vs(@builtin(vertex_index) i: u32) -> VO {
   let p = vec2f(f32((i << 1u) & 2u), f32(i & 2u)) * 2.0 - 1.0;
@@ -33,7 +34,7 @@ struct VO { @builtin(position) pos: vec4f, @location(0) ndc: vec2f };
   let cloudUV=in.pos.xy*F.screen.zw;
   let cl=textureSampleLevel(cloudScreen,sampC,cloudUV,0.0);
   var L=skyAtmo(dir)*(1.0-cl.a)+cl.rgb+(sunDisk(dir)+nightStars(dir))*(1.0-cl.a);
-  L=mix(L,volumeWater(dir,200.0,surfaceAtLens),waterFraction(dir,surfaceAtLens));
+  L=mix(L,volumeWater(dir,200.0,surfaceAtLens),waterFraction(in.pos.xy));
   return vec4f(L/F.windP[1].x, 1.0);
 }
 `;
@@ -50,7 +51,9 @@ export const OCEAN = FRAME_WGSL + ATMO_CORE_WGSL + RENDER_BINDINGS + /* wgsl */ 
 @group(0) @binding(12) var<storage,read> surfaceAtLens:vec4f;
 @group(0) @binding(13) var skyIrradiance:texture_cube<f32>;
 @group(0) @binding(14) var waveShadow:texture_2d_array<f32>;
-` + SKY_RENDER_FUNCS + IMMERSION + SHORT_WAVE_COUPLING + WAVE_MAP_COORDS + /* wgsl */ `
+@group(0) @binding(15) var lensMedium:texture_2d<f32>;
+@group(0) @binding(16) var gravityHeight:texture_2d_array<f32>;
+` + SKY_RENDER_FUNCS + IMMERSION + SHORT_WAVE_COUPLING + WAVE_SHADOW_CORE + /* wgsl */ `
 const ENV_MAXMIP: f32 = ${ENV_MIPS - 1}.0;
 const ENV_TEXELS_PER_RAD: f32 = ${ENV_SIZE}.0 / 1.5708;
 const TEX_N: f32 = ${N}.0;
@@ -127,6 +130,16 @@ fn sourceCovariance(V:vec3f,L:vec3f)->vec3f {
   let db=-(b.xz*q.y-q.xz*b.y)/den;
   return vec3f(da.x*da.x+db.x*db.x,da.y*da.y+db.y*db.y,da.x*da.y+db.x*db.y)*(SUN_ANG_R*SUN_ANG_R*0.25);
 }
+fn discReflection(V:vec3f,L:vec3f,Vl:vec3f,Ll:vec3f,cov:vec3f,radius:f32)->f32 {
+  let H=normalize(V+L);let Hl=normalize(Vl+Ll);
+  let slope=-Hl.xz/max(Hl.y,1e-4);
+  let total=positiveCovariance(cov+sourceCovariance(Vl,Ll)*(radius*radius/(SUN_ANG_R*SUN_ANG_R)));
+  let det=max(total.x*total.y-total.z*total.z,1e-12);
+  let e=(slope.x*slope.x*total.y+slope.y*slope.y*total.x-2.0*slope.x*slope.y*total.z)/det;
+  let D=exp(-0.5*e)/(2.0*PI*sqrt(det)*max(pow(Hl.y,4.0),1e-6));
+  let G=1.0/(1.0+lambdaSmith(Vl,cov)+lambdaSmith(Ll,cov));
+  return fresnelWater(dot(V,H))*D*G/(4.0*max(Vl.y,0.025))*step(0.0,L.y)*step(0.0,Ll.y)*step(0.0,Vl.y);
+}
 
 fn foamCoverage(uv:vec2f,area:f32)->f32 {
   let rank=textureSample(foamTex,sampR,uv).r;
@@ -136,6 +149,25 @@ fn foamCoverage(uv:vec2f,area:f32)->f32 {
   // as their expected coverage once the approximately 1/10-tile patches blur.
   let footprint=max(length(dpdx(uv)),length(dpdy(uv)))*10.0;
   return mix(resolved,area,smoothstep(0.12,0.6,footprint));
+}
+
+fn reflectedEnvironment(point:vec3f,ray:vec3f,lod:f32,bodyRadiance:vec3f)->vec3f {
+  let sky=textureSampleLevel(envCube,sampC,ray,lod).rgb;
+  let distanceFromCentre=max(abs(point.x-F.camPos.x),abs(point.z-F.camPos.z));
+  let blend=1.0-smoothstep(350.0,470.0,distanceFromCentre);
+  if(blend<=0.0){return sky;}
+  let layer=select(0u,1u,distanceFromCentre>54.0);
+  let hit=gravityReflectionHit(gravityHeight,sampC,point,F.camPos.xz,ray,layer);
+  if(hit.w<=0.0){return sky;}
+  // One secondary dielectric bounce. No recursive sun glints or whitewater at
+  // the hit: those require a radiance cache or a full scene reflection pass.
+  let stepSize=waveMapSpan(layer)/256.0;
+  let dx=(atlasHeight(gravityHeight,sampC,hit.xy+vec2f(stepSize,0),F.camPos.xz,layer).x-atlasHeight(gravityHeight,sampC,hit.xy-vec2f(stepSize,0),F.camPos.xz,layer).x)/(2.0*stepSize);
+  let dz=(atlasHeight(gravityHeight,sampC,hit.xy+vec2f(0,stepSize),F.camPos.xz,layer).x-atlasHeight(gravityHeight,sampC,hit.xy-vec2f(0,stepSize),F.camPos.xz,layer).x)/(2.0*stepSize);
+  let normal=normalize(vec3f(-dx,1,-dz));
+  let f=fresnelWater(dot(-ray,normal));
+  let bounced=textureSampleLevel(envCube,sampC,reflect(ray,normal),min(lod+1.0,ENV_MAXMIP)).rgb*f+bodyRadiance*(1.0-f);
+  return mix(sky,bounced,hit.w*blend);
 }
 
 @fragment fn fs(in: VSOut, @builtin(front_facing) front:bool) -> @location(0) vec4f {
@@ -210,11 +242,19 @@ fn foamCoverage(uv:vec2f,area:f32)->f32 {
   let farUV=(displacedXZ-waveMapCentre(F.camPos.xz,1u))/1024.0+0.5;
   let nearWeight=1.0-smoothstep(0.34,0.46,max(abs(nearUV.x-0.5),abs(nearUV.y-0.5)));
   let farWeight=1.0-smoothstep(0.35,0.47,max(abs(farUV.x-0.5),abs(farUV.y-0.5)));
-  let waveT=mix(1.0,mix(textureSampleLevel(waveShadow,sampC,farUV,1u,0.0).r,textureSampleLevel(waveShadow,sampC,nearUV,0u,0.0).r,nearWeight),farWeight);
-  let sunE = sunIlluminance() * cloudT * waveT;
+  let waveT=mix(vec2f(1.0),mix(textureSampleLevel(waveShadow,sampC,farUV,1u,0.0).rg,textureSampleLevel(waveShadow,sampC,nearUV,0u,0.0).rg,nearWeight),farWeight);
+  let sunE = sunIlluminance() * cloudT * waveT.x;
+  let moonE=moonIlluminance()*textureSampleLevel(cloudShadow,sampC,shadowUV,0.0).g*waveT.y;
+  let Ml=vec3f(dot(F.moonDir.xyz,tangent),dot(F.moonDir.xyz,nrm),dot(F.moonDir.xyz,bitangent));
   let skyUp = textureSampleLevel(envCube, sampC, vec3f(0.0, 1.0, 0.0), ENV_MAXMIP).rgb;
   let diffuseUp=textureSampleLevel(skyIrradiance,sampC,vec3f(0,1,0),0.0).rgb;
   let diffuseN=textureSampleLevel(skyIrradiance,sampC,nrm,0.0).rgb;
+  let aWater=F.absorption.rgb;
+  let bb=F.backscatter.rgb;
+  let scatterRatio=bb/(aWater+bb);
+  let subsurfaceReflectance=0.0949*scatterRatio+0.0794*scatterRatio*scatterRatio;
+  let downwelling=diffuseUp*0.94+sunE*max(Ld.y,0.0)*(1.0-fresnelWater(Ld.y))+moonE*max(F.moonDir.y,0.0)*(1.0-fresnelWater(F.moonDir.y));
+  var body=subsurfaceReflectance*downwelling/(1.333*1.333);
 
   // ---- sun glitter: anisotropic Gaussian slope distribution ----
   let Hv = normalize(V + Ld);
@@ -228,7 +268,8 @@ fn foamCoverage(uv:vec2f,area:f32)->f32 {
   let Dm = pdf / max(hy2 * hy2, 1e-6);
   let G = 1.0 / (1.0 + lambdaSmith(Vl, cov) + lambdaSmith(Ll, cov));
   let Fh = fresnelWater(dot(V, Hv));
-  let spec = sunE * (Fh * Dm * G / (4.0 * max(Vl.y, 0.025))) * step(0.0, Ld.y)*step(0.0,Ll.y)*step(0.0,Vl.y);
+  let spec = sunE * (Fh * Dm * G / (4.0 * max(Vl.y, 0.025))) * step(0.0, Ld.y)*step(0.0,Ll.y)*step(0.0,Vl.y)
+    +moonE*discReflection(V,F.moonDir.xyz,Vl,Ml,cov,F.celestial.y);
 
   // ---- sky reflection ----
   // At grazing angles the *visible* facets are biased towards the viewer (projected-area
@@ -245,10 +286,13 @@ fn foamCoverage(uv:vec2f,area:f32)->f32 {
     if(tap>0u){off=select(ch0,ch1,tap>2u)*select(-1.7320508,1.7320508,(tap&1u)==1u);w=1.0/6.0;}
     let facet=normalize(nrm-tangent*off.x-bitangent*off.y);
     let nv=max(dot(facet,V),0.0);
-    w*=nv;
+    // Projected slope density includes 1 / facet.y, not only n dot v.
+    w*=nv/max(dot(facet,nrm),0.001);
     let rf=reflect(-V,facet);
     let f=fresnelWater(nv);
-    reflected+=textureSampleLevel(envCube,sampC,rf,envLod).rgb*f*w;
+    let Rl=vec3f(dot(rf,tangent),dot(rf,nrm),dot(rf,bitangent));
+    let visible=select(0.0,(1.0+lambdaSmith(Vl,cov))/(1.0+lambdaSmith(Vl,cov)+lambdaSmith(Rl,cov)),Rl.y>0.0);
+    reflected+=reflectedEnvironment(vec3f(displacedXZ.x,in.height,displacedXZ.y),rf,envLod,body)*f*w*visible;
     fresnelSum+=f*w;weights+=w;
   }
   if(weights<1e-5){
@@ -266,12 +310,6 @@ fn foamCoverage(uv:vec2f,area:f32)->f32 {
   let NdL = max(dot(nrm, Ld), 0.0);
   // upwelling light is diffuse: light it with smooth terms only (no per-pixel normal noise)
   // Three-wavelength, optically deep backscatter approximation; coefficients are 1/m.
-  let aWater = F.absorption.rgb;
-  let bb = F.backscatter.rgb;
-  let scatterRatio = bb / (aWater + bb);
-  let subsurfaceReflectance=0.0949*scatterRatio+0.0794*scatterRatio*scatterRatio;
-  let downwelling=diffuseUp*0.94+sunE*max(Ld.y,0.0)*(1.0-fresnelWater(Ld.y));
-  var body = subsurfaceReflectance*downwelling/(1.333*1.333);
   // light transmitted through the thin upper part of backlit crests
   let compression=0.5*(jx+jz-sqrt((jx-jz)*(jx-jz)+(jxz+jzx)*(jxz+jzx)));
   let crest=1.0-smoothstep(0.35,0.9,compression);
@@ -313,14 +351,14 @@ fn foamCoverage(uv:vec2f,area:f32)->f32 {
   var foamMask=1.0-(1.0-activeCoverage*activeOpacity)*(1.0-residualCoverage*residualOpacity);
   // submerged bubbles brighten and tint the water just beneath foam
   let aeration=1.0-exp(-fwl.g*3.0);
-  body += exp(-aWater*0.65)*(diffuseUp+sunE*max(Ld.y,0.0))/PI*aeration*0.075;
+  body += exp(-aWater*0.65)*downwelling/PI*aeration*0.075;
   // bubbly brightness variation inside the foam
   let bub = textureSample(foamTex, sampR, material * 1.9 + vec2f(0.21, 0.53)).g;
   let foamAlb = vec3f(mix(0.48,0.66,freshK)) * (0.85 + 0.15 * bub);
   // diffuse: albedo * (sky irradiance / pi + sun * cos / pi); sky dominates at sunset
   // foam scatters light from the whole hemisphere (incl. the cool zenith): use a less saturated ambient
   let foamAmb=diffuseN/PI;
-  let foamLit=foamAlb*(sunE*max(dot(nrm,Ld),0.0)/PI+foamAmb);
+  let foamLit=foamAlb*((sunE*max(dot(nrm,Ld),0.0)+moonE*max(dot(nrm,F.moonDir.xyz),0.0))/PI+foamAmb);
 
   if (F.post.w > 0.5) {
     if (F.post.w > 7.5 && F.post.w < 8.5) { return vec4f(spec/F.windP[1].x,1.0); }
@@ -340,9 +378,9 @@ fn foamCoverage(uv:vec2f,area:f32)->f32 {
   var col = body * (1.0 - Fr) + refl * Fr + spec;
   col = mix(col, foamLit, foamMask * 0.95);
 
-  // First-hit triangle orientation identifies the incident medium. Normal-map
-  // backfacing is not medium classification; the near-plane estimate is only for sky rays.
-  let wet=select(1.0,0.0,front)*step(0.5,F.control.z);
+  // Same displaced-surface classification as sky rays, including near clipping.
+  // Folded/multivalued surfaces remain outside the height-field model's validity.
+  let wet=waterFraction(in.pos.xy);
   var submerged=col;
   if (wet>0.0) {
     var transmitted=vec3f(0);var total=0.0;
@@ -406,10 +444,6 @@ fn main() {
     x0 = goal - d.xz;
   }
   let d=dispAt(x0);
-  let ex=dispAt(x0+vec2f(0.08,0))-dispAt(x0-vec2f(0.08,0));
-  let ez=dispAt(x0+vec2f(0,0.08))-dispAt(x0-vec2f(0,0.08));
-  let tx=vec3f(0.16,0,0)+ex;let tz=vec3f(0,0,0.16)+ez;
-  let normal=normalize(cross(tz,tx));
-  outH[0]=d.y;outH[1]=-normal.x/max(normal.y,0.2);outH[2]=-normal.z/max(normal.y,0.2);outH[3]=0.0;
+  outH[0]=d.y;outH[1]=x0.x;outH[2]=x0.y;outH[3]=length(x0+d.xz-goal);
 }
 `;

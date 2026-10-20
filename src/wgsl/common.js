@@ -38,6 +38,7 @@ struct Frame {
   solarDir: vec4f,    // astronomical sun; night blend
   weather: vec4f,     // rain, spray, cloud type, cloud thickness km
   control: vec4f,     // cloud samples, light samples, underwater mode, star rotation
+  celestial: vec4f,   // lunar irradiance, lunar angular radius, Lambert phase, exposure adaptation
 };
 `;
 

@@ -103,7 +103,7 @@ export const SKYVIEW_LUT = FRAME_WGSL + ATMO_CORE_WGSL + /* wgsl */ `
 @group(0) @binding(1) var transLUT: texture_2d<f32>;
 @group(0) @binding(2) var msLUT: texture_2d<f32>;
 @group(0) @binding(3) var sampC: sampler;
-@group(0) @binding(4) var dst: texture_storage_2d<rgba16float, write>;
+@group(0) @binding(4) var dst: texture_storage_2d_array<rgba16float, write>;
 const SKY_W: f32 = ${SKY_W}.0;
 const SKY_H: f32 = ${SKY_H}.0;
 
@@ -140,7 +140,7 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
   let lvc = -(cx * 2.0 - 1.0);
   let lvs = sqrt(max(0.0, 1.0 - lvc * lvc));
   let rd = vec3f(vzs * lvc, vzc, vzs * lvs);
-  let smu = F.sunDir.y;
+  let smu = select(F.sunDir.y,F.moonDir.y,id.z==1u);
   let sun = vec3f(sqrt(max(0.0, 1.0 - smu * smu)), smu, 0.0);
   let ro = vec3f(0.0, r, 0.0);
 
@@ -176,7 +176,7 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
     L += T * (S - S * Ts) / ext;
     T *= Ts;
   }
-  textureStore(dst, id.xy, vec4f(L, 1.0));
+  textureStore(dst, id.xy, id.z, vec4f(L, 1.0));
 }
 `;
 
@@ -196,8 +196,12 @@ fn sunIlluminance() -> vec3f {
   if(sunBelowHorizon(camR(),F.sunDir.y)){return vec3f(0);}
   return sampleTrans(camR(), F.sunDir.y) * F.sunDir.w;
 }
+fn moonIlluminance()->vec3f {
+  if(sunBelowHorizon(camR(),F.moonDir.y)){return vec3f(0);}
+  return sampleTrans(camR(),F.moonDir.y)*F.celestial.x;
+}
 
-fn skyViewUV(dir: vec3f) -> vec2f {
+fn skyViewUV(dir: vec3f,light:vec3f) -> vec2f {
   let r = camR();
   let vHorizon = rhoOf(r);
   let cosBeta = vHorizon / r;
@@ -217,15 +221,17 @@ fn skyViewUV(dir: vec3f) -> vec2f {
     uv.y = coord * 0.5 + 0.5;
   }
   let dl = length(dir.xz);
-  let sl = length(F.sunDir.xz);
+  let sl = length(light.xz);
   var lvc = 1.0;
-  if (dl > 1e-6 && sl > 1e-6) { lvc = clamp(dot(dir.xz, F.sunDir.xz) / (dl * sl), -1.0, 1.0); }
+  if (dl > 1e-6 && sl > 1e-6) { lvc = clamp(dot(dir.xz, light.xz) / (dl * sl), -1.0, 1.0); }
   uv.x = sqrt(max(-lvc * 0.5 + 0.5, 0.0));
   return vec2f(fromUnitToSubUvs(uv.x, SKY_W), fromUnitToSubUvs(uv.y, SKY_H));
 }
 
 fn skyAtmo(dir: vec3f) -> vec3f {
-  return textureSampleLevel(skyLUT, sampC, skyViewUV(dir), 0.0).rgb * F.sunDir.w;
+  let solar=textureSampleLevel(skyLUT,sampC,skyViewUV(dir,F.sunDir.xyz),0u,0.0).rgb*F.sunDir.w;
+  let lunar=textureSampleLevel(skyLUT,sampC,skyViewUV(dir,F.moonDir.xyz),1u,0.0).rgb*F.celestial.x;
+  return solar+lunar;
 }
 `;
 
@@ -235,7 +241,7 @@ export const SKY_CLOUD_FUNCS = CLOUD_VOLUME;
 export const ENV_CUBE = FRAME_WGSL + ATMO_CORE_WGSL + /* wgsl */ `
 @group(0) @binding(0) var<uniform> F: Frame;
 @group(0) @binding(1) var transLUT: texture_2d<f32>;
-@group(0) @binding(2) var skyLUT: texture_2d<f32>;
+@group(0) @binding(2) var skyLUT: texture_2d_array<f32>;
 @group(0) @binding(3) var sampC: sampler;
 @group(0) @binding(4) var dst: texture_storage_2d_array<rgba16float, write>;
 @group(0) @binding(7) var diffuseCube:texture_cube<f32>;
@@ -271,7 +277,7 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
     let fresnel=0.5*(rs*rs+rp*rp);
     let reflected=skyRadiance(vec3f(dir.x,-dir.y,dir.z),false,1.5708/ENV*1.5);
     let ratio=F.backscatter.rgb/(F.absorption.rgb+F.backscatter.rgb);
-    let incoming=textureSampleLevel(diffuseCube,sampC,vec3f(0,1,0),0.0).rgb*0.94+sunIlluminance()*max(F.sunDir.y,0.0)*0.96;
+    let incoming=textureSampleLevel(diffuseCube,sampC,vec3f(0,1,0),0.0).rgb*0.94+(sunIlluminance()*max(F.sunDir.y,0.0)+moonIlluminance()*max(F.moonDir.y,0.0))*0.96;
     let body=(0.0949*ratio+0.0794*ratio*ratio)*incoming/(1.333*1.333);
     L=reflected*fresnel+body*(1.0-fresnel);
   }
@@ -308,7 +314,7 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
 export const SUN_VIS = FRAME_WGSL + ATMO_CORE_WGSL + /* wgsl */ `
 @group(0) @binding(0) var<uniform> F: Frame;
 @group(0) @binding(1) var transLUT: texture_2d<f32>;
-@group(0) @binding(2) var skyLUT: texture_2d<f32>;
+@group(0) @binding(2) var skyLUT: texture_2d_array<f32>;
 @group(0) @binding(3) var sampC: sampler;
 @group(0) @binding(4) var<storage, read_write> sunVis: array<f32, 4>;
 ` + SKY_RENDER_FUNCS + SKY_CLOUD_FUNCS + /* wgsl */ `
@@ -339,7 +345,7 @@ fn main(@builtin(local_invocation_index) k: u32) {
 export const CLOUD_SCREEN = FRAME_WGSL + ATMO_CORE_WGSL + `
 @group(0) @binding(0) var<uniform> F:Frame;
 @group(0) @binding(1) var transLUT:texture_2d<f32>;
-@group(0) @binding(2) var skyLUT:texture_2d<f32>;
+@group(0) @binding(2) var skyLUT:texture_2d_array<f32>;
 @group(0) @binding(3) var sampC:sampler;
 @group(0) @binding(4) var dst:texture_storage_2d<rgba16float,write>;
 ` + SKY_RENDER_FUNCS + SKY_CLOUD_FUNCS + `
@@ -355,7 +361,7 @@ export const CLOUD_SCREEN = FRAME_WGSL + ATMO_CORE_WGSL + `
 export const CLOUD_SHADOW = FRAME_WGSL + ATMO_CORE_WGSL + `
 @group(0) @binding(0) var<uniform> F:Frame;
 @group(0) @binding(1) var transLUT:texture_2d<f32>;
-@group(0) @binding(2) var skyLUT:texture_2d<f32>;
+@group(0) @binding(2) var skyLUT:texture_2d_array<f32>;
 @group(0) @binding(3) var sampC:sampler;
 @group(0) @binding(4) var dst:texture_storage_2d<rgba16float,write>;
 ` + SKY_RENDER_FUNCS + SKY_CLOUD_FUNCS + `
@@ -363,5 +369,6 @@ export const CLOUD_SHADOW = FRAME_WGSL + ATMO_CORE_WGSL + `
  let dims=textureDimensions(dst);if(any(id.xy>=dims)){return;}
  let uv=(vec2f(id.xy)+0.5)/vec2f(dims);
  let p=vec3f((uv.x-0.5)*40.0,0.0,(uv.y-0.5)*40.0);
- textureStore(dst,id.xy,vec4f(cloudShadowAt(p)));
+ var lunar=1.0;if(F.celestial.x>0.0){lunar=cloudShadowFor(p,F.moonDir.xyz);}
+ textureStore(dst,id.xy,vec4f(cloudShadowAt(p),lunar,0,1));
 }`;

@@ -17,7 +17,8 @@ export async function verifyWaveVisibility(device){
    let x=-48.0+(f32(id.x)+0.5)*96.0/512.0;
    let h=parameters.x*cos(x*0.196349540849);
    let L=normalize(vec3f(1,parameters.y,0));
-   output[id.x]=vec4f(gravityVisibility(heights,linearClamp,vec3f(x,h,0),vec2f(0),L,0u),0,0,1);
+   let point=vec3f(x,h,0);
+   output[id.x]=vec4f(gravityVisibility(heights,linearClamp,point,vec2f(0),L,0u),gravityReflectionHit(heights,linearClamp,point,vec2f(0),L,0u).w,0,1);
  }`;
  const module=device.createShaderModule({code}),compilation=await module.getCompilationInfo();
  const errors=compilation.messages.filter(m=>m.type==='error').map(m=>m.message);
@@ -28,7 +29,7 @@ export async function verifyWaveVisibility(device){
   {binding:1,resource:device.createSampler({magFilter:'linear',minFilter:'linear'})},
   {binding:2,resource:{buffer:result}},{binding:3,resource:{buffer:uniform}}]});
  const cases=[];
- for(const [name,amplitude,tangent] of [['flat-grazing',0,0.08],['sine-grazing',2,0.12],['sine-high-sun',2,1.73]]){
+ for(const [name,amplitude,tangent] of [['flat-grazing',0,0.08],['sine-grazing',2,0.12],['sine-high-sun',2,1.73],['flat-downward',0,-0.08],['sine-downward',2,-0.12]]){
   const data=new Uint16Array(256*256*2*4);
   for(let l=0;l<2;l++)for(let y=0;y<256;y++)for(let x=0;x<256;x++){
     const world=((x+.5)/256-.5)*(l?1024:128);
@@ -38,18 +39,18 @@ export async function verifyWaveVisibility(device){
   device.queue.writeBuffer(uniform,0,new Float32Array([amplitude,tangent,0,0]));
   const e=device.createCommandEncoder(),pass=e.beginComputePass();pass.setPipeline(pipe);pass.setBindGroup(0,bg);pass.dispatchWorkgroups(count/64);pass.end();e.copyBufferToBuffer(result,0,read,0,read.size);device.queue.submit([e.finish()]);
   await read.mapAsync(GPUMapMode.READ);const values=new Float32Array(read.getMappedRange());
-  let clear=0,shadowed=0,incorrect=0,invalid=0,transition=0,min=1,max=0;
+  let clear=0,shadowed=0,incorrect=0,reflectionIncorrect=0,invalid=0,transition=0,min=1,max=0;
   for(let i=0;i<count;i++){
-   const x=-48+(i+.5)*96/count,h=amplitude*Math.cos(x*Math.PI/16),v=values[i*4];min=Math.min(min,v);max=Math.max(max,v);
+   const x=-48+(i+.5)*96/count,h=amplitude*Math.cos(x*Math.PI/16),v=values[i*4],hit=values[i*4+1];min=Math.min(min,v);max=Math.max(max,v);
    let obstruction=-Infinity;
    for(let d=.75;d<=64;d+=.0625)obstruction=Math.max(obstruction,amplitude*Math.cos((x+d)*Math.PI/16)-h-d*tangent);
-   if(!Number.isFinite(v)||v<0||v>1)invalid++;
+   if(!Number.isFinite(v)||v<0||v>1||!Number.isFinite(hit)||hit<0||hit>1)invalid++;
    // Exclude the finite-disc penumbra and the bounded atlas interpolation error.
-   if(obstruction>.3){shadowed++;if(v>.2)incorrect++;}
-   else if(obstruction<-.15||amplitude===0){clear++;if(v<.8)incorrect++;}
+   if(obstruction>.3){shadowed++;if(v>.2)incorrect++;if(hit<.8)reflectionIncorrect++;}
+   else if(obstruction<-.15||amplitude===0){clear++;if(v<.8)incorrect++;if(hit>.2)reflectionIncorrect++;}
    else transition++;
   }
-  read.unmap();cases.push({name,amplitude,wavelength:32,tangent,samples:count,clear,shadowed,transition,incorrect,invalid,min,max,status:incorrect===0&&invalid===0?'PASS':'FAIL'});
+  read.unmap();cases.push({name,amplitude,wavelength:32,tangent,samples:count,clear,shadowed,transition,incorrect,reflectionIncorrect,invalid,min,max,status:incorrect===0&&reflectionIncorrect===0&&invalid===0?'PASS':'FAIL'});
  }
  [heights,result,read,uniform].forEach(r=>r.destroy());
  return {status:cases.every(c=>c.status==='PASS')?'PASS':'FAIL',cases,

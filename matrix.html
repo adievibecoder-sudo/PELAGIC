@@ -9,7 +9,7 @@ for(const scene of Object.keys(PRESETS))for(const height of [.5,2,50,500])for(co
 }
 queue.push({name:'underwater-window',scene:'midday',cam:'0,-3,0,4,55'},{name:'underwater-horizon',scene:'midday',cam:'0,-8,0,79,8'},{name:'half-submerged',scene:'midday',cam:'0,0,0,4,0'},{name:'close-wave',scene:'storm',cam:'0,0.5,0,79,-8'});
 function next(){if(!running||index>=queue.length){status.textContent=`${index}/${queue.length} complete`;running=false;document.title='MATRIX DONE';return;}const item=queue[index];status.textContent=`${index+1}/${queue.length}: ${item.name}`;
- const q=new URLSearchParams({preset:item.scene,cam:item.cam,cameraMode:'free',shot:item.name+'.png',stage:'stage-04',w:1920,h:1080,frames:100,t:20,ui:0,seed:1307,adaptive:0,revision:args.get('revision')||'development',validate:args.get('validate')||0});
+ const q=new URLSearchParams({preset:item.scene,cam:item.cam,cameraMode:'free',shot:item.name+'.png',stage:args.get('stage')||'v03-integrated',w:1920,h:1080,frames:100,t:20,ui:0,seed:1307,adaptive:0,revision:args.get('revision')||'development',validate:args.get('validate')||0});
  const fresh=document.createElement('iframe');fresh.id='view';fresh.title='Ocean validation viewport';fresh.src='/?'+q;view.replaceWith(fresh);view=fresh;
 }
 window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==view.contentWindow||e.data?.type!=='pelagic-capture')return;index++;next();});

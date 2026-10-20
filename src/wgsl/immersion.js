@@ -1,10 +1,9 @@
-// The current GPU surface plane at the lens, shared by sky and surface passes.
+// Per-ray near-plane medium field shared by sky and surface passes.
 // No CPU readback participates in optical classification.
 export const IMMERSION = /* wgsl */ `
-fn waterFraction(ray:vec3f,surface:vec4f)->f32 {
-  let entrance=ray*(0.05/max(dot(ray,F.camFwd.xyz),0.15));
-  let signedHeight=F.camPos.y+entrance.y-surface.x-dot(surface.yz,entrance.xz);
-  let pixelWidth=max(fwidth(signedHeight),0.001);
+fn waterFraction(pixel:vec2f)->f32 {
+  let signedHeight=textureSampleLevel(lensMedium,sampC,pixel*F.screen.zw,0.0).r;
+  let pixelWidth=max(fwidth(signedHeight),0.00015);
   return (1.0-smoothstep(-pixelWidth,pixelWidth,signedHeight))*step(0.5,F.control.z);
 }
 fn volumeWater(ray:vec3f,distance:f32,surface:vec4f)->vec3f {
@@ -15,9 +14,11 @@ fn volumeWater(ray:vec3f,distance:f32,surface:vec4f)->vec3f {
   let phase=phaseHG(mu,0.75);
   let ambient=skyAtmo(vec3f(0,1,0))*PI;
   let sun=sunIlluminance()*max(F.sunDir.y,0.0)*exp(-ext*depth/max(-lightDir.y,0.2));
+  let moonDirection=refract(-F.moonDir.xyz,vec3f(0,1,0),1.0/1.333);
+  let moon=moonIlluminance()*max(F.moonDir.y,0.0)*exp(-ext*depth/max(-moonDirection.y,0.2));
   let u=F.backscatter.rgb/(F.absorption.rgb+F.backscatter.rgb);
   let diffuse=ambient*u*0.18*exp(-ext*depth*0.35);
-  let scattering=sun*F.backscatter.rgb*12.0/max(ext,vec3f(1e-5))*phase;
+  let scattering=(sun*phase+moon*phaseHG(dot(ray,-moonDirection),0.75))*F.backscatter.rgb*12.0/max(ext,vec3f(1e-5));
   return (diffuse+scattering)*(1.0-exp(-ext*distance));
 }
 `;

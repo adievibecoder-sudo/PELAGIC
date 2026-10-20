@@ -4,6 +4,7 @@
 import {verifyIrradiance} from './tests/irradiance-gpu.js';
 import {verifyCoupling} from './tests/coupling-gpu.js';
 import {verifyWaveVisibility} from './tests/visibility-gpu.js';
+import {verifyLensMedium} from './tests/lens-gpu.js';
 const out=document.querySelector('#results');
 try{
  if(!navigator.gpu)throw Error('WebGPU unavailable. No fallback.');
@@ -14,7 +15,8 @@ try{
  await device.queue.onSubmittedWorkDone();
  report.coupling=await verifyCoupling(device);
  report.waveVisibility=await verifyWaveVisibility(device);
- report.status=errors.length===0&&[report.irradiance,report.coupling,report.waveVisibility].every(x=>x.status==='PASS')?'PASS':'FAIL';
+ report.lensMedium=await verifyLensMedium(device);
+ report.status=errors.length===0&&[report.irradiance,report.coupling,report.waveVisibility,report.lensMedium].every(x=>x.status==='PASS')?'PASS':'FAIL';
  out.textContent=JSON.stringify(report,null,2);document.title='OPTICS '+report.status;
  const stage=new URLSearchParams(location.search).get('stage')||'v03-phase03';
  await fetch('/__evidence?stage='+encodeURIComponent(stage)+'&name=gpu-optics.json',{method:'POST',body:out.textContent});device.destroy();

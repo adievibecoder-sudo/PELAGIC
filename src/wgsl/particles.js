@@ -36,7 +36,7 @@ fn rnd(v:u32)->f32{return f32(pcgHash(v)>>8u)/16777216.0;}
    p.p=vec4f(xz.x+d.x,select(d.y+0.12,F.camPos.y+8.0+r.y*25.0,rain),xz.y+d.z,select(life,4.0,rain));
    let orbital=clamp((d-last)/max(dt,0.001),vec3f(-8),vec3f(8));
    let launch=orbital+vec3f(F.windP[0].x,0,F.windP[0].y)*F.windP[0].z*0.16+vec3f(0,1.0+r.y*3.0,0);
-   let radius=select(0.025+r.y*0.09,0.18+r.y*0.32,spindrift);
+   let radius=select(0.015+r.y*0.045,0.26+r.y*0.4,spindrift);
    p.v=vec4f(select(launch,vec3f(F.windP[0].x*F.windP[0].z*0.3,-7.0,F.windP[0].y*F.windP[0].z*0.3),rain),select(radius,0.012,rain));
  } else {
    let air=vec3f(F.windP[0].x*F.windP[0].z*0.7,0,F.windP[0].y*F.windP[0].z*0.7);
@@ -63,7 +63,7 @@ struct Particle {p:vec4f,v:vec4f};
 @group(0) @binding(4) var shadow:texture_2d<f32>;
 @group(0) @binding(5) var transLUT:texture_2d<f32>;
 @group(0) @binding(6) var sampC:sampler;
-@group(0) @binding(7) var skyLUT:texture_2d<f32>;
+@group(0) @binding(7) var skyLUT:texture_2d_array<f32>;
 `+SKY_RENDER_FUNCS+/* wgsl */`
 struct VOut{@builtin(position) p:vec4f,@location(0) uv:vec2f,@location(1) opacity:f32,@location(2) light:vec3f};
 @vertex fn vs(@builtin(vertex_index) v:u32,@builtin(instance_index) id:u32)->VOut{
@@ -76,13 +76,16 @@ struct VOut{@builtin(position) p:vec4f,@location(0) uv:vec2f,@location(1) opacit
  let drawRadius=max(radius,pixelRadius);
  let world=p.p.xyz+right*uv.x*drawRadius+up*uv.y*drawRadius*stretch;
  var o:VOut;o.p=F.viewProj*vec4f(world-F.camPos.xyz,1);o.uv=uv;
- o.opacity=smoothstep(0.0,0.3,p.p.w)*select(select(0.48,0.10,spindrift),0.16,rain)*min(1.0,radius*radius/max(drawRadius*drawRadius,0.000001));
+ o.opacity=smoothstep(0.0,0.3,p.p.w)*select(select(0.28,0.035,spindrift),0.16,rain)*min(1.0,radius*radius/max(drawRadius*drawRadius,0.000001));
  let cosTheta=dot(normalize(p.p.xyz-F.camPos.xyz),F.sunDir.xyz);
  let phase=0.07957747*(1.0-0.75*0.75)/pow(max(1.0+0.75*0.75-1.5*cosTheta,0.001),1.5);
  let ambient=textureSampleLevel(environment,lightSampler,vec3f(0,1,0),6.0).rgb;
  let shadowUV=clamp((p.p.xz-F.camPos.xz)/40000.0+0.5,vec2f(0.001),vec2f(0.999));
  let sunlight=textureSampleLevel(shadow,lightSampler,shadowUV,0.0).r;
- o.light=ambient*select(0.85,0.65,spindrift)+sunIlluminance()*sunlight*mix(0.16,phase,select(0.4,0.9,spindrift));
+ let moonCos=dot(normalize(p.p.xyz-F.camPos.xyz),F.moonDir.xyz);
+ let moonPhase=0.07957747*(1.0-0.75*0.75)/pow(max(1.0+0.75*0.75-1.5*moonCos,0.001),1.5);
+ let moonShadow=textureSampleLevel(shadow,lightSampler,shadowUV,0.0).g;
+ o.light=ambient*select(0.85,0.65,spindrift)+sunIlluminance()*sunlight*mix(0.16,phase,select(0.4,0.9,spindrift))+moonIlluminance()*moonShadow*mix(0.16,moonPhase,select(0.4,0.9,spindrift));
  return o;
 }
 @fragment fn fs(i:VOut)->@location(0)vec4f{

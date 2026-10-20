@@ -17,7 +17,7 @@ fn filteredNoise(p:vec3f, footprint:f32)->f32 {
   return mix(noise3(p),0.5,smoothstep(0.25,0.85,footprint));
 }
 fn thermalShape(world:vec3f,altitude:f32,coverage:f32,storm:f32)->f32 {
-  let size=mix(1.65,4.2,storm);
+  let size=mix(3.6,7.0,storm);
   let cell=floor(world.xz/size);
   var field=-1.0;
   for(var j=-1;j<=1;j++){for(var i=-1;i<=1;i++){
@@ -26,12 +26,12 @@ fn thermalShape(world:vec3f,altitude:f32,coverage:f32,storm:f32)->f32 {
     let strength=smoothstep(random.z-0.12,random.z+0.12,coverage);
     if(strength<0.01){continue;}
     let centre=(id+0.2+random.xy*0.6)*size;
-    let depth=F.weather.w*(0.28+0.65*random.y);
+    let depth=F.weather.w*(0.20+0.64*random.y*random.y);
     let bottom=F.cloudP.x+F.weather.w*(0.015+0.08*random.x);
     let h=(altitude-bottom)/max(depth,0.15);
-    let radius=size*(0.20+0.19*random.x)*pow(strength,0.333333);
+    let radius=size*(0.17+0.29*random.x)*pow(strength,0.333333);
     let bend=F.windP[0].xy*h*h*depth*0.18;
-    let q=vec3f((world.xz-centre-bend)/radius,(h-0.24)/0.62);
+    let q=vec3f((world.xz-centre-bend)/radius,(h-0.30)/0.52);
     let core=1.0-length(q);
     let turret=1.0-length(vec3f((q.xy-(random.xy-0.5)*0.95)/(0.44+random.x*0.25),(h-0.52)/0.44));
     let side=1.0-length(vec3f((q.xy+(random.yx-0.5)*1.4)/0.62,(h-0.31)/0.39));
@@ -52,7 +52,7 @@ fn cloudDensityFiltered(p: vec3f, detail: bool, footprint:f32) -> f32 {
   // vary across each bank instead of sharing one repeated horizontal profile.
   let weather=textureSampleLevel(cloudNoise,cloudNoiseSampler,vec3f(world.x*0.008,0.31,world.z*0.008),max(log2(max(footprint,0.001)*1.024),0.0));
   let cell=textureSampleLevel(cloudNoise,cloudNoiseSampler,vec3f(world.x*0.047,0.67,world.z*0.047),max(log2(max(footprint,0.001)*6.016),0.0));
-  let cover=clamp(F.cloudP.y+(weather.a-0.5)*0.85+(cell.a-0.5)*0.45,0.0,1.0);
+  let cover=clamp(F.cloudP.y+(weather.a-0.5)*3.2+(cell.a-0.5)*0.65,0.0,1.0);
   let baseHeight=F.cloudP.x+F.weather.w*(0.025+0.14*cell.a);
   let depth=F.weather.w*mix(0.48+0.48*weather.r,0.22+0.15*cell.r,strat);
   let h=(altitude-baseHeight)/max(depth,0.1);
@@ -69,7 +69,7 @@ fn cloudDensityFiltered(p: vec3f, detail: bool, footprint:f32) -> f32 {
   if(strat<0.5){
     let thermal=thermalShape(world,altitude,cover,storm);
     let billow=(shape.r-0.5)*3.4+(shape.g-0.4)*0.65;
-    density=clamp((thermal+billow)*2.0,0.0,1.0);
+    density=clamp((thermal+billow)*2.0,0.0,1.0)*smoothstep(-0.32,0.06,thermal);
     // Storm banks merge into a connected lower deck as coverage approaches one.
     let deck=clamp((base-(1.0-cover*profile))*2.6,0.0,1.0);
     density=max(density,deck*storm*smoothstep(0.65,0.96,cover));
@@ -82,8 +82,7 @@ fn cloudDensityFiltered(p: vec3f, detail: bool, footprint:f32) -> f32 {
   return density;
 }
 fn cloudDensity(p:vec3f,detail:bool)->f32{return cloudDensityFiltered(p,detail,0.0);}
-fn cloudShadowAt(p: vec3f) -> f32 {
-  let light=F.sunDir.xyz;
+fn cloudShadowFor(p: vec3f,light:vec3f) -> f32 {
   if(light.y<0.01){return 1.0;}
   let start=max(0.0,(F.cloudP.x-p.y)/light.y);
   let lengthRay=min(30.0,F.weather.w/max(light.y,0.03));
@@ -93,6 +92,7 @@ fn cloudShadowAt(p: vec3f) -> f32 {
   }
   return exp(-od*F.cloudP.z*6.0);
 }
+fn cloudShadowAt(p:vec3f)->f32 {return cloudShadowFor(p,F.sunDir.xyz);}
 fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
   *sunT=1.0;
   if(F.cloudP.y<0.001 && F.atmo.z<0.001){return vec4f(0);}
@@ -109,7 +109,9 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
   let ground=raySphere(sphereOrigin,dir,RG);
   if(ground.x>0.0){finish=min(finish,ground.x);}
   finish=min(finish,200.0);
-  let samples=u32(F.control.x*mix(1.0,1.7,1.0-smoothstep(0.04,0.22,abs(dir.y))));
+  // Keep the quadrature topology continuous across image rows. Rounding a
+  // view-angle-dependent count rephases every sample at each integer boundary.
+  let samples=u32(F.control.x*1.5);
   let logRange=log(max((finish+1.0)/(start+1.0),1.0));
   var trans=1.0;var radiance=vec3f(0);
   let ambient=skyAtmo(vec3f(0,1,0))*0.65+skyAtmo(normalize(vec3f(dir.x,0.25,dir.z)))*0.22;
@@ -122,10 +124,13 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
     let ds=b-a;
     let t=(a+b)*0.5;
     let p=ro+dir*t;
-    // Two-point Gauss quadrature reduces coherent slice bands without moving
-    // screen-space jitter or temporal history that could smear cloud silhouettes.
-    let footprint=max(ds*0.22,t*pixAng);
-    let density=0.5*(cloudDensityFiltered(ro+dir*(a+ds*0.2113248654),true,footprint)+cloudDensityFiltered(ro+dir*(a+ds*0.7886751346),true,footprint));
+    let footprint=max(ds*0.14,t*pixAng);
+    var density=0.0;
+    // Four stratified subsegments resolve the nonlinear density remap before
+    // Beer integration. No screen-space dither or temporal cloud history.
+    for(var sub=0u;sub<4u;sub++){
+      density+=cloudDensityFiltered(ro+dir*(a+ds*(f32(sub)+0.5)*0.25),true,footprint)*0.25;
+    }
     if(density>0.001) {
       let radial=vec3f(p.x,RG+p.y,p.z);
       let radius=length(radial);let mu=dot(radial,F.sunDir.xyz)/radius;
@@ -143,7 +148,22 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
       let direct=exp(-optical)*phase;
       let multi=(0.6*exp(-optical*0.25)*phaseHG(dot(dir,F.sunDir.xyz),0.28)+0.3*exp(-optical*0.07)/(4.0*PI))*(1.0-exp(-density*5.0));
       let height=clamp((p.y+dot(p.xz,p.xz)/(2.0*RG)-F.cloudP.x)/F.weather.w,0.0,1.0);
-      let light=ambient*mix(0.18,1.0,sqrt(height))+sun*(direct+multi);
+      var lunar=vec3f(0);
+      if(F.celestial.x>0.0){
+        let moonMu=dot(radial,F.moonDir.xyz)/radius;
+        if(!sunBelowHorizon(radius,moonMu)){
+          let moonPhase=0.85*phaseHG(dot(dir,F.moonDir.xyz),0.68)+0.15*phaseHG(dot(dir,F.moonDir.xyz),-0.25);
+          var moonOptical=0.0;var moonStep=0.06;var moonDist=0.03;
+          for(var j=0u;j<u32(F.control.y);j++){
+            moonOptical+=cloudDensityFiltered(p+F.moonDir.xyz*moonDist,false,moonStep*0.35)*moonStep;
+            moonDist+=moonStep;moonStep*=2.1;
+          }
+          moonOptical*=sigma;
+          let moonMulti=(0.6*exp(-moonOptical*0.25)*phaseHG(dot(dir,F.moonDir.xyz),0.28)+0.3*exp(-moonOptical*0.07)/(4.0*PI))*(1.0-exp(-density*5.0));
+          lunar=sampleTrans(radius,moonMu)*F.celestial.x*(exp(-moonOptical)*moonPhase+moonMulti);
+        }
+      }
+      let light=ambient*mix(0.18,1.0,sqrt(height))+sun*(direct+multi)+lunar;
       let stepT=exp(-density*sigma*ds);
       let aerial=exp(-t*(0.008+F.atmo.x*0.003));
       let fog=skyAtmo(dir);
@@ -174,7 +194,9 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
     var sun=sampleTrans(radius,mu)*F.sunDir.w;
     if(sunBelowHorizon(radius,mu)){sun=vec3f(0);}
     let aerial=exp(-t*(0.008+F.atmo.x*0.003));
-    let iceLight=mix(skyAtmo(dir),ambient+sun*0.12,aerial);
+    let moonMu=dot(radial,F.moonDir.xyz)/radius;
+    let moon=select(sampleTrans(radius,moonMu)*F.celestial.x,vec3f(0),sunBelowHorizon(radius,moonMu));
+    let iceLight=mix(skyAtmo(dir),ambient+(sun+moon)*0.12,aerial);
     radiance+=trans*opacity*iceLight;
     trans*=1.0-opacity;
   }
@@ -193,7 +215,18 @@ fn sunDisk(dir:vec3f)->vec3f {
   let pix=max(F.screen.w*length(F.camUp.xyz),0.00002);
   let disk=1.0-smoothstep(SUN_ANG_R-pix,SUN_ANG_R+pix,angle);
   let vis=step(-0.006,dir.y);
-  return disk*vis*sampleTrans(camR(),max(dir.y,-0.01))*F.sunDir.w/(PI*SUN_ANG_R*SUN_ANG_R);
+  var radiance=disk*vis*sampleTrans(camR(),max(dir.y,-0.01))*F.sunDir.w/(PI*SUN_ANG_R*SUN_ANG_R);
+  if(F.celestial.x>0.0){
+    let radius=F.celestial.y;
+    let tangent=dir-F.moonDir.xyz*dot(dir,F.moonDir.xyz);
+    let r2=dot(tangent,tangent)/(radius*radius);
+    let moonMask=1.0-smoothstep(radius-pix,radius+pix,length(tangent));
+    let normal=normalize(tangent/radius-F.moonDir.xyz*sqrt(max(0.0,1.0-r2)));
+    let illumination=max(dot(normal,F.solarDir.xyz),0.0);
+    let normalization=max((2.0/3.0)*F.celestial.z,1e-7);
+    radiance+=moonMask*step(0.0,dot(dir,F.moonDir.xyz))*vis*sampleTrans(camR(),max(dir.y,-0.01))*F.celestial.x*illumination/(PI*radius*radius*normalization);
+  }
+  return radiance;
 }
 fn skyRadiance(dirIn:vec3f,withSun:bool,pixAng:f32)->vec3f {
   let dir=normalize(dirIn);

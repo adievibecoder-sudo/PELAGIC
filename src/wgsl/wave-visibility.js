@@ -66,6 +66,33 @@ fn gravityVisibility(heights:texture_2d_array<f32>,linearClamp:sampler,point:vec
   }
   return visible;
 }
+// Finite-height-field reflection visibility, separate from microfacet masking.
+// Returns the strongest obstruction and a footprint-filtered hit weight. This
+// is a bounded single-bounce approximation, not a complete reflection tracer.
+fn gravityReflectionHit(heights:texture_2d_array<f32>,linearClamp:sampler,point:vec3f,camera:vec2f,ray:vec3f,layer:u32)->vec4f {
+  let horizontal=length(ray.xz);
+  if(horizontal<0.001){return vec4f(0);}
+  let start=atlasHeight(heights,linearClamp,point.xz,camera,layer);
+  if(start.y==0.0){return vec4f(0);}
+  let spacing=waveMapSpan(layer)/256.0;
+  let originHeight=max(point.y,start.x)+0.035+spacing*0.06;
+  let direction=ray.xz/horizontal;
+  let tangent=ray.y/horizontal;
+  var result=vec4f(0);
+  var distance=spacing*1.5;
+  for(var i=0u;i<20u;i++){
+    let p=point.xz+direction*distance;
+    let h=atlasHeight(heights,linearClamp,p,camera,layer);
+    if(h.y==0.0){break;}
+    let difference=h.x-originHeight-distance*tangent;
+    let width=spacing*0.08+distance*0.0005;
+    let hit=smoothstep(-width,width,difference);
+    if(hit>result.w){result=vec4f(p,distance,hit);}
+    if(hit>0.999){break;}
+    distance*=1.35;
+  }
+  return result;
+}
 `;
 
 export const WAVE_SHADOW=FRAME_WGSL+WAVE_SHADOW_CORE+/* wgsl */`
@@ -78,6 +105,8 @@ export const WAVE_SHADOW=FRAME_WGSL+WAVE_SHADOW_CORE+/* wgsl */`
   let xz=waveMapCentre(F.camPos.xz,id.z)+((vec2f(id.xy)+0.5)/256.0-0.5)*span;
   let height=textureLoad(heights,id.xy,id.z,0).r;
   let visibility=gravityVisibility(heights,linearClamp,vec3f(xz.x,height,xz.y),F.camPos.xz,F.sunDir.xyz,id.z);
-  textureStore(output,id.xy,id.z,vec4f(visibility,0,0,1));
+  var lunar=1.0;
+  if(F.celestial.x>0.0){lunar=gravityVisibility(heights,linearClamp,vec3f(xz.x,height,xz.y),F.camPos.xz,F.moonDir.xyz,id.z);}
+  textureStore(output,id.xy,id.z,vec4f(visibility,lunar,0,1));
 }
 `;
