@@ -2,6 +2,20 @@ import {FRAME_WGSL,N} from './common.js';
 import {WAVE_COORDINATES} from './coordinates.js';
 
 export const WAVE_MAP_SIZE=256;
+export const WAVE_HEIGHT_MIPS=9;
+export const WAVE_HEIGHT_MAX=/* wgsl */`
+@group(0) @binding(0) var source:texture_2d_array<f32>;
+@group(0) @binding(1) var output:texture_storage_2d_array<rgba16float,write>;
+@compute @workgroup_size(8,8) fn main(@builtin(global_invocation_id) id:vec3u){
+  if(any(id.xy>=textureDimensions(output))){return;}
+  let p=vec2i(id.xy*2u);
+  let a=textureLoad(source,p,id.z,0).r;
+  let b=textureLoad(source,p+vec2i(1,0),id.z,0).r;
+  let c=textureLoad(source,p+vec2i(0,1),id.z,0).r;
+  let d=textureLoad(source,p+vec2i(1,1),id.z,0).r;
+  textureStore(output,id.xy,id.z,vec4f(max(max(a,b),max(c,d)),0,0,1));
+}
+`;
 export const WAVE_MAP_COORDS=/* wgsl */`
 fn waveMapSpan(layer:u32)->f32 {return select(128.0,1024.0,layer==1u);}
 fn waveMapCentre(camera:vec2f,layer:u32)->vec2f {
@@ -81,12 +95,17 @@ fn gravityReflectionHit(heights:texture_2d_array<f32>,linearClamp:sampler,point:
   let tangent=ray.y/horizontal;
   var result=vec4f(0);
   var distance=spacing*1.5;
+  let lastMip=i32(textureNumLevels(heights))-1;
+  // Bilinear heights cannot exceed the maximum of either atlas. Once an upward
+  // ray clears this bound plus the growing filter width, all later taps are zero.
+  let upperBound=max(textureLoad(heights,vec2i(0),0,lastMip).r,textureLoad(heights,vec2i(0),1,lastMip).r);
   for(var i=0u;i<20u;i++){
+    let width=spacing*0.08+distance*0.0005;
+    if(lastMip>0 && tangent>0.0005 && originHeight+distance*tangent-width>upperBound){break;}
     let p=point.xz+direction*distance;
     let h=atlasHeight(heights,linearClamp,p,camera,layer);
     if(h.y==0.0){break;}
     let difference=h.x-originHeight-distance*tangent;
-    let width=spacing*0.08+distance*0.0005;
     let hit=smoothstep(-width,width,difference);
     if(hit>result.w){result=vec4f(p,distance,hit);}
     if(hit>0.999){break;}

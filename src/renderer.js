@@ -23,7 +23,7 @@ import { OCEAN, SKY_BG, HEIGHT_PROBE } from './wgsl/ocean.js';
 import { BLOOM_DOWN, BLOOM_UP, COMPOSITE } from './wgsl/post.js';
 import { CLOUD_NOISE, CLOUD_NOISE_MIP, CLOUD_NOISE_SIZE } from './wgsl/cloud-noise.js';
 import { ENV_IRRADIANCE, IRRADIANCE_SIZE } from './wgsl/irradiance.js';
-import { WAVE_HEIGHT, WAVE_SHADOW, WAVE_MAP_SIZE } from './wgsl/wave-visibility.js';
+import { WAVE_HEIGHT, WAVE_SHADOW, WAVE_MAP_SIZE, WAVE_HEIGHT_MIPS, WAVE_HEIGHT_MAX } from './wgsl/wave-visibility.js';
 import { LENS_MEDIUM } from './wgsl/lens-medium.js';
 
 const qs = new URLSearchParams(location.search);
@@ -290,12 +290,14 @@ async function main() {
   const bgCubeMips = [];
   for (let m = 1; m < ENV_MIPS; m++) bgCubeMips.push(bg(cubeMipPipe, [lvl(envTex, m - 1), lvl(envTex, m)], 'cubemip' + m));
   const bgIrradiance=bg(irradiancePipe,[envCubeView,sampClamp,irradianceTex.createView({dimension:'2d-array'})]);
-  const waveHeight=device.createTexture({label:'resolved Eulerian gravity height',size:[WAVE_MAP_SIZE,WAVE_MAP_SIZE,2],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
+  const waveHeight=device.createTexture({label:'resolved Eulerian gravity height',size:[WAVE_MAP_SIZE,WAVE_MAP_SIZE,2],format:'rgba16float',mipLevelCount:WAVE_HEIGHT_MIPS,usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
   const waveShadow=device.createTexture({label:'resolved gravity-wave solar visibility',size:[WAVE_MAP_SIZE,WAVE_MAP_SIZE,2],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
   const waveHeightPipe=await computePipe(WAVE_HEIGHT,'gravity height atlas');
   const waveShadowPipe=await computePipe(WAVE_SHADOW,'gravity light visibility');
-  const bgWaveHeight=bg(waveHeightPipe,[{buffer:frameUBO},fullArr(dispTex),samplerSim,waveHeight.createView()]);
+  const bgWaveHeight=bg(waveHeightPipe,[{buffer:frameUBO},fullArr(dispTex),samplerSim,lvl(waveHeight,0)]);
   const bgWaveShadow=bg(waveShadowPipe,[{buffer:frameUBO},waveHeight.createView(),sampClamp,waveShadow.createView()]);
+  const heightMaxPipe=await computePipe(WAVE_HEIGHT_MAX,'gravity height upper bound');
+  const bgHeightMax=Array.from({length:WAVE_HEIGHT_MIPS-1},(_,m)=>bg(heightMaxPipe,[lvl(waveHeight,m),lvl(waveHeight,m+1)]));
 
   // --------------------------------------------------------------------------------------
   // Render pipelines
@@ -922,6 +924,10 @@ async function main() {
     cp.dispatchWorkgroups(1);
     cp.setPipeline(lensPipe);cp.setBindGroup(0,bgLens);cp.dispatchWorkgroups(16,9);
     cp.setPipeline(waveHeightPipe);cp.setBindGroup(0,bgWaveHeight);cp.dispatchWorkgroups(WAVE_MAP_SIZE/8,WAVE_MAP_SIZE/8,2);
+    cp.setPipeline(heightMaxPipe);
+    for(let m=1;m<WAVE_HEIGHT_MIPS;m++){
+      cp.setBindGroup(0,bgHeightMax[m-1]);cp.dispatchWorkgroups(Math.ceil((WAVE_MAP_SIZE>>m)/8),Math.ceil((WAVE_MAP_SIZE>>m)/8),2);
+    }
     cp.setPipeline(waveShadowPipe);cp.setBindGroup(0,bgWaveShadow);cp.dispatchWorkgroups(WAVE_MAP_SIZE/8,WAVE_MAP_SIZE/8,2);
     if(P.spray>0 || P.rain>0 || originDelta.some(x=>x!==0)){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(PARTICLE_COUNT/64);}
     cp.end();

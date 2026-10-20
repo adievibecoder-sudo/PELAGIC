@@ -16,10 +16,13 @@ out.mkdir(exist_ok=True)
 reports = []
 for video in sorted(stage.glob('*.webm')):
     probe = json.loads(subprocess.check_output([
-        'ffprobe', '-v', 'error', '-show_streams', '-show_format', '-of', 'json', str(video)
+        'ffprobe', '-v', 'error', '-show_streams', '-show_format', '-show_frames',
+        '-show_entries', 'frame=best_effort_timestamp_time:stream:format', '-of', 'json', str(video)
     ]))
+    times = [float(f['best_effort_timestamp_time']) for f in probe.pop('frames')]
+    gaps = [b-a for a,b in zip(times,times[1:])]
     command = ['ffmpeg', '-v', 'error', '-i', str(video), '-vf', 'scale=480:270',
-               '-pix_fmt', 'rgb24', '-fps_mode', 'passthrough', '-f', 'rawvideo', '-']
+               '-pix_fmt', 'rgb24', '-fps_mode', 'passthrough', '-enc_time_base', '1:1000', '-f', 'rawvideo', '-']
     process = subprocess.Popen(command, stdout=subprocess.PIPE)
     previous = None
     changes = []
@@ -52,6 +55,11 @@ for video in sorted(stage.glob('*.webm')):
     sheet.save(out/(video.stem+'-contact.jpg'), quality=94)
     reports.append({'file':video.name, 'decodedFrames':frames, 'container':probe['format'],
                     'stream':probe['streams'][0], 'meanAbsoluteRGBFrameChanges':changes,
+                    'timestampedFrames':len(times),'timestampSpanSeconds':times[-1]-times[0],
+                    'nonmonotonicSourceTimestamps':sum(g<=0 for g in gaps),
+                    'maximumSourceFrameGapMs':max(gaps)*1000,
+                    'sourceFrameGapsOver100ms':sum(g>0.1 for g in gaps),
+                    'sourceTimestampsSeconds':times,
                     'exactDuplicateFrames':sum(c == 0 for c in changes),
                     'limitation':'All frames decoded; duplicate metric uses downsampled pixels. Naturalism and glitter quality need visual review; no universal motion quality threshold.'})
 (out/'motion-metrics.json').write_text(json.dumps(reports, indent=2), encoding='utf-8')
