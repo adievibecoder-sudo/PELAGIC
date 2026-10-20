@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PELAGIC 0.3 development evidence</title>
+<style>body{margin:24px;background:#101b20;color:#e6ede7;font:15px/1.5 Georgia,serif}a{color:#bbd6e4}label,select{margin-right:16px}select{padding:8px;background:#24363e;color:inherit;border:1px solid #687980}.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}figure{margin:0}img,video{width:100%;display:block}video{max-width:1600px}figcaption{padding:8px 0}h1{font-size:25px;font-weight:400}p{max-width:1000px}@media(max-width:800px){.pair{grid-template-columns:1fr}}</style>
+<h1>PELAGIC / 0.3 development evidence</h1>
+<p>Working research checkpoint. Overall photographic naturalism: FAIL. Scientific checks, visual judgments and performance are separate gates. Images are actual native-WebGPU captures. No claim of completed AAA quality.</p>
+<p><a href="docs/V03-STAGES.md">Stage record</a> / <a href="docs/V03-ACCEPTANCE.md">Acceptance register</a> / <a href="docs/V03-EVALUATION.md">Integrated evaluation</a> / <a href="gallery.html">Preserved 0.2 evidence</a> / <a href="evidence/v03-review/matched-inputs.json">Matched-input checks</a></p>
+<label>View <select id="view" aria-label="Comparison view"></select></label>
+<div class="pair"><figure><a id="old-link"><img id="old" alt="PELAGIC 0.2 matched view"></a><figcaption>0.2 / immutable baseline</figcaption></figure><figure><a id="new-link"><img id="new" alt="PELAGIC 0.3 development matched view"></a><figcaption>0.3 / development checkpoint</figcaption></figure></div>
+<p>Click either image for the original 1920x1080 file, or 3840x2160 for the two Cinematic views. Camera, seed, input sea state, exposure, time, resolution and quality are matched; algorithms differ.</p>
+<p>Additional matched Cinematic views appear at the end of the selector: golden hour and storm. <a href="evidence/v03-cinematic/matched-inputs.json">4K input checks</a>.</p>
+<label>Motion <select id="motion" aria-label="Motion recording"></select></label>
+<video id="player" controls preload="metadata" playsinline></video>
+<p>Continuous recorded output. GPU/CPU details accompany each clip as JSON. Frame delivery and visible defects are assessed in the evaluation; capture throughput is not display-paced FPS.</p>
+<p>The additional slow-waterline clip freezes the wave field and moves the camera 1.2 cm/s. It isolates mixed immersion; it does not validate moving storm crossings.</p>
+<script type="module">
+const view=document.querySelector('#view'),motion=document.querySelector('#motion'),player=document.querySelector('#player');
+for(const scene of ['calm','midday','golden','storm','twilight','moonlit'])for(const height of ['0p5','2','50','500'])for(const azimuth of [0,75])view.add(new Option(`${scene} / ${height.replace('p','.')} m / ${azimuth} degrees`,`${scene}-h${height}-a${azimuth}`));
+for(const name of ['underwater-window','underwater-horizon','half-submerged','close-wave'])view.add(new Option(name,name));
+for(const scene of ['golden','storm'])view.add(new Option(`${scene} / 4K Cinematic`,`cinematic-${scene}`));
+function show(){const cinematic=view.value.startsWith('cinematic-');for(const [id,stage] of cinematic?[['old','v03-cinematic-before'],['new','v03-cinematic']]:[['old','stage-04'],['new','v03-integrated']]){const name=cinematic?view.value.replace('cinematic-','')+'-4k':view.value;const url=`evidence/${stage}/${name}.png`;document.getElementById(id).src=url;document.getElementById(id+'-link').href=url;}}
+view.value='golden-h2-a0';view.onchange=show;show();
+for(const name of ['golden','storm','clear-glitter','flight','waterline','skim','weather','celestial','rebase'])motion.add(new Option(name,name));
+motion.add(new Option('slow-waterline / frozen waves','slow-waterline'));
+motion.onchange=()=>{player.src=motion.value==='slow-waterline'?'evidence/v03-immersion-isolated/slow-waterline.webm':`evidence/v03-integrated/v03-${motion.value}-motion.webm`;};motion.onchange();
+</script></html>

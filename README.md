@@ -1,10 +1,14 @@
-# PELAGIC 0.2
+# PELAGIC 0.3 development
 
-An open-ocean observatory built directly on native WebGPU. Version 0.2 preserves the verified FFT foundation, separates remote swell from short wind waves, rebuilds optical covariance and breaking memory, filters volumetric clouds, and corrects underwater classification. This is a working research release, not an accepted AAA photorealism result. See `docs/TECHNICAL-REPORT.md` and the comparison gallery for both improvements and failed gates.
+An open-ocean observatory built directly on native WebGPU. This branch develops 0.3 from the preserved 0.2 foundation: coherent short-wave modulation, integrated sky irradiance, wave visibility, fragmented whitewater, revised clouds, separate celestial lighting and camera-local coordinates. **Overall visual acceptance: FAIL.** Breaking geometry, cloud naturalism, immersion transitions, distant detail and performance remain substantial open work. Implemented mechanisms are not a claim of AAA photorealism.
+
+Read [the integrated evaluation](docs/V03-EVALUATION.md), [acceptance register](docs/V03-ACCEPTANCE.md), and [stage/source-access record](docs/V03-STAGES.md). Open `/review-03.html` for paired original captures and continuous recordings after restoring evidence. The 48 primary comparison inputs match exactly; algorithms differ.
+
+The complete immutable [0.2 baseline](https://github.com/adievibecoder-sudo/PELAGIC/releases/tag/v0.2.0) is on `main` and `v0.2.0`. It was publicly downloaded, hashed, restored, GPU-tested and pixel-compared before 0.3 changes. `development/pelagic-0.3` is separate. Historical 0.1/0.2 reports, licenses and evidence remain intact.
 
 ## Start
 
-Requirements: Node.js 20+, current desktop Chrome or Edge, hardware acceleration, WebGPU-capable GPU. No package installation or build step. Open a terminal in the extracted `pelagic-0.2` folder, then run:
+Requirements: Node.js 20+, current desktop Chrome or Edge, hardware acceleration, WebGPU-capable GPU. No package installation or build step. Open a terminal in this project folder, then run:
 
 ```powershell
 npm start
@@ -32,23 +36,25 @@ Open `/tests.html` for actual GPU FFT tests. Open `/matrix.html`, then Capture, 
 
 Open `/dynamics.html` for production-kernel phase drift, manufactured foam transport, pause and decay tests. Open `/gallery.html` for retained screenshots, matched corrections and motion captures. `Start-Pelagic.cmd` is a Windows shortcut for starting the local server.
 
+Open `/optics.html` for native-GPU irradiance, coherent modulation, wave visibility, near-plane classification and distant-coordinate contracts. `/review-03.html` is the current development gallery; `/gallery.html` preserves the historical 0.2 comparison. `python scripts/review-v03.py`, `python tests/inspect-motion.py evidence/v03-integrated`, and `python scripts/dense-motion-review.py` reproduce paired sheets, cadence checks and dense transition samples. These tools require Python/Pillow and FFmpeg, not runtime dependencies.
+
 Open `/ensemble.html` for 64 independent initial spectra and a significant-height confidence interval. Run `node scripts/evidence-index.mjs` after new captures to refresh hashes and measured-result summaries.
 
 Open `/motion.html` to record seven continuous 1080p scenarios. `/gallery.html` compares every final 0.2 view against its preserved 0.1 counterpart. `evidence/review/matched-inputs.json` checks identical inputs across all 48 pairs; changing the spectrum changes the realized waves despite identical seeds. The original Noniv reference comparison is separate and has explicitly different optical semantics.
 
 Review-image generation optionally uses Python/Pillow and FFmpeg. These are evidence tools, never runtime dependencies. `scripts/review-evidence.py` expects the preserved sibling `pelagic` directory. Run `python scripts/motion-audit.py`, then `python scripts/motion-sheets.py` to reproduce decoded cadence/change measurements and labelled motion sheets. Raw PNGs and WebM recordings remain unmodified.
 
-`RELEASE-MANIFEST.json` identifies the delivered source, reports and evidence with SHA-256 checksums. `node scripts/release-manifest.mjs --verify` checks the complete extracted project against it; run without `--verify` only when deliberately creating a new manifest after changes.
+`RELEASE-MANIFEST.json` is the preserved **0.2** manifest; it intentionally does not validate changed development source. Verify it only in a 0.2 checkout. Development evidence is stored in a versioned release asset, outside ordinary Git. `python publication/restore-development-evidence.py` downloads and hash-checks it without overwriting different local bytes. Source history remains in Git. See `publication/pelagic-0.3-dev.1-assets.json` for the exact asset inventory.
 
 Example deterministic still and numerical readback:
 
 ```text
-http://127.0.0.1:8080/?preset=midday&seed=1307&cam=0,2,0,4,-5.5&cameraMode=free&w=1920&h=1080&t=20&frames=120&shot=midday-test.png&stage=stage-04&validate=1&ui=0
+http://127.0.0.1:8080/?preset=midday&seed=1307&cam=0,2,0,4,-5.5&cameraMode=free&w=1920&h=1080&t=20&frames=120&shot=midday-test.png&stage=v03-local&validate=1&ui=0
 ```
 
 `shot` runs fixed 1/60 s simulation steps, waits for GPU completion, captures the requested frame, then stops. It measures uncapped GPU throughput rather than display-paced FPS. `video=name&motion=fly` records ten seconds of rendered motion after warmup. Evidence JSON stores settings, camera, shader errors, native adapter identity and individual GPU pass timings when timestamp queries are supported.
 
-`benchmark=name&frames=600&w=1920&h=1080&adaptive=0` records display-paced requestAnimationFrame timings and stops. Keep every other GPU renderer stopped. Browser visibility, thermal state, driver, display refresh and power mode affect results. Evidence distinguishes these runs from serialized screenshot throughput.
+`benchmark=name&frames=1800&benchmarkSeconds=120&w=1920&h=1080&adaptive=0` records display-paced requestAnimationFrame timings. It stops at the frame count or bounded wall-clock duration and records the stop reason. Keep every other GPU renderer stopped. Browser visibility alone does not guarantee presentation: a 1 Hz scheduling stall recurred while the page reported visible. Thermal state, driver, display refresh and power mode affect results. Evidence distinguishes these runs from serialized screenshot throughput; no 60 FPS claim is made for this checkpoint.
 
 ## Source
 
@@ -67,4 +73,4 @@ This is a substantially modified derivative of [Noniv/web-ocean](https://github.
 
 No external rendering assets, remote fonts or network services are required at runtime. NOAA imagery was consulted as a reference, not incorporated as an asset. Scientific sources and access limits are recorded in `docs/PHYSICS-RESEARCH.md` and `docs/BIBLIOGRAPHY.md`.
 
-The delivered archive includes source, tests, reports, every retained evidence file and a SHA-256 manifest. The separate `pelagic-0.2-history.bundle` preserves source checkpoints, excluding ignored evidence. Inspect it with `git bundle verify`, or clone it into a new directory to review source history. `docs/V02-STAGES.md` maps checkpoints to evidence. The original-reference comparison can be reproduced by applying `docs/REFERENCE-HARNESS.patch` to the cited Noniv commit; its precise capture URL and limitations are in the stage record.
+The immutable 0.2 complete archive includes its original source, tests, reports, evidence and SHA-256 manifest. The separate history bundles preserve source checkpoints, excluding ignored evidence; inspect them with `git bundle verify`. The 0.3 evidence archive contains every retained new stage, including rejected cloud experiments, raw videos and diagnostics. Its restoration script also retrieves the immutable 0.2 evidence required by paired galleries. `docs/V02-STAGES.md` and `docs/V03-STAGES.md` map checkpoints to evidence. The original-reference comparison can be reproduced by applying `docs/REFERENCE-HARNESS.patch` to the cited Noniv commit; its precise capture URL and limitations are in the stage record.
