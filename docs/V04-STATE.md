@@ -1,6 +1,6 @@
 # PELAGIC 0.4 — Persistent Verified State
 
-**Last editorial update:** 20 October 2026 — initial project handoff; **not** an Astra execution report.
+**Last execution update:** 20 October 2026 — Phase 0 in progress; see `V04-PHASE0-LAB.md`.
 **Working branch:** `development/pelagic-0.4`
 **Current authorized phase:** **Phase 0 ONLY**
 **Next phase gate:** STOP after Phase 0; await explicit owner approval for Phase 1. User retains independent visual sign-off.
@@ -18,13 +18,13 @@
 | Field | Verified current value |
 |---|---|
 | Active phase and scope | Phase 0 — baseline, research reconciliation, decisive experiments, reference & budget design |
-| Last actual source/commit inspected | **Not yet recorded by Astra** |
-| Tested CPU / GPU commands and results | **Pending** |
-| Actual full-resolution media inspected | **Pending** |
-| Local RTX 3050 evidence returned by user | **None for 0.4 yet** |
-| Codex/Chrome local execution location | **Not proven; check Windows host vs VM/cloud** |
-| WebGPU adapter vendor/device and software-fallback exclusion | **Pending**; see `docs/V04-LOCAL-GPU-VALIDATION.md` |
-| `chrome://gpu` hardware acceleration evidence | **Pending** |
+| Last actual source/commit inspected | `6672bfbe14732b120464862cd408f9f91dc3b563`; production source identical to 0.3 |
+| Tested CPU / GPU commands and results | `npm test`: 23/23 PASS; `/tests.html`: 9/9 FFT PASS; `/optics.html`: all groups PASS. Raw files in `evidence/v04-p0-preflight` |
+| Actual full-resolution media inspected | Fresh 1080p midday renderer capture; pixel-identical to 0.3 midday-h2-a0 |
+| Local RTX 3050 evidence returned by user | Same-session chrome://gpu entries: WebGPU hardware accelerated, RTX 3050 ACTIVE, driver 32.0.16.1714 |
+| Codex/Chrome local execution location | Local Windows HP Victus; Chrome executable in Program Files, desktop session 1, extension browser 3; host JSON saved. HypervisorPresent true is disclosed |
+| WebGPU adapter vendor/device and software-fallback exclusion | Probe + active renderer + GPU tests: NVIDIA/Ampere; device string privacy-redacted. OS RTX 3050 and owner Chrome report corroborate identity; no software identity detected |
+| `chrome://gpu` hardware acceleration evidence | Owner-supplied text saved; internal URL automation blocked. Original screenshot/export unavailable; Dawn backend not identified |
 | Repo `main` branch protection / rulesets | **NOT ACTIVE as checked 2026-10-20**; owner setup needed |
 | v0.2/v0.3 release tag rulesets | **NONE FOUND as checked 2026-10-20**; owner setup needed |
 

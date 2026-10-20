@@ -1,0 +1,152 @@
+
+> pelagic-webgpu@0.3.0-dev.1 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: lunar disc irradiance follows independently integrated projected Lambert sphere
+ok 1 - lunar disc irradiance follows independently integrated projected Lambert sphere
+  ---
+  duration_ms: 51.4281
+  type: 'test'
+  ...
+# Subtest: twilight adaptation is continuous across the former minus-seven-degree switch
+ok 2 - twilight adaptation is continuous across the former minus-seven-degree switch
+  ---
+  duration_ms: 0.9607
+  type: 'test'
+  ...
+# Subtest: cascade intervals partition the represented radial band without gaps or overlap
+ok 3 - cascade intervals partition the represented radial band without gaps or overlap
+  ---
+  duration_ms: 1.6593
+  type: 'test'
+  ...
+# Subtest: directional wind spreading integrates to one over all supported frequency ratios
+ok 4 - directional wind spreading integrates to one over all supported frequency ratios
+  ---
+  duration_ms: 22.8682
+  type: 'test'
+  ...
+# Subtest: covariance transform agrees with independent transformed sample moments, including shear
+ok 5 - covariance transform agrees with independent transformed sample moments, including shear
+  ---
+  duration_ms: 0.6437
+  type: 'test'
+  ...
+# Subtest: discrete sea-state ledger has finite positive energy and positive semidefinite covariance
+ok 6 - discrete sea-state ledger has finite positive energy and positive semidefinite covariance
+  ---
+  duration_ms: 273.2044
+  type: 'test'
+  ...
+# Subtest: independent recursive inverse FFT agrees with direct DFT, including Parseval
+ok 7 - independent recursive inverse FFT agrees with direct DFT, including Parseval
+  ---
+  duration_ms: 2.6858
+  type: 'test'
+  ...
+# Subtest: JONSWAP normalized swell integrates to Hm0 at multiple peak periods
+ok 8 - JONSWAP normalized swell integrates to Hm0 at multiple peak periods
+  ---
+  duration_ms: 78.2413
+  type: 'test'
+  ...
+# Subtest: directional swell normalization and dispersion derivative
+ok 9 - directional swell normalization and dispersion derivative
+  ---
+  duration_ms: 2415.2406
+  type: 'test'
+  ...
+# Subtest: dielectric limits and underwater total internal reflection
+ok 10 - dielectric limits and underwater total internal reflection
+  ---
+  duration_ms: 0.2581
+  type: 'test'
+  ...
+# Subtest: configuration URL restores every setting; malformed input is bounded
+ok 11 - configuration URL restores every setting; malformed input is bounded
+  ---
+  duration_ms: 2.0896
+  type: 'test'
+  ...
+# Subtest: weather relaxation is timestep independent and wraps direction
+ok 12 - weather relaxation is timestep independent and wraps direction
+  ---
+  duration_ms: 0.5087
+  type: 'test'
+  ...
+# Subtest: astronomical vectors are normalized, equinox noon is overhead, lunar phase geometry changes
+ok 13 - astronomical vectors are normalized, equinox noon is overhead, lunar phase geometry changes
+  ---
+  duration_ms: 0.6143
+  type: 'test'
+  ...
+# Subtest: linearized solar-disc covariance matches independent uniform-disc integration
+ok 14 - linearized solar-disc covariance matches independent uniform-disc integration
+  ---
+  duration_ms: 63.5801
+  type: 'test'
+  ...
+# Subtest: five-facet quadrature conserves input slope covariance
+ok 15 - five-facet quadrature conserves input slope covariance
+  ---
+  duration_ms: 0.4154
+  type: 'test'
+  ...
+# Subtest: radiance through a dielectric obeys n squared and homogeneous volume has zero path limit
+ok 16 - radiance through a dielectric obeys n squared and homogeneous volume has zero path limit
+  ---
+  duration_ms: 0.4233
+  type: 'test'
+  ...
+# Subtest: capture URLs cannot upload invalid floats or allocate unbounded targets
+ok 17 - capture URLs cannot upload invalid floats or allocate unbounded targets
+  ---
+  duration_ms: 1.5903
+  type: 'test'
+  ...
+# Subtest: imported camera has finite bounded pose including across quality reload
+ok 18 - imported camera has finite bounded pose including across quality reload
+  ---
+  duration_ms: 1.0777
+  type: 'test'
+  ...
+# Subtest: remote swell taper conserves Hm0, excludes wind-ripple tail
+ok 19 - remote swell taper conserves Hm0, excludes wind-ripple tail
+  ---
+  duration_ms: 126.3583
+  type: 'test'
+  ...
+# Subtest: hybrid wind spectrum is nonnegative, finite and continuous at branch boundaries
+ok 20 - hybrid wind spectrum is nonnegative, finite and continuous at branch boundaries
+  ---
+  duration_ms: 10.7072
+  type: 'test'
+  ...
+# Subtest: spectral integration converges independently of log quadrature resolution
+ok 21 - spectral integration converges independently of log quadrature resolution
+  ---
+  duration_ms: 109.1988
+  type: 'test'
+  ...
+# Subtest: camera-local cascade phase remains accurate at distant global coordinates
+ok 22 - camera-local cascade phase remains accurate at distant global coordinates
+  ---
+  duration_ms: 1.6473
+  type: 'test'
+  ...
+# Subtest: rebasing preserves both foam toroidal phases and all four pattern coordinates
+ok 23 - rebasing preserves both foam toroidal phases and all four pattern coordinates
+  ---
+  duration_ms: 0.8218
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2625.0102

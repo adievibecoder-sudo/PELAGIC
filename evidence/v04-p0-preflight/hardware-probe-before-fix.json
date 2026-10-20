@@ -1,0 +1,55 @@
+{
+  "at": "2026-10-20T14:16:43.565Z",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+  "href": "http://127.0.0.1:8080/tests/webgpu-hardware-probe.html?stage=v04-p0-preflight",
+  "secureContext": true,
+  "hasNavigatorGpu": true,
+  "warning": "This probe alone never certifies a discrete GPU. Verify chrome://gpu and actual renderer GPU identity.",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "features": [
+    "bgra8unorm-storage",
+    "clip-distances",
+    "core-features-and-limits",
+    "depth-clip-control",
+    "depth32float-stencil8",
+    "dual-source-blending",
+    "float32-blendable",
+    "float32-filterable",
+    "indirect-first-instance",
+    "primitive-index",
+    "rg11b10ufloat-renderable",
+    "shader-f16",
+    "subgroup-size-control",
+    "subgroups",
+    "texture-component-swizzle",
+    "texture-compression-bc",
+    "texture-compression-bc-sliced-3d",
+    "texture-formats-tier1",
+    "texture-formats-tier2",
+    "timestamp-query"
+  ],
+  "limits": {
+    "maxBufferSize": 2147483648,
+    "maxComputeWorkgroupsPerDimension": 65535,
+    "maxTextureDimension2D": 16384
+  },
+  "softwareIdentitySuspicious": false,
+  "nvidiaVendorDetected": true,
+  "errors": [],
+  "compilation": [
+    {
+      "type": "error",
+      "message": "'target' is a reserved keyword",
+      "lineNum": 1,
+      "linePos": 48
+    }
+  ],
+  "status": "FAILED_OR_UNVERIFIED",
+  "error": "GPUPipelineError: [Invalid ShaderModule (unlabeled)] is invalid due to a previous error.\n - While validating compute stage ([Invalid ShaderModule (unlabeled)], entryPoint: \"main\").\n"
+}

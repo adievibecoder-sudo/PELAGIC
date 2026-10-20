@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-20T15:05:42.0032087Z",
+  "source": "6672bfbe14732b120464862cd408f9f91dc3b563",
+  "system": {
+    "Manufacturer": "HP",
+    "Model": "Victus by HP Gaming Laptop 15-fb0xxx",
+    "HypervisorPresent": true
+  },
+  "os": {
+    "Caption": "Microsoft Windows 11 Home Single Language",
+    "Version": "10.0.26300",
+    "OSArchitecture": "64-bit"
+  },
+  "chrome": [
+    {
+      "ProcessId": 9708,
+      "ParentProcessId": 4264,
+      "SessionId": 1,
+      "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "CommandLine": "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" "
+    }
+  ],
+  "display": [
+    {
+      "Name": "AMD Radeon(TM) Graphics",
+      "DriverVersion": "31.0.21925.1001",
+      "CurrentHorizontalResolution": 1920,
+      "CurrentVerticalResolution": 1080,
+      "CurrentRefreshRate": 144
+    },
+    {
+      "Name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "DriverVersion": "32.0.16.1714",
+      "CurrentHorizontalResolution": null,
+      "CurrentVerticalResolution": null,
+      "CurrentRefreshRate": null
+    }
+  ],
+  "battery": {
+    "BatteryStatus": 2,
+    "EstimatedChargeRemaining": 100
+  },
+  "nvidia": [
+    "name, driver_version, memory.total [MiB], pci.bus_id",
+    "NVIDIA GeForce RTX 3050 Laptop GPU, 617.14, 4096 MiB, 00000000:01:00.0"
+  ],
+  "note": "Existing visible desktop Chrome, selected through local extension. HypervisorPresent alone does not identify a guest VM. WebGPU backend API is not exposed; user chrome://gpu ANGLE Direct3D11 is not a claim that Dawn uses D3D11."
+}

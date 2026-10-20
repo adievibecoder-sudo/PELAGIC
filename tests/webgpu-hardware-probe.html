@@ -30,20 +30,28 @@ async function main(){
   result.softwareIdentitySuspicious=softwareWords.test(ident);
   result.nvidiaVendorDetected=/nvidia|geforce|rtx.?3050/i.test(ident);
   const device=await adapter.requestDevice();
-  const shader=device.createShaderModule({code:"@group(0) @binding(0) var<storage, read_write> target: array<u32>; @compute @workgroup_size(1) fn main() { target[0] = 0x50454c41u; }"});
+  result.errors=[];
+  device.addEventListener('uncapturederror',e=>result.errors.push(e.error.message));
+  device.pushErrorScope('validation');
+  const shader=device.createShaderModule({code:"@group(0) @binding(0) var<storage, read_write> outputWords: array<u32>; @compute @workgroup_size(1) fn main() { outputWords[0] = 0x50454c41u; }"});
+  result.compilation=Array.from((await shader.getCompilationInfo()).messages,m=>({type:m.type,message:m.message,lineNum:m.lineNum,linePos:m.linePos}));
   const dst=device.createBuffer({size:4,usage:GPUBufferUsage.STORAGE|GPUBufferUsage.COPY_SRC});
   const read=device.createBuffer({size:4,usage:GPUBufferUsage.MAP_READ|GPUBufferUsage.COPY_DST});
-  const pipe=device.createComputePipeline({layout:"auto",compute:{module:shader,entryPoint:"main"}});
+  const pipe=await device.createComputePipelineAsync({layout:"auto",compute:{module:shader,entryPoint:"main"}});
   const bg=device.createBindGroup({layout:pipe.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:dst}}]});
   const cmd=device.createCommandEncoder();const pass=cmd.beginComputePass();pass.setPipeline(pipe);pass.setBindGroup(0,bg);pass.dispatchWorkgroups(1);pass.end();cmd.copyBufferToBuffer(dst,0,read,0,4);
   device.queue.submit([cmd.finish()]);await read.mapAsync(GPUMapMode.READ);
   result.computeReadback={value:new Uint32Array(read.getMappedRange())[0],expected:0x50454c41};
   result.computeReadback.passed=result.computeReadback.value===result.computeReadback.expected;
-  read.unmap();dst.destroy();read.destroy();device.destroy();
+  read.unmap();
+  const validation=await device.popErrorScope();if(validation)result.errors.push(validation.message);
+  dst.destroy();read.destroy();device.destroy();
   result.hardwareClassification=result.softwareIdentitySuspicious?"SOFTWARE_OR_SUSPICIOUS":result.nvidiaVendorDetected?"NVIDIA_CANDIDATE_CONFIRM_WITH_CHROME_GPU_AND_RENDERER":"UNKNOWN_OR_DIFFERENT_ADAPTER";
-  result.status=result.computeReadback.passed?"WEBGPU_COMPUTE_PASS_NOT_HARDWARE_CERTIFICATION":"COMPUTE_FAIL";
+  result.status=result.computeReadback.passed&&!result.errors.length?"WEBGPU_COMPUTE_PASS_NOT_HARDWARE_CERTIFICATION":"COMPUTE_FAIL";
 }
 try{await main()}catch(e){result.status="FAILED_OR_UNVERIFIED";result.error=objError(e)}
 el.textContent=JSON.stringify(result,null,2);
+const stage=new URLSearchParams(location.search).get('stage');
+if(stage)await fetch('/__evidence?stage='+encodeURIComponent(stage)+'&name=hardware-probe.json',{method:'POST',body:el.textContent});
 </script>
 </body></html>
