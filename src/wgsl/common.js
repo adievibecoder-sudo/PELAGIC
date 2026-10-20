@@ -39,6 +39,9 @@ struct Frame {
   weather: vec4f,     // rain, spray, cloud type, cloud thickness km
   control: vec4f,     // cloud samples, light samples, underwater mode, star rotation
   celestial: vec4f,   // lunar irradiance, lunar angular radius, Lambert phase, exposure adaptation
+  worldOrigin: vec4f, // global xz kilometres; this frame's local-origin shift xz metres
+  waveOrigins: array<vec4f,3>, // two modulo cascade UV origins per vec4
+  patternOrigins: array<vec4f,2>, // active/residual foam; streak/bubble UV origins
 };
 `;
 

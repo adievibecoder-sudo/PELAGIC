@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><meta charset="utf-8"><title>Pelagic motion verification</title>
 <style>body{margin:0;background:#091e28;color:#e1e9e2;font:13px Consolas,monospace}header{height:46px;display:flex;align-items:center;gap:24px;padding:0 20px}button{background:#173a48;color:inherit;border:1px solid #59717b;padding:6px 12px;cursor:pointer}iframe{border:0;width:100vw;height:calc(100vh - 46px)}#status{margin-left:auto}</style>
-<header><strong>PELAGIC / CONTINUOUS MOTION</strong><button id="run">Record seven 1080p clips</button><button id="stop">Stop after current</button><span id="status">Ready / 10 seconds per clip</span></header><iframe id="view" title="Motion validation viewport"></iframe>
+<header><strong>PELAGIC / CONTINUOUS MOTION</strong><button id="run">Record nine 1080p clips</button><button id="stop">Stop after current</button><span id="status">Ready / 10 seconds per clip</span></header><iframe id="view" title="Motion validation viewport"></iframe>
 <script type="module">
 const args=new URLSearchParams(location.search);
 const queue=[
@@ -12,6 +12,8 @@ const queue=[
  {name:'v02-waterline-motion',preset:'midday',cam:'0,2,0,4,5',motion:'waterline'},
  {name:'v02-skim-motion',preset:'calm',cam:'0,0,0,4,1',motion:'skim'},
  {name:'v02-weather-motion',preset:'calm',cam:'0,5,0,4,-5.5',motion:'weather'},
+ {name:'v03-celestial-motion',preset:'golden',cam:'0,2,0,260,4',motion:'celestial',astronomy:1,hour:17,date:'2026-10-26'},
+ {name:'v03-rebase-motion',preset:'midday',cam:'505,3,0,79,-5.5',motion:'rebase'},
 ];
 let running=false,index=0,view=document.querySelector('#view');const status=document.querySelector('#status');
 function next(){

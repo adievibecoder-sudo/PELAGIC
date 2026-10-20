@@ -18,7 +18,7 @@ export async function verifyCoupling(device){
  @group(0) @binding(2) var<storage,read_write> result:array<vec4f>;
  @compute @workgroup_size(64) fn main(@builtin(global_invocation_id) id:vec3u){
   let q=vec2f((f32(id.x)+0.37)*${PATCHES[0]}/${count}.0,17.0);
-  result[id.x]=vec4f(shortAmplitude(d,s,q,${chop}),shortAmplitudeGradient(d,s,q,${chop}),0);
+  result[id.x]=vec4f(shortAmplitude(d,s,q,${chop},array<vec4f,3>()),shortAmplitudeGradient(d,s,q,${chop},array<vec4f,3>()),0);
  }`;
  const module=device.createShaderModule({code});const info=await module.getCompilationInfo();
  const errors=info.messages.filter(m=>m.type==='error').map(m=>m.message);

@@ -376,6 +376,7 @@ struct FoamU {
   cascL: array<vec4f, 2>,
   cascInvL: array<vec4f, 2>,
   drift: vec4f,              // foam drift velocity (m/s) xz
+  waveOrigins: array<vec4f,3>,
 };
 @group(0) @binding(0) var<uniform> U: FoamU;
 @group(0) @binding(1) var prevTex: texture_2d_array<f32>;
@@ -401,14 +402,14 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
   var slope = vec2f(0.0);
   var orbital = vec2f(0.0);
   var growth = 0.0;
-  let amplitude=shortAmplitude(derivTex,samp,p,U.drift.z);
-  let amplitudeGradient=shortAmplitudeGradient(derivTex,samp,p,U.drift.z);
+  let amplitude=shortAmplitude(derivTex,samp,p,U.drift.z,U.waveOrigins);
+  let amplitudeGradient=shortAmplitudeGradient(derivTex,samp,p,U.drift.z,U.waveOrigins);
   var shortDisp=vec3f(0);
   for (var c = 0u; c < ${CASCADES}u; c++) {
     let texel = U.cascL[c >> 2u][c & 3u] / ${N}.0;
     let lod = log2(max(ts / texel, 1.0));
     if (lod < 7.5) {
-      let uv = p * U.cascInvL[c >> 2u][c & 3u];
+      let uv = cascadeUV(p,c,U.cascInvL[c>>2u][c&3u],U.waveOrigins);
       let gain=select(1.0,amplitude,c>=3u);
       let d = textureSampleLevel(derivTex, samp, uv, c, lod)*gain;
       let a = textureSampleLevel(dispTex, samp, uv, c, lod)*gain;

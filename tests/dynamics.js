@@ -1,4 +1,5 @@
 import {SIM_EVOLVE,FOAM_UPDATE} from '../src/wgsl/sim.js';
+import {FOAM_BYTES} from '../src/spatial-origin.js';
 import {PATCHES,omega,decodeHalf} from '../src/numerics.js';
 
 const half=v=>{const a=new Float32Array([v]),u=new Uint32Array(a.buffer)[0];const e=((u>>>23)&255)-127+15;return e<=0?0:e>=31?31744:((u>>>16)&32768)|(e<<10)|((u>>>13)&1023);};
@@ -45,7 +46,7 @@ export async function verifyDynamics(device,progress=()=>{}) {
   for(let i=0;i<256*256*6;i++)displacement[i*4]=half(.25);
   device.queue.writeTexture({texture:displaced},displacement,{bytesPerRow:2048,rowsPerImage:256},[256,256,6]);
   const foam=[0,1].map(()=>texture([res,res,2],T.TEXTURE_BINDING|T.STORAGE_BINDING|T.COPY_DST|T.COPY_SRC));
-  const fu=buffer(144,B.UNIFORM|B.COPY_DST),fr=buffer(res*res*2*8,B.MAP_READ|B.COPY_DST);
+  const fu=buffer(FOAM_BYTES,B.UNIFORM|B.COPY_DST),fr=buffer(res*res*2*8,B.MAP_READ|B.COPY_DST);
   const fp=await pipeline(FOAM_UPDATE.replace(/const RES: i32 = \d+;/,'const RES: i32 = 64;'));
   const samp=device.createSampler({magFilter:'linear',minFilter:'linear',addressModeU:'repeat',addressModeV:'repeat'});
   const fbg=foam.map((t,i)=>group(fp,[{buffer:fu},foam[1-i].createView(),t.createView(),displaced.createView(),field.createView(),samp,samp,field.createView()]));
@@ -57,7 +58,7 @@ export async function verifyDynamics(device,progress=()=>{}) {
   const results=[];
   for(const [name,hz,steps,decay,drift] of [['translation',60,8,0,60],['decay-30',30,120,.22,0],['decay-60',60,240,.22,0],['decay-120',120,480,.22,0],['paused',60,20,0,0]]) {
     for(const t of foam)device.queue.writeTexture({texture:t},data,{bytesPerRow:res*8,rowsPerImage:res},[res,res,2]);
-    const bytes=new ArrayBuffer(144),fi=new Int32Array(bytes),ff=new Float32Array(bytes);
+    const bytes=new ArrayBuffer(FOAM_BYTES),fi=new Int32Array(bytes),ff=new Float32Array(bytes);
     fi.set([32,32,32,32,32,32,32,32]);ff.set([1,1,name==='paused'?0:1/hz,decay],8);ff.set([.56,3,5,0],12);
     ff.set(PATCHES,16);ff.set(PATCHES.map(x=>1/x),24);ff[32]=drift;device.queue.writeBuffer(fu,0,bytes);
     let cur=0;const e=device.createCommandEncoder(),p=e.beginComputePass();p.setPipeline(fp);
@@ -77,7 +78,7 @@ export async function verifyDynamics(device,progress=()=>{}) {
   for(let i=0;i<256*256;i++)derivative[i*4+2]=half(-.5);
   device.queue.writeTexture({texture:field},derivative,{bytesPerRow:2048,rowsPerImage:256},[256,256,6]);
   for(const t of foam)device.queue.writeTexture({texture:t},new Uint16Array(data.length),{bytesPerRow:res*8,rowsPerImage:res},[res,res,2]);
-  const bytes=new ArrayBuffer(144),fi=new Int32Array(bytes),ff=new Float32Array(bytes);fi.set([32,32,32,32,32,32,32,32]);
+  const bytes=new ArrayBuffer(FOAM_BYTES),fi=new Int32Array(bytes),ff=new Float32Array(bytes);fi.set([32,32,32,32,32,32,32,32]);
   ff.set([1,1,1/60,0],8);ff.set([.83,3,5,1],12);ff.set(PATCHES,16);ff.set(PATCHES.map(x=>1/x),24);device.queue.writeBuffer(fu,0,bytes);
   let cur=0;const e=device.createCommandEncoder(),pass=e.beginComputePass();pass.setPipeline(fp);
   for(let i=0;i<30;i++){cur=1-cur;pass.setBindGroup(0,fbg[cur]);pass.dispatchWorkgroups(8,8,2);}pass.end();

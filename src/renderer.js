@@ -8,6 +8,7 @@ import { cosSpreadNorm, PATCHES, omega } from './numerics.js';
 import { swellAlpha } from './sea-spectrum.js';
 import { celestial } from './astronomy.js';
 import { lunarLight, twilightExposure } from './celestial-light.js';
+import {localOrigin,cascadeOrigin,foamPatternOrigin,FRAME_BYTES,FRAME_FLOATS,FOAM_BYTES} from './spatial-origin.js';
 import { runtimeInput, validCamera } from './runtime-input.js';
 import { PARTICLE_COUNT, PARTICLE_UPDATE, PARTICLE_RENDER } from './wgsl/particles.js';
 import { spectralReadback } from '../tests/spectral-readback.js';
@@ -224,8 +225,8 @@ async function main() {
     label: 'foam world ' + i, size: [FOAM_RES, FOAM_RES, 2], format: 'rgba16float', mipLevelCount: FOAMW_MIPS,
     usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING | TU.COPY_SRC,
   }));
-  const foamUBO = mkBuf(144, GU.UNIFORM | GU.COPY_DST, 'foam ubo');
-  const foamUArr = new ArrayBuffer(144);
+  const foamUBO = mkBuf(FOAM_BYTES, GU.UNIFORM | GU.COPY_DST, 'foam ubo');
+  const foamUArr = new ArrayBuffer(FOAM_BYTES);
   const foamUI = new Int32Array(foamUArr);
   const foamUF = new Float32Array(foamUArr);
   const foamSnap = new Int32Array(4);  // previous camera texel per level
@@ -268,7 +269,7 @@ async function main() {
     magFilter: 'linear', minFilter: 'linear', mipmapFilter: 'linear',
     addressModeU: 'repeat', addressModeV: 'repeat', maxAnisotropy: P.quality==='Balanced'?4:8,
   });
-  const frameUBO = mkBuf(496, GU.UNIFORM | GU.COPY_DST, 'frame ubo');
+  const frameUBO = mkBuf(FRAME_BYTES, GU.UNIFORM | GU.COPY_DST, 'frame ubo');
   const sunVisBuf = mkBuf(16, GU.STORAGE, 'sun visibility');
   const transView = transLUT.createView();
   const msView = msLUT.createView();
@@ -497,7 +498,7 @@ async function main() {
   // Uniform data
   // --------------------------------------------------------------------------------------
   const simF = new Float32Array(56);
-  const frameF = new Float32Array(124);
+  const frameF = new Float32Array(FRAME_FLOATS);
   const atmoF = new Float32Array(4);
   const proj = new Float32Array(16), view = new Float32Array(16), viewProj = new Float32Array(16);
   const LOOP = 86400.0; // cloud-coordinate epoch only; wave phases do not loop
@@ -523,6 +524,19 @@ async function main() {
   // --------------------------------------------------------------------------------------
   const cam = { x: 0, y: 2.4, z: 0, yaw: 0, pitch: -5.5 * D2R, fovY: P.fov * D2R, speed: P.cameraSpeed };
   Object.assign(cam,validCamera(runtime.camera,cam));
+  let origin=[0,0],originDelta=[0,0];
+  function updateOrigin(){
+    const next=localOrigin(cam.x,cam.z);
+    originDelta=[next[0]-origin[0],next[1]-origin[1]];
+    if(originDelta[0]!==0||originDelta[1]!==0){
+      for(let l=0;l<2;l++){
+        const texel=FOAM_LEVEL_SIZE[l]/FOAM_RES;
+        foamSnap[l*2]-=originDelta[0]/texel;
+        foamSnap[l*2+1]-=originDelta[1]/texel;
+      }
+      origin=next;
+    }
+  }
   const keys = Object.create(null);
   addEventListener('keydown', (e) => { if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return; keys[e.code] = true; if(e.code==='Space')e.preventDefault(); });
   addEventListener('keyup', (e) => { keys[e.code] = false; });
@@ -594,7 +608,7 @@ async function main() {
   function addNode(x0, z0, size, lod) {
     if (nodeCount >= MAX_NODES) return;
     const o = nodeCount * 4;
-    instData[o] = x0; instData[o + 1] = z0; instData[o + 2] = size; instData[o + 3] = lod;
+    instData[o] = x0-origin[0]; instData[o + 1] = z0-origin[1]; instData[o + 2] = size; instData[o + 3] = lod;
     nodeCount++;
   }
   function selectNode(x0, z0, size, lod) {
@@ -664,7 +678,7 @@ async function main() {
     mat4Mul(viewProj, proj, view);
     const f = frameF;
     f.set(viewProj, 0);
-    f[16] = cam.x; f[17] = cam.y; f[18] = cam.z; f[19] = time;
+    f[16] = cam.x-origin[0]; f[17] = cam.y; f[18] = cam.z-origin[1]; f[19] = time;
     f[20] = rx * tanX; f[21] = ry * tanX; f[22] = rz * tanX; f[23] = 0;
     f[24] = ux * tanY; f[25] = uy * tanY; f[26] = uz * tanY; f[27] = 0;
     f[28] = fx; f[29] = fy; f[30] = fz; f[31] = 0;
@@ -706,6 +720,9 @@ async function main() {
     f[61] = P.choppy;
     f[112]=P.rain;f[113]=P.spray;f[114]=P.cloudType;f[115]=P.cloudDepth;
     f[116]=Q.cloudSteps;f[117]=Q.cloudLightSteps;f[118]=P.cameraMode==='surface'?0:1;f[119]=astro.sidereal%(2*Math.PI);
+    f.set([origin[0]*.001,origin[1]*.001,...originDelta],124);
+    cascadeOrigin(origin,f,128);
+    foamPatternOrigin(origin,[f[56],f[57]],time,[f[80],f[81]],f,140);
     device.queue.writeBuffer(frameUBO, 0, f);
   }
 
@@ -803,7 +820,7 @@ async function main() {
   function writeFoamUniforms(dt) {
     for (let l = 0; l < 2; l++) {
       const ts = FOAM_LEVEL_SIZE[l] / FOAM_RES;
-      const cx = Math.floor(cam.x / ts), cz = Math.floor(cam.z / ts);
+      const cx = Math.floor((cam.x-origin[0]) / ts), cz = Math.floor((cam.z-origin[1]) / ts);
       foamUI[l * 4] = cx; foamUI[l * 4 + 1] = cz;
       // first frame: pretend the previous window was far away so everything is reset
       foamUI[l * 4 + 2] = foamFirst ? cx + 100000 : foamSnap[l * 2];
@@ -819,6 +836,7 @@ async function main() {
     foamUF[32] = Math.cos(P.windDir * D2R) * drift + Math.cos(P.currentDir*D2R)*P.currentSpeed;
     foamUF[33] = Math.sin(P.windDir * D2R) * drift + Math.sin(P.currentDir*D2R)*P.currentSpeed;
     foamUF[34] = P.choppy;
+    cascadeOrigin(origin,foamUF,36);
     device.queue.writeBuffer(foamUBO, 0, foamUArr);
   }
 
@@ -845,6 +863,12 @@ async function main() {
     if(qs.get('motion')==='fly'){cam.x+=dt*2.0;cam.y=2.4+Math.sin(simTime*0.2)*0.6;cam.yaw+=dt*0.035;}
     if(qs.get('motion')==='waterline'){P.cameraMode='free';cam.y=1.2+Math.sin((performance.now()-movieStart)*0.0007)*4.0;cam.pitch=0.2;}
     if(qs.get('motion')==='skim'){P.cameraMode='free';cam.y=waterH+Math.sin((performance.now()-movieStart)*0.0008)*0.035;cam.pitch=0.02;}
+    if(qs.get('motion')==='rebase' && recorder?.state==='recording'){
+      cam.x=505+(now-movieStart)*.002;cam.y=3;P.cameraMode='free';
+    }
+    if(qs.get('motion')==='celestial' && recorder?.state==='recording'){
+      P.astronomy=true;P.hour=17+6*Math.min(1,(now-movieStart)/10000);
+    }
     if(qs.get('motion')==='weather' && recorder?.state==='recording'){
       const blend=Math.min(1,(now-movieStart)/10000);
       Object.assign(targetSea,preset('storm'));transitionSea=true;
@@ -863,6 +887,7 @@ async function main() {
       P.resolution=Math.max(0.65,Math.min(Q.scale,P.resolution*0.8+next*0.2));
     }
 
+    updateOrigin();
     writeFrame(simTime);
     writeSimStatic();
     if(needSpectrum){simF[24]=swellAlpha(P.swellHs,simF[46]);simF[25]=cosSpreadNorm(P.swellSpread);}
@@ -898,7 +923,7 @@ async function main() {
     cp.setPipeline(lensPipe);cp.setBindGroup(0,bgLens);cp.dispatchWorkgroups(16,9);
     cp.setPipeline(waveHeightPipe);cp.setBindGroup(0,bgWaveHeight);cp.dispatchWorkgroups(WAVE_MAP_SIZE/8,WAVE_MAP_SIZE/8,2);
     cp.setPipeline(waveShadowPipe);cp.setBindGroup(0,bgWaveShadow);cp.dispatchWorkgroups(WAVE_MAP_SIZE/8,WAVE_MAP_SIZE/8,2);
-    if(P.spray>0 || P.rain>0){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(PARTICLE_COUNT/64);}
+    if(P.spray>0 || P.rain>0 || originDelta.some(x=>x!==0)){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(PARTICLE_COUNT/64);}
     cp.end();
     cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:2,endOfPassWriteIndex:3}:undefined});
     cp.setPipeline(skyViewPipe);
@@ -1013,7 +1038,7 @@ async function main() {
   }
 
   function evidenceReport(){return {version:'0.3.0-dev.1',sourceCheckpoint:qs.get('revision')||'development',adapter:adapterInfo,backend:'native-webgpu',timestampQuery:hasTS,settings:{...P},camera:{...cam},simulationTime:simTime,frameIndex,width:W,height:H,nodes:nodeCount,errors,measurements,frameRecords,
-    foamPatternCalibration,
+    foamPatternCalibration,worldOrigin:origin,
     timingMode:qs.has('benchmark')?'requestAnimationFrame, display paced':'queue-completion capture throughput',
     memoryEstimate:{renderTargetsMiB:(W*H*56+(W>>1)*(H>>1)*8*4/3+cloudW*cloudH*8)/1048576,
       note:'Analytic lower bound for main MSAA/depth/HDR/bloom/cloud render targets only. Excludes simulation, driver alignment, browser compositor, and transient resources.'}};}

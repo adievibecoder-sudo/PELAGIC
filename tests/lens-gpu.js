@@ -1,4 +1,5 @@
 import {LENS_MEDIUM} from '../src/wgsl/lens-medium.js';
+import {FRAME_BYTES,FRAME_FLOATS} from '../src/spatial-origin.js';
 import {PATCHES,decodeHalf} from '../src/numerics.js';
 
 export async function verifyLensMedium(device){
@@ -8,7 +9,7 @@ export async function verifyLensMedium(device){
  const disp=texture({size:[256,256,6],format:'rgba16float',usage:T.TEXTURE_BINDING|T.COPY_DST});
  const deriv=texture({size:[256,256,6],format:'rgba16float',usage:T.TEXTURE_BINDING});
  const out=texture({size:[128,72],format:'rgba16float',usage:T.STORAGE_BINDING|T.COPY_SRC});
- const frame=buffer(496,B.UNIFORM|B.COPY_DST),probe=buffer(16,B.STORAGE|B.COPY_DST),read=buffer(128*72*8,B.MAP_READ|B.COPY_DST);
+ const frame=buffer(FRAME_BYTES,B.UNIFORM|B.COPY_DST),probe=buffer(16,B.STORAGE|B.COPY_DST),read=buffer(128*72*8,B.MAP_READ|B.COPY_DST);
  const module=device.createShaderModule({code:LENS_MEDIUM}),info=await module.getCompilationInfo();
  if(info.messages.some(m=>m.type==='error'))throw Error(info.messages.map(m=>m.message).join('\n'));
  const pipe=await device.createComputePipelineAsync({layout:'auto',compute:{module,entryPoint:'main'}});
@@ -23,7 +24,7 @@ export async function verifyLensMedium(device){
     const off=((3*256+y)*256+x)*4;data[off]=half(shift);data[off+1]=half(amp*Math.cos((x+.5)*L/256*wave));
   }
   device.queue.writeTexture({texture:disp},data,{bytesPerRow:2048,rowsPerImage:256},[256,256,6]);
-  const f=new Float32Array(124);f[16]=shift;f[17]=cameraY;f[20]=.98;f[25]=.55;f[30]=-1;f[61]=1.12;f[65]=24;f.set(PATCHES,40);f.set(PATCHES.map(x=>1/x),48);
+  const f=new Float32Array(FRAME_FLOATS);f[16]=shift;f[17]=cameraY;f[20]=.98;f[25]=.55;f[30]=-1;f[61]=1.12;f[65]=24;f.set(PATCHES,40);f.set(PATCHES.map(x=>1/x),48);
   device.queue.writeBuffer(frame,0,f);device.queue.writeBuffer(probe,0,new Float32Array([amp,0,0,0]));
   const e=device.createCommandEncoder(),pass=e.beginComputePass();pass.setPipeline(pipe);pass.setBindGroup(0,bg);pass.dispatchWorkgroups(16,9);pass.end();e.copyTextureToBuffer({texture:out},{buffer:read,bytesPerRow:1024},[128,72]);device.queue.submit([e.finish()]);
   await read.mapAsync(GPUMapMode.READ);const values=new Uint16Array(read.getMappedRange());let maxError=0,maxResidual=0,invalid=0,wet=0,dry=0;

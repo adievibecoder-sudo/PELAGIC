@@ -1,4 +1,5 @@
 import {FRAME_WGSL,N} from './common.js';
+import {WAVE_COORDINATES} from './coordinates.js';
 
 export const WAVE_MAP_SIZE=256;
 export const WAVE_MAP_COORDS=/* wgsl */`
@@ -11,7 +12,7 @@ fn waveMapCentre(camera:vec2f,layer:u32)->vec2f {
 
 // Eulerian height atlas for resolved gravity waves. The four-step inverse is
 // damped near steep crests; it cannot represent an overturned, multivalued sea.
-export const WAVE_HEIGHT=FRAME_WGSL+WAVE_MAP_COORDS+/* wgsl */`
+export const WAVE_HEIGHT=FRAME_WGSL+WAVE_MAP_COORDS+WAVE_COORDINATES+/* wgsl */`
 @group(0) @binding(0) var<uniform> F:Frame;
 @group(0) @binding(1) var displacement:texture_2d_array<f32>;
 @group(0) @binding(2) var linearRepeat:sampler;
@@ -21,7 +22,7 @@ fn gravityDisplacement(q:vec2f,spacing:f32)->vec3f {
   for(var c=0u;c<3u;c++){
     let texel=F.cascL[c>>2u][c&3u]/${N}.0;
     let lod=max(log2(max(spacing/texel,1.0)),0.0);
-    d+=textureSampleLevel(displacement,linearRepeat,q*F.cascInvL[c>>2u][c&3u],c,lod).xyz;
+    d+=textureSampleLevel(displacement,linearRepeat,cascadeUV(q,c,F.cascInvL[c>>2u][c&3u],F.waveOrigins),c,lod).xyz;
   }
   return d;
 }

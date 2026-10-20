@@ -76,13 +76,13 @@ struct VSOut {
   let mk = clamp((d - 0.8 * R) / (0.2 * R), 0.0, 1.0);
   xz -= fract(g * 0.5) * 2.0 * spacing * mk;
   let eff = spacing * (1.0 + mk);
-  let amplitude=shortAmplitude(derivTex,sampR,xz,F.windP[1].y);
+  let amplitude=shortAmplitude(derivTex,sampR,xz,F.windP[1].y,F.waveOrigins);
   var disp = vec3f(0.0);
   for (var c = 0u; c < ${CASCADES}u; c++) {
     let texel = F.cascL[c >> 2u][c & 3u] / TEX_N;
     let lod = log2(max(eff / texel, 1.0)) + 0.5;
     if (lod < 8.0) {
-      disp += textureSampleLevel(dispTex, sampR, xz * F.cascInvL[c >> 2u][c & 3u], c, lod).xyz*select(1.0,amplitude,c>=3u);
+      disp += textureSampleLevel(dispTex, sampR, cascadeUV(xz,c,F.cascInvL[c>>2u][c&3u],F.waveOrigins), c, lod).xyz*select(1.0,amplitude,c>=3u);
     }
   }
   var o: VSOut;
@@ -178,12 +178,12 @@ fn reflectedEnvironment(point:vec3f,ray:vec3f,lod:f32,bodyRadiance:vec3f)->vec3f
   var jxz = 0.0;
   var shortDisp=vec3f(0);
   var cov = vec3f(0.0);
-  let amplitude=shortAmplitude(derivTex,sampR,xz,F.windP[1].y);
-  let amplitudeGradient=shortAmplitudeGradient(derivTex,sampR,xz,F.windP[1].y);
+  let amplitude=shortAmplitude(derivTex,sampR,xz,F.windP[1].y,F.waveOrigins);
+  let amplitudeGradient=shortAmplitudeGradient(derivTex,sampR,xz,F.windP[1].y,F.waveOrigins);
   let dxXZ=dpdx(xz);let dyXZ=dpdy(xz);
   let rasterNormal=normalize(cross(dpdy(in.rel),dpdx(in.rel)));
   for (var c = 0u; c < ${CASCADES}u; c++) {
-    let uv = xz * F.cascInvL[c >> 2u][c & 3u];
+    let uv = cascadeUV(xz,c,F.cascInvL[c>>2u][c&3u],F.waveOrigins);
     let gk = select(1.0,amplitude,c>=3u);
     let invL=F.cascInvL[c >> 2u][c & 3u];
     let dx=dxXZ*invL;let dy=dyXZ*invL;
@@ -334,18 +334,18 @@ fn reflectedEnvironment(point:vec3f,ray:vec3f,lod:f32,bodyRadiance:vec3f)->vec3f
   // aged foam breaks into wind-aligned streaks; fresh crest foam stays dense
   let wd = F.windP[0].xy;
   let ws = vec2f(dot(xz, wd), dot(xz, vec2f(-wd.y, wd.x)));
-  let streak = textureSample(foamTex, sampR, ws * vec2f(0.035, 0.11)).a;
+  let streak = textureSample(foamTex, sampR, ws * vec2f(0.035, 0.11)+F.patternOrigins[1].xy).a;
   let freshK = clamp(fwl.g * 2.0 + fresh, 0.0, 1.0);
   cover *= mix(0.45+1.1*smoothstep(0.25,0.75,streak),1.0,freshK);
   // Memory controls occupied area; active crests and residual films have
   // distinct optical thickness. Material coordinates carry the wave orbit.
   // Mean current moves the sub-texel breakup pattern with the foam clipmap.
-  let material=xz-F.sssCol.xy*F.camPos.w;
+  let material=xz;
   let materialWind=vec2f(dot(material,wd),dot(material,vec2f(-wd.y,wd.x)));
   let activeArea=clamp(fwl.g*F.foamP.z*0.9,0.0,1.0);
   let residualArea=clamp(cover,0.0,1.0);
-  let activeCoverage=foamCoverage(material*0.29,activeArea);
-  let residualCoverage=foamCoverage(materialWind*vec2f(0.07,0.19),residualArea);
+  let activeCoverage=foamCoverage(material*0.29+F.patternOrigins[0].xy,activeArea);
+  let residualCoverage=foamCoverage(materialWind*vec2f(0.07,0.19)+F.patternOrigins[0].zw,residualArea);
   let activeOpacity=1.0-exp(-5.0*freshK);
   let residualOpacity=1.0-exp(-1.8*sqrt(max(cover,0.0)));
   var foamMask=1.0-(1.0-activeCoverage*activeOpacity)*(1.0-residualCoverage*residualOpacity);
@@ -353,7 +353,7 @@ fn reflectedEnvironment(point:vec3f,ray:vec3f,lod:f32,bodyRadiance:vec3f)->vec3f
   let aeration=1.0-exp(-fwl.g*3.0);
   body += exp(-aWater*0.65)*downwelling/PI*aeration*0.075;
   // bubbly brightness variation inside the foam
-  let bub = textureSample(foamTex, sampR, material * 1.9 + vec2f(0.21, 0.53)).g;
+  let bub = textureSample(foamTex, sampR, material * 1.9 + vec2f(0.21, 0.53)+F.patternOrigins[1].zw).g;
   let foamAlb = vec3f(mix(0.48,0.66,freshK)) * (0.85 + 0.15 * bub);
   // diffuse: albedo * (sky irradiance / pi + sun * cos / pi); sky dominates at sunset
   // foam scatters light from the whole hemisphere (incl. the cool zenith): use a less saturated ambient
@@ -427,11 +427,11 @@ export const HEIGHT_PROBE = FRAME_WGSL + SHORT_WAVE_COUPLING + /* wgsl */ `
 @group(0) @binding(4) var derivTex:texture_2d_array<f32>;
 fn dispAt(xz: vec2f) -> vec3f {
   var d = vec3f(0.0);
-  let amplitude=shortAmplitude(derivTex,samp,xz,F.windP[1].y);
+  let amplitude=shortAmplitude(derivTex,samp,xz,F.windP[1].y,F.waveOrigins);
   for (var c = 0u; c < ${CASCADES}u; c++) {
     let texel=F.cascL[c>>2u][c&3u]/${N}.0;
     let lod=log2(max((2.0/F.lodP.y)/texel,1.0))+0.5;
-    if(lod<8.0){d += textureSampleLevel(dispTex, samp, xz * F.cascInvL[c >> 2u][c & 3u], c, lod).xyz*select(1.0,amplitude,c>=3u);}
+    if(lod<8.0){d += textureSampleLevel(dispTex, samp, cascadeUV(xz,c,F.cascInvL[c>>2u][c&3u],F.waveOrigins), c, lod).xyz*select(1.0,amplitude,c>=3u);}
   }
   return d;
 }

@@ -45,7 +45,7 @@ fn cloudDensityFiltered(p: vec3f, detail: bool, footprint:f32) -> f32 {
   let altitude=p.y+dot(p.xz,p.xz)/(2.0*RG);
   if(altitude<F.cloudP.x || altitude>F.cloudP.x+F.weather.w){return 0.0;}
   let drift=vec3f(F.windP[0].x,0.0,F.windP[0].y)*F.cloudP.w*F.windP[0].z*0.00065;
-  let world=p+vec3f(F.camPos.x*0.001,0,F.camPos.z*0.001)-drift;
+  let world=p+vec3f(F.camPos.x*0.001+F.worldOrigin.x,0,F.camPos.z*0.001+F.worldOrigin.y)-drift;
   let strat=select(0.0,1.0,F.weather.z>0.5 && F.weather.z<1.5);
   let storm=step(1.5,F.weather.z);
   // Separate mesoscale organisation from billows. Local depth and cloud base
@@ -126,8 +126,8 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
     let p=ro+dir*t;
     let footprint=max(ds*0.14,t*pixAng);
     var density=0.0;
-    // Four stratified subsegments resolve the nonlinear density remap before
-    // Beer integration. No screen-space dither or temporal cloud history.
+    // Four subsegments retained after the cheaper two-point experiment visibly
+    // reintroduced distant density slices. No jitter or temporal accumulation.
     for(var sub=0u;sub<4u;sub++){
       density+=cloudDensityFiltered(ro+dir*(a+ds*(f32(sub)+0.5)*0.25),true,footprint)*0.25;
     }
@@ -182,7 +182,7 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
   if(ground.x>0.0){iceFinish=min(iceFinish,ground.x);}
   if(iceFinish>iceStart && F.atmo.z>0.001) {
     let t=(iceStart+iceFinish)*0.5;
-    let p=(ro+dir*t).xz+F.camPos.xz*0.001;
+    let p=(ro+dir*t).xz+F.camPos.xz*0.001+F.worldOrigin.xy;
     let warp=vec2f(gnoise(p*0.14),gnoise(p*0.21+vec2f(8.3,1.1)))*2.2;
     let footprint=t*pixAng;
     let low=mix(gnoise((p+warp)*vec2f(0.22,0.85)),0.0,smoothstep(0.25,0.85,footprint*0.85));
