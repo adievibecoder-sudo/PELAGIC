@@ -1,6 +1,6 @@
 # PELAGIC 0.4 — Persistent Verified State
 
-**Last execution update:** 20 October 2026 - Phase 0 assessment/evidence prepared for owner review. See `V04-PHASE0-REPORT.md` and `V04-ACCEPTANCE.md`.
+**Last execution update:** 20 October 2026 - Phase 0 assessment/evidence published for owner review. See `V04-PHASE0-REPORT.md` and `V04-ACCEPTANCE.md`.
 **Working branch:** `development/pelagic-0.4`
 **Current authorized phase:** **Phase 0 ONLY**
 **Next phase gate:** STOP after Phase 0; await explicit owner approval for Phase 1. User retains independent visual sign-off.
@@ -19,6 +19,7 @@
 | Field | Verified current value |
 |---|---|
 | Active phase and scope | Phase 0 investigation package at review gate; no Phase 1 production implementation |
+| Published experiment checkpoint | `62f0f752fea7e211c4aea1addf140ff3ee217679`; remote SHA verified. All 81 unique LFS objects freshly downloaded and SHA-256 checked; 82 media paths. Publication proof: `evidence/v04-p0-review/publication.json` |
 | Last actual source/commit inspected | Entry `6672bfbe14732b120464862cd408f9f91dc3b563`, preflight `a1092a0`, final laboratory source hashes in `evidence/v04-p0-review/manifest.json`. Capture label a1092a0-lab is not a commit; per-capture source hashes were not retained |
 | Tested CPU / GPU commands and results | `npm test`: 26/26 PASS; `/tests.html`: 9/9 FFT checks PASS; `/optics.html`: five groups PASS; compute marker 0x50454c41 PASS |
 | Actual full-resolution media inspected | 22 captured 1080p PNGs; subset examined at full size listed in report. Nine original 1080p WebMs fully decoded, sampled playback/frames inspected; no exhaustive temporal certification |

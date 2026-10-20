@@ -63,3 +63,15 @@ The manifest command is read-only verification: 22 stills, nine motion clips, ma
 Analysis targets the archived Phase 0 directories. Original images/videos are never rewritten by analysis; derivatives are in `v04-p0-review`. Run integrity verification before regenerating derivatives; Pillow/FFmpeg version differences can change derivative hashes. CIE official CSVs have their own CC BY-SA 4.0 attribution in `tests/data/cie/README.md`; checksums are verified before integration. The spectral colour test is a limited D65 experiment, not seawater validation.
 
 Inspect full-resolution originals, masks and movies, not only contact sheets. Reject visual success claims if cloud rows, blurred decks, shiny uniform water, film-like breaking or immersion discontinuities remain. Video files preserve variable timestamps; frame count/10 seconds is not application FPS. Numerical scene-change metrics are diagnostics, not perceptual acceptance thresholds.
+
+## Independent publication check
+
+The published experiment checkpoint is `62f0f752fea7e211c4aea1addf140ff3ee217679`. To repeat the remote media check without trusting the checkout's existing LFS cache:
+
+```powershell
+$verificationStore = Join-Path (Split-Path (Get-Location).Path) ('pelagic-lfs-check-' + [Guid]::NewGuid().ToString('N'))
+git -c "lfs.storage=$verificationStore" lfs fetch origin 62f0f752fea7e211c4aea1addf140ff3ee217679
+git -c "lfs.storage=$verificationStore" lfs fsck --objects 62f0f752fea7e211c4aea1addf140ff3ee217679
+```
+
+Expected: 81 unique downloaded objects, 262,904,474 bytes, `Git LFS fsck OK`. This makes a separate local verification cache and does not change the working checkout. The retained publication JSON also records explicit SHA-256 comparison against every object filename and unchanged frozen remote refs.

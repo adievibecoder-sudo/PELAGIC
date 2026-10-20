@@ -19,6 +19,8 @@ Entry source: `6672bfbe14732b120464862cd408f9f91dc3b563`, tracking `development/
 
 The 0.3 archive SHA-256 is `402a635b09fd9b3579972aebc269ca2bdbf7c7dfdc8e77a71b17d1226653be03`. Original evidence is preserved, not regenerated. This phase captures a representative subset, not a fresh 48-view acceptance matrix.
 
+Published experiment checkpoint: `62f0f752fea7e211c4aea1addf140ff3ee217679` on `development/pelagic-0.4`. Remote SHA and frozen branch/peeled-tag SHAs verified. All 81 unique LFS objects (262,904,474 bytes; 82 media paths) were downloaded into fresh storage, SHA-256 checked and passed `git lfs fsck`. Proof: `evidence/v04-p0-review/publication.json`. This verifies publication, not GitHub protection rules or visual quality. A subsequent documentation/manifest commit records this verification; no rendering algorithms changed afterward.
+
 ## Actual hardware proof
 
 Local HP Victus 15-fb0xxx; Windows 11 10.0.26300; desktop Chrome 155.0.8059.85, executable in Program Files, desktop session 1. NVIDIA driver 617.14 / Windows 32.0.16.1714; RTX 3050 Laptop, 4096 MiB. Primary display reports 1920x1080 at 144 Hz through AMD graphics. AC corroboration and host records are retained. `HypervisorPresent:true` is disclosed; this alone does not establish a guest VM.

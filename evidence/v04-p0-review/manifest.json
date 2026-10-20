@@ -1,13 +1,13 @@
 {
   "schema": 1,
-  "createdUTC": "2026-10-20T17:09:26.275Z",
+  "createdUTC": "2026-10-20T17:18:36.859Z",
   "sourceScope": "Final delivery source snapshot, not a contemporaneous per-capture source attestation. Captures labeled a1092a0-lab used evolving diagnostic instrumentation; no per-capture source hashes were saved. Default WGSL preservation is separately tested.",
   "excluded": "Third-party local research package, old 0.2/0.3 evidence, .git, ignored local files, and this manifest itself.",
   "hardwareScope": "NVIDIA/Ampere is application-reported. RTX 3050 corroboration also relies on retained OS diagnostics and attributed owner chrome://gpu text; no original chrome://gpu export.",
   "counts": {
     "stills": 22,
     "motion": 9,
-    "files": 264
+    "files": 265
   },
   "checks": [
     {
@@ -386,14 +386,14 @@
     },
     {
       "path": "docs/V04-PHASE0-REPORT.md",
-      "bytes": 18164,
-      "sha256": "d58ff0973f5250fd6c1488d0c46ab36462d4695d30fbf3de336a9923b83b4468",
+      "bytes": 18704,
+      "sha256": "21d42be98ce01c72380a8de82ce7ddc81861076e96ce917a4524005ee07808d4",
       "kind": "delivery-source"
     },
     {
       "path": "docs/V04-PHASE0-REPRODUCE.md",
-      "bytes": 5122,
-      "sha256": "be6bcb9e42fba4f10fed60fa72bcfc9682d8b64919980f29f95c1a8371438cfc",
+      "bytes": 5966,
+      "sha256": "0e944559219d4710989c6f849550c8214159f83a2018863242522bf483bf26a2",
       "kind": "delivery-source"
     },
     {
@@ -422,8 +422,8 @@
     },
     {
       "path": "docs/V04-STATE.md",
-      "bytes": 6158,
-      "sha256": "12a0ed7598696594130e357bcb021d548987baedf532c138986ca965fecb426b",
+      "bytes": 6405,
+      "sha256": "bace7f4038b2dc90e5872f3c69d42c3c12216278814dd2cb3169568950fb5227",
       "kind": "delivery-source"
     },
     {
@@ -1072,6 +1072,12 @@
       "path": "evidence/v04-p0-review/overcast-comparison.png",
       "bytes": 693726,
       "sha256": "bd0c7ed9c39db3c700509ebd00f2e9af784ad066cbf7fca386568d0f5ddb417b",
+      "kind": "evidence"
+    },
+    {
+      "path": "evidence/v04-p0-review/publication.json",
+      "bytes": 951,
+      "sha256": "10b795ee6e4dfc36d0cffadbcfdb682f349c955e7b763b77bb03aee712af1639",
       "kind": "evidence"
     },
     {
