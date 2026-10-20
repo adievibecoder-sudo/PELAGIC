@@ -1,0 +1,437 @@
+{
+  "scope": "CPU linear ensemble/candidate experiments; not GPU realization or nonlinear/observational validation.",
+  "seedPolicy": "LCG seed 7919*n for 64 instantaneous Gaussian-pair realizations; group seeds 1307,3001,7919.",
+  "presets": {
+    "calm": {
+      "total": 0.03004672947270787,
+      "pairs": 32418,
+      "travelingModes": 64836,
+      "pairs50": 12,
+      "pairs90": 335,
+      "effectiveInstantaneousPairs": 35.95222283820642,
+      "hs64": {
+        "mean": 0.6876068745706826,
+        "sd": 0.05090130431326172,
+        "min": 0.5911488334125371,
+        "max": 0.812544007378937
+      },
+      "cascade0Share": 0.8753059406795451,
+      "windHs": 0.23860849259673908,
+      "windTp": 2.295978678705881,
+      "PMreference": {
+        "U10": 2,
+        "U195": 2.0958872546616134,
+        "z0": 0.000008922931401441044,
+        "hs": 0.09369652220677875,
+        "tp": 1.530376721277713,
+        "scope": "Neutral log-law wind-height conversion; empirical fully developed wind-sea reference only. No clamp on swell or mixed seas."
+      },
+      "legacyWrongHeightTp": 1.460633520859753,
+      "energyLedgerError": -4.363176486776865e-14,
+      "candidates": {
+        "correlationAt1103m": {
+          "baseline": 0.8764578348039741,
+          "naiveStretchedSplit": 0.45477747432945276,
+          "jitteredBins": -0.06814161233609692
+        },
+        "groups": [
+          {
+            "seed": 1307,
+            "samples": 2048,
+            "dt": 0.25,
+            "retainedEnergy": 0.9900026253116264,
+            "modes": 1930,
+            "height": {
+              "mean": -0.0012806879449342354,
+              "sd": 0.16437279872573576,
+              "min": -0.5294369642000077,
+              "max": 0.4787868102945591
+            },
+            "skewness": 0.04679027830463407,
+            "envelopeCV": 0.5168661782251853
+          },
+          {
+            "seed": 3001,
+            "samples": 2048,
+            "dt": 0.25,
+            "retainedEnergy": 0.9900026253116264,
+            "modes": 1930,
+            "height": {
+              "mean": -0.0002512900646031822,
+              "sd": 0.15363034498745992,
+              "min": -0.46741882968921994,
+              "max": 0.44832205550772364
+            },
+            "skewness": -0.05091444560674004,
+            "envelopeCV": 0.5176443728740072
+          },
+          {
+            "seed": 7919,
+            "samples": 2048,
+            "dt": 0.25,
+            "retainedEnergy": 0.9900026253116264,
+            "modes": 1930,
+            "height": {
+              "mean": -0.0012539639231059765,
+              "sd": 0.15007013078856035,
+              "min": -0.5082235131839345,
+              "max": 0.48882377583167586
+            },
+            "skewness": -0.06692625672914065,
+            "envelopeCV": 0.5394411737403818
+          }
+        ],
+        "jitteredGroups": {
+          "seed": 1307,
+          "samples": 2048,
+          "dt": 0.25,
+          "retainedEnergy": 0.9900026253116264,
+          "modes": 1930,
+          "height": {
+            "mean": -0.0009728638186468883,
+            "sd": 0.15943895564143382,
+            "min": -0.4608641365573277,
+            "max": 0.4334179960845933
+          },
+          "skewness": 0.09860224690988441,
+          "envelopeCV": 0.5076040791256184
+        },
+        "decision": "Reject naive stretched split: changes wavelengths. Non-grid quadrature candidate reduces recurrence but needs resampled density, energy bands and directional tensor tests before adoption."
+      }
+    },
+    "midday": {
+      "total": 0.46653655065883404,
+      "pairs": 32418,
+      "travelingModes": 64836,
+      "pairs50": 84,
+      "pairs90": 653,
+      "effectiveInstantaneousPairs": 139.7662801873883,
+      "hs64": {
+        "mean": 2.7205992770380476,
+        "sd": 0.10321460013170247,
+        "min": 2.497621212445068,
+        "max": 2.963874364600435
+      },
+      "cascade0Share": 0.8682768066778493,
+      "windHs": 1.850646295067544,
+      "windTp": 5.972260463356036,
+      "PMreference": {
+        "U10": 8,
+        "U195": 8.496085492090412,
+        "z0": 0.00021029481701660498,
+        "hs": 1.5396619800778173,
+        "tp": 6.203678862095906,
+        "scope": "Neutral log-law wind-height conversion; empirical fully developed wind-sea reference only. No clamp on swell or mixed seas."
+      },
+      "legacyWrongHeightTp": 5.842534083439012,
+      "energyLedgerError": -2.475797344914099e-14,
+      "candidates": {
+        "correlationAt1103m": {
+          "baseline": 0.8703591119310652,
+          "naiveStretchedSplit": 0.4385437263477233,
+          "jitteredBins": -0.02862452807602731
+        },
+        "groups": [
+          {
+            "seed": 1307,
+            "samples": 2048,
+            "dt": 0.25,
+            "retainedEnergy": 0.9900081706914936,
+            "modes": 2439,
+            "height": {
+              "mean": -0.0009573144185269237,
+              "sd": 0.6739830303227349,
+              "min": -2.068240498088352,
+              "max": 1.8766211458009912
+            },
+            "skewness": -0.11643460370375576,
+            "envelopeCV": 0.5292551199291415
+          },
+          {
+            "seed": 3001,
+            "samples": 2048,
+            "dt": 0.25,
+            "retainedEnergy": 0.9900081706914936,
+            "modes": 2439,
+            "height": {
+              "mean": -0.0009371797138352745,
+              "sd": 0.6817290763716598,
+              "min": -1.8614721656126534,
+              "max": 2.0314186625399246
+            },
+            "skewness": 0.05553469609663839,
+            "envelopeCV": 0.4655454604218308
+          },
+          {
+            "seed": 7919,
+            "samples": 2048,
+            "dt": 0.25,
+            "retainedEnergy": 0.9900081706914936,
+            "modes": 2439,
+            "height": {
+              "mean": -0.0043699085942460174,
+              "sd": 0.7515214289503885,
+              "min": -2.353529203938621,
+              "max": 1.9760000937030588
+            },
+            "skewness": -0.12266949073576261,
+            "envelopeCV": 0.4935358401082585
+          }
+        ],
+        "jitteredGroups": {
+          "seed": 1307,
+          "samples": 2048,
+          "dt": 0.25,
+          "retainedEnergy": 0.9900081706914936,
+          "modes": 2439,
+          "height": {
+            "mean": -0.0017748497545836473,
+            "sd": 0.6157710785994348,
+            "min": -1.8646971528934722,
+            "max": 1.8193298826642483
+          },
+          "skewness": 0.05112947428862208,
+          "envelopeCV": 0.5139692629285137
+        },
+        "decision": "Reject naive stretched split: changes wavelengths. Non-grid quadrature candidate reduces recurrence but needs resampled density, energy bands and directional tensor tests before adoption."
+      }
+    },
+    "golden": {
+      "total": 0.3401729016575169,
+      "pairs": 32418,
+      "travelingModes": 64836,
+      "pairs50": 67,
+      "pairs90": 665,
+      "effectiveInstantaneousPairs": 144.9817357395293,
+      "hs64": {
+        "mean": 2.322894749006752,
+        "sd": 0.08584458627566541,
+        "min": 2.1336108327129226,
+        "max": 2.514540352558404
+      },
+      "cascade0Share": 0.8296453224047048,
+      "windHs": 1.4704243454301162,
+      "windTp": 5.342666093307551,
+      "PMreference": {
+        "U10": 7,
+        "U195": 7.422808108388414,
+        "z0": 0.00015783181440570264,
+        "hs": 1.1752333438880778,
+        "tp": 5.419992277887646,
+        "scope": "Neutral log-law wind-height conversion; empirical fully developed wind-sea reference only. No clamp on swell or mixed seas."
+      },
+      "legacyWrongHeightTp": 5.112217323009135,
+      "energyLedgerError": -3.47499806707674e-14
+    },
+    "storm": {
+      "total": 3.436754569183129,
+      "pairs": 32418,
+      "travelingModes": 64836,
+      "pairs50": 22,
+      "pairs90": 307,
+      "effectiveInstantaneousPairs": 66.8801292541896,
+      "hs64": {
+        "mean": 7.362514491042765,
+        "sd": 0.39077494949968494,
+        "min": 6.582376786722601,
+        "max": 8.216267211260899
+      },
+      "cascade0Share": 0.9736394521995506,
+      "windHs": 6.584877077863953,
+      "windTp": 10.65698899729424,
+      "PMreference": {
+        "U10": 20,
+        "U195": 21.547061005556365,
+        "z0": 0.0017803623908707819,
+        "hs": 9.902930255165826,
+        "tp": 15.733251157242298,
+        "scope": "Neutral log-law wind-height conversion; empirical fully developed wind-sea reference only. No clamp on swell or mixed seas."
+      },
+      "legacyWrongHeightTp": 14.60633520859753,
+      "energyLedgerError": -3.852473895449293e-14,
+      "candidates": {
+        "correlationAt1103m": {
+          "baseline": 0.9729908082951686,
+          "naiveStretchedSplit": 0.4971152614787401,
+          "jitteredBins": 0.014130250448653193
+        },
+        "groups": [
+          {
+            "seed": 1307,
+            "samples": 2048,
+            "dt": 0.25,
+            "retainedEnergy": 0.9900033213452354,
+            "modes": 2005,
+            "height": {
+              "mean": -0.006233440510000014,
+              "sd": 1.4686683055785796,
+              "min": -4.25727415614348,
+              "max": 4.873245760834735
+            },
+            "skewness": 0.014208620771689108,
+            "envelopeCV": 0.5272372257317425
+          },
+          {
+            "seed": 3001,
+            "samples": 2048,
+            "dt": 0.25,
+            "retainedEnergy": 0.9900033213452354,
+            "modes": 2005,
+            "height": {
+              "mean": -0.011677577322427407,
+              "sd": 1.7975601004318724,
+              "min": -6.304052576433069,
+              "max": 7.1761742397769375
+            },
+            "skewness": 0.055255653048173925,
+            "envelopeCV": 0.5623378303791369
+          },
+          {
+            "seed": 7919,
+            "samples": 2048,
+            "dt": 0.25,
+            "retainedEnergy": 0.9900033213452354,
+            "modes": 2005,
+            "height": {
+              "mean": -0.018168995909069664,
+              "sd": 1.8267817491751703,
+              "min": -5.210181226127871,
+              "max": 5.949584513163439
+            },
+            "skewness": 0.05739650999834921,
+            "envelopeCV": 0.5512288408931629
+          }
+        ],
+        "jitteredGroups": {
+          "seed": 1307,
+          "samples": 2048,
+          "dt": 0.25,
+          "retainedEnergy": 0.9900033213452354,
+          "modes": 2005,
+          "height": {
+            "mean": -0.014382348764436288,
+            "sd": 1.5070580919141876,
+            "min": -4.096533927165809,
+            "max": 4.0551854049419624
+          },
+          "skewness": 0.01260972168335989,
+          "envelopeCV": 0.5027756479488109
+        },
+        "decision": "Reject naive stretched split: changes wavelengths. Non-grid quadrature candidate reduces recurrence but needs resampled density, energy bands and directional tensor tests before adoption."
+      }
+    },
+    "twilight": {
+      "total": 0.1935220834959752,
+      "pairs": 32418,
+      "travelingModes": 64836,
+      "pairs50": 25,
+      "pairs90": 408,
+      "effectiveInstantaneousPairs": 63.55462248392766,
+      "hs64": {
+        "mean": 1.7480017815295492,
+        "sd": 0.09661754598268377,
+        "min": 1.5693633856648583,
+        "max": 1.9786147840761068
+      },
+      "cascade0Share": 0.7514287095090171,
+      "windHs": 0.9110015009808674,
+      "windTp": 4.284883017042113,
+      "PMreference": {
+        "U10": 5,
+        "U195": 5.282171087840653,
+        "z0": 0.00007255383293743514,
+        "hs": 0.5951309895780862,
+        "tp": 3.8569401348559875,
+        "scope": "Neutral log-law wind-height conversion; empirical fully developed wind-sea reference only. No clamp on swell or mixed seas."
+      },
+      "legacyWrongHeightTp": 3.6515838021493825,
+      "energyLedgerError": -3.574918139293004e-14
+    },
+    "moonlit": {
+      "total": 0.190436938599014,
+      "pairs": 32418,
+      "travelingModes": 64836,
+      "pairs50": 34,
+      "pairs90": 560,
+      "effectiveInstantaneousPairs": 92.79341735389362,
+      "hs64": {
+        "mean": 1.7360704530066475,
+        "sd": 0.08066781195620563,
+        "min": 1.5727278659458688,
+        "max": 1.9177238932641159
+      },
+      "cascade0Share": 0.7070202224196511,
+      "windHs": 1.0327911460878518,
+      "windTp": 4.533825065048993,
+      "PMreference": {
+        "U10": 5.5,
+        "U195": 5.816419759199083,
+        "z0": 0.00009091299210523737,
+        "hs": 0.7216043127020276,
+        "tp": 4.247038279783394,
+        "scope": "Neutral log-law wind-height conversion; empirical fully developed wind-sea reference only. No clamp on swell or mixed seas."
+      },
+      "legacyWrongHeightTp": 4.01674218236432,
+      "energyLedgerError": -3.808064974464287e-14
+    }
+  },
+  "breaking": {
+    "scope": "Analytic linear focused packet at x=t=0; c=-eta_xt/eta_xx. Linear fluid velocity at z=0. Not nonlinear surface u/c.",
+    "cases": [
+      {
+        "steepness": 0.1,
+        "crestHeight": 1.2732395447351628,
+        "crestSpeed": 11.138588704151237,
+        "linearSurfaceVelocity": 1.1168502769478654,
+        "ratio": 0.10026856243750402
+      },
+      {
+        "steepness": 0.2,
+        "crestHeight": 2.5464790894703255,
+        "crestSpeed": 11.138588704151237,
+        "linearSurfaceVelocity": 2.233700553895731,
+        "ratio": 0.20053712487500805
+      },
+      {
+        "steepness": 0.3,
+        "crestHeight": 3.819718634205488,
+        "crestSpeed": 11.138588704151237,
+        "linearSurfaceVelocity": 3.3505508308435963,
+        "ratio": 0.30080568731251206
+      },
+      {
+        "steepness": 0.4,
+        "crestHeight": 5.092958178940651,
+        "crestSpeed": 11.138588704151237,
+        "linearSurfaceVelocity": 4.467401107791462,
+        "ratio": 0.4010742497500161
+      }
+    ],
+    "decision": "Do not apply B=0.85 to linear kinematics: it would demand an already-invalid steep packet. Nonlinear onset/event calibration remains required."
+  },
+  "feedback": {
+    "model": "Scalar delayed diffuse closure L[n+1]=external+gain*L[n]; one-frame delay alone does not enforce stability.",
+    "cases": [
+      {
+        "gain": 0.2,
+        "L120": 1.25,
+        "finiteEquilibrium": 1.25
+      },
+      {
+        "gain": 0.8,
+        "L120": 4.999999999988258,
+        "finiteEquilibrium": 5.000000000000001
+      },
+      {
+        "gain": 1,
+        "L120": 120,
+        "finiteEquilibrium": null
+      },
+      {
+        "gain": 1.1,
+        "L120": 927080.6881783085,
+        "finiteEquilibrium": null
+      }
+    ]
+  }
+}

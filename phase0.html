@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>PELAGIC Phase 0 laboratory</title>
+<style>body{margin:0;background:#101b20;color:#e6ede7;font:14px Consolas,monospace}header{display:flex;gap:16px;align-items:center;padding:12px}button{padding:8px}iframe{border:0;width:100vw;height:calc(100vh - 60px)}span{margin-left:auto}</style>
+<header><strong>PHASE 0 / UNACCEPTED EXPERIMENTS</strong><button id="run">Run comparisons</button><button id="stop">Stop after current</button><span id="status">Ready</span></header><iframe id="view" title="Phase 0 experiment"></iframe>
+<script type="module">
+const args=new URLSearchParams(location.search),motion=args.get('mode')==='motion',stage=args.get('stage')||(motion?'v04-p0-motion':'v04-p0-clouds');
+if(!/^v04-p0[a-z0-9-]{0,34}$/.test(stage))throw Error('Invalid stage');
+const cases=[];
+for(const scene of ['midday','golden','storm','overcast'])for(const model of ['baseline','continuous','cells'])cases.push({name:scene+'-'+model,preset:scene==='overcast'?'midday':scene,p0Cloud:model,...(scene==='overcast'?{clouds:.92,cloudType:1,cloudDepth:1.5}:{}),p0Columns:1});
+for(const model of ['baseline','continuous','cells'])cases.push({name:'opacity-'+model,preset:'midday',p0Cloud:model,p0CloudView:'opacity'});
+for(const scene of ['midday','golden','storm'])cases.push({name:scene+'-desat-off',preset:scene,p0Desat:'off'});
+for(const [name,debug] of [['body',5],['reflection',12],['glitter',8],['normals',9]])cases.push({name:'midday-'+name,preset:'midday',debug});
+if(motion){
+ cases.length=0;
+ for(const model of ['baseline','continuous','cells'])cases.push({name:'cloud-'+model,preset:'midday',p0Cloud:model});
+ cases.push({name:'storm',preset:'storm',cam:'0,5,0,79,-9'},
+  {name:'waterline',preset:'midday',motion:'waterline'},
+  {name:'skim',preset:'midday',motion:'skim'},
+  {name:'weather-baseline',preset:'midday',motion:'weather'},
+  {name:'weather-cells',preset:'midday',motion:'weather',p0Cloud:'cells'},
+  {name:'frozen-skim',preset:'midday',motion:'slowwaterline',paused:1});
+}
+let index=Number(args.get('start')||0),running=false,view=document.querySelector('#view');const status=document.querySelector('#status');
+function next(){
+ if(!running||index===cases.length){running=false;document.title='PHASE0 LAB DONE';status.textContent=`${index}/${cases.length} complete`;return;}
+ const c=cases[index];status.textContent=`${index+1}/${cases.length}: ${c.name}`;
+ const q=new URLSearchParams({cam:'0,2,0,4,-5.5',cameraMode:'free',quality:'Balanced',w:1920,h:1080,seed:1307,t:20,frames:100,ui:0,adaptive:0,stage,shot:c.name+'.png',validate:1,p0:1,p0Profile:1,revision:args.get('revision')||'Phase0-uncommitted',...c});
+ if(motion){q.delete('shot');q.delete('p0Columns');q.set('video',c.name);}
+ view.src='/?'+q;
+}
+document.querySelector('#run').onclick=()=>{if(running)return;running=true;next();};
+document.querySelector('#stop').onclick=()=>running=false;
+addEventListener('message',e=>{
+ if(e.origin!==location.origin||e.source!==view.contentWindow||e.data?.type!==(motion?'pelagic-video':'pelagic-capture'))return;
+ index++;
+ // A fresh host document releases the previous WebGPU iframe before the next case.
+ if(running&&index<cases.length){args.set('start',index);args.set('auto','1');location.href='phase0.html?'+args;}
+ else next();
+});
+if(args.get('auto')==='1'){running=true;next();}
+</script></html>

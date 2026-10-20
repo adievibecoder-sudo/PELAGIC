@@ -1,0 +1,1374 @@
+{
+  "clouds": {
+    "golden-baseline": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 19.791872,
+        "surface": 19.00544,
+        "post": 0.393216,
+        "cloudScreen": 15.466496,
+        "cloudShadow": 0.262144,
+        "environment": 3.866624
+      },
+      "frameCount": 70,
+      "fps": 22.930520522821464,
+      "p99": 46,
+      "maxMs": 47.399999998509884,
+      "over500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {
+        "scope": "1024 fixed vertical columns in a 40 km square, 128 midpoint samples per column. Integrated extinction; not solar-disc occupancy, measured cloud water or converged quadrature.",
+        "model": "baseline",
+        "mean": 0.7924693942204613,
+        "p50": 0,
+        "p90": 2.959213972091675,
+        "max": 11.623601913452148,
+        "fractionTauOver1": 0.17578125,
+        "invalid": 0
+      }
+    },
+    "golden-cells": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.179648,
+        "atmosphere": 4.718592,
+        "surface": 18.874368,
+        "post": 0.393216,
+        "cloudScreen": 3.60448,
+        "cloudShadow": 0.196608,
+        "environment": 0.720896
+      },
+      "frameCount": 70,
+      "fps": 34.84840941904016,
+      "p99": 30.400000002235174,
+      "maxMs": 31.300000000745058,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {
+        "scope": "1024 fixed vertical columns in a 40 km square, 128 midpoint samples per column. Integrated extinction; not solar-disc occupancy, measured cloud water or converged quadrature.",
+        "model": "cells",
+        "mean": 5.180043548907226,
+        "p50": 4.657786846160889,
+        "p90": 11.323018074035645,
+        "max": 12.06479263305664,
+        "fractionTauOver1": 0.640625,
+        "invalid": 0
+      }
+    },
+    "golden-continuous": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 7.20896,
+        "surface": 20.185088,
+        "post": 0.393216,
+        "cloudScreen": 5.373952,
+        "cloudShadow": 0.196608,
+        "environment": 1.900544
+      },
+      "frameCount": 70,
+      "fps": 30.57302585607457,
+      "p99": 34.600000001490116,
+      "maxMs": 35,
+      "over500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {
+        "scope": "1024 fixed vertical columns in a 40 km square, 128 midpoint samples per column. Integrated extinction; not solar-disc occupancy, measured cloud water or converged quadrature.",
+        "model": "continuous",
+        "mean": 0.9709989483117312,
+        "p50": 0.06372441351413727,
+        "p90": 3.2691376209259033,
+        "max": 5.926189422607422,
+        "fractionTauOver1": 0.3525390625,
+        "invalid": 0
+      }
+    },
+    "golden-desat-off": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 23.330816,
+        "surface": 20.774912,
+        "post": 0.393216,
+        "cloudScreen": 18.612224,
+        "cloudShadow": 0.262144,
+        "environment": 4.194304
+      },
+      "frameCount": 70,
+      "fps": 20.2107694528656,
+      "p99": 52.70000000298023,
+      "maxMs": 53.5,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "midday-baseline": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 19.726336,
+        "surface": 19.726336,
+        "post": 0.393216,
+        "cloudScreen": 15.335424,
+        "cloudShadow": 0.393216,
+        "environment": 3.866624
+      },
+      "frameCount": 70,
+      "fps": 22.078536508437153,
+      "p99": 58.79999999888241,
+      "maxMs": 59.09999999962747,
+      "over500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {
+        "scope": "1024 fixed vertical columns in a 40 km square, 128 midpoint samples per column. Integrated extinction; not solar-disc occupancy, measured cloud water or converged quadrature.",
+        "model": "baseline",
+        "mean": 0.7883417847674536,
+        "p50": 0,
+        "p90": 2.9119701385498047,
+        "max": 11.473647117614746,
+        "fractionTauOver1": 0.1796875,
+        "invalid": 0
+      }
+    },
+    "midday-body": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 21.168128,
+        "surface": 20.185088,
+        "post": 0.393216,
+        "cloudScreen": 16.318464,
+        "cloudShadow": 0.393216,
+        "environment": 3.997696
+      },
+      "frameCount": 70,
+      "fps": 21.305088872646778,
+      "p99": 50.79999999701977,
+      "maxMs": 51.5,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "midday-cells": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 5.177344,
+        "surface": 20.31616,
+        "post": 0.393216,
+        "cloudScreen": 3.670016,
+        "cloudShadow": 0.262144,
+        "environment": 0.720896
+      },
+      "frameCount": 70,
+      "fps": 32.222426809081206,
+      "p99": 35.5,
+      "maxMs": 41.79999999888241,
+      "over500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {
+        "scope": "1024 fixed vertical columns in a 40 km square, 128 midpoint samples per column. Integrated extinction; not solar-disc occupancy, measured cloud water or converged quadrature.",
+        "model": "cells",
+        "mean": 5.178452833150743,
+        "p50": 4.67990255355835,
+        "p90": 11.317000389099121,
+        "max": 12.059593200683594,
+        "fractionTauOver1": 0.6396484375,
+        "invalid": 0
+      }
+    },
+    "midday-continuous": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 7.012352,
+        "surface": 20.31616,
+        "post": 0.393216,
+        "cloudScreen": 4.9152,
+        "cloudShadow": 0.196608,
+        "environment": 1.6384
+      },
+      "frameCount": 70,
+      "fps": 30.862836735573396,
+      "p99": 36.20000000111759,
+      "maxMs": 37.5,
+      "over500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {
+        "scope": "1024 fixed vertical columns in a 40 km square, 128 midpoint samples per column. Integrated extinction; not solar-disc occupancy, measured cloud water or converged quadrature.",
+        "model": "continuous",
+        "mean": 0.9707221272393838,
+        "p50": 0.06998685002326965,
+        "p90": 3.2852675914764404,
+        "max": 5.910672187805176,
+        "fractionTauOver1": 0.3515625,
+        "invalid": 0
+      }
+    },
+    "midday-desat-off": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 20.774912,
+        "surface": 20.381696,
+        "post": 0.393216,
+        "cloudScreen": 16.121856,
+        "cloudShadow": 0.393216,
+        "environment": 3.997696
+      },
+      "frameCount": 70,
+      "fps": 21.474368806925792,
+      "p99": 49.69999999925494,
+      "maxMs": 51.30000000074506,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "midday-glitter": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 21.692416,
+        "surface": 20.185088,
+        "post": 0.393216,
+        "cloudScreen": 17.170432,
+        "cloudShadow": 0.393216,
+        "environment": 3.93216
+      },
+      "frameCount": 70,
+      "fps": 21.233998665281916,
+      "p99": 52,
+      "maxMs": 52,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "midday-normals": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 21.823488,
+        "surface": 20.250624,
+        "post": 0.393216,
+        "cloudScreen": 16.908288,
+        "cloudShadow": 0.393216,
+        "environment": 3.93216
+      },
+      "frameCount": 70,
+      "fps": 20.988246581895375,
+      "p99": 52.400000002235174,
+      "maxMs": 55.69999999925494,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "midday-reflection": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 21.168128,
+        "surface": 20.250624,
+        "post": 0.393216,
+        "cloudScreen": 16.449536,
+        "cloudShadow": 0.458752,
+        "environment": 3.93216
+      },
+      "frameCount": 70,
+      "fps": 21.214049762104374,
+      "p99": 51.5,
+      "maxMs": 52.899999998509884,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "opacity-baseline": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 20.185088,
+        "surface": 20.119552,
+        "post": 0.393216,
+        "cloudScreen": 15.794176,
+        "cloudShadow": 0.393216,
+        "environment": 3.93216
+      },
+      "frameCount": 70,
+      "fps": 21.86201942597601,
+      "p99": 51,
+      "maxMs": 52.100000001490116,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "opacity-cells": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 4.849664,
+        "surface": 19.857408,
+        "post": 0.393216,
+        "cloudScreen": 3.735552,
+        "cloudShadow": 0.196608,
+        "environment": 0.720896
+      },
+      "frameCount": 70,
+      "fps": 32.919488337060955,
+      "p99": 33.29999999701977,
+      "maxMs": 33.399999998509884,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "opacity-continuous": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 7.012352,
+        "surface": 19.98848,
+        "post": 0.393216,
+        "cloudScreen": 4.980736,
+        "cloudShadow": 0.262144,
+        "environment": 1.703936
+      },
+      "frameCount": 70,
+      "fps": 31.243026110243246,
+      "p99": 33.69999999925494,
+      "maxMs": 33.69999999925494,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "overcast-baseline": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 3.342336,
+        "surface": 19.6608,
+        "post": 0.393216,
+        "cloudScreen": 2.097152,
+        "cloudShadow": 0.131072,
+        "environment": 0.98304
+      },
+      "frameCount": 70,
+      "fps": 35.312515764569056,
+      "p99": 32.5,
+      "maxMs": 33.399999998509884,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {
+        "scope": "1024 fixed vertical columns in a 40 km square, 128 midpoint samples per column. Integrated extinction; not solar-disc occupancy, measured cloud water or converged quadrature.",
+        "model": "baseline",
+        "mean": 2.6864078688258815,
+        "p50": 2.491659164428711,
+        "p90": 5.106154918670654,
+        "max": 6.295912742614746,
+        "fractionTauOver1": 0.8017578125,
+        "invalid": 0
+      }
+    },
+    "overcast-cells": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 2.883584,
+        "surface": 19.726336,
+        "post": 0.393216,
+        "cloudScreen": 1.769472,
+        "cloudShadow": 0.196608,
+        "environment": 0.720896
+      },
+      "frameCount": 70,
+      "fps": 35.7854915392601,
+      "p99": 30.299999997019768,
+      "maxMs": 30.899999998509884,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {
+        "scope": "1024 fixed vertical columns in a 40 km square, 128 midpoint samples per column. Integrated extinction; not solar-disc occupancy, measured cloud water or converged quadrature.",
+        "model": "cells",
+        "mean": 3.9679716508952936,
+        "p50": 4.738529682159424,
+        "p90": 5.496695041656494,
+        "max": 5.944998741149902,
+        "fractionTauOver1": 0.8818359375,
+        "invalid": 0
+      }
+    },
+    "overcast-continuous": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 6.029312,
+        "surface": 20.840448,
+        "post": 0.393216,
+        "cloudScreen": 3.801088,
+        "cloudShadow": 0.262144,
+        "environment": 1.507328
+      },
+      "frameCount": 70,
+      "fps": 31.145717463848722,
+      "p99": 34.900000002235174,
+      "maxMs": 35.900000002235174,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {
+        "scope": "1024 fixed vertical columns in a 40 km square, 128 midpoint samples per column. Integrated extinction; not solar-disc occupancy, measured cloud water or converged quadrature.",
+        "model": "continuous",
+        "mean": 1.0948422689716963,
+        "p50": 1.0796853303909302,
+        "p90": 2.109546184539795,
+        "max": 3.656855344772339,
+        "fractionTauOver1": 0.5341796875,
+        "invalid": 0
+      }
+    },
+    "storm-baseline": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.179648,
+        "atmosphere": 11.075584,
+        "surface": 23.396352,
+        "post": 0.393216,
+        "cloudScreen": 8.388608,
+        "cloudShadow": 0.32768,
+        "environment": 2.097152
+      },
+      "frameCount": 70,
+      "fps": 25.336615028225395,
+      "p99": 41.19999999925494,
+      "maxMs": 41.20000000298023,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {
+        "scope": "1024 fixed vertical columns in a 40 km square, 128 midpoint samples per column. Integrated extinction; not solar-disc occupancy, measured cloud water or converged quadrature.",
+        "model": "baseline",
+        "mean": 21.017074039411455,
+        "p50": 23.211566925048828,
+        "p90": 28.389867782592773,
+        "max": 35.30989074707031,
+        "fractionTauOver1": 0.9140625,
+        "invalid": 0
+      }
+    },
+    "storm-cells": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.441792,
+        "atmosphere": 1.769472,
+        "surface": 24.444928,
+        "post": 0.393216,
+        "cloudScreen": 1.048576,
+        "cloudShadow": 0.131072,
+        "environment": 0.458752
+      },
+      "frameCount": 70,
+      "fps": 31.27652919890528,
+      "p99": 34,
+      "maxMs": 34.5,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {
+        "scope": "1024 fixed vertical columns in a 40 km square, 128 midpoint samples per column. Integrated extinction; not solar-disc occupancy, measured cloud water or converged quadrature.",
+        "model": "cells",
+        "mean": 19.952462870279305,
+        "p50": 24.437183380126953,
+        "p90": 27.013450622558594,
+        "max": 28.29692268371582,
+        "fractionTauOver1": 0.9296875,
+        "invalid": 0
+      }
+    },
+    "storm-continuous": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.179648,
+        "atmosphere": 3.735552,
+        "surface": 23.789568,
+        "post": 0.393216,
+        "cloudScreen": 2.424832,
+        "cloudShadow": 0.131072,
+        "environment": 1.048576
+      },
+      "frameCount": 70,
+      "fps": 30.610460031524934,
+      "p99": 35,
+      "maxMs": 39.600000001490116,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {
+        "scope": "1024 fixed vertical columns in a 40 km square, 128 midpoint samples per column. Integrated extinction; not solar-disc occupancy, measured cloud water or converged quadrature.",
+        "model": "continuous",
+        "mean": 4.558843174266713,
+        "p50": 4.15208625793457,
+        "p90": 9.513936042785645,
+        "max": 12.68004322052002,
+        "fractionTauOver1": 0.8154296875,
+        "invalid": 0
+      }
+    },
+    "storm-desat-off": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.245184,
+        "atmosphere": 12.320768,
+        "surface": 24.90368,
+        "post": 0.393216,
+        "cloudScreen": 9.109504,
+        "cloudShadow": 0.32768,
+        "environment": 2.490368
+      },
+      "frameCount": 70,
+      "fps": 23.39650389382924,
+      "p99": 46.70000000298023,
+      "maxMs": 70.19999999925494,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    }
+  },
+  "performance": {
+    "golden-balanced": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "requestAnimationFrame, display paced",
+      "medianPassMs": {
+        "simulation": 1.507328,
+        "atmosphere": 20.774912,
+        "surface": 19.726336,
+        "post": 0.393216,
+        "cloudScreen": null,
+        "cloudShadow": null,
+        "environment": null
+      },
+      "frameCount": 1770,
+      "fps": 22.896201300297264,
+      "p99": 76.29999999999927,
+      "maxMs": 1006.8000000000028,
+      "over500ms": 3,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        -1
+      ],
+      "cloudColumns": {}
+    },
+    "golden-high-profile": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "requestAnimationFrame, display paced",
+      "medianPassMs": {
+        "simulation": 1.6384,
+        "atmosphere": 60.194816,
+        "surface": 24.24832,
+        "post": 0.393216,
+        "cloudScreen": 42.696704,
+        "cloudShadow": 0.262144,
+        "environment": 17.170431999999998
+      },
+      "frameCount": 974,
+      "fps": 8.224705021038863,
+      "p99": 1006.9000000000015,
+      "maxMs": 1006.9999999999999,
+      "over500ms": 42,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        -1
+      ],
+      "cloudColumns": {}
+    },
+    "storm-balanced": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "requestAnimationFrame, display paced",
+      "medianPassMs": {
+        "simulation": 1.441792,
+        "atmosphere": 11.4688,
+        "surface": 21.037056,
+        "post": 0.393216,
+        "cloudScreen": null,
+        "cloudShadow": null,
+        "environment": null
+      },
+      "frameCount": 1770,
+      "fps": 17.172895156079303,
+      "p99": 1000.1000000000022,
+      "maxMs": 1006.9999999999999,
+      "over500ms": 42,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        -1
+      ],
+      "cloudColumns": {}
+    },
+    "storm-matched-balanced": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "requestAnimationFrame, display paced",
+      "medianPassMs": {
+        "simulation": 1.572864,
+        "atmosphere": 10.15808,
+        "surface": 18.219008,
+        "post": 0.393216,
+        "cloudScreen": null,
+        "cloudShadow": null,
+        "environment": null
+      },
+      "frameCount": 1770,
+      "fps": 32.27553459773196,
+      "p99": 34.900000000001455,
+      "maxMs": 438.0000000000002,
+      "over500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "cloudColumns": {}
+    }
+  },
+  "motion": {
+    "cloud-baseline": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.507328,
+        "atmosphere": 20.774912,
+        "surface": 19.464192,
+        "post": 0.393216,
+        "cloudScreen": 16.121856,
+        "cloudShadow": 0.393216,
+        "environment": 3.801088
+      },
+      "frameCount": 190,
+      "fps": 19.777863366193877,
+      "p99": 67.80000000074506,
+      "maxMs": 77.10000000149012,
+      "over500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "cloud-cells": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.441792,
+        "atmosphere": 4.9152,
+        "surface": 19.00544,
+        "post": 0.393216,
+        "cloudScreen": 3.670016,
+        "cloudShadow": 0.262144,
+        "environment": 0.720896
+      },
+      "frameCount": 281,
+      "fps": 28.98221873839234,
+      "p99": 39.600000001490116,
+      "maxMs": 40.70000000298023,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "cloud-continuous": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.441792,
+        "atmosphere": 6.88128,
+        "surface": 18.743296,
+        "post": 0.393216,
+        "cloudScreen": 4.849664,
+        "cloudShadow": 0.262144,
+        "environment": 1.6384
+      },
+      "frameCount": 277,
+      "fps": 28.497062847863226,
+      "p99": 40.20000000298023,
+      "maxMs": 43.399999998509884,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "frozen-skim": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.376256,
+        "atmosphere": 24.182784,
+        "surface": 21.233664,
+        "post": 0.393216,
+        "cloudScreen": 19.857408,
+        "cloudShadow": 0.393216,
+        "environment": 3.801088
+      },
+      "frameCount": 182,
+      "fps": 19.054997749003462,
+      "p99": 58.19999999925494,
+      "maxMs": 59.900000002235174,
+      "over500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "skim": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.507328,
+        "atmosphere": 25.3952,
+        "surface": 21.921792,
+        "post": 0.393216,
+        "cloudScreen": 20.905984,
+        "cloudShadow": 0.393216,
+        "environment": 3.997696
+      },
+      "frameCount": 174,
+      "fps": 18.33045383675649,
+      "p99": 61.19999999925494,
+      "maxMs": 65.40000000223517,
+      "over500ms": 0,
+      "visibility": [
+        "hidden",
+        "visible"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "storm": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.441792,
+        "atmosphere": 10.190847999999999,
+        "surface": 17.137664,
+        "post": 0.393216,
+        "cloudScreen": 7.340032,
+        "cloudShadow": 0.393216,
+        "environment": 2.097152
+      },
+      "frameCount": 273,
+      "fps": 28.01609129346514,
+      "p99": 41.399999998509884,
+      "maxMs": 45,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "waterline": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.4745599999999999,
+        "atmosphere": 33.554432000000006,
+        "surface": 18.055168000000002,
+        "post": 0.393216,
+        "cloudScreen": 28.770304000000003,
+        "cloudShadow": 0.393216,
+        "environment": 4.128768
+      },
+      "frameCount": 156,
+      "fps": 16.41189652088706,
+      "p99": 69.80000000074506,
+      "maxMs": 70.5,
+      "over500ms": 0,
+      "visibility": [
+        "hidden"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "weather-baseline": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.441792,
+        "atmosphere": 20.643839999999997,
+        "surface": 20.185088,
+        "post": 0.393216,
+        "cloudScreen": 15.532032,
+        "cloudShadow": 0.393216,
+        "environment": 4.128768
+      },
+      "frameCount": 204,
+      "fps": 21.259079398496407,
+      "p99": 51.79999999701977,
+      "maxMs": 52.900000002235174,
+      "over500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    },
+    "weather-cells": {
+      "errors": [],
+      "width": 1920,
+      "height": 1080,
+      "timingMode": "queue-completion capture throughput",
+      "medianPassMs": {
+        "simulation": 1.441792,
+        "atmosphere": 3.637248,
+        "surface": 20.447232,
+        "post": 0.393216,
+        "cloudScreen": 2.4248320000000003,
+        "cloudShadow": 0.262144,
+        "environment": 0.622592
+      },
+      "frameCount": 319,
+      "fps": 32.86186684247685,
+      "p99": 35,
+      "maxMs": 37.70000000298023,
+      "over500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "probeAgeFrames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cloudColumns": {}
+    }
+  },
+  "desaturation": {
+    "midday": {
+      "meanAbsoluteDisplayByteDifference": [
+        0.006830632716049383,
+        0.0010628858024691358,
+        0.010563753858024692
+      ],
+      "maxDisplayByteDifference": [
+        1,
+        1,
+        2
+      ]
+    },
+    "golden": {
+      "meanAbsoluteDisplayByteDifference": [
+        0.08589747299382716,
+        0.0065817901234567905,
+        0.35020495756172837
+      ],
+      "maxDisplayByteDifference": [
+        6,
+        1,
+        25
+      ]
+    },
+    "storm": {
+      "meanAbsoluteDisplayByteDifference": [
+        0.04378858024691358,
+        0.004276620370370371,
+        0.10917341820987654
+      ],
+      "maxDisplayByteDifference": [
+        3,
+        1,
+        7
+      ]
+    }
+  },
+  "boardTelemetry": {
+    "scope": "Whole-board samples across benchmarks and idle/other work; not per-application residency or thermal attribution.",
+    "first": "2026/10/20 20:35:43.053",
+    "last": "2026/10/20 21:23:56.870",
+    "validRows": 2872,
+    "rejectedIncompleteRows": 1,
+    "ranges": {
+      "temperature.gpu": {
+        "min": 42.0,
+        "max": 87.0
+      },
+      "utilization.gpu [%]": {
+        "min": 0.0,
+        "max": 100.0
+      },
+      "memory.used [MiB]": {
+        "min": 433.0,
+        "max": 1151.0
+      },
+      "power.draw [W]": {
+        "min": 3.13,
+        "max": 75.62
+      },
+      "clocks.current.graphics [MHz]": {
+        "min": 210.0,
+        "max": 1972.0
+      },
+      "clocks.current.memory [MHz]": {
+        "min": 375.0,
+        "max": 5871.0
+      }
+    }
+  }
+}

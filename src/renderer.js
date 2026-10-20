@@ -25,6 +25,8 @@ import { CLOUD_NOISE, CLOUD_NOISE_MIP, CLOUD_NOISE_SIZE } from './wgsl/cloud-noi
 import { ENV_IRRADIANCE, IRRADIANCE_SIZE } from './wgsl/irradiance.js';
 import { WAVE_HEIGHT, WAVE_SHADOW, WAVE_MAP_SIZE, WAVE_HEIGHT_MIPS, WAVE_HEIGHT_MAX } from './wgsl/wave-visibility.js';
 import { LENS_MEDIUM } from './wgsl/lens-medium.js';
+import {phase0Shader} from '../tests/phase0-shaders.js';
+import {phase0CloudColumns} from '../tests/phase0-readback.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -88,6 +90,7 @@ async function main() {
   ctx.configure({ device, format: swapFormat, alphaMode: 'opaque', usage: TU.RENDER_ATTACHMENT | TU.COPY_SRC });
 
   async function shader(code, label) {
+    code=phase0Shader(code,qs);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
     let bad = false;
@@ -362,9 +365,10 @@ async function main() {
   const probePipe = await computePipe(HEIGHT_PROBE, 'height probe');
   const probeRead = mkBuf(16, GU.MAP_READ | GU.COPY_DST, 'probe read');
   const bgProbe = bg(probePipe, [{ buffer: frameUBO }, fullArr(dispTex), samplerSim, { buffer: probeOut },fullArr(derivTex)], 'probe');
-  let probePending = false, waterH = 0;
+  let probePending = false, waterH = 0,probeSubmittedFrame=0,probeCompletedFrame=0;
   const onProbe = () => {
     waterH = new Float32Array(probeRead.getMappedRange(0, 16))[0];
+    probeCompletedFrame=probeSubmittedFrame;
     probeRead.unmap();
     probePending = false;
   };
@@ -475,10 +479,11 @@ async function main() {
   const measurements=[];
   const frameRecords=[];let timingFrame={cpu:0,frame:0,width:0,height:0};
   let firstPassTS = undefined;
+  const phase0Profile=qs.get('p0Profile')==='1',queryCount=phase0Profile?16:8;
   if (hasTS) {
-    tsQuery = device.createQuerySet({ type: 'timestamp', count: 8 });
-    tsResolve = mkBuf(64, GU.QUERY_RESOLVE | GU.COPY_SRC, 'ts resolve');
-    tsRead = mkBuf(64, GU.MAP_READ | GU.COPY_DST, 'ts read');
+    tsQuery = device.createQuerySet({ type: 'timestamp', count: queryCount });
+    tsResolve = mkBuf(queryCount*8, GU.QUERY_RESOLVE | GU.COPY_SRC, 'ts resolve');
+    tsRead = mkBuf(queryCount*8, GU.MAP_READ | GU.COPY_DST, 'ts read');
     firstPassTS = { querySet: tsQuery, beginningOfPassWriteIndex: 0,endOfPassWriteIndex:1 };
     mainPass.timestampWrites={querySet:tsQuery,beginningOfPassWriteIndex:4,endOfPassWriteIndex:5};
     compPass.timestampWrites = { querySet: tsQuery, endOfPassWriteIndex: 7 };
@@ -488,7 +493,8 @@ async function main() {
     const t = new BigUint64Array(tsRead.getMappedRange());
     const ms = Number(t[7] - t[0]) / 1e6;
     Object.keys(passMs).forEach((key,i)=>passMs[key]=Number(t[i*2+1]-t[i*2])/1e6);
-    if(frameIndex>30)measurements.push({gpu:ms,...passMs,...timingFrame});
+    const subpasses=phase0Profile?{skyLUT:Number(t[8]-t[2])/1e6,cloudScreen:Number(t[10]-t[9])/1e6,cloudShadow:Number(t[12]-t[11])/1e6,environment:Number(t[14]-t[13])/1e6,irradiance:Number(t[3]-t[15])/1e6}:{};
+    if(frameIndex>30)measurements.push({gpu:ms,...passMs,...subpasses,...timingFrame});
     if(measurements.length>4000)measurements.shift();
     if (ms > 0 && ms < 1000) gpuMs = gpuMs ? gpuMs * 0.8 + ms * 0.2 : ms;
     tsRead.unmap();
@@ -936,16 +942,19 @@ async function main() {
     cp.setPipeline(waveShadowPipe);cp.setBindGroup(0,bgWaveShadow);cp.dispatchWorkgroups(WAVE_MAP_SIZE/8,WAVE_MAP_SIZE/8,2);
     if(P.spray>0 || P.rain>0 || originDelta.some(x=>x!==0)){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(PARTICLE_COUNT/64);}
     cp.end();
-    cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:2,endOfPassWriteIndex:3}:undefined});
+    cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:2,endOfPassWriteIndex:phase0Profile?8:3}:undefined});
     cp.setPipeline(skyViewPipe);
     cp.setBindGroup(0, bgSkyView);
     cp.dispatchWorkgroups(Math.ceil(SKY_W / 8), Math.ceil(SKY_H / 8),2);
+    if(phase0Profile){cp.end();cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:9,endOfPassWriteIndex:10}:undefined});}
     cp.setPipeline(cloudPipe);
     cp.setBindGroup(0,bgCloud);
     cp.dispatchWorkgroups(Math.ceil(cloudW/8),Math.ceil(cloudH/8));
+    if(phase0Profile){cp.end();cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:11,endOfPassWriteIndex:12}:undefined});}
     cp.setPipeline(shadowPipe);
     cp.setBindGroup(0,bgShadow);
     cp.dispatchWorkgroups(32,32);
+    if(phase0Profile){cp.end();cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:13,endOfPassWriteIndex:14}:undefined});}
     cp.setPipeline(envPipe);
     cp.setBindGroup(0, bgEnv);
     // one cube face per frame (all six on start-up / after parameter changes)
@@ -957,6 +966,7 @@ async function main() {
       cp.setBindGroup(0, bgCubeMips[m - 1]);
       cp.dispatchWorkgroups(Math.ceil(s / 8), Math.ceil(s / 8), 6);
     }
+    if(phase0Profile){cp.end();cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:15,endOfPassWriteIndex:3}:undefined});}
     cp.setPipeline(irradiancePipe);cp.setBindGroup(0,bgIrradiance);
     cp.dispatchWorkgroups(IRRADIANCE_SIZE/8,IRRADIANCE_SIZE/8,6);
     cp.end();
@@ -1012,8 +1022,8 @@ async function main() {
     }
     let doTs = false;
     if (hasTS && !tsPending && (frameIndex & 7) === 0) {
-      enc.resolveQuerySet(tsQuery, 0, 8, tsResolve, 0);
-      enc.copyBufferToBuffer(tsResolve, 0, tsRead, 0, 64);
+      enc.resolveQuerySet(tsQuery, 0, queryCount, tsResolve, 0);
+      enc.copyBufferToBuffer(tsResolve, 0, tsRead, 0, queryCount*8);
       doTs = true;
     }
     let readBuf = null;
@@ -1027,8 +1037,8 @@ async function main() {
     submitList[0] = enc.finish();
     device.queue.submit(submitList);
     cpuMs=performance.now()-cpuStart;
-    if(frameIndex>30){frameRecords.push({frame:frameMs,cpu:cpuMs,visibility:document.visibilityState,time:simTime,camera:[cam.x,cam.y,cam.z,cam.yaw,cam.pitch]});if(frameRecords.length>4000)frameRecords.shift();}
-    if (doProbe) { probePending = true; probeRead.mapAsync(GPUMapMode.READ).then(onProbe, onProbeFail); }
+    if(frameIndex>30){frameRecords.push({frame:frameMs,cpu:cpuMs,visibility:document.visibilityState,time:simTime,camera:[cam.x,cam.y,cam.z,cam.yaw,cam.pitch],...(qs.has('p0')?{probeAgeFrames:frameIndex-probeCompletedFrame,readbackHeight:waterH}: {})});if(frameRecords.length>4000)frameRecords.shift();}
+    if (doProbe) { probePending = true;probeSubmittedFrame=frameIndex; probeRead.mapAsync(GPUMapMode.READ).then(onProbe, onProbeFail); }
     if (doTs) { timingFrame={cpu:cpuMs,frame:frameMs,width:W,height:H};tsPending = true; tsRead.mapAsync(GPUMapMode.READ).then(onTsMapped, onTsFail); }
     if (readBuf) saveShot(readBuf, Math.ceil(W * 4 / 256) * 256, true);
     if(qs.has('benchmark') && (frameIndex>=runtime.frames || now-benchmarkStart>=runtime.benchmarkSeconds*1000)){
@@ -1050,6 +1060,7 @@ async function main() {
   }
 
   function evidenceReport(){return {version:'0.3.0-dev.1',sourceCheckpoint:qs.get('revision')||'development',adapter:adapterInfo,backend:'native-webgpu',timestampQuery:hasTS,settings:{...P},camera:{...cam},simulationTime:simTime,frameIndex,width:W,height:H,nodes:nodeCount,errors,measurements,frameRecords,
+    phase0:{query:Object.fromEntries(qs),profile:phase0Profile,note:'Experimental toggles are Phase 0 hypotheses, not accepted features.'},userAgent:navigator.userAgent,
     foamPatternCalibration,worldOrigin:origin,benchmarkStopReason,benchmarkWallSeconds:benchmarkStart===null?0:(performance.now()-benchmarkStart)/1000,
     surfaceProbe:{height:waterH,scope:'Asynchronous camera-point height; optical classification uses the current GPU near-plane map.'},
     timingMode:qs.has('benchmark')?'requestAnimationFrame, display paced':'queue-completion capture throughput',
@@ -1081,6 +1092,7 @@ async function main() {
     const stage=qs.get('stage')||'v03-local';
     await fetch('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm), { method: 'POST', body: blob });
     const report=evidenceReport();
+    if(qs.get('p0Columns')==='1')report.cloudColumns=await phase0CloudColumns(device,frameUBO,cloudNoiseView,cloudSampler,qs);
     if(qs.get('validate')==='1')report.spectral=await spectralReadback(device,{h0:h0Buf,specA,disp:dispTex,deriv:derivTex,mom:momTex},P);
     if(qs.get('validate')==='1')report.foam=await foamReadback(device,foamW[foamCur]);
     if(qs.get('validate')==='1')report.hdr=await hdrReadback(device,hdrTex,frameF[60]);

@@ -1,0 +1,49 @@
+# PELAGIC 0.4 acceptance and decision register
+
+Phase 0, 20 October 2026. Priorities: P0 prerequisite; P1 critical; P2 high. SRC = source inspection; TEST = executed test; VIS = inspected media; LIT = consulted literature; HYP = hypothesis. Owner approval remains independent. **No inherited visual defect is closed.**
+
+| ID / priority | Observed problem and causal status | Decision / smallest next experiment | Evidence needed for closure | Current status |
+|---|---|---|---|---|
+| 0PRE / P0 | Actual adapter initially unverified; probe WGSL reserved word (SRC/TEST) | Correct probe; retain explicit no-WebGL failure | Compute readback plus renderer identity corroborated with Chrome/OS | Hardware PASS; owner chrome://gpu text, no original internal-page capture |
+| W1 / P1 | Wrinkled uniform surface; sparse energetic modes and strong 1103 m recurrence (VIS/TEST) | Retain FFT, extend long-wave representation; compare energy-resampled non-grid/direct low modes with redistributed FFT bands | Ensemble Hs/Tp/direction confidence intervals; non-recurrence; visible groups at 0.5/2/50/500 m; motion | Existing math PASS; naturalism FAIL; architecture UNVERIFIED |
+| W2 / P2 | Coupling not action calibrated; geometry/roughness closure incomplete (SRC) | Retain transformed derivatives/mip contracts; test modulated cross-moments against independent samples | Conserved total directional slope tensor across LOD and uncertainty-aware Cox-Munk comparisons | Manufactured GPU tests PASS; physical closure UNVERIFIED; visual FAIL |
+| L1 / P1 | Dark smooth body, strong reflected detail; relative three-band radiance (VIS/SRC) | Extend optical contract; restricted coefficient fit versus spectral LUT on common illuminants | Measured absorption/scatter data, spectral reference, common exposure and body/sky diagnostics | D65/units sanity PASS; full optics UNVERIFIED; visual FAIL |
+| L2 / P2 | Glitter source footprint/masking approximations; environment has finite ray reach (SRC) | Retain verified visibility; test finite solar-disc quadrature and unresolved variance jointly | Angular glint profiles at several winds/elevations; motion without smeared history; no double-counted energy | Existing contract tests PASS; observational/temporal UNVERIFIED; visual FAIL |
+| B1 / P1 | Storm foam is film-like; no actual crest roller, entrainment or dissipation (VIS/SRC) | Reconstruct event model after nonlinear crest test; do not use linear u/c as B=0.85 | Nonlinear packet onset/crest tracking; event energy/mass ledger; whitecap duration/coverage distributions; near-crest footage | Transport foundation PASS; onset/roller UNVERIFIED; visual FAIL |
+| C1 / P1 | Rounded repeated clouds, striking overcast rows (VIS); thermal lattice and periodic density structure implicated (SRC) | Reconstruct regional organization/profile/erosion; reject both reduced candidates as final shapes | Morphology-only + radiance views at equal optical occupancy; four immediate controls; wind motion; cost at accepted quality | Prototype compilation PASS; current/candidate visual FAIL |
+| U1 / P1 | Moving skim slivers and abrupt changes; straight boundary persists in frozen slow crossing (VIS/TEST), so stale moving-wave readback is not sole cause | Separate camera lag from near-plane/facet intersection; compare optical map against actual morphed/folded surface | Near-plane/raster agreement on actual sea; repeated fast/slow crossings; Snell/TIR tests | Manufactured map PASS; full topology UNVERIFIED; visual FAIL |
+| G1 / P2 | Wave rebasing verified previously; global-km atmosphere not long-flight validated (SRC) | Retain local wave origin; stress atmosphere and cloud phase after long travel | Matched local/global images and sustained rebases including cloud shadows/particles | Wave tests PASS; integrated flight UNVERIFIED |
+| A1 / P2 | Night too dark historically; solar/lunar radiometry relative; cloud diffuse/underwater clear-sky confounds (SRC/VIS inheritance) | Correct shared celestial/direct/diffuse/exposure contracts before artistic tuning | Physical units/geometry; simultaneous lights; fixed-exposure twilight/night controls; cloud-consistent underwater light | Celestial numerical tests PASS; radiometry UNVERIFIED; visual FAIL |
+| T1 / P1 | 1-second stalls recur with visible document; golden 22.90/8.22 FPS (TEST) | Retain instrumentation; distinguish queue cost, presentation scheduling and power state | Isolated sustained display-paced traces; per-system GPU cost; resource lifetime/overdraw audit | Hardware PASS; performance FAIL; stall cause UNVERIFIED |
+| R1 / P1 | Integrated output still synthetic (VIS) | Maintain representative slice and all environmental controls | Full 48-view matrix plus close-wave, immersion and motion evidence; owner review | Capture infrastructure PASS; realism FAIL |
+| E1 / P1 | User: clouds fixed under weather; scripted test never changes cloudType, presets reset foam immediately (SRC) | Shared current/target regional environment with continuous type transitions | Weather transition clips plus logged type/precipitation/radiance/sea-state histories | Source defect confirmed; coherent weather FAIL |
+| E2 / P1 | User: cloud size/location/silhouettes wrong; candidates too broad (VIS) | Match morphology distributions, not one attractive silhouette | Known angular scale or documented metadata uncertainty; varied seeds and altitude | FAIL |
+| E3 / P2 | User: weak rain; camera-local particle spawn independent of cloud (SRC/VIS) | Cloud-linked shafts/visibility before increasing arbitrary particle count | Rain under cloud cell, outside-cell control, wind transport, night/storm motion | FAIL; precipitation physics UNVERIFIED |
+| E4 / P2 | User: missing appropriate lightning; source has no lightning model (SRC) | Defer implementation to convective weather stage; distinguish squall from thunderstorm | Cell-associated discharge, light reaching cloud/sea, exposure response; no lightning in nonconvective control | Missing feature FAIL; no claim every storm needs lightning |
+| E5 / P1 | User: artificial storm darkness and failed sunset; current imagery confirms weak integration | Fix shared transport then evaluate colour; desaturation-only fix rejected | Fixed-exposure contributions, matched clear/covered Sun, sunset/twilight controls | Visual FAIL; root causes partly HYP |
+| E6 / P2 | User: day/night/weather not coupled; underwater ambient omits cloud irradiance (SRC) | One shared light/visibility contract | Sun/Moon/cloud/weather cross-product, energy and continuity tests | FAIL / SRC; full dynamic matrix UNVERIFIED |
+| I1 / P2 | User: controls unusable; source exposes settings and tested URL round-trip, but not coherent physical transitions | Preserve UI; reproduce each reported control fault with saved state before altering interaction | Browser save/load, quality reload, keyboard/pointer flight, weather controls; owner ergonomics review | Serialization PASS; comprehensive interactive/ergonomic UNVERIFIED |
+
+## Research decisions
+
+| Topic | Decision | Reason / unresolved test |
+|---|---|---|
+| FFT and cascades | Retain | GPU reference cases and energy tests pass. More cascades alone do not address sparse low-frequency sampling. |
+| PM equilibrium cap | Correct interpretation; defer code | Convert wind height, separate swell and fetch development. A universal local-wind Hs cap is rejected. |
+| Gaussian grouping | Reject absence claim | Seeded linear sums show evolving groups. Nonlinear crest evolution is a separate missing effect. |
+| Additional harmonics | Defer | Eulerian choppiness already produces skewness; calibrate their combined target. |
+| Non-grid long modes | Extend experiment | Lower recurrence shown, but density weights/directional tensor and GPU cost not yet validated. |
+| Curcic-style coupling | Defer production | Published idealized steady-wave assumptions differ from broadband turbulent storm. Existing coupling is not a full action solver. |
+| B approximately 0.85 | Reject direct linear transplant | Nonlinear crest-fluid velocity and crest-point speed required; compression is only a proxy. |
+| Cloud continuous/cell candidates | Reject final implementation | Lower cost but blurred, unmatched optical occupancy; preserve experiments as negative evidence. |
+| Weather-map separation | Preferred research direction, not locked | Regional type/coverage/precipitation addresses missing organization; needs a stronger visual prototype. |
+| Desaturation removal | Defer | Negligible midday effect; stronger golden highlights; does not fix general optical depth. |
+| Three-band refit vs spectral LUT | Undecided | Restricted D65 refit improves some cases but fails general signed RGB transport. Broader illuminants and turbidity needed. |
+| Delayed diffuse feedback | Reject delay-only stability claim | Scalar gain >=1 fails despite one-frame delay. Energy bounds/convergence must be explicit. |
+| Temporal reconstruction | Undecided | No new TAA/denoising added; separate cloud, wave, foam and glint motion tests first. |
+
+## Acceptance design
+
+Numerical bounds must derive from precision, quadrature convergence or sampling statistics. Existing test tolerances remain intact. New spectral ensembles should report seed distribution and uncertainty; whitecap coverage needs event lifetime and observational definition, not one mask threshold. Cloud occupancy tests need multiple shifted grids and sample refinement before confidence claims. Visual comparison uses documented unknown camera/exposure where real references lack measurements.
+
+Performance thresholds remain 60 FPS Balanced / approximately 30 FPS High goals at 1080p, with sustained pacing and quality judged independently. Cinematic has no real-time cap. Reference approval and phase advancement cannot convert a failed realism gate into PASS.

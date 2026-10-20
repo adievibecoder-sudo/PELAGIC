@@ -1,0 +1,3111 @@
+{
+  "version": "0.3.0-dev.1",
+  "sourceCheckpoint": "a1092a0-lab",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": null
+  },
+  "backend": "native-webgpu",
+  "timestampQuery": true,
+  "settings": {
+    "windSpeed": 8,
+    "windDir": 118,
+    "fetchKm": 110,
+    "swellHs": 2,
+    "swellDir": 94,
+    "swellLength": 135,
+    "swellSpread": 48,
+    "choppy": 1.12,
+    "turbidity": 0.25,
+    "foam": 1,
+    "sunElev": 48,
+    "sunAzim": 4,
+    "exposure": 0.95,
+    "haze": 1.4,
+    "clouds": 0.32,
+    "veil": 0.1,
+    "bloom": 0.045,
+    "spray": 0.65,
+    "rain": 0,
+    "cloudDepth": 1.5,
+    "cloudType": 0,
+    "seed": 1307,
+    "quality": "Balanced",
+    "resolution": 1,
+    "adaptive": false,
+    "timeScale": 1,
+    "weatherRate": 60,
+    "paused": false,
+    "cameraMode": "free",
+    "astronomy": false,
+    "date": "2026-10-25",
+    "hour": 17,
+    "latitude": 32,
+    "longitude": -30,
+    "debug": 0,
+    "currentSpeed": 0.12,
+    "currentDir": 35,
+    "cameraSpeed": 6,
+    "fov": 58
+  },
+  "camera": {
+    "x": 0,
+    "y": 0.37009256457588896,
+    "z": 0,
+    "yaw": 0.06981317007977318,
+    "pitch": 0.02,
+    "fovY": 1.0122909661567112,
+    "speed": 6
+  },
+  "simulationTime": 31.146399999998486,
+  "frameIndex": 204,
+  "width": 1920,
+  "height": 1080,
+  "nodes": 707,
+  "errors": [],
+  "measurements": [
+    {
+      "gpu": 48.955392,
+      "simulation": 1.572864,
+      "atmosphere": 25.493504,
+      "surface": 21.168128,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 21.757952,
+      "cloudShadow": 0.458752,
+      "environment": 3.145728,
+      "irradiance": 0,
+      "cpu": 0.6000000014901161,
+      "frame": 55.80000000074506,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 52.494336,
+      "simulation": 1.507328,
+      "atmosphere": 26.148864,
+      "surface": 24.117248,
+      "post": 0.393216,
+      "skyLUT": 0.196608,
+      "cloudScreen": 20.97152,
+      "cloudShadow": 0.393216,
+      "environment": 4.58752,
+      "irradiance": 0,
+      "cpu": 0.5,
+      "frame": 57.30000000074506,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 51.511296,
+      "simulation": 1.507328,
+      "atmosphere": 24.90368,
+      "surface": 24.444928,
+      "post": 0.393216,
+      "skyLUT": 0.196608,
+      "cloudScreen": 20.31616,
+      "cloudShadow": 0.458752,
+      "environment": 3.93216,
+      "irradiance": 0,
+      "cpu": 0.5999999977648258,
+      "frame": 58.69999999925494,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 47.5136,
+      "simulation": 1.507328,
+      "atmosphere": 24.510464,
+      "surface": 20.840448,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 20.709376,
+      "cloudShadow": 0.458752,
+      "environment": 3.145728,
+      "irradiance": 0.065536,
+      "cpu": 1.1000000014901161,
+      "frame": 57.19999999925494,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 52.10112,
+      "simulation": 1.507328,
+      "atmosphere": 26.411008,
+      "surface": 23.527424,
+      "post": 0.393216,
+      "skyLUT": 0.196608,
+      "cloudScreen": 21.102592,
+      "cloudShadow": 0.393216,
+      "environment": 4.718592,
+      "irradiance": 0,
+      "cpu": 0.5,
+      "frame": 53.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 52.75648,
+      "simulation": 1.572864,
+      "atmosphere": 25.755648,
+      "surface": 24.707072,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 21.168128,
+      "cloudShadow": 0.458752,
+      "environment": 3.997696,
+      "irradiance": 0,
+      "cpu": 0.3999999985098839,
+      "frame": 56.100000001490116,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 50.724864,
+      "simulation": 1.769472,
+      "atmosphere": 24.051712,
+      "surface": 24.24832,
+      "post": 0.393216,
+      "skyLUT": 0.196608,
+      "cloudScreen": 20.185088,
+      "cloudShadow": 0.393216,
+      "environment": 3.211264,
+      "irradiance": 0.065536,
+      "cpu": 0.6000000014901161,
+      "frame": 62.5,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 51.642368,
+      "simulation": 1.507328,
+      "atmosphere": 25.88672,
+      "surface": 23.527424,
+      "post": 0.393216,
+      "skyLUT": 0.196608,
+      "cloudScreen": 20.97152,
+      "cloudShadow": 0.393216,
+      "environment": 4.325376,
+      "irradiance": 0,
+      "cpu": 0.5,
+      "frame": 53.19999999925494,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 49.610752,
+      "simulation": 1.507328,
+      "atmosphere": 25.427968,
+      "surface": 21.95456,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 20.905984,
+      "cloudShadow": 0.393216,
+      "environment": 3.997696,
+      "irradiance": 0,
+      "cpu": 0.5,
+      "frame": 53.69999999925494,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 48.234496,
+      "simulation": 1.507328,
+      "atmosphere": 24.117248,
+      "surface": 21.823488,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 20.31616,
+      "cloudShadow": 0.393216,
+      "environment": 3.2768,
+      "irradiance": 0,
+      "cpu": 0.5,
+      "frame": 54.100000001490116,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 49.938432,
+      "simulation": 1.507328,
+      "atmosphere": 25.821184,
+      "surface": 21.889024,
+      "post": 0.393216,
+      "skyLUT": 0.196608,
+      "cloudScreen": 20.905984,
+      "cloudShadow": 0.393216,
+      "environment": 4.325376,
+      "irradiance": 0,
+      "cpu": 0.4000000022351742,
+      "frame": 51.399999998509884,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 48.562176,
+      "simulation": 1.245184,
+      "atmosphere": 25.88672,
+      "surface": 20.64384,
+      "post": 0.458752,
+      "skyLUT": 0.196608,
+      "cloudScreen": 21.430272,
+      "cloudShadow": 0.393216,
+      "environment": 3.866624,
+      "irradiance": 0,
+      "cpu": 0.6999999992549419,
+      "frame": 57.80000000074506,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 47.906816,
+      "simulation": 1.441792,
+      "atmosphere": 24.707072,
+      "surface": 20.97152,
+      "post": 0.458752,
+      "skyLUT": 0.196608,
+      "cloudScreen": 20.905984,
+      "cloudShadow": 0.393216,
+      "environment": 3.211264,
+      "irradiance": 0,
+      "cpu": 0.4000000022351742,
+      "frame": 53.399999998509884,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 49.545216,
+      "simulation": 1.572864,
+      "atmosphere": 26.083328,
+      "surface": 21.233664,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 20.97152,
+      "cloudShadow": 0.393216,
+      "environment": 4.58752,
+      "irradiance": 0,
+      "cpu": 0.3999999985098839,
+      "frame": 52.80000000074506,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 46.596096,
+      "simulation": 1.507328,
+      "atmosphere": 25.362432,
+      "surface": 19.070976,
+      "post": 0.393216,
+      "skyLUT": 0.196608,
+      "cloudScreen": 20.709376,
+      "cloudShadow": 0.458752,
+      "environment": 3.997696,
+      "irradiance": 0,
+      "cpu": 0.3999999985098839,
+      "frame": 50.80000000074506,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 46.989312,
+      "simulation": 1.507328,
+      "atmosphere": 24.24832,
+      "surface": 20.447232,
+      "post": 0.458752,
+      "skyLUT": 0.196608,
+      "cloudScreen": 20.381696,
+      "cloudShadow": 0.458752,
+      "environment": 3.211264,
+      "irradiance": 0,
+      "cpu": 0.5,
+      "frame": 52.600000001490116,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 47.710208,
+      "simulation": 1.507328,
+      "atmosphere": 24.90368,
+      "surface": 20.578304,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 20.054016,
+      "cloudShadow": 0.393216,
+      "environment": 4.325376,
+      "irradiance": 0,
+      "cpu": 0.6999999992549419,
+      "frame": 56.399999998509884,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 48.955392,
+      "simulation": 1.507328,
+      "atmosphere": 25.034752,
+      "surface": 21.757952,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 20.512768,
+      "cloudShadow": 0.393216,
+      "environment": 3.997696,
+      "irradiance": 0,
+      "cpu": 0.5,
+      "frame": 52.600000001490116,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 49.610752,
+      "simulation": 1.572864,
+      "atmosphere": 24.510464,
+      "surface": 22.872064,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 20.709376,
+      "cloudShadow": 0.458752,
+      "environment": 3.211264,
+      "irradiance": 0,
+      "cpu": 0.3999999985098839,
+      "frame": 57,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 50.397184,
+      "simulation": 1.507328,
+      "atmosphere": 25.55904,
+      "surface": 22.675456,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 20.578304,
+      "cloudShadow": 0.458752,
+      "environment": 4.390912,
+      "irradiance": 0,
+      "cpu": 0.3999999985098839,
+      "frame": 52.69999999925494,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 50.921472,
+      "simulation": 1.507328,
+      "atmosphere": 25.755648,
+      "surface": 23.003136,
+      "post": 0.393216,
+      "skyLUT": 0.196608,
+      "cloudScreen": 21.102592,
+      "cloudShadow": 0.393216,
+      "environment": 4.063232,
+      "irradiance": 0,
+      "cpu": 0.3999999985098839,
+      "frame": 53.400000002235174,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "gpu": 51.44576,
+      "simulation": 1.507328,
+      "atmosphere": 24.838144,
+      "surface": 24.379392,
+      "post": 0.393216,
+      "skyLUT": 0.196608,
+      "cloudScreen": 20.97152,
+      "cloudShadow": 0.393216,
+      "environment": 3.2768,
+      "irradiance": 0,
+      "cpu": 0.3999999985098839,
+      "frame": 55.80000000074506,
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "frameRecords": [
+    {
+      "frame": 54.899999998509884,
+      "cpu": 0.8000000007450581,
+      "visibility": "hidden",
+      "time": 21.708899999998508,
+      "camera": [
+        0,
+        -0.3207126696975492,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.3359440267086029
+    },
+    {
+      "frame": 55.80000000074506,
+      "cpu": 0.6000000014901161,
+      "visibility": "hidden",
+      "time": 21.76469999999925,
+      "camera": [
+        0,
+        -0.3193216149023633,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.3359440267086029
+    },
+    {
+      "frame": 54.19999999925494,
+      "cpu": 0.6000000014901161,
+      "visibility": "hidden",
+      "time": 21.818899999998507,
+      "camera": [
+        0,
+        -0.3994151603228875,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.41735705733299255
+    },
+    {
+      "frame": 53.69999999925494,
+      "cpu": 0.6000000014901161,
+      "visibility": "hidden",
+      "time": 21.872599999997764,
+      "camera": [
+        0,
+        -0.39814344224651055,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.41735705733299255
+    },
+    {
+      "frame": 55.70000000298023,
+      "cpu": 0.6999999992549419,
+      "visibility": "hidden",
+      "time": 21.928300000000743,
+      "camera": [
+        0,
+        -0.3968593565938927,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.41735705733299255
+    },
+    {
+      "frame": 55.29999999701977,
+      "cpu": 0.7000000029802322,
+      "visibility": "hidden",
+      "time": 21.98359999999776,
+      "camera": [
+        0,
+        -0.39562254778671296,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.41735705733299255
+    },
+    {
+      "frame": 54.100000001490116,
+      "cpu": 1,
+      "visibility": "hidden",
+      "time": 22.03769999999925,
+      "camera": [
+        0,
+        -0.3944538209398187,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.41735705733299255
+    },
+    {
+      "frame": 60.30000000074506,
+      "cpu": 0.8000000007450581,
+      "visibility": "hidden",
+      "time": 22.097999999999995,
+      "camera": [
+        0,
+        -0.3932042468185147,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.41735705733299255
+    },
+    {
+      "frame": 57.69999999925494,
+      "cpu": 0.6999999992549419,
+      "visibility": "hidden",
+      "time": 22.15569999999925,
+      "camera": [
+        0,
+        -0.3920649970509165,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.41735705733299255
+    },
+    {
+      "frame": 57.30000000074506,
+      "cpu": 0.5,
+      "visibility": "hidden",
+      "time": 22.212999999999994,
+      "camera": [
+        0,
+        -0.3909829369200273,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.41735705733299255
+    },
+    {
+      "frame": 58.099999997764826,
+      "cpu": 0.6000000014901161,
+      "visibility": "hidden",
+      "time": 22.27109999999776,
+      "camera": [
+        0,
+        -0.30093986604805834,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.3283545672893524
+    },
+    {
+      "frame": 52.5,
+      "cpu": 0.5,
+      "visibility": "hidden",
+      "time": 22.323599999997757,
+      "camera": [
+        0,
+        -0.3000488051699929,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.3283545672893524
+    },
+    {
+      "frame": 56.30000000074506,
+      "cpu": 0.6000000014901161,
+      "visibility": "hidden",
+      "time": 22.379899999998504,
+      "camera": [
+        0,
+        -0.29915063041096884,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.3283545672893524
+    },
+    {
+      "frame": 58.100000001490116,
+      "cpu": 0.6999999992549419,
+      "visibility": "hidden",
+      "time": 22.437999999999995,
+      "camera": [
+        0,
+        -0.298285863006713,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.3283545672893524
+    },
+    {
+      "frame": 57.5,
+      "cpu": 0.8999999985098839,
+      "visibility": "hidden",
+      "time": 22.495499999999996,
+      "camera": [
+        0,
+        -0.2974939659206668,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.3283545672893524
+    },
+    {
+      "frame": 56.80000000074506,
+      "cpu": 0.5999999977648258,
+      "visibility": "hidden",
+      "time": 22.55230000000074,
+      "camera": [
+        0,
+        -0.2967770126646037,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.3283545672893524
+    },
+    {
+      "frame": 56.5,
+      "cpu": 0.5999999977648258,
+      "visibility": "hidden",
+      "time": 22.60880000000074,
+      "camera": [
+        0,
+        -0.29612720404698056,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.3283545672893524
+    },
+    {
+      "frame": 58.69999999925494,
+      "cpu": 0.5999999977648258,
+      "visibility": "hidden",
+      "time": 22.667499999999997,
+      "camera": [
+        0,
+        -0.29552183545562916,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.3283545672893524
+    },
+    {
+      "frame": 56.899999998509884,
+      "cpu": 0.6999999992549419,
+      "visibility": "hidden",
+      "time": 22.724399999998507,
+      "camera": [
+        0,
+        -0.21776355688340648,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.25111401081085205
+    },
+    {
+      "frame": 53.600000001490116,
+      "cpu": 1,
+      "visibility": "hidden",
+      "time": 22.778,
+      "camera": [
+        0,
+        -0.2173375736242226,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.25111401081085205
+    },
+    {
+      "frame": 60.69999999925494,
+      "cpu": 0.8000000007450581,
+      "visibility": "hidden",
+      "time": 22.838699999999253,
+      "camera": [
+        0,
+        -0.21693270345828858,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.25111401081085205
+    },
+    {
+      "frame": 59.100000001490116,
+      "cpu": 0.8000000007450581,
+      "visibility": "hidden",
+      "time": 22.897800000000743,
+      "camera": [
+        0,
+        -0.2166147396802044,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.25111401081085205
+    },
+    {
+      "frame": 59.19999999925494,
+      "cpu": 1.300000000745058,
+      "visibility": "hidden",
+      "time": 22.956999999999997,
+      "camera": [
+        0,
+        -0.21637482418671675,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.25111401081085205
+    },
+    {
+      "frame": 60.099999997764826,
+      "cpu": 0.8000000007450581,
+      "visibility": "hidden",
+      "time": 23.01709999999776,
+      "camera": [
+        0,
+        -0.2162099946961116,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.25111401081085205
+    },
+    {
+      "frame": 58.100000001490116,
+      "cpu": 0.6000000014901161,
+      "visibility": "hidden",
+      "time": 23.075199999999253,
+      "camera": [
+        0,
+        -0.21612733721700472,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.25111401081085205
+    },
+    {
+      "frame": 57.19999999925494,
+      "cpu": 1.1000000014901161,
+      "visibility": "visible",
+      "time": 23.13239999999851,
+      "camera": [
+        0,
+        -0.21611988639394641,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.25111401081085205
+    },
+    {
+      "frame": 59,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 23.19139999999851,
+      "camera": [
+        0,
+        -0.34622212519873813,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.3811473846435547
+    },
+    {
+      "frame": 65.40000000223517,
+      "cpu": 0.6999999992549419,
+      "visibility": "visible",
+      "time": 23.256800000000744,
+      "camera": [
+        0,
+        -0.3463894703752877,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.3811473846435547
+    },
+    {
+      "frame": 61,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 23.317800000000744,
+      "camera": [
+        0,
+        -0.3466313095899951,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.3811473846435547
+    },
+    {
+      "frame": 57.599999997764826,
+      "cpu": 1.300000000745058,
+      "visibility": "visible",
+      "time": 23.37539999999851,
+      "camera": [
+        0,
+        -0.34693630175593276,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.3811473846435547
+    },
+    {
+      "frame": 58.69999999925494,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 23.434099999997766,
+      "camera": [
+        0,
+        -0.34731945334363884,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.3811473846435547
+    },
+    {
+      "frame": 55.5,
+      "cpu": 0.7000000029802322,
+      "visibility": "visible",
+      "time": 23.489599999997765,
+      "camera": [
+        0,
+        -0.3477514481678863,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.3811473846435547
+    },
+    {
+      "frame": 52.70000000298023,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 23.542300000000743,
+      "camera": [
+        0,
+        -0.34822259045364995,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.3811473846435547
+    },
+    {
+      "frame": 53.5,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 23.595800000000743,
+      "camera": [
+        0,
+        -0.34876073321427054,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.3811473846435547
+    },
+    {
+      "frame": 55.5,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 23.65130000000074,
+      "camera": [
+        0,
+        -0.24545196393126334,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.2772153317928314
+    },
+    {
+      "frame": 58.29999999701977,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 23.70959999999776,
+      "camera": [
+        0,
+        -0.2461692759716139,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.2772153317928314
+    },
+    {
+      "frame": 55.5,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 23.76509999999776,
+      "camera": [
+        0,
+        -0.2469171363311935,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.2772153317928314
+    },
+    {
+      "frame": 54.900000002235174,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 23.819999999999993,
+      "camera": [
+        0,
+        -0.24771567116874593,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.2772153317928314
+    },
+    {
+      "frame": 53.30000000074506,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 23.87330000000074,
+      "camera": [
+        0,
+        -0.2485469864816216,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.2772153317928314
+    },
+    {
+      "frame": 54.099999997764826,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 23.927399999998503,
+      "camera": [
+        0,
+        -0.2494425369286191,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.2772153317928314
+    },
+    {
+      "frame": 56.5,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 23.983899999998503,
+      "camera": [
+        0,
+        -0.2504333155364641,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.2772153317928314
+    },
+    {
+      "frame": 56.100000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 24.039999999999992,
+      "camera": [
+        0,
+        -0.25146931568120284,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.2772153317928314
+    },
+    {
+      "frame": 56.5,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 24.096499999999992,
+      "camera": [
+        0,
+        0.18122655230512882,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": 0.15657813847064972
+    },
+    {
+      "frame": 56.69999999925494,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 24.153199999999245,
+      "camera": [
+        0,
+        0.1800723753474205,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": 0.15657813847064972
+    },
+    {
+      "frame": 56.399999998509884,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible",
+      "time": 24.209599999997756,
+      "camera": [
+        0,
+        0.1788804874336634,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": 0.15657813847064972
+    },
+    {
+      "frame": 60.900000002235174,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 24.27049999999999,
+      "camera": [
+        0,
+        0.17753812031350633,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": 0.15657813847064972
+    },
+    {
+      "frame": 57.69999999925494,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 24.328199999999246,
+      "camera": [
+        0,
+        0.17622470746837815,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": 0.15657813847064972
+    },
+    {
+      "frame": 60.5,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 24.388699999999247,
+      "camera": [
+        0,
+        0.1747979166347453,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": 0.15657813847064972
+    },
+    {
+      "frame": 61.19999999925494,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 24.4498999999985,
+      "camera": [
+        0,
+        0.17331601807095792,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": 0.15657813847064972
+    },
+    {
+      "frame": 62.5,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 24.5123999999985,
+      "camera": [
+        0,
+        0.1717588251375594,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": 0.15657813847064972
+    },
+    {
+      "frame": 59.69999999925494,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 24.572099999997754,
+      "camera": [
+        0,
+        0.9066885909160877,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": 0.8930308222770691
+    },
+    {
+      "frame": 53.20000000298023,
+      "cpu": 0.5999999977648258,
+      "visibility": "visible",
+      "time": 24.625300000000735,
+      "camera": [
+        0,
+        0.9053025093298196,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": 0.8930308222770691
+    },
+    {
+      "frame": 56.599999997764826,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 24.6818999999985,
+      "camera": [
+        0,
+        0.9038089087230224,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": 0.8930308222770691
+    },
+    {
+      "frame": 56.19999999925494,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible",
+      "time": 24.738099999997754,
+      "camera": [
+        0,
+        0.9022986920263213,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": 0.8930308222770691
+    },
+    {
+      "frame": 57.900000002235174,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 24.79599999999999,
+      "camera": [
+        0,
+        0.9007287116788679,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": 0.8930308222770691
+    },
+    {
+      "frame": 55.399999998509884,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 24.8513999999985,
+      "camera": [
+        0,
+        0.8992056753684813,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": 0.8930308222770691
+    },
+    {
+      "frame": 54.600000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 24.905999999999988,
+      "camera": [
+        0,
+        0.8976982196062866,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": 0.8930308222770691
+    },
+    {
+      "frame": 53.19999999925494,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 24.959199999999242,
+      "camera": [
+        0,
+        0.8962153548071675,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": 0.8930308222770691
+    },
+    {
+      "frame": 54.899999998509884,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 25.014099999997754,
+      "camera": [
+        0,
+        0.9938135317352453,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": 0.9921596050262451
+    },
+    {
+      "frame": 46,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 25.060099999997753,
+      "camera": [
+        0,
+        0.9925261412017781,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": 0.9921596050262451
+    },
+    {
+      "frame": 44.5,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 25.104599999997752,
+      "camera": [
+        0,
+        0.9912774413314654,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": 0.9921596050262451
+    },
+    {
+      "frame": 46.600000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 25.151199999999243,
+      "camera": [
+        0,
+        0.9899767654551034,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": 0.9921596050262451
+    },
+    {
+      "frame": 49.80000000074506,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 25.200999999999986,
+      "camera": [
+        0,
+        0.9885843948019418,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": 0.9921596050262451
+    },
+    {
+      "frame": 52.399999998509884,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 25.253399999998496,
+      "camera": [
+        0,
+        0.9871312087837485,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": 0.9921596050262451
+    },
+    {
+      "frame": 57.400000002235174,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 25.310800000000732,
+      "camera": [
+        0,
+        0.9855437920737473,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": 0.9921596050262451
+    },
+    {
+      "frame": 53.69999999925494,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 25.36449999999999,
+      "camera": [
+        0,
+        0.9840738561720961,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": 0.9921596050262451
+    },
+    {
+      "frame": 53.19999999925494,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 25.417699999999243,
+      "camera": [
+        0,
+        0.8223878585115408,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": 0.8319124579429626
+    },
+    {
+      "frame": 54.899999998509884,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 25.472599999997755,
+      "camera": [
+        0,
+        0.8209156743941001,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": 0.8319124579429626
+    },
+    {
+      "frame": 52.5,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 25.525099999997753,
+      "camera": [
+        0,
+        0.8195302248641506,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": 0.8319124579429626
+    },
+    {
+      "frame": 50.900000002235174,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 25.57599999999999,
+      "camera": [
+        0,
+        0.8182104024326666,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": 0.8319124579429626
+    },
+    {
+      "frame": 53.5,
+      "cpu": 0.5999999977648258,
+      "visibility": "visible",
+      "time": 25.62949999999999,
+      "camera": [
+        0,
+        0.8168424092066612,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": 0.8319124579429626
+    },
+    {
+      "frame": 53.69999999925494,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 25.683199999999246,
+      "camera": [
+        0,
+        0.8155021209493093,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": 0.8319124579429626
+    },
+    {
+      "frame": 52.899999998509884,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 25.736099999997755,
+      "camera": [
+        0,
+        0.8142064913213973,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": 0.8319124579429626
+    },
+    {
+      "frame": 54.100000001490116,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 25.790199999999246,
+      "camera": [
+        0,
+        0.8129168115640605,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": 0.8319124579429626
+    },
+    {
+      "frame": 55.399999998509884,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 25.845599999997756,
+      "camera": [
+        0,
+        0.308924522604645,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": 0.32920166850090027
+    },
+    {
+      "frame": 44.20000000298023,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 25.889800000000736,
+      "camera": [
+        0,
+        0.30792644041899264,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": 0.32920166850090027
+    },
+    {
+      "frame": 51.69999999925494,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible",
+      "time": 25.94149999999999,
+      "camera": [
+        0,
+        0.30679765950214766,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": 0.32920166850090027
+    },
+    {
+      "frame": 53.69999999925494,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 25.995199999999247,
+      "camera": [
+        0,
+        0.30566142842022137,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": 0.32920166850090027
+    },
+    {
+      "frame": 52,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 26.047199999999247,
+      "camera": [
+        0,
+        0.30460462730594373,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": 0.32920166850090027
+    },
+    {
+      "frame": 57.80000000074506,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 26.104999999999993,
+      "camera": [
+        0,
+        0.30348187444426045,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": 0.32920166850090027
+    },
+    {
+      "frame": 50.69999999925494,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 26.15569999999925,
+      "camera": [
+        0,
+        0.30254047860802924,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": 0.32920166850090027
+    },
+    {
+      "frame": 51.399999998509884,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 26.20709999999776,
+      "camera": [
+        0,
+        0.30163085930354694,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": 0.32920166850090027
+    },
+    {
+      "frame": 55.400000002235174,
+      "cpu": 0.6999999992549419,
+      "visibility": "visible",
+      "time": 26.262499999999992,
+      "camera": [
+        0,
+        0.012966212705708254,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": 0.04146681725978851
+    },
+    {
+      "frame": 50,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 26.312499999999993,
+      "camera": [
+        0,
+        0.01217814361600323,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": 0.04146681725978851
+    },
+    {
+      "frame": 56.099999997764826,
+      "cpu": 0.7000000029802322,
+      "visibility": "visible",
+      "time": 26.36859999999776,
+      "camera": [
+        0,
+        0.011346517555794904,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": 0.04146681725978851
+    },
+    {
+      "frame": 56.600000001490116,
+      "cpu": 0.6999999992549419,
+      "visibility": "visible",
+      "time": 26.42519999999925,
+      "camera": [
+        0,
+        0.01057050267764905,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": 0.04146681725978851
+    },
+    {
+      "frame": 58.80000000074506,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 26.483999999999995,
+      "camera": [
+        0,
+        0.009832618886190005,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": 0.04146681725978851
+    },
+    {
+      "frame": 56.599999997764826,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 26.54059999999776,
+      "camera": [
+        0,
+        0.009187165877799441,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": 0.04146681725978851
+    },
+    {
+      "frame": 57.900000002235174,
+      "cpu": 0.5999999977648258,
+      "visibility": "visible",
+      "time": 26.598499999999994,
+      "camera": [
+        0,
+        0.008594404357677284,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": 0.04146681725978851
+    },
+    {
+      "frame": 57.80000000074506,
+      "cpu": 0.6999999992549419,
+      "visibility": "visible",
+      "time": 26.65630000000074,
+      "camera": [
+        0,
+        0.008074919094597732,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": 0.04146681725978851
+    },
+    {
+      "frame": 52.5,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 26.70880000000074,
+      "camera": [
+        0,
+        -0.21107213776399725,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.1772693544626236
+    },
+    {
+      "frame": 53.19999999925494,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 26.761999999999993,
+      "camera": [
+        0,
+        -0.21142768141012824,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.1772693544626236
+    },
+    {
+      "frame": 53.19999999925494,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 26.815199999999248,
+      "camera": [
+        0,
+        -0.21172185501357665,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.1772693544626236
+    },
+    {
+      "frame": 51.600000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 26.866800000000737,
+      "camera": [
+        0,
+        -0.21194698409302867,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.1772693544626236
+    },
+    {
+      "frame": 56.599999997764826,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 26.9233999999985,
+      "camera": [
+        0,
+        -0.21212571460835117,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.1772693544626236
+    },
+    {
+      "frame": 53,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible",
+      "time": 26.976399999998502,
+      "camera": [
+        0,
+        -0.2122286567476245,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.1772693544626236
+    },
+    {
+      "frame": 53.30000000074506,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 27.02969999999925,
+      "camera": [
+        0,
+        -0.21226880782176608,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.1772693544626236
+    },
+    {
+      "frame": 53.399999998509884,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 27.08309999999776,
+      "camera": [
+        0,
+        -0.2122452297637592,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.1772693544626236
+    },
+    {
+      "frame": 52.5,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 27.13559999999776,
+      "camera": [
+        0,
+        -0.39375800315276865,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.3588675260543823
+    },
+    {
+      "frame": 56.70000000298023,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 27.19230000000074,
+      "camera": [
+        0,
+        -0.3935966609038938,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.3588675260543823
+    },
+    {
+      "frame": 55.099999997764826,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 27.247399999998503,
+      "camera": [
+        0,
+        -0.3933714192127737,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.3588675260543823
+    },
+    {
+      "frame": 55.80000000074506,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 27.303199999999247,
+      "camera": [
+        0,
+        -0.39307441114137665,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.3588675260543823
+    },
+    {
+      "frame": 53.100000001490116,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 27.356300000000736,
+      "camera": [
+        0,
+        -0.39272892432179507,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.3588675260543823
+    },
+    {
+      "frame": 51.399999998509884,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 27.407699999999245,
+      "camera": [
+        0,
+        -0.39233629835458056,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.3588675260543823
+    },
+    {
+      "frame": 56,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 27.463699999999246,
+      "camera": [
+        0,
+        -0.3918450926381915,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.3588675260543823
+    },
+    {
+      "frame": 52.80000000074506,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 27.51649999999999,
+      "camera": [
+        0,
+        -0.39131950394882253,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.3588675260543823
+    },
+    {
+      "frame": 53.5,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 27.56999999999999,
+      "camera": [
+        0,
+        -0.5118512695637544,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.47998878359794617
+    },
+    {
+      "frame": 56,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 27.62599999999999,
+      "camera": [
+        0,
+        -0.5111706407016328,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.47998878359794617
+    },
+    {
+      "frame": 55.899999998509884,
+      "cpu": 0.6999999992549419,
+      "visibility": "visible",
+      "time": 27.6818999999985,
+      "camera": [
+        0,
+        -0.510427439071584,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.47998878359794617
+    },
+    {
+      "frame": 54.30000000074506,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 27.736199999999243,
+      "camera": [
+        0,
+        -0.5096499419752349,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.47998878359794617
+    },
+    {
+      "frame": 51.30000000074506,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 27.787499999999987,
+      "camera": [
+        0,
+        -0.5088626582327936,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.47998878359794617
+    },
+    {
+      "frame": 51,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 27.838499999999986,
+      "camera": [
+        0,
+        -0.5080301011064445,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.47998878359794617
+    },
+    {
+      "frame": 51.399999998509884,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 27.889899999998494,
+      "camera": [
+        0,
+        -0.5071453901978111,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.47998878359794617
+    },
+    {
+      "frame": 50.80000000074506,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 27.94069999999924,
+      "camera": [
+        0,
+        -0.5062277431932284,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.47998878359794617
+    },
+    {
+      "frame": 53.80000000074506,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 27.994499999999984,
+      "camera": [
+        0,
+        -0.5342959461613354,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.5090779066085815
+    },
+    {
+      "frame": 54.399999998509884,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 28.048899999998493,
+      "camera": [
+        0,
+        -0.5332141281544172,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.5090779066085815
+    },
+    {
+      "frame": 54.19999999925494,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 28.10309999999775,
+      "camera": [
+        0,
+        -0.5320948740451814,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.5090779066085815
+    },
+    {
+      "frame": 51.5,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 28.15459999999775,
+      "camera": [
+        0,
+        -0.5309893283419594,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.5090779066085815
+    },
+    {
+      "frame": 53.30000000074506,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 28.207899999998496,
+      "camera": [
+        0,
+        -0.5298060053764717,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.5090779066085815
+    },
+    {
+      "frame": 54.30000000074506,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 28.26219999999924,
+      "camera": [
+        0,
+        -0.52855942072824,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.5090779066085815
+    },
+    {
+      "frame": 51.899999998509884,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 28.31409999999775,
+      "camera": [
+        0,
+        -0.5273380904805017,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.5090779066085815
+    },
+    {
+      "frame": 52.600000001490116,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 28.36669999999924,
+      "camera": [
+        0,
+        -0.5260658259395431,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.5090779066085815
+    },
+    {
+      "frame": 53.399999998509884,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 28.420099999997753,
+      "camera": [
+        0,
+        -0.677141624991103,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.6614810824394226
+    },
+    {
+      "frame": 51.600000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 28.47169999999924,
+      "camera": [
+        0,
+        -0.6758391024786031,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.6614810824394226
+    },
+    {
+      "frame": 57.19999999925494,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 28.528899999998497,
+      "camera": [
+        0,
+        -0.6743665543521908,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.6614810824394226
+    },
+    {
+      "frame": 52,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 28.580899999998497,
+      "camera": [
+        0,
+        -0.6730020606008642,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.6614810824394226
+    },
+    {
+      "frame": 51.600000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 28.632499999999986,
+      "camera": [
+        0,
+        -0.6716283514632145,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.6614810824394226
+    },
+    {
+      "frame": 52,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 28.684499999999986,
+      "camera": [
+        0,
+        -0.6702265091616442,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.6614810824394226
+    },
+    {
+      "frame": 50.80000000074506,
+      "cpu": 0.5999999977648258,
+      "visibility": "visible",
+      "time": 28.73530000000073,
+      "camera": [
+        0,
+        -0.6688396489847604,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.6614810824394226
+    },
+    {
+      "frame": 56.399999998509884,
+      "cpu": 0.6999999992549419,
+      "visibility": "visible",
+      "time": 28.791699999999242,
+      "camera": [
+        0,
+        -0.6672887807571257,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.6614810824394226
+    },
+    {
+      "frame": 51.100000001490116,
+      "cpu": 0.29999999701976776,
+      "visibility": "visible",
+      "time": 28.842800000000732,
+      "camera": [
+        0,
+        -0.8895485248280423,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.8851534724235535
+    },
+    {
+      "frame": 49.599999997764826,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 28.892399999998496,
+      "camera": [
+        0,
+        -0.8881676200001197,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.8851534724235535
+    },
+    {
+      "frame": 52.19999999925494,
+      "cpu": 0.6000000014901161,
+      "visibility": "visible",
+      "time": 28.944599999997752,
+      "camera": [
+        0,
+        -0.8867036509021741,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.8851534724235535
+    },
+    {
+      "frame": 52,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 28.996599999997752,
+      "camera": [
+        0,
+        -0.8852537580376567,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.8851534724235535
+    },
+    {
+      "frame": 55.20000000298023,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 29.051800000000732,
+      "camera": [
+        0,
+        -0.8837085689105278,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.8851534724235535
+    },
+    {
+      "frame": 50.79999999701977,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 29.10259999999775,
+      "camera": [
+        0,
+        -0.8822889657327835,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.8851534724235535
+    },
+    {
+      "frame": 52.30000000074506,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 29.154899999998495,
+      "camera": [
+        0,
+        -0.8808324111625436,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.8851534724235535
+    },
+    {
+      "frame": 52.600000001490116,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 29.207499999999985,
+      "camera": [
+        0,
+        -0.8793723734194483,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.8851534724235535
+    },
+    {
+      "frame": 52.599999997764826,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible",
+      "time": 29.26009999999775,
+      "camera": [
+        0,
+        -0.9301732888192218,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.9373986721038818
+    },
+    {
+      "frame": 50.100000001490116,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 29.310199999999238,
+      "camera": [
+        0,
+        -0.9288068761580511,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.9373986721038818
+    },
+    {
+      "frame": 50.100000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 29.360300000000727,
+      "camera": [
+        0,
+        -0.9274542635653512,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.9373986721038818
+    },
+    {
+      "frame": 49.599999997764826,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 29.40989999999849,
+      "camera": [
+        0,
+        -0.9261308773494539,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.9373986721038818
+    },
+    {
+      "frame": 51.19999999925494,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 29.461099999997746,
+      "camera": [
+        0,
+        -0.9247808191673494,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.9373986721038818
+    },
+    {
+      "frame": 51.5,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 29.512599999997747,
+      "camera": [
+        0,
+        -0.9234494419643149,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.9373986721038818
+    },
+    {
+      "frame": 50.900000002235174,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 29.563499999999983,
+      "camera": [
+        0,
+        -0.922154248605218,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.9373986721038818
+    },
+    {
+      "frame": 57,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 29.620499999999982,
+      "camera": [
+        0,
+        -0.9207339342415918,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.9373986721038818
+    },
+    {
+      "frame": 53.19999999925494,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 29.673699999999236,
+      "camera": [
+        0,
+        -0.8769921195454671,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.8949512839317322
+    },
+    {
+      "frame": 51.69999999925494,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 29.72539999999849,
+      "camera": [
+        0,
+        -0.8757653320960544,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.8949512839317322
+    },
+    {
+      "frame": 55.19999999925494,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 29.780599999997744,
+      "camera": [
+        0,
+        -0.8744917677951746,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.8949512839317322
+    },
+    {
+      "frame": 53.70000000298023,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 29.834300000000724,
+      "camera": [
+        0,
+        -0.8732910705721865,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.8949512839317322
+    },
+    {
+      "frame": 53.29999999701977,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible",
+      "time": 29.887599999997743,
+      "camera": [
+        0,
+        -0.8721388354212933,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.8949512839317322
+    },
+    {
+      "frame": 54.400000002235174,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 29.94199999999998,
+      "camera": [
+        0,
+        -0.8710035562181224,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.8949512839317322
+    },
+    {
+      "frame": 52.30000000074506,
+      "cpu": 0.29999999701976776,
+      "visibility": "visible",
+      "time": 29.994300000000724,
+      "camera": [
+        0,
+        -0.8699568758045393,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.8949512839317322
+    },
+    {
+      "frame": 52.69999999925494,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 30.04699999999998,
+      "camera": [
+        0,
+        -0.8689483205199214,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.8949512839317322
+    },
+    {
+      "frame": 54.099999997764826,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 30.101099999997743,
+      "camera": [
+        0,
+        -0.5866116583881318,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.6136056780815125
+    },
+    {
+      "frame": 56.5,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 30.157599999997743,
+      "camera": [
+        0,
+        -0.5856342750159271,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.6136056780815125
+    },
+    {
+      "frame": 54.100000001490116,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 30.211699999999233,
+      "camera": [
+        0,
+        -0.584748640138172,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.6136056780815125
+    },
+    {
+      "frame": 54.19999999925494,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 30.26589999999849,
+      "camera": [
+        0,
+        -0.5839187335829485,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.6136056780815125
+    },
+    {
+      "frame": 52.30000000074506,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 30.318199999999234,
+      "camera": [
+        0,
+        -0.583169279467305,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.6136056780815125
+    },
+    {
+      "frame": 53.5,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 30.371699999999233,
+      "camera": [
+        0,
+        -0.5824577605745569,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.6136056780815125
+    },
+    {
+      "frame": 54.899999998509884,
+      "cpu": 0.30000000074505806,
+      "visibility": "visible",
+      "time": 30.426599999997745,
+      "camera": [
+        0,
+        -0.581786941742129,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.6136056780815125
+    },
+    {
+      "frame": 53.400000002235174,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 30.47999999999998,
+      "camera": [
+        0,
+        -0.5811922595112959,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.6136056780815125
+    },
+    {
+      "frame": 54.399999998509884,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 30.534399999998488,
+      "camera": [
+        0,
+        -0.188766152278776,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.22172337770462036
+    },
+    {
+      "frame": 55.900000002235174,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 30.590300000000724,
+      "camera": [
+        0,
+        -0.1882731995032106,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.22172337770462036
+    },
+    {
+      "frame": 54.099999997764826,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 30.644399999998488,
+      "camera": [
+        0,
+        -0.18785818047795222,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.22172337770462036
+    },
+    {
+      "frame": 57.80000000074506,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 30.702199999999234,
+      "camera": [
+        0,
+        -0.18748575493823205,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.22172337770462036
+    },
+    {
+      "frame": 54.399999998509884,
+      "cpu": 0.4000000022351742,
+      "visibility": "visible",
+      "time": 30.756599999997743,
+      "camera": [
+        0,
+        -0.18720254644626266,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.22172337770462036
+    },
+    {
+      "frame": 55.600000001490116,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 30.812199999999233,
+      "camera": [
+        0,
+        -0.18697971230023397,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.22172337770462036
+    },
+    {
+      "frame": 56.19999999925494,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 30.868399999998488,
+      "camera": [
+        0,
+        -0.1868247857946461,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.22172337770462036
+    },
+    {
+      "frame": 55.80000000074506,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 30.92419999999923,
+      "camera": [
+        0,
+        -0.1867408307469886,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.22172337770462036
+    },
+    {
+      "frame": 55.30000000074506,
+      "cpu": 0.3999999985098839,
+      "visibility": "visible",
+      "time": 30.979499999999977,
+      "camera": [
+        0,
+        0.37046548817473773,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 1,
+      "readbackHeight": 0.3354682922363281
+    },
+    {
+      "frame": 54,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 31.033499999999975,
+      "camera": [
+        0,
+        0.3704133905923103,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 2,
+      "readbackHeight": 0.3354682922363281
+    },
+    {
+      "frame": 56.099999997764826,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 31.08959999999774,
+      "camera": [
+        0,
+        0.3702905668501053,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 3,
+      "readbackHeight": 0.3354682922363281
+    },
+    {
+      "frame": 56.80000000074506,
+      "cpu": 1,
+      "visibility": "visible",
+      "time": 31.146399999998486,
+      "camera": [
+        0,
+        0.37009256457588896,
+        0,
+        0.06981317007977318,
+        0.02
+      ],
+      "probeAgeFrames": 4,
+      "readbackHeight": 0.3354682922363281
+    }
+  ],
+  "phase0": {
+    "query": {
+      "cam": "0,2,0,4,-5.5",
+      "cameraMode": "free",
+      "quality": "Balanced",
+      "w": "1920",
+      "h": "1080",
+      "seed": "1307",
+      "t": "20",
+      "frames": "100",
+      "ui": "0",
+      "adaptive": "0",
+      "stage": "v04-p0-motion",
+      "validate": "1",
+      "p0": "1",
+      "p0Profile": "1",
+      "revision": "a1092a0-lab",
+      "name": "skim",
+      "preset": "midday",
+      "motion": "skim",
+      "video": "skim"
+    },
+    "profile": true,
+    "note": "Experimental toggles are Phase 0 hypotheses, not accepted features."
+  },
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+  "foamPatternCalibration": {
+    "texels": 262144,
+    "checks": [
+      {
+        "requestedArea": 0.01,
+        "actualArea": 0.00858306884765625
+      },
+      {
+        "requestedArea": 0.05,
+        "actualArea": 0.04764556884765625
+      },
+      {
+        "requestedArea": 0.1,
+        "actualArea": 0.0986785888671875
+      },
+      {
+        "requestedArea": 0.25,
+        "actualArea": 0.2498779296875
+      },
+      {
+        "requestedArea": 0.5,
+        "actualArea": 0.5004425048828125
+      },
+      {
+        "requestedArea": 0.75,
+        "actualArea": 0.7501373291015625
+      },
+      {
+        "requestedArea": 0.9,
+        "actualArea": 0.9028854370117188
+      }
+    ],
+    "maxAbsoluteAreaError": 0.002885437011718728,
+    "scope": "Texture-texel threshold coverage only. Bilinear sampling, shading footprint and evolving foam density require separate validation."
+  },
+  "worldOrigin": [
+    0,
+    0
+  ],
+  "benchmarkStopReason": null,
+  "benchmarkWallSeconds": 11.257900000002236,
+  "surfaceProbe": {
+    "height": 0.3354682922363281,
+    "scope": "Asynchronous camera-point height; optical classification uses the current GPU near-plane map."
+  },
+  "timingMode": "queue-completion capture throughput",
+  "memoryEstimate": {
+    "renderTargetsMiB": 117.7734375,
+    "note": "Analytic lower bound for main MSAA/depth/HDR/bloom/cloud render targets only. Excludes simulation, driver alignment, browser compositor, and transient resources."
+  }
+}

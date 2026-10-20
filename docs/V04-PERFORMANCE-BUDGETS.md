@@ -4,7 +4,7 @@
 
 ## Hardware and evidence
 
-Primary user validation target: desktop Chrome native WebGPU on user's RTX 3050 Laptop GPU (4 GB dedicated VRAM). Actual browser, GPU limits, power/thermal state and runtime memory must be measured. Agent VM has no verified comparable discrete GPU: VM timings **cannot** close user-hardware gates. A locally running Codex is an exception **only after** passing the actual Chrome adapter / renderer identity and diagnostic process in `docs/V04-LOCAL-GPU-VALIDATION.md`. Headless Chrome or `adapter.info.isFallbackAdapter === false` alone does not establish RTX 3050 execution.
+Primary user validation target: desktop Chrome native WebGPU on user's RTX 3050 Laptop GPU (4 GB dedicated VRAM). Phase 0 corroborates this local adapter through application NVIDIA/Ampere records, OS device diagnostics, owner same-session chrome://gpu text and executed compute/renderer tests. No original internal-page screenshot/export is available. Headless Chrome, VM timings or `adapter.info.isFallbackAdapter === false` alone cannot close that gate. See `V04-PHASE0-REPORT.md` for evidence and limitations.
 
 Published 0.3 1080p evidence: Golden Balanced 22.83 FPS, Golden High 9.85 FPS; Storm Balanced 32.24 FPS and Storm High 18.59 FPS. Golden Balanced reported median GPU sim / atmosphere / surface / post ≈ 1.77 / 20.64 / 19.99 / 0.39 ms. These are not all pass costs and do not sum to reciprocal mean FPS.
 
@@ -46,3 +46,20 @@ Published 0.3 1080p evidence: Golden Balanced 22.83 FPS, Golden High 9.85 FPS; S
 ## Decision gate
 
 At Phase 0 exit, publish measured bottlenecks and a revised, justified per-subsystem budget. If a target conflicts with required visual quality, present quantified options and solicit the owner's decision rather than silently compromising.
+
+## Phase 0 measurement and allocation revision
+
+Fresh 1080p/adaptive-off desktop runs: golden Balanced 22.90 FPS, historical storm view Balanced 32.28, alternate storm view 17.17, golden High with split instrumentation 8.22. First 30 frames excluded. Golden High reaches the 120-second cap; other runs reach 1800 frames. Visible-document records contain approximately one-second stalls. Other owner GPU applications were not closed, so no isolated-machine or endurance claim is made.
+
+Current timestamps group effects differently from planning rows. Revised ownership for comparisons: atmosphere includes environment/irradiance updates; surface includes transparent particles. Compare their combined envelopes, not a falsely narrow category:
+
+| Measured scope | Golden Balanced median | Comparable provisional envelope | Interpretation |
+|---|---:|---:|---|
+| Simulation/shared compute | 1.507 ms | 2.0 ms | Inside this one-view median allocation; storm/endurance still separate |
+| Atmosphere + common environment | 20.775 ms | 4.7 ms | About 4.4 times envelope; prioritize representation and environment update work |
+| Surface + transparent effects | 19.726 ms | 6.5 ms | About 3.0 times envelope; measure grazing overdraw and reflection traversal before choosing geometry changes |
+| Post/compositing | 0.393 ms | 0.8 ms | Not the primary observed bottleneck |
+
+High cloud-screen/environment medians alone are 42.697/17.170 ms, exceeding the combined 12.5 ms atmosphere/environment target before remaining work. These timings use split passes; overhead is not calibrated. Midday cloud prototypes cost 4.915/3.670 ms versus 15.335 ms baseline, but fail morphology and alter optical depth. **Their speed does not validate those budgets at acceptable quality.** No evidence supports a new quality-equivalent numerical ceiling; retain the target envelopes and mark feasibility UNVERIFIED instead of relaxing them without evidence.
+
+Board CSV: 2872 complete samples, one truncated final row discarded, 20:35:43-21:23:56 local. Range 42-87 C, 433-1151 MiB, 3.13-75.62 W, graphics 210-1972 MHz. Includes idle/other work; neither app residency nor proof of thermal throttling. Main render-target lower bounds: 117.77 MiB Balanced / 119.97 MiB High. Full resource ledger, measured overdraw, sustained isolation and stall attribution remain UNVERIFIED. Machine-readable summary: `evidence/v04-p0-review/metrics.json`.

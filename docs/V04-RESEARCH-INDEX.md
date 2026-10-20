@@ -18,16 +18,16 @@
 
 | Input | Present / available | Follow-up |
 |---|---|---|
-| Full v0.3 project and tracked reports | Present on branch | Verify checksum/branch and current source |
-| Published v0.3 evidence ZIP | Available via GitHub release | Verify and inspect accessible media; state subset actually watched |
-| Hark 52-page PDF | Supplied previously in conversation; extracted Markdown planned | Verify extraction and request original for figures if necessary |
-| Prior Hark 101-page compendium | Supplied previously; extracted Markdown planned | Cross-check older 0.2 assertions against final 0.3 |
-| Hark's original 34-item decision register and 18 open questions | Included in the 52-page PDF appendix | Use exact appendix and mark extraction limitations |
+| Full v0.3 project and tracked reports | Present; frozen SHAs recorded in STATE | Default shader preservation tested; no frozen-ref changes |
+| Published v0.3 evidence ZIP | Locally verified; all 821 files match | Phase 0 report identifies inspected subset; no exhaustive movie review claim |
+| Hark 52-page PDF | Local original available; SHA-256 and access scope in Phase 0 sources | Text/register/scripts inspected; original page 6 visually inspected; no complete figure certification |
+| Prior Hark 101-page compendium | Local original located; archived extraction present | Not newly reread end-to-end; older 0.2 assertions subordinate to final 0.3 |
+| Hark's original 34-item decision register and 18 open questions | Local supplied Markdown and PDF appendix available | Inspected as hypotheses; extraction limitations retained |
 | GPT-5.5 critique/correction | Condensed transcript in repository correction document | Treat unverified source quotes as hypotheses |
 | Other original Hark Part II and lighting research PDFs | **Not verified present** | Request individually if exact historical reconciliation is still decision-critical |
-| Independent experiment source/data `pope97.dat` | `docs/pope97.dat` exists | Confirm units, interpolation and spectrum assumptions |
-| Real-world approved reference photos/video | **Not yet selected** | Source/provenance/license + owner approval required |
-| RTX 3050 0.4 GPU results | **Not yet run** | Astra prepares commands; owner performs tests |
+| Independent experiment source/data `pope97.dat` | Header units 1/cm confirmed; converted to 1/m | D65/CIE integration test run; paper not newly read; pure-water data not full seawater validation |
+| Real-world approved reference photos/video | Three provisional sources documented and inspected within stated limits | Most slots and owner approval remain pending; no calibrated scene match |
+| RTX 3050 0.4 GPU results | Native desktop tests and four benchmarks executed | Corroboration/limitations in report; performance targets FAIL, stall cause UNVERIFIED |
 
 ## Decision principle
 

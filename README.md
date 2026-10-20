@@ -1,5 +1,7 @@
 # PELAGIC 0.3 development
 
+**0.4 Phase 0 branch:** investigation package only; production reconstruction awaits owner approval. Read the [Phase 0 assessment](docs/V04-PHASE0-REPORT.md), [current state](docs/V04-STATE.md), [acceptance register](docs/V04-ACCEPTANCE.md) and [reproduction guide](docs/V04-PHASE0-REPRODUCE.md). Run `git lfs pull`, then `npm start`; open `/phase0-review.html` for 22 original 1080p comparison stills and nine original motion recordings. Native RTX 3050 execution is corroborated; visual quality and performance remain FAIL. The preserved 0.3 description follows.
+
 An open-ocean observatory built directly on native WebGPU. This branch develops 0.3 from the preserved 0.2 foundation: coherent short-wave modulation, integrated sky irradiance, wave visibility, fragmented whitewater, revised clouds, separate celestial lighting and camera-local coordinates. **Overall visual acceptance: FAIL.** Breaking geometry, cloud naturalism, immersion transitions, distant detail and performance remain substantial open work. Implemented mechanisms are not a claim of AAA photorealism.
 
 Read [the integrated evaluation](docs/V03-EVALUATION.md), [acceptance register](docs/V03-ACCEPTANCE.md), and [stage/source-access record](docs/V03-STAGES.md). Open `/review-03.html` for paired original captures and continuous recordings after restoring evidence. The 48 primary comparison inputs match exactly; algorithms differ.

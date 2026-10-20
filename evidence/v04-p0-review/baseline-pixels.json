@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "scope": "Exact decoded RGBA comparison; original v03 archive must be restored to rerun.",
+  "identical": true,
+  "images": [
+    {
+      "path": "evidence/v03-integrated/midday-h2-a0.png",
+      "sha256": "e12ad9423c35fde07618aa42162c87708cf2cbdaca6372166c94db973d397d93",
+      "decodedRGBAsha256": "1f19cf72d817ae1e684342d949a4adff725f91976b180f0e980078248ebba082",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "evidence/v04-p0-preflight/renderer-identity.png",
+      "sha256": "e12ad9423c35fde07618aa42162c87708cf2cbdaca6372166c94db973d397d93",
+      "decodedRGBAsha256": "1f19cf72d817ae1e684342d949a4adff725f91976b180f0e980078248ebba082",
+      "size": [
+        1920,
+        1080
+      ]
+    }
+  ]
+}

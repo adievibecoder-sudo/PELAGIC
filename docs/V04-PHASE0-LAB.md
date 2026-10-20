@@ -22,3 +22,13 @@ Source baseline: `6672bfbe14732b120464862cd408f9f91dc3b563`. Production renderer
 | Performance | Historic clouds/surface dominate and 1 Hz pacing unexplained | Representation cost and browser scheduling are separate | Original conditions, visible Chrome, bounded display-paced runs, board telemetry; no FPS inference from summed median pass times. |
 
 No experiment currently closes an inherited visual defect. Owner review remains required.
+
+## Executed outcome, 20 October 2026
+
+The full report and acceptance register now supersede the planned-result fields above. Final CPU suite: 26/26; GPU FFT: nine checks; optical/coordinate groups: five; all PASS within their contracts. Capture package: 22 matched stills and nine original motion clips. Both continuous-profile and cell-wall clouds compile but fail visual quality; neither is promoted. Cloud optical depths differ materially, invalidating equal-quality speedup claims.
+
+Mode census and 64-seed ensembles confirm sparse energetic pairs and strong finite-domain recurrence; linear seas already form interference groups. Wind-height correction reverses the midday/golden PM overdevelopment assertion. Manufactured Eulerian moments show why independently adding choppiness and bound harmonics can double sharpen. Nonlinear onset/roller feasibility remains UNVERIFIED.
+
+Desaturation alone has negligible midday effect. Positive diagonal RGB absorption cannot reproduce all signed spectral-to-sRGB colours; full spectral transport is not thereby mandated. Frozen-sea crossing still shows a straight boundary at constant t=20 s and readback height, excluding moving-wave readback lag as its sole cause.
+
+One-second stalls reproduced; complete app memory/overdraw accounting and isolated endurance remain open. See the report's source-change and inspection ledger. Exact final delivery hashes are in `evidence/v04-p0-review/manifest.json`; per-capture source hashes were not saved. **STOP at owner review; Phase 1 not authorized.**
