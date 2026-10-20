@@ -3,7 +3,7 @@
 <style>body{margin:0;background:#101b20;color:#e6ede7;font:14px Consolas,monospace}header{display:flex;gap:20px;align-items:center;padding:12px}button{padding:8px}iframe{border:0;width:100vw;height:calc(100vh - 60px)}span{margin-left:auto}</style>
 <header><strong>PELAGIC / CONTROLLED COMPARISONS</strong><button id="run">Capture representative views</button><button id="stop">Stop after current</button><span id="status">Ready</span></header><iframe id="view" title="Controlled ocean capture"></iframe>
 <script type="module">
-const args=new URLSearchParams(location.search),stage=args.get('stage')||'v03-phase01';
+const args=new URLSearchParams(location.search),stage=args.get('stage')||'v03-local';
 if(!/^v03-[a-z0-9-]{1,40}$/.test(stage))throw Error('Invalid evidence stage');
 const cases=[
  ['golden-eye','golden',2,4,0],['midday-eye','midday',2,79,0],['midday-high','midday',500,79,0],

@@ -24,6 +24,7 @@ export function runtimeInput(search) {
     width:Math.round(finiteNumber(q.get('w'),0,256,7680)),
     height:Math.round(finiteNumber(q.get('h'),0,256,4320)),
     frames:Math.round(finiteNumber(q.get('frames'),240,1,100000)),
+    benchmarkSeconds:finiteNumber(q.get('benchmarkSeconds'),120,10,600),
     sequence:Math.round(finiteNumber(q.get('seq'),1,1,240)),
   };
 }

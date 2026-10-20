@@ -20,7 +20,7 @@ function next(){
  if(!running||index>=Math.min(queue.length,Number(args.get('end'))||queue.length)){running=false;status.textContent=`${index}/${queue.length} saved`;document.title='MOTION SUITE DONE';return;}
  const {name,...settings}=queue[index];status.textContent=`${index+1}/${queue.length}: ${name}`;
  const clip=args.get('stage')?.startsWith('v03-')?name.replace('v02-','v03-'):name;
- const q=new URLSearchParams({...settings,stage:args.get('stage')||'stage-04',video:(args.get('prefix')||'')+clip,cameraMode:'free',w:1920,h:1080,t:20,ui:0,seed:1307,adaptive:0,revision:args.get('revision')||'development'});
+ const q=new URLSearchParams({...settings,stage:args.get('stage')||'v03-local',video:(args.get('prefix')||'')+clip,cameraMode:'free',w:1920,h:1080,t:20,ui:0,seed:1307,adaptive:0,revision:args.get('revision')||'development'});
  const fresh=document.createElement('iframe');fresh.id='view';fresh.title='Motion validation viewport';fresh.src='/?'+q;view.replaceWith(fresh);view=fresh;
 }
 window.addEventListener('message',e=>{if(e.origin===location.origin&&e.source===view.contentWindow&&e.data?.type==='pelagic-video'){index++;next();}});

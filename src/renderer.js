@@ -768,7 +768,7 @@ async function main() {
     recorder=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:16000000});movieChunks=[];movieStart=performance.now();
     recorder.ondataavailable=e=>{if(e.data.size)movieChunks.push(e.data);};
     recorder.onstop=async()=>{const blob=new Blob(movieChunks,{type:mime});stream.getTracks().forEach(t=>t.stop());document.getElementById('record').textContent='Record';
-      if(evidence){const stage=encodeURIComponent(qs.get('stage')||'stage-04');await fetch('/__evidence?stage='+stage+'&name='+qs.get('video')+'.webm',{method:'POST',body:blob});await fetch('/__evidence?stage='+stage+'&name='+qs.get('video')+'.json',{method:'POST',body:JSON.stringify(evidenceReport(),null,2)});document.title='VIDEO DONE';stopped=true;parent.postMessage({type:'pelagic-video'},location.origin);}
+      if(evidence){const stage=encodeURIComponent(qs.get('stage')||'v03-local');await fetch('/__evidence?stage='+stage+'&name='+qs.get('video')+'.webm',{method:'POST',body:blob});await fetch('/__evidence?stage='+stage+'&name='+qs.get('video')+'.json',{method:'POST',body:JSON.stringify(evidenceReport(),null,2)});document.title='VIDEO DONE';stopped=true;parent.postMessage({type:'pelagic-video'},location.origin);}
       else download(blob,'pelagic-'+Date.now()+'.webm');
     };
     recorder.start(1000);document.getElementById('record').textContent='Stop recording';ui.toast('Recording the rendered canvas');
@@ -842,7 +842,9 @@ async function main() {
     device.queue.writeBuffer(foamUBO, 0, foamUArr);
   }
 
+  let benchmarkStart=null,benchmarkStopReason=null;
   function frame(now) {
+    if(benchmarkStart===null)benchmarkStart=now;
     if (shooting || stopped) return;
     const cpuStart=performance.now();
     resize();
@@ -865,6 +867,9 @@ async function main() {
     if(qs.get('motion')==='fly'){cam.x+=dt*2.0;cam.y=2.4+Math.sin(simTime*0.2)*0.6;cam.yaw+=dt*0.035;}
     if(qs.get('motion')==='waterline'){P.cameraMode='free';cam.y=1.2+Math.sin((performance.now()-movieStart)*0.0007)*4.0;cam.pitch=0.2;}
     if(qs.get('motion')==='skim'){P.cameraMode='free';cam.y=waterH+Math.sin((performance.now()-movieStart)*0.0008)*0.035;cam.pitch=0.02;}
+    if(qs.get('motion')==='slowwaterline' && recorder?.state==='recording'){
+      P.cameraMode='free';cam.y=waterH+((performance.now()-movieStart)/1000-5.0)*0.012;cam.pitch=0.02;
+    }
     if(qs.get('motion')==='rebase' && recorder?.state==='recording'){
       cam.x=505+(now-movieStart)*.002;cam.y=3;P.cameraMode='free';
     }
@@ -1026,14 +1031,15 @@ async function main() {
     if (doProbe) { probePending = true; probeRead.mapAsync(GPUMapMode.READ).then(onProbe, onProbeFail); }
     if (doTs) { timingFrame={cpu:cpuMs,frame:frameMs,width:W,height:H};tsPending = true; tsRead.mapAsync(GPUMapMode.READ).then(onTsMapped, onTsFail); }
     if (readBuf) saveShot(readBuf, Math.ceil(W * 4 / 256) * 256, true);
-    if(qs.has('benchmark') && frameIndex>=runtime.frames){
+    if(qs.has('benchmark') && (frameIndex>=runtime.frames || now-benchmarkStart>=runtime.benchmarkSeconds*1000)){
+      benchmarkStopReason=frameIndex>=runtime.frames?'frame limit':'wall-clock limit';
       stopped=true;device.queue.onSubmittedWorkDone().then(async()=>{
         const report=evidenceReport();
         if(qs.get('validate')==='1'){
           report.hdr=await hdrReadback(device,hdrTex);
           report.foam=await foamReadback(device,foamW[foamCur]);
         }
-        await fetch('/__evidence?stage='+encodeURIComponent(qs.get('stage')||'v03-integrated')+'&name='+qs.get('benchmark')+'.json',{method:'POST',body:JSON.stringify(report,null,2)});document.title='BENCHMARK DONE';
+        await fetch('/__evidence?stage='+encodeURIComponent(qs.get('stage')||'v03-local')+'&name='+qs.get('benchmark')+'.json',{method:'POST',body:JSON.stringify(report,null,2)});document.title='BENCHMARK DONE';
       });return;
     }
     if(!shooting) scheduleFrame();
@@ -1044,7 +1050,8 @@ async function main() {
   }
 
   function evidenceReport(){return {version:'0.3.0-dev.1',sourceCheckpoint:qs.get('revision')||'development',adapter:adapterInfo,backend:'native-webgpu',timestampQuery:hasTS,settings:{...P},camera:{...cam},simulationTime:simTime,frameIndex,width:W,height:H,nodes:nodeCount,errors,measurements,frameRecords,
-    foamPatternCalibration,worldOrigin:origin,
+    foamPatternCalibration,worldOrigin:origin,benchmarkStopReason,benchmarkWallSeconds:benchmarkStart===null?0:(performance.now()-benchmarkStart)/1000,
+    surfaceProbe:{height:waterH,scope:'Asynchronous camera-point height; optical classification uses the current GPU near-plane map.'},
     timingMode:qs.has('benchmark')?'requestAnimationFrame, display paced':'queue-completion capture throughput',
     memoryEstimate:{renderTargetsMiB:(W*H*56+(W>>1)*(H>>1)*8*4/3+cloudW*cloudH*8)/1048576,
       note:'Analytic lower bound for main MSAA/depth/HDR/bloom/cloud render targets only. Excludes simulation, driver alignment, browser compositor, and transient resources.'}};}
@@ -1071,7 +1078,7 @@ async function main() {
     const blob = await oc.convertToBlob({ type: 'image/png' });
     if(captureRequested){captureRequested=false;download(blob,'pelagic-'+Date.now()+'.png');shooting=false;scheduleFrame();return;}
     const nm = shotSeq > 1 ? shotName.replace('.png', `_${shotIdx}.png`) : shotName;
-    const stage=qs.get('stage')||'stage-02';
+    const stage=qs.get('stage')||'v03-local';
     await fetch('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm), { method: 'POST', body: blob });
     const report=evidenceReport();
     if(qs.get('validate')==='1')report.spectral=await spectralReadback(device,{h0:h0Buf,specA,disp:dispTex,deriv:derivTex,mom:momTex},P);
