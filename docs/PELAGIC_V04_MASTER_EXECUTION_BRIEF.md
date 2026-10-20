@@ -41,6 +41,9 @@ Non-negotiable engineering direction:
 
 **Order of operations:** Establish an honest baseline → settle high-risk hypotheses with evidence → execute subsystem upgrades in a defensible dependency order → integrate all systems → independently evaluate against physical and visual references → optimize while preserving appearance → publish only with truthful acceptance evidence.
 
+> **LOCAL CODEX EXECUTION CLARIFICATION:** Codex on the user's Windows PC **might** have genuine RTX 3050 access; no local GPU is presumed without evidence. Phase 0 must prove the GPU used by the launched **desktop Chrome renderer** with `docs/V04-LOCAL-GPU-VALIDATION.md` and the standalone test probe, cross-check `chrome://gpu`, and keep hardware gates UNVERIFIED if the renderer runs on SwiftShader, WARP, an unverified adapter or remotely. Work one phase per agent thread with persistent `docs/V04-STATE.md`, and use strong reasoning selectively for hard decisions rather than spending maximum effort on mechanical work. GitHub source-preservation instructions require **repository-side branch/tag rulesets**, documented in `docs/V04-GITHUB-PROTECTION.md`; those protections cannot be assumed active because this text exists.
+
+
 ## 1. Sources of truth and what to inspect
 
 Start with a read-only **fresh audit of the completed 0.3 baseline**, in addition to the earlier research. Source files and reproducible results take precedence over summaries. All inherited problems must be tracked, including new defects discovered during 0.4.

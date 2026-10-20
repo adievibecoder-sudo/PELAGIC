@@ -4,7 +4,7 @@
 
 ## Hardware and evidence
 
-Primary user validation target: desktop Chrome native WebGPU on user's RTX 3050 Laptop GPU (4 GB dedicated VRAM). Actual browser, GPU limits, power/thermal state and runtime memory must be measured. Agent VM has no verified comparable discrete GPU: VM timings **cannot** close user-hardware gates.
+Primary user validation target: desktop Chrome native WebGPU on user's RTX 3050 Laptop GPU (4 GB dedicated VRAM). Actual browser, GPU limits, power/thermal state and runtime memory must be measured. Agent VM has no verified comparable discrete GPU: VM timings **cannot** close user-hardware gates. A locally running Codex is an exception **only after** passing the actual Chrome adapter / renderer identity and diagnostic process in `docs/V04-LOCAL-GPU-VALIDATION.md`. Headless Chrome or `adapter.info.isFallbackAdapter === false` alone does not establish RTX 3050 execution.
 
 Published 0.3 1080p evidence: Golden Balanced 22.83 FPS, Golden High 9.85 FPS; Storm Balanced 32.24 FPS and Storm High 18.59 FPS. Golden Balanced reported median GPU sim / atmosphere / surface / post ≈ 1.77 / 20.64 / 19.99 / 0.39 ms. These are not all pass costs and do not sum to reciprocal mean FPS.
 

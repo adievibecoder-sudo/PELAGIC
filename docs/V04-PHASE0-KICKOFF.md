@@ -15,6 +15,19 @@ Convert the published 0.3 implementation, Hark research, GPT-5.5 corrections and
 
 ## Concrete objectives and experiments
 
+### 0PRE — mandatory execution-environment and GPU proof (FIRST)
+
+Before visual profiling, assert nothing about GPU access merely because Codex is running `locally`. Determine whether the **actual process launching Chrome and WebGPU** runs on the user's Windows machine, in WSL/VM, via remote browser automation or in a cloud sandbox.
+
+Follow `docs/V04-LOCAL-GPU-VALIDATION.md` exactly. Launch PELAGIC's local server, run `http://127.0.0.1:8080/tests/webgpu-hardware-probe.html` in a real **desktop Chrome** session, capture the adapter information and `chrome://gpu` diagnostics, and verify the active PELAGIC renderer reports the **same real adapter**. Check explicitly for SwiftShader, WARP, llvmpipe, another software backend or the wrong integrated GPU. Prefer a visible, hardware-accelerated Chrome window for decisive GPU evidence; headless results are separate until validated.
+
+- If direct hardware access and benchmark prerequisites are confirmed: run the native-GPU tests locally, report command/output/logs, and only then label hardware PASS where all checks genuinely pass.
+- If not confirmed: **stop claiming hardware evidence** and prepare exact repeatable benchmark instructions for the owner; the hardware gate is UNVERIFIED.
+- Update STATE with explicit machine/session identity, actual adapter record, display mode, WebGPU renderer, benchmark availability and missing steps.
+
+**Do not let absent hardware proof block useful CPU/source/reference research**. It blocks only hardware-dependent PASS assertions and final profiling acceptance.
+
+
 ### 0A — reproduce and inventory
 
 - Confirm branch/SHAs, exact 0.3 source and 0.3 video/image evidence integrity.

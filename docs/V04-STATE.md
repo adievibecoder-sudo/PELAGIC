@@ -22,6 +22,12 @@
 | Tested CPU / GPU commands and results | **Pending** |
 | Actual full-resolution media inspected | **Pending** |
 | Local RTX 3050 evidence returned by user | **None for 0.4 yet** |
+| Codex/Chrome local execution location | **Not proven; check Windows host vs VM/cloud** |
+| WebGPU adapter vendor/device and software-fallback exclusion | **Pending**; see `docs/V04-LOCAL-GPU-VALIDATION.md` |
+| `chrome://gpu` hardware acceleration evidence | **Pending** |
+| Repo `main` branch protection / rulesets | **NOT ACTIVE as checked 2026-10-20**; owner setup needed |
+| v0.2/v0.3 release tag rulesets | **NONE FOUND as checked 2026-10-20**; owner setup needed |
+
 | Owner-approved reference set | **Pending** |
 | Provisional frame/VRAM budgets | See `docs/V04-PERFORMANCE-BUDGETS.md`; **not validated** |
 | Open 0.3 inheritance items | W1 W2 L1 L2 B1 C1 U1 G1 A1 T1 R1 — retain all |
@@ -40,6 +46,7 @@
 ## Next actions (Phase 0 only)
 
 1. Verify branch, runtime capability and exact source/evidence versions.
+   - First prove local Chrome WebGPU adapter and real renderer path; if absent produce owner-run instructions instead of GPU PASS.
 2. Rebuild the defect register and dependencies, including the user's cloud/weather/rain/lighting observations.
 3. Inspect reference inputs, define complete metadata; request user-owned photos/clips only when necessary.
 4. Conduct smallest decisive experiments; queue actual GPU runs on user's RTX 3050 as explicit commands.
