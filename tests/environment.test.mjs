@@ -21,6 +21,7 @@ test('snapshot preserves targets, clocks, fractional weather tick and drift',()=
  assert.deepEqual(a,b);const u=new URL(toURL(p,{x:0,y:2,z:0,yaw:0,pitch:0},a.clocks.wave,'http://localhost/',a));
  assert.deepEqual(restoreEnvironment(JSON.parse(u.searchParams.get('environment')),p),a);
  const bad=environmentSnapshot(a);bad.drift[0]=Infinity;assert.throws(()=>restoreEnvironment(bad,p));
+ const range=environmentSnapshot(a);range.weather.clouds=2;assert.throws(()=>restoreEnvironment(range,p));
 });
 test('natural command preserves phase clock and drift; preview explicitly applies state',()=>{
  const a=createEnvironment(DEFAULTS,51),drift=[...a.drift];commandEnvironment(a,preset('storm'),{weatherOnly:true});

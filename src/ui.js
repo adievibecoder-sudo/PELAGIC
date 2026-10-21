@@ -42,7 +42,7 @@ export function setupUI(P,cam,api) {
   for(const [id,p]of Object.entries(PRESETS)) {
     const b=document.createElement('button');b.className='scene';b.dataset.preset=id;
     const n=document.createElement('span');n.textContent=++ordinal;b.append(n,({calm:'Calm',midday:'Midday',golden:'Golden hour',storm:'Storm',twilight:'Twilight',moonlit:'Moonlight'})[id]);
-    b.onclick=()=>{api.preset(id);sync();setScene(id);};$('scenes').append(b);
+    b.onclick=()=>{api.preset(id);sync();setScene(id);if(P.environmentMode==='natural'){$('scene-title').textContent='Weather evolving';$('scene-note').textContent='Target: '+p.label+'. Swell and astronomical time preserved.';}};$('scenes').append(b);
   }
   function setScene(id){$('scene-title').textContent=PRESETS[id]?.label||'Your ocean';$('scene-note').textContent=PRESETS[id]?.note||'A sea state of your own';document.querySelectorAll('.scene').forEach(el=>el.classList.toggle('selected',el.dataset.preset===id));}
   const initialQuery=new URLSearchParams(location.search);setScene(initialQuery.has('config')?null:initialQuery.get('preset')||'golden');

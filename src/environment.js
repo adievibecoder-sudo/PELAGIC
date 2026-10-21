@@ -1,4 +1,4 @@
-import {sanitize} from './settings.js';
+import {sanitize,RANGES} from './settings.js';
 
 export const WEATHER_KEYS=['clouds','veil','haze','rain','cloudDepth','cloudType','windSpeed','windDir'];
 export const SEA_KEYS=['windSpeed','windDir','fetchKm','swellHs','swellDir','swellLength'];
@@ -43,7 +43,7 @@ export function createEnvironment(settings,time=0){
     weather,target:copy(weather),sea:Object.fromEntries(SEA_KEYS.map(k=>[k,p[k]])),
     swellTarget:Object.fromEntries(SEA_KEYS.filter(k=>k.startsWith('swell')).map(k=>[k,p[k]])),
     fetchTarget:p.fetchKm,drift:[Math.cos(p.windDir*D)*p.windSpeed*.65*time,Math.sin(p.windDir*D)*p.windSpeed*.65*time],
-    front:{enabled:p.frontEnabled,id:p.seed,x:p.frontX,z:p.frontZ,width:p.frontWidth*1000,length:30000,
+    front:{enabled:p.frontEnabled,id:p.seed,x:p.frontX,z:p.frontZ,width:p.frontWidth*500,length:15000,
       speed:p.frontSpeed,heading:p.frontHeading,electrified:p.electrified}};
 }
 
@@ -57,7 +57,7 @@ export function commandEnvironment(s,patch,{instant=false,weatherOnly=false}={})
   }
   const map={frontEnabled:'enabled',frontX:'x',frontZ:'z',frontSpeed:'speed',frontHeading:'heading',electrified:'electrified'};
   for(const [k,v]of Object.entries(map))if(k in patch)s.front[v]=p[k];
-  if('frontWidth' in patch)s.front.width=p.frontWidth*1000;
+  if('frontWidth' in patch)s.front.width=p.frontWidth*500;
   if(instant){s.weather=copy(s.target);s.sea.windSpeed=s.target.windSpeed;s.sea.windDir=s.target.windDir;s.sea.fetchKm=s.fetchTarget;Object.assign(s.sea,s.swellTarget);}
   s.revision++;
 }
@@ -100,7 +100,11 @@ export function restoreEnvironment(raw,settings){
     else if(typeof src[k]===typeof dst[k])dst[k]=src[k];else throw Error('Invalid environment snapshot: '+k);
   }}
   assign(s,raw);
-  if(s.front.width<1000||s.front.width>100000||s.front.length<=0||s.remainder<-.00001||s.remainder>=1.00001||Object.values(s.clocks).some(v=>v<0))throw Error('Out-of-range environment snapshot');
+  if(s.front.width<500||s.front.width>50000||s.front.length<500||s.front.length>100000||Math.abs(s.front.x)>1e6||Math.abs(s.front.z)>1e6||s.front.speed<0||s.front.speed>60||s.remainder<-.00001||s.remainder>=1.00001||Object.values(s.clocks).some(v=>v<0||v>1e10)||Math.abs(s.utcEpoch)>8.64e15||s.drift.some(v=>Math.abs(v)>1e9))throw Error('Out-of-range environment snapshot');
+  for(const fields of [s.weather,s.target,s.sea,s.swellTarget])for(const [k,v]of Object.entries(fields)){
+    if(RANGES[k]&&(v<RANGES[k][0]||v>RANGES[k][1]))throw Error('Out-of-range environment field: '+k);
+  }
+  if(!['natural','instant'].includes(s.mode)||s.fetchTarget<5||s.fetchTarget>800)throw Error('Invalid environment mode/fetch');
   for(const w of [s.weather,s.target])if(w.weights.some(v=>v<0||v>1)||Math.abs(w.weights.reduce((a,b)=>a+b,0)-1)>1e-5)throw Error('Invalid cloud weights');
   return s;
 }
