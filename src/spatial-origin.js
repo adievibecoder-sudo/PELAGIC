@@ -1,7 +1,7 @@
 import {PATCHES} from './numerics.js';
 
 export const ORIGIN_BLOCK=1024;
-export const FRAME_FLOATS=148;
+export const FRAME_FLOATS=172;
 export const FRAME_BYTES=FRAME_FLOATS*4;
 export const FOAM_BYTES=192;
 export const modulo=(x,period)=>((x%period)+period)%period;

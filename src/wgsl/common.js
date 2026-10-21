@@ -42,6 +42,12 @@ struct Frame {
   worldOrigin: vec4f, // global xz kilometres; this frame's local-origin shift xz metres
   waveOrigins: array<vec4f,3>, // two modulo cascade UV origins per vec4
   patternOrigins: array<vec4f,2>, // active/residual foam; streak/bubble UV origins
+  front: vec4f, // centre relative to camera xz km, half-width/length km
+  frontControl: vec4f, // heading unit vector, enabled, electrically active
+  regional: vec4f, // background coverage, layer depth km, precipitation, aerosol
+  cloudWeights: vec4f, // cumulus/stratus/storm mixture, ice veil
+  cloudDrift: vec4f, // integrated xz km, weather seconds, command revision
+  localWeather: vec4f, // local gust-modulated U10 xz m/s, gust, front id
 };
 `;
 

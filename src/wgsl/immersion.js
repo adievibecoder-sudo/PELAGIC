@@ -12,10 +12,11 @@ fn volumeWater(ray:vec3f,distance:f32,surface:vec4f)->vec3f {
   let lightDir=refract(-F.sunDir.xyz,vec3f(0,1,0),1.0/1.333);
   let mu=dot(ray,-lightDir);
   let phase=phaseHG(mu,0.75);
-  let ambient=skyAtmo(vec3f(0,1,0))*PI;
-  let sun=sunIlluminance()*max(F.sunDir.y,0.0)*exp(-ext*depth/max(-lightDir.y,0.2));
+  let ambient=textureSampleLevel(skyIrradiance,sampC,vec3f(0,1,0),0.0).rgb;
+  let directT=textureSampleLevel(cloudShadow,sampC,vec2f(0.5),0.0).rg;
+  let sun=sunIlluminance()*directT.x*max(F.sunDir.y,0.0)*exp(-ext*depth/max(-lightDir.y,0.2));
   let moonDirection=refract(-F.moonDir.xyz,vec3f(0,1,0),1.0/1.333);
-  let moon=moonIlluminance()*max(F.moonDir.y,0.0)*exp(-ext*depth/max(-moonDirection.y,0.2));
+  let moon=moonIlluminance()*directT.y*max(F.moonDir.y,0.0)*exp(-ext*depth/max(-moonDirection.y,0.2));
   let u=F.backscatter.rgb/(F.absorption.rgb+F.backscatter.rgb);
   let diffuse=ambient*u*0.18*exp(-ext*depth*0.35);
   let scattering=(sun*phase+moon*phaseHG(dot(ray,-moonDirection),0.75))*F.backscatter.rgb*12.0/max(ext,vec3f(1e-5));

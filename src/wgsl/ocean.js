@@ -16,7 +16,9 @@ const RENDER_BINDINGS = /* wgsl */ `
 // screen-space derivative of each layer's edge function sets the width of its opacity edge.
 export const SKY_BG = FRAME_WGSL + ATMO_CORE_WGSL + RENDER_BINDINGS + `@group(0) @binding(4) var cloudScreen:texture_2d<f32>;
 @group(0) @binding(7) var<storage,read> surfaceAtLens:vec4f;
-@group(0) @binding(8) var lensMedium:texture_2d<f32>;` + SKY_RENDER_FUNCS + SKY_CLOUD_FUNCS + IMMERSION + /* wgsl */ `
+@group(0) @binding(8) var lensMedium:texture_2d<f32>;
+@group(0) @binding(11) var cloudShadow:texture_2d<f32>;
+@group(0) @binding(13) var skyIrradiance:texture_cube<f32>;` + SKY_RENDER_FUNCS + SKY_CLOUD_FUNCS + IMMERSION + /* wgsl */ `
 struct VO { @builtin(position) pos: vec4f, @location(0) ndc: vec2f };
 @vertex fn vs(@builtin(vertex_index) i: u32) -> VO {
   let p = vec2f(f32((i << 1u) & 2u), f32(i & 2u)) * 2.0 - 1.0;

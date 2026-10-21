@@ -1,9 +1,12 @@
 import {setupUI,download} from './ui.js';
+import {gpuLedger} from './gpu-ledger.js';
+import {phase1LightReadback} from '../tests/phase1-light-readback.js';
 // WebGPU ocean â€” custom renderer.
 // FFT ocean (6 cascades) + CDLOD surface mesh + physically based sky + HDR post.
 // Large per-frame arrays are reused; diagnostics and browser API descriptors still allocate.
 import { N, CASCADES, SKY_W, SKY_H, ENV_SIZE, ENV_MIPS, CONFIG, Q } from './wgsl/common.js';
-import { sanitize, preset, PRESETS, QUALITY, toURL, approachSea } from './settings.js';
+import { sanitize, preset, PRESETS, QUALITY, toURL } from './settings.js';
+import {createEnvironment,commandEnvironment,advanceEnvironment,sampleEnvironment,environmentUniforms,environmentSnapshot,restoreEnvironment,WEATHER_KEYS,SEA_KEYS} from './environment.js';
 import { cosSpreadNorm, PATCHES, omega } from './numerics.js';
 import { swellAlpha } from './sea-spectrum.js';
 import { celestial } from './astronomy.js';
@@ -39,7 +42,8 @@ const TU = globalThis.GPUTextureUsage;
 // Tunable parameters (UI panel edits these)
 // ----------------------------------------------------------------------------------------
 export const P = {...CONFIG};
-const targetSea = {...P};
+let environment=createEnvironment(P,runtime.time);
+if(qs.has('environment'))environment=restoreEnvironment(JSON.parse(qs.get('environment')),P);
 const CASC_L = PATCHES;
 
 function fail(msg) {
@@ -75,9 +79,18 @@ async function main() {
   const device = await adapter.requestDevice({
     requiredFeatures: hasTS ? ['timestamp-query'] : [],
   });
+  const allocations=gpuLedger(device);
   let stopped = false;
   addEventListener('pagehide',()=>{stopped=true;device.destroy();},{once:true});
   const errors=[];
+  const browserTasks=[];
+  for(const type of ['long-animation-frame','longtask'])if(PerformanceObserver.supportedEntryTypes.includes(type)){
+    new PerformanceObserver(list=>{for(const e of list.getEntries()){
+      browserTasks.push({type,start:e.startTime,duration:e.duration,blockingDuration:e.blockingDuration||0,
+        scripts:e.scripts?.map(s=>({source:s.sourceURL,duration:s.duration,invoker:s.invoker}))});
+      if(browserTasks.length>500)browserTasks.shift();
+    }}).observe({type,buffered:true});
+  }
   const adapterInfo={vendor:adapter.info.vendor,architecture:adapter.info.architecture,device:adapter.info.device,description:adapter.info.description,isFallbackAdapter:adapter.isFallbackAdapter ?? null};
   if(adapter.isFallbackAdapter || /swiftshader|llvmpipe|software/i.test(JSON.stringify(adapterInfo))) fail('Software WebGPU adapter detected. Select a hardware GPU in browser/OS graphics settings. No WebGL fallback.');
   log('Native WebGPU adapter: '+JSON.stringify(adapterInfo));
@@ -115,7 +128,7 @@ async function main() {
   const C = CASCADES;
   const SIM_MIP_COUNT = Math.log2(N) + 1;
   const specBytes = N * N * C * 16;
-  const mkBuf = (size, usage, label) => device.createBuffer({ size, usage, label });
+  const mkBuf = (size, usage, label) => allocations.buffer({ size, usage, label });
   const simUBO = mkBuf(224, GU.UNIFORM | GU.COPY_DST, 'sim ubo');
   const h0Buf = mkBuf(specBytes, GU.STORAGE | GU.COPY_SRC, 'h0');
   const phaseBuf = mkBuf(N*N*C*8, GU.STORAGE | GU.COPY_DST, 'unit phase oscillators');
@@ -125,7 +138,7 @@ async function main() {
   const tmpA = mkBuf(specBytes, GU.STORAGE, 'tmpA');
   const tmpB = mkBuf(specBytes, GU.STORAGE, 'tmpB');
 
-  const mkSimTex = (label) => device.createTexture({
+  const mkSimTex = (label) => allocations.texture({
     label, size: [N, N, C], format: 'rgba16float', mipLevelCount: SIM_MIP_COUNT,
     usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING | TU.COPY_SRC | TU.COPY_DST,
   });
@@ -162,7 +175,7 @@ async function main() {
     entries: entries.map((r, i) => ({ binding: i, resource: r })),
   });
   const cloudNoiseMips=Math.log2(CLOUD_NOISE_SIZE)+1;
-  const cloudNoise=device.createTexture({label:'periodic cloud morphology',size:[CLOUD_NOISE_SIZE,CLOUD_NOISE_SIZE,CLOUD_NOISE_SIZE],dimension:'3d',format:'rgba8unorm',mipLevelCount:cloudNoiseMips,usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING});
+  const cloudNoise=allocations.texture({label:'periodic cloud morphology',size:[CLOUD_NOISE_SIZE,CLOUD_NOISE_SIZE,CLOUD_NOISE_SIZE],dimension:'3d',format:'rgba8unorm',mipLevelCount:cloudNoiseMips,usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING});
   const cloudNoiseView=cloudNoise.createView();
   const cloudSampler=device.createSampler({magFilter:'linear',minFilter:'linear',mipmapFilter:'linear',addressModeU:'repeat',addressModeV:'repeat',addressModeW:'repeat'});
   const cloudNoisePipe=await computePipe(CLOUD_NOISE,'cloud morphology cache');
@@ -190,7 +203,7 @@ async function main() {
 
   // Foam micro-structure texture (generated once)
   const FOAM_SIZE = 512, FOAM_MIPS = 10;
-  const foamTex = device.createTexture({
+  const foamTex = allocations.texture({
     label: 'foam detail', size: [FOAM_SIZE, FOAM_SIZE], format: 'rgba8unorm', mipLevelCount: FOAM_MIPS,
     usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING | TU.COPY_SRC | TU.COPY_DST,
   });
@@ -224,7 +237,7 @@ async function main() {
   // World-space foam clipmaps (ping-pong)
   const FOAM_LEVEL_SIZE = [128.0, 1024.0];
   const FOAMW_MIPS = Math.log2(FOAM_RES) + 1;
-  const foamW = [0, 1].map((i) => device.createTexture({
+  const foamW = [0, 1].map((i) => allocations.texture({
     label: 'foam world ' + i, size: [FOAM_RES, FOAM_RES, 2], format: 'rgba16float', mipLevelCount: FOAMW_MIPS,
     usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING | TU.COPY_SRC,
   }));
@@ -250,18 +263,24 @@ async function main() {
   // Atmosphere resources
   // --------------------------------------------------------------------------------------
   const atmoUBO = mkBuf(16, GU.UNIFORM | GU.COPY_DST, 'atmo ubo');
-  const mkLut = (w, h, label) => device.createTexture({
-    label, size: [w, h], format: 'rgba16float', usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING,
+  const mkLut = (w, h, label) => allocations.texture({
+    label, size: [w, h], format: 'rgba16float', usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING | TU.COPY_SRC | TU.COPY_DST,
   });
   const transLUT = mkLut(256, 64, 'transmittance');
   const msLUT = mkLut(32, 32, 'multiscatter');
-  const skyLUT = device.createTexture({label:'solar and lunar skyview',size:[SKY_W,SKY_H,2],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING});
-  const envTex = device.createTexture({
+  const skyLUT = allocations.texture({label:'solar and lunar skyview',size:[SKY_W,SKY_H,2],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
+  const envTex = allocations.texture({
     label: 'env cube', size: [ENV_SIZE, ENV_SIZE, 6], format: 'rgba16float', mipLevelCount: ENV_MIPS,
-    usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING,
+    usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING | TU.COPY_SRC | TU.COPY_DST,
   });
   const envCubeView = envTex.createView({ dimension: 'cube' });
-  const irradianceTex=device.createTexture({label:'hemispherical irradiance',size:[IRRADIANCE_SIZE,IRRADIANCE_SIZE,6],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING});
+  const envBuild=allocations.texture({label:'angular radiance staging',size:[ENV_SIZE,ENV_SIZE,6],format:'rgba16float',mipLevelCount:ENV_MIPS,usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
+  const envTrans=mkLut(256,64,'environment transmittance snapshot');
+  const envSky=allocations.texture({label:'environment sky snapshot',size:[SKY_W,SKY_H,2],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.COPY_DST});
+  const envFrame=mkBuf(FRAME_BYTES,GU.UNIFORM|GU.COPY_DST,'environment state snapshot');
+  let cacheFace=0,cacheVersion=0,cachePending=null,cachePublished=null;
+  const cacheF=new Float32Array(FRAME_FLOATS),cacheHistory=[];
+  const irradianceTex=allocations.texture({label:'hemispherical irradiance',size:[IRRADIANCE_SIZE,IRRADIANCE_SIZE,6],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
   const irradianceView=irradianceTex.createView({dimension:'cube'});
   const irradiancePipe=await computePipe(ENV_IRRADIANCE,'cosine irradiance');
   const sampClamp = device.createSampler({
@@ -287,14 +306,14 @@ async function main() {
   const particleBuf=mkBuf(PARTICLE_COUNT*32,GU.STORAGE,'spray and rain particles');
   const particleCompute=await computePipe(PARTICLE_UPDATE,'particle transport');
   const particleModule=await shader(PARTICLE_RENDER,'particle rendering');
-  const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim,fullArr(derivTex),fullArr(lastDisp)]));
-  const bgEnv = bg(envPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, lvl(envTex, 0),cloudNoiseView,cloudSampler,irradianceView], 'env');
+  const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim,fullArr(derivTex),fullArr(lastDisp),shadowView,sampClamp]));
+  const bgEnv = bg(envPipe, [{ buffer: envFrame }, envTrans.createView(), envSky.createView(), sampClamp, lvl(envBuild, 0),cloudNoiseView,cloudSampler], 'env');
   const bgSunVis = bg(sunVisPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, { buffer: sunVisBuf },cloudNoiseView,cloudSampler], 'sunvis');
   const bgCubeMips = [];
-  for (let m = 1; m < ENV_MIPS; m++) bgCubeMips.push(bg(cubeMipPipe, [lvl(envTex, m - 1), lvl(envTex, m)], 'cubemip' + m));
+  for (let m = 1; m < ENV_MIPS; m++) bgCubeMips.push(bg(cubeMipPipe, [lvl(envBuild, m - 1), lvl(envBuild, m)], 'cubemip' + m));
   const bgIrradiance=bg(irradiancePipe,[envCubeView,sampClamp,irradianceTex.createView({dimension:'2d-array'})]);
-  const waveHeight=device.createTexture({label:'resolved Eulerian gravity height',size:[WAVE_MAP_SIZE,WAVE_MAP_SIZE,2],format:'rgba16float',mipLevelCount:WAVE_HEIGHT_MIPS,usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
-  const waveShadow=device.createTexture({label:'resolved gravity-wave solar visibility',size:[WAVE_MAP_SIZE,WAVE_MAP_SIZE,2],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
+  const waveHeight=allocations.texture({label:'resolved Eulerian gravity height',size:[WAVE_MAP_SIZE,WAVE_MAP_SIZE,2],format:'rgba16float',mipLevelCount:WAVE_HEIGHT_MIPS,usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
+  const waveShadow=allocations.texture({label:'resolved gravity-wave solar visibility',size:[WAVE_MAP_SIZE,WAVE_MAP_SIZE,2],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
   const waveHeightPipe=await computePipe(WAVE_HEIGHT,'gravity height atlas');
   const waveShadowPipe=await computePipe(WAVE_SHADOW,'gravity light visibility');
   const bgWaveHeight=bg(waveHeightPipe,[{buffer:frameUBO},fullArr(dispTex),samplerSim,lvl(waveHeight,0)]);
@@ -308,7 +327,7 @@ async function main() {
   const MSAA = 4;
   const HDR = 'rgba16float';
   const particlePipe=await device.createRenderPipelineAsync({layout:'auto',vertex:{module:particleModule,entryPoint:'vs'},fragment:{module:particleModule,entryPoint:'fs',targets:[{format:HDR,blend:{color:{srcFactor:'src-alpha',dstFactor:'one-minus-src-alpha'},alpha:{srcFactor:'one',dstFactor:'one-minus-src-alpha'}}}]},primitive:{topology:'triangle-list'},depthStencil:{format:'depth32float',depthWriteEnabled:false,depthCompare:'greater'},multisample:{count:MSAA}});
-  const particleDrawBG=bg(particlePipe,[{buffer:frameUBO},{buffer:particleBuf},envCubeView,sampClamp,shadowView,transView,sampClamp]);
+  const particleDrawBG=bg(particlePipe,[{buffer:frameUBO},{buffer:particleBuf},irradianceView,sampClamp,shadowView,transView,sampClamp]);
   const [oceanMod, skyMod, downMod, upMod, compMod] = await Promise.all([
     shader(OCEAN, 'ocean'), shader(SKY_BG, 'sky'), shader(BLOOM_DOWN, 'bloom down'),
     shader(BLOOM_UP, 'bloom up'), shader(COMPOSITE, 'composite'),
@@ -352,7 +371,7 @@ async function main() {
   });
 
   const probeOut = mkBuf(16, GU.STORAGE | GU.COPY_SRC, 'probe out');
-  const lensMedium=device.createTexture({label:'curved near-plane medium',size:[128,72],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
+  const lensMedium=allocations.texture({label:'curved near-plane medium',size:[128,72],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
   const lensPipe=await computePipe(LENS_MEDIUM,'near-plane surface inversion');
   const bgLens=bg(lensPipe,[{buffer:frameUBO},fullArr(dispTex),fullArr(derivTex),samplerSim,{buffer:probeOut},lensMedium.createView()]);
   const bgOcean = [0, 1].map((i) => bg(oceanPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp,
@@ -412,9 +431,11 @@ async function main() {
   let cloudW=0,cloudH=0;
   let colorMS, depthMS, hdrTex, bloomTex;
   const mainPass = {
-    colorAttachments: [{ view: null, resolveTarget: null, clearValue: { r: 0, g: 0, b: 0, a: 1 }, loadOp: 'clear', storeOp: 'discard' }],
-    depthStencilAttachment: { view: null, depthClearValue: 0, depthLoadOp: 'clear', depthStoreOp: 'discard' },
+    colorAttachments: [{ view: null, clearValue: { r: 0, g: 0, b: 0, a: 1 }, loadOp: 'clear', storeOp: 'store' }],
+    depthStencilAttachment: { view: null, depthClearValue: 0, depthLoadOp: 'clear', depthStoreOp: 'store' },
   };
+  const transparentPass={colorAttachments:[{view:null,resolveTarget:null,loadOp:'load',storeOp:'discard'}],
+    depthStencilAttachment:{view:null,depthLoadOp:'load',depthStoreOp:'discard'}};
   const compPass = {
     colorAttachments: [{ view: null, clearValue: { r: 0, g: 0, b: 0, a: 1 }, loadOp: 'clear', storeOp: 'store' }],
     timestampWrites: undefined,
@@ -436,16 +457,19 @@ async function main() {
     bgCloud=bg(cloudPipe,[{buffer:frameUBO},transView,skyView,sampClamp,cloudTex.createView(),cloudNoiseView,cloudSampler]);
     bgSky=device.createBindGroup({layout:skyPipe.getBindGroupLayout(0),entries:[
       {binding:0,resource:{buffer:frameUBO}},{binding:1,resource:transView},{binding:2,resource:skyView},
-      {binding:3,resource:sampClamp},{binding:4,resource:cloudTex.createView()},{binding:7,resource:{buffer:probeOut}},{binding:8,resource:lensMedium.createView()}]});
+      {binding:3,resource:sampClamp},{binding:4,resource:cloudTex.createView()},{binding:7,resource:{buffer:probeOut}},{binding:8,resource:lensMedium.createView()},
+      {binding:11,resource:shadowView},{binding:13,resource:irradianceView}]});
     for (const t of [colorMS, depthMS, hdrTex, bloomTex]) t && t.destroy();
-    colorMS = device.createTexture({ size: [W, H], format: HDR, sampleCount: MSAA, usage: TU.RENDER_ATTACHMENT });
-    depthMS = device.createTexture({ size: [W, H], format: 'depth32float', sampleCount: MSAA, usage: TU.RENDER_ATTACHMENT });
-    hdrTex = device.createTexture({ size: [W, H], format: HDR, usage: TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING | TU.COPY_SRC });
+    colorMS = allocations.texture({ size: [W, H], format: HDR, sampleCount: MSAA, usage: TU.RENDER_ATTACHMENT });
+    depthMS = allocations.texture({ size: [W, H], format: 'depth32float', sampleCount: MSAA, usage: TU.RENDER_ATTACHMENT });
+    hdrTex = allocations.texture({ size: [W, H], format: HDR, usage: TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING | TU.COPY_SRC });
     const bw = Math.max(1, W >> 1), bh = Math.max(1, H >> 1);
-    bloomTex = device.createTexture({ size: [bw, bh], format: HDR, mipLevelCount: BLOOM_LEVELS, usage: TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING });
+    bloomTex = allocations.texture({ size: [bw, bh], format: HDR, mipLevelCount: BLOOM_LEVELS, usage: TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING });
     mainPass.colorAttachments[0].view = colorMS.createView();
-    mainPass.colorAttachments[0].resolveTarget = hdrTex.createView();
     mainPass.depthStencilAttachment.view = depthMS.createView();
+    transparentPass.colorAttachments[0].view=colorMS.createView();
+    transparentPass.colorAttachments[0].resolveTarget=hdrTex.createView();
+    transparentPass.depthStencilAttachment.view=depthMS.createView();
     const hdrView = hdrTex.createView();
     const bv = [];
     for (let m = 0; m < BLOOM_LEVELS; m++) bv.push(bloomTex.createView({ baseMipLevel: m, mipLevelCount: 1 }));
@@ -479,13 +503,14 @@ async function main() {
   const measurements=[];
   const frameRecords=[];let timingFrame={cpu:0,frame:0,width:0,height:0};
   let firstPassTS = undefined;
-  const phase0Profile=qs.get('p0Profile')==='1',queryCount=phase0Profile?16:8;
+  const phase0Profile=qs.get('p0Profile')==='1',queryCount=phase0Profile?18:8;
   if (hasTS) {
     tsQuery = device.createQuerySet({ type: 'timestamp', count: queryCount });
     tsResolve = mkBuf(queryCount*8, GU.QUERY_RESOLVE | GU.COPY_SRC, 'ts resolve');
     tsRead = mkBuf(queryCount*8, GU.MAP_READ | GU.COPY_DST, 'ts read');
     firstPassTS = { querySet: tsQuery, beginningOfPassWriteIndex: 0,endOfPassWriteIndex:1 };
     mainPass.timestampWrites={querySet:tsQuery,beginningOfPassWriteIndex:4,endOfPassWriteIndex:5};
+    if(phase0Profile)transparentPass.timestampWrites={querySet:tsQuery,beginningOfPassWriteIndex:16,endOfPassWriteIndex:17};
     compPass.timestampWrites = { querySet: tsQuery, endOfPassWriteIndex: 7 };
   }
   const computeDesc = { timestampWrites: firstPassTS };
@@ -494,7 +519,7 @@ async function main() {
     const ms = Number(t[7] - t[0]) / 1e6;
     Object.keys(passMs).forEach((key,i)=>passMs[key]=Number(t[i*2+1]-t[i*2])/1e6);
     const subpasses=phase0Profile?{skyLUT:Number(t[8]-t[2])/1e6,cloudScreen:Number(t[10]-t[9])/1e6,cloudShadow:Number(t[12]-t[11])/1e6,environment:Number(t[14]-t[13])/1e6,irradiance:Number(t[3]-t[15])/1e6}:{};
-    if(frameIndex>30)measurements.push({gpu:ms,...passMs,...subpasses,...timingFrame});
+    if(frameIndex>30)measurements.push({gpu:ms,...passMs,...subpasses,...(phase0Profile?{transparent:Number(t[17]-t[16])/1e6}:{}),...timingFrame,readbackCompleted:performance.now()});
     if(measurements.length>4000)measurements.shift();
     if (ms > 0 && ms < 1000) gpuMs = gpuMs ? gpuMs * 0.8 + ms * 0.2 : ms;
     tsRead.unmap();
@@ -656,7 +681,7 @@ async function main() {
   // --------------------------------------------------------------------------------------
   // Per-frame uniforms
   // --------------------------------------------------------------------------------------
-  let simTime = runtime.time;
+  let simTime = environment.clocks.wave;
   let frameIndex = 0;
   let phaseEpoch = -Infinity;
   function resetPhases(time) {
@@ -694,10 +719,11 @@ async function main() {
     f[32] = Math.sin(sa) * Math.cos(se); f[33] = Math.sin(se); f[34] = -Math.cos(sa) * Math.cos(se); f[35] = 14.0;
     f[36] = W; f[37] = H; f[38] = 1 / W; f[39] = 1 / H;
     for (let c = 0; c < C; c++) { f[40 + c] = CASC_L[c]; f[48 + c] = 1 / CASC_L[c]; }
-    f[56] = Math.cos(P.windDir * D2R); f[57] = Math.sin(P.windDir * D2R); f[58] = P.windSpeed;
+    const weather=sampleEnvironment(environment,cam.x,cam.z);
+    f[56] = Math.cos(weather.windDir * D2R); f[57] = Math.sin(weather.windDir * D2R); f[58] = weather.windSpeed*weather.gust;
     f[64] = R0; f[65] = GRID; f[66] = FOAM_LEVEL_SIZE[0]; f[67] = FOAM_LEVEL_SIZE[1];
     f[68] = P.exposure; f[69] = P.bloom; f[70] = frameIndex; f[71] = P.debug || DBG;
-    f[72] = P.haze; f[73] = Math.max(cam.y, 10) * 0.001; f[74] = P.veil; f[75] = 0.9;
+    f[72] = weather.haze; f[73] = Math.max(cam.y, 10) * 0.001; f[74] = weather.veil; f[75] = 0.9;
     // Three-band absorption/backscatter proxies and declared unresolved slope variance.
     const absorption=[0.340+0.015*P.turbidity,0.0565+0.025*P.turbidity,0.00922+0.065*P.turbidity];
     const backscatter=[0.0007+0.006*P.turbidity,0.001+0.008*P.turbidity,0.0015+0.010*P.turbidity];
@@ -714,7 +740,7 @@ async function main() {
     f[91] = 1.5e-5+P.rain*0.00035;
     f[92] = 1.1; f[93] = P.clouds; f[94] = 2.2; f[95] = time;
     f[99]=waterH;f[103]=Math.min(0.05,nowDT);
-    const astro=celestial(new Date(Date.parse(P.date+'T00:00:00Z')+P.hour*3600000),P.latitude,P.longitude);
+    const astro=celestial(new Date(environment.utcEpoch+environment.clocks.astronomy*1000),P.latitude,P.longitude);
     f.set(astro.moon,104);f[107]=astro.phase;f.set(astro.sun,108);f[111]=0;
     if(P.astronomy) {
       f.set(astro.sun,32);
@@ -726,42 +752,50 @@ async function main() {
     f[120]=P.astronomy?lunar.irradiance:0;f[121]=lunar.radius;f[122]=lunar.phase;f[123]=twilightExposure(solarElevation);
     f[60]=1+31*Math.max(0,Math.min(1,(solarElevation+10)/10));
     f[61] = P.choppy;
-    f[112]=P.rain;f[113]=P.spray;f[114]=P.cloudType;f[115]=P.cloudDepth;
+    f[112]=weather.rain;f[113]=P.spray;f[114]=P.cloudType;f[115]=Math.max(environment.weather.cloudDepth,environment.front.enabled?3.5:0);
     f[116]=Q.cloudSteps;f[117]=Q.cloudLightSteps;f[118]=P.cameraMode==='surface'?0:1;f[119]=astro.sidereal%(2*Math.PI);
     f.set([origin[0]*.001,origin[1]*.001,...originDelta],124);
     cascadeOrigin(origin,f,128);
     foamPatternOrigin(origin,[f[56],f[57]],time,[f[80],f[81]],f,140);
+    environmentUniforms(environment,cam,f);
     device.queue.writeBuffer(frameUBO, 0, f);
   }
 
   // --------------------------------------------------------------------------------------
   // Interface communicates through validated commands; no GPU resources escape this module.
-  let transitionSea=false,captureRequested=false,recorder=null,movieStart=0,movieChunks=[];
-  const seaKeys=['windSpeed','windDir','fetchKm','swellHs','swellDir','swellLength'];
-  function applyConfig(config){Object.assign(P,sanitize(config,P));Object.assign(targetSea,P);needSpectrum=true;needLUT=true;envFull=6;cam.speed=P.cameraSpeed;cam.fovY=P.fov*D2R;}
+  let captureRequested=false,recorder=null,movieStart=0,movieChunks=[];
+  function applyConfig(config){Object.assign(P,sanitize(config,P));environment=createEnvironment(P,simTime);needSpectrum=true;needLUT=true;envFull=1;cam.speed=P.cameraSpeed;cam.fovY=P.fov*D2R;}
   const ui=setupUI(P,cam,{
-    adapter:adapterInfo,time:()=>simTime,
+    adapter:adapterInfo,time:()=>simTime,snapshot:()=>environmentSnapshot(environment),
     change(key,value){
       const next=sanitize({[key]:value},P);
-      if(seaKeys.includes(key)){targetSea[key]=next[key];transitionSea=true;}
-      else {P[key]=next[key];if(key==='seed'||key==='swellSpread')needSpectrum=true;if(key==='haze')needLUT=true;}
+      if(SEA_KEYS.includes(key)||WEATHER_KEYS.includes(key)||key.startsWith('front')||key==='electrified'){
+        commandEnvironment(environment,{[key]:next[key]},{instant:P.environmentMode==='instant'});
+        if(key.startsWith('front')||key==='electrified'||key==='cloudType')P[key]=next[key];
+      } else {P[key]=next[key];if(key==='seed'||key==='swellSpread')needSpectrum=true;}
+      if(key==='environmentMode')environment.mode=P.environmentMode;
+      if(['date','hour'].includes(key)){environment.utcEpoch=Date.parse(P.date+'T00:00:00Z')+P.hour*3600000;environment.clocks.astronomy=0;}
       if(key==='cameraMode'&&value==='underwater'){cam.y=waterH-3;cam.pitch=0.3;}
       if(key==='cameraSpeed')cam.speed=P.cameraSpeed;
       if(key==='fov')cam.fovY=P.fov*D2R;
-      envFull=6;
+      if(P.environmentMode==='instant')envFull=1;
     },
-    preset(name){const quality=P.quality,resolution=P.resolution;applyConfig({...preset(name),quality,resolution});transitionSea=false;foamFirst=true;},
-    developed(){Object.assign(P,Object.fromEntries(seaKeys.map(k=>[k,targetSea[k]])));transitionSea=false;needSpectrum=true;},
-    quality(value){const url=toURL({...P,quality:value,resolution:QUALITY[value].scale},cam,simTime,location.href);location.href=url;},
+    preset(name){
+      if(P.environmentMode==='natural')commandEnvironment(environment,Object.fromEntries(WEATHER_KEYS.map(k=>[k,preset(name)[k]])),{weatherOnly:true});
+      else {const quality=P.quality,resolution=P.resolution;applyConfig({...preset(name),quality,resolution,environmentMode:'instant'});}
+    },
+    developed(){commandEnvironment(environment,{}, {instant:true});Object.assign(P,environment.sea);needSpectrum=true;},
+    quality(value){const url=toURL({...P,quality:value,resolution:QUALITY[value].scale},cam,simTime,location.href,environmentSnapshot(environment));location.href=url;},
     capture(){captureRequested=true;},
     record(){if(recorder?.state==='recording'){recorder.stop();return;}startRecording(false);},
     restore(state){
       const config=sanitize(state.settings);const restoredCamera=validCamera(state.camera,cam);
       const restoredTime=Number.isFinite(Number(state.time))?Math.max(0,Math.min(864000,Number(state.time))):0;
-      if(config.quality!==P.quality){location.href=toURL(config,restoredCamera,restoredTime,location.href);return;}
+      const restoredEnvironment=state.environment?restoreEnvironment(state.environment,config):createEnvironment(config,restoredTime);
+      if(config.quality!==P.quality){location.href=toURL(config,restoredCamera,restoredTime,location.href,restoredEnvironment);return;}
       applyConfig(config);if(state.camera)for(const k of ['x','y','z','yaw','pitch','speed','fovY'])if(Number.isFinite(state.camera[k]))cam[k]=state.camera[k];
       cam.y=Math.max(-200,Math.min(10000,cam.y));cam.pitch=Math.max(-1.5,Math.min(1.5,cam.pitch));
-      Object.assign(cam,restoredCamera);simTime=restoredTime;resetPhases(simTime);foamFirst=true;
+      Object.assign(cam,restoredCamera);environment=restoredEnvironment;simTime=environment.clocks.wave;resetPhases(simTime);foamFirst=true;
     },
     altitude(y){P.cameraMode='free';cam.y=y;cam.pitch=(y>40?-12:-5.5)*D2R;},
     resetCamera(){Object.assign(cam,{x:0,y:2.4,z:0,yaw:0,pitch:-5.5*D2R});P.cameraMode='surface';}
@@ -849,6 +883,29 @@ async function main() {
   }
 
   let benchmarkStart=null,benchmarkStopReason=null;
+  let lutHaze=P.haze,lastSeaSignature='',motionStep=-1;
+  function phase1Motion(now){
+    if(recorder?.state!=='recording')return;
+    const elapsed=(now-movieStart)/1000,kind=qs.get('motion');
+    if(kind==='environment'||kind==='preview'){
+      const step=Math.min(4,Math.floor(elapsed/4));
+      if(step!==motionStep){
+        motionStep=step;
+        const stages=[{clouds:0,cloudType:0,rain:0,haze:1.4,windSpeed:8,cloudDepth:1.5},
+          {clouds:.5,cloudType:0,rain:0,haze:1.4,windSpeed:9,cloudDepth:1.5},
+          {clouds:.95,cloudType:1,rain:.3,haze:3,windSpeed:12,cloudDepth:1.8},
+          {clouds:.98,cloudType:2,rain:.8,haze:7,windSpeed:22,cloudDepth:3.5},
+          {clouds:.15,cloudType:0,rain:0,haze:1.4,windSpeed:7,cloudDepth:1.5}];
+        commandEnvironment(environment,stages[step],{instant:kind==='preview',weatherOnly:true});
+        if(kind==='preview')envFull=1;
+      }
+      P.weatherRate=600;P.seaRate=1;
+    }
+    if(kind==='front'){
+      if(motionStep<0){commandEnvironment(environment,{frontEnabled:true,frontX:15000,frontZ:0,frontWidth:20,frontSpeed:12,frontHeading:180,electrified:false});motionStep=0;}
+      P.weatherRate=30;P.seaRate=1;cam.x=-10000+elapsed*1250;cam.y=50;cam.pitch=-8*D2R;
+    }
+  }
   function frame(now) {
     if(benchmarkStart===null)benchmarkStart=now;
     if (shooting || stopped) return;
@@ -867,9 +924,8 @@ async function main() {
       fpsAcc = 0; fpsN = 0; fpsT = 0;
     }
     updateCamera(dt);
-    if(transitionSea && !P.paused){approachSea(P,targetSea,dt,P.weatherRate);if(frameIndex%4===0)needSpectrum=true;}
     if(qs.has('video') && frameIndex===20)startRecording(true);
-    if(qs.has('video') && recorder?.state==='recording' && now-movieStart>10000)recorder.stop();
+    if(qs.has('video') && recorder?.state==='recording' && now-movieStart>Math.max(10,Math.min(30,Number(qs.get('duration'))||20))*1000)recorder.stop();
     if(qs.get('motion')==='fly'){cam.x+=dt*2.0;cam.y=2.4+Math.sin(simTime*0.2)*0.6;cam.yaw+=dt*0.035;}
     if(qs.get('motion')==='waterline'){P.cameraMode='free';cam.y=1.2+Math.sin((performance.now()-movieStart)*0.0007)*4.0;cam.pitch=0.2;}
     if(qs.get('motion')==='skim'){P.cameraMode='free';cam.y=waterH+Math.sin((performance.now()-movieStart)*0.0008)*0.035;cam.pitch=0.02;}
@@ -880,19 +936,19 @@ async function main() {
       cam.x=505+(now-movieStart)*.002;cam.y=3;P.cameraMode='free';
     }
     if(qs.get('motion')==='celestial' && recorder?.state==='recording'){
-      P.astronomy=true;P.hour=17+6*Math.min(1,(now-movieStart)/10000);
-    }
-    if(qs.get('motion')==='weather' && recorder?.state==='recording'){
-      const blend=Math.min(1,(now-movieStart)/10000);
-      Object.assign(targetSea,preset('storm'));transitionSea=true;
-      P.clouds=0.12+0.8*blend;P.rain=0.65*blend;P.spray=0.3+1.2*blend;P.haze=1.4+5.6*blend;P.cloudDepth=1.5+2*blend;
-      if(frameIndex%4===0)needLUT=true;
+      P.astronomy=true;P.astronomyRate=2160;
     }
     if (fixedDt) dt = fixedDt;
+    phase1Motion(now);
+    advanceEnvironment(environment,dt,P,cam.x,cam.z);
+    const local=sampleEnvironment(environment,cam.x,cam.z);
+    Object.assign(P,environment.sea,{clouds:local.clouds,cloudDepth:local.cloudDepth,rain:local.rain,haze:local.haze,veil:local.veil});
+    if(frameIndex%4===0){const signature=SEA_KEYS.map(k=>P[k].toFixed(7)).join(',');if(signature!==lastSeaSignature){needSpectrum=true;lastSeaSignature=signature;}}
+    if(Math.abs(P.haze-lutHaze)>.005){needLUT=true;lutHaze=P.haze;}
     dt = P.paused ? 0 : Math.min(dt*P.timeScale,0.1);
     nowDT=dt;
     if(simTime-phaseEpoch>120) resetPhases(simTime);
-    simTime += dt;
+    simTime = environment.clocks.wave;
     frameIndex++;
     if(P.adaptive && !qs.has('w') && frameIndex%120===0 && gpuMs>0) {
       const target=P.quality==='Balanced'?16.67:33.33;
@@ -940,9 +996,8 @@ async function main() {
       cp.setBindGroup(0,bgHeightMax[m-1]);cp.dispatchWorkgroups(Math.ceil((WAVE_MAP_SIZE>>m)/8),Math.ceil((WAVE_MAP_SIZE>>m)/8),2);
     }
     cp.setPipeline(waveShadowPipe);cp.setBindGroup(0,bgWaveShadow);cp.dispatchWorkgroups(WAVE_MAP_SIZE/8,WAVE_MAP_SIZE/8,2);
-    if(P.spray>0 || P.rain>0 || originDelta.some(x=>x!==0)){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(PARTICLE_COUNT/64);}
     cp.end();
-    cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:2,endOfPassWriteIndex:phase0Profile?8:3}:undefined});
+    cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:2,...(phase0Profile?{endOfPassWriteIndex:8}:{})}:undefined});
     cp.setPipeline(skyViewPipe);
     cp.setBindGroup(0, bgSkyView);
     cp.dispatchWorkgroups(Math.ceil(SKY_W / 8), Math.ceil(SKY_H / 8),2);
@@ -954,22 +1009,40 @@ async function main() {
     cp.setPipeline(shadowPipe);
     cp.setBindGroup(0,bgShadow);
     cp.dispatchWorkgroups(32,32);
-    if(phase0Profile){cp.end();cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:13,endOfPassWriteIndex:14}:undefined});}
+    if(P.spray>0 || P.rain>0 || originDelta.some(x=>x!==0)){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(PARTICLE_COUNT/64);}
+    cp.end();
+    const fullCache=envFull>0;
+    if(fullCache)cacheFace=0;
+    if(cacheFace===0){
+      cacheF.set(frameF);
+      cachePending={version:++cacheVersion,frame:frameIndex,weather:environment.clocks.weather,astronomy:environment.clocks.astronomy,
+        commandRevision:environment.revision,camera:[cam.x,cam.y,cam.z],origin:[...origin]};
+      enc.copyTextureToTexture({texture:transLUT},{texture:envTrans},[256,64]);
+      enc.copyTextureToTexture({texture:skyLUT},{texture:envSky},[SKY_W,SKY_H,2]);
+    }
+    cacheF[70]=cacheFace;device.queue.writeBuffer(envFrame,0,cacheF);
+    cp=enc.beginComputePass({timestampWrites:hasTS&&phase0Profile?{querySet:tsQuery,beginningOfPassWriteIndex:13,endOfPassWriteIndex:14}:undefined});
     cp.setPipeline(envPipe);
     cp.setBindGroup(0, bgEnv);
-    // one cube face per frame (all six on start-up / after parameter changes)
-    cp.dispatchWorkgroups(ENV_SIZE / 8, ENV_SIZE / 8, envFull > 0 ? 6 : 1);
-    if (envFull > 0) envFull--;
-    cp.setPipeline(cubeMipPipe);
-    for (let m = 1; m < ENV_MIPS; m++) {
+    cp.dispatchWorkgroups(ENV_SIZE / 8, ENV_SIZE / 8, fullCache ? 6 : 1);
+    const publish=fullCache||cacheFace===5;
+    if(publish){
+      cp.setPipeline(cubeMipPipe);
+      for (let m = 1; m < ENV_MIPS; m++) {
       const s = Math.max(1, ENV_SIZE >> m);
       cp.setBindGroup(0, bgCubeMips[m - 1]);
       cp.dispatchWorkgroups(Math.ceil(s / 8), Math.ceil(s / 8), 6);
+      }
     }
-    if(phase0Profile){cp.end();cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:15,endOfPassWriteIndex:3}:undefined});}
-    cp.setPipeline(irradiancePipe);cp.setBindGroup(0,bgIrradiance);
-    cp.dispatchWorkgroups(IRRADIANCE_SIZE/8,IRRADIANCE_SIZE/8,6);
     cp.end();
+    if(publish){
+      for(let m=0;m<ENV_MIPS;m++)enc.copyTextureToTexture({texture:envBuild,mipLevel:m},{texture:envTex,mipLevel:m},[Math.max(1,ENV_SIZE>>m),Math.max(1,ENV_SIZE>>m),6]);
+      cachePublished={...cachePending,publishedFrame:frameIndex};cacheHistory.push(cachePublished);if(cacheHistory.length>256)cacheHistory.shift();
+    }
+    cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,...(phase0Profile?{beginningOfPassWriteIndex:15}:{}),endOfPassWriteIndex:3}:undefined});
+    if(publish){cp.setPipeline(irradiancePipe);cp.setBindGroup(0,bgIrradiance);cp.dispatchWorkgroups(IRRADIANCE_SIZE/8,IRRADIANCE_SIZE/8,6);}
+    cp.end();
+    cacheFace=publish?0:cacheFace+1;envFull=0;
     for(let m=0;m<SIM_MIP_COUNT;m++)enc.copyTextureToTexture({texture:dispTex,mipLevel:m},{texture:lastDisp,mipLevel:m},[N>>m,N>>m,C]);
 
     const rp = enc.beginRenderPass(mainPass);
@@ -983,8 +1056,10 @@ async function main() {
     rp.setPipeline(skyPipe);
     rp.setBindGroup(0, bgSky);
     rp.draw(3);
-    if(P.spray>0 || P.rain>0){rp.setPipeline(particlePipe);rp.setBindGroup(0,particleDrawBG);rp.draw(6,PARTICLE_COUNT);}
     rp.end();
+    const particles=enc.beginRenderPass(transparentPass);
+    if(P.spray>0 || P.rain>0){particles.setPipeline(particlePipe);particles.setBindGroup(0,particleDrawBG);particles.draw(6,PARTICLE_COUNT);}
+    particles.end();
 
     bloomFirstData.set([1/W,1/H,1,frameF[60]]);
     device.queue.writeBuffer(bloomUBOs[0],0,bloomFirstData);
@@ -1016,12 +1091,12 @@ async function main() {
     pc.end();
 
     let doProbe = false;
-    if (!probePending && (frameIndex & 7) === 0) {
+    if (qs.get('probeReadback')!=='off' && !probePending && (frameIndex & 7) === 0) {
       enc.copyBufferToBuffer(probeOut, 0, probeRead, 0, 16);
       doProbe = true;
     }
     let doTs = false;
-    if (hasTS && !tsPending && (frameIndex & 7) === 0) {
+    if (qs.get('timestampReadback')!=='off' && hasTS && !tsPending && (frameIndex & 7) === 0) {
       enc.resolveQuerySet(tsQuery, 0, queryCount, tsResolve, 0);
       enc.copyBufferToBuffer(tsResolve, 0, tsRead, 0, queryCount*8);
       doTs = true;
@@ -1030,16 +1105,17 @@ async function main() {
     if (captureRequested || (shotName && shotIdx < shotSeq && frameIndex >= shotFrames + shotIdx)) {
       shooting = true;
       const bpr = Math.ceil(W * 4 / 256) * 256;
-      readBuf = device.createBuffer({ size: bpr * H, usage: GU.MAP_READ | GU.COPY_DST });
+      readBuf = allocations.buffer({ size: bpr * H, usage: GU.MAP_READ | GU.COPY_DST });
       enc.copyTextureToBuffer({ texture: swapTex }, { buffer: readBuf, bytesPerRow: bpr }, [W, H]);
       saveShot(readBuf, bpr);
     }
     submitList[0] = enc.finish();
-    device.queue.submit(submitList);
+    const submitStart=performance.now();device.queue.submit(submitList);const submitEnd=performance.now();
     cpuMs=performance.now()-cpuStart;
-    if(frameIndex>30){frameRecords.push({frame:frameMs,cpu:cpuMs,visibility:document.visibilityState,time:simTime,camera:[cam.x,cam.y,cam.z,cam.yaw,cam.pitch],...(qs.has('p0')?{probeAgeFrames:frameIndex-probeCompletedFrame,readbackHeight:waterH}: {})});if(frameRecords.length>4000)frameRecords.shift();}
+    if(frameIndex>30){frameRecords.push({id:frameIndex,raf:now,cpuStart,submitStart,submitEnd,frame:frameMs,cpu:cpuMs,visibility:document.visibilityState,time:simTime,camera:[cam.x,cam.y,cam.z,cam.yaw,cam.pitch],cacheVersion:cachePublished?.version,cacheAgeFrames:frameIndex-(cachePublished?.frame||0),
+      weather:{...local,clocks:{...environment.clocks},swellHs:P.swellHs,seaWind:P.windSpeed},probeAgeFrames:frameIndex-probeCompletedFrame,readbackHeight:waterH});if(frameRecords.length>4000)frameRecords.shift();}
     if (doProbe) { probePending = true;probeSubmittedFrame=frameIndex; probeRead.mapAsync(GPUMapMode.READ).then(onProbe, onProbeFail); }
-    if (doTs) { timingFrame={cpu:cpuMs,frame:frameMs,width:W,height:H};tsPending = true; tsRead.mapAsync(GPUMapMode.READ).then(onTsMapped, onTsFail); }
+    if (doTs) { timingFrame={id:frameIndex,submitEnd,cpu:cpuMs,frame:frameMs,width:W,height:H};tsPending = true; tsRead.mapAsync(GPUMapMode.READ).then(onTsMapped, onTsFail); }
     if (readBuf) saveShot(readBuf, Math.ceil(W * 4 / 256) * 256, true);
     if(qs.has('benchmark') && (frameIndex>=runtime.frames || now-benchmarkStart>=runtime.benchmarkSeconds*1000)){
       benchmarkStopReason=frameIndex>=runtime.frames?'frame limit':'wall-clock limit';
@@ -1059,7 +1135,8 @@ async function main() {
     else requestAnimationFrame(frame);
   }
 
-  function evidenceReport(){return {version:'0.3.0-dev.1',sourceCheckpoint:qs.get('revision')||'development',adapter:adapterInfo,backend:'native-webgpu',timestampQuery:hasTS,settings:{...P},camera:{...cam},simulationTime:simTime,frameIndex,width:W,height:H,nodes:nodeCount,errors,measurements,frameRecords,
+  function evidenceReport(){return {version:'0.4-phase1',sourceCheckpoint:qs.get('revision')||'development',adapter:adapterInfo,backend:'native-webgpu',timestampQuery:hasTS,settings:{...P},camera:{...cam},simulationTime:simTime,frameIndex,width:W,height:H,nodes:nodeCount,errors,measurements,frameRecords,
+    allocations:allocations.report(),environment:environmentSnapshot(environment),lightCache:{published:cachePublished,history:cacheHistory,units:'relative scene-linear RGB radiance / irradiance; not absolute SI calibrated',latency:'complete snapshot, six-frame angular build; direct shadow current frame'},browserTasks,
     phase0:{query:Object.fromEntries(qs),profile:phase0Profile,note:'Experimental toggles are Phase 0 hypotheses, not accepted features.'},userAgent:navigator.userAgent,
     foamPatternCalibration,worldOrigin:origin,benchmarkStopReason,benchmarkWallSeconds:benchmarkStart===null?0:(performance.now()-benchmarkStart)/1000,
     surfaceProbe:{height:waterH,scope:'Asynchronous camera-point height; optical classification uses the current GPU near-plane map.'},
@@ -1095,7 +1172,7 @@ async function main() {
     if(qs.get('p0Columns')==='1')report.cloudColumns=await phase0CloudColumns(device,frameUBO,cloudNoiseView,cloudSampler,qs);
     if(qs.get('validate')==='1')report.spectral=await spectralReadback(device,{h0:h0Buf,specA,disp:dispTex,deriv:derivTex,mom:momTex},P);
     if(qs.get('validate')==='1')report.foam=await foamReadback(device,foamW[foamCur]);
-    if(qs.get('validate')==='1')report.hdr=await hdrReadback(device,hdrTex,frameF[60]);
+    if(qs.get('validate')==='1'){report.hdr=await hdrReadback(device,hdrTex,frameF[60]);report.light=await phase1LightReadback(device,shadowTex,irradianceTex,envTex);}
     if(qs.get('contracts')==='1'){
       report.discreteSpectrum=discreteSpectrumLedger(P);
       report.slopeMipBudget=await slopeMipReadback(device,derivTex,momTex);

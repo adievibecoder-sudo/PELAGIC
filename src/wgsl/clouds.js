@@ -1,6 +1,7 @@
 // Original finite-volume cloud approximation. Distances in kilometres; extinction in 1/km.
 // Front-to-back Beer integration with sampled self-shadowing. Not a fluid cloud simulation.
-export const CLOUD_VOLUME = /* wgsl */ `
+import {REGIONAL_WEATHER} from './environment.js';
+export const CLOUD_VOLUME = REGIONAL_WEATHER + /* wgsl */ `
 @group(0) @binding(5) var cloudNoise:texture_3d<f32>;
 @group(0) @binding(6) var cloudNoiseSampler:sampler;
 fn hash3(p: vec3f) -> f32 {
@@ -16,7 +17,7 @@ fn noise3(p: vec3f) -> f32 {
 fn filteredNoise(p:vec3f, footprint:f32)->f32 {
   return mix(noise3(p),0.5,smoothstep(0.25,0.85,footprint));
 }
-fn thermalShape(world:vec3f,altitude:f32,coverage:f32,storm:f32)->f32 {
+fn thermalShape(world:vec3f,altitude:f32,coverage:f32,storm:f32,layerDepth:f32)->f32 {
   let size=mix(3.6,7.0,storm);
   let cell=floor(world.xz/size);
   var field=-1.0;
@@ -26,8 +27,8 @@ fn thermalShape(world:vec3f,altitude:f32,coverage:f32,storm:f32)->f32 {
     let strength=smoothstep(random.z-0.12,random.z+0.12,coverage);
     if(strength<0.01){continue;}
     let centre=(id+0.2+random.xy*0.6)*size;
-    let depth=F.weather.w*(0.20+0.64*random.y*random.y);
-    let bottom=F.cloudP.x+F.weather.w*(0.015+0.08*random.x);
+    let depth=layerDepth*(0.20+0.64*random.y*random.y);
+    let bottom=F.cloudP.x+layerDepth*(0.015+0.08*random.x);
     let h=(altitude-bottom)/max(depth,0.15);
     let radius=size*(0.17+0.29*random.x)*pow(strength,0.333333);
     let bend=F.windP[0].xy*h*h*depth*0.18;
@@ -43,36 +44,41 @@ fn thermalShape(world:vec3f,altitude:f32,coverage:f32,storm:f32)->f32 {
 }
 fn cloudDensityFiltered(p: vec3f, detail: bool, footprint:f32) -> f32 {
   let altitude=p.y+dot(p.xz,p.xz)/(2.0*RG);
-  if(altitude<F.cloudP.x || altitude>F.cloudP.x+F.weather.w){return 0.0;}
-  let drift=vec3f(F.windP[0].x,0.0,F.windP[0].y)*F.cloudP.w*F.windP[0].z*0.00065;
+  let layerDepth=mix(F.regional.y,3.5,regionalWeight(p.xz));
+  if(altitude<F.cloudP.x || altitude>F.cloudP.x+layerDepth){return 0.0;}
+  let drift=vec3f(F.cloudDrift.x,0.0,F.cloudDrift.y);
   let world=p+vec3f(F.camPos.x*0.001+F.worldOrigin.x,0,F.camPos.z*0.001+F.worldOrigin.y)-drift;
-  let strat=select(0.0,1.0,F.weather.z>0.5 && F.weather.z<1.5);
-  let storm=step(1.5,F.weather.z);
+  let types=regionalTypes(p.xz);
+  let strat=types.y;
+  let storm=types.z;
   // Separate mesoscale organisation from billows. Local depth and cloud base
   // vary across each bank instead of sharing one repeated horizontal profile.
   let weather=textureSampleLevel(cloudNoise,cloudNoiseSampler,vec3f(world.x*0.008,0.31,world.z*0.008),max(log2(max(footprint,0.001)*1.024),0.0));
   let cell=textureSampleLevel(cloudNoise,cloudNoiseSampler,vec3f(world.x*0.047,0.67,world.z*0.047),max(log2(max(footprint,0.001)*6.016),0.0));
-  let cover=clamp(F.cloudP.y+(weather.a-0.5)*3.2+(cell.a-0.5)*0.65,0.0,1.0);
-  let baseHeight=F.cloudP.x+F.weather.w*(0.025+0.14*cell.a);
-  let depth=F.weather.w*mix(0.48+0.48*weather.r,0.22+0.15*cell.r,strat);
+  let coverage=regionalCoverage(p.xz);
+  if(coverage<0.001){return 0.0;}
+  let cover=clamp(coverage+(weather.a-0.5)*3.2+(cell.a-0.5)*0.65,0.0,1.0);
+  let baseHeight=F.cloudP.x+layerDepth*(0.025+0.14*cell.a);
+  let depth=layerDepth*mix(0.48+0.48*weather.r,0.22+0.15*cell.r,strat);
   let h=(altitude-baseHeight)/max(depth,0.1);
-  if((strat>0.5 && (h<0.0 || h>1.0)) || cover<0.001){return 0.0;}
+  if(cover<0.001){return 0.0;}
   let profile=smoothstep(0.0,0.075,h)*(1.0-smoothstep(mix(0.6,0.7,storm),1.0,h));
   let scale=vec3f(mix(0.62,0.24,storm),mix(0.60,0.42,strat),mix(0.62,0.24,storm));
-  let shear=vec3f(F.windP[0].x,0,F.windP[0].y)*(h*h*0.13*F.weather.w);
+  let shear=vec3f(F.windP[0].x,0,F.windP[0].y)*(h*h*0.13*layerDepth);
   let q=(world+shear)*scale;
   let lod=max(log2(max(footprint,0.001)*max(scale.x,scale.y)*128.0),0.0);
   let shape=textureSampleLevel(cloudNoise,cloudNoiseSampler,q,lod);
   let base=clamp((shape.r-0.5)*2.8+0.68-(1.0-shape.g)*0.12,0.0,1.0);
   let probability=cover*profile;
   var density=clamp((base-(1.0-probability))/max(probability,0.05),0.0,1.0);
-  if(strat<0.5){
-    let thermal=thermalShape(world,altitude,cover,storm);
+  if(strat<0.9999){
+    let thermal=thermalShape(world,altitude,cover,storm,layerDepth);
     let billow=(shape.r-0.5)*3.4+(shape.g-0.4)*0.65;
-    density=clamp((thermal+billow)*2.0,0.0,1.0)*smoothstep(-0.32,0.06,thermal);
+    var cumulus=clamp((thermal+billow)*2.0,0.0,1.0)*smoothstep(-0.32,0.06,thermal);
     // Storm banks merge into a connected lower deck as coverage approaches one.
     let deck=clamp((base-(1.0-cover*profile))*2.6,0.0,1.0);
-    density=max(density,deck*storm*smoothstep(0.65,0.96,cover));
+    cumulus=max(cumulus,deck*storm*smoothstep(0.65,0.96,cover));
+    density=mix(cumulus,density,strat);
   }
   if(density>0.0){
     let erosion=textureSampleLevel(cloudNoise,cloudNoiseSampler,q*2.83+vec3f(0.17,0.31,0.59),lod+1.5).b;
@@ -95,7 +101,7 @@ fn cloudShadowFor(p: vec3f,light:vec3f) -> f32 {
 fn cloudShadowAt(p:vec3f)->f32 {return cloudShadowFor(p,F.sunDir.xyz);}
 fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
   *sunT=1.0;
-  if(F.cloudP.y<0.001 && F.atmo.z<0.001){return vec4f(0);}
+  if(F.regional.x<0.001 && F.frontControl.z<0.5 && F.atmo.z<0.001){return vec4f(0);}
   let altitude=max(F.camPos.y*0.001,0.001);
   if(dir.y < -sqrt(2.0*altitude/RG)-0.002){return vec4f(0);}
   let ro=vec3f(0,altitude,0);

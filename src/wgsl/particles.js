@@ -11,6 +11,8 @@ struct Particle {p:vec4f,v:vec4f};
 @group(0) @binding(4) var samp:sampler;
 @group(0) @binding(5) var derivatives:texture_2d_array<f32>;
 @group(0) @binding(6) var previousDisplacement:texture_2d_array<f32>;
+@group(0) @binding(7) var weatherSupport:texture_2d<f32>;
+@group(0) @binding(8) var weatherSampler:sampler;
 fn rnd(v:u32)->f32{return f32(pcgHash(v)>>8u)/16777216.0;}
 @compute @workgroup_size(64) fn main(@builtin(global_invocation_id) id:vec3u){
  let k=id.x;if(k>=${PARTICLE_COUNT}u){return;}
@@ -31,7 +33,8 @@ fn rnd(v:u32)->f32{return f32(pcgHash(v)>>8u)/16777216.0;}
    }
    let fresh=textureSampleLevel(foam,samp,xz/F.lodP.z,0u,0.0).g;
    let windGate=smoothstep(select(4.0,9.0,spindrift),select(12.0,19.0,spindrift),F.windP[0].z);
-   let spawn=select(fresh*fresh*F.weather.y*windGate,F.weather.x,rain);
+   let rainSupport=textureSampleLevel(weatherSupport,weatherSampler,(xz-F.camPos.xz)/40000.0+0.5,0.0).b;
+   let spawn=select(fresh*fresh*F.weather.y*windGate,rainSupport,rain);
    if(rnd(seed+4u)>spawn){p.p=vec4f(xz.x,-1000,xz.y,0);particles[k]=p;return;}
    let life=select(0.7+r.y*1.2,2.5+r.y*2.0,spindrift);
    p.p=vec4f(xz.x+d.x,select(d.y+0.12,F.camPos.y+8.0+r.y*25.0,rain),xz.y+d.z,select(life,4.0,rain));
@@ -80,7 +83,7 @@ struct VOut{@builtin(position) p:vec4f,@location(0) uv:vec2f,@location(1) opacit
  o.opacity=smoothstep(0.0,0.3,p.p.w)*select(select(0.28,0.035,spindrift),0.16,rain)*min(1.0,radius*radius/max(drawRadius*drawRadius,0.000001));
  let cosTheta=dot(normalize(p.p.xyz-F.camPos.xyz),F.sunDir.xyz);
  let phase=0.07957747*(1.0-0.75*0.75)/pow(max(1.0+0.75*0.75-1.5*cosTheta,0.001),1.5);
- let ambient=textureSampleLevel(environment,lightSampler,vec3f(0,1,0),6.0).rgb;
+ let ambient=textureSampleLevel(environment,lightSampler,vec3f(0,1,0),0.0).rgb/PI;
  let shadowUV=clamp((p.p.xz-F.camPos.xz)/40000.0+0.5,vec2f(0.001),vec2f(0.999));
  let sunlight=textureSampleLevel(shadow,lightSampler,shadowUV,0.0).r;
  let moonCos=dot(normalize(p.p.xyz-F.camPos.xyz),F.moonDir.xyz);

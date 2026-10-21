@@ -1,6 +1,6 @@
 # PELAGIC 0.4 — Persistent Verified State
 
-**Coordination update:** 21 October 2026 - owner approved Phase 1; no new implementation or visual PASS performed by this document-only update. See `V04-PHASE0-REPORT.md` and `V04-ACCEPTANCE.md`.
+**Implementation update:** 21 October 2026 - Phase 1 environment/radiance integration under validation. Separate unchanged de7b32b baseline captured: 12 original 1080p stills, five original 10 s videos. 32 CPU tests PASS; first native GPU render compiles and captures. Actual adapter NVIDIA/Ampere corroborates existing owner RTX 3050 evidence. No visual acceptance yet. See `V04-PHASE1-LAB.md`; Phase 0 FAILs remain.
 **Working branch:** `development/pelagic-0.4`
 **Current authorized phase:** **Phase 1 ONLY**
 **Next phase gate:** STOP after Phase 1; future Phase 2+3 requires separate approval and internal owner cloud checkpoint. User retains independent visual sign-off.
@@ -18,7 +18,7 @@
 
 | Field | Verified current value |
 |---|---|
-| Active phase and scope | Phase 0 published at 853b23f; Phase 1 authorized, not yet implemented by this documentation commit |
+| Active phase and scope | Phase 1 implementation under test: deterministic regional environment, independent clocks/history, nonrecursive angular radiance cache, cloud-aware underwater light and rain support. No later-phase reconstruction |
 | Published experiment checkpoint | `62f0f752fea7e211c4aea1addf140ff3ee217679`; remote SHA verified. All 81 unique LFS objects freshly downloaded and SHA-256 checked; 82 media paths. Publication proof: `evidence/v04-p0-review/publication.json` |
 | Last actual source/commit inspected | Entry `6672bfbe14732b120464862cd408f9f91dc3b563`, preflight `a1092a0`, final laboratory source hashes in `evidence/v04-p0-review/manifest.json`. Capture label a1092a0-lab is not a commit; per-capture source hashes were not retained |
 | Tested CPU / GPU commands and results | `npm test`: 26/26 PASS; `/tests.html`: 9/9 FFT checks PASS; `/optics.html`: five groups PASS; compute marker 0x50454c41 PASS |

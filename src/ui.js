@@ -5,13 +5,13 @@ const groups=[
  ['windSpeed','Wind at 10 m','m/s',.1],['windDir','Wind travel direction','deg',1],['fetchKm','Wind fetch','km',1],
  ['swellHs','Swell significant height','m',.05],['swellLength','Swell wavelength','m',1],['swellDir','Swell travel direction','deg',1],
  ['choppy','Crest sharpness','',.01],['foam','Whitewater','',.05],['spray','Spindrift','',.05],
- ['currentSpeed','Surface current','m/s',.01],['currentDir','Current direction','deg',1],['weatherRate','Sea development speed','x',1]]],
+ ['currentSpeed','Surface current','m/s',.01],['currentDir','Current direction','deg',1],['seaRate','Sea development speed','x',1]]],
  ['Water & light',[
  ['turbidity','Particles & dissolved matter','',.01],['sunElev','Sun elevation','deg',.1],['sunAzim','Sun azimuth','deg',1],['exposure','Exposure','x',.05],['bloom','Lens bloom','',.005]]],
  ['Atmosphere',[
- ['clouds','Cloud coverage','',.01],['cloudDepth','Cloud depth','km',.05],['veil','High ice cloud','',.01],['haze','Aerosol density','',.1],['rain','Rainfall','',.01]]],
+ ['clouds','Cloud coverage','',.01],['cloudDepth','Cloud depth','km',.05],['veil','High ice cloud','',.01],['haze','Aerosol density','',.1],['rain','Rainfall','',.01],['weatherRate','Weather time compression','x',1],['frontWidth','Regional front width','km',1],['frontSpeed','Regional front speed','m/s',1]]],
  ['Time & place',[
- ['hour','Time (UTC)','h',.05],['latitude','Latitude','deg',.1],['longitude','Longitude','deg',.1],['timeScale','Wave playback speed','x',.25]]],
+ ['hour','Time (UTC)','h',.05],['latitude','Latitude','deg',.1],['longitude','Longitude','deg',.1],['timeScale','Wave playback speed','x',.25],['astronomyRate','Astronomical clock speed','x',1]]],
  ['Camera & rendering',[
  ['cameraSpeed','Flight speed','m/s',.5],['fov','Field of view','deg',1],['resolution','Render scale','x',.05]]]
 ];
@@ -33,7 +33,11 @@ export function setupUI(P,cam,api) {
   for(const [value,label]of ['Cumulus','Stratocumulus','Storm towers'].entries()){const option=document.createElement('option');option.value=value;option.textContent=label;cloudSelect.append(option);}
   const cloudLabel=document.createElement('label');cloudLabel.className='control';cloudLabel.textContent='Cloud formation';cloudLabel.append(cloudSelect);$('control-groups').children[2].append(cloudLabel);
   cloudSelect.onchange=()=>api.change('cloudType',Number(cloudSelect.value));
-  function sync(){for(const [k,set]of controls)set(P[k]);cloudSelect.value=P.cloudType;$('pause').textContent=P.paused?'Play':'Pause';$('quality').value=P.quality;$('camera-mode').value=P.cameraMode;$('astronomy').checked=P.astronomy;$('adaptive').checked=P.adaptive;$('date').value=P.date;$('seed').value=P.seed;$('debug').value=P.debug;}
+  const mode=document.createElement('select');mode.setAttribute('aria-label','Environment changes');
+  for(const [value,label]of [['natural','Natural weather evolution'],['instant','Instant scene preview']]){const o=document.createElement('option');o.value=value;o.textContent=label;mode.append(o);}
+  mode.value=P.environmentMode;mode.onchange=()=>api.change('environmentMode',mode.value);$('control-groups').prepend(mode);
+  const front=document.createElement('label');front.textContent=' Regional weather front';const enabled=document.createElement('input');enabled.type='checkbox';enabled.checked=P.frontEnabled;enabled.setAttribute('aria-label','Regional weather front');enabled.onchange=()=>api.change('frontEnabled',enabled.checked);front.prepend(enabled);mode.after(front);
+  function sync(){for(const [k,set]of controls)set(P[k]);mode.value=P.environmentMode;enabled.checked=P.frontEnabled;cloudSelect.value=P.cloudType;$('pause').textContent=P.paused?'Play':'Pause';$('quality').value=P.quality;$('camera-mode').value=P.cameraMode;$('astronomy').checked=P.astronomy;$('adaptive').checked=P.adaptive;$('date').value=P.date;$('seed').value=P.seed;$('debug').value=P.debug;}
   let ordinal=0;
   for(const [id,p]of Object.entries(PRESETS)) {
     const b=document.createElement('button');b.className='scene';b.dataset.preset=id;
@@ -48,8 +52,8 @@ export function setupUI(P,cam,api) {
   $('pause').onclick=()=>{P.paused=!P.paused;$('pause').textContent=P.paused?'Play':'Pause';};
   $('hide').onclick=()=>document.body.classList.add('cinema');$('restore-ui').onclick=()=>document.body.classList.remove('cinema');
   $('screenshot').onclick=()=>{api.capture();toast('Capturing full-resolution PNG');};$('record').onclick=()=>api.record();
-  $('share').onclick=async()=>{const url=toURL(P,cam,api.time(),location.href);$('share-url').value=url;$('share-dialog').showModal();try{await navigator.clipboard.writeText(url);toast('Reproducible URL copied');}catch{toast('Copy the URL from this dialog');}};
-  const configuration=()=>({settings:P,camera:cam,time:api.time()});
+  $('share').onclick=async()=>{const url=toURL(P,cam,api.time(),location.href,api.snapshot());$('share-url').value=url;$('share-dialog').showModal();try{await navigator.clipboard.writeText(url);toast('Reproducible URL copied');}catch{toast('Copy the URL from this dialog');}};
+  const configuration=()=>({settings:P,camera:cam,time:api.time(),environment:api.snapshot()});
   $('save').onclick=()=>{localStorage.setItem('pelagic-config-v1',JSON.stringify(configuration()));toast('Configuration saved on this browser');};
   $('load').onclick=()=>{try{const state=JSON.parse(localStorage.getItem('pelagic-config-v1'));if(!state)throw Error('No saved configuration');api.restore(state);sync();setScene(null);toast('Configuration restored');}catch(e){toast(e.message);}};
   $('export').onclick=()=>download(new Blob([JSON.stringify(configuration(),null,2)],{type:'application/json'}),'pelagic-config.json');

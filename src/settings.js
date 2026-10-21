@@ -4,7 +4,9 @@ export const DEFAULTS = Object.freeze({
   sunElev: 8, sunAzim: 4, exposure: 1.2, haze: 1.8, clouds: 0.32, veil: 0.14,
   bloom: 0.045, spray: 0.6, rain: 0, cloudDepth: 1.5, cloudType: 0,
   seed: 1307, quality: 'Balanced', resolution: 1, adaptive: true,
-  timeScale: 1, weatherRate: 60, paused: false, cameraMode: 'surface',
+  timeScale: 1, weatherRate: 1, seaRate: 60, astronomyRate: 0, environmentMode:'natural',
+  frontEnabled:false,frontX:18000,frontZ:0,frontWidth:20,frontHeading:180,frontSpeed:12,electrified:false,
+  paused: false, cameraMode: 'surface',
   astronomy: false, date: '2026-10-25', hour: 17, latitude: 32, longitude: -30,
   debug: 0, currentSpeed: 0.12, currentDir: 35, cameraSpeed: 6, fov: 58,
 });
@@ -16,6 +18,7 @@ export const RANGES = Object.freeze({
   bloom:[0,0.25],spray:[0,3],rain:[0,1],cloudDepth:[0.3,5],cloudType:[0,2],
   seed:[1,16777215],resolution:[0.5,1.5],timeScale:[0,20],weatherRate:[1,3600],
   hour:[0,23.999],latitude:[-89,89],longitude:[-180,180],debug:[0,12],
+  seaRate:[1,3600],astronomyRate:[0,3600],frontX:[-100000,100000],frontZ:[-100000,100000],frontWidth:[1,100],frontHeading:[0,360],frontSpeed:[0,60],
   currentSpeed:[0,2],currentDir:[0,360],cameraSpeed:[0.1,500],fov:[30,100],
 });
 export const PRESETS = Object.freeze({
@@ -41,6 +44,7 @@ export function sanitize(input, base = DEFAULTS) {
     else if (typeof DEFAULTS[key] === 'boolean') result[key] = value === true || value === 'true' || value === '1';
     else if (key === 'quality' && value in QUALITY) result[key] = value;
     else if (key === 'cameraMode' && ['surface','free','underwater'].includes(value)) result[key] = value;
+    else if (key === 'environmentMode' && ['natural','instant'].includes(value)) result[key] = value;
     else if (key === 'date' && /^\d{4}-\d{2}-\d{2}$/.test(value) && Number.isFinite(Date.parse(value))) result[key] = value;
   }
   result.seed = Math.round(result.seed); result.cloudType = Math.round(result.cloudType); result.debug = Math.round(result.debug);
@@ -53,11 +57,12 @@ export function fromURL(search) {
   if (q.has('config')) { try { config = sanitize(JSON.parse(q.get('config')), config); } catch {} }
   return sanitize(Object.fromEntries(q), config);
 }
-export function toURL(settings, camera, time, base) {
+export function toURL(settings, camera, time, base, environment) {
   const u = new URL(base); u.search = '';
   u.searchParams.set('config',JSON.stringify(sanitize(settings)));
   u.searchParams.set('cam',[camera.x,camera.y,camera.z,camera.yaw*180/Math.PI,camera.pitch*180/Math.PI].map(v=>Number(v.toFixed(5))).join(','));
   u.searchParams.set('t',time.toFixed(4));
+  if(environment)u.searchParams.set('environment',JSON.stringify(environment));
   return u.href;
 }
 

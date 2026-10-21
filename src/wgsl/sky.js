@@ -244,7 +244,6 @@ export const ENV_CUBE = FRAME_WGSL + ATMO_CORE_WGSL + /* wgsl */ `
 @group(0) @binding(2) var skyLUT: texture_2d_array<f32>;
 @group(0) @binding(3) var sampC: sampler;
 @group(0) @binding(4) var dst: texture_storage_2d_array<rgba16float, write>;
-@group(0) @binding(7) var diffuseCube:texture_cube<f32>;
 ` + SKY_RENDER_FUNCS + SKY_CLOUD_FUNCS + /* wgsl */ `
 const ENV: f32 = ${ENV_SIZE}.0;
 fn faceDir(face: u32, uv: vec2f) -> vec3f {
@@ -269,17 +268,14 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
   if (dir.y >= 0.0) {
     L = skyRadiance(dir, false, 1.5708 / ENV * 1.5);
   } else {
-    // First-bounce homogeneous sea approximation. Same dielectric and deep-water
-    // radiometry as the surface, using the preceding irradiance update.
+    // First reflected-sky bounce. No irradiance input: the light graph is acyclic.
+    // Upward water-body emission is omitted in this lower-hemisphere proxy.
     let ci=max(-dir.y,0.00001);
     let ct=sqrt(1.0-(1.0-ci*ci)/(1.333*1.333));
     let rs=(ci-1.333*ct)/(ci+1.333*ct);let rp=(1.333*ci-ct)/(1.333*ci+ct);
     let fresnel=0.5*(rs*rs+rp*rp);
     let reflected=skyRadiance(vec3f(dir.x,-dir.y,dir.z),false,1.5708/ENV*1.5);
-    let ratio=F.backscatter.rgb/(F.absorption.rgb+F.backscatter.rgb);
-    let incoming=textureSampleLevel(diffuseCube,sampC,vec3f(0,1,0),0.0).rgb*0.94+(sunIlluminance()*max(F.sunDir.y,0.0)+moonIlluminance()*max(F.moonDir.y,0.0))*0.96;
-    let body=(0.0949*ratio+0.0794*ratio*ratio)*incoming/(1.333*1.333);
-    L=reflected*fresnel+body*(1.0-fresnel);
+    L=reflected*fresnel;
   }
   textureStore(dst, id.xy, face, vec4f(L, 1.0));
 }
@@ -370,5 +366,10 @@ export const CLOUD_SHADOW = FRAME_WGSL + ATMO_CORE_WGSL + `
  let uv=(vec2f(id.xy)+0.5)/vec2f(dims);
  let p=vec3f((uv.x-0.5)*40.0,0.0,(uv.y-0.5)*40.0);
  var lunar=1.0;if(F.celestial.x>0.0){lunar=cloudShadowFor(p,F.moonDir.xyz);}
- textureStore(dst,id.xy,vec4f(cloudShadowAt(p),lunar,0,1));
+ var column=0.0;
+ if(precipitationSupport(p.xz)>0.001){
+   for(var j=0u;j<8u;j++){column+=cloudDensity(p+vec3f(0,F.cloudP.x+F.weather.w*(f32(j)+0.5)/8.0,0),false)*F.weather.w/8.0;}
+ }
+ let rain=precipitationSupport(p.xz)*(1.0-exp(-column*4.0));
+ textureStore(dst,id.xy,vec4f(cloudShadowAt(p),lunar,rain,regionalWeight(p.xz)));
 }`;
