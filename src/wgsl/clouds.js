@@ -88,6 +88,20 @@ fn cloudDensityFiltered(p: vec3f, detail: bool, footprint:f32) -> f32 {
   return density;
 }
 fn cloudDensity(p:vec3f,detail:bool)->f32{return cloudDensityFiltered(p,detail,0.0);}
+fn iceDensity(p:vec2f,footprint:f32)->f32 {
+  let warp=vec2f(gnoise(p*0.14),gnoise(p*0.21+vec2f(8.3,1.1)))*2.2;
+  let low=mix(gnoise((p+warp)*vec2f(0.22,0.85)),0.0,smoothstep(0.25,0.85,footprint*0.85));
+  let high=mix(gnoise(p*vec2f(0.63,2.3)),0.0,smoothstep(0.25,0.85,footprint*2.3));
+  return max(0.0,0.65*low+0.35*high+F.atmo.z-0.45);
+}
+fn iceTransmittance(p:vec3f,light:vec3f)->f32 {
+  if(F.atmo.z<0.001){return 1.0;}
+  let ro=p+vec3f(0,RG,0);
+  let outer=raySphere(ro,light,RG+7.3);let inner=raySphere(ro,light,RG+7.0);
+  let start=max(0.0,inner.y);let finish=max(0.0,outer.y);
+  let world=(p+light*((start+finish)*0.5)).xz+F.camPos.xz*0.001+F.worldOrigin.xy;
+  return exp(-iceDensity(world,0.0)*0.6*max(finish-start,0.0));
+}
 fn cloudShadowFor(p: vec3f,light:vec3f) -> f32 {
   if(light.y<0.01){return 1.0;}
   let start=max(0.0,(F.cloudP.x-p.y)/light.y);
@@ -96,7 +110,7 @@ fn cloudShadowFor(p: vec3f,light:vec3f) -> f32 {
   for(var j=0u;j<12u;j++) {
     od+=cloudDensity(p+light*(start+(f32(j)+0.5)*lengthRay/12.0),true)*lengthRay/12.0;
   }
-  return exp(-od*F.cloudP.z*6.0);
+  return exp(-od*F.cloudP.z*6.0)*iceTransmittance(p,light);
 }
 fn cloudShadowAt(p:vec3f)->f32 {return cloudShadowFor(p,F.sunDir.xyz);}
 fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
@@ -189,11 +203,8 @@ fn cloudLayers(dir: vec3f,pixAng:f32,aa:vec2f,sunT:ptr<function,f32>) -> vec4f {
   if(iceFinish>iceStart && F.atmo.z>0.001) {
     let t=(iceStart+iceFinish)*0.5;
     let p=(ro+dir*t).xz+F.camPos.xz*0.001+F.worldOrigin.xy;
-    let warp=vec2f(gnoise(p*0.14),gnoise(p*0.21+vec2f(8.3,1.1)))*2.2;
     let footprint=t*pixAng;
-    let low=mix(gnoise((p+warp)*vec2f(0.22,0.85)),0.0,smoothstep(0.25,0.85,footprint*0.85));
-    let high=mix(gnoise(p*vec2f(0.63,2.3)),0.0,smoothstep(0.25,0.85,footprint*2.3));
-    let ice=max(0.0,0.65*low+0.35*high+F.atmo.z-0.45);
+    let ice=iceDensity(p,footprint);
     let opacity=1.0-exp(-ice*0.6*(iceFinish-iceStart));
     let radial=sphereOrigin+dir*t;let radius=length(radial);
     let mu=dot(radial,F.sunDir.xyz)/radius;

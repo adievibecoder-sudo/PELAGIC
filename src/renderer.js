@@ -774,6 +774,7 @@ async function main() {
         if(key.startsWith('front')||key==='electrified'||key==='cloudType')P[key]=next[key];
       } else {P[key]=next[key];if(key==='seed'||key==='swellSpread')needSpectrum=true;}
       if(key==='environmentMode')environment.mode=P.environmentMode;
+      if(key==='seed'){environment.seed=P.seed;environment.front.id=P.seed;}
       if(['date','hour'].includes(key)){environment.utcEpoch=Date.parse(P.date+'T00:00:00Z')+P.hour*3600000;environment.clocks.astronomy=0;}
       if(key==='cameraMode'&&value==='underwater'){cam.y=waterH-3;cam.pitch=0.3;}
       if(key==='cameraSpeed')cam.speed=P.cameraSpeed;
