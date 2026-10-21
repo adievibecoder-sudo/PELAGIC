@@ -1,32 +1,23 @@
-# PELAGIC 0.4 — Operating Rules for Astra
+# PELAGIC 0.4 — Astra Operating Rules
 
-**Branch:** `development/pelagic-0.4`. **Current authorization:** Phase 0 ONLY.
-**Read at the start of every session:** this file → `docs/V04-STATE.md` → current phase kickoff → only the relevant portions of `docs/PELAGIC_V04_MASTER_EXECUTION_BRIEF.md` and source/evidence.
+**Branch:** `development/pelagic-0.4` · **Currently authorized: Phase 1 ONLY** (owner, 21 Oct 2026).
 
-**Session model:** Prefer one focused Codex/Astra conversation/thread per formally authorized phase. At a session restart read the checked-in STATE log and current commit, then resume only the current authorized phase. Never infer a phase's completion, user approval, test result or architectural decision from model memory alone. Session compaction does not waive a gate.
+## Start every session
+1. Check branch and HEAD; preserve `main`, `development/pelagic-0.3`, frozen tags/releases and all existing Phase 0 artifacts. Commit only to 0.4.
+2. Read `docs/V04-STATE.md` → `docs/V04-PHASE1-KICKOFF.md` → `docs/V04-PHASE-GATES.md` → full `docs/PELAGIC_V04_MASTER_EXECUTION_BRIEF.md` at the start of this phase. During focused edits, consult only relevant source and reference subsections.
+3. Prefer one Codex conversation per named phase; resume from Git-committed evidence and STATE, not model memory. Preserve known failures through context compaction.
 
-**Reasoning effort:** Use maximum available depth for uncertain scientific models, cloud morphology, major architecture, visual diagnosis, breaking and performance tradeoffs; use proportionate effort for routine edits, formatting, predictable tests and mechanical work. Optimize verified outcome per unit of time/context rather than keeping maximum deliberation active on every trivial operation.
+## Execution contract
+- **Phase 1 only:** shared world-anchored weather state, Sun/Moon, cloud-aware direct/diffuse/directional environmental radiance, existing-renderer integration, meaningful visual demonstrations, quantified GPU/stall diagnosis. No Phase 2 cloud replacement, Phase 3 complete storm VFX, Phase 4 FFT restructuring, Phase 5 breaking reconstruction, Phase 6 full water-optics replacement or Phase 7 waterline rebuild.
+- **STOP and obtain owner approval** after Phase 1 evidence handoff. No self-authorization. A permission to continue never makes an unresolved FAIL/UNVERIFIED item PASS. Owner remains final visual reviewer.
+- Mark SRC (verified source), TEST (executed), VIS (observed render), LIT (primary literature), HYP (untested idea), alongside PASS/FAIL/UNVERIFIED. Don't claim science/GPU/images/citations not actually tested.
+- The Hark documents, independent 21 Oct targeted report, and AAA-game research are **evidence and competing candidates, not instructions to blindly transplant shaders**. The published Phase 0 source, original media and test logs control factual baselines. Reject simplistic PM cap, “Gaussian waves have no groups”, linear-FFT B≈0.85 breaking test and equal-quality speedup claims for failed clouds.
+- **No overengineering:** observation → minimal falsifying experiment → smallest justified implementation → numerical tests → matched original images and continuous motion → profiling → accept/revert. Preserve validated FFT/cloud renderer/optical code until controlled evidence warrants changing them. No new generic engine, redundant layers, unnecessary dependencies, speculative large weather solver or repeated full literature searches.
+- **Visual first:** physically plausible ocean, cloud/weather evolution, storm, golden light, night and reflections; fixed camera/seed/UTC/wave phase/exposure before-after and unchanged control; original PNGs/WebMs. Attractive screenshots alone or passing shader tests alone are not completion.
+- **Performance:** local RTX 3050 WebGPU was corroborated in Phase 0; verify actual adapter on the tested renderer. Golden Balanced 22.90 FPS, High 8.22 FPS (profiled), ~1 s stalls FAIL. Report per-pass GPU timings, p50/p95/p99, stalls, resource estimates; don't claim real VRAM from allocation byte counts. Balanced/High interactive target budgets vs quality-first Cinematic. Optimize without removing essential phenomena.
+- **Single accountable agent.** Use strongest reasoning for uncertain scientific/architectural/visual decisions, proportional effort for routine editing. Short meaningful commits, ongoing STATE decisions, targeted test iterations; full phase reports only at checkpoints.
+- Frozen GitHub refs currently lack verified rulesets. The owner must configure `docs/V04-GITHUB-PROTECTION.md`; do not claim GitHub protection already exists.
 
+**Future coordination only (NOT authorized):** Phase 2+3 and 6+7 may use shared programmes with intermediate owner checkpoints; Phases 4/5/8/9 remain separate. See `docs/V04-PHASE-GATES.md`.
 
-## Controlling rules
-
-1. **Safety:** Never modify `main`, `development/pelagic-0.3`, `v0.2.0`, `v0.3.0-dev.1`, or their evidence/release assets. Commit work exclusively to the 0.4 branch after verifying the checked-out branch. No WebGL fallback or engine migration; preserve native Chrome WebGPU.
-   - **Protection status:** These ref-preservation rules do not substitute for GitHub enforcement. Repository branches were verified **unprotected** at 0.4 handoff. See `docs/V04-GITHUB-PROTECTION.md`; the owner must activate and verify GitHub branch and tag rulesets through repo Settings. Do not claim protection is active from these docs alone.
-
-2. **Phase boundary = mandatory human gate.** Work autonomously only inside the phase explicitly authorized by the user. Deliver the phase report, measured validation, stills, original videos, unresolved risks and a proposed next phase. **STOP and wait for explicit user approval** before any next phase. Astra cannot self-sign-off, and permission to proceed does not change FAIL/UNVERIFIED to PASS. User is the final visual reviewer; numerical tests do not override the user's critique.
-3. **Evidence labels:** Each claim is PASS / FAIL / UNVERIFIED and SRC / TEST / VIS / LIT / HYP as relevant. Never invent GPU timings, images, citations, solved defects, or hardware access. For tests requiring the user's RTX 3050, provide copy-ready commands, exact conditions, expected files and interpretation, then wait for returned evidence. Absence of evidence remains UNVERIFIED.
-   - **Local hardware exception:** If Codex/Astra really runs on the user's PC, it **may** execute real RTX 3050 testing, but must prove this before claiming a local GPU result. Follow `docs/V04-LOCAL-GPU-VALIDATION.md`, run the actual renderer through the verified adapter, and record Chrome `chrome://gpu` diagnostics. Software renderers (SwiftShader/WARP/llvmpipe) and unidentified adapters do not qualify. A false `isFallbackAdapter` flag **does not prove physical hardware**. Cloud/VM/headless execution is not presumed to have local GPU access.
-
-4. **Realism first:** The full reference spec remains binding. Natural water, waves, cloud morphology and weather response, convincing breaking/foam/spray, atmosphere/light/colour, underwater, stability, performance and website quality are independent outcomes. A pretty hero image or passing unit test does not close an integrated defect.
-5. **Before a major change:** Record the observed failure → root-cause hypothesis → smallest decisive experiment → expected change. Compare fixed-condition before/after **images AND motion** against credible references; include an unaffected control. Use grey-shaded structure/mask and radiance diagnostics before attempting post-process cosmetic fixes.
-6. **Research caution:** Hark's report is a hypothesis source, not implementation authority. Recheck PM wind-height/development limits, true Gaussian wave grouping and independent modes, breaking B≈0.85 scope, cloud optical depth, three-band colour and choppiness. Do not lock algorithms until Phase 0 experiments justify them. Respect primary scientific sources and label uncertainty.
-7. **Performance:** Keep Balanced real-time and High interactive **target budgets** separate from Cinematic quality-first profiling. Do not obtain FPS by removing required realism. Measure actual per-pass timings, frame pacing, peak resource usage and visual quality. `docs/V04-PERFORMANCE-BUDGETS.md` contains provisional allocations, not a certification.
-8. **State and efficiency:** Keep `docs/V04-STATE.md` concise, accurate and updated as phases proceed; record source/commit, decisions, current risks, completed tests and exact next actions. Inspect only relevant files and dependencies for focused work; do not repetitively reread all research or generate huge reports for trivial edits. Single accountable agent, no mandatory subagent delegation.
-9. **External materials:** Use `docs/V04-RESEARCH-INDEX.md` and `docs/V04-REFERENCE-BOARD.md`. Research text extracted from PDFs is an **access aid** and may misalign columns or omit images; seek originals before certifying figures. Do not fabricate photo metadata or licensing.
-10. **Release:** Formal Phase 9 assessment and any 0.4 tag/release require explicit user approval. Unresolved high-severity defects cannot be marked PASS merely because someone approves continuing.
-
-## Priority and method
-
-A validated **representative visual slice** (daylight/broken cloud/moderate sea) is the first proof-of-quality target, *not* permission to optimize only one scene; protect sunset/overcast/storm/night as early regression controls. Cloud/weather reconstruction is an especially urgent user-reported defect, with sea naturalism, breaking and global lighting equally binding. The master brief owns the complete scope; the current phase kickoff owns the immediate work.
-
-**Current instruction:** Phase 0 only. Stop on delivery. Do not start Phase 1 until user approval.
+**After Phase 1: submit evidence, list failures, STOP.**

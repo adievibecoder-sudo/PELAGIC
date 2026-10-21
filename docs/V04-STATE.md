@@ -1,9 +1,9 @@
 # PELAGIC 0.4 — Persistent Verified State
 
-**Last execution update:** 20 October 2026 - Phase 0 assessment/evidence published for owner review. See `V04-PHASE0-REPORT.md` and `V04-ACCEPTANCE.md`.
+**Coordination update:** 21 October 2026 - owner approved Phase 1; no new implementation or visual PASS performed by this document-only update. See `V04-PHASE0-REPORT.md` and `V04-ACCEPTANCE.md`.
 **Working branch:** `development/pelagic-0.4`
-**Current authorized phase:** **Phase 0 ONLY**
-**Next phase gate:** STOP after Phase 0; await explicit owner approval for Phase 1. User retains independent visual sign-off.
+**Current authorized phase:** **Phase 1 ONLY**
+**Next phase gate:** STOP after Phase 1; future Phase 2+3 requires separate approval and internal owner cloud checkpoint. User retains independent visual sign-off.
 
 ## Preserved baseline
 
@@ -18,7 +18,7 @@
 
 | Field | Verified current value |
 |---|---|
-| Active phase and scope | Phase 0 investigation package at review gate; no Phase 1 production implementation |
+| Active phase and scope | Phase 0 published at 853b23f; Phase 1 authorized, not yet implemented by this documentation commit |
 | Published experiment checkpoint | `62f0f752fea7e211c4aea1addf140ff3ee217679`; remote SHA verified. All 81 unique LFS objects freshly downloaded and SHA-256 checked; 82 media paths. Publication proof: `evidence/v04-p0-review/publication.json` |
 | Last actual source/commit inspected | Entry `6672bfbe14732b120464862cd408f9f91dc3b563`, preflight `a1092a0`, final laboratory source hashes in `evidence/v04-p0-review/manifest.json`. Capture label a1092a0-lab is not a commit; per-capture source hashes were not retained |
 | Tested CPU / GPU commands and results | `npm test`: 26/26 PASS; `/tests.html`: 9/9 FFT checks PASS; `/optics.html`: five groups PASS; compute marker 0x50454c41 PASS |
@@ -36,7 +36,7 @@
 | Open 0.3 inheritance items | W1 W2 L1 L2 B1 C1 U1 G1 A1 T1 R1 — retain all |
 | Scientific decisions accepted/rejected | Retain FFT. Correct PM wind height; reject no-Gaussian-groups assertion, naive double sharpening, linear B=0.85 transplant and delay-only feedback stability. Reject both cloud candidates as final shapes; broader architectures remain open |
 | Visual acceptance | **Pending owner review** |
-| Phase 1 authorization | **Not granted. STOP** |
+| Phase 1 authorization | **Owner granted 21 Oct 2026; only Phase 1.** Does not close Phase 0 failures. |
 
 ## Decision and evidence log
 
@@ -52,9 +52,16 @@
 
 1. Review `V04-PHASE0-REPORT.md`, acceptance register and original media using `npm start` then `/phase0-review.html`. Reproduction commands: `V04-PHASE0-REPRODUCE.md`.
 2. Verify materialized archive with `git lfs pull` then `node tests/phase0-manifest.mjs`. Original failure logs remain preserved.
-3. Await owner decision: additional Phase 0 experiments or explicit Phase 1 approval. No inherited realism defect is closed.
-4. Proposed Phase 1 only: shared environment/current-target state, astronomical/radiometric contracts, continuous cloud/rain/light/sea transitions. Cloud reconstruction belongs to Phase 2.
+3. Execute **Phase 1 only** per `V04-PHASE1-KICKOFF.md`; no inherited realism defect is closed.
+4. Submit full Phase 1 evidence and **STOP**; possible combined Phase 2+3 cloud/weather work remains unauthorized.
 
 Unfinished investigations: validated crest-event/roller, spatial action modulation, equal-occupancy cloud calibration, full colour pipeline, overdraw/resources, isolated endurance, wider real-reference coverage and owner review. Record these as UNVERIFIED; phase advancement never converts them into PASS.
 
 **Updating this file never changes the master requirements or waives a failed acceptance gate.**
+
+
+## Owner decision — 21 October 2026
+- Research (Hark, AAA production, final targeted 21 Oct report) approved for evidence-graded use, not for blind implementation. Original targeted report: `docs/research/PELAGIC_V04_TARGETED_RD_2026-10-21.md`. AAA transfers: `docs/V04-AAA-TECHNIQUE-DECISIONS.md`.
+- **Phase 1 only explicitly authorized**. Phase 0 failure history, source hashes and original media preserved unchanged.
+- Proposed future planning: 2+3 and 6+7 conditional shared programmes, with owner visual hold points; phases 4/5/8/9 solo. See `docs/V04-PHASE-GATES.md`.
+- Next action: Astra reads latest docs, implements Phase 1, updates state with actual evidence, then STOP for owner approval.

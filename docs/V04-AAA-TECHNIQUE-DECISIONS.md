@@ -1,0 +1,22 @@
+# PELAGIC 0.4 — AAA Game Research: Decisions, Not Engine Copying
+
+**Source:** Owner-supplied *PELAGIC AAA Ocean Research Master* (36-page archival synthesis), later targeted R&D report (21 Oct), original production publications below, and published Astra Phase 0. Games are aesthetic/production references; **real-ocean footage is the physical standard**. Literature (LIT) isn't PELAGIC test evidence.
+
+| Developer/source | Transferable idea | What PELAGIC should do; phase | Limits/decision status |
+|---|---|---|---|
+| [Rare: Sea of Thieves, SIGGRAPH 2018](https://history.siggraph.org/wp-content/uploads/2022/09/2018-Talks-Ang_The-Technical-Art-of-Sea-of-Thieves.pdf) | Ocean silhouette, persistent foam, selective sun glitter, lightweight illuminated clouds, artistic integration | Phase 2 consider distant/hybrid efficient clouds; Phase 6 glints/filtering; Phase 5 foam | **LIT** stylized 2018 production; no proof of its 2026 internals; not a wholesale cloud mesh swap |
+| [Skull and Bones (GDC 2023)](https://www.gdcvault.com/play/1029230) | Wide offshore sea colour/light and weather-specific visual character | Phases 1/6 coherent environmental optics and reference lookdev | **LIT** production context; proprietary shader details unknown |
+| [Black Flag Resynced / Anvil Atmos](https://blog.playstation.com/2026/06/29/assassins-creed-black-flag-resynced-ps5-pro-enhancements-detailed/) | Connected atmospheric/weather variables rather than independent sliders | **Phase 1** small shared weather state and lighting contracts | **LIT** public description, not exact weather solver; no native tessellation port |
+| [World of Warships update](https://worldofwarships.com/en/news/game-updates/update-01010-superships/) | Horizon appearance, foam/glints, scalable sea presentation | Phases 4/6/8 lookdev and surface sampling | **LIT** updates; article alone does NOT establish specific FFT algorithm |
+| [Guerrilla: Horizon Forbidden West water, SIGGRAPH 2022](https://advances.realtimerendering.com/s2022/SIGGRAPH2022-Advances-Water-Malan.pdf) | Explicit local three-dimensional breaking wave geometry | **Phase 5** test local offshore rollers after event model proof | **LIT** coastline/authored method ≠ validated spontaneous offshore breaker |
+| [Guerrilla Nubis 2015/2017/2023](https://www.guerrilla-games.com/read/nubis-authoring-real-time-volumetric-cloudscapes-with-the-decima-engine) | Weather-map regional organization, cloud type profiles and erosion; sophisticated voxels only when necessary | **Phase 2** first controlled weather-map/density prototype at matched optical depth; compare layered model | **LIT/HYP**; two Phase 0 cloud prototypes already failed naturalism |
+| [Ubisoft La Forge — Making Waves 2024](https://www.ubisoft.com/en-us/studio/laforge/news/5WHMK3tLGMGsqhxmWls1Jw/making-waves-in-ocean-surface-rendering-using-tiling-and-blending) | Covariance-preserving aperiodic synthesis may address 1,103 m repetition | **Phase 4** compare against energy-calibrated off-grid modes; verify derivatives, moments, cost, motion | **LIT/HYP**, not a guaranteed physical solution |
+| [Dynamic Wave Trains (2026)](https://doi.org/10.1111/cgf.70495) | Spatially variable wave structures | Phase 4 conditional supplemental experiment | **LIT/HYP**, no mandatory FFT migration |
+| [Naughty Dog Uncharted ocean (GDC 2012)](https://www.gdcvault.com/play/1015309/Water-Technology-of) | Rough sea silhouettes and geometry LOD | Phases 4/7 near-water diagnostics | **LIT**, different hardware/API |
+| Crimson Desert / Red Dead Redemption 2 | Consistent environment atmosphere/light/craft | Reference-only unless primary technical source justifies an actual experiment | Do not infer undisclosed numerical systems from gameplay |
+
+**Adopt the production practice, never the marketing promise:** Make isolated A/B tests, keep physics and aesthetics independent, compare real-ocean footage and continuous motion, reject lower-cost cloud variants that look worse, and preserve existing FFT/precision code unless specific evidence demands replacement.
+
+**Immediate Phase 1:** Only the connected environment and lighting **principle** from these references informs work. No game-source code integration, graphics-engine migration, cloud voxel rebuild, breaking-wave geometry or additional FFT yet.
+
+**Future gate:** The actual referenced study, licence, WebGPU feasibility, GPU cost, mathematical invariants, visual improvement and integration risk must all be assessed **before** implementing a candidate.

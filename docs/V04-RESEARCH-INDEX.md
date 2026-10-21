@@ -2,6 +2,12 @@
 
 **Purpose:** Enable Astra to locate actual research, distinguish current source truth from hypotheses, and avoid repeating prior scientific mistakes or relying on memory.
 
+## Latest independent R&D and AAA work (21 October 2026)
+- Full user-supplied *Final Targeted R&D and Technical Decision Report*: `docs/research/PELAGIC_V04_TARGETED_RD_2026-10-21.md` (archived source, NOT reproduced PELAGIC measurements).
+- **Immediate binding scope**: `docs/V04-PHASE1-KICKOFF.md`. Condensed game-production candidate decisions: `docs/V04-AAA-TECHNIQUE-DECISIONS.md`.
+- Owner's 36-page *AAA Ocean Research Master* is an archival synthesis; original Rare/Guerrilla/Ubisoft/Naughty Dog references and transfer limits are indexed in AAA decisions. No unpublished source code is asserted.
+- Priority: actual PELAGIC source and Phase 0 test/media evidence > project acceptance > verified primary source > research hypotheses. No paper authorizes production algorithms by itself.
+
 ## Priority and authority
 
 1. Actual published v0.3.0-dev.1 shaders/code and repeatable tests.
@@ -31,4 +37,4 @@
 
 ## Decision principle
 
-The compiled research archive is not a binding algorithm list. Each scientific parameter or architectural recommendation is [SRC]/[TEST]/[LIT]/[VIS]/[HYP] with recorded source and evidence, or is marked UNVERIFIED. Resolve important conflicts by narrow mathematical tests, source inspection and real-world visual proof. Refer to `AGENTS.md`, the master brief's scientific-correction register and the current Phase 0 kickoff.
+The compiled research archive is not a binding algorithm list. Each scientific parameter or architectural recommendation is [SRC]/[TEST]/[LIT]/[VIS]/[HYP] with recorded source and evidence, or is marked UNVERIFIED. Resolve important conflicts by narrow mathematical tests, source inspection and real-world visual proof. Refer to `AGENTS.md`, the master brief's scientific-correction register and the **current Phase 1 kickoff**; Phase 0 kickoff is historical evidence.

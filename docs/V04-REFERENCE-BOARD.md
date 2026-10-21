@@ -70,3 +70,9 @@ The embedded 640x360 video played through approximately 17.82 seconds; screensho
 ## Controlled comparison plan
 
 Match invariant structure first: cloud-base versus turret scale, silhouette irregularity, spatial coverage transitions, crest/foam relationships. When camera/meteorology are unknown, keep numeric calibration UNVERIFIED. Acquire documented open-water daylight, swell, night, rain-shaft and half-submerged references before closing those slots. No invented photos or metadata fill the gaps. The owner can approve or replace this provisional set at the Phase 0 review gate.
+
+
+## Targeted R&D reference expansion (21 October 2026)
+Section L of `docs/research/PELAGIC_V04_TARGETED_RD_2026-10-21.md` lists **18 candidate real-world records**, with source links, known/unknown EXIF, rights caveats and scientific purpose. These are NOT all newly inspected, licensed for redistribution, scene-calibrated or owner-approved.
+
+Priority Phase 1 source candidates: [Open ocean with clouds (Commons)](https://commons.wikimedia.org/wiki/File:Open_ocean_with_clouds.jpg), [NASA Cloudscape at Dawn](https://earthobservatory.nasa.gov/images/149490/cloudscape-at-dawn-northwest-atlantic), [NASA marine cloud-cell evolution](https://earthobservatory.nasa.gov/images/150926/ex-cell-ent-clouds-off-chiles-coast), [Rain over ocean (Commons)](https://commons.wikimedia.org/wiki/File:Rain_over_the_ocean_from_Mt_Herbert,_Banks_Peninsula,_Canterbury,_New_Zealand_06.jpg). Satellite images show mesoscale pattern, not eye-level calibrated water colour; coastal images do not prove offshore Hs/Tp. Verify each asset's current licence and details before downloading/redistributing.

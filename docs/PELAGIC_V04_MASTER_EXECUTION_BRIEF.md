@@ -11,7 +11,7 @@
 **Preservation baseline:** v0.2.0 / main @ 151aadaa6d2402c46f4e02454f2fc33ab7744661  
 **Execution authority:** This document governs 0.4 goals, work discipline, research gates, deliverables and acceptance. Implementation choices remain evidence-dependent.
 
-> **EXECUTION CONTROL — 0.4 ADDENDUM (20 October 2026):** This is the long-form **reference specification**, not a standing authorization to execute every phase. **Phase 0 only is currently authorized.** Read root `AGENTS.md` and the current `docs/V04-PHASE0-KICKOFF.md` for binding operational rules; `docs/V04-STATE.md` records verified progress. At the end of each phase Astra **MUST STOP, submit evidence for the human owner's visual/technical review, and wait for the owner's explicit approval before starting the next phase.** Astra cannot self-approve. An owner's approval to proceed never converts a FAIL/UNVERIFIED gate into PASS. Where the original master implies uninterrupted progression or reduced user checkpoints, **this addendum and AGENTS.md take precedence**. The approved phase may contain autonomous iteration and commits, but not work in a later phase. All previous scientific, visual, environmental, reliability and scope requirements remain intact.
+> **EXECUTION CONTROL — 0.4 ADDENDUM (20 October 2026):** This is the long-form **reference specification**, not a standing authorization to execute every phase. **Phase 1 only is currently authorized (21 Oct 2026 owner approval). Later phases are NOT.** Read root `AGENTS.md` and the current `docs/V04-PHASE1-KICKOFF.md` and `docs/V04-PHASE-GATES.md` for binding operational rules; `docs/V04-STATE.md` records verified progress. At the end of each phase Astra **MUST STOP, submit evidence for the human owner's visual/technical review, and wait for the owner's explicit approval before starting the next phase.** Astra cannot self-approve. An owner's approval to proceed never converts a FAIL/UNVERIFIED gate into PASS. Where the original master implies uninterrupted progression or reduced user checkpoints, **this addendum and AGENTS.md take precedence**. The approved phase may contain autonomous iteration and commits, but not work in a later phase. All previous scientific, visual, environmental, reliability and scope requirements remain intact.
 
 
 ---
@@ -332,7 +332,9 @@ Required representative acceptance matrix (expand where defects demand it):
 
 ## 15. Development phases — research gates, outcomes and dependencies
 
-**Phases 1–9 below are the provisional programme; they are NOT authorized by the present kickoff.** Owner approval is required before each phase. Phases describe **acceptance deliverables**, not a mandate to write every listed system in a fixed implementation. If dependencies require reordering, explain why. Optimization, testing, and visual look development apply continuously.
+**Coordination (21 Oct 2026):** Phase 1 solo. Future Phases 2+3 and 6+7 may be jointly planned, with internal owner checkpoints; 4/5/8/9 stay separate. No phase is skipped, and only Phase 1 is authorized. See `docs/V04-PHASE-GATES.md`.
+
+**Phase 1 alone is authorized; all later original phases require owner approval as specified in `docs/V04-PHASE-GATES.md`.** Owner approval is required before each phase. Phases describe **acceptance deliverables**, not a mandate to write every listed system in a fixed implementation. If dependencies require reordering, explain why. Optimization, testing, and visual look development apply continuously.
 
 ### Phase 0 — verified baseline, research reconciliation and decisive experiments
 
@@ -441,15 +443,9 @@ If a source report conflicts with observed implementation, prefer evidence and f
 
 No arbitrary stopping once a hard problem is found; conversely, no endless research when a focused experiment or adequate known answer resolves it.
 
-## 18. Immediate Astra entry instructions
+## 18. Immediate Astra entry — Phase 1 ONLY (21 October 2026)
 
-Upon receiving the 0.4 kickoff:
-1. Read **this complete file** in its entirety; inspect the relevant existing source and the 0.3 acceptance/evaluation documents. Demonstrate comprehension in a **concise** initial summary rather than restating the brief.
-2. Verify the active Git branch is development/pelagic-0.4 and that main, v0.2.0, and the published 0.3 checkpoints will remain untouched.
-3. Begin **Phase 0** with the complete W1–R1 inheritance ledger, the critical research corrections, a precise visual-quality/reference plan and actual technical bottlenecks. Retrieve previously delivered Hark research PDFs from the user if necessary rather than pretending they are in the repository.
-4. Prioritize decisive experiments for **cloud/weather realism and coherence**, wave structure, breaking-event representation, water optics, under/over-water continuity and GPU performance. Select appropriate test environments and record unavailable hardware verification.
-5. Produce the Phase 0 acceptance/evidence package, **STOP and request explicit owner approval**. Proceed into Phase 1 only after an explicit owner go-ahead for that named phase, even if numerical tests are green. For each following phase, repeat this stop-and-review protocol. Iterate autonomously **inside the currently authorized phase** and do not get trapped in endless planning. **Formal transitions between phases always require human approval.** Ask for input when a consequential scientific/visual choice or unavailable hardware evidence genuinely requires it; do not ask for redundant approval for routine work inside an approved phase.
-6. Throughout 0.4, pursue the **largest justified improvement in the actual rendered and interactive world**, with no fake visual acceptance, no unproven algorithm lock-in and no avoidable token or engineering waste.
+The published Phase 0 baseline at `853b23f` remains the research checkpoint; it did not close cloud/sea/performance FAIL. The owner now authorizes **only Phase 1**: follow `AGENTS.md`, `docs/V04-PHASE1-KICKOFF.md` and `docs/V04-STATE.md`; build and demonstrate small authoritative world-space weather and one-directional cloud-aware environmental radiance contracts, while preserving existing valid renderers. Investigate ~1-second stalls, profile real RTX 3050, retain all inherited failures, and submit original stills, continuous video, exact science/numerics and cost evidence. **STOP after Phase 1**. Any later combined Phase 2+3 or 6+7 work needs separate approval and intermediate owner gates; 4, 5, 8, 9 remain solo. Research and AAA techniques are hypotheses and production references, not automatic shader recipes.
 
 ### Final instruction to Astra
 
