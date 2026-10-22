@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><title>PELAGIC Phase 1 performance</title><style>body{margin:0;background:#101b20;color:#e6ede7;font:14px Consolas,monospace}header{padding:12px}button{margin:0 12px}iframe{border:0;width:100vw;height:calc(100vh - 60px)}</style>
 <header>PHASE 1 / DISPLAY-PACED BENCHMARK <button id="run">Run benchmarks</button><span id="status">Ready</span></header><iframe id="view" title="Benchmark"></iframe>
 <script type="module">
-const args=new URLSearchParams(location.search),baseline=args.get('baseline')==='1',cases=[
+const args=new URLSearchParams(location.search),baseline=args.get('baseline')==='1';let cases=[
  {name:'golden-balanced',preset:'golden'},
  {name:'storm-balanced',preset:'storm',cam:'0,5,0,79,-9'},
  {name:'golden-high',preset:'golden',quality:'High'}
@@ -11,6 +11,7 @@ if(!baseline)cases.push({name:'golden-probe-off',preset:'golden',probeReadback:'
  {name:'golden-both-off',preset:'golden',probeReadback:'off',timestampReadback:'off'},
  {name:'golden-alternate-yaw',preset:'golden',cam:'0,2,0,79,-5.5'},
  {name:'golden-repeat',preset:'golden',benchmarkSeconds:120});
+if(args.has('only'))cases=cases.filter(c=>args.get('only').split(',').includes(c.name));
 let index=Number(args.get('start')||0),running=false,view=document.querySelector('#view');
 function next(){if(index===cases.length){document.title='PHASE1 BENCHMARKS DONE';document.querySelector('#status').textContent='Complete';return;}
 const c=cases[index],q=new URLSearchParams({quality:'Balanced',cam:'0,2,0,4,-5.5',cameraMode:'free',w:1920,h:1080,adaptive:0,seed:1307,t:0,ui:0,frames:10000,benchmarkSeconds:60,p0:1,p0Profile:1,validate:1,stage:args.get('stage')||(baseline?'v04-p0-p1bench':'v04-p1-performance'),revision:args.get('revision')||'UNCOMMITTED',...c,benchmark:c.name});

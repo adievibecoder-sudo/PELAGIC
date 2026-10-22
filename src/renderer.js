@@ -1097,7 +1097,9 @@ async function main() {
       doProbe = true;
     }
     let doTs = false;
-    if (qs.get('timestampReadback')!=='off' && hasTS && !tsPending && (frameIndex & 7) === 0) {
+    // Seven is coprime to the six-frame light-cache cycle. Sampling every eight
+    // frames missed every irradiance publication and understated its GPU cost.
+    if (qs.get('timestampReadback')!=='off' && hasTS && !tsPending && frameIndex % 7 === 0) {
       enc.resolveQuerySet(tsQuery, 0, queryCount, tsResolve, 0);
       enc.copyBufferToBuffer(tsResolve, 0, tsRead, 0, queryCount*8);
       doTs = true;
