@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Local reference playback</title>
+<style>body{background:#101b20;color:white;font:16px monospace}video{width:min(100%,1280px);display:block}pre{white-space:pre-wrap}</style>
+<p>Local-only reference. No upload. <input aria-label="Reference video" id="file" type="file" accept="video/*"><button id="play">Play full clip</button></p>
+<video id="video" controls muted playsinline></video><pre id="status">Select a local reference.</pre>
+<script type="module">
+const video=document.querySelector('video'),status=document.querySelector('#status');let callbacks=0,visible=0,start=0;
+document.querySelector('#file').onchange=e=>{video.src=URL.createObjectURL(e.target.files[0]);status.textContent=e.target.files[0].name;};
+document.querySelector('#play').onclick=()=>{callbacks=0;visible=0;start=performance.now();video.currentTime=0;video.play();};
+function tick(now,meta){callbacks++;if(document.visibilityState==='visible')visible++;video.requestVideoFrameCallback(tick);}video.requestVideoFrameCallback(tick);
+video.ontimeupdate=()=>status.textContent=JSON.stringify({time:video.currentTime,duration:video.duration,callbacks,visible},null,2);
+video.onended=()=>{const q=video.getVideoPlaybackQuality();status.textContent=JSON.stringify({ended:true,duration:video.duration,elapsed:(performance.now()-start)/1000,callbacks,visible,total:q.totalVideoFrames,dropped:q.droppedVideoFrames},null,2);document.title='REFERENCE PLAYBACK DONE';};
+</script></html>

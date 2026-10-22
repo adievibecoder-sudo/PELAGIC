@@ -1,5 +1,7 @@
 # PELAGIC 0.4 — Coordinated Phase Plan and Owner Gates
 
+**22 October owner update:** Milestone A authorized under `V04-MILESTONE-A.md`. Its A/B/C requirement crosswalk supersedes scheduling in the historical table below. STOP at the first substantial visual checkpoint. Milestones B/C remain unauthorized; no original requirement or failure is removed.
+
 The full original phases and defect scopes remain intact. **Only Phase 1 is presently authorized**; this is a scheduling plan, not approval of future work.
 
 | Block | Phase(s) | Coordination | Mandatory gate |

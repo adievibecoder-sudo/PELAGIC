@@ -23,7 +23,7 @@ function next(){
 document.querySelector('#run').onclick=()=>{running=true;next();};document.querySelector('#stop').onclick=()=>running=false;
 addEventListener('message',e=>{
  if(e.origin!==location.origin||e.source!==view.contentWindow||!['pelagic-capture','pelagic-video','pelagic-benchmark'].includes(e.data?.type))return;
- index++;if(running&&index<cases.length){args.set('start',index);args.set('auto','1');location.href='milestone-a.html?'+args;}else next();
+ index++;next();
 });
 if(args.get('auto')==='1'){running=true;next();}
 </script></html>

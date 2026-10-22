@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>PELAGIC / Milestone A checkpoint</title>
+<style>body{margin:24px;background:#101b20;color:#e6ede7;font:15px/1.5 Consolas,monospace}a{color:#a9d2dc}select,button{padding:8px;margin:6px}img,video{display:block;width:100%;height:auto}figure{margin:8px 0}section{display:grid;grid-template-columns:1fr 1fr;gap:20px}pre{white-space:pre-wrap}h1{font-size:24px}@media(max-width:900px){section{grid-template-columns:1fr}}</style>
+<h1>Milestone A / cloud appearance checkpoint</h1>
+<p>Experimental, opt-in. Overall photorealism remains FAIL. Wave simulation, water optics and exposure are unchanged. Original PNGs and WebMs; no interpolated frames or colour correction.</p>
+<p><a href="docs/V04-MILESTONE-A-CHECKPOINT.md">Report / acceptance / performance</a></p>
+<label>Scene <select id="scene"><option>day-near</option><option>day-high</option><option>gold-near</option><option>gold-high</option></select></label>
+<section id="stills"></section>
+<label>Motion <select id="version"><option value="baseline">Preserved renderer</option><option value="candidate">Convective trial</option></select></label>
+<button id="play">Play complete original</button><p id="status">24 s: stationary, smooth 75-degree pan, stationary. Real captured cadence; not 30 guaranteed rendered frames/s.</p>
+<video id="movie" controls playsinline muted></video><pre id="result"></pre>
+<script type="module">
+const q=new URLSearchParams(location.search),scene=document.querySelector('#scene'),version=document.querySelector('#version'),video=document.querySelector('#movie');
+scene.value=q.get('scene')||'day-near';version.value=q.get('version')||'candidate';
+const imageStages=['v04-ma-base-stills-02','v04-ma-convection-stills-02'];
+function stills(){document.querySelector('#stills').replaceChildren(...imageStages.map((stage,i)=>{
+ const f=document.createElement('figure'),cap=document.createElement('figcaption'),a=document.createElement('a'),img=document.createElement('img');
+ cap.textContent=i?'Convective trial':'Preserved renderer';a.href=`evidence/${stage}/${scene.value}.png`;img.src=a.href;img.alt=cap.textContent+' '+scene.value;a.append(img);f.append(cap,a);return f;
+}));}scene.onchange=stills;stills();
+let frames=[],callback=null,started=0,source='';
+function observe(now,m){frames.push({time:m.mediaTime,presented:m.presentedFrames,expected:m.expectedDisplayTime,visibility:document.visibilityState});callback=video.requestVideoFrameCallback(observe);}
+document.querySelector('#play').onclick=async()=>{
+ if(callback!==null)video.cancelVideoFrameCallback(callback);frames=[];started=performance.now();
+ source=`evidence/${version.value==='baseline'?'v04-ma-base-motion-02':'v04-ma-convection-motion-02'}/${scene.value}.webm`;
+ video.src=source;callback=video.requestVideoFrameCallback(observe);document.title='PLAYING '+scene.value;await video.play();
+};
+video.ontimeupdate=()=>document.querySelector('#status').textContent=`${source} / ${video.currentTime.toFixed(2)} s / ${video.ended?'ENDED':video.paused?'PAUSED':'PLAYING'}`;
+video.onended=async()=>{
+ if(callback!==null)video.cancelVideoFrameCallback(callback);const quality=video.getVideoPlaybackQuality();
+ const report={source,utc:new Date().toISOString(),width:video.videoWidth,height:video.videoHeight,seconds:video.currentTime,wallSeconds:(performance.now()-started)/1000,totalFrames:quality.totalVideoFrames,droppedFrames:quality.droppedVideoFrames,frames,scope:'Complete browser playback and frame-callback trace. Perceptual observations recorded separately; playback completion does not prove realism or temporal quality.'};
+ document.querySelector('#result').textContent=JSON.stringify({...report,frames:frames.length},null,2);
+ if(q.has('reviewRun')){
+   const response=await fetch(`/__evidence?stage=v04-ma-playback-${encodeURIComponent(q.get('reviewRun'))}&name=${version.value}-${scene.value}.json`,{method:'POST',body:JSON.stringify(report,null,2)});
+   if(!response.ok)throw Error('Evidence save rejected: '+response.status);
+ }
+ document.title='PLAYBACK DONE';
+};
+</script></html>

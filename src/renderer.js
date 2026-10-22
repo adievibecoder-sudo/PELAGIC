@@ -30,6 +30,9 @@ import { WAVE_HEIGHT, WAVE_SHADOW, WAVE_MAP_SIZE, WAVE_HEIGHT_MIPS, WAVE_HEIGHT_
 import { LENS_MEDIUM } from './wgsl/lens-medium.js';
 import {phase0Shader} from '../tests/phase0-shaders.js';
 import {phase0CloudColumns} from '../tests/phase0-readback.js';
+import {cloudBankShader} from './wgsl/cloud-bank.js';
+import {cloudConvectionShader} from './wgsl/cloud-convection.js';
+import {cloudConvectionChecks} from '../tests/cloud-convection-readback.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -108,7 +111,7 @@ async function main() {
   ctx.configure({ device, format: swapFormat, alphaMode: 'opaque', usage: TU.RENDER_ATTACHMENT | TU.COPY_SRC });
 
   async function shader(code, label) {
-    code=phase0Shader(code,qs);
+    code=cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
     let bad = false;
@@ -920,6 +923,8 @@ async function main() {
     const realDt=Math.max(0,(now-last)/1000);
     frameMs=realDt*1000;
     let dt = Math.min(0.1, realDt);
+    // Reproducible recording pre-roll; subsequent motion retains actual elapsed time.
+    if(qs.get('ma')==='1'&&qs.has('video')&&frameIndex<=20)dt=frameIndex===20?0:1/60;
     last = now;
     fpsAcc += realDt; fpsN++; fpsT += realDt;
     if (fpsT > 0.5) {
@@ -1137,7 +1142,8 @@ async function main() {
           report.hdr=await hdrReadback(device,hdrTex);
           report.foam=await foamReadback(device,foamW[foamCur]);
         }
-        await fetch('/__evidence?stage='+encodeURIComponent(qs.get('stage')||'v03-local')+'&name='+qs.get('benchmark')+'.json',{method:'POST',body:JSON.stringify(report,null,2)});document.title='BENCHMARK DONE';
+        await postEvidence('/__evidence?stage='+encodeURIComponent(qs.get('stage')||'v03-local')+'&name='+qs.get('benchmark')+'.json',JSON.stringify(report,null,2));document.title='BENCHMARK DONE';
+        if(parent!==window)parent.postMessage({type:'pelagic-benchmark',name:qs.get('benchmark')},location.origin);
       });return;
     }
     if(!shooting) scheduleFrame();
@@ -1182,6 +1188,7 @@ async function main() {
     await postEvidence('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm),blob);
     const report=evidenceReport();
     if(qs.get('p0Columns')==='1')report.cloudColumns=await phase0CloudColumns(device,frameUBO,cloudNoiseView,cloudSampler,qs);
+    if(qs.get('maChecks')==='1')report.cloudChecks=await cloudConvectionChecks(device,frameUBO,cloudNoiseView,cloudSampler);
     if(qs.get('validate')==='1')report.spectral=await spectralReadback(device,{h0:h0Buf,specA,disp:dispTex,deriv:derivTex,mom:momTex},P);
     if(qs.get('validate')==='1')report.foam=await foamReadback(device,foamW[foamCur]);
     if(qs.get('validate')==='1'){report.hdr=await hdrReadback(device,hdrTex,frameF[60]);report.light=await phase1LightReadback(device,shadowTex,irradianceTex,envTex);}
