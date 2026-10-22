@@ -1,0 +1,3778 @@
+{
+  "createdUTC": "2026-10-22T05:54:52.470Z",
+  "head": "9b00f0f9f24ad558272ec6cdfecf89a3c301f835",
+  "branch": "development/pelagic-0.4",
+  "scope": "Local inventory only; capture revisions are supplied labels resolved to commits, not contemporaneous source attestations. Not publication verification or phase acceptance.",
+  "frozenRefs": [
+    {
+      "ref": "main",
+      "expected": "151aadaa6d2402c46f4e02454f2fc33ab7744661",
+      "actual": "151aadaa6d2402c46f4e02454f2fc33ab7744661",
+      "status": "PASS"
+    },
+    {
+      "ref": "v0.2.0^{}",
+      "expected": "151aadaa6d2402c46f4e02454f2fc33ab7744661",
+      "actual": "151aadaa6d2402c46f4e02454f2fc33ab7744661",
+      "status": "PASS"
+    },
+    {
+      "ref": "development/pelagic-0.3",
+      "expected": "87ce051ce43dd03b2967034ae2ca4d560a17f222",
+      "actual": "87ce051ce43dd03b2967034ae2ca4d560a17f222",
+      "status": "PASS"
+    },
+    {
+      "ref": "v0.3.0-dev.1^{}",
+      "expected": "be3f5c47d923e90303dece20ed19dbfc4bb17636",
+      "actual": "be3f5c47d923e90303dece20ed19dbfc4bb17636",
+      "status": "PASS"
+    }
+  ],
+  "phase0Evidence": {
+    "files": 138,
+    "mismatches": [],
+    "status": "PASS"
+  },
+  "stages": [
+    {
+      "directory": "v04-p1-baseline",
+      "media": 12
+    },
+    {
+      "directory": "v04-p1-baseline-motion",
+      "media": 5
+    },
+    {
+      "directory": "v04-p1-baseline-performance",
+      "media": 0
+    },
+    {
+      "directory": "v04-p1-boundary-after",
+      "media": 0
+    },
+    {
+      "directory": "v04-p1-boundary-before",
+      "media": 0
+    },
+    {
+      "directory": "v04-p1-decode-review",
+      "media": 60
+    },
+    {
+      "directory": "v04-p1-desktop-tests",
+      "media": 0
+    },
+    {
+      "directory": "v04-p1-dither-control",
+      "media": 1
+    },
+    {
+      "directory": "v04-p1-final-review",
+      "media": 1
+    },
+    {
+      "directory": "v04-p1-final-stills",
+      "media": 12
+    },
+    {
+      "directory": "v04-p1-handoff",
+      "media": 0
+    },
+    {
+      "directory": "v04-p1-handoff-review",
+      "media": 1
+    },
+    {
+      "directory": "v04-p1-light-controls",
+      "media": 10
+    },
+    {
+      "directory": "v04-p1-light-motion",
+      "media": 2
+    },
+    {
+      "directory": "v04-p1-light-review",
+      "media": 12
+    },
+    {
+      "directory": "v04-p1-motion",
+      "media": 5
+    },
+    {
+      "directory": "v04-p1-performance",
+      "media": 0
+    },
+    {
+      "directory": "v04-p1-playback",
+      "media": 0
+    },
+    {
+      "directory": "v04-p1-profile-corrected",
+      "media": 0
+    },
+    {
+      "directory": "v04-p1-prototype",
+      "media": 1
+    },
+    {
+      "directory": "v04-p1-provenance-review",
+      "media": 1
+    },
+    {
+      "directory": "v04-p1-recovered-motion",
+      "media": 5
+    },
+    {
+      "directory": "v04-p1-recovered-review",
+      "media": 61
+    },
+    {
+      "directory": "v04-p1-recovered-stills",
+      "media": 12
+    },
+    {
+      "directory": "v04-p1-recovered-tests",
+      "media": 0
+    },
+    {
+      "directory": "v04-p1-review",
+      "media": 61
+    },
+    {
+      "directory": "v04-p1-stills",
+      "media": 12
+    },
+    {
+      "directory": "v04-p1-tests",
+      "media": 0
+    }
+  ],
+  "originals": [
+    {
+      "path": "evidence/v04-p1-baseline/body-covered.json",
+      "bytes": 40593,
+      "sha256": "f971a83df7fb08a6e1a556d662a26dc1b5e434bf1721e93e9145c4f7a6589d06"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/body-covered.png",
+      "bytes": 3031946,
+      "sha256": "bc79e12839edb2be69cf948c0426c19a23300b2bf8142b1b2848d161fa42226b",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/broken.json",
+      "bytes": 40553,
+      "sha256": "af9cb9b8258cc5f46af78cee322f26375a6a65b11edb87c9b34a792ec6a808a2"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/broken.png",
+      "bytes": 4429225,
+      "sha256": "626f88fcf475248e47e4f99591a79ffd6c73b07c0b55463e8d8018286f800e22",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/clear.json",
+      "bytes": 40841,
+      "sha256": "caabef52491b5c2a1edd20305565b7d6be82d24681c0525978ff1fa80b27e4ae"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/clear.png",
+      "bytes": 4129416,
+      "sha256": "29ed9b85d718748c3f4a135fb931ce48eda11483a68cc2157ff9767bd85e4624",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/covered.json",
+      "bytes": 40743,
+      "sha256": "d2ec0c850557bc1ed35c0e74a66d062728f0b71c1146d18241f07a3d3cf4f281"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/covered.png",
+      "bytes": 4038836,
+      "sha256": "67ac9dcfc7b3a4ec8d46c5c8aae81e383bf55a807274d8859318ae5d6160200f",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/glitter-covered.json",
+      "bytes": 40581,
+      "sha256": "c4c615b3a155f3902c9a7a2f923e552bee8428a9cfed68f0a9ad7b1470de9376"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/glitter-covered.png",
+      "bytes": 2785341,
+      "sha256": "810064627adeec33f7bb1bc76aa9c3f75f886eab8177fb374284525182951adc",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/golden.json",
+      "bytes": 40436,
+      "sha256": "5bea95c7f0ca44eca604c496a3b18458213bf9383d5f1c98aa8aaf79ee72bd05"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/golden.png",
+      "bytes": 4480559,
+      "sha256": "a987cbd3301a5a45d916f8bd5040b6df8a68d61e814566a81929641224fc1fb2",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/moonlit.json",
+      "bytes": 40507,
+      "sha256": "a90b15591144209e5da053551cfc23e55c6d490a0f3ccb034cdebdfff1140ff6"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/moonlit.png",
+      "bytes": 3443462,
+      "sha256": "3d49d1bd1cd928b2a7329d092e897ea6d1bdb7dffcdab6e79c34fedfb475dc52",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/reflection.json",
+      "bytes": 40582,
+      "sha256": "8acc0c971a49727b52e3be763d51de0e7382770dcc957761c47e64285482931c"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/reflection.png",
+      "bytes": 4426038,
+      "sha256": "f21348e43bdf37b1a836b7eed2a8fe1ad8399f46af9b06fd1a61a813351e2d80",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/storm.json",
+      "bytes": 40484,
+      "sha256": "a42d457a79be269b939462f0f2b7eef8caed80bc7471917b13b50e66fe8b8043"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/storm.png",
+      "bytes": 4045161,
+      "sha256": "ab8d2fa1b15060e74c3add520a7ba847a6868843930f0cd6c6faa5c2fe1b86e1",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/twilight.json",
+      "bytes": 40425,
+      "sha256": "7d2371310109e5a00aef31c1d56d4b1ee9896f47b4042d75eadc81fab9267515"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/twilight.png",
+      "bytes": 3521589,
+      "sha256": "3600a29eb2af356f678271cee3d8ac259242242861fb179320b83ea94a98c469",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/underwater-clear.json",
+      "bytes": 40482,
+      "sha256": "d82f91561d0ded284e4dcff3cc7b9fd3808436b2c6a49d17e9f03888d672da29"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/underwater-clear.png",
+      "bytes": 3225025,
+      "sha256": "e8d30a7089d9339b1e053caa8285cac09d0f31673e317575709e30472aa67985",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/underwater-covered.json",
+      "bytes": 40555,
+      "sha256": "3d546926bb2a7507200e14d0e4efeadce8f5d416e3f71d76a846b8ee16ad4233"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/underwater-covered.png",
+      "bytes": 3190256,
+      "sha256": "29fed4a18d2a017ed119c72a1b8c14427122d2395db0a466f88d892439178ecb",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/broken-motion.json",
+      "bytes": 77287,
+      "sha256": "80f9e43fd68db89b90bde183bad24da0b24813e380f8d0f2bc4f6f7b81c7844c"
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/broken-motion.webm",
+      "bytes": 13203860,
+      "sha256": "0bd1b3e640f7525160bfbc8c2d6893e56e5fcf6746625e5051f1265eb1aca25a",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/front-flight.json",
+      "bytes": 80844,
+      "sha256": "9857580e49617d8dc5ef029465b49dfbdec56c55319ab014f48bd8c52f2478c7"
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/front-flight.webm",
+      "bytes": 14115620,
+      "sha256": "ea7e58079289f361412e25664ca0dd4f890f2474f7e0291678c4043e8db639db",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/instant-preview.json",
+      "bytes": 76802,
+      "sha256": "e6e140ab9ae018f803e6ae5536a6b05c0a255aa746807da20b0d90f01fed5148"
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/instant-preview.webm",
+      "bytes": 13671858,
+      "sha256": "f19dab8080fd558338c081db8d123acc53ea8cd1b0f07070c396141920adaf40",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/underwater-weather.json",
+      "bytes": 57939,
+      "sha256": "598755d07f211604c1c515d6181aba2824c05be9b1aeebfb9e737ed334fe4403"
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/underwater-weather.webm",
+      "bytes": 9512921,
+      "sha256": "57f31a44a4d8daf8b5dbdafb05e9cd5eb199927af082d6e0c909f5135adbf052",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/weather-evolution.json",
+      "bytes": 77945,
+      "sha256": "cbac99a87328e0818c21922c6922376c194fd6485c9e7ff4a06147bcf70eddaa"
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/weather-evolution.webm",
+      "bytes": 14256876,
+      "sha256": "8246c392d1477e4c46e4094e4426daa43417f2ff016cbaabdffd344063003069",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline-performance/golden-balanced.json",
+      "bytes": 421392,
+      "sha256": "faa26872d74b01b5c4ebddaef834a0696131e182fb5e2d69aff03cdcf409e852"
+    },
+    {
+      "path": "evidence/v04-p1-baseline-performance/golden-high.json",
+      "bytes": 240181,
+      "sha256": "d5ceaa32fbcac499662eb3a01d24d7da8012f16b9ab9ea012c2ccad9a80d7c67"
+    },
+    {
+      "path": "evidence/v04-p1-baseline-performance/storm-balanced.json",
+      "bytes": 725262,
+      "sha256": "35698ee8c44cb88fb5c52280fece7b7b73e4495cfa96d82c5e35c4452996baf0"
+    },
+    {
+      "path": "evidence/v04-p1-boundary-after/environment-gpu.json",
+      "bytes": 1631,
+      "sha256": "79f446b850a82b57f71c00ed325ec3ea2c7e7e99c6ed1b7f25340b3c9a720a93"
+    },
+    {
+      "path": "evidence/v04-p1-boundary-after/gpu-fft.json",
+      "bytes": 2558,
+      "sha256": "c785bf417d19376f0dc506864ba943ddca77165490adeb831cf90da19bc885c5"
+    },
+    {
+      "path": "evidence/v04-p1-boundary-after/gpu-optics.json",
+      "bytes": 6972,
+      "sha256": "1ef52d4447a4b21efe5695485f7b015e33911051fa6bad4568052f47b261a424"
+    },
+    {
+      "path": "evidence/v04-p1-boundary-before/environment-gpu.json",
+      "bytes": 1615,
+      "sha256": "5ac667724b988b8b32897f81b927a658e18f450ac46db1df7e228ba35d7a14fb"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/motion-analysis.json",
+      "bytes": 7271,
+      "sha256": "8f5f982bc466ef7dfe221fcbc041ce07386a743f93b9fb78d7bcfcdeb12fbe2a"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-broken-motion-0.png",
+      "bytes": 1548414,
+      "sha256": "b7b112bad215ea1feb35388d815615983efeaec0528bfaf454c5bb582dffdcf8"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-broken-motion-1.png",
+      "bytes": 1888752,
+      "sha256": "3980558087c61e0486630c660bc093cca4f76403764300eef31a1961e464e6d0"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-broken-motion-2.png",
+      "bytes": 1588573,
+      "sha256": "f3f1edec59853439871a4e91e3ce8892ed3526079312ac55c8b16bf73a999f72"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-broken-motion-3.png",
+      "bytes": 1581479,
+      "sha256": "b3622fc3d2ccbf52fd55b00d34e139515148ca81766da1e815a10eb71911fecf"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-broken-motion-4.png",
+      "bytes": 1678203,
+      "sha256": "5e7c6736e875ca0f6b5171f085a60b94f6f7d484de16faf83685a04402e7a90d"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-broken-motion-sheet.png",
+      "bytes": 2773335,
+      "sha256": "592e5bc1c180197db894bfc51a3b8c27481103fc941625eda2535db79284b8af"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-front-flight-0.png",
+      "bytes": 1501844,
+      "sha256": "58e3af1a625c783b23216c89e7ad74d1464aad0f1da576a524ae5230320b974a"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-front-flight-1.png",
+      "bytes": 1599135,
+      "sha256": "311ada17dd3db2062681ba6b89da63e7de1054d72a9f4244303a3e846d2b1367"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-front-flight-2.png",
+      "bytes": 1847347,
+      "sha256": "7c8d1347be3ab39a4e58e54c128d330fa0b6de40fc3effa333f746dacc13136f"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-front-flight-3.png",
+      "bytes": 1480087,
+      "sha256": "2baee5416ad333a4322e380ee847489b741b69cbbb9540bcd1a55dc8a54c6384"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-front-flight-4.png",
+      "bytes": 1643834,
+      "sha256": "3e84a9ca51b7778018999b2b7b3f7400f1db3fe512d6779bc6af68232a9a4fe0"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-front-flight-sheet.png",
+      "bytes": 2760271,
+      "sha256": "f58ddad255f6df0f3435a0f495fe0b632061f16ce9f2dc2655b62e7f99801e12"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-instant-preview-0.png",
+      "bytes": 1472922,
+      "sha256": "49e914d986145c848342099f1cc09e6c8b0b7b03f35538e9175c096ce2de0225"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-instant-preview-1.png",
+      "bytes": 1998402,
+      "sha256": "04698d34cc58b7231828b4a06456ab9b33d7a5d69b3b6dfc7202cbdd130a5d08"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-instant-preview-2.png",
+      "bytes": 1644952,
+      "sha256": "f94ceca506e7d8f2d3786c906753a86b55de5addccd7a588c5635b66fc4cad64"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-instant-preview-3.png",
+      "bytes": 1638019,
+      "sha256": "01f2537f28caa2caa095243ce6030adac96fcecfead0a0fc9df554e47c601097"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-instant-preview-4.png",
+      "bytes": 1724953,
+      "sha256": "9d0856f707d0366532d7f81dda46e64118252a534fa8ffd66ac3e2fee2e0dfc0"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-instant-preview-sheet.png",
+      "bytes": 2910656,
+      "sha256": "80b2f4d25cce46b6b3b4f6b022de3bfae61fd79460a55d39fcb10bdb9ffb1707"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-underwater-weather-0.png",
+      "bytes": 558132,
+      "sha256": "83febc3e1fe743a59e58157a199ff8030bd229af1a77777e68d3c74ccec2deec"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-underwater-weather-1.png",
+      "bytes": 549281,
+      "sha256": "ef2175218793592636d12f21d664fc786227429d01d52f25ad34b1c06c778496"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-underwater-weather-2.png",
+      "bytes": 637903,
+      "sha256": "803b7f9ec25d75c453156de7f4d0496fbeaaf40486e8f4d31ce67966642dcf4b"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-underwater-weather-3.png",
+      "bytes": 667833,
+      "sha256": "6a5b9bb475481a7c4040be5423ada7199992a46e6849ab4889d22ddb19810d0f"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-underwater-weather-4.png",
+      "bytes": 602441,
+      "sha256": "658a1ffbaccd2be6c9fcef96fe71730b255e50cd6247ac73c65d42f053a645f6"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-underwater-weather-sheet.png",
+      "bytes": 1036406,
+      "sha256": "ee9fa3350fb31d9840635c53d9ab0644b02722eee4871e375e401c434335fc2f"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-weather-evolution-0.png",
+      "bytes": 1482292,
+      "sha256": "16be26c99c7e7d0a3909c73e4bd9d4c2eeb2f74def88b806b392b545afc48075"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-weather-evolution-1.png",
+      "bytes": 1986150,
+      "sha256": "0942d411931b21970748d7c0ff57afcdd7c1a638599a95f850fe60f3028849e0"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-weather-evolution-2.png",
+      "bytes": 2305279,
+      "sha256": "cdfa4ec5dea17e8684bbb7d6aaa5f53c003d53832e040772230dd10ecb5710dc"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-weather-evolution-3.png",
+      "bytes": 1667000,
+      "sha256": "2115fbcbad0e62fa59020b4712457cd9da8eb454fa6721b68faae5434f277dab"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-weather-evolution-4.png",
+      "bytes": 2241056,
+      "sha256": "a6c2d9627ce907ef65321e27162ff13039c7f2d21a254124a2aae9e7834e5734"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-baseline-motion-weather-evolution-sheet.png",
+      "bytes": 3119637,
+      "sha256": "637b3b9a347f99a1eeb69b7b0a41fcd88e2d490b6e1ef14e24137bf166240acb"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-broken-motion-0.png",
+      "bytes": 1476934,
+      "sha256": "6c3680d4be0239f20d0b8bfb85d0bc38ffc739017b638b34d3c59cbd97d68ed5"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-broken-motion-1.png",
+      "bytes": 1587899,
+      "sha256": "7c5b166562470b9f10e25bda6b15c08f34e0f166640b024c2d88247dee9d1634"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-broken-motion-2.png",
+      "bytes": 1585431,
+      "sha256": "1a42f61615597becc3dd81bec1efb87728dcf960af0d0acdbc8e0613f4416ac0"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-broken-motion-3.png",
+      "bytes": 1638448,
+      "sha256": "1e650a22617505c627d7c8b137102e063d157bc20334f09c6ca7ae7216236b94"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-broken-motion-4.png",
+      "bytes": 1417521,
+      "sha256": "11b3cbeff0c307d2de84e474c9007885ca3857afd808771bb82cbf6934f6884c"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-broken-motion-sheet.png",
+      "bytes": 2661806,
+      "sha256": "c33ba1ca9fea6009d3ad5661522e5eb26dee6381e147decf2f7d953ac4aeee4b"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-front-flight-0.png",
+      "bytes": 1395930,
+      "sha256": "43f78d89d1a7366eea806b36a7a433b3392eed2057106d918ef5a848a98fa592"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-front-flight-1.png",
+      "bytes": 1397574,
+      "sha256": "a186bba6ac669d69dc89e9dffa2901d938554dea8f7ddf48b802781f2bd6b1d3"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-front-flight-2.png",
+      "bytes": 1373745,
+      "sha256": "554f6c181de1fad9daacfe10bec6839ecdb84401827203b1afd26e20868c2219"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-front-flight-3.png",
+      "bytes": 796074,
+      "sha256": "aba7e361b4b6a96f8c482a72f68b82bb67ff2060033e5a66d72ae6508e8c5594"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-front-flight-4.png",
+      "bytes": 835491,
+      "sha256": "05b57369c52e396919c92af78da505f14748db4a12c5cab2af86d13743e35f76"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-front-flight-sheet.png",
+      "bytes": 2184844,
+      "sha256": "8cee4d3c94451b1b8733ac2b3cd96e8678bfbbf688478449ba43f68776b17316"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-instant-preview-0.png",
+      "bytes": 1249678,
+      "sha256": "017a049f2bdcf8e0545e780b9c4e40d2631dd491090246537af15b81488fcf63"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-instant-preview-1.png",
+      "bytes": 1603260,
+      "sha256": "e49d3a3aa878af18bca21f9fe341fb0ffd6a8c238546a6fc84bdf5733ea452f8"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-instant-preview-2.png",
+      "bytes": 1728124,
+      "sha256": "b7abdb229a90099b9044a83d4baec895a91a1fa2e84b2802556e72e9d22e83b1"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-instant-preview-3.png",
+      "bytes": 1102580,
+      "sha256": "4c56d72c5f8b0e5e177f7631cb322a2ee6f6b702346ed8e4b23ef3ccb35e5bf1"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-instant-preview-4.png",
+      "bytes": 1253276,
+      "sha256": "733ad01409af667e418a77f77812e22b5b7ab297ae7205c081bfaa7946f44dc1"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-instant-preview-sheet.png",
+      "bytes": 2358435,
+      "sha256": "ac9319c4cc90e515327109d270ff9ba44094d344c0aac95e7d8d7be2cf860018"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-underwater-weather-0.png",
+      "bytes": 570581,
+      "sha256": "d1be1c8af449b50e9dcec4401ebea0df9f167425d5b9d9fd3282f40bdb1a7dad"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-underwater-weather-1.png",
+      "bytes": 539515,
+      "sha256": "2f36370cf03de734ae43a506f559654d577523f03d5a9a01fd97b798154d4e0a"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-underwater-weather-2.png",
+      "bytes": 728637,
+      "sha256": "afa145d21c6780ad896381a5d0488de8e2fbae93997c162e117fd4924dfa0b3b"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-underwater-weather-3.png",
+      "bytes": 1564871,
+      "sha256": "3ff557afe9c198d55218af6b447e69b9c6906fa293113bb1bee25aebe0348857"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-underwater-weather-4.png",
+      "bytes": 1102042,
+      "sha256": "de8b69181d3f79b219516701a02054b12a70fcd4b0a6ad4f5f143b146fcb8816"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-underwater-weather-sheet.png",
+      "bytes": 1468988,
+      "sha256": "7dce953c20a1d23d75c3b006d3c5c658b52e3731cbd7929cc1a182b58903952f"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-weather-evolution-0.png",
+      "bytes": 1470633,
+      "sha256": "74e4c6bca20631213a8d71c3085fdb9adccd370e84f405dfc56d7053d28cc1d3"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-weather-evolution-1.png",
+      "bytes": 1854674,
+      "sha256": "21fbf6e8db79a7c0b88e8702cb6e04ee61f634f61c9d14038b1471fc417a7c0b"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-weather-evolution-2.png",
+      "bytes": 1469147,
+      "sha256": "261976f00f8e26db723ad7397bb894c9b888eb049fab95eb1597e7bfbcdce498"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-weather-evolution-3.png",
+      "bytes": 1020725,
+      "sha256": "a3e271aa437409690c89a988b4ee5bf5f7df0c9d0497416e323cd87599430b40"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-weather-evolution-4.png",
+      "bytes": 1246328,
+      "sha256": "3cc1032bd101334555eaddc9ee12b9640a732eddb4c3ecb89057391072c0087d"
+    },
+    {
+      "path": "evidence/v04-p1-decode-review/v04-p1-recovered-motion-weather-evolution-sheet.png",
+      "bytes": 2378680,
+      "sha256": "a49ca8814e0d2ea03a5c0d2606a206c99ce0a434ecba7578a367915a1cd2a610"
+    },
+    {
+      "path": "evidence/v04-p1-desktop-tests/environment-gpu.json",
+      "bytes": 1119,
+      "sha256": "54587e18f66d154ea16d81a5d6c8f96d6e803107ee9b25360d52417eee7ee6cd"
+    },
+    {
+      "path": "evidence/v04-p1-dither-control/steady-1060.json",
+      "bytes": 1352218,
+      "sha256": "d978c2b303aafd3dc3a588e2fc11b36e7f781eda5560ac8ffe58d588573a82ef"
+    },
+    {
+      "path": "evidence/v04-p1-dither-control/steady-1060.png",
+      "bytes": 4498489,
+      "sha256": "efae94c8f55edc938b9ec70ca91e384cb771876b4d12aefbee704a717bffeebd",
+      "reportedCheckpoint": "919dfb4",
+      "resolvedCommit": "919dfb4e8be8898f82448d21c98d2ccf073c5518",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-review/capture-completeness.json",
+      "bytes": 1394,
+      "sha256": "d7a201abd326ae6925d74b2d56d9396c95c718aa2415a7be33f54f9ac5f18acc"
+    },
+    {
+      "path": "evidence/v04-p1-final-review/comparison-sheet.png",
+      "bytes": 338751,
+      "sha256": "e7d818381dc560517e6296b14332fb3b9f38e0dc953812d882b68c0c2b386dab"
+    },
+    {
+      "path": "evidence/v04-p1-final-review/image-analysis.json",
+      "bytes": 4908,
+      "sha256": "9e1b72f2dee2687822d7d2653651970542154cb44c4c582a4df87893a9d03e6f"
+    },
+    {
+      "path": "evidence/v04-p1-final-review/performance-analysis.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/body-covered.json",
+      "bytes": 120572,
+      "sha256": "d55c0e368c8d464e65a77c5b60e4d9f9935fc0c1b26dbb93127dd587e1babaa6"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/body-covered.png",
+      "bytes": 3032001,
+      "sha256": "723efda01a99851236614b089ee25103280993c802a6c5b4491c953bd6262a2a",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/broken.json",
+      "bytes": 120830,
+      "sha256": "1cbf9973f0c1395bfdf567990bc0019be14daf227266e33e50c7d82fce30b010"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/broken.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/clear.json",
+      "bytes": 120806,
+      "sha256": "65d6c364ad72979d60c6567cbb09199dc1ac54748969158f4ce64c7b63d785c6"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/clear.png",
+      "bytes": 4129720,
+      "sha256": "023b368fe738ab30d33cee660d67c15bca704963d3df8175169e91bbe2a8f0ce",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/covered.json",
+      "bytes": 120756,
+      "sha256": "0cd293aef43a5126a7208ebad88fd6024a5e78dd9a765ba421ba588f0be5f728"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/covered.png",
+      "bytes": 4038900,
+      "sha256": "3153072ef7c365740a7a075bbc8d4ca05acf9cf26b030e1608189d9f68c8e26a",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/glitter-covered.json",
+      "bytes": 120636,
+      "sha256": "1404fed124e6522225b4482343adf4748a42bfb31b4fdd67cf10c30e66aae25a"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/glitter-covered.png",
+      "bytes": 2785508,
+      "sha256": "adf2d4d972eab38d5f0b0916a3fa2dd3233d407b0d2aa6ce56880f9a98fee223",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/golden.json",
+      "bytes": 121083,
+      "sha256": "75a420f4a64e9ca4678156dfd1d8d7870a5be4dd59c9e6390dd55ce4f6d39067"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/golden.png",
+      "bytes": 4480662,
+      "sha256": "afa2e5e285c94a4110227a6d7cb750a2730051407c84daa5f8ea7699879084df",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/moonlit.json",
+      "bytes": 122121,
+      "sha256": "1c1e2e4b75891da101ce8adaf20d902d76b905a1ae2522ca94519203ca4753a7"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/moonlit.png",
+      "bytes": 3443661,
+      "sha256": "12ada358119006d802866e87f63e41cb11d2f24d2da43ce989956b7312bd169d",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/reflection.json",
+      "bytes": 120720,
+      "sha256": "27f146a3be3a8d217d0f2f925ed539cdc20cfb0e47c716321d03d1978c22419d"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/reflection.png",
+      "bytes": 4425778,
+      "sha256": "62d9b7c3942b48cedd1237102a38c60037c1fd2ec3026abf69924aef1efefe6c",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/storm.json",
+      "bytes": 121465,
+      "sha256": "5105e48e5a6b33e363d1e5671f7f6d90e1cfa08ee9ed5cf43356aaa100bdbcd1"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/storm.png",
+      "bytes": 4044168,
+      "sha256": "083b2077c0cd13f66578136e85edfd6c6b06a267df503641da2f3251de68cdec",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/twilight.json",
+      "bytes": 121630,
+      "sha256": "404e906df194c89667bb9443574562a885b2dec7fd1f624aa394dbbc1ff1f8b1"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/twilight.png",
+      "bytes": 3521612,
+      "sha256": "7bf1466356411f16f33f460ae89d9e742a72721678bd5bbe97361cd9b7444d42",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/underwater-clear.json",
+      "bytes": 120612,
+      "sha256": "6da19e14f2775aafd8fc830678d75bd50349c35f256cdef9b47cffd93a41db89"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/underwater-clear.png",
+      "bytes": 3211330,
+      "sha256": "f177509676d0130456f45a62b8248434b8c251af3245948bbb908d1d1493dbbd",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/underwater-covered.json",
+      "bytes": 120408,
+      "sha256": "2e1251e95ec0c1e945322014c59609fb8ccf46055a8d2ca039fb6d9a7b958cea"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/underwater-covered.png",
+      "bytes": 2981892,
+      "sha256": "b3b72d02c25681df4abf77c96f1db11a71bd07e69894681b983aea75992a82e0",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-handoff/baseline-performance-hashes.json",
+      "bytes": 831,
+      "sha256": "d36f5dfa5a6f7c90da799d5112af30388d93caecb483a143a81dcae6afcbb8c7"
+    },
+    {
+      "path": "evidence/v04-p1-handoff/cpu-final.txt",
+      "bytes": 7281,
+      "sha256": "5abdd1d7d6b586f581a2efd6ab7173dd4a6daec583b154bca7a795a67046eb71"
+    },
+    {
+      "path": "evidence/v04-p1-handoff/dither-control.json",
+      "bytes": 278,
+      "sha256": "445a19d9c1a86f5f2333b756d1c1a13f82545d4da850a0bcd0297679345cf139"
+    },
+    {
+      "path": "evidence/v04-p1-handoff/field-experiment.json",
+      "bytes": 1622,
+      "sha256": "5dc4679d4a983d4dcd4b9fa9639da1539f2d9c920c232c09e36e28a951b247d7"
+    },
+    {
+      "path": "evidence/v04-p1-handoff/gpu-baseline-start.txt",
+      "bytes": 320,
+      "sha256": "d8840d3f5ad15914971e85ef27a2da8cd8a384425d7b94f2e190c746fdfb368e"
+    },
+    {
+      "path": "evidence/v04-p1-handoff/motion-state-analysis.json",
+      "bytes": 3115,
+      "sha256": "e0b5d0e1e552b2b2144545ad69d3e27e65191a658e064b15b3ff057835d73aa4"
+    },
+    {
+      "path": "evidence/v04-p1-handoff/playback-summary.json",
+      "bytes": 2173,
+      "sha256": "d8e192fc75731ca11567c0442f14a6b1652aa9e6dd2d05d5bf1a4da9b91b76d9"
+    },
+    {
+      "path": "evidence/v04-p1-handoff/ui-controls.jpg",
+      "bytes": 156260,
+      "sha256": "7b046a331e832ca2ee8346547ffa197f4fb3e386297084dc6bc1fd64a7ffdae7"
+    },
+    {
+      "path": "evidence/v04-p1-handoff/ui-validation.json",
+      "bytes": 51560,
+      "sha256": "5b06e3097e4e043318a091bf4e72777270994998100bd7621ab5b7a57a4d0f6c"
+    },
+    {
+      "path": "evidence/v04-p1-handoff-review/capture-completeness.json",
+      "bytes": 191,
+      "sha256": "06352c51e2098a382d1f3a84fa9f7f7c9ba61785d6d6a02458157ab56650d7b6"
+    },
+    {
+      "path": "evidence/v04-p1-handoff-review/comparison-sheet.png",
+      "bytes": 3472625,
+      "sha256": "9b57579abc7a4af0b52738a635ef52552b1e5902e35d534939fb7c4dd80998ec"
+    },
+    {
+      "path": "evidence/v04-p1-handoff-review/image-analysis.json",
+      "bytes": 60208,
+      "sha256": "6969975a3ba9e7a874669e3fbee7c7aa5b461b2198daeb48a2792c7d64aa4271"
+    },
+    {
+      "path": "evidence/v04-p1-handoff-review/performance-analysis.json",
+      "bytes": 130552,
+      "sha256": "2faffc4ef74dfe80c431b726cdf861721b9a83845e6e54b608d74baa776a3d9c"
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/reflection-100.json",
+      "bytes": 117812,
+      "sha256": "2a5f437a6a2a191c2a426c10771982c1079804ffab908e62c1caeedd740ac761"
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/reflection-100.png",
+      "bytes": 4479200,
+      "sha256": "49bebb55172211b06517e0f75a1926e3a7f4d9a085a2ae6c040a6b995c286da6",
+      "reportedCheckpoint": "17dadf2",
+      "resolvedCommit": "17dadf267875d79cd8e77b457d9fb37214ffc9b7",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/reflection-700.json",
+      "bytes": 893009,
+      "sha256": "7b1878f91c7a851f56ac397c147bc3bfd949abd3e8a9437cc668bd7034893fb4"
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/reflection-700.png",
+      "bytes": 4434464,
+      "sha256": "4754d3646814239e3ad928a8c5cb46d8e771955e2bed069f4ee207380fda516d",
+      "reportedCheckpoint": "17dadf2",
+      "resolvedCommit": "17dadf267875d79cd8e77b457d9fb37214ffc9b7",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/steady-100.json",
+      "bytes": 116730,
+      "sha256": "18a6e11b78d1a0e1f5000dd36ba02a2a83c17e7be4af8571e134e4a9097ecd2a"
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/steady-100.png",
+      "bytes": 4498489,
+      "sha256": "efae94c8f55edc938b9ec70ca91e384cb771876b4d12aefbee704a717bffeebd",
+      "reportedCheckpoint": "17dadf2",
+      "resolvedCommit": "17dadf267875d79cd8e77b457d9fb37214ffc9b7",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/steady-1000.json",
+      "bytes": 1264940,
+      "sha256": "cc9d9a557927242c24a1332758702fa6a34a6c0089fb74f5cd5937504cb0f043"
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/steady-1000.png",
+      "bytes": 4497692,
+      "sha256": "cfaca442ff291e472e03266a1da8ab029945c641e11458611430905a9942d0df",
+      "reportedCheckpoint": "17dadf2",
+      "resolvedCommit": "17dadf267875d79cd8e77b457d9fb37214ffc9b7",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/veil-golden-0.json",
+      "bytes": 116485,
+      "sha256": "c489b448517f3554b9e83bf01a2ac51d174a3ff667fc27c35b9da63d4e4b59ba"
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/veil-golden-0.png",
+      "bytes": 4271874,
+      "sha256": "fa8a299c1f0125873cbd0a98225c971cec6188542684129ad46c3a46ab9ba371",
+      "reportedCheckpoint": "17dadf2",
+      "resolvedCommit": "17dadf267875d79cd8e77b457d9fb37214ffc9b7",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/veil-golden-1.json",
+      "bytes": 116543,
+      "sha256": "01575ce165422a1ff91691fa11056321821803689c4d0b77f5be5522b57a1f4b"
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/veil-golden-1.png",
+      "bytes": 4317250,
+      "sha256": "58115a28e4ad95da4d1090294af2f7252f4d79cc6d19ea6f31bbffdb77e992b1",
+      "reportedCheckpoint": "17dadf2",
+      "resolvedCommit": "17dadf267875d79cd8e77b457d9fb37214ffc9b7",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/veil-midday-0.json",
+      "bytes": 116878,
+      "sha256": "af55b44c3d4e402f1037582ce537ad18a6db5ffa0a5e4cd13f09d209f0d9ecde"
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/veil-midday-0.png",
+      "bytes": 4234048,
+      "sha256": "af1588c2a160833b8cf86745c8ee09a8f9f456a38376adc2de652e6c1721f29e",
+      "reportedCheckpoint": "17dadf2",
+      "resolvedCommit": "17dadf267875d79cd8e77b457d9fb37214ffc9b7",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/veil-midday-1.json",
+      "bytes": 117166,
+      "sha256": "29c1d7bb70a85adece338f88a4c4390d5bc523bd6e5d750a9eecfe04531d8968"
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/veil-midday-1.png",
+      "bytes": 4245909,
+      "sha256": "e202ca0bb7dfa16686fa2986075f43fff0409fcbfc2d9d8b8a0c2c54c21d098f",
+      "reportedCheckpoint": "17dadf2",
+      "resolvedCommit": "17dadf267875d79cd8e77b457d9fb37214ffc9b7",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/veil-moonlit-0.json",
+      "bytes": 117747,
+      "sha256": "47aabe176af97c0cebe58828303df8627b82b5444a052f51dab35cb2f299500f"
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/veil-moonlit-0.png",
+      "bytes": 3358613,
+      "sha256": "dc116501e585d16aa9934925fc44d6f6d2c47c3e2e177139424799d09e997218",
+      "reportedCheckpoint": "17dadf2",
+      "resolvedCommit": "17dadf267875d79cd8e77b457d9fb37214ffc9b7",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/veil-moonlit-1.json",
+      "bytes": 117615,
+      "sha256": "481196a3d45483e29ac642315272f2e512039a85ae724242a88dbd28e91920f0"
+    },
+    {
+      "path": "evidence/v04-p1-light-controls/veil-moonlit-1.png",
+      "bytes": 3474472,
+      "sha256": "9756d06fb6c15ede8cbd217c6207c3afc431d5e9812bb4c633db1a2a610159f4",
+      "reportedCheckpoint": "17dadf2",
+      "resolvedCommit": "17dadf267875d79cd8e77b457d9fb37214ffc9b7",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-light-motion/glitter-weather.json",
+      "bytes": 750345,
+      "sha256": "0eb80a9dbffe61c144b66995ec2385d1d4952b75b1fdeea0994532e4948885be"
+    },
+    {
+      "path": "evidence/v04-p1-light-motion/glitter-weather.webm",
+      "bytes": 32980193,
+      "sha256": "1746e0accde1a239055251f0070e8196698d752d7f36a3aafbd2d7e996ade51d",
+      "reportedCheckpoint": "17dadf2",
+      "resolvedCommit": "17dadf267875d79cd8e77b457d9fb37214ffc9b7",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-light-motion/reflection-drift.json",
+      "bytes": 538767,
+      "sha256": "969e07a44ffe94cca08d1d0d6f87b50f731a2c563390093ecbc90b6426f57ceb"
+    },
+    {
+      "path": "evidence/v04-p1-light-motion/reflection-drift.webm",
+      "bytes": 33668864,
+      "sha256": "15c9fd54306329f0a3e2de991883b32ea29daeafec9482234911e46b0a10dc3e",
+      "reportedCheckpoint": "17dadf2",
+      "resolvedCommit": "17dadf267875d79cd8e77b457d9fb37214ffc9b7",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-light-review/motion-analysis.json",
+      "bytes": 1435,
+      "sha256": "44a7318936c5916c6ec780564fce6db70ec9c89ea8fb6e91f67b168eded4d512"
+    },
+    {
+      "path": "evidence/v04-p1-light-review/v04-p1-light-motion-glitter-weather-0.png",
+      "bytes": 1490289,
+      "sha256": "9715475b7e8b550ed56c24e6023390d770b15ac9048bc52d2ea454afc21f439b"
+    },
+    {
+      "path": "evidence/v04-p1-light-review/v04-p1-light-motion-glitter-weather-1.png",
+      "bytes": 1643774,
+      "sha256": "c8ac4c7cd5afa960f8734f4d78e6068ceca633fe9980e5fb442056dddfa66973"
+    },
+    {
+      "path": "evidence/v04-p1-light-review/v04-p1-light-motion-glitter-weather-2.png",
+      "bytes": 1264786,
+      "sha256": "45588b0ceb719fed035fe9f0c9965c2c60b6c0c8872c67e1af7677c6c618581b"
+    },
+    {
+      "path": "evidence/v04-p1-light-review/v04-p1-light-motion-glitter-weather-3.png",
+      "bytes": 1548650,
+      "sha256": "72dcfabfca169bbf400eec2a9a64cb58b7acfad96e870de6dd988b0e679a3c56"
+    },
+    {
+      "path": "evidence/v04-p1-light-review/v04-p1-light-motion-glitter-weather-4.png",
+      "bytes": 1515813,
+      "sha256": "2ba4db254579fd8814efddb6cc71a0e4c5b71cdd47723b1f61c35a1d14d7022e"
+    },
+    {
+      "path": "evidence/v04-p1-light-review/v04-p1-light-motion-glitter-weather-sheet.png",
+      "bytes": 2583495,
+      "sha256": "48e62f68c659936960b7917993c76df3fda04665b7846287368a64fb5f0e8c93"
+    },
+    {
+      "path": "evidence/v04-p1-light-review/v04-p1-light-motion-reflection-drift-0.png",
+      "bytes": 1972181,
+      "sha256": "740620cae867abb220d0f1c624ec12c181b06a13255b3690a42b06a8694ffb92"
+    },
+    {
+      "path": "evidence/v04-p1-light-review/v04-p1-light-motion-reflection-drift-1.png",
+      "bytes": 1996877,
+      "sha256": "179f1e628c2f4a22a8c9092f18af74820aa3b886ac084326ce26a959cf657bba"
+    },
+    {
+      "path": "evidence/v04-p1-light-review/v04-p1-light-motion-reflection-drift-2.png",
+      "bytes": 1945750,
+      "sha256": "dde04f4aa9df1ffbcd673b5e59006c3338b1b3acfe74e9f0e65c40783fcb2165"
+    },
+    {
+      "path": "evidence/v04-p1-light-review/v04-p1-light-motion-reflection-drift-3.png",
+      "bytes": 1933122,
+      "sha256": "64e3cf0816631daa6187190e6860f1ce506998ef352f5f159c3a2647e1fcc70e"
+    },
+    {
+      "path": "evidence/v04-p1-light-review/v04-p1-light-motion-reflection-drift-4.png",
+      "bytes": 2093316,
+      "sha256": "b41ba51ed4bed96af377a8676235abeb01a5c739a7e170b3d71a5e97ab2efda8"
+    },
+    {
+      "path": "evidence/v04-p1-light-review/v04-p1-light-motion-reflection-drift-sheet.png",
+      "bytes": 2854651,
+      "sha256": "2e476eefe22ebf3b06dec24010c184f86408428f38308e315d78baebdd993694"
+    },
+    {
+      "path": "evidence/v04-p1-motion/broken-motion.json",
+      "bytes": 522851,
+      "sha256": "bce5a459826131a8636445460ee7321cec9a03b9069f226e31e1938b2f76c10c"
+    },
+    {
+      "path": "evidence/v04-p1-motion/broken-motion.webm",
+      "bytes": 25969729,
+      "sha256": "c0db15c31f8e1ff4baca9b19e625af1a9288218f0fc1a0401855e52e148b4b4d",
+      "reportedCheckpoint": "942362f",
+      "resolvedCommit": "942362f7cc4141c096b5760d6b7261b4d3f351d4",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-motion/front-flight.json",
+      "bytes": 870355,
+      "sha256": "5d85c057b2c81eb40ab7742665df662c3822df4979b4ba4f5c880e958aa05499"
+    },
+    {
+      "path": "evidence/v04-p1-motion/front-flight.webm",
+      "bytes": 33655746,
+      "sha256": "c441a27a68ae0f24ffc99cf6f24f1feded70fbba26412dd373f57f4d5758c673",
+      "reportedCheckpoint": "942362f",
+      "resolvedCommit": "942362f7cc4141c096b5760d6b7261b4d3f351d4",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-motion/instant-preview.json",
+      "bytes": 735348,
+      "sha256": "ee90205a8f3856af17d97db9a359797935b50a60d4e0c71c3ceba9676a752c86"
+    },
+    {
+      "path": "evidence/v04-p1-motion/instant-preview.webm",
+      "bytes": 33938730,
+      "sha256": "ba9dbe395013086480e24a5882f585f1cd2e9198380edda0e8b3adca9dab0c93",
+      "reportedCheckpoint": "942362f",
+      "resolvedCommit": "942362f7cc4141c096b5760d6b7261b4d3f351d4",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-motion/underwater-weather.json",
+      "bytes": 608562,
+      "sha256": "76a05a7a7f71df96365520533e5a581ba3d3e878c5acac9713f0ad2c38f8f6a8"
+    },
+    {
+      "path": "evidence/v04-p1-motion/underwater-weather.webm",
+      "bytes": 26826521,
+      "sha256": "6b8756e4fa357f8e41850f7ab08d3c7e2a76f0566dd8722613cee798d2210e40",
+      "reportedCheckpoint": "942362f",
+      "resolvedCommit": "942362f7cc4141c096b5760d6b7261b4d3f351d4",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-motion/weather-evolution.json",
+      "bytes": 704042,
+      "sha256": "5ac29e81b86338b5602ebf7e506e8fb794d4a2b5959a1d7ab3e2e89205b88c24"
+    },
+    {
+      "path": "evidence/v04-p1-motion/weather-evolution.webm",
+      "bytes": 32783781,
+      "sha256": "9e6172fcc770d3ea99a306c1aa1fa2c4444e270d34b17af519237f78cb03f146",
+      "reportedCheckpoint": "942362f",
+      "resolvedCommit": "942362f7cc4141c096b5760d6b7261b4d3f351d4",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-performance/golden-alternate-yaw.json",
+      "bytes": 1564338,
+      "sha256": "47770d1bd150a7c4786b3e8706cb56c19f8edc4a4824879ef805bb66efe2a1a3"
+    },
+    {
+      "path": "evidence/v04-p1-performance/golden-balanced.json",
+      "bytes": 1783888,
+      "sha256": "728aa0a7935d48733a57de45cf2a5da400fa3be6e8b257caa00b523fe6b6efdd"
+    },
+    {
+      "path": "evidence/v04-p1-performance/golden-both-off.json",
+      "bytes": 1433616,
+      "sha256": "58e2017be6db509c43c4ab278f0853bceceaa4181d0c8c807903706f790d1d21"
+    },
+    {
+      "path": "evidence/v04-p1-performance/golden-high.json",
+      "bytes": 823656,
+      "sha256": "57b80685779d4f7d0a36dbfb55bfb21cc4681746d05e20e09faba32fd5dc8d8b"
+    },
+    {
+      "path": "evidence/v04-p1-performance/golden-probe-off.json",
+      "bytes": 1588724,
+      "sha256": "1966862b75517c6b5bc7791137a65b3e2b099be7c2ccb8da6daf220c14d04527"
+    },
+    {
+      "path": "evidence/v04-p1-performance/golden-repeat.json",
+      "bytes": 2970345,
+      "sha256": "0be88b59f0c9ddfe9f6e3d6b63e6bf2b0b9fd7a80aa39b5e10a9b38778a3e499"
+    },
+    {
+      "path": "evidence/v04-p1-performance/golden-timestamps-off.json",
+      "bytes": 1472843,
+      "sha256": "967360aec749a2ce011a1b822e95e6230a21c95e1fa4ff67df9f25317e13a13a"
+    },
+    {
+      "path": "evidence/v04-p1-performance/storm-balanced.json",
+      "bytes": 2443799,
+      "sha256": "f3f4229861e42bfddff4c8f5ef5e0d795ffc4e95915cae7b89da620b15abb6e8"
+    },
+    {
+      "path": "evidence/v04-p1-playback/baseline-broken-6.jpg",
+      "bytes": 87185,
+      "sha256": "75536594ccba9d3bbcb79308385214ff9d4e73204351bf7087c7bba20b1b68b3"
+    },
+    {
+      "path": "evidence/v04-p1-playback/baseline-broken-motion.json",
+      "bytes": 33928,
+      "sha256": "81e73419677db0cbe1afcb7c3d537874088311dc681aa3231654d00a21fefd57"
+    },
+    {
+      "path": "evidence/v04-p1-playback/baseline-underwater-6.jpg",
+      "bytes": 51657,
+      "sha256": "052cff828d6d3461db6024a0c216fa3e54a2594cb993ba8f47586cafe00ea584"
+    },
+    {
+      "path": "evidence/v04-p1-playback/baseline-underwater-weather.json",
+      "bytes": 26140,
+      "sha256": "4d7dacc81b5a137c08d289cee5a00fbd985477b8e7b32e1e420e11b96abe9246"
+    },
+    {
+      "path": "evidence/v04-p1-playback/broken-motion.json",
+      "bytes": 67844,
+      "sha256": "045d260ecc9bbaed50baa078525b15b780bd50cb27935b407a8edb39cf190053"
+    },
+    {
+      "path": "evidence/v04-p1-playback/front-14.jpg",
+      "bytes": 63415,
+      "sha256": "aa6c9925651be467db364355289c9932ce71d403451c4bef26d0692d0852c4d8"
+    },
+    {
+      "path": "evidence/v04-p1-playback/front-4.jpg",
+      "bytes": 88404,
+      "sha256": "47fde5ad764bce346f2bf718cd8129f8d07838d7bacf8ab66c5c03c231a81f90"
+    },
+    {
+      "path": "evidence/v04-p1-playback/front-flight.json",
+      "bytes": 103483,
+      "sha256": "a94bb1436fe1f0daa4f0757060260bb00ebf848946a3b3d22a6b31689c6e393f"
+    },
+    {
+      "path": "evidence/v04-p1-playback/glitter-14.jpg",
+      "bytes": 81011,
+      "sha256": "2ab4c99a5b54e95234ac7228ebd4303b9aab05fb8eae2cebe155ad00b2e4af2e"
+    },
+    {
+      "path": "evidence/v04-p1-playback/glitter-4.jpg",
+      "bytes": 86665,
+      "sha256": "120eca4947a31b97da556c26b1c5aca9f3467ff69a92cfa4861f36b6cd67d855"
+    },
+    {
+      "path": "evidence/v04-p1-playback/glitter-weather.json",
+      "bytes": 89507,
+      "sha256": "3f6cd7b626692d7ea97e99a1a6de75dcf9dfed9ce69d926d59b968917de745f1"
+    },
+    {
+      "path": "evidence/v04-p1-playback/instant-preview.json",
+      "bytes": 89864,
+      "sha256": "a03862b4a6b4cd0ca78d5baf60da2c80e5ade15751e569719fb71f6868a1feae"
+    },
+    {
+      "path": "evidence/v04-p1-playback/preview-14.jpg",
+      "bytes": 70899,
+      "sha256": "13f12210492f543e062e2a862c7789886cbbe52f3d66eaf87213f6dc35f58ec2"
+    },
+    {
+      "path": "evidence/v04-p1-playback/preview-6.jpg",
+      "bytes": 86580,
+      "sha256": "424282d55c7103f0169d27d651730f2cccf83e2c4c1ae2b9ea6bdb15a49aceb6"
+    },
+    {
+      "path": "evidence/v04-p1-playback/reflection-14.jpg",
+      "bytes": 86204,
+      "sha256": "7450a4d0eda4456f289716ce866e23c083c2fe9a13de871cf958d6b9e23524f5"
+    },
+    {
+      "path": "evidence/v04-p1-playback/reflection-4.jpg",
+      "bytes": 88777,
+      "sha256": "425bb48e2ebbef725b825005ef2b1d4e1193d682faada069d89fadd94a1229d9"
+    },
+    {
+      "path": "evidence/v04-p1-playback/reflection-drift.json",
+      "bytes": 72128,
+      "sha256": "84a31f8cdb4fc990ad77358779412578b9f2bfb51bb16d653c764e8c9eb968ec"
+    },
+    {
+      "path": "evidence/v04-p1-playback/underwater-14.jpg",
+      "bytes": 70747,
+      "sha256": "051eded697c53ed90f2e611217357b47cafa67abc1b4bfdb7a2f7e97bf067859"
+    },
+    {
+      "path": "evidence/v04-p1-playback/underwater-4.jpg",
+      "bytes": 40611,
+      "sha256": "f9dfbeeb2c1cd0fe14c31ce5a60f37df87bef204b5734e7851cb4be4d1df1c16"
+    },
+    {
+      "path": "evidence/v04-p1-playback/underwater-weather.json",
+      "bytes": 73535,
+      "sha256": "9c231a6ac35e636eb4395594b6e1d4b2bd8e702ed63f6e31013b2e8cf6f5ceb5"
+    },
+    {
+      "path": "evidence/v04-p1-playback/weather-14.jpg",
+      "bytes": 68481,
+      "sha256": "3300a5c740d57d36b8f79640d6043b0d2004697916086a1da1b245e8b402fc58"
+    },
+    {
+      "path": "evidence/v04-p1-playback/weather-6.jpg",
+      "bytes": 85332,
+      "sha256": "60a6b46c524ef0c91f704577a2dee1d8a7733db33f627f9a336a992430bef5f9"
+    },
+    {
+      "path": "evidence/v04-p1-playback/weather-evolution.json",
+      "bytes": 85033,
+      "sha256": "05652456ed003a7bd66c517204ba95a400871043ade602266fe1f03a2b32b9fb"
+    },
+    {
+      "path": "evidence/v04-p1-profile-corrected/golden-balanced.json",
+      "bytes": 1712330,
+      "sha256": "5ade7f5cc1c1334f209ada7c687eea326e814d3299d571eaf86bf78c5b765a72"
+    },
+    {
+      "path": "evidence/v04-p1-profile-corrected/golden-high.json",
+      "bytes": 847902,
+      "sha256": "cb4924a4d6d25624ef67d3a8e22ca5602f1b7e45c5fd4cfb46f2a2b084f4ef08"
+    },
+    {
+      "path": "evidence/v04-p1-profile-corrected/storm-balanced.json",
+      "bytes": 2440623,
+      "sha256": "be4b50db709be4d21d5d775ede748d7b4c8eda154b5d82ab98fca9ab475971f6"
+    },
+    {
+      "path": "evidence/v04-p1-prototype/compile.json",
+      "bytes": 27488,
+      "sha256": "c9627aca437ee6b316519d747f72e9222196b3d8d430ad1d0ca12548003fca5d"
+    },
+    {
+      "path": "evidence/v04-p1-prototype/compile.png",
+      "bytes": 1159007,
+      "sha256": "9ddfa90e9c5a6cc96b126bfc22f7552cb1f1ebfac0fff114a87f16a59a68502f",
+      "reportedCheckpoint": "development",
+      "resolvedCommit": null,
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-provenance-review/capture-completeness.json",
+      "bytes": 187,
+      "sha256": "0c6dff9cb0ecf7e1b5f5dcd7cbd5cd3c1560bb0c1c3d67d80079523019413f07"
+    },
+    {
+      "path": "evidence/v04-p1-provenance-review/capture-provenance.json",
+      "bytes": 29777,
+      "sha256": "0a1e13d2e5789504a4e8e84e4d0f2a1898febb1fefb642dfde312e3d827de778"
+    },
+    {
+      "path": "evidence/v04-p1-provenance-review/comparison-sheet.png",
+      "bytes": 3472623,
+      "sha256": "688d0181392b5953277806ee43b361c06e714fee698fcf0034ea4144d48c60f2"
+    },
+    {
+      "path": "evidence/v04-p1-provenance-review/image-analysis.json",
+      "bytes": 60235,
+      "sha256": "c0f4d61db7ef836e14674c84f163cd7c62499d17ccfaa2f25cd143607b6e3e9c"
+    },
+    {
+      "path": "evidence/v04-p1-provenance-review/performance-analysis.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-motion/broken-motion.json",
+      "bytes": 542613,
+      "sha256": "598333e66d24db99b083019a1e58498da2d4f195bbc44d1f1312f5381cb68cf7"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-motion/broken-motion.webm",
+      "bytes": 25940080,
+      "sha256": "e34fa4eb2ae3b90a3e97224fdb76dc05e14a7f7483cfd84b796f8a9834fbffed",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-motion/front-flight.json",
+      "bytes": 878751,
+      "sha256": "e5a5af5fe0e5a3b5adcab25e3bb307c2cb8e83236aa8382c4ec62df65f9b3043"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-motion/front-flight.webm",
+      "bytes": 33352944,
+      "sha256": "8d3f9ec12fd97af6423623fe3a32e5e246ca6c3907e59c79a01645ae10757de6",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-motion/instant-preview.json",
+      "bytes": 720333,
+      "sha256": "6fa43121a90e1fdc95ab236f35a27631f824b521b9507a69f96b6bb7875aa946"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-motion/instant-preview.webm",
+      "bytes": 33413578,
+      "sha256": "91594946eed0687dea119b879774578e08e75ba0a09bcc3bf74f36c5bcff40ee",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-motion/underwater-weather.json",
+      "bytes": 601967,
+      "sha256": "4faf768f11a0673414496ed877d951a28e8b88bc2ef0473ed57fdaa0c44a97d9"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-motion/underwater-weather.webm",
+      "bytes": 26962577,
+      "sha256": "07d2f7fd7d3c98fa2ea3441186cc38ca1bf713644b9f6d4dfc155882b8665944",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-motion/weather-evolution.json",
+      "bytes": 719502,
+      "sha256": "b1ce617ef9c07d9c6d78ac8e6bc7cc172f9e1efdf71f3eaf2a2baf2f0395d78b"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-motion/weather-evolution.webm",
+      "bytes": 32840764,
+      "sha256": "5c8b1ea42eeb97f8e550d45c5daa89868df3ae13a7b9d0ee6f6a58ce0fdf68a9",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/capture-completeness.json",
+      "bytes": 191,
+      "sha256": "06352c51e2098a382d1f3a84fa9f7f7c9ba61785d6d6a02458157ab56650d7b6"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/comparison-sheet.png",
+      "bytes": 3472625,
+      "sha256": "9b57579abc7a4af0b52738a635ef52552b1e5902e35d534939fb7c4dd80998ec"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/image-analysis.json",
+      "bytes": 60208,
+      "sha256": "6969975a3ba9e7a874669e3fbee7c7aa5b461b2198daeb48a2792c7d64aa4271"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/lighting-controls.json",
+      "bytes": 2578,
+      "sha256": "3170cddc07ee63a5173217a7fa77381d371ac8a20aaf6de0a1e792ed4a3f4531"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/motion-analysis.json",
+      "bytes": 8737,
+      "sha256": "e3d0b3396ed7dd06090ac76af866bc22c7b9511d2a974a09333462e11a01062c"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/performance-analysis.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-broken-motion-0.png",
+      "bytes": 1548414,
+      "sha256": "b7b112bad215ea1feb35388d815615983efeaec0528bfaf454c5bb582dffdcf8"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-broken-motion-1.png",
+      "bytes": 1888752,
+      "sha256": "3980558087c61e0486630c660bc093cca4f76403764300eef31a1961e464e6d0"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-broken-motion-2.png",
+      "bytes": 1588573,
+      "sha256": "f3f1edec59853439871a4e91e3ce8892ed3526079312ac55c8b16bf73a999f72"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-broken-motion-3.png",
+      "bytes": 1581479,
+      "sha256": "b3622fc3d2ccbf52fd55b00d34e139515148ca81766da1e815a10eb71911fecf"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-broken-motion-4.png",
+      "bytes": 1678203,
+      "sha256": "5e7c6736e875ca0f6b5171f085a60b94f6f7d484de16faf83685a04402e7a90d"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-broken-motion-sheet.png",
+      "bytes": 2773335,
+      "sha256": "592e5bc1c180197db894bfc51a3b8c27481103fc941625eda2535db79284b8af"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-front-flight-0.png",
+      "bytes": 1501844,
+      "sha256": "58e3af1a625c783b23216c89e7ad74d1464aad0f1da576a524ae5230320b974a"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-front-flight-1.png",
+      "bytes": 1599135,
+      "sha256": "311ada17dd3db2062681ba6b89da63e7de1054d72a9f4244303a3e846d2b1367"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-front-flight-2.png",
+      "bytes": 1847347,
+      "sha256": "7c8d1347be3ab39a4e58e54c128d330fa0b6de40fc3effa333f746dacc13136f"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-front-flight-3.png",
+      "bytes": 1480087,
+      "sha256": "2baee5416ad333a4322e380ee847489b741b69cbbb9540bcd1a55dc8a54c6384"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-front-flight-4.png",
+      "bytes": 1643834,
+      "sha256": "3e84a9ca51b7778018999b2b7b3f7400f1db3fe512d6779bc6af68232a9a4fe0"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-front-flight-sheet.png",
+      "bytes": 2760271,
+      "sha256": "f58ddad255f6df0f3435a0f495fe0b632061f16ce9f2dc2655b62e7f99801e12"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-instant-preview-0.png",
+      "bytes": 1472922,
+      "sha256": "49e914d986145c848342099f1cc09e6c8b0b7b03f35538e9175c096ce2de0225"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-instant-preview-1.png",
+      "bytes": 1998402,
+      "sha256": "04698d34cc58b7231828b4a06456ab9b33d7a5d69b3b6dfc7202cbdd130a5d08"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-instant-preview-2.png",
+      "bytes": 1644952,
+      "sha256": "f94ceca506e7d8f2d3786c906753a86b55de5addccd7a588c5635b66fc4cad64"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-instant-preview-3.png",
+      "bytes": 1638019,
+      "sha256": "01f2537f28caa2caa095243ce6030adac96fcecfead0a0fc9df554e47c601097"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-instant-preview-4.png",
+      "bytes": 1724953,
+      "sha256": "9d0856f707d0366532d7f81dda46e64118252a534fa8ffd66ac3e2fee2e0dfc0"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-instant-preview-sheet.png",
+      "bytes": 2910656,
+      "sha256": "80b2f4d25cce46b6b3b4f6b022de3bfae61fd79460a55d39fcb10bdb9ffb1707"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-underwater-weather-0.png",
+      "bytes": 558132,
+      "sha256": "83febc3e1fe743a59e58157a199ff8030bd229af1a77777e68d3c74ccec2deec"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-underwater-weather-1.png",
+      "bytes": 549281,
+      "sha256": "ef2175218793592636d12f21d664fc786227429d01d52f25ad34b1c06c778496"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-underwater-weather-2.png",
+      "bytes": 637903,
+      "sha256": "803b7f9ec25d75c453156de7f4d0496fbeaaf40486e8f4d31ce67966642dcf4b"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-underwater-weather-3.png",
+      "bytes": 667833,
+      "sha256": "6a5b9bb475481a7c4040be5423ada7199992a46e6849ab4889d22ddb19810d0f"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-underwater-weather-4.png",
+      "bytes": 602441,
+      "sha256": "658a1ffbaccd2be6c9fcef96fe71730b255e50cd6247ac73c65d42f053a645f6"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-underwater-weather-sheet.png",
+      "bytes": 1036406,
+      "sha256": "ee9fa3350fb31d9840635c53d9ab0644b02722eee4871e375e401c434335fc2f"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-weather-evolution-0.png",
+      "bytes": 1482292,
+      "sha256": "16be26c99c7e7d0a3909c73e4bd9d4c2eeb2f74def88b806b392b545afc48075"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-weather-evolution-1.png",
+      "bytes": 1986150,
+      "sha256": "0942d411931b21970748d7c0ff57afcdd7c1a638599a95f850fe60f3028849e0"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-weather-evolution-2.png",
+      "bytes": 2305279,
+      "sha256": "cdfa4ec5dea17e8684bbb7d6aaa5f53c003d53832e040772230dd10ecb5710dc"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-weather-evolution-3.png",
+      "bytes": 1667000,
+      "sha256": "2115fbcbad0e62fa59020b4712457cd9da8eb454fa6721b68faae5434f277dab"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-weather-evolution-4.png",
+      "bytes": 2241056,
+      "sha256": "a6c2d9627ce907ef65321e27162ff13039c7f2d21a254124a2aae9e7834e5734"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-baseline-motion-weather-evolution-sheet.png",
+      "bytes": 3119637,
+      "sha256": "637b3b9a347f99a1eeb69b7b0a41fcd88e2d490b6e1ef14e24137bf166240acb"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-broken-motion-0.png",
+      "bytes": 1476934,
+      "sha256": "6c3680d4be0239f20d0b8bfb85d0bc38ffc739017b638b34d3c59cbd97d68ed5"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-broken-motion-1.png",
+      "bytes": 1587899,
+      "sha256": "7c5b166562470b9f10e25bda6b15c08f34e0f166640b024c2d88247dee9d1634"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-broken-motion-2.png",
+      "bytes": 1585431,
+      "sha256": "1a42f61615597becc3dd81bec1efb87728dcf960af0d0acdbc8e0613f4416ac0"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-broken-motion-3.png",
+      "bytes": 1638448,
+      "sha256": "1e650a22617505c627d7c8b137102e063d157bc20334f09c6ca7ae7216236b94"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-broken-motion-4.png",
+      "bytes": 1417521,
+      "sha256": "11b3cbeff0c307d2de84e474c9007885ca3857afd808771bb82cbf6934f6884c"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-broken-motion-sheet.png",
+      "bytes": 2661806,
+      "sha256": "c33ba1ca9fea6009d3ad5661522e5eb26dee6381e147decf2f7d953ac4aeee4b"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-front-flight-0.png",
+      "bytes": 1395930,
+      "sha256": "43f78d89d1a7366eea806b36a7a433b3392eed2057106d918ef5a848a98fa592"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-front-flight-1.png",
+      "bytes": 1397574,
+      "sha256": "a186bba6ac669d69dc89e9dffa2901d938554dea8f7ddf48b802781f2bd6b1d3"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-front-flight-2.png",
+      "bytes": 1373745,
+      "sha256": "554f6c181de1fad9daacfe10bec6839ecdb84401827203b1afd26e20868c2219"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-front-flight-3.png",
+      "bytes": 796074,
+      "sha256": "aba7e361b4b6a96f8c482a72f68b82bb67ff2060033e5a66d72ae6508e8c5594"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-front-flight-4.png",
+      "bytes": 835491,
+      "sha256": "05b57369c52e396919c92af78da505f14748db4a12c5cab2af86d13743e35f76"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-front-flight-sheet.png",
+      "bytes": 2184844,
+      "sha256": "8cee4d3c94451b1b8733ac2b3cd96e8678bfbbf688478449ba43f68776b17316"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-instant-preview-0.png",
+      "bytes": 1249678,
+      "sha256": "017a049f2bdcf8e0545e780b9c4e40d2631dd491090246537af15b81488fcf63"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-instant-preview-1.png",
+      "bytes": 1603260,
+      "sha256": "e49d3a3aa878af18bca21f9fe341fb0ffd6a8c238546a6fc84bdf5733ea452f8"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-instant-preview-2.png",
+      "bytes": 1728124,
+      "sha256": "b7abdb229a90099b9044a83d4baec895a91a1fa2e84b2802556e72e9d22e83b1"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-instant-preview-3.png",
+      "bytes": 1102580,
+      "sha256": "4c56d72c5f8b0e5e177f7631cb322a2ee6f6b702346ed8e4b23ef3ccb35e5bf1"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-instant-preview-4.png",
+      "bytes": 1253276,
+      "sha256": "733ad01409af667e418a77f77812e22b5b7ab297ae7205c081bfaa7946f44dc1"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-instant-preview-sheet.png",
+      "bytes": 2358435,
+      "sha256": "ac9319c4cc90e515327109d270ff9ba44094d344c0aac95e7d8d7be2cf860018"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-underwater-weather-0.png",
+      "bytes": 570581,
+      "sha256": "d1be1c8af449b50e9dcec4401ebea0df9f167425d5b9d9fd3282f40bdb1a7dad"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-underwater-weather-1.png",
+      "bytes": 539515,
+      "sha256": "2f36370cf03de734ae43a506f559654d577523f03d5a9a01fd97b798154d4e0a"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-underwater-weather-2.png",
+      "bytes": 728637,
+      "sha256": "afa145d21c6780ad896381a5d0488de8e2fbae93997c162e117fd4924dfa0b3b"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-underwater-weather-3.png",
+      "bytes": 1564871,
+      "sha256": "3ff557afe9c198d55218af6b447e69b9c6906fa293113bb1bee25aebe0348857"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-underwater-weather-4.png",
+      "bytes": 1102042,
+      "sha256": "de8b69181d3f79b219516701a02054b12a70fcd4b0a6ad4f5f143b146fcb8816"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-underwater-weather-sheet.png",
+      "bytes": 1468988,
+      "sha256": "7dce953c20a1d23d75c3b006d3c5c658b52e3731cbd7929cc1a182b58903952f"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-weather-evolution-0.png",
+      "bytes": 1470633,
+      "sha256": "74e4c6bca20631213a8d71c3085fdb9adccd370e84f405dfc56d7053d28cc1d3"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-weather-evolution-1.png",
+      "bytes": 1854674,
+      "sha256": "21fbf6e8db79a7c0b88e8702cb6e04ee61f634f61c9d14038b1471fc417a7c0b"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-weather-evolution-2.png",
+      "bytes": 1469147,
+      "sha256": "261976f00f8e26db723ad7397bb894c9b888eb049fab95eb1597e7bfbcdce498"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-weather-evolution-3.png",
+      "bytes": 1020725,
+      "sha256": "a3e271aa437409690c89a988b4ee5bf5f7df0c9d0497416e323cd87599430b40"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-weather-evolution-4.png",
+      "bytes": 1246328,
+      "sha256": "3cc1032bd101334555eaddc9ee12b9640a732eddb4c3ecb89057391072c0087d"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-review/v04-p1-recovered-motion-weather-evolution-sheet.png",
+      "bytes": 2378680,
+      "sha256": "a49ca8814e0d2ea03a5c0d2606a206c99ce0a434ecba7578a367915a1cd2a610"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/body-covered.json",
+      "bytes": 120098,
+      "sha256": "e939d23c60d907c60ea6ac29207b7040f11ea5e088d493a4e964209e78fd43cc"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/body-covered.png",
+      "bytes": 3032001,
+      "sha256": "723efda01a99851236614b089ee25103280993c802a6c5b4491c953bd6262a2a",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/broken.json",
+      "bytes": 119806,
+      "sha256": "3678a033f660349f57010db84b496f5b9038a09897c5212015209a5e500be7da"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/broken.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/clear.json",
+      "bytes": 120714,
+      "sha256": "0205cf28027645f7f07ed62edf671653ce6a4f650f2ab3dafb059518868b5869"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/clear.png",
+      "bytes": 4129720,
+      "sha256": "023b368fe738ab30d33cee660d67c15bca704963d3df8175169e91bbe2a8f0ce",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/covered.json",
+      "bytes": 120158,
+      "sha256": "4a214894aa3242178e36c1a399799215a4fff9abc2dd5e4ecaab5ec8f6812f2d"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/covered.png",
+      "bytes": 4038900,
+      "sha256": "3153072ef7c365740a7a075bbc8d4ca05acf9cf26b030e1608189d9f68c8e26a",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/glitter-covered.json",
+      "bytes": 120260,
+      "sha256": "11f7bf0b12d5763bbbe73318846fe81ef95dae1a2a0efa0b6a7259a69aff3f10"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/glitter-covered.png",
+      "bytes": 2785508,
+      "sha256": "adf2d4d972eab38d5f0b0916a3fa2dd3233d407b0d2aa6ce56880f9a98fee223",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/golden.json",
+      "bytes": 120494,
+      "sha256": "329fb2e1e778a85743212d7af747d3540c0c3f2f64537cfdc205fe50d1a2137b"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/golden.png",
+      "bytes": 4480662,
+      "sha256": "afa2e5e285c94a4110227a6d7cb750a2730051407c84daa5f8ea7699879084df",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/moonlit.json",
+      "bytes": 121640,
+      "sha256": "173f0a55caf9d96650d3d821579d670425e8f90fc9099c64b64d9fa81db8fb5f"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/moonlit.png",
+      "bytes": 3443661,
+      "sha256": "12ada358119006d802866e87f63e41cb11d2f24d2da43ce989956b7312bd169d",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/reflection.json",
+      "bytes": 120387,
+      "sha256": "e16b4b438b0b9762c26b59045113cbc2340567450acd02d8c52bd1c6814c57fe"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/reflection.png",
+      "bytes": 4425778,
+      "sha256": "62d9b7c3942b48cedd1237102a38c60037c1fd2ec3026abf69924aef1efefe6c",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/storm.json",
+      "bytes": 120979,
+      "sha256": "5b5a31799a55930e55c49cd628e63a126bba7c20c36daea8eb83ccb2dca924e5"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/storm.png",
+      "bytes": 4044099,
+      "sha256": "0d73baf055ea8183cb4c0ac820bd269e2015577f66d45658c0f08a5db4236abe",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/twilight.json",
+      "bytes": 120707,
+      "sha256": "b8f1d00e28e4d05bae1988b80cc2105b0ab0bc7980954729e2bd695656601943"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/twilight.png",
+      "bytes": 3521612,
+      "sha256": "7bf1466356411f16f33f460ae89d9e742a72721678bd5bbe97361cd9b7444d42",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/underwater-clear.json",
+      "bytes": 120406,
+      "sha256": "21d219ac99b1f17afd53499dfd6aaf37e96ef1a2f76b41930d62a6dd30016c6d"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/underwater-clear.png",
+      "bytes": 3211330,
+      "sha256": "f177509676d0130456f45a62b8248434b8c251af3245948bbb908d1d1493dbbd",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/underwater-covered.json",
+      "bytes": 120789,
+      "sha256": "93a9adf0e7d43bf0b36cac69cc3ceca8105c742986ffc6a7b22b0399ab6e9ce9"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-stills/underwater-covered.png",
+      "bytes": 2981892,
+      "sha256": "b3b72d02c25681df4abf77c96f1db11a71bd07e69894681b983aea75992a82e0",
+      "reportedCheckpoint": "efcf4bb",
+      "resolvedCommit": "efcf4bbe07110b591222904f64ec82bb09d02709",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-recovered-tests/environment-browser.jpg",
+      "bytes": 43389,
+      "sha256": "56ee55e4427993ab1814f7bd61b956e7dfa1416b770a92eca3b03809522bc003"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-tests/environment-gpu.json",
+      "bytes": 1119,
+      "sha256": "9dbb34d7bbc088229d8f3ebc1ed7f6d5cd9eabf1933fb8a9e82c919c3ce869a0"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-tests/gpu-fft.json",
+      "bytes": 2558,
+      "sha256": "cf5e2c0e2f7a71ff804a7d34808f8a245750dcb8bb4ec7c7029615bf64d5049c"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-tests/gpu-optics.json",
+      "bytes": 6972,
+      "sha256": "ab07fb194c9c6b3525ebd7a600406736cb76da2adeccde03587e194bf0d320ba"
+    },
+    {
+      "path": "evidence/v04-p1-recovered-tests/host-gpu.json",
+      "bytes": 744,
+      "sha256": "b53fc9f38c908ba4ff515476bc4f09d372372b10873edf2d0e94754b8149fe71"
+    },
+    {
+      "path": "evidence/v04-p1-review/comparison-sheet.png",
+      "bytes": 3472190,
+      "sha256": "9b40bf70100a5063b311f3b234d715cdebf3d4ce1dda54b58d3572ca5940179c"
+    },
+    {
+      "path": "evidence/v04-p1-review/image-analysis.json",
+      "bytes": 55670,
+      "sha256": "291c3b5f2f1b720c6fcd4f668eeca50a208b6952b4c24e3f996157eae6a4efa7"
+    },
+    {
+      "path": "evidence/v04-p1-review/motion-analysis.json",
+      "bytes": 9804,
+      "sha256": "be8f97504f19178a30261e19934cd9d60a9dbebd9d09164bfdf100734d428efb"
+    },
+    {
+      "path": "evidence/v04-p1-review/performance-analysis.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-broken-motion-0.png",
+      "bytes": 1548414,
+      "sha256": "b7b112bad215ea1feb35388d815615983efeaec0528bfaf454c5bb582dffdcf8"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-broken-motion-1.png",
+      "bytes": 1888752,
+      "sha256": "3980558087c61e0486630c660bc093cca4f76403764300eef31a1961e464e6d0"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-broken-motion-2.png",
+      "bytes": 1588573,
+      "sha256": "f3f1edec59853439871a4e91e3ce8892ed3526079312ac55c8b16bf73a999f72"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-broken-motion-3.png",
+      "bytes": 1581479,
+      "sha256": "b3622fc3d2ccbf52fd55b00d34e139515148ca81766da1e815a10eb71911fecf"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-broken-motion-4.png",
+      "bytes": 1678203,
+      "sha256": "5e7c6736e875ca0f6b5171f085a60b94f6f7d484de16faf83685a04402e7a90d"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-broken-motion-sheet.png",
+      "bytes": 2773335,
+      "sha256": "592e5bc1c180197db894bfc51a3b8c27481103fc941625eda2535db79284b8af"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-front-flight-0.png",
+      "bytes": 1501844,
+      "sha256": "58e3af1a625c783b23216c89e7ad74d1464aad0f1da576a524ae5230320b974a"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-front-flight-1.png",
+      "bytes": 1599135,
+      "sha256": "311ada17dd3db2062681ba6b89da63e7de1054d72a9f4244303a3e846d2b1367"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-front-flight-2.png",
+      "bytes": 1847347,
+      "sha256": "7c8d1347be3ab39a4e58e54c128d330fa0b6de40fc3effa333f746dacc13136f"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-front-flight-3.png",
+      "bytes": 1480087,
+      "sha256": "2baee5416ad333a4322e380ee847489b741b69cbbb9540bcd1a55dc8a54c6384"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-front-flight-4.png",
+      "bytes": 1643834,
+      "sha256": "3e84a9ca51b7778018999b2b7b3f7400f1db3fe512d6779bc6af68232a9a4fe0"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-front-flight-sheet.png",
+      "bytes": 2760271,
+      "sha256": "f58ddad255f6df0f3435a0f495fe0b632061f16ce9f2dc2655b62e7f99801e12"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-instant-preview-0.png",
+      "bytes": 1472922,
+      "sha256": "49e914d986145c848342099f1cc09e6c8b0b7b03f35538e9175c096ce2de0225"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-instant-preview-1.png",
+      "bytes": 1998402,
+      "sha256": "04698d34cc58b7231828b4a06456ab9b33d7a5d69b3b6dfc7202cbdd130a5d08"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-instant-preview-2.png",
+      "bytes": 1644952,
+      "sha256": "f94ceca506e7d8f2d3786c906753a86b55de5addccd7a588c5635b66fc4cad64"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-instant-preview-3.png",
+      "bytes": 1638019,
+      "sha256": "01f2537f28caa2caa095243ce6030adac96fcecfead0a0fc9df554e47c601097"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-instant-preview-4.png",
+      "bytes": 1724953,
+      "sha256": "9d0856f707d0366532d7f81dda46e64118252a534fa8ffd66ac3e2fee2e0dfc0"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-instant-preview-sheet.png",
+      "bytes": 2910656,
+      "sha256": "80b2f4d25cce46b6b3b4f6b022de3bfae61fd79460a55d39fcb10bdb9ffb1707"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-underwater-weather-0.png",
+      "bytes": 558132,
+      "sha256": "83febc3e1fe743a59e58157a199ff8030bd229af1a77777e68d3c74ccec2deec"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-underwater-weather-1.png",
+      "bytes": 549281,
+      "sha256": "ef2175218793592636d12f21d664fc786227429d01d52f25ad34b1c06c778496"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-underwater-weather-2.png",
+      "bytes": 637903,
+      "sha256": "803b7f9ec25d75c453156de7f4d0496fbeaaf40486e8f4d31ce67966642dcf4b"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-underwater-weather-3.png",
+      "bytes": 667833,
+      "sha256": "6a5b9bb475481a7c4040be5423ada7199992a46e6849ab4889d22ddb19810d0f"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-underwater-weather-4.png",
+      "bytes": 602441,
+      "sha256": "658a1ffbaccd2be6c9fcef96fe71730b255e50cd6247ac73c65d42f053a645f6"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-underwater-weather-sheet.png",
+      "bytes": 1036406,
+      "sha256": "ee9fa3350fb31d9840635c53d9ab0644b02722eee4871e375e401c434335fc2f"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-weather-evolution-0.png",
+      "bytes": 1482292,
+      "sha256": "16be26c99c7e7d0a3909c73e4bd9d4c2eeb2f74def88b806b392b545afc48075"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-weather-evolution-1.png",
+      "bytes": 1986150,
+      "sha256": "0942d411931b21970748d7c0ff57afcdd7c1a638599a95f850fe60f3028849e0"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-weather-evolution-2.png",
+      "bytes": 2305279,
+      "sha256": "cdfa4ec5dea17e8684bbb7d6aaa5f53c003d53832e040772230dd10ecb5710dc"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-weather-evolution-3.png",
+      "bytes": 1667000,
+      "sha256": "2115fbcbad0e62fa59020b4712457cd9da8eb454fa6721b68faae5434f277dab"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-weather-evolution-4.png",
+      "bytes": 2241056,
+      "sha256": "a6c2d9627ce907ef65321e27162ff13039c7f2d21a254124a2aae9e7834e5734"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-baseline-motion-weather-evolution-sheet.png",
+      "bytes": 3119637,
+      "sha256": "637b3b9a347f99a1eeb69b7b0a41fcd88e2d490b6e1ef14e24137bf166240acb"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-broken-motion-0.png",
+      "bytes": 1473735,
+      "sha256": "134e1ffd706c248e0a8de1b12847dc8b753d22fe02bf6d0cf71a14b7399c3061"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-broken-motion-1.png",
+      "bytes": 1588127,
+      "sha256": "0f1a895a38d958b5810b8a1ef32063132c3ca71be3cfe101de578513691de4e2"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-broken-motion-2.png",
+      "bytes": 1759818,
+      "sha256": "0e6d1d41b1cb210d75489e0965443b01ee36c59f98df5a7e01cfc52c8d393492"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-broken-motion-3.png",
+      "bytes": 1522413,
+      "sha256": "ed92620d07e516c5d7fa252b92101075b9eef1a20a4fb9bd12072adf72b64498"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-broken-motion-4.png",
+      "bytes": 1454219,
+      "sha256": "84a6d09077f3479ea21b74588e949d149a0b36bd4f52e2b41d1ed5fa4b4307a1"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-broken-motion-sheet.png",
+      "bytes": 2685620,
+      "sha256": "98558679a8c786644225d98c646ea801399e062f33b3e17168d68834bdc3725b"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-front-flight-0.png",
+      "bytes": 1409351,
+      "sha256": "9b7b646bf14ecdc4c881044d39e869f49ee31b35f73d6fa350f5029fd1a632f1"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-front-flight-1.png",
+      "bytes": 1449413,
+      "sha256": "b245976ea1f4ce424926d90732201dcb5b27ddf2bddcdb2fa9a33f09fe6f491f"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-front-flight-2.png",
+      "bytes": 1343793,
+      "sha256": "443dff226585e0011b6eadb75132960a91b48c13d8c50e66d994dbf6d424b3c2"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-front-flight-3.png",
+      "bytes": 823301,
+      "sha256": "36b18aa59a47da8d845c3ddec82faaefcae050a9a6aa2871cadccb03019a0e15"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-front-flight-4.png",
+      "bytes": 823728,
+      "sha256": "e0052504d692c545cee22f013e50c3dc78e4949e7396015e71ff116fca0f7309"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-front-flight-sheet.png",
+      "bytes": 2182729,
+      "sha256": "130dcf8b306d7f0aac17a4144ac3f0c948bca3df1849868b06d488a92203fe4e"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-instant-preview-0.png",
+      "bytes": 1207409,
+      "sha256": "19bd35955558da8048a54e01bb529465f344790a643b8241a175522171856228"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-instant-preview-1.png",
+      "bytes": 1487004,
+      "sha256": "ef32d2332fc406eb8fe3435b124299f09ed189516b53615693bf1cfffe0c3773"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-instant-preview-2.png",
+      "bytes": 1727509,
+      "sha256": "c50f1280254b83bc587e0fc4eff39f003c066ddf113dab4b452251b16d45cee7"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-instant-preview-3.png",
+      "bytes": 1086063,
+      "sha256": "c8d66778f993651d4df1a692ed50d948c3932b9c3e297e5645a733cbf130acf9"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-instant-preview-4.png",
+      "bytes": 1552364,
+      "sha256": "246951cf1a3450c43b801e93477ff22fc76622587670bbbd93c860ede88c2481"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-instant-preview-sheet.png",
+      "bytes": 2360364,
+      "sha256": "fad2814c02e92d81ca9db41a881c7abce21a3813bef47eacfa8ca1e51ead5b09"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-underwater-weather-0.png",
+      "bytes": 589015,
+      "sha256": "b0dc07edae8607ee42bf8560767af231104485e9dc02b2a6f32242f5d2c27473"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-underwater-weather-1.png",
+      "bytes": 542560,
+      "sha256": "95cd9a838dd7066613a8c309f0ae398b6d3d428074d959be9c56d7ebc513a77b"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-underwater-weather-2.png",
+      "bytes": 902213,
+      "sha256": "5c3396f1ebf4a1252e15230608bc2438699f17eeef130e6cab21dca0af71995a"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-underwater-weather-3.png",
+      "bytes": 1579894,
+      "sha256": "03e35a73324436d65b48cf9d1c229d5e4941df72720f7923e8125f57601e0d67"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-underwater-weather-4.png",
+      "bytes": 1168038,
+      "sha256": "b03704fd06487f096162abf3c20c439537702cfc07a1cd2cbe7b5230f9f35ed4"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-underwater-weather-sheet.png",
+      "bytes": 1518671,
+      "sha256": "48e92111450b187bd7b7d5c1d5decc742fcf7f6b78d6951637c4c36b4fc2a286"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-weather-evolution-0.png",
+      "bytes": 1483533,
+      "sha256": "f6fef264cee652ddfab85641940e725545a0d48af9205a6625d093142827949b"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-weather-evolution-1.png",
+      "bytes": 1477579,
+      "sha256": "68db867a54da7b167df39dcaf90c9efc1b5b413a7c36c885c4e59e0a1f543b53"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-weather-evolution-2.png",
+      "bytes": 1465309,
+      "sha256": "b23b132d95d3022b50ee6428acf4da963126cca367a156ff824fc2c3045b35ea"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-weather-evolution-3.png",
+      "bytes": 1062780,
+      "sha256": "d7a0ceb978cecdbacc66e81ff1bd6394f9b0ad6463ec69d440231030d41a3545"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-weather-evolution-4.png",
+      "bytes": 1210832,
+      "sha256": "752fa1be63a4ae9978fe32ef15b042c141088462093b3e00c08b97913d7faea5"
+    },
+    {
+      "path": "evidence/v04-p1-review/v04-p1-motion-weather-evolution-sheet.png",
+      "bytes": 2312029,
+      "sha256": "36467a4c202abbadb92bf136295a15eba2530739ceeeb01a79f3d18657b66514"
+    },
+    {
+      "path": "evidence/v04-p1-stills/body-covered.json",
+      "bytes": 120126,
+      "sha256": "952142a92db2fc440df69538eef21e50e47d87fbd7ce72d8f370653247cceeff"
+    },
+    {
+      "path": "evidence/v04-p1-stills/body-covered.png",
+      "bytes": 3032001,
+      "sha256": "723efda01a99851236614b089ee25103280993c802a6c5b4491c953bd6262a2a",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/broken.json",
+      "bytes": 120644,
+      "sha256": "0f84d6911668440203e034b0c1019e95c70209b19b410531916b071c95da13e1"
+    },
+    {
+      "path": "evidence/v04-p1-stills/broken.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/clear.json",
+      "bytes": 120897,
+      "sha256": "41eee0a8f3bfaaac935718fef0fd5290ec4c41ccb51aaeb603836875b765a5cd"
+    },
+    {
+      "path": "evidence/v04-p1-stills/clear.png",
+      "bytes": 4129720,
+      "sha256": "023b368fe738ab30d33cee660d67c15bca704963d3df8175169e91bbe2a8f0ce",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/covered.json",
+      "bytes": 120718,
+      "sha256": "f5abb563e2a725a2cc88047dea7103df0e3b93febfe23c6687d3b23868a7a217"
+    },
+    {
+      "path": "evidence/v04-p1-stills/covered.png",
+      "bytes": 4038900,
+      "sha256": "3153072ef7c365740a7a075bbc8d4ca05acf9cf26b030e1608189d9f68c8e26a",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/glitter-covered.json",
+      "bytes": 120319,
+      "sha256": "8932a6da8d07571419530e4b160a766559fdee991440b6b8a741d3d2dc8290b3"
+    },
+    {
+      "path": "evidence/v04-p1-stills/glitter-covered.png",
+      "bytes": 2785508,
+      "sha256": "adf2d4d972eab38d5f0b0916a3fa2dd3233d407b0d2aa6ce56880f9a98fee223",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/golden.json",
+      "bytes": 120662,
+      "sha256": "66e0fa8fddd6ccf0e3fea16cbad7593c22db29e49b652022743bfda369ad1a80"
+    },
+    {
+      "path": "evidence/v04-p1-stills/golden.png",
+      "bytes": 4480629,
+      "sha256": "159ad81ecbb6bfc193f89f1ce44bde0d1af64e2bf0308198b91d16034345d135",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/moonlit.json",
+      "bytes": 121083,
+      "sha256": "02ca8f5d029985a2a4ac7848e8b6599bb9985e246d43cebc24567457eb9e4f0b"
+    },
+    {
+      "path": "evidence/v04-p1-stills/moonlit.png",
+      "bytes": 3443661,
+      "sha256": "12ada358119006d802866e87f63e41cb11d2f24d2da43ce989956b7312bd169d",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/reflection.json",
+      "bytes": 120054,
+      "sha256": "a853802aa32348b8a97516b826ffb9780c45db80bc0d83c8e500344700bc4a7f"
+    },
+    {
+      "path": "evidence/v04-p1-stills/reflection.png",
+      "bytes": 4425778,
+      "sha256": "62d9b7c3942b48cedd1237102a38c60037c1fd2ec3026abf69924aef1efefe6c",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/storm.json",
+      "bytes": 120623,
+      "sha256": "3b61ec48c611b87aaaa76f5f85c7e48edecb05f6a0ed610c83d062fd8658aa20"
+    },
+    {
+      "path": "evidence/v04-p1-stills/storm.png",
+      "bytes": 4044105,
+      "sha256": "c9aeec1c47ac3776e7484afb652438c3ae9e53335b051e4c36037f055f4e329b",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/twilight.json",
+      "bytes": 120545,
+      "sha256": "225c7fa48a57f2bbfe895e0e2fce148726c9b93923aad7cfc208d6844c962a99"
+    },
+    {
+      "path": "evidence/v04-p1-stills/twilight.png",
+      "bytes": 3521612,
+      "sha256": "7bf1466356411f16f33f460ae89d9e742a72721678bd5bbe97361cd9b7444d42",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/underwater-clear.json",
+      "bytes": 120143,
+      "sha256": "f0f9623d25ba3a47e71db1557bc78b59a6a54785f7a94ea93abca50ce2cf9f7a"
+    },
+    {
+      "path": "evidence/v04-p1-stills/underwater-clear.png",
+      "bytes": 3211330,
+      "sha256": "f177509676d0130456f45a62b8248434b8c251af3245948bbb908d1d1493dbbd",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/underwater-covered.json",
+      "bytes": 120138,
+      "sha256": "b9c029f12a2fc91415f1a07e7ad6a850629c65d35d745cc5bbf21b8339a40bfa"
+    },
+    {
+      "path": "evidence/v04-p1-stills/underwater-covered.png",
+      "bytes": 2981892,
+      "sha256": "b3b72d02c25681df4abf77c96f1db11a71bd07e69894681b983aea75992a82e0",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-tests/cpu-resume.json",
+      "bytes": 442,
+      "sha256": "35d5c8bd3a392448cc1c25b68763baf3748de72f7523b21f5151b0c81647e876"
+    },
+    {
+      "path": "evidence/v04-p1-tests/environment-gpu.json",
+      "bytes": 917,
+      "sha256": "fcde4ba449cdf13ca6d69d022de1f8195ad218e625f7a2071413b6c7a57ec1c5"
+    },
+    {
+      "path": "evidence/v04-p1-tests/field-experiment.json",
+      "bytes": 1408,
+      "sha256": "510b6e91432e60416e32933b0cba73bff03b731ffde8b536ad384da0dc9db0a6"
+    },
+    {
+      "path": "evidence/v04-p1-tests/local-inventory.json",
+      "bytes": 24760,
+      "sha256": "80b1f01f4b3e15e6161f08e238e4c42c0335886f64eee3e8618196f2b66bf1f4"
+    }
+  ],
+  "sources": [
+    {
+      "path": ".gitattributes",
+      "bytes": 581,
+      "sha256": "ea986fec4f4d33d9523077c6c059afbca9c1333f4fe410aee7b590593ba33488"
+    },
+    {
+      "path": ".github/README.md",
+      "bytes": 2759,
+      "sha256": "01886a10340c9042b8d06c845c172991a951c980f84db16d8d82cec076027fcb"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 46,
+      "sha256": "ce997ccabc07e619802cb53387577a977b4d35f78827a6078d107d9cd5539012"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 3843,
+      "sha256": "e3513210e90238204793191980761e2007228f85498119bc184f3cbfd6477d0e"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1077,
+      "sha256": "f919dccaf442f830f769b7f275e19646570105a7205e02a4a14d16a178881348"
+    },
+    {
+      "path": "README.md",
+      "bytes": 10156,
+      "sha256": "54cbfe3e6766e48b6fd4792c291304c8f918a9c8fe95c65abdc3c80d4b738b92"
+    },
+    {
+      "path": "RELEASE-MANIFEST.json",
+      "bytes": 65176,
+      "sha256": "1321591eff7599bac780b8d6bfb0474b48b4375dbba46863f253f3e05102a561"
+    },
+    {
+      "path": "Start-Pelagic.cmd",
+      "bytes": 293,
+      "sha256": "afc175d09ceaa72d24add5913ed015c3818f0970234f67b4e7e9ca347a580007"
+    },
+    {
+      "path": "THIRD-PARTY-LICENSE.txt",
+      "bytes": 1097,
+      "sha256": "89d1dd663acc68bd2b4958863519b90e817bef7155f3401c3e20475ead472658"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 3406,
+      "sha256": "f52a7d4dd631b38732657a6a8f9c3af6c07ba9379bf99609d5bfd0d42520e96f"
+    },
+    {
+      "path": "docs/BIBLIOGRAPHY.md",
+      "bytes": 7134,
+      "sha256": "55850032dbf4562f5366ddce863898bdebc62d9037810103c1d2bd8d236ca06a"
+    },
+    {
+      "path": "docs/PELAGIC_V04_MASTER_EXECUTION_BRIEF.md",
+      "bytes": 57841,
+      "sha256": "120b8caf0edccccdf757f43c2c32bff30279e3915cf8c176ef2fdd90135c3a76"
+    },
+    {
+      "path": "docs/PHYSICS-RESEARCH.md",
+      "bytes": 17652,
+      "sha256": "911bcf6ad0e05f40a887ff3cca7a9ebbed4c639498c096d77a0685a172581b28"
+    },
+    {
+      "path": "docs/REFERENCE-AUDIT.md",
+      "bytes": 24872,
+      "sha256": "71081e28f3506b21a4e505ac54a807d0c5f6c7056331a21515e8e5c58e439c02"
+    },
+    {
+      "path": "docs/REFERENCE-HARNESS.patch",
+      "bytes": 994,
+      "sha256": "94c83ee31b534af0d04514406d02ab7feb6a5ddd135673fba96edaed5c81cff3"
+    },
+    {
+      "path": "docs/TECHNICAL-REPORT-0.1.md",
+      "bytes": 22429,
+      "sha256": "17e066931c647644d1e7bcf7062bb44dcab2210cd2a2ead398b9aa05d7c609df"
+    },
+    {
+      "path": "docs/TECHNICAL-REPORT.md",
+      "bytes": 20589,
+      "sha256": "355a36d721fe4ba2fcaa82c713c67c61769fa1e3416318108fb7f4e66955b4c9"
+    },
+    {
+      "path": "docs/V02-DEFECTS.md",
+      "bytes": 5475,
+      "sha256": "4c7a58b5778e6bcf566d97a7bffcca41151d6afeb68cfba40907afd64b73ba4a"
+    },
+    {
+      "path": "docs/V02-STAGES.md",
+      "bytes": 11317,
+      "sha256": "d30d2c0544baddaf9eeaad734d1b45ac3899a8505fff128769891029cef4274b"
+    },
+    {
+      "path": "docs/V03-ACCEPTANCE.md",
+      "bytes": 6136,
+      "sha256": "643405e5ce4114b06387315c2eb31cf63c59a2697136369c1da0202477435eb6"
+    },
+    {
+      "path": "docs/V03-BRIEF.md",
+      "bytes": 43223,
+      "sha256": "308d4524b632b934d010da4aaefffa0aa5f2bc56e6eb44e30b156fdb46714342"
+    },
+    {
+      "path": "docs/V03-EVALUATION.md",
+      "bytes": 14433,
+      "sha256": "25188542d57e0d4beac5fa7cf1e2341138125d3cbcbe642fbfb831ca922b0f9a"
+    },
+    {
+      "path": "docs/V03-PUBLICATION.md",
+      "bytes": 2203,
+      "sha256": "b547452c11397ec34176425765635ceb383a646a05438a76b8310c18873c6a99"
+    },
+    {
+      "path": "docs/V03-STAGES.md",
+      "bytes": 23154,
+      "sha256": "3556592d0b11edf1d38498d4d90e65ab03c57fff084a93ffa15e81c5ebffa7cf"
+    },
+    {
+      "path": "docs/V04-AAA-TECHNIQUE-DECISIONS.md",
+      "bytes": 4519,
+      "sha256": "396a412c172559ff5c4c7a60d0b1bc0970a9cdf2b1984c5babf4ebef3db9619b"
+    },
+    {
+      "path": "docs/V04-ACCEPTANCE.md",
+      "bytes": 11322,
+      "sha256": "1705217d31ed8092532940f9f64dd222acb39a9dae8057b864936c4e9181c6b9"
+    },
+    {
+      "path": "docs/V04-BROWSER-RECOVERY.md",
+      "bytes": 5284,
+      "sha256": "ecffd70b27547b4de9914fbb4024ae7e342db9c983edaf064bb4eb5e493ab1c6"
+    },
+    {
+      "path": "docs/V04-GITHUB-PROTECTION.md",
+      "bytes": 3245,
+      "sha256": "d2719b724cff1560a5e82cac15c594f721f81fd3bc2c6ce04dd224e979f15d38"
+    },
+    {
+      "path": "docs/V04-LOCAL-GPU-VALIDATION.md",
+      "bytes": 5933,
+      "sha256": "08a423f85a75acdf5af8a0c537178262f1bb2a97c1858ed37ce1bc0e2ae11707"
+    },
+    {
+      "path": "docs/V04-PERFORMANCE-BUDGETS.md",
+      "bytes": 7627,
+      "sha256": "c6b81d7bdd388bf4e5f507e9990e8ba3a8dadda2ad405dac18e8757ed3d86770"
+    },
+    {
+      "path": "docs/V04-PHASE-GATES.md",
+      "bytes": 2547,
+      "sha256": "ef6a1bf981325fd07605aae19316380582b7fa614d15fe538c89df0a49ac4085"
+    },
+    {
+      "path": "docs/V04-PHASE0-KICKOFF.md",
+      "bytes": 8967,
+      "sha256": "9bb6f58470518ebbb6e3b9d9384d0ba1664c407e249217103eef4eba4140b0c8"
+    },
+    {
+      "path": "docs/V04-PHASE0-LAB.md",
+      "bytes": 5023,
+      "sha256": "629651b206e2e2f07a4276532d389fece06b70928dcb375d029ea3dce2c68c99"
+    },
+    {
+      "path": "docs/V04-PHASE0-REPORT.md",
+      "bytes": 18704,
+      "sha256": "21d42be98ce01c72380a8de82ce7ddc81861076e96ce917a4524005ee07808d4"
+    },
+    {
+      "path": "docs/V04-PHASE0-REPRODUCE.md",
+      "bytes": 5966,
+      "sha256": "0e944559219d4710989c6f849550c8214159f83a2018863242522bf483bf26a2"
+    },
+    {
+      "path": "docs/V04-PHASE0-SOURCES.md",
+      "bytes": 3956,
+      "sha256": "70dfe2ecd0b9fd9f622cdb5af924e1ecedd3eeb56468b425d843542b56e41dc0"
+    },
+    {
+      "path": "docs/V04-PHASE1-ACCEPTANCE.md",
+      "bytes": 8075,
+      "sha256": "459a1f70c1fb9707356bfccfe60bb83b0f7896c6a6aba2206c0a3fcda235af5d"
+    },
+    {
+      "path": "docs/V04-PHASE1-KICKOFF.md",
+      "bytes": 7739,
+      "sha256": "4b27ef68597c37ea48119d69c09cd82a66c64667f26bad9b51a919ac763105e6"
+    },
+    {
+      "path": "docs/V04-PHASE1-LAB.md",
+      "bytes": 2333,
+      "sha256": "3a1728b86d8e1a2481358b51db34022a58c3da1e8a29ea78b05476b006aaf526"
+    },
+    {
+      "path": "docs/V04-PHASE1-REPORT.md",
+      "bytes": 13927,
+      "sha256": "0941a327ff1c0269c733f9ff69ab14fb18caeeba96c85758a53e3ec8cdf5b16f"
+    },
+    {
+      "path": "docs/V04-PHASE1-REPRODUCE.md",
+      "bytes": 4899,
+      "sha256": "4f974868d9b202a1a04fe79ccb440dbe90078feb90608e2012af98f3fa584f22"
+    },
+    {
+      "path": "docs/V04-PHASE1-SOURCES.md",
+      "bytes": 2096,
+      "sha256": "ea23e5bbe467e280a6fb35d5468e2d7515a8daf09b367edba883ce01320d8410"
+    },
+    {
+      "path": "docs/V04-PHASE1-VISUAL-REVIEW.md",
+      "bytes": 9712,
+      "sha256": "434a7cf9b1237ed9cd0246aaf5ba80524e86b4cc653b34fcb8ffcdcc920f4629"
+    },
+    {
+      "path": "docs/V04-REFERENCE-BOARD.md",
+      "bytes": 9900,
+      "sha256": "268f698009be91354961dc8d911fdcec18d9e5a842aa21fa0b2a1bdc4bd76394"
+    },
+    {
+      "path": "docs/V04-RESEARCH-CORRECTIONS.md",
+      "bytes": 5164,
+      "sha256": "3eb69d46497c331d11f2d344a0f3a535fdd03c62d11180626e357e859f9e1bc7"
+    },
+    {
+      "path": "docs/V04-RESEARCH-INDEX.md",
+      "bytes": 4834,
+      "sha256": "d3c735816cdc335637fcb37b6ba4598c7392b6f86cfd0fe0be4f93eddd24e903"
+    },
+    {
+      "path": "docs/V04-STATE.md",
+      "bytes": 11214,
+      "sha256": "d91a2ef2f6cb5fd8a8ef84a6e9265126eaaa5abb9e2e1b190dbe1823a6711735"
+    },
+    {
+      "path": "docs/pope97.dat",
+      "bytes": 2134,
+      "sha256": "5c92c6a1e4be125cc9464fab33490ce4eb883fca7e84a21b0ca2b906cb35c8a7"
+    },
+    {
+      "path": "docs/research/PELAGIC_V04_TARGETED_RD_2026-10-21.md",
+      "bytes": 98382,
+      "sha256": "86436326041b6590c388b94476b6855462776405b49c6da08d12f57638d9ab10"
+    },
+    {
+      "path": "dynamics.html",
+      "bytes": 1364,
+      "sha256": "51a28203fb90902ec049b7a2dd0fd5791dbc8042bec0643e6d4b1bc984f43238"
+    },
+    {
+      "path": "ensemble.html",
+      "bytes": 1082,
+      "sha256": "18c36227377f39d14c8ce6c9b728ac159fa34a6445d4ab01a5b3fcb971256ef8"
+    },
+    {
+      "path": "environment-tests.html",
+      "bytes": 405,
+      "sha256": "e1d9c63c4cf00c1b09bb775a80ce8fdc29edce6d033158d925316715fc86b282"
+    },
+    {
+      "path": "gallery.html",
+      "bytes": 8729,
+      "sha256": "a717cbd34a57b97db470b7f21db3f07b384497d3d591ab973e584697ce59a725"
+    },
+    {
+      "path": "index.html",
+      "bytes": 4980,
+      "sha256": "41e1301a9d5f60af6c890a29fe022a90ec3b6294588ff332c9f96bd9d35e93d7"
+    },
+    {
+      "path": "lab.html",
+      "bytes": 2357,
+      "sha256": "1dc677003c241cd4cd48dc14316852e54cf76951dd5f4ce1707942694cdc93bd"
+    },
+    {
+      "path": "matrix.html",
+      "bytes": 2799,
+      "sha256": "d5a7733712a90487e12525d724dfafb097aec52200a9a96bf36a874f8705e2c6"
+    },
+    {
+      "path": "motion.html",
+      "bytes": 2797,
+      "sha256": "81b4b81dfdcf67e5e27e006ad10d526d5616c8aceead7258601ea8f6d733290f"
+    },
+    {
+      "path": "optics.html",
+      "bytes": 2089,
+      "sha256": "e2e7b4d70fbf7d75d6ca56b6a36754bc00603ff3f7dc43f71bf9787ca0fa75d8"
+    },
+    {
+      "path": "package.json",
+      "bytes": 290,
+      "sha256": "024d2b9e2d96e905f32d86184a80c55ad409d4c10b56d44bdf0645e84f34f0a6"
+    },
+    {
+      "path": "phase0-review.html",
+      "bytes": 4207,
+      "sha256": "77a45c55b2722b8d523346e116edb1d4f8c43dc0178145de08324dea3c97c378"
+    },
+    {
+      "path": "phase0.html",
+      "bytes": 3375,
+      "sha256": "c0b8023a95762da8370fc85ed605706a18dce043e4f77325cb3718bda231cd8d"
+    },
+    {
+      "path": "phase1-benchmark.html",
+      "bytes": 2292,
+      "sha256": "59ccd68d38599e91f82a1ddfb4a7df8623acba2d7d8eb9d56bed29997fec9d1a"
+    },
+    {
+      "path": "phase1-light.html",
+      "bytes": 2426,
+      "sha256": "f730abb4485f45b9c08f0e656349242961792301a760cf4ee7a1d5c441d57f2f"
+    },
+    {
+      "path": "phase1-motion-review.html",
+      "bytes": 3097,
+      "sha256": "697b255303a775df14e2296f7b754181f3f72cca7c9b177684027fe8f60e8f58"
+    },
+    {
+      "path": "phase1-review.html",
+      "bytes": 3664,
+      "sha256": "52e491dcfba25adc0d04551cebccf3d91dbafe2c4e1ccdb19dec1b40b7864926"
+    },
+    {
+      "path": "phase1.html",
+      "bytes": 3241,
+      "sha256": "135d3b188bc24e516cfb49440a179144db9bcd386104f61a30027a3f1f25e4c9"
+    },
+    {
+      "path": "publication/pelagic-0.2-release-checks.json",
+      "bytes": 628,
+      "sha256": "04677ff8594322e1c861df00494a9bc7c0f24304ca7be7dcc2d6730e2b039f55"
+    },
+    {
+      "path": "publication/pelagic-0.2.sha256",
+      "bytes": 186,
+      "sha256": "85ff1cad0215d13af75aac1ef7bbd749eddcca3a3372a7e45084c92660d8c0af"
+    },
+    {
+      "path": "publication/pelagic-0.3-dev.1-assets.json",
+      "bytes": 849,
+      "sha256": "7dca868400884be53d793b33b57542ff37fef7383a7b289fa44a88f2d4cbbe8f"
+    },
+    {
+      "path": "publication/pelagic-0.3-dev.1-public-verification.json",
+      "bytes": 2170,
+      "sha256": "2a55628ae953dbdddfabbd5edbfd9abdfd155585cd13d7d98b8b7ccb9bc7a733"
+    },
+    {
+      "path": "publication/restore-development-evidence.py",
+      "bytes": 3529,
+      "sha256": "3c2b84125f847e0ae4b18636a5cfbb4e4aeba7dff6ae81846f1aad30d8d12389"
+    },
+    {
+      "path": "publication/restore-evidence.py",
+      "bytes": 3601,
+      "sha256": "0d9c204dbd00c84e4621d14a97ea2c515a31957931451a31a5474fadaa63386d"
+    },
+    {
+      "path": "review-03.html",
+      "bytes": 4036,
+      "sha256": "9a232b4b3fe3bc56db051d1283b28c991717760e488360fad2ef26b43f378251"
+    },
+    {
+      "path": "scripts/dense-motion-review.py",
+      "bytes": 1462,
+      "sha256": "efa8c08a16d44a3b6b28b0c32cb7468e98863c14ec8c226a20a653ffad5eb98b"
+    },
+    {
+      "path": "scripts/evidence-index.mjs",
+      "bytes": 2939,
+      "sha256": "04f9a7c50794a34d6b41f4c51cc4e7168785fcf5925da0e4b9c541b1c927f56b"
+    },
+    {
+      "path": "scripts/motion-audit.py",
+      "bytes": 3183,
+      "sha256": "d48798a7699c48e4a3b60ed8a216b184871dff31638fc19e37cc23872f8c837d"
+    },
+    {
+      "path": "scripts/motion-sheets.py",
+      "bytes": 1580,
+      "sha256": "362a02c553d57c13b5c9e17d77371bd8246f674f8ce7023076cf3f228dfa8100"
+    },
+    {
+      "path": "scripts/package-development-evidence.py",
+      "bytes": 2266,
+      "sha256": "3f080e842d363fc306352a96b808f4fdd556a966ed86437da7bf45cfeb88f4f0"
+    },
+    {
+      "path": "scripts/release-manifest.mjs",
+      "bytes": 1884,
+      "sha256": "a95e4782f9b9f492c36aeac25bd9e7781cd7a9608e14f5374badbb51c1e7fb09"
+    },
+    {
+      "path": "scripts/review-evidence.py",
+      "bytes": 2128,
+      "sha256": "6341673ea2beef997b041b9f94ad5b7f9f264781ac3a03e465d30a537460bc36"
+    },
+    {
+      "path": "scripts/review-v03.py",
+      "bytes": 3935,
+      "sha256": "9ac2ac515f76b4d2d0bf312e63bc6ae85e042100c484f33f96444818761e6878"
+    },
+    {
+      "path": "server.mjs",
+      "bytes": 2673,
+      "sha256": "8c579b056ac62e05e8baa94080e90f77dae746a0983ad7d57a5ece691a539b2a"
+    },
+    {
+      "path": "src/astronomy.js",
+      "bytes": 2575,
+      "sha256": "d8bec68ab1b0beb1014b5b8ae1b929fad103b244fd9b1c4881a72f1c6551c009"
+    },
+    {
+      "path": "src/celestial-light.js",
+      "bytes": 694,
+      "sha256": "8fb00527413062c0a43188fad9c08df7007bbcc78c20257cb561cf88b52a0112"
+    },
+    {
+      "path": "src/environment.js",
+      "bytes": 7940,
+      "sha256": "9fa9f81e1745085bc6a720b0683afaafda350e5d19ec4b226de27383f2522993"
+    },
+    {
+      "path": "src/foam-pattern.js",
+      "bytes": 956,
+      "sha256": "f79bf8be59cff58b2a8ac7b71ad61eae873c77751d3a687fc35fac5f73be24ef"
+    },
+    {
+      "path": "src/gpu-ledger.js",
+      "bytes": 1410,
+      "sha256": "42860b4e98f5877caac3de3061d50e656ae8241f5b622ebb4f50ff141b5c1f4a"
+    },
+    {
+      "path": "src/numerics.js",
+      "bytes": 3194,
+      "sha256": "641f9ad627b7cf0c7af61a99aeee1ba20abeda8df73ef84628f20f9a282c5012"
+    },
+    {
+      "path": "src/ocean-contracts.js",
+      "bytes": 3416,
+      "sha256": "9040a4c36ff563a5d836c3252660dc41087a6faaa2ba66308e2722339e248ccc"
+    },
+    {
+      "path": "src/renderer.js",
+      "bytes": 70215,
+      "sha256": "9f632423a0cbe2bd8b293023c19f11713899a471638fd4193d11b60969bc5d48"
+    },
+    {
+      "path": "src/runtime-input.js",
+      "bytes": 1428,
+      "sha256": "9e71659fad92b35ee05760bd85d25b231af2beaabed6cbeaa788c09efa8859a0"
+    },
+    {
+      "path": "src/sea-spectrum.js",
+      "bytes": 2164,
+      "sha256": "5f526c1eb6387be9064bd549ed2379ad32588bd4d9ea36156a83bad4faf9d422"
+    },
+    {
+      "path": "src/settings.js",
+      "bytes": 5630,
+      "sha256": "ff41532aff826057d416de1415bb42713df0970f8caa9184a7d1c9a4b0d159f0"
+    },
+    {
+      "path": "src/spatial-origin.js",
+      "bytes": 1161,
+      "sha256": "77ff877c23eabeda15ad03e00ad3f170327ddb882951593598a0b5eac3414dc4"
+    },
+    {
+      "path": "src/ui.js",
+      "bytes": 8951,
+      "sha256": "4668cbd15f8b497154ea4b582e0cb728c5065800ca0c54cbeb167def0914c893"
+    },
+    {
+      "path": "src/wgsl/cloud-noise.js",
+      "bytes": 2104,
+      "sha256": "99d0ed409fe836805975a0b394ae22db5b8b2ebbb5c208c76393c3d5db387ef6"
+    },
+    {
+      "path": "src/wgsl/clouds.js",
+      "bytes": 12801,
+      "sha256": "f2d853b834be0bfaf91762427fa1273a32b04ae6de4d3d0f55163160f16b9142"
+    },
+    {
+      "path": "src/wgsl/common.js",
+      "bytes": 7627,
+      "sha256": "5f088ea162feb9bd1c13e950f3521dfffcb3891eea94381a3d680c09019e797e"
+    },
+    {
+      "path": "src/wgsl/coordinates.js",
+      "bytes": 225,
+      "sha256": "cbe1808c797aaf9532b6ff94baa752a19c6cb912777026ccd70547914447c53e"
+    },
+    {
+      "path": "src/wgsl/coupling.js",
+      "bytes": 1403,
+      "sha256": "f55d554a469b1d36d6d48953bc86efbca7a188c0328b4152e9c339359fbf0cab"
+    },
+    {
+      "path": "src/wgsl/environment.js",
+      "bytes": 775,
+      "sha256": "c51d50511622d857d0e02461b4269af7777518d20a080b7906a82f94fcc61def"
+    },
+    {
+      "path": "src/wgsl/immersion.js",
+      "bytes": 1407,
+      "sha256": "e019c49171d11cd712e160f0ee69e4ee5ff18ed1bbcff944a056e586e2eb9433"
+    },
+    {
+      "path": "src/wgsl/irradiance.js",
+      "bytes": 1520,
+      "sha256": "f296385d1d84d3042cc7dc2d7759a771b9d9d6125a75be3fd86b933c4f4b2639"
+    },
+    {
+      "path": "src/wgsl/lens-medium.js",
+      "bytes": 2307,
+      "sha256": "987b99ab5b55797fcf3691b8625f9f29bef7b9298e0b810dd0d4ec719c66311a"
+    },
+    {
+      "path": "src/wgsl/ocean.js",
+      "bytes": 23224,
+      "sha256": "7a3563b86ebabae4d18cdc6c3751648a526d2f2d9787e11ee984f64152aa0c3e"
+    },
+    {
+      "path": "src/wgsl/particles.js",
+      "bytes": 6097,
+      "sha256": "96733bb075341fc069bd0f58266acc104a55f5a853bc1821fa4d65acb115b9b7"
+    },
+    {
+      "path": "src/wgsl/post.js",
+      "bytes": 5595,
+      "sha256": "8bd6eb2e65f2c9e5c85263a692da0188c50e94c68437c8445965d6e17c045df9"
+    },
+    {
+      "path": "src/wgsl/sim.js",
+      "bytes": 19503,
+      "sha256": "cfe641d00a901099225df5e25f6cd53aeed9d9fea926c66f8dd423ae90503053"
+    },
+    {
+      "path": "src/wgsl/sky.js",
+      "bytes": 14277,
+      "sha256": "7f449ff85f9bf53b9786715a086cdb4bc64ef3fbc3c51a1600c8a2e4fd3647d1"
+    },
+    {
+      "path": "src/wgsl/wave-visibility.js",
+      "bytes": 6132,
+      "sha256": "8a59b274de5bffc7dc6dafaca13260aec529f5cc5e15b6da9d2f0e48535d1dd8"
+    },
+    {
+      "path": "style.css",
+      "bytes": 7237,
+      "sha256": "46b7c25cb4f3d71188cebaa325f5421461dacf4bec3470fcbd0995478eb751de"
+    },
+    {
+      "path": "tests.html",
+      "bytes": 1517,
+      "sha256": "91e401a51eb5a35c8eb54c5443f5192ed3e3abbfcf383e1cb8aecfc78df7118a"
+    },
+    {
+      "path": "tests/celestial-light.test.mjs",
+      "bytes": 1216,
+      "sha256": "e54cbe66c71a52882fa549bdfa22d6a6f6c78e861ec0a77eaaa23b8abe784ca6"
+    },
+    {
+      "path": "tests/contracts.test.mjs",
+      "bytes": 1934,
+      "sha256": "f3da56b718f9ab970b334b9603a6c982612cb25954ef3e7ed445d47124eb1108"
+    },
+    {
+      "path": "tests/coordinates-gpu.js",
+      "bytes": 3547,
+      "sha256": "15fe7e0d9c4e1fc3262ed6c60b83ead08f32d3640973e6faa58cc5666043be23"
+    },
+    {
+      "path": "tests/coupling-gpu.js",
+      "bytes": 3483,
+      "sha256": "94d449b80579ebd08012eb2ad3522423acf5a08b394069404dc2be671d5b6ffe"
+    },
+    {
+      "path": "tests/data/cie/CIE_std_illum_D65.csv",
+      "bytes": 6820,
+      "sha256": "e76f210bffff3d552ef7113025da5f325d5dfec200dd4b878b1a2f3a507032cb"
+    },
+    {
+      "path": "tests/data/cie/CIE_std_illum_D65.csv_metadata_v2.json",
+      "bytes": 2577,
+      "sha256": "71994379b81c65db111f652e747a00b599b5456c2a8242e9a0d6f379f560a14e"
+    },
+    {
+      "path": "tests/data/cie/CIE_xyz_1931_2deg.csv",
+      "bytes": 24021,
+      "sha256": "fa663e3535a7e0763a745993a1f0a192eb0275ac46ad2d1befd7626841e713c1"
+    },
+    {
+      "path": "tests/data/cie/CIE_xyz_1931_2deg.csv_metadata.json",
+      "bytes": 3787,
+      "sha256": "03abcaecf4e63d77045ef57c4514b52c8bb1a46dd18e1f93a50044a0f4f481c8"
+    },
+    {
+      "path": "tests/data/cie/README.md",
+      "bytes": 802,
+      "sha256": "7f8d17a2fec02a97c8a876aca6f53f7c7f8887e0ce333ac71436ce153a1045d9"
+    },
+    {
+      "path": "tests/dynamics.js",
+      "bytes": 8226,
+      "sha256": "f8ed46514b217516692e9dd8bfa0edb3ab0db0c7d61ac8b7bffcd1ce57ecf9b1"
+    },
+    {
+      "path": "tests/ensemble.js",
+      "bytes": 3032,
+      "sha256": "2b7598201001f65262d5e951eac7b2c95e0986abb7679f5ff6511f870febb1d9"
+    },
+    {
+      "path": "tests/environment-gpu.js",
+      "bytes": 5222,
+      "sha256": "ee42f2b33883efc7b8e825d351b3485685b4a217925163cdecb51c6f061ec4a8"
+    },
+    {
+      "path": "tests/environment.test.mjs",
+      "bytes": 3968,
+      "sha256": "f008c34b7f7d6ab0d3cf3b4687a716653414417eb80d8287a8991a96140eaae9"
+    },
+    {
+      "path": "tests/foam-readback.js",
+      "bytes": 1252,
+      "sha256": "b21398149d9472aeb31d7649421369913b5e03293df8e73dbe6b4ed31caf288f"
+    },
+    {
+      "path": "tests/gpu.js",
+      "bytes": 3898,
+      "sha256": "10468e0c01dfe6599847ff89ef976886741064488aab7f9a08150472bfe20256"
+    },
+    {
+      "path": "tests/hdr-readback.js",
+      "bytes": 1727,
+      "sha256": "77a5ba61035e449d3e44a3952600d43f139d85b6264d8585cea7a4ae907ac516"
+    },
+    {
+      "path": "tests/inspect-motion.py",
+      "bytes": 3387,
+      "sha256": "04211558fd710e6c2e3a78851827a022823ed51bbbd9f506d293b3affea6f7f4"
+    },
+    {
+      "path": "tests/irradiance-gpu.js",
+      "bytes": 3589,
+      "sha256": "2a0c62a511eae99edff7b170067ab2edd53d9347eb33cc8676e62dc5e4137b53"
+    },
+    {
+      "path": "tests/lens-gpu.js",
+      "bytes": 4168,
+      "sha256": "81f4c991bd1e8835779c1a5437a8c728388836c6466fd7b7ffcedc3aafe8e247"
+    },
+    {
+      "path": "tests/numerics.test.mjs",
+      "bytes": 3359,
+      "sha256": "ea351a2883ec392fad55bdb93fc0a56c12f63e6d0a2531637dd769c3fc9d7192"
+    },
+    {
+      "path": "tests/optics.test.mjs",
+      "bytes": 2096,
+      "sha256": "78ede7d0532d1add0b2ff1cb551cceae58498df66086a7e7c8cb545a8a4a8e8e"
+    },
+    {
+      "path": "tests/phase0-crest.mjs",
+      "bytes": 2600,
+      "sha256": "261446c3d2ff013d0c645f0a3f6cfd3ff7b5e8f65816e792c1af43dfed1369dc"
+    },
+    {
+      "path": "tests/phase0-evidence.py",
+      "bytes": 4411,
+      "sha256": "8818c330e763a59e60662541aecb9162b233a324a180610c1e299fbf39a243fd"
+    },
+    {
+      "path": "tests/phase0-manifest.mjs",
+      "bytes": 8392,
+      "sha256": "6d099326540b1b26f6e3846347980615219557ad7560beb74ef1cb74ea4d6819"
+    },
+    {
+      "path": "tests/phase0-motion.py",
+      "bytes": 2629,
+      "sha256": "b58fb1820024ea73dd1623ad68cc8dab462a27fd4862c710ea7fd58f0aa4f937"
+    },
+    {
+      "path": "tests/phase0-optics.mjs",
+      "bytes": 4117,
+      "sha256": "b7d0f8a3cfb5992ae2326c13485ab759593341aff98bdec5a9407ed6927a47fe"
+    },
+    {
+      "path": "tests/phase0-readback.js",
+      "bytes": 2645,
+      "sha256": "250660fc6f63ee409b1113349749a10c4846a159b2822f94b5c710637f913d60"
+    },
+    {
+      "path": "tests/phase0-science.mjs",
+      "bytes": 6538,
+      "sha256": "e404eb0bfe4b77a9d2cea5926c92879358a736edf0bfff137346e7813210207a"
+    },
+    {
+      "path": "tests/phase0-shaders.js",
+      "bytes": 2546,
+      "sha256": "a66d3df9ea1d50ba1a7c7e3e426458e321d9e12de4e268bbb393deb7e73e10c9"
+    },
+    {
+      "path": "tests/phase0.test.mjs",
+      "bytes": 1674,
+      "sha256": "5eff9a94200e3f603c028916787114e949e0353b1191ec73bd928c09e297d7b8"
+    },
+    {
+      "path": "tests/phase1-evidence.py",
+      "bytes": 5581,
+      "sha256": "9b38912d2afaa2394c82b56ed959fd562072bec8ab1706b9fb75c6361ccf9548"
+    },
+    {
+      "path": "tests/phase1-field-experiment.mjs",
+      "bytes": 2003,
+      "sha256": "96a912e3898d8e63c1ecf56d4c35ad8df9b4b172ef49acbe33eadf50756497f2"
+    },
+    {
+      "path": "tests/phase1-inventory.mjs",
+      "bytes": 3345,
+      "sha256": "3e6d17341f3308731823d4f9b301bc5d8a053dc6f4426da22e6c10b4bb08a480"
+    },
+    {
+      "path": "tests/phase1-light-readback.js",
+      "bytes": 1498,
+      "sha256": "7596345afc2d3916aa1dfe9938a247c9e9237c0b14fc2f4ffe272bbebbb4fe00"
+    },
+    {
+      "path": "tests/phase1-motion.py",
+      "bytes": 3236,
+      "sha256": "5d773b854dea295db3e710f0b481bd9eca5ee2c3ba1447b2790a3832cfb57881"
+    },
+    {
+      "path": "tests/phase1-publication.mjs",
+      "bytes": 2568,
+      "sha256": "566bd225d34653f18e779b2514d06f2937edab7c6275afb199f28f33e0b5d1b6"
+    },
+    {
+      "path": "tests/runtime.test.mjs",
+      "bytes": 1251,
+      "sha256": "a1d4e74c7d7bb18a49aee37c4ae9e22b7c185ca245ef070b6d016c746c39373e"
+    },
+    {
+      "path": "tests/sea-spectrum.test.mjs",
+      "bytes": 1512,
+      "sha256": "bfde7381fae9a05e01f2965ade67d909d49a3250f7d95dc789850397a468eead"
+    },
+    {
+      "path": "tests/slope-readback.js",
+      "bytes": 2535,
+      "sha256": "efe38d2968108d0bc4667653f55990ba62cb233d8c88cd56b072f44cd9f05463"
+    },
+    {
+      "path": "tests/spatial-origin.test.mjs",
+      "bytes": 1880,
+      "sha256": "c905a023aebc8fb4dfaa2181a9568ad75f41539a1d8722dc61df085943d5a6c8"
+    },
+    {
+      "path": "tests/spectral-readback.js",
+      "bytes": 3822,
+      "sha256": "8587a093376d2eb824e4bdd853125f10e306f031dbaaed7b2f915c2e5412354a"
+    },
+    {
+      "path": "tests/visibility-gpu.js",
+      "bytes": 5767,
+      "sha256": "76530af8c213c0218081a306b372e42344de8873c4e32c41cdf4052af4e4f851"
+    },
+    {
+      "path": "tests/webgpu-hardware-probe.html",
+      "bytes": 4825,
+      "sha256": "048c6ada5c67c19b25c36f5fad7b5a481fb0b961301f1369dacf88701a572f42"
+    }
+  ]
+}
