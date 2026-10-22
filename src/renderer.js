@@ -72,6 +72,11 @@ function mat4Mul(out, a, b) {
 }
 
 async function main() {
+  const sourceStart=qs.get('ma')==='1'?await fetch('/__source').then(r=>{if(!r.ok)throw Error('Source manifest unavailable');return r.json();}):null;
+  async function postEvidence(url,body){
+    const response=await fetch(url,{method:'POST',body});
+    if(!response.ok)fail('Evidence save failed ('+response.status+'): '+await response.text());
+  }
   if (!navigator.gpu) fail('WebGPU is not available in this browser.');
   const adapter = await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' });
   if (!adapter) fail('No WebGPU adapter found.');
@@ -809,7 +814,7 @@ async function main() {
     recorder=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:16000000});movieChunks=[];movieStart=performance.now();
     recorder.ondataavailable=e=>{if(e.data.size)movieChunks.push(e.data);};
     recorder.onstop=async()=>{const blob=new Blob(movieChunks,{type:mime});stream.getTracks().forEach(t=>t.stop());document.getElementById('record').textContent='Record';
-      if(evidence){const stage=encodeURIComponent(qs.get('stage')||'v03-local');await fetch('/__evidence?stage='+stage+'&name='+qs.get('video')+'.webm',{method:'POST',body:blob});await fetch('/__evidence?stage='+stage+'&name='+qs.get('video')+'.json',{method:'POST',body:JSON.stringify(evidenceReport(),null,2)});document.title='VIDEO DONE';stopped=true;parent.postMessage({type:'pelagic-video'},location.origin);}
+      if(evidence){const stage=encodeURIComponent(qs.get('stage')||'v03-local');await postEvidence('/__evidence?stage='+stage+'&name='+qs.get('video')+'.webm',blob);await postEvidence('/__evidence?stage='+stage+'&name='+qs.get('video')+'.json',JSON.stringify(evidenceReport(),null,2));document.title='VIDEO DONE';stopped=true;parent.postMessage({type:'pelagic-video'},location.origin);}
       else download(blob,'pelagic-'+Date.now()+'.webm');
     };
     recorder.start(1000);document.getElementById('record').textContent='Stop recording';ui.toast('Recording the rendered canvas');
@@ -924,7 +929,7 @@ async function main() {
       ui.update(hudFps.textContent);
       fpsAcc = 0; fpsN = 0; fpsT = 0;
     }
-    updateCamera(dt);
+    if(qs.get('ma')!=='1')updateCamera(dt);
     if(qs.has('video') && frameIndex===20)startRecording(true);
     if(qs.has('video') && recorder?.state==='recording' && now-movieStart>Math.max(10,Math.min(30,Number(qs.get('duration'))||20))*1000)recorder.stop();
     if(qs.get('motion')==='fly'){cam.x+=dt*2.0;cam.y=2.4+Math.sin(simTime*0.2)*0.6;cam.yaw+=dt*0.035;}
@@ -938,6 +943,10 @@ async function main() {
     }
     if(qs.get('motion')==='celestial' && recorder?.state==='recording'){
       P.astronomy=true;P.astronomyRate=2160;
+    }
+    if(qs.get('motion')==='ma-pan' && recorder?.state==='recording'){
+      const u=Math.max(0,Math.min(1,((now-movieStart)/1000-8)/12));
+      cam.yaw=(4+75*u*u*(3-2*u))*D2R;
     }
     if (fixedDt) dt = fixedDt;
     phase1Motion(now);
@@ -1138,7 +1147,7 @@ async function main() {
     else requestAnimationFrame(frame);
   }
 
-  function evidenceReport(){return {version:'0.4-phase1',sourceCheckpoint:qs.get('revision')||'development',adapter:adapterInfo,backend:'native-webgpu',timestampQuery:hasTS,settings:{...P},camera:{...cam},simulationTime:simTime,frameIndex,width:W,height:H,nodes:nodeCount,errors,measurements,frameRecords,
+  function evidenceReport(){return {version:qs.get('ma')==='1'?'0.4-milestone-a':'0.4-phase1',sourceStart,sourceCheckpoint:qs.get('revision')||'development',adapter:adapterInfo,backend:'native-webgpu',timestampQuery:hasTS,settings:{...P},camera:{...cam},simulationTime:simTime,frameIndex,width:W,height:H,nodes:nodeCount,errors,measurements,frameRecords,
     allocations:allocations.report(),environment:environmentSnapshot(environment),lightCache:{published:cachePublished,history:cacheHistory,units:'relative scene-linear RGB radiance / irradiance; not absolute SI calibrated',latency:'complete snapshot, six-frame angular build; direct shadow current frame'},browserTasks,
     phase0:{query:Object.fromEntries(qs),profile:phase0Profile,note:'Experimental toggles are Phase 0 hypotheses, not accepted features.'},userAgent:navigator.userAgent,
     foamPatternCalibration,worldOrigin:origin,benchmarkStopReason,benchmarkWallSeconds:benchmarkStart===null?0:(performance.now()-benchmarkStart)/1000,
@@ -1170,7 +1179,7 @@ async function main() {
     if(captureRequested){captureRequested=false;download(blob,'pelagic-'+Date.now()+'.png');shooting=false;scheduleFrame();return;}
     const nm = shotSeq > 1 ? shotName.replace('.png', `_${shotIdx}.png`) : shotName;
     const stage=qs.get('stage')||'v03-local';
-    await fetch('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm), { method: 'POST', body: blob });
+    await postEvidence('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm),blob);
     const report=evidenceReport();
     if(qs.get('p0Columns')==='1')report.cloudColumns=await phase0CloudColumns(device,frameUBO,cloudNoiseView,cloudSampler,qs);
     if(qs.get('validate')==='1')report.spectral=await spectralReadback(device,{h0:h0Buf,specA,disp:dispTex,deriv:derivTex,mom:momTex},P);
@@ -1180,7 +1189,7 @@ async function main() {
       report.discreteSpectrum=discreteSpectrumLedger(P);
       report.slopeMipBudget=await slopeMipReadback(device,derivTex,momTex);
     }
-    await fetch('/__evidence?stage='+stage+'&name='+encodeURIComponent(nm.replace('.png','.json')),{method:'POST',body:JSON.stringify(report,null,2)});
+    await postEvidence('/__evidence?stage='+stage+'&name='+encodeURIComponent(nm.replace('.png','.json')),JSON.stringify(report,null,2));
     log('shot saved ' + nm + ' gpu ' + gpuMs.toFixed(2) + 'ms nodes ' + nodeCount);
     shotIdx++;
     shooting = false;

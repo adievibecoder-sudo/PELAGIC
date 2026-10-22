@@ -1,5 +1,9 @@
 # PELAGIC 0.4 — Astra Operating Rules
 
+## Current owner authorization - 22 October 2026
+
+Milestone A (Core Ocean Appearance) is authorized. This supersedes the historical Phase 1-only scope below. Use JavaScript ES Modules, raw WGSL and native Chrome WebGPU; one accountable agent. Preserve FFT/environment foundations and all frozen refs/evidence. Daylight and low-Sun, near-surface and elevated views are mandatory. One bounded intervention at a time; full-scene visual/motion, numerical and RTX 3050 cost evidence. STOP at the first substantial visual checkpoint for owner review. Milestones B/C remain unauthorized. See `docs/V04-MILESTONE-A.md` for the requirement crosswalk and live checkpoint.
+
 **Branch:** `development/pelagic-0.4` · **Currently authorized: Phase 1 ONLY** (owner, 21 Oct 2026).
 
 ## Start every session
