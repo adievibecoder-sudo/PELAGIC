@@ -1,0 +1,73 @@
+{
+  "seed": 1307,
+  "front": {
+    "enabled": true,
+    "id": 1307,
+    "x": 7000,
+    "z": 0,
+    "width": 10000,
+    "length": 15000,
+    "speed": 12,
+    "heading": 137,
+    "electrified": false
+  },
+  "points": 100000,
+  "domainMeters": 64000,
+  "grid": 256,
+  "mapSpacingMeters": 250.98039215686273,
+  "maxAbsoluteCoverageError": 0.002091702031607613,
+  "rmsCoverageError": 0.00021594226544982998,
+  "runs": [
+    {
+      "name": "analytic",
+      "ms": 10.882000000000005
+    },
+    {
+      "name": "bilinear256",
+      "ms": 11.462800000000001
+    },
+    {
+      "name": "analytic",
+      "ms": 10.480599999999995
+    },
+    {
+      "name": "bilinear256",
+      "ms": 11.254200000000012
+    },
+    {
+      "name": "analytic",
+      "ms": 17.306399999999996
+    },
+    {
+      "name": "bilinear256",
+      "ms": 2.8395000000000152
+    },
+    {
+      "name": "analytic",
+      "ms": 8.55880000000002
+    },
+    {
+      "name": "bilinear256",
+      "ms": 3.347799999999978
+    },
+    {
+      "name": "analytic",
+      "ms": 8.68719999999999
+    },
+    {
+      "name": "bilinear256",
+      "ms": 3.804699999999997
+    },
+    {
+      "name": "analytic",
+      "ms": 8.837099999999992
+    },
+    {
+      "name": "bilinear256",
+      "ms": 3.51309999999998
+    }
+  ],
+  "checksum": 95710.19722374447,
+  "decision": "Analytic event selected: exact continuous support, no map upload/coordinate rebake. CPU timings are an implementation experiment, not GPU performance. A larger multi-event meteorological field may justify a map later.",
+  "limits": "One prescribed smooth regional event; no observed weather calibration."
+}

@@ -1,6 +1,6 @@
 # PELAGIC 0.4 acceptance and decision register
 
-Phase 0 factual baseline, 20 October 2026. **Coordination update 21 Oct: Phase 1 authorized but not implemented; no prior FAIL/UNVERIFIED was closed.** Priorities: P0 prerequisite; P1 critical; P2 high. SRC = source inspection; TEST = executed test; VIS = inspected media; LIT = consulted literature; HYP = hypothesis. Owner approval remains independent. **No inherited visual defect is closed.**
+Phase 0 factual baseline, 20 October 2026; Phase 1 integration update, 22 October. **Phase 1 source and evidence are delivered for owner review; no later phase is authorized.** Priorities: P0 prerequisite; P1 critical; P2 high. SRC = source inspection; TEST = executed test; VIS = inspected media; LIT = consulted literature; HYP = hypothesis. Owner approval remains independent. **No inherited visual defect is closed.** Historical defect rows below retain the original observations; current narrow integration decisions are in `V04-PHASE1-ACCEPTANCE.md`.
 
 | ID / priority | Observed problem and causal status | Decision / smallest next experiment | Evidence needed for closure | Current status |
 |---|---|---|---|---|
@@ -49,13 +49,13 @@ Numerical bounds must derive from precision, quadrature convergence or sampling 
 Performance thresholds remain 60 FPS Balanced / approximately 30 FPS High goals at 1080p, with sustained pacing and quality judged independently. Cinematic has no real-time cap. Reference approval and phase advancement cannot convert a failed realism gate into PASS.
 
 
-## Phase 1 newly authorized gates — all NOT YET VERIFIED (21 October 2026)
+## Phase 1 handoff gates (22 October 2026)
 | Gate | Evidence requirement | Current status |
 |---|---|---|
-| P1-ENV | Deterministic world-spatial current/target weather fields and transitions; no unrelated swell/phase/foam resets or rebase jumps | UNVERIFIED |
-| P1-LIGHT | Cloud-aware direct/ambient/angular sky radiance consumed by sea and underwater; source energy not double-counted | UNVERIFIED |
-| P1-VIS | Owner-reviewed daylight/overcast/golden/storm/twilight stills, original motion, matched reference limitations | UNVERIFIED |
-| P1-GPU | Native RTX 3050 per-pass, p50/p95/p99, stalls, resource accounting compared with Phase 0 | UNVERIFIED; inherited stalls FAIL |
+| P1-ENV | Deterministic world-spatial current/target weather fields and transitions; no unrelated swell/phase/foam resets or rebase jumps | Bounded CPU/GPU/command checks PASS; full physical/history closure UNVERIFIED |
+| P1-LIGHT | Cloud-aware direct/ambient/angular sky radiance consumed by sea and underwater; source energy not double-counted | Source contract and stated controls PASS; calibrated transport/naturalism UNVERIFIED |
+| P1-VIS | Owner-reviewed daylight/overcast/golden/storm/twilight stills, original motion, matched reference limitations | Originals delivered; owner review PENDING; overall realism FAIL |
+| P1-GPU | Native RTX 3050 per-pass, p50/p95/p99, stalls, resource accounting compared with Phase 0 | Hardware/measurement PASS; practical FPS FAIL; baseline stalls reproduced, cause UNVERIFIED |
 | P1-OWNER | Full Phase 1 evidence handoff; owner explicit authorization before Phase 2+3 | PENDING — STOP after Phase 1 |
 
 Future combined blocks are scheduling proposals only: `docs/V04-PHASE-GATES.md`. Preserve the original register's full W1–R1 and E1–E6 content and prior status.

@@ -1,4 +1,6 @@
-# PELAGIC 0.3 development
+# PELAGIC 0.4 development - Phase 1
+
+**Phase 1 engineering handoff; owner review pending.** Shared regional environment, independent clocks and cloud-aware lighting are integrated. Read the [implementation report](docs/V04-PHASE1-REPORT.md), [acceptance register](docs/V04-PHASE1-ACCEPTANCE.md), [reproduction guide](docs/V04-PHASE1-REPRODUCE.md) and [persistent state](docs/V04-STATE.md). Run `git lfs pull`, then `npm start`; open `/phase1-review.html` for original comparisons and motion. Current RTX 3050 1080p measurements: 21.72 FPS Golden Balanced, 31.02 Storm Balanced, 10.87 Golden High. Numerical tests pass; overall realism and practical performance targets remain FAIL. **Phases 2+3 require explicit owner approval.**
 
 **0.4 Phase 0 branch:** investigation package only; production reconstruction awaits owner approval. Read the [Phase 0 assessment](docs/V04-PHASE0-REPORT.md), [current state](docs/V04-STATE.md), [acceptance register](docs/V04-ACCEPTANCE.md) and [reproduction guide](docs/V04-PHASE0-REPRODUCE.md). Run `git lfs pull`, then `npm start`; open `/phase0-review.html` for 22 original 1080p comparison stills and nine original motion recordings. Native RTX 3050 execution is corroborated; visual quality and performance remain FAIL. The preserved 0.3 description follows.
 
@@ -22,11 +24,11 @@ Open http://127.0.0.1:8080/ . Use `node server.mjs 8090` to choose another port.
 
 - Drag the canvas to look. Double-click captures the mouse; Escape releases it.
 - W/A/S/D fly, E/Space ascend, Q/C descend, Shift accelerates, mouse wheel changes speed.
-- H hides the entire interface; F opens controls; P pauses wave playback.
+- H hides the entire interface; F opens controls; P pauses simulation clocks.
 - Surface guard avoids casual immersion. Free flight allows waterline exploration; Dive positions the camera underwater.
-- Six scenario buttons set developed conditions immediately. Wind and swell sliders change the target, approached with separate sea-development time constants. Apply developed sea skips this delay.
+- Natural weather mode changes scenario targets while preserving astronomical time, exposure and remote swell. Instant scene preview applies a preset immediately. Wind/swell targets develop with separate time constants; Apply developed sea skips the delay. Regional front and independent weather/sea/astronomy rates are available in Environment controls.
 - Quality changes rebuild GPU resources through a configuration-preserving reload. Balanced/High target real time; Ultra/Cinematic increase detail and cloud sampling. Adaptive resolution is optional.
-- Capture saves a canvas PNG at the actual render resolution. Record saves WebM. Save/Restore uses browser-local storage; JSON export/import is portable. Share copies a URL containing validated settings, camera and phase time. Foam and particle history are not serialized.
+- Capture saves a canvas PNG at the actual render resolution. Record saves WebM. Save/Restore uses browser-local storage; JSON export/import is portable. Share includes settings, camera, phase time and environment clocks/targets/drift. Live foam and particle textures are not serialized.
 
 ## Reproduce verification
 

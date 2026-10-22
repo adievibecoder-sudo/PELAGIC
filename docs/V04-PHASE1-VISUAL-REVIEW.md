@@ -1,6 +1,36 @@
-# Phase 1 still review - 22 October 2026
+# Phase 1 visual review - 22 October 2026
 
-Interim review, not Phase 1 completion or owner acceptance. No rendering code changed during this review.
+## Final controlled review
+
+Fresh Chrome originals: `v04-p1-recovered-stills` (12 PNG/JSON pairs), `v04-p1-recovered-motion` (five20 s movies), `v04-p1-light-controls` (10 still controls), `v04-p1-light-motion` (two20 s movies). NVIDIA/Ampere and RTX process corroboration are documented separately. Earlier unknown-origin stills remain untouched.
+
+All12 supplied stills were inspected at original1920x1080; fresh underwater-covered, storm, broken, veil-golden0/1 and reflection100/700 were opened separately. Fresh reruns reproduce11/12 supplied PNGs byte-for-byte; storm maximum difference1 code. `v04-p1-handoff-review` retains baseline comparisons and shared-setting differences, not realism scores.
+
+Stationary frame100/1000 has identical light readbacks but different display dither. Follow-up1060 matches100 modulo64: PNG byte-identical and light readbacks equal. This explains the two-code display discrepancy in this control.
+
+Twelve baseline/final/light movies decoded completely with strictly increasing timestamps and no corrected-decoder errors. Earlier null-mux DTS warnings remain archived; preserving the original millisecond time base fixes those warnings without rewriting movies.
+
+Nine originals played through normal Chrome controls to `ended`: seven current clips plus baseline broken-cloud and underwater controls. Original1920x1080 video scaled to fit the browser. Every playback callback reported visible. Browser dropped0-3 frames per clip: baseline clips1 each, current front/weather3 each, others0. Playback is not render FPS.
+
+**Inspection scope:** two timestamped browser observations per current clip, one per baseline control, plus five extracted original-resolution samples per movie. Continuous files were decoded and played through; the agent did NOT visually perceive every frame. No blanket ghosting-free, smooth-motion or physical-naturalism claim follows. `v04-p1-playback` retains callback logs and browser screenshots; owner can inspect original footage.
+
+| Clip / observed playback times (s) | Observation | Remaining limitation |
+|---|---|---|
+| Broken /3.95,13.00 | Swell/glint pattern changes; directional illumination retained | Uniform fine texture and repeated inflated clouds; no major gain over baseline |
+| Natural weather /6.09,14.32 | Clear glitter gives way to covered dark sea; supported rain changes in logs | Prescribed600x weather, sparse whitewater and weak rain |
+| Front flight /4.22,14.31 | Cover dims reflections and changes haze/cloud support | Artificial ice bands and uniform distant water; not every rebase inspected |
+| Instant /6.08,14.30 | Explicit scene states differ; wave time remains monotone | Abrupt preview intentional; these samples cannot establish transition smoothness |
+| Underwater /4.22,14.31 | Covered volume darkens with surface illumination | Nearly featureless navy volume; attenuation not observationally calibrated |
+| Reflection /4.21,14.31 | Reflected regions move locally while wave time stays20 s | Cache cadence/angular approximation; subtle stepping unverified |
+| Golden glitter /4.23,14.32 | Narrow bright glitter diminishes under cover; warm diffuse light remains | Broad horizon glare and artificial cloud silhouettes |
+| Baseline broken /6.60 | Similar surface/sky character | Different elapsed protocol; not pixel-matched motion |
+| Baseline underwater /6.63 | Bright blue volume persists in historical weather test | Different10 s protocol; static pairs isolate the input correction |
+
+No new real-world reference was inspected during recovery/final validation. Earlier photograph and metadata limits: `V04-PHASE1-SOURCES.md`. No whole-project AAA PASS, full48-view sweep, new waterline repair or all-frame temporal certification is claimed.
+
+## Historical supplied-still review
+
+The pending tests/browser limitations below describe the earlier checkpoint, superseded by current results above.
 
 ## Provenance
 

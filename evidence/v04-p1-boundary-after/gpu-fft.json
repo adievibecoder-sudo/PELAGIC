@@ -1,0 +1,100 @@
+{
+  "time": "2026-10-22T05:34:02.534Z",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": ""
+  },
+  "tests": [
+    {
+      "case": "DC impulse",
+      "channels": [
+        {
+          "field": "displacement",
+          "status": "PASS",
+          "relativeL2": 0,
+          "maxError": 0,
+          "tolerance": 0.00122,
+          "invalid": 0
+        },
+        {
+          "field": "derivatives",
+          "status": "PASS",
+          "relativeL2": 0.00041097498117943115,
+          "maxError": 0.00019532442092895508,
+          "tolerance": 0.0005000000071525573,
+          "invalid": 0
+        },
+        {
+          "field": "moments",
+          "status": "PASS",
+          "relativeL2": 0.0005493461922010563,
+          "maxError": 0.00002197384834290439,
+          "tolerance": 0.00006800000143051148,
+          "invalid": 0
+        }
+      ]
+    },
+    {
+      "case": "crossing harmonics",
+      "channels": [
+        {
+          "field": "displacement",
+          "status": "PASS",
+          "relativeL2": 0.00040323565248399245,
+          "maxError": 0.0009766596322071663,
+          "tolerance": 0.0023000000607967374,
+          "invalid": 0
+        },
+        {
+          "field": "derivatives",
+          "status": "PASS",
+          "relativeL2": 0.0004227651814973603,
+          "maxError": 0.007809415571895073,
+          "tolerance": 0.013580000228881834,
+          "invalid": 0
+        },
+        {
+          "field": "moments",
+          "status": "PASS",
+          "relativeL2": 0.00040192387473579643,
+          "maxError": 0.06254887472890402,
+          "tolerance": 0.15324800517272952,
+          "invalid": 0
+        }
+      ]
+    },
+    {
+      "case": "seeded broadband",
+      "channels": [
+        {
+          "field": "displacement",
+          "status": "PASS",
+          "relativeL2": 0.00041497418558380806,
+          "maxError": 0.0009605721684395885,
+          "tolerance": 0.0016473178523531164,
+          "invalid": 0
+        },
+        {
+          "field": "derivatives",
+          "status": "PASS",
+          "relativeL2": 0.0004144510006267643,
+          "maxError": 0.0009335051978178743,
+          "tolerance": 0.0016264425089908515,
+          "invalid": 0
+        },
+        {
+          "field": "moments",
+          "status": "PASS",
+          "relativeL2": 0.000413783471968501,
+          "maxError": 0.0009719475502578678,
+          "tolerance": 0.0021705479455773518,
+          "invalid": 0
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

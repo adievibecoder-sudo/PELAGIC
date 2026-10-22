@@ -12,6 +12,7 @@ let max=0,sq=0;for(const [x,z]of points){const e=interpolated(x,z)-frontWeight(f
 let checksum=0;const runs=[];for(let j=0;j<6;j++)for(const [name,fn]of [['analytic', (x,z)=>frontWeight(f,x,z,0)],['bilinear256',interpolated]]){
  const t=performance.now();for(const [x,z]of points)checksum+=fn(x,z);runs.push({name,ms:performance.now()-t});
 }
-const report={seed:1307,points:points.length,domainMeters:span,grid:256,mapSpacingMeters:cell,maxAbsoluteCoverageError:max,rmsCoverageError:Math.sqrt(sq/points.length),runs,checksum,
+const report={seed:1307,front:f,points:points.length,domainMeters:span,grid:256,mapSpacingMeters:cell,maxAbsoluteCoverageError:max,rmsCoverageError:Math.sqrt(sq/points.length),runs,checksum,
  decision:'Analytic event selected: exact continuous support, no map upload/coordinate rebake. CPU timings are an implementation experiment, not GPU performance. A larger multi-event meteorological field may justify a map later.',limits:'One prescribed smooth regional event; no observed weather calibration.'};
-await fs.mkdir('evidence/v04-p1-tests',{recursive:true});await fs.writeFile('evidence/v04-p1-tests/field-experiment.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+const output=process.argv[2]||'evidence/v04-p1-tests/field-experiment.json';
+await fs.mkdir(output.slice(0,output.lastIndexOf('/')),{recursive:true});await fs.writeFile(output,JSON.stringify(report,null,2),{flag:'wx'});console.log(JSON.stringify(report,null,2));

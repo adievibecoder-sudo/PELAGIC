@@ -1,0 +1,129 @@
+{
+  "veil": [
+    {
+      "case": "midday",
+      "directClear": [
+        1,
+        1
+      ],
+      "directVeil": [
+        0.9189453125,
+        1
+      ],
+      "sameCamera": true,
+      "sameWaveTime": true,
+      "errors": []
+    },
+    {
+      "case": "golden",
+      "directClear": [
+        1,
+        1
+      ],
+      "directVeil": [
+        0.25341796875,
+        1
+      ],
+      "sameCamera": true,
+      "sameWaveTime": true,
+      "errors": []
+    },
+    {
+      "case": "moonlit",
+      "directClear": [
+        1,
+        1
+      ],
+      "directVeil": [
+        1,
+        0.8701171875
+      ],
+      "sameCamera": true,
+      "sameWaveTime": true,
+      "errors": []
+    }
+  ],
+  "steady": {
+    "sameLightReadback": true,
+    "pngByteIdentical": false,
+    "frames": [
+      100,
+      1000
+    ],
+    "scope": "Two stationary endpoints spanning 900 cache-update frames; not an exhaustive equilibrium proof."
+  },
+  "repeatability": [
+    {
+      "name": "body-covered.png",
+      "identical": true,
+      "meanAbsoluteDisplayCode": 0.0,
+      "max": 0
+    },
+    {
+      "name": "broken.png",
+      "identical": true,
+      "meanAbsoluteDisplayCode": 0.0,
+      "max": 0
+    },
+    {
+      "name": "clear.png",
+      "identical": true,
+      "meanAbsoluteDisplayCode": 0.0,
+      "max": 0
+    },
+    {
+      "name": "covered.png",
+      "identical": true,
+      "meanAbsoluteDisplayCode": 0.0,
+      "max": 0
+    },
+    {
+      "name": "glitter-covered.png",
+      "identical": true,
+      "meanAbsoluteDisplayCode": 0.0,
+      "max": 0
+    },
+    {
+      "name": "golden.png",
+      "identical": true,
+      "meanAbsoluteDisplayCode": 0.0,
+      "max": 0
+    },
+    {
+      "name": "moonlit.png",
+      "identical": true,
+      "meanAbsoluteDisplayCode": 0.0,
+      "max": 0
+    },
+    {
+      "name": "reflection.png",
+      "identical": true,
+      "meanAbsoluteDisplayCode": 0.0,
+      "max": 0
+    },
+    {
+      "name": "storm.png",
+      "identical": false,
+      "meanAbsoluteDisplayCode": 4.179526748971193e-06,
+      "max": 1
+    },
+    {
+      "name": "twilight.png",
+      "identical": true,
+      "meanAbsoluteDisplayCode": 0.0,
+      "max": 0
+    },
+    {
+      "name": "underwater-clear.png",
+      "identical": true,
+      "meanAbsoluteDisplayCode": 0.0,
+      "max": 0
+    },
+    {
+      "name": "underwater-covered.png",
+      "identical": true,
+      "meanAbsoluteDisplayCode": 0.0,
+      "max": 0
+    }
+  ]
+}

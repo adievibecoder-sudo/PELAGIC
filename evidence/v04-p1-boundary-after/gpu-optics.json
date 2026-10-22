@@ -1,0 +1,238 @@
+{
+  "time": "2026-10-22T05:34:29.488Z",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": ""
+  },
+  "irradiance": {
+    "status": "PASS",
+    "cases": [
+      {
+        "mode": "isotropic",
+        "status": "PASS",
+        "maxRelative": 0.0003080137040323283,
+        "invalid": 0,
+        "tolerance": 0.0015
+      },
+      {
+        "mode": "linear angular gradient",
+        "status": "PASS",
+        "maxRelative": 0.0031498677975936307,
+        "invalid": 0,
+        "tolerance": 0.008
+      }
+    ],
+    "inputRadiance": [
+      0.25,
+      0.5,
+      1
+    ],
+    "expectedIrradiance": [
+      0.7853981633974483,
+      1.5707963267948966,
+      3.141592653589793
+    ],
+    "testedNormals": 1536,
+    "tolerance": "Isotropic: 0.15% includes binary16 rounding. Linear angular gradient: 0.8% includes finite 128-point quadrature and 32-pixel cubemap sampling. Analytic E(n)=pi*(0.5+n/6)."
+  },
+  "errors": [],
+  "coupling": {
+    "status": "PASS",
+    "amplitudeError": 0.00014635735576074005,
+    "gradientError": 0.00005820260367128498,
+    "invalid": 0,
+    "samples": 2048,
+    "tolerance": "Absolute amplitude 0.0003; derivative 0.00015 per metre. Includes binary16 samples and bilinear gradient changes across a 4.31 m cell; reference is analytic, not copied sampler code.",
+    "scope": "Manufactured long-wave convergence field. Not observational validation of the bounded modulation model."
+  },
+  "waveVisibility": {
+    "status": "PASS",
+    "cases": [
+      {
+        "name": "flat-grazing",
+        "amplitude": 0,
+        "wavelength": 32,
+        "tangent": 0.08,
+        "samples": 512,
+        "clear": 512,
+        "shadowed": 0,
+        "transition": 0,
+        "incorrect": 0,
+        "reflectionIncorrect": 0,
+        "invalid": 0,
+        "min": 1,
+        "max": 1,
+        "maxPruningDifference": 0,
+        "status": "PASS"
+      },
+      {
+        "name": "sine-grazing",
+        "amplitude": 2,
+        "wavelength": 32,
+        "tangent": 0.12,
+        "samples": 512,
+        "clear": 137,
+        "shadowed": 276,
+        "transition": 99,
+        "incorrect": 0,
+        "reflectionIncorrect": 0,
+        "invalid": 0,
+        "min": 0,
+        "max": 1,
+        "maxPruningDifference": 0,
+        "status": "PASS"
+      },
+      {
+        "name": "sine-high-sun",
+        "amplitude": 2,
+        "wavelength": 32,
+        "tangent": 1.73,
+        "samples": 512,
+        "clear": 512,
+        "shadowed": 0,
+        "transition": 0,
+        "incorrect": 0,
+        "reflectionIncorrect": 0,
+        "invalid": 0,
+        "min": 1,
+        "max": 1,
+        "maxPruningDifference": 0,
+        "status": "PASS"
+      },
+      {
+        "name": "flat-downward",
+        "amplitude": 0,
+        "wavelength": 32,
+        "tangent": -0.08,
+        "samples": 512,
+        "clear": 0,
+        "shadowed": 512,
+        "transition": 0,
+        "incorrect": 0,
+        "reflectionIncorrect": 0,
+        "invalid": 0,
+        "min": 0,
+        "max": 0,
+        "maxPruningDifference": 0,
+        "status": "PASS"
+      },
+      {
+        "name": "sine-downward",
+        "amplitude": 2,
+        "wavelength": 32,
+        "tangent": -0.12,
+        "samples": 512,
+        "clear": 0,
+        "shadowed": 512,
+        "transition": 0,
+        "incorrect": 0,
+        "reflectionIncorrect": 0,
+        "invalid": 0,
+        "min": 0,
+        "max": 0,
+        "maxPruningDifference": 0,
+        "status": "PASS"
+      }
+    ],
+    "reference": "Dense CPU analytic sinusoid intersection at 0.0625 m intervals. Not a duplicate of the logarithmic GPU ray traversal.",
+    "tolerance": "Classification only outside 0.15/0.30 m transition margins. Margins cover finite solar radius, 0.065 m near bias and far atlas interpolation error (~0.15 m for this wavelength).",
+    "limitations": "Manufactured one-dimensional waves. Production inversion at folds and two-dimensional storm silhouettes remain separate visual/numerical gates."
+  },
+  "lensMedium": {
+    "status": "PASS",
+    "results": [
+      {
+        "name": "plane-above",
+        "maxError": 0.000029432508680565794,
+        "maxResidual": 0,
+        "invalid": 0,
+        "wet": 1280,
+        "dry": 7936,
+        "status": "PASS"
+      },
+      {
+        "name": "plane-below",
+        "maxError": 0.000029432508680565794,
+        "maxResidual": 0,
+        "invalid": 0,
+        "wet": 7936,
+        "dry": 1280,
+        "status": "PASS"
+      },
+      {
+        "name": "curved-interface",
+        "maxError": 0.0001310120131974013,
+        "maxResidual": 0,
+        "invalid": 0,
+        "wet": 4736,
+        "dry": 4480,
+        "status": "PASS"
+      },
+      {
+        "name": "translated-interface",
+        "maxError": 0.0001310120131974013,
+        "maxResidual": 0,
+        "invalid": 0,
+        "wet": 4736,
+        "dry": 4480,
+        "status": "PASS"
+      }
+    ],
+    "tolerance": "0.15 mm signed-height error: binary16 input/output, texture interpolation and 0.0833 m raster triangles on a 7.43 m sinusoid. Linear mesh interpolation bound A*k^2*spacing^2/8 is 0.075 mm; remaining budget covers quantization and texture sampling. Constant translation inversion residual <0.01 mm.",
+    "scope": "Production near-plane shader, flat/curved/translated manufactured surfaces against an analytic sinusoid. Does not certify inversion at folded storm crests or coarser/morphed raster nodes."
+  },
+  "coordinates": {
+    "status": "PASS",
+    "cases": [
+      {
+        "origin": [
+          0,
+          0
+        ],
+        "samples": 3072,
+        "maxPositionError": 0.00006098421181555125,
+        "maxSineError": 0.0008639240846443352,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "origin": [
+          1024,
+          -1024
+        ],
+        "samples": 3072,
+        "maxPositionError": 0.00008487701424697569,
+        "maxSineError": 0.0009550560904972652,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "origin": [
+          100352,
+          -100352
+        ],
+        "samples": 3072,
+        "maxPositionError": 0.00009179115302804242,
+        "maxSineError": 0.0009244708827880754,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "origin": [
+          1000000512,
+          -1000000512
+        ],
+        "samples": 3072,
+        "maxPositionError": 0.00009226798994044216,
+        "maxSineError": 0.0008853895799031133,
+        "invalid": 0,
+        "status": "PASS"
+      }
+    ],
+    "tolerance": "0.12 mm phase-equivalent position error and 0.0025 unit-sinusoid amplitude error. Bounds cover f32 local-coordinate rounding, inverse length and UV multiply/add across 512 m; CPU reference uses double global modulo.",
+    "scope": "Production UV helper on native GPU, six cascade periods, global origins through 1e9 m. Does not validate remote atmosphere precision or all material motion across rebases."
+  },
+  "status": "PASS"
+}

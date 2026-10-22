@@ -1,0 +1,45 @@
+{
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": ""
+  },
+  "backend": "native-webgpu",
+  "checks": [
+    {
+      "cameraX": 511.9,
+      "count": 1024,
+      "maxAbsoluteError": 0.0000010183567109578462,
+      "tolerance": 0.00002,
+      "invalid": 0,
+      "status": "PASS"
+    },
+    {
+      "cameraX": 512.1,
+      "count": 1024,
+      "maxAbsoluteError": 6.49939082997264e-7,
+      "tolerance": 0.00002,
+      "invalid": 0,
+      "status": "PASS"
+    },
+    {
+      "cameraX": 1024.1,
+      "count": 1024,
+      "maxAbsoluteError": 7.155336623487774e-7,
+      "tolerance": 0.00002,
+      "invalid": 0,
+      "status": "PASS"
+    },
+    {
+      "cameraX": 1000000,
+      "count": 1024,
+      "maxAbsoluteError": 0.000002866205687956924,
+      "tolerance": 0.00002,
+      "invalid": 0,
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

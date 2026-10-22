@@ -1,0 +1,5468 @@
+[
+  {
+    "name": "v04-p1-baseline-performance/golden-balanced",
+    "source": "de7b32b",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 1095,
+    "fps": 18.450681916983726,
+    "frame": {
+      "p50": 41.70000000000073,
+      "p95": 48.70000000000073,
+      "p99": 999.9000000000015,
+      "mean": 54.19853881278539,
+      "max": 1007.300000000003
+    },
+    "gpu": {
+      "gpu": {
+        "p50": 43.515904,
+        "p95": 45.8227712,
+        "p99": 47.35107071999999,
+        "mean": 44.17891783941605,
+        "max": 126.091264
+      },
+      "simulation": {
+        "p50": 1.572864,
+        "p95": 1.572864,
+        "p99": 1.769472,
+        "mean": 1.5953471532846715,
+        "max": 7.53664
+      },
+      "atmosphere": {
+        "p50": 21.037056,
+        "p95": 22.6230272,
+        "p99": 23.08702208,
+        "mean": 21.343209576642337,
+        "max": 58.064896
+      },
+      "surface": {
+        "p50": 20.054016,
+        "p95": 22.020096,
+        "p99": 22.71739904,
+        "mean": 20.458712759124086,
+        "max": 55.443456
+      },
+      "post": {
+        "p50": 0.393216,
+        "p95": 0.458752,
+        "p99": 0.65536,
+        "mean": 0.43052846715328463,
+        "max": 2.424832
+      },
+      "skyLUT": {
+        "p50": 0.131072,
+        "p95": 0.196608,
+        "p99": 0.393216,
+        "mean": 0.1674277372262774,
+        "max": 0.393216
+      },
+      "cloudScreen": {
+        "p50": 16.449536,
+        "p95": 17.8388992,
+        "p99": 18.475909119999997,
+        "mean": 16.75616794160584,
+        "max": 44.433408
+      },
+      "cloudShadow": {
+        "p50": 0.262144,
+        "p95": 0.262144,
+        "p99": 0.524288,
+        "mean": 0.27314639416058395,
+        "max": 1.507328
+      },
+      "environment": {
+        "p50": 4.128768,
+        "p95": 4.9152,
+        "p99": 5.675417599999987,
+        "mean": 4.1306814598540145,
+        "max": 11.665408
+      },
+      "irradiance": {
+        "p50": 0.0,
+        "p95": 0.065536,
+        "p99": 0.065536,
+        "mean": 0.013394218978102189,
+        "max": 0.196608
+      },
+      "transparent": null
+    },
+    "stalls": [
+      {
+        "frame": {
+          "frame": 999.9000000000015,
+          "cpu": 0.599999999627471,
+          "visibility": "visible",
+          "time": 48.71120000000002,
+          "camera": [
+            0,
+            2,
+            0,
+            0.06981317007977318,
+            -0.09599310885968812
+          ],
+          "probeAgeFrames": 2,
+          "readbackHeight": -0.06656383723020554
+        },
+        "overlappingBrowserTasks": []
+      },
+      {
+        "frame": {
+          "frame": 1000.0999999999984,
+          "cpu": 0.5,
+          "visibility": "visible",
+          "time": 48.81120000000002,
+          "camera": [
+            0,
+            2,
+            0,
+            0.06981317007977318,
+            -0.09599310885968812
+          ],
+          "probeAgeFrames": 3,
+          "readbackHeight": -0.06656383723020554
+        },
+        "overlappingBrowserTasks": []
+      },
+      {
+        "frame": {
+          "frame": 1006.8000000000028,
+          "cpu": 0.5,
+          "visibility": "visible",
+          "time": 48.91120000000002,
+          "camera": [
+            0,
+            2,
+            0,
+            0.06981317007977318,
+            -0.09599310885968812
+          ],
+          "probeAgeFrames": 4,
+          "readbackHeight": -0.06656383723020554
+        },
+        "overlappingBrowserTasks": []
+      },
+      {
+        "frame": {
+          "frame": 1000.0999999999984,
+          "cpu": 0.6999999992549419,
+          "visibility": "visible",
+          "time": 49.011200000000024,
+          "camera": [
+            0,
+            2,
+            0,
+            0.06981317007977318,
+            -0.09599310885968812
+          ],
+          "probeAgeFrames": 5,
+          "readbackHeight": -0.06656383723020554
+        },
+        "overlappingBrowserTasks": []
+      },
+      {
+        "frame": {
+          "frame": 1006.9000000000015,
+          "cpu": 0.40000000037252903,
+          "visibility": "visible",
+          "time": 49.111200000000025,
+          "camera": [
+            0,
+            2,
+            0,
+            0.06981317007977318,
+            -0.09599310885968812
+          ],
+          "probeAgeFrames": 6,
+          "readbackHeight": -0.06656383723020554
+        },
+        "overlappingBrowserTasks": []
+      },
+      {
+        "frame": {
+          "frame": 1006.9999999999999,
+          "cpu": 0.5,
+          "visibility": "visible",
+          "time": 49.21120000000003,
+          "camera": [
+            0,
+            2,
+            0,
+            0.06981317007977318,
+            -0.09599310885968812
+          ],
+          "probeAgeFrames": 7,
+          "readbackHeight": -0.06656383723020554
+        },
+        "overlappingBrowserTasks": []
+      },
+      {
+        "frame": {
+          "frame": 999.9000000000015,
+          "cpu": 0.5,
+          "visibility": "visible",
+          "time": 49.31120000000003,
+          "camera": [
+            0,
+            2,
+            0,
+            0.06981317007977318,
+            -0.09599310885968812
+          ],
+          "probeAgeFrames": 8,
+          "readbackHeight": -0.06656383723020554
+        },
+        "overlappingBrowserTasks": []
+      },
+      {
+        "frame": {
+          "frame": 1000,
+          "cpu": 0.40000000037252903,
+          "visibility": "visible",
+          "time": 49.41120000000003,
+          "camera": [
+            0,
+            2,
+            0,
+            0.06981317007977318,
+            -0.09599310885968812
+          ],
+          "probeAgeFrames": 1,
+          "readbackHeight": 0.2527194023132324
+        },
+        "overlappingBrowserTasks": []
+      },
+      {
+        "frame": {
+          "frame": 1000.0999999999984,
+          "cpu": 0.40000000037252903,
+          "visibility": "visible",
+          "time": 49.51120000000003,
+          "camera": [
+            0,
+            2,
+            0,
+            0.06981317007977318,
+            -0.09599310885968812
+          ],
+          "probeAgeFrames": 2,
+          "readbackHeight": 0.2527194023132324
+        },
+        "overlappingBrowserTasks": []
+      },
+      {
+        "frame": {
+          "frame": 1007.300000000003,
+          "cpu": 0.6000000014901161,
+          "visibility": "visible",
+          "time": 49.61120000000003,
+          "camera": [
+            0,
+            2,
+            0,
+            0.06981317007977318,
+            -0.09599310885968812
+          ],
+          "probeAgeFrames": 3,
+          "readbackHeight": 0.2527194023132324
+        },
+        "overlappingBrowserTasks": []
+      },
+      {
+        "frame": {
+          "frame": 1006.5999999999987,
+          "cpu": 0.8000000007450581,
+          "visibility": "visible",
+          "time": 49.711200000000034,
+          "camera": [
+            0,
+            2,
+            0,
+            0.06981317007977318,
+            -0.09599310885968812
+          ],
+          "probeAgeFrames": 4,
+          "readbackHeight": 0.2527194023132324
+        },
+        "overlappingBrowserTasks": []
+      },
+      {
+        "frame": {
+          "frame": 1000,
+          "cpu": 0.599999999627471,
+          "visibility": "visible",
+          "time": 49.811200000000035,
+          "camera": [
+            0,
+            2,
+            0,
+            0.06981317007977318,
+            -0.09599310885968812
+          ],
+          "probeAgeFrames": 5,
+          "readbackHeight": 0.2527194023132324
+        },
+        "overlappingBrowserTasks": []
+      }
+    ],
+    "allocation": null,
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.40000000037252903,
+      "p95": 0.599999999627471,
+      "p99": 0.7000000011175871,
+      "mean": 0.4157990867382587,
+      "max": 1.300000000745058
+    },
+    "submit": null,
+    "queryCompletionDelay": null,
+    "cacheAgeFrames": null,
+    "probeAgeFrames": {
+      "p50": 8.0,
+      "p95": 12.0,
+      "p99": 12.0,
+      "mean": 8.261187214611873,
+      "max": 12.0
+    },
+    "visibilityCounts": {
+      "visible": 1095
+    },
+    "browserTaskCount": 0,
+    "wallSeconds": 60.71359999999963,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-baseline-performance/golden-high",
+    "source": "de7b32b",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 617,
+    "fps": 10.756399796378041,
+    "frame": {
+      "p50": 90.30000000000291,
+      "p95": 97.30000000000291,
+      "p99": 104.19999999999709,
+      "mean": 92.96790923824959,
+      "max": 104.30000000000291
+    },
+    "gpu": {
+      "gpu": {
+        "p50": 92.340224,
+        "p95": 98.4612864,
+        "p99": 100.57940991999997,
+        "mean": 92.6066235844156,
+        "max": 103.2192
+      },
+      "simulation": {
+        "p50": 1.703936,
+        "p95": 1.96608,
+        "p99": 2.1128806399999998,
+        "mean": 1.7481940779220781,
+        "max": 2.162688
+      },
+      "atmosphere": {
+        "p50": 64.356352,
+        "p95": 69.74341120000001,
+        "p99": 72.81836032,
+        "mean": 64.6389228051948,
+        "max": 73.465856
+      },
+      "surface": {
+        "p50": 25.296896,
+        "p95": 27.787264,
+        "p99": 28.71525376,
+        "mean": 25.438181402597404,
+        "max": 29.16352
+      },
+      "post": {
+        "p50": 0.393216,
+        "p95": 0.458752,
+        "p99": 0.458752,
+        "mean": 0.4255584415584416,
+        "max": 0.458752
+      },
+      "skyLUT": {
+        "p50": 0.131072,
+        "p95": 0.196608,
+        "p99": 0.196608,
+        "mean": 0.16341444155844154,
+        "max": 0.196608
+      },
+      "cloudScreen": {
+        "p50": 45.744128,
+        "p95": 48.627712,
+        "p99": 49.91483903999999,
+        "mean": 45.709232207792205,
+        "max": 51.707904
+      },
+      "cloudShadow": {
+        "p50": 0.262144,
+        "p95": 0.32768,
+        "p99": 0.32768,
+        "mean": 0.2723574025974026,
+        "max": 0.32768
+      },
+      "environment": {
+        "p50": 18.35008,
+        "p95": 21.5220224,
+        "p99": 23.621795839999997,
+        "mean": 18.480300883116882,
+        "max": 23.92064
+      },
+      "irradiance": {
+        "p50": 0.0,
+        "p95": 0.065536,
+        "p99": 0.065536,
+        "mean": 0.01361787012987013,
+        "max": 0.065536
+      },
+      "transparent": null
+    },
+    "stalls": [],
+    "allocation": null,
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.40000000037252903,
+      "p95": 0.599999999627471,
+      "p99": 0.683999999612573,
+      "mean": 0.4136142626048535,
+      "max": 1.099999999627471
+    },
+    "submit": null,
+    "queryCompletionDelay": null,
+    "cacheAgeFrames": null,
+    "probeAgeFrames": {
+      "p50": 8.0,
+      "p95": 12.0,
+      "p99": 12.0,
+      "mean": 8.393841166936792,
+      "max": 12.0
+    },
+    "visibilityCounts": {
+      "visible": 617
+    },
+    "browserTaskCount": 0,
+    "wallSeconds": 60.445400000000376,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-baseline-performance/storm-balanced",
+    "source": "de7b32b",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 1900,
+    "fps": 32.245089836517394,
+    "frame": {
+      "p50": 27.900000000001455,
+      "p95": 34.80000000000291,
+      "p99": 34.900000000001455,
+      "mean": 31.012473684210526,
+      "max": 41.60000000000582
+    },
+    "gpu": {
+      "gpu": {
+        "p50": 30.932992,
+        "p95": 32.8531968,
+        "p99": 33.53018368,
+        "mean": 30.953919462184878,
+        "max": 34.4064
+      },
+      "simulation": {
+        "p50": 1.507328,
+        "p95": 1.769472,
+        "p99": 1.8762956799999997,
+        "mean": 1.5508350924369747,
+        "max": 1.96608
+      },
+      "atmosphere": {
+        "p50": 10.289152,
+        "p95": 11.337728,
+        "p99": 11.64115968,
+        "mean": 10.38112268907563,
+        "max": 11.862016
+      },
+      "surface": {
+        "p50": 18.284544,
+        "p95": 19.922944,
+        "p99": 20.512768,
+        "mean": 18.29610917647059,
+        "max": 20.905984
+      },
+      "post": {
+        "p50": 0.393216,
+        "p95": 0.458752,
+        "p99": 0.458752,
+        "mean": 0.39899858823529405,
+        "max": 0.65536
+      },
+      "skyLUT": {
+        "p50": 0.131072,
+        "p95": 0.196608,
+        "p99": 0.3204710399999991,
+        "mean": 0.16191247058823532,
+        "max": 0.393216
+      },
+      "cloudScreen": {
+        "p50": 7.471104,
+        "p95": 8.454144,
+        "p99": 8.781824,
+        "mean": 7.605204974789915,
+        "max": 8.978432
+      },
+      "cloudShadow": {
+        "p50": 0.393216,
+        "p95": 0.393216,
+        "p99": 0.393216,
+        "mean": 0.36320161344537816,
+        "max": 0.65536
+      },
+      "environment": {
+        "p50": 2.097152,
+        "p95": 2.686976,
+        "p99": 2.883584,
+        "mean": 2.2384123697478993,
+        "max": 3.2768
+      },
+      "irradiance": {
+        "p50": 0.0,
+        "p95": 0.065536,
+        "p99": 0.065536,
+        "mean": 0.011840537815126052,
+        "max": 0.065536
+      },
+      "transparent": null
+    },
+    "stalls": [],
+    "allocation": null,
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.40000000037252903,
+      "p95": 0.599999999627471,
+      "p99": 0.6999999992549419,
+      "mean": 0.3958421052737456,
+      "max": 1.300000000745058
+    },
+    "submit": null,
+    "queryCompletionDelay": null,
+    "cacheAgeFrames": null,
+    "probeAgeFrames": {
+      "p50": 8.0,
+      "p95": 12.0,
+      "p99": 12.0,
+      "mean": 8.26842105263158,
+      "max": 12.0
+    },
+    "visibilityCounts": {
+      "visible": 1900
+    },
+    "browserTaskCount": 0,
+    "wallSeconds": 60.14060000000149,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-performance/golden-alternate-yaw",
+    "source": "17dadf2",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 1173,
+    "fps": 20.015596125199004,
+    "frame": {
+      "p50": 48.60000000000218,
+      "p95": 55.600000000000364,
+      "p99": 55.70000000000073,
+      "mean": 49.96104006820119,
+      "max": 62.599999999998545
+    },
+    "gpu": {
+      "gpu": {
+        "p50": 49.676288,
+        "p95": 52.2125312,
+        "p99": 52.79711232,
+        "mean": 49.786406312925166,
+        "max": 53.673984
+      },
+      "simulation": {
+        "p50": 1.572864,
+        "p95": 1.769472,
+        "p99": 1.8703974399999994,
+        "mean": 1.6094214965986395,
+        "max": 2.031616
+      },
+      "atmosphere": {
+        "p50": 27.394048,
+        "p95": 29.7992192,
+        "p99": 30.41394688,
+        "mean": 27.422134857142858,
+        "max": 30.605312
+      },
+      "surface": {
+        "p50": 19.922944,
+        "p95": 21.7645056,
+        "p99": 22.469672959999993,
+        "mean": 19.93319793197279,
+        "max": 23.068672
+      },
+      "post": {
+        "p50": 0.458752,
+        "p95": 0.524288,
+        "p99": 0.6304563199999984,
+        "mean": 0.4667768163265305,
+        "max": 0.786432
+      },
+      "skyLUT": {
+        "p50": 0.196608,
+        "p95": 0.196608,
+        "p99": 0.23199743999999947,
+        "mean": 0.1930414149659864,
+        "max": 0.458752
+      },
+      "cloudScreen": {
+        "p50": 21.823488,
+        "p95": 23.1145472,
+        "p99": 24.05826559999999,
+        "mean": 21.658087619047617,
+        "max": 24.969216
+      },
+      "cloudShadow": {
+        "p50": 0.458752,
+        "p95": 0.458752,
+        "p99": 0.720896,
+        "mean": 0.44136489795918366,
+        "max": 0.786432
+      },
+      "environment": {
+        "p50": 5.046272,
+        "p95": 6.206259199999999,
+        "p99": 7.773880319999998,
+        "mean": 5.126520163265306,
+        "max": 7.929856
+      },
+      "irradiance": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0004458231292517007,
+        "max": 0.065536
+      },
+      "transparent": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.03538943999999948,
+        "mean": 0.0008916462585034014,
+        "max": 0.065536
+      }
+    },
+    "stalls": [],
+    "allocation": {
+      "liveBytes": 204574152,
+      "peakBytes": 204574152,
+      "allocations": [
+        {
+          "kind": "buffer",
+          "label": "sim ubo",
+          "bytes": 224
+        },
+        {
+          "kind": "buffer",
+          "label": "h0",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "unit phase oscillators",
+          "bytes": 3145728
+        },
+        {
+          "kind": "buffer",
+          "label": "specA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "specB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "texture",
+          "label": "disp",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "deriv",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "moments",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "previous displacement",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "periodic cloud morphology",
+          "bytes": 9586980
+        },
+        {
+          "kind": "texture",
+          "label": "foam detail",
+          "bytes": 1398100
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 0",
+          "bytes": 5592400
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 1",
+          "bytes": 5592400
+        },
+        {
+          "kind": "buffer",
+          "label": "foam ubo",
+          "bytes": 192
+        },
+        {
+          "kind": "buffer",
+          "label": "atmo ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "transmittance",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "multiscatter",
+          "bytes": 8192
+        },
+        {
+          "kind": "texture",
+          "label": "solar and lunar skyview",
+          "bytes": 589824
+        },
+        {
+          "kind": "texture",
+          "label": "env cube",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "angular radiance staging",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "environment transmittance snapshot",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "environment sky snapshot",
+          "bytes": 589824
+        },
+        {
+          "kind": "buffer",
+          "label": "environment state snapshot",
+          "bytes": 688
+        },
+        {
+          "kind": "texture",
+          "label": "hemispherical irradiance",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "frame ubo",
+          "bytes": 688
+        },
+        {
+          "kind": "buffer",
+          "label": "sun visibility",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "spatial cloud transmittance",
+          "bytes": 524288
+        },
+        {
+          "kind": "buffer",
+          "label": "spray and rain particles",
+          "bytes": 786432
+        },
+        {
+          "kind": "texture",
+          "label": "resolved Eulerian gravity height",
+          "bytes": 1398096
+        },
+        {
+          "kind": "texture",
+          "label": "resolved gravity-wave solar visibility",
+          "bytes": 1048576
+        },
+        {
+          "kind": "buffer",
+          "label": "probe out",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "curved near-plane medium",
+          "bytes": 73728
+        },
+        {
+          "kind": "buffer",
+          "label": "probe read",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "grid idx",
+          "bytes": 6912
+        },
+        {
+          "kind": "buffer",
+          "label": "instances",
+          "bytes": 131072
+        },
+        {
+          "kind": "buffer",
+          "label": "composite ubo",
+          "bytes": 32
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "ts resolve",
+          "bytes": 144
+        },
+        {
+          "kind": "buffer",
+          "label": "ts read",
+          "bytes": 144
+        },
+        {
+          "kind": "texture",
+          "label": "cloud radiance and extinction",
+          "bytes": 1843200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 66355200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 33177600
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 16588800
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 5528384
+        }
+      ],
+      "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+    },
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.5,
+      "p95": 0.7000000001862645,
+      "p99": 0.900000000372529,
+      "mean": 0.49914748509925017,
+      "max": 1.7999999998137355
+    },
+    "submit": {
+      "p50": 0.0,
+      "p95": 0.10000000055879354,
+      "p99": 0.10000000055879354,
+      "mean": 0.02097186700735505,
+      "max": 0.20000000018626451
+    },
+    "queryCompletionDelay": {
+      "p50": 199.59999999962747,
+      "p95": 207.05000000018626,
+      "p99": 210.29599999969824,
+      "mean": 199.60884353738328,
+      "max": 216.40000000037253
+    },
+    "cacheAgeFrames": {
+      "p50": 7.0,
+      "p95": 10.0,
+      "p99": 10.0,
+      "mean": 7.4961636828644505,
+      "max": 10.0
+    },
+    "probeAgeFrames": {
+      "p50": 8.0,
+      "p95": 12.0,
+      "p99": 12.0,
+      "mean": 8.249786871270247,
+      "max": 12.0
+    },
+    "visibilityCounts": {
+      "visible": 1173
+    },
+    "browserTaskCount": 2,
+    "wallSeconds": 60.199299999998885,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-performance/golden-balanced",
+    "source": "17dadf2",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 1335,
+    "fps": 22.744852166979587,
+    "frame": {
+      "p50": 41.70000000000073,
+      "p95": 48.70000000000073,
+      "p99": 48.80000000000291,
+      "mean": 43.965992509363296,
+      "max": 49.099999999998545
+    },
+    "gpu": {
+      "gpu": {
+        "p50": 43.712512,
+        "p95": 46.0980224,
+        "p99": 46.90542592,
+        "mean": 43.85025532934132,
+        "max": 47.316992
+      },
+      "simulation": {
+        "p50": 1.441792,
+        "p95": 1.441792,
+        "p99": 1.441792,
+        "mean": 1.4237401676646708,
+        "max": 1.507328
+      },
+      "atmosphere": {
+        "p50": 21.692416,
+        "p95": 22.8327424,
+        "p99": 23.047700480000003,
+        "mean": 21.62099353293413,
+        "max": 23.59296
+      },
+      "surface": {
+        "p50": 19.98848,
+        "p95": 21.823488,
+        "p99": 22.43559424,
+        "mean": 20.05754788023952,
+        "max": 22.544384
+      },
+      "post": {
+        "p50": 0.393216,
+        "p95": 0.458752,
+        "p99": 0.458752,
+        "mean": 0.4085208143712574,
+        "max": 0.458752
+      },
+      "skyLUT": {
+        "p50": 0.131072,
+        "p95": 0.196608,
+        "p99": 0.196608,
+        "mean": 0.16325135329341314,
+        "max": 0.196608
+      },
+      "cloudScreen": {
+        "p50": 16.908288,
+        "p95": 17.3473792,
+        "p99": 17.629184,
+        "mean": 16.871791904191618,
+        "max": 18.0224
+      },
+      "cloudShadow": {
+        "p50": 0.393216,
+        "p95": 0.393216,
+        "p99": 0.458752,
+        "mean": 0.3932160000000001,
+        "max": 0.458752
+      },
+      "environment": {
+        "p50": 4.25984,
+        "p95": 5.046272,
+        "p99": 5.06855424,
+        "mean": 4.188025101796407,
+        "max": 5.111808
+      },
+      "irradiance": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max": 0.0
+      },
+      "transparent": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.065536,
+        "mean": 0.0015697245508982036,
+        "max": 0.065536
+      }
+    },
+    "stalls": [],
+    "allocation": {
+      "liveBytes": 204574152,
+      "peakBytes": 204574152,
+      "allocations": [
+        {
+          "kind": "buffer",
+          "label": "sim ubo",
+          "bytes": 224
+        },
+        {
+          "kind": "buffer",
+          "label": "h0",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "unit phase oscillators",
+          "bytes": 3145728
+        },
+        {
+          "kind": "buffer",
+          "label": "specA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "specB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "texture",
+          "label": "disp",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "deriv",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "moments",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "previous displacement",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "periodic cloud morphology",
+          "bytes": 9586980
+        },
+        {
+          "kind": "texture",
+          "label": "foam detail",
+          "bytes": 1398100
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 0",
+          "bytes": 5592400
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 1",
+          "bytes": 5592400
+        },
+        {
+          "kind": "buffer",
+          "label": "foam ubo",
+          "bytes": 192
+        },
+        {
+          "kind": "buffer",
+          "label": "atmo ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "transmittance",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "multiscatter",
+          "bytes": 8192
+        },
+        {
+          "kind": "texture",
+          "label": "solar and lunar skyview",
+          "bytes": 589824
+        },
+        {
+          "kind": "texture",
+          "label": "env cube",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "angular radiance staging",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "environment transmittance snapshot",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "environment sky snapshot",
+          "bytes": 589824
+        },
+        {
+          "kind": "buffer",
+          "label": "environment state snapshot",
+          "bytes": 688
+        },
+        {
+          "kind": "texture",
+          "label": "hemispherical irradiance",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "frame ubo",
+          "bytes": 688
+        },
+        {
+          "kind": "buffer",
+          "label": "sun visibility",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "spatial cloud transmittance",
+          "bytes": 524288
+        },
+        {
+          "kind": "buffer",
+          "label": "spray and rain particles",
+          "bytes": 786432
+        },
+        {
+          "kind": "texture",
+          "label": "resolved Eulerian gravity height",
+          "bytes": 1398096
+        },
+        {
+          "kind": "texture",
+          "label": "resolved gravity-wave solar visibility",
+          "bytes": 1048576
+        },
+        {
+          "kind": "buffer",
+          "label": "probe out",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "curved near-plane medium",
+          "bytes": 73728
+        },
+        {
+          "kind": "buffer",
+          "label": "probe read",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "grid idx",
+          "bytes": 6912
+        },
+        {
+          "kind": "buffer",
+          "label": "instances",
+          "bytes": 131072
+        },
+        {
+          "kind": "buffer",
+          "label": "composite ubo",
+          "bytes": 32
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "ts resolve",
+          "bytes": 144
+        },
+        {
+          "kind": "buffer",
+          "label": "ts read",
+          "bytes": 144
+        },
+        {
+          "kind": "texture",
+          "label": "cloud radiance and extinction",
+          "bytes": 1843200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 66355200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 33177600
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 16588800
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 5528384
+        }
+      ],
+      "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+    },
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.5,
+      "p95": 0.7000000001862645,
+      "p99": 0.8999999994412065,
+      "mean": 0.5000749063751336,
+      "max": 1.400000000372529
+    },
+    "submit": {
+      "p50": 0.0,
+      "p95": 0.10000000055879354,
+      "p99": 0.10000000055879354,
+      "mean": 0.021797752810802574,
+      "max": 0.20000000018626451
+    },
+    "queryCompletionDelay": {
+      "p50": 175.5,
+      "p95": 183.6699999993667,
+      "p99": 185.10400000024586,
+      "mean": 175.92514970058764,
+      "max": 185.59999999962747
+    },
+    "cacheAgeFrames": {
+      "p50": 7.0,
+      "p95": 10.0,
+      "p99": 10.0,
+      "mean": 7.496629213483146,
+      "max": 10.0
+    },
+    "probeAgeFrames": {
+      "p50": 8.0,
+      "p95": 12.0,
+      "p99": 12.0,
+      "mean": 8.226217228464419,
+      "max": 12.0
+    },
+    "visibilityCounts": {
+      "visible": 1335
+    },
+    "browserTaskCount": 1,
+    "wallSeconds": 60.191500000000374,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-performance/golden-both-off",
+    "source": "17dadf2",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 1143,
+    "fps": 19.4898535106461,
+    "frame": {
+      "p50": 48.69999999999982,
+      "p95": 55.60000000000218,
+      "p99": 55.70000000000073,
+      "mean": 51.3087489063867,
+      "max": 56.30000000000291
+    },
+    "gpu": {
+      "gpu": null,
+      "simulation": null,
+      "atmosphere": null,
+      "surface": null,
+      "post": null,
+      "skyLUT": null,
+      "cloudScreen": null,
+      "cloudShadow": null,
+      "environment": null,
+      "irradiance": null,
+      "transparent": null
+    },
+    "stalls": [],
+    "allocation": {
+      "liveBytes": 204574152,
+      "peakBytes": 204574152,
+      "allocations": [
+        {
+          "kind": "buffer",
+          "label": "sim ubo",
+          "bytes": 224
+        },
+        {
+          "kind": "buffer",
+          "label": "h0",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "unit phase oscillators",
+          "bytes": 3145728
+        },
+        {
+          "kind": "buffer",
+          "label": "specA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "specB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "texture",
+          "label": "disp",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "deriv",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "moments",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "previous displacement",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "periodic cloud morphology",
+          "bytes": 9586980
+        },
+        {
+          "kind": "texture",
+          "label": "foam detail",
+          "bytes": 1398100
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 0",
+          "bytes": 5592400
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 1",
+          "bytes": 5592400
+        },
+        {
+          "kind": "buffer",
+          "label": "foam ubo",
+          "bytes": 192
+        },
+        {
+          "kind": "buffer",
+          "label": "atmo ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "transmittance",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "multiscatter",
+          "bytes": 8192
+        },
+        {
+          "kind": "texture",
+          "label": "solar and lunar skyview",
+          "bytes": 589824
+        },
+        {
+          "kind": "texture",
+          "label": "env cube",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "angular radiance staging",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "environment transmittance snapshot",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "environment sky snapshot",
+          "bytes": 589824
+        },
+        {
+          "kind": "buffer",
+          "label": "environment state snapshot",
+          "bytes": 688
+        },
+        {
+          "kind": "texture",
+          "label": "hemispherical irradiance",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "frame ubo",
+          "bytes": 688
+        },
+        {
+          "kind": "buffer",
+          "label": "sun visibility",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "spatial cloud transmittance",
+          "bytes": 524288
+        },
+        {
+          "kind": "buffer",
+          "label": "spray and rain particles",
+          "bytes": 786432
+        },
+        {
+          "kind": "texture",
+          "label": "resolved Eulerian gravity height",
+          "bytes": 1398096
+        },
+        {
+          "kind": "texture",
+          "label": "resolved gravity-wave solar visibility",
+          "bytes": 1048576
+        },
+        {
+          "kind": "buffer",
+          "label": "probe out",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "curved near-plane medium",
+          "bytes": 73728
+        },
+        {
+          "kind": "buffer",
+          "label": "probe read",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "grid idx",
+          "bytes": 6912
+        },
+        {
+          "kind": "buffer",
+          "label": "instances",
+          "bytes": 131072
+        },
+        {
+          "kind": "buffer",
+          "label": "composite ubo",
+          "bytes": 32
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "ts resolve",
+          "bytes": 144
+        },
+        {
+          "kind": "buffer",
+          "label": "ts read",
+          "bytes": 144
+        },
+        {
+          "kind": "texture",
+          "label": "cloud radiance and extinction",
+          "bytes": 1843200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 66355200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 33177600
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 16588800
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 5528384
+        }
+      ],
+      "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+    },
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.5,
+      "p95": 0.6000000005587935,
+      "p99": 0.7999999998137355,
+      "mean": 0.46684164480548207,
+      "max": 1.5
+    },
+    "submit": {
+      "p50": 0.0,
+      "p95": 0.10000000055879354,
+      "p99": 0.10000000055879354,
+      "mean": 0.0221347331663403,
+      "max": 0.20000000018626451
+    },
+    "queryCompletionDelay": null,
+    "cacheAgeFrames": {
+      "p50": 7.0,
+      "p95": 10.0,
+      "p99": 10.0,
+      "mean": 7.496062992125984,
+      "max": 10.0
+    },
+    "probeAgeFrames": {
+      "p50": 602.0,
+      "p95": 1115.8999999999999,
+      "p99": 1161.58,
+      "mean": 602.0,
+      "max": 1173.0
+    },
+    "visibilityCounts": {
+      "visible": 1143
+    },
+    "browserTaskCount": 1,
+    "wallSeconds": 60.25240000000037,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-performance/golden-high",
+    "source": "17dadf2",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 613,
+    "fps": 10.700918917409155,
+    "frame": {
+      "p50": 90.40000000000146,
+      "p95": 97.30000000000291,
+      "p99": 97.48800000000017,
+      "mean": 93.44991843393149,
+      "max": 104.20000000000437
+    },
+    "gpu": {
+      "gpu": {
+        "p50": 92.995584,
+        "p95": 96.6131712,
+        "p99": 98.35380735999999,
+        "mean": 93.09176020779222,
+        "max": 99.549184
+      },
+      "simulation": {
+        "p50": 1.441792,
+        "p95": 1.5335424000000004,
+        "p99": 1.703936,
+        "mean": 1.456260987012987,
+        "max": 1.703936
+      },
+      "atmosphere": {
+        "p50": 66.125824,
+        "p95": 69.5468032,
+        "p99": 70.49838592,
+        "mean": 66.28498285714288,
+        "max": 70.647808
+      },
+      "surface": {
+        "p50": 24.576,
+        "p95": 26.8173312,
+        "p99": 27.29443328,
+        "mean": 24.584511168831174,
+        "max": 27.394048
+      },
+      "post": {
+        "p50": 0.393216,
+        "p95": 0.458752,
+        "p99": 0.5216665599999987,
+        "mean": 0.41960062337662335,
+        "max": 0.720896
+      },
+      "skyLUT": {
+        "p50": 0.131072,
+        "p95": 0.196608,
+        "p99": 0.196608,
+        "mean": 0.15830774025974023,
+        "max": 0.196608
+      },
+      "cloudScreen": {
+        "p50": 46.465024,
+        "p95": 48.7718912,
+        "p99": 48.98684928,
+        "mean": 46.6820588051948,
+        "max": 49.086464
+      },
+      "cloudShadow": {
+        "p50": 0.524288,
+        "p95": 0.589824,
+        "p99": 0.786432,
+        "mean": 0.5489703896103895,
+        "max": 0.786432
+      },
+      "environment": {
+        "p50": 18.67776,
+        "p95": 21.6399872,
+        "p99": 22.153789439999994,
+        "mean": 18.888836987012986,
+        "max": 23.199744
+      },
+      "irradiance": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.015728639999999666,
+        "mean": 0.0008511168831168831,
+        "max": 0.065536
+      },
+      "transparent": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.065536,
+        "mean": 0.0025533506493506494,
+        "max": 0.065536
+      }
+    },
+    "stalls": [],
+    "allocation": {
+      "liveBytes": 213961416,
+      "peakBytes": 213961416,
+      "allocations": [
+        {
+          "kind": "buffer",
+          "label": "sim ubo",
+          "bytes": 224
+        },
+        {
+          "kind": "buffer",
+          "label": "h0",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "unit phase oscillators",
+          "bytes": 3145728
+        },
+        {
+          "kind": "buffer",
+          "label": "specA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "specB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "texture",
+          "label": "disp",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "deriv",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "moments",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "previous displacement",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "periodic cloud morphology",
+          "bytes": 9586980
+        },
+        {
+          "kind": "texture",
+          "label": "foam detail",
+          "bytes": 1398100
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 0",
+          "bytes": 5592400
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 1",
+          "bytes": 5592400
+        },
+        {
+          "kind": "buffer",
+          "label": "foam ubo",
+          "bytes": 192
+        },
+        {
+          "kind": "buffer",
+          "label": "atmo ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "transmittance",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "multiscatter",
+          "bytes": 8192
+        },
+        {
+          "kind": "texture",
+          "label": "solar and lunar skyview",
+          "bytes": 589824
+        },
+        {
+          "kind": "texture",
+          "label": "env cube",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "angular radiance staging",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "environment transmittance snapshot",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "environment sky snapshot",
+          "bytes": 589824
+        },
+        {
+          "kind": "buffer",
+          "label": "environment state snapshot",
+          "bytes": 688
+        },
+        {
+          "kind": "texture",
+          "label": "hemispherical irradiance",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "frame ubo",
+          "bytes": 688
+        },
+        {
+          "kind": "buffer",
+          "label": "sun visibility",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "spatial cloud transmittance",
+          "bytes": 524288
+        },
+        {
+          "kind": "buffer",
+          "label": "spray and rain particles",
+          "bytes": 1572864
+        },
+        {
+          "kind": "texture",
+          "label": "resolved Eulerian gravity height",
+          "bytes": 1398096
+        },
+        {
+          "kind": "texture",
+          "label": "resolved gravity-wave solar visibility",
+          "bytes": 1048576
+        },
+        {
+          "kind": "buffer",
+          "label": "probe out",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "curved near-plane medium",
+          "bytes": 73728
+        },
+        {
+          "kind": "buffer",
+          "label": "probe read",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "grid idx",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "instances",
+          "bytes": 131072
+        },
+        {
+          "kind": "buffer",
+          "label": "composite ubo",
+          "bytes": 32
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "ts resolve",
+          "bytes": 144
+        },
+        {
+          "kind": "buffer",
+          "label": "ts read",
+          "bytes": 144
+        },
+        {
+          "kind": "texture",
+          "label": "cloud radiance and extinction",
+          "bytes": 4147200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 66355200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 33177600
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 16588800
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 5528384
+        }
+      ],
+      "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+    },
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.5,
+      "p95": 0.7000000001862645,
+      "p99": 0.7999999998137355,
+      "mean": 0.49657422511839894,
+      "max": 1.3999999994412065
+    },
+    "submit": {
+      "p50": 0.0,
+      "p95": 0.10000000055879354,
+      "p99": 0.10000000055879354,
+      "mean": 0.020065252840834963,
+      "max": 0.19999999925494194
+    },
+    "queryCompletionDelay": {
+      "p50": 372.79999999981374,
+      "p95": 384.76000000052153,
+      "p99": 388.7559999999031,
+      "mean": 374.0233766233863,
+      "max": 390.20000000018626
+    },
+    "cacheAgeFrames": {
+      "p50": 7.0,
+      "p95": 10.0,
+      "p99": 10.0,
+      "mean": 7.495921696574225,
+      "max": 10.0
+    },
+    "probeAgeFrames": {
+      "p50": 8.0,
+      "p95": 12.0,
+      "p99": 12.0,
+      "mean": 8.308319738988581,
+      "max": 12.0
+    },
+    "visibilityCounts": {
+      "visible": 613
+    },
+    "browserTaskCount": 1,
+    "wallSeconds": 60.4536,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-performance/golden-probe-off",
+    "source": "17dadf2",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 1204,
+    "fps": 20.537208338379504,
+    "frame": {
+      "p50": 48.59999999999991,
+      "p95": 55.5,
+      "p99": 55.600000000005714,
+      "mean": 48.6921096345515,
+      "max": 55.700000000004366
+    },
+    "gpu": {
+      "gpu": {
+        "p50": 48.431104,
+        "p95": 51.314688000000004,
+        "p99": 51.806208,
+        "mean": 48.540909350993374,
+        "max": 52.297728
+      },
+      "simulation": {
+        "p50": 1.507328,
+        "p95": 1.572864,
+        "p99": 1.769472,
+        "mean": 1.5164422781456952,
+        "max": 1.769472
+      },
+      "atmosphere": {
+        "p50": 24.313856,
+        "p95": 26.148864,
+        "p99": 26.836992000000002,
+        "mean": 24.323404291390727,
+        "max": 28.114944
+      },
+      "surface": {
+        "p50": 21.823488,
+        "p95": 23.92064,
+        "p99": 24.674304,
+        "mean": 21.91680084768212,
+        "max": 25.034752
+      },
+      "post": {
+        "p50": 0.458752,
+        "p95": 0.458752,
+        "p99": 0.458752,
+        "mean": 0.4379193642384105,
+        "max": 0.458752
+      },
+      "skyLUT": {
+        "p50": 0.196608,
+        "p95": 0.196608,
+        "p99": 0.196608,
+        "mean": 0.17924747019867548,
+        "max": 0.458752
+      },
+      "cloudScreen": {
+        "p50": 19.070976,
+        "p95": 20.348928,
+        "p99": 21.364736,
+        "mean": 19.05882362913907,
+        "max": 21.62688
+      },
+      "cloudShadow": {
+        "p50": 0.393216,
+        "p95": 0.458752,
+        "p99": 0.458752,
+        "mean": 0.416218701986755,
+        "max": 0.720896
+      },
+      "environment": {
+        "p50": 4.653056,
+        "p95": 5.636096,
+        "p99": 6.71744,
+        "mean": 4.663472317880795,
+        "max": 6.946816
+      },
+      "irradiance": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max": 0.0
+      },
+      "transparent": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.065536,
+        "mean": 0.002170066225165563,
+        "max": 0.065536
+      }
+    },
+    "stalls": [],
+    "allocation": {
+      "liveBytes": 204574152,
+      "peakBytes": 204574152,
+      "allocations": [
+        {
+          "kind": "buffer",
+          "label": "sim ubo",
+          "bytes": 224
+        },
+        {
+          "kind": "buffer",
+          "label": "h0",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "unit phase oscillators",
+          "bytes": 3145728
+        },
+        {
+          "kind": "buffer",
+          "label": "specA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "specB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "texture",
+          "label": "disp",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "deriv",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "moments",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "previous displacement",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "periodic cloud morphology",
+          "bytes": 9586980
+        },
+        {
+          "kind": "texture",
+          "label": "foam detail",
+          "bytes": 1398100
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 0",
+          "bytes": 5592400
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 1",
+          "bytes": 5592400
+        },
+        {
+          "kind": "buffer",
+          "label": "foam ubo",
+          "bytes": 192
+        },
+        {
+          "kind": "buffer",
+          "label": "atmo ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "transmittance",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "multiscatter",
+          "bytes": 8192
+        },
+        {
+          "kind": "texture",
+          "label": "solar and lunar skyview",
+          "bytes": 589824
+        },
+        {
+          "kind": "texture",
+          "label": "env cube",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "angular radiance staging",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "environment transmittance snapshot",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "environment sky snapshot",
+          "bytes": 589824
+        },
+        {
+          "kind": "buffer",
+          "label": "environment state snapshot",
+          "bytes": 688
+        },
+        {
+          "kind": "texture",
+          "label": "hemispherical irradiance",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "frame ubo",
+          "bytes": 688
+        },
+        {
+          "kind": "buffer",
+          "label": "sun visibility",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "spatial cloud transmittance",
+          "bytes": 524288
+        },
+        {
+          "kind": "buffer",
+          "label": "spray and rain particles",
+          "bytes": 786432
+        },
+        {
+          "kind": "texture",
+          "label": "resolved Eulerian gravity height",
+          "bytes": 1398096
+        },
+        {
+          "kind": "texture",
+          "label": "resolved gravity-wave solar visibility",
+          "bytes": 1048576
+        },
+        {
+          "kind": "buffer",
+          "label": "probe out",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "curved near-plane medium",
+          "bytes": 73728
+        },
+        {
+          "kind": "buffer",
+          "label": "probe read",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "grid idx",
+          "bytes": 6912
+        },
+        {
+          "kind": "buffer",
+          "label": "instances",
+          "bytes": 131072
+        },
+        {
+          "kind": "buffer",
+          "label": "composite ubo",
+          "bytes": 32
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "ts resolve",
+          "bytes": 144
+        },
+        {
+          "kind": "buffer",
+          "label": "ts read",
+          "bytes": 144
+        },
+        {
+          "kind": "texture",
+          "label": "cloud radiance and extinction",
+          "bytes": 1843200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 66355200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 33177600
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 16588800
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 5528384
+        }
+      ],
+      "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+    },
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.5,
+      "p95": 0.6000000005587935,
+      "p99": 0.7969999998249141,
+      "mean": 0.4647840531542897,
+      "max": 1.2999999998137355
+    },
+    "submit": {
+      "p50": 0.0,
+      "p95": 0.10000000055879354,
+      "p99": 0.10000000055879354,
+      "mean": 0.023006644531577032,
+      "max": 0.2999999998137355
+    },
+    "queryCompletionDelay": {
+      "p50": 194.90000000037253,
+      "p95": 203.95000000018626,
+      "p99": 206.85000000009313,
+      "mean": 194.9629139073304,
+      "max": 209.20000000018626
+    },
+    "cacheAgeFrames": {
+      "p50": 7.0,
+      "p95": 10.0,
+      "p99": 10.0,
+      "mean": 7.496677740863787,
+      "max": 10.0
+    },
+    "probeAgeFrames": {
+      "p50": 632.5,
+      "p95": 1173.85,
+      "p99": 1221.97,
+      "mean": 632.5,
+      "max": 1234.0
+    },
+    "visibilityCounts": {
+      "visible": 1204
+    },
+    "browserTaskCount": 1,
+    "wallSeconds": 60.21959999999963,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-performance/golden-repeat",
+    "source": "17dadf2",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 2263,
+    "fps": 19.090296342474687,
+    "frame": {
+      "p50": 55.400000000001455,
+      "p95": 55.60000000000582,
+      "p99": 55.799999999995634,
+      "mean": 52.38263367211666,
+      "max": 62.60000000000582
+    },
+    "gpu": {
+      "gpu": {
+        "p50": 52.232192,
+        "p95": 54.4538624,
+        "p99": 55.86026496,
+        "mean": 52.19236093286219,
+        "max": 58.785792
+      },
+      "simulation": {
+        "p50": 1.572864,
+        "p95": 1.6384,
+        "p99": 1.900544,
+        "mean": 1.592547957597173,
+        "max": 1.96608
+      },
+      "atmosphere": {
+        "p50": 26.083328,
+        "p95": 27.9117824,
+        "p99": 28.412477440000004,
+        "mean": 26.20837902473498,
+        "max": 31.064064
+      },
+      "surface": {
+        "p50": 23.527424,
+        "p95": 25.362432,
+        "p99": 25.952256,
+        "mean": 23.582307505300356,
+        "max": 26.86976
+      },
+      "post": {
+        "p50": 0.458752,
+        "p95": 0.458752,
+        "p99": 0.720896,
+        "mean": 0.4645413992932862,
+        "max": 0.786432
+      },
+      "skyLUT": {
+        "p50": 0.196608,
+        "p95": 0.196608,
+        "p99": 0.23199744000000133,
+        "mean": 0.18896599293286218,
+        "max": 0.524288
+      },
+      "cloudScreen": {
+        "p50": 20.578304,
+        "p95": 21.823488,
+        "p99": 22.5378304,
+        "mean": 20.505820720848057,
+        "max": 23.003136
+      },
+      "cloudShadow": {
+        "p50": 0.458752,
+        "p95": 0.458752,
+        "p99": 0.720896,
+        "mean": 0.43791016254416965,
+        "max": 0.720896
+      },
+      "environment": {
+        "p50": 5.046272,
+        "p95": 6.153830399999999,
+        "p99": 7.417364480000001,
+        "mean": 5.069198021201413,
+        "max": 7.471104
+      },
+      "irradiance": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0004631519434628975,
+        "max": 0.065536
+      },
+      "transparent": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.065536,
+        "mean": 0.0011578798586572437,
+        "max": 0.065536
+      }
+    },
+    "stalls": [],
+    "allocation": {
+      "liveBytes": 204574152,
+      "peakBytes": 204574152,
+      "allocations": [
+        {
+          "kind": "buffer",
+          "label": "sim ubo",
+          "bytes": 224
+        },
+        {
+          "kind": "buffer",
+          "label": "h0",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "unit phase oscillators",
+          "bytes": 3145728
+        },
+        {
+          "kind": "buffer",
+          "label": "specA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "specB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "texture",
+          "label": "disp",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "deriv",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "moments",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "previous displacement",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "periodic cloud morphology",
+          "bytes": 9586980
+        },
+        {
+          "kind": "texture",
+          "label": "foam detail",
+          "bytes": 1398100
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 0",
+          "bytes": 5592400
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 1",
+          "bytes": 5592400
+        },
+        {
+          "kind": "buffer",
+          "label": "foam ubo",
+          "bytes": 192
+        },
+        {
+          "kind": "buffer",
+          "label": "atmo ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "transmittance",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "multiscatter",
+          "bytes": 8192
+        },
+        {
+          "kind": "texture",
+          "label": "solar and lunar skyview",
+          "bytes": 589824
+        },
+        {
+          "kind": "texture",
+          "label": "env cube",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "angular radiance staging",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "environment transmittance snapshot",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "environment sky snapshot",
+          "bytes": 589824
+        },
+        {
+          "kind": "buffer",
+          "label": "environment state snapshot",
+          "bytes": 688
+        },
+        {
+          "kind": "texture",
+          "label": "hemispherical irradiance",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "frame ubo",
+          "bytes": 688
+        },
+        {
+          "kind": "buffer",
+          "label": "sun visibility",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "spatial cloud transmittance",
+          "bytes": 524288
+        },
+        {
+          "kind": "buffer",
+          "label": "spray and rain particles",
+          "bytes": 786432
+        },
+        {
+          "kind": "texture",
+          "label": "resolved Eulerian gravity height",
+          "bytes": 1398096
+        },
+        {
+          "kind": "texture",
+          "label": "resolved gravity-wave solar visibility",
+          "bytes": 1048576
+        },
+        {
+          "kind": "buffer",
+          "label": "probe out",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "curved near-plane medium",
+          "bytes": 73728
+        },
+        {
+          "kind": "buffer",
+          "label": "probe read",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "grid idx",
+          "bytes": 6912
+        },
+        {
+          "kind": "buffer",
+          "label": "instances",
+          "bytes": 131072
+        },
+        {
+          "kind": "buffer",
+          "label": "composite ubo",
+          "bytes": 32
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "ts resolve",
+          "bytes": 144
+        },
+        {
+          "kind": "buffer",
+          "label": "ts read",
+          "bytes": 144
+        },
+        {
+          "kind": "texture",
+          "label": "cloud radiance and extinction",
+          "bytes": 1843200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 66355200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 33177600
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 16588800
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 5528384
+        }
+      ],
+      "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+    },
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.40000000037252903,
+      "p95": 0.6000000014901161,
+      "p99": 0.7999999988824129,
+      "mean": 0.4557666813907795,
+      "max": 1.5
+    },
+    "submit": {
+      "p50": 0.0,
+      "p95": 0.09999999962747097,
+      "p99": 0.10000000149011612,
+      "mean": 0.020371188680010456,
+      "max": 0.2000000011175871
+    },
+    "queryCompletionDelay": {
+      "p50": 209.59999999962747,
+      "p95": 217.86000000033528,
+      "p99": 221.76199999969452,
+      "mean": 209.6639575971613,
+      "max": 225.59999999962747
+    },
+    "cacheAgeFrames": {
+      "p50": 7.0,
+      "p95": 10.0,
+      "p99": 10.0,
+      "mean": 7.498895271763146,
+      "max": 10.0
+    },
+    "probeAgeFrames": {
+      "p50": 8.0,
+      "p95": 12.0,
+      "p99": 12.0,
+      "mean": 8.29253203711887,
+      "max": 12.0
+    },
+    "visibilityCounts": {
+      "visible": 2263
+    },
+    "browserTaskCount": 1,
+    "wallSeconds": 120.23089999999964,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-performance/golden-timestamps-off",
+    "source": "17dadf2",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 1159,
+    "fps": 19.767362532405514,
+    "frame": {
+      "p50": 48.60000000000582,
+      "p95": 55.60000000000218,
+      "p99": 55.700000000004366,
+      "mean": 50.58843830888697,
+      "max": 62.5
+    },
+    "gpu": {
+      "gpu": null,
+      "simulation": null,
+      "atmosphere": null,
+      "surface": null,
+      "post": null,
+      "skyLUT": null,
+      "cloudScreen": null,
+      "cloudShadow": null,
+      "environment": null,
+      "irradiance": null,
+      "transparent": null
+    },
+    "stalls": [],
+    "allocation": {
+      "liveBytes": 204574152,
+      "peakBytes": 204574152,
+      "allocations": [
+        {
+          "kind": "buffer",
+          "label": "sim ubo",
+          "bytes": 224
+        },
+        {
+          "kind": "buffer",
+          "label": "h0",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "unit phase oscillators",
+          "bytes": 3145728
+        },
+        {
+          "kind": "buffer",
+          "label": "specA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "specB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "texture",
+          "label": "disp",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "deriv",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "moments",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "previous displacement",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "periodic cloud morphology",
+          "bytes": 9586980
+        },
+        {
+          "kind": "texture",
+          "label": "foam detail",
+          "bytes": 1398100
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 0",
+          "bytes": 5592400
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 1",
+          "bytes": 5592400
+        },
+        {
+          "kind": "buffer",
+          "label": "foam ubo",
+          "bytes": 192
+        },
+        {
+          "kind": "buffer",
+          "label": "atmo ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "transmittance",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "multiscatter",
+          "bytes": 8192
+        },
+        {
+          "kind": "texture",
+          "label": "solar and lunar skyview",
+          "bytes": 589824
+        },
+        {
+          "kind": "texture",
+          "label": "env cube",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "angular radiance staging",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "environment transmittance snapshot",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "environment sky snapshot",
+          "bytes": 589824
+        },
+        {
+          "kind": "buffer",
+          "label": "environment state snapshot",
+          "bytes": 688
+        },
+        {
+          "kind": "texture",
+          "label": "hemispherical irradiance",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "frame ubo",
+          "bytes": 688
+        },
+        {
+          "kind": "buffer",
+          "label": "sun visibility",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "spatial cloud transmittance",
+          "bytes": 524288
+        },
+        {
+          "kind": "buffer",
+          "label": "spray and rain particles",
+          "bytes": 786432
+        },
+        {
+          "kind": "texture",
+          "label": "resolved Eulerian gravity height",
+          "bytes": 1398096
+        },
+        {
+          "kind": "texture",
+          "label": "resolved gravity-wave solar visibility",
+          "bytes": 1048576
+        },
+        {
+          "kind": "buffer",
+          "label": "probe out",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "curved near-plane medium",
+          "bytes": 73728
+        },
+        {
+          "kind": "buffer",
+          "label": "probe read",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "grid idx",
+          "bytes": 6912
+        },
+        {
+          "kind": "buffer",
+          "label": "instances",
+          "bytes": 131072
+        },
+        {
+          "kind": "buffer",
+          "label": "composite ubo",
+          "bytes": 32
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "ts resolve",
+          "bytes": 144
+        },
+        {
+          "kind": "buffer",
+          "label": "ts read",
+          "bytes": 144
+        },
+        {
+          "kind": "texture",
+          "label": "cloud radiance and extinction",
+          "bytes": 1843200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 66355200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 33177600
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 16588800
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 5528384
+        }
+      ],
+      "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+    },
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.40000000037252903,
+      "p95": 0.6000000005587935,
+      "p99": 0.7000000001862645,
+      "mean": 0.4559965487449037,
+      "max": 1.599999999627471
+    },
+    "submit": {
+      "p50": 0.0,
+      "p95": 0.10000000055879354,
+      "p99": 0.10000000055879354,
+      "mean": 0.020966350300216645,
+      "max": 0.20000000018626451
+    },
+    "queryCompletionDelay": null,
+    "cacheAgeFrames": {
+      "p50": 7.0,
+      "p95": 10.0,
+      "p99": 10.0,
+      "mean": 7.497842968075927,
+      "max": 10.0
+    },
+    "probeAgeFrames": {
+      "p50": 8.0,
+      "p95": 12.0,
+      "p99": 12.0,
+      "mean": 8.301984469370147,
+      "max": 12.0
+    },
+    "visibilityCounts": {
+      "visible": 1159
+    },
+    "browserTaskCount": 2,
+    "wallSeconds": 60.20669999999963,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-performance/storm-balanced",
+    "source": "17dadf2",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 1845,
+    "fps": 31.37461631990205,
+    "frame": {
+      "p50": 34.69999999999709,
+      "p95": 34.80000000000291,
+      "p99": 34.90000000000873,
+      "mean": 31.87289972899729,
+      "max": 35.5
+    },
+    "gpu": {
+      "gpu": {
+        "p50": 31.850496,
+        "p95": 33.947648,
+        "p99": 34.4981504,
+        "mean": 31.853616761904767,
+        "max": 35.127296
+      },
+      "simulation": {
+        "p50": 1.441792,
+        "p95": 1.441792,
+        "p99": 1.703936,
+        "mean": 1.4327134199134197,
+        "max": 3.2768
+      },
+      "atmosphere": {
+        "p50": 11.337728,
+        "p95": 12.517376,
+        "p99": 12.7598592,
+        "mean": 11.405533645021645,
+        "max": 12.910592
+      },
+      "surface": {
+        "p50": 18.219008,
+        "p95": 20.054015999999997,
+        "p99": 20.4275712,
+        "mean": 18.21588723809524,
+        "max": 20.97152
+      },
+      "post": {
+        "p50": 0.393216,
+        "p95": 0.458752,
+        "p99": 0.65536,
+        "mean": 0.4028619913419913,
+        "max": 0.786432
+      },
+      "skyLUT": {
+        "p50": 0.131072,
+        "p95": 0.196608,
+        "p99": 0.37355519999999925,
+        "mean": 0.16256332467532472,
+        "max": 0.458752
+      },
+      "cloudScreen": {
+        "p50": 7.929856,
+        "p95": 9.043968,
+        "p99": 9.201254399999998,
+        "mean": 8.124194354978355,
+        "max": 9.371648
+      },
+      "cloudShadow": {
+        "p50": 0.786432,
+        "p95": 0.851968,
+        "p99": 1.0289151999999993,
+        "mean": 0.781041593073593,
+        "max": 1.048576
+      },
+      "environment": {
+        "p50": 2.162688,
+        "p95": 2.883584,
+        "p99": 3.407872,
+        "mean": 2.3312091428571424,
+        "max": 3.60448
+      },
+      "irradiance": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max": 0.0
+      },
+      "transparent": {
+        "p50": 0.065536,
+        "p95": 0.229376,
+        "p99": 0.7012351999999993,
+        "mean": 0.07121011255411255,
+        "max": 0.917504
+      }
+    },
+    "stalls": [],
+    "allocation": {
+      "liveBytes": 204574152,
+      "peakBytes": 204574152,
+      "allocations": [
+        {
+          "kind": "buffer",
+          "label": "sim ubo",
+          "bytes": 224
+        },
+        {
+          "kind": "buffer",
+          "label": "h0",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "unit phase oscillators",
+          "bytes": 3145728
+        },
+        {
+          "kind": "buffer",
+          "label": "specA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "specB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "texture",
+          "label": "disp",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "deriv",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "moments",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "previous displacement",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "periodic cloud morphology",
+          "bytes": 9586980
+        },
+        {
+          "kind": "texture",
+          "label": "foam detail",
+          "bytes": 1398100
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 0",
+          "bytes": 5592400
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 1",
+          "bytes": 5592400
+        },
+        {
+          "kind": "buffer",
+          "label": "foam ubo",
+          "bytes": 192
+        },
+        {
+          "kind": "buffer",
+          "label": "atmo ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "transmittance",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "multiscatter",
+          "bytes": 8192
+        },
+        {
+          "kind": "texture",
+          "label": "solar and lunar skyview",
+          "bytes": 589824
+        },
+        {
+          "kind": "texture",
+          "label": "env cube",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "angular radiance staging",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "environment transmittance snapshot",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "environment sky snapshot",
+          "bytes": 589824
+        },
+        {
+          "kind": "buffer",
+          "label": "environment state snapshot",
+          "bytes": 688
+        },
+        {
+          "kind": "texture",
+          "label": "hemispherical irradiance",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "frame ubo",
+          "bytes": 688
+        },
+        {
+          "kind": "buffer",
+          "label": "sun visibility",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "spatial cloud transmittance",
+          "bytes": 524288
+        },
+        {
+          "kind": "buffer",
+          "label": "spray and rain particles",
+          "bytes": 786432
+        },
+        {
+          "kind": "texture",
+          "label": "resolved Eulerian gravity height",
+          "bytes": 1398096
+        },
+        {
+          "kind": "texture",
+          "label": "resolved gravity-wave solar visibility",
+          "bytes": 1048576
+        },
+        {
+          "kind": "buffer",
+          "label": "probe out",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "curved near-plane medium",
+          "bytes": 73728
+        },
+        {
+          "kind": "buffer",
+          "label": "probe read",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "grid idx",
+          "bytes": 6912
+        },
+        {
+          "kind": "buffer",
+          "label": "instances",
+          "bytes": 131072
+        },
+        {
+          "kind": "buffer",
+          "label": "composite ubo",
+          "bytes": 32
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "ts resolve",
+          "bytes": 144
+        },
+        {
+          "kind": "buffer",
+          "label": "ts read",
+          "bytes": 144
+        },
+        {
+          "kind": "texture",
+          "label": "cloud radiance and extinction",
+          "bytes": 1843200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 66355200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 33177600
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 16588800
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 5528384
+        }
+      ],
+      "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+    },
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.40000000037252903,
+      "p95": 0.6000000005587935,
+      "p99": 0.7000000001862645,
+      "mean": 0.4488888888899994,
+      "max": 1.6000000005587935
+    },
+    "submit": {
+      "p50": 0.0,
+      "p95": 0.10000000055879354,
+      "p99": 0.10000000055879354,
+      "mean": 0.020975609758722428,
+      "max": 0.20000000018626451
+    },
+    "queryCompletionDelay": {
+      "p50": 127.59999999962747,
+      "p95": 134.8000000002794,
+      "p99": 135.94999999962747,
+      "mean": 127.67619047613081,
+      "max": 138.79999999981374
+    },
+    "cacheAgeFrames": {
+      "p50": 7.0,
+      "p95": 10.0,
+      "p99": 10.0,
+      "mean": 7.4975609756097565,
+      "max": 10.0
+    },
+    "probeAgeFrames": {
+      "p50": 8.0,
+      "p95": 12.0,
+      "p99": 12.0,
+      "mean": 8.319241192411925,
+      "max": 12.0
+    },
+    "visibilityCounts": {
+      "visible": 1845
+    },
+    "browserTaskCount": 1,
+    "wallSeconds": 60.14350000000037,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-profile-corrected/golden-balanced",
+    "source": "919dfb4",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 1273,
+    "fps": 21.721918490761787,
+    "frame": {
+      "p50": 48.5,
+      "p95": 48.700000000004366,
+      "p99": 48.828000000000465,
+      "mean": 46.03644933228593,
+      "max": 55.60000000000582
+    },
+    "gpu": {
+      "gpu": {
+        "p50": 45.809664,
+        "p95": 49.0143744,
+        "p99": 50.02756096,
+        "mean": 45.93428983606558,
+        "max": 50.200576
+      },
+      "simulation": {
+        "p50": 1.441792,
+        "p95": 1.703936,
+        "p99": 1.7812684800000005,
+        "mean": 1.475455300546448,
+        "max": 1.835008
+      },
+      "atmosphere": {
+        "p50": 22.872064,
+        "p95": 24.8840192,
+        "p99": 25.76744448,
+        "mean": 22.946194885245898,
+        "max": 26.804224
+      },
+      "surface": {
+        "p50": 20.512768,
+        "p95": 22.740992,
+        "p99": 23.09226496,
+        "mean": 20.755573508196726,
+        "max": 23.527424
+      },
+      "post": {
+        "p50": 0.393216,
+        "p95": 0.458752,
+        "p99": 0.458752,
+        "mean": 0.4179262950819671,
+        "max": 0.65536
+      },
+      "skyLUT": {
+        "p50": 0.131072,
+        "p95": 0.196608,
+        "p99": 0.196608,
+        "mean": 0.16330281967213112,
+        "max": 0.458752
+      },
+      "cloudScreen": {
+        "p50": 17.891328,
+        "p95": 19.4576384,
+        "p99": 20.077608960000003,
+        "mean": 17.93394430601093,
+        "max": 20.709376
+      },
+      "cloudShadow": {
+        "p50": 0.393216,
+        "p95": 0.458752,
+        "p99": 0.458752,
+        "mean": 0.4028852459016394,
+        "max": 0.720896
+      },
+      "environment": {
+        "p50": 4.58752,
+        "p95": 5.439488,
+        "p99": 6.392381440000001,
+        "mean": 4.4353189071038255,
+        "max": 6.5536
+      },
+      "irradiance": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.065536,
+        "mean": 0.002506841530054645,
+        "max": 0.065536
+      },
+      "transparent": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.065536,
+        "mean": 0.001074360655737705,
+        "max": 0.065536
+      }
+    },
+    "stalls": [],
+    "allocation": {
+      "liveBytes": 204574152,
+      "peakBytes": 204574152,
+      "allocations": [
+        {
+          "kind": "buffer",
+          "label": "sim ubo",
+          "bytes": 224
+        },
+        {
+          "kind": "buffer",
+          "label": "h0",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "unit phase oscillators",
+          "bytes": 3145728
+        },
+        {
+          "kind": "buffer",
+          "label": "specA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "specB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "texture",
+          "label": "disp",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "deriv",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "moments",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "previous displacement",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "periodic cloud morphology",
+          "bytes": 9586980
+        },
+        {
+          "kind": "texture",
+          "label": "foam detail",
+          "bytes": 1398100
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 0",
+          "bytes": 5592400
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 1",
+          "bytes": 5592400
+        },
+        {
+          "kind": "buffer",
+          "label": "foam ubo",
+          "bytes": 192
+        },
+        {
+          "kind": "buffer",
+          "label": "atmo ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "transmittance",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "multiscatter",
+          "bytes": 8192
+        },
+        {
+          "kind": "texture",
+          "label": "solar and lunar skyview",
+          "bytes": 589824
+        },
+        {
+          "kind": "texture",
+          "label": "env cube",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "angular radiance staging",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "environment transmittance snapshot",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "environment sky snapshot",
+          "bytes": 589824
+        },
+        {
+          "kind": "buffer",
+          "label": "environment state snapshot",
+          "bytes": 688
+        },
+        {
+          "kind": "texture",
+          "label": "hemispherical irradiance",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "frame ubo",
+          "bytes": 688
+        },
+        {
+          "kind": "buffer",
+          "label": "sun visibility",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "spatial cloud transmittance",
+          "bytes": 524288
+        },
+        {
+          "kind": "buffer",
+          "label": "spray and rain particles",
+          "bytes": 786432
+        },
+        {
+          "kind": "texture",
+          "label": "resolved Eulerian gravity height",
+          "bytes": 1398096
+        },
+        {
+          "kind": "texture",
+          "label": "resolved gravity-wave solar visibility",
+          "bytes": 1048576
+        },
+        {
+          "kind": "buffer",
+          "label": "probe out",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "curved near-plane medium",
+          "bytes": 73728
+        },
+        {
+          "kind": "buffer",
+          "label": "probe read",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "grid idx",
+          "bytes": 6912
+        },
+        {
+          "kind": "buffer",
+          "label": "instances",
+          "bytes": 131072
+        },
+        {
+          "kind": "buffer",
+          "label": "composite ubo",
+          "bytes": 32
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "ts resolve",
+          "bytes": 144
+        },
+        {
+          "kind": "buffer",
+          "label": "ts read",
+          "bytes": 144
+        },
+        {
+          "kind": "texture",
+          "label": "cloud radiance and extinction",
+          "bytes": 1843200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 66355200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 33177600
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 16588800
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 5528384
+        }
+      ],
+      "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+    },
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.40000000037252903,
+      "p95": 0.599999999627471,
+      "p99": 0.7000000011175871,
+      "mean": 0.4434406912848295,
+      "max": 1.799999998882413
+    },
+    "submit": {
+      "p50": 0.0,
+      "p95": 0.09999999962747097,
+      "p99": 0.10000000149011612,
+      "mean": 0.02010997642893915,
+      "max": 0.19999999925494194
+    },
+    "queryCompletionDelay": {
+      "p50": 182.59999999962747,
+      "p95": 193.90000000037253,
+      "p99": 199.34799999952318,
+      "mean": 184.09781420766248,
+      "max": 202.5
+    },
+    "cacheAgeFrames": {
+      "p50": 7.0,
+      "p95": 10.0,
+      "p99": 10.0,
+      "mean": 7.498036135113904,
+      "max": 10.0
+    },
+    "probeAgeFrames": {
+      "p50": 8.0,
+      "p95": 12.0,
+      "p99": 12.0,
+      "mean": 8.291437549096623,
+      "max": 12.0
+    },
+    "visibilityCounts": {
+      "visible": 1273
+    },
+    "browserTaskCount": 1,
+    "wallSeconds": 60.22389999999963,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-profile-corrected/golden-high",
+    "source": "919dfb4",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 624,
+    "fps": 10.870530931364094,
+    "frame": {
+      "p50": 90.30000000000109,
+      "p95": 97.29999999999927,
+      "p99": 97.30000000000291,
+      "mean": 91.99182692307693,
+      "max": 97.60000000000218
+    },
+    "gpu": {
+      "gpu": {
+        "p50": 91.7504,
+        "p95": 96.5410816,
+        "p99": 96.91987968,
+        "mean": 91.78753706666666,
+        "max": 97.386496
+      },
+      "simulation": {
+        "p50": 1.441792,
+        "p95": 1.572864,
+        "p99": 1.7255628799999998,
+        "mean": 1.4468892444444441,
+        "max": 1.900544
+      },
+      "atmosphere": {
+        "p50": 64.978944,
+        "p95": 68.9143808,
+        "p99": 71.36804864,
+        "mean": 65.35249920000001,
+        "max": 71.892992
+      },
+      "surface": {
+        "p50": 24.051712,
+        "p95": 26.46016,
+        "p99": 26.82585088,
+        "mean": 24.22501831111111,
+        "max": 27.000832
+      },
+      "post": {
+        "p50": 0.393216,
+        "p95": 0.458752,
+        "p99": 0.65536,
+        "mean": 0.40632319999999994,
+        "max": 0.65536
+      },
+      "skyLUT": {
+        "p50": 0.131072,
+        "p95": 0.196608,
+        "p99": 0.393216,
+        "mean": 0.15947093333333334,
+        "max": 0.393216
+      },
+      "cloudScreen": {
+        "p50": 45.613056,
+        "p95": 47.579136,
+        "p99": 48.5163008,
+        "mean": 45.812576711111106,
+        "max": 50.266112
+      },
+      "cloudShadow": {
+        "p50": 0.524288,
+        "p95": 0.589824,
+        "p99": 0.786432,
+        "mean": 0.5519587555555556,
+        "max": 0.786432
+      },
+      "environment": {
+        "p50": 18.776063999999998,
+        "p95": 22.206873599999998,
+        "p99": 23.003136,
+        "mean": 18.813929244444445,
+        "max": 23.003136
+      },
+      "irradiance": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.065536,
+        "mean": 0.0014563555555555554,
+        "max": 0.065536
+      },
+      "transparent": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.065536,
+        "mean": 0.0021845333333333334,
+        "max": 0.065536
+      }
+    },
+    "stalls": [],
+    "allocation": {
+      "liveBytes": 213961416,
+      "peakBytes": 213961416,
+      "allocations": [
+        {
+          "kind": "buffer",
+          "label": "sim ubo",
+          "bytes": 224
+        },
+        {
+          "kind": "buffer",
+          "label": "h0",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "unit phase oscillators",
+          "bytes": 3145728
+        },
+        {
+          "kind": "buffer",
+          "label": "specA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "specB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "texture",
+          "label": "disp",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "deriv",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "moments",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "previous displacement",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "periodic cloud morphology",
+          "bytes": 9586980
+        },
+        {
+          "kind": "texture",
+          "label": "foam detail",
+          "bytes": 1398100
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 0",
+          "bytes": 5592400
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 1",
+          "bytes": 5592400
+        },
+        {
+          "kind": "buffer",
+          "label": "foam ubo",
+          "bytes": 192
+        },
+        {
+          "kind": "buffer",
+          "label": "atmo ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "transmittance",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "multiscatter",
+          "bytes": 8192
+        },
+        {
+          "kind": "texture",
+          "label": "solar and lunar skyview",
+          "bytes": 589824
+        },
+        {
+          "kind": "texture",
+          "label": "env cube",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "angular radiance staging",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "environment transmittance snapshot",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "environment sky snapshot",
+          "bytes": 589824
+        },
+        {
+          "kind": "buffer",
+          "label": "environment state snapshot",
+          "bytes": 688
+        },
+        {
+          "kind": "texture",
+          "label": "hemispherical irradiance",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "frame ubo",
+          "bytes": 688
+        },
+        {
+          "kind": "buffer",
+          "label": "sun visibility",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "spatial cloud transmittance",
+          "bytes": 524288
+        },
+        {
+          "kind": "buffer",
+          "label": "spray and rain particles",
+          "bytes": 1572864
+        },
+        {
+          "kind": "texture",
+          "label": "resolved Eulerian gravity height",
+          "bytes": 1398096
+        },
+        {
+          "kind": "texture",
+          "label": "resolved gravity-wave solar visibility",
+          "bytes": 1048576
+        },
+        {
+          "kind": "buffer",
+          "label": "probe out",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "curved near-plane medium",
+          "bytes": 73728
+        },
+        {
+          "kind": "buffer",
+          "label": "probe read",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "grid idx",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "instances",
+          "bytes": 131072
+        },
+        {
+          "kind": "buffer",
+          "label": "composite ubo",
+          "bytes": 32
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "ts resolve",
+          "bytes": 144
+        },
+        {
+          "kind": "buffer",
+          "label": "ts read",
+          "bytes": 144
+        },
+        {
+          "kind": "texture",
+          "label": "cloud radiance and extinction",
+          "bytes": 4147200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 66355200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 33177600
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 16588800
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 5528384
+        }
+      ],
+      "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+    },
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.5,
+      "p95": 0.6999999992549419,
+      "p99": 0.8000000007450581,
+      "mean": 0.47948717947106045,
+      "max": 1.0
+    },
+    "submit": {
+      "p50": 0.0,
+      "p95": 0.10000000149011612,
+      "p99": 0.10000000149011612,
+      "mean": 0.02099358976687281,
+      "max": 0.19999999925494194
+    },
+    "queryCompletionDelay": {
+      "p50": 366.80000000074506,
+      "p95": 379.9550000001676,
+      "p99": 382.3859999997914,
+      "mean": 367.89888888874816,
+      "max": 384.7000000011176
+    },
+    "cacheAgeFrames": {
+      "p50": 7.5,
+      "p95": 10.0,
+      "p99": 10.0,
+      "mean": 7.5,
+      "max": 10.0
+    },
+    "probeAgeFrames": {
+      "p50": 8.0,
+      "p95": 12.0,
+      "p99": 12.0,
+      "mean": 8.307692307692308,
+      "max": 12.0
+    },
+    "visibilityCounts": {
+      "visible": 624
+    },
+    "browserTaskCount": 1,
+    "wallSeconds": 60.406499999999255,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  },
+  {
+    "name": "v04-p1-profile-corrected/storm-balanced",
+    "source": "919dfb4",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": null
+    },
+    "sampleFrames": 1828,
+    "fps": 31.015854055814966,
+    "frame": {
+      "p50": 34.69999999999709,
+      "p95": 34.80000000000291,
+      "p99": 35.0,
+      "mean": 32.241575492341354,
+      "max": 41.80000000000291
+    },
+    "gpu": {
+      "gpu": {
+        "p50": 32.210944,
+        "p95": 34.1409792,
+        "p99": 34.67640831999999,
+        "mean": 32.16491871755725,
+        "max": 35.192832
+      },
+      "simulation": {
+        "p50": 1.441792,
+        "p95": 1.572864,
+        "p99": 1.703936,
+        "mean": 1.4405413129770992,
+        "max": 1.900544
+      },
+      "atmosphere": {
+        "p50": 11.337728,
+        "p95": 12.45184,
+        "p99": 12.910592,
+        "mean": 11.45129038167939,
+        "max": 13.041664
+      },
+      "surface": {
+        "p50": 18.415616,
+        "p95": 20.185088,
+        "p99": 20.629422079999998,
+        "mean": 18.46564348091603,
+        "max": 21.233664
+      },
+      "post": {
+        "p50": 0.393216,
+        "p95": 0.458752,
+        "p99": 0.65536,
+        "mean": 0.40397190839694647,
+        "max": 0.65536
+      },
+      "skyLUT": {
+        "p50": 0.131072,
+        "p95": 0.196608,
+        "p99": 0.196608,
+        "mean": 0.160588213740458,
+        "max": 0.196608
+      },
+      "cloudScreen": {
+        "p50": 8.02816,
+        "p95": 9.1062272,
+        "p99": 9.33167104,
+        "mean": 8.199003847328244,
+        "max": 9.437184
+      },
+      "cloudShadow": {
+        "p50": 0.786432,
+        "p95": 0.851968,
+        "p99": 1.048576,
+        "mean": 0.7906843358778625,
+        "max": 1.114112
+      },
+      "environment": {
+        "p50": 2.162688,
+        "p95": 2.7492351999999993,
+        "p99": 2.909143039999999,
+        "mean": 2.2907583511450382,
+        "max": 3.014656
+      },
+      "irradiance": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.065536,
+        "mean": 0.0030016488549618322,
+        "max": 0.065536
+      },
+      "transparent": {
+        "p50": 0.065536,
+        "p95": 0.262144,
+        "p99": 0.786432,
+        "mean": 0.07078888549618322,
+        "max": 1.179648
+      }
+    },
+    "stalls": [],
+    "allocation": {
+      "liveBytes": 204574152,
+      "peakBytes": 204574152,
+      "allocations": [
+        {
+          "kind": "buffer",
+          "label": "sim ubo",
+          "bytes": 224
+        },
+        {
+          "kind": "buffer",
+          "label": "h0",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "unit phase oscillators",
+          "bytes": 3145728
+        },
+        {
+          "kind": "buffer",
+          "label": "specA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "specB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpA",
+          "bytes": 6291456
+        },
+        {
+          "kind": "buffer",
+          "label": "tmpB",
+          "bytes": 6291456
+        },
+        {
+          "kind": "texture",
+          "label": "disp",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "deriv",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "moments",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "previous displacement",
+          "bytes": 4194288
+        },
+        {
+          "kind": "texture",
+          "label": "periodic cloud morphology",
+          "bytes": 9586980
+        },
+        {
+          "kind": "texture",
+          "label": "foam detail",
+          "bytes": 1398100
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 0",
+          "bytes": 5592400
+        },
+        {
+          "kind": "texture",
+          "label": "foam world 1",
+          "bytes": 5592400
+        },
+        {
+          "kind": "buffer",
+          "label": "foam ubo",
+          "bytes": 192
+        },
+        {
+          "kind": "buffer",
+          "label": "atmo ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "transmittance",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "multiscatter",
+          "bytes": 8192
+        },
+        {
+          "kind": "texture",
+          "label": "solar and lunar skyview",
+          "bytes": 589824
+        },
+        {
+          "kind": "texture",
+          "label": "env cube",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "angular radiance staging",
+          "bytes": 1048560
+        },
+        {
+          "kind": "texture",
+          "label": "environment transmittance snapshot",
+          "bytes": 131072
+        },
+        {
+          "kind": "texture",
+          "label": "environment sky snapshot",
+          "bytes": 589824
+        },
+        {
+          "kind": "buffer",
+          "label": "environment state snapshot",
+          "bytes": 688
+        },
+        {
+          "kind": "texture",
+          "label": "hemispherical irradiance",
+          "bytes": 12288
+        },
+        {
+          "kind": "buffer",
+          "label": "frame ubo",
+          "bytes": 688
+        },
+        {
+          "kind": "buffer",
+          "label": "sun visibility",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "spatial cloud transmittance",
+          "bytes": 524288
+        },
+        {
+          "kind": "buffer",
+          "label": "spray and rain particles",
+          "bytes": 786432
+        },
+        {
+          "kind": "texture",
+          "label": "resolved Eulerian gravity height",
+          "bytes": 1398096
+        },
+        {
+          "kind": "texture",
+          "label": "resolved gravity-wave solar visibility",
+          "bytes": 1048576
+        },
+        {
+          "kind": "buffer",
+          "label": "probe out",
+          "bytes": 16
+        },
+        {
+          "kind": "texture",
+          "label": "curved near-plane medium",
+          "bytes": 73728
+        },
+        {
+          "kind": "buffer",
+          "label": "probe read",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "grid idx",
+          "bytes": 6912
+        },
+        {
+          "kind": "buffer",
+          "label": "instances",
+          "bytes": 131072
+        },
+        {
+          "kind": "buffer",
+          "label": "composite ubo",
+          "bytes": 32
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "bloom ubo",
+          "bytes": 16
+        },
+        {
+          "kind": "buffer",
+          "label": "ts resolve",
+          "bytes": 144
+        },
+        {
+          "kind": "buffer",
+          "label": "ts read",
+          "bytes": 144
+        },
+        {
+          "kind": "texture",
+          "label": "cloud radiance and extinction",
+          "bytes": 1843200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 66355200
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 33177600
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 16588800
+        },
+        {
+          "kind": "texture",
+          "label": "unlabelled",
+          "bytes": 5528384
+        }
+      ],
+      "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+    },
+    "visibility": [
+      "visible"
+    ],
+    "cpu": {
+      "p50": 0.40000000037252903,
+      "p95": 0.599999999627471,
+      "p99": 0.6999999992549419,
+      "mean": 0.4278993435515829,
+      "max": 1.5
+    },
+    "submit": {
+      "p50": 0.0,
+      "p95": 0.09999999962747097,
+      "p99": 0.10000000149011612,
+      "mean": 0.020185995611608745,
+      "max": 0.19999999925494194
+    },
+    "queryCompletionDelay": {
+      "p50": 129.04999999981374,
+      "p95": 136.67499999925494,
+      "p99": 138.36800000008193,
+      "mean": 129.0301526717287,
+      "max": 140.0
+    },
+    "cacheAgeFrames": {
+      "p50": 7.0,
+      "p95": 10.0,
+      "p99": 10.0,
+      "mean": 7.49781181619256,
+      "max": 10.0
+    },
+    "probeAgeFrames": {
+      "p50": 8.0,
+      "p95": 12.0,
+      "p99": 12.0,
+      "mean": 8.307439824945295,
+      "max": 12.0
+    },
+    "visibilityCounts": {
+      "visible": 1828
+    },
+    "browserTaskCount": 1,
+    "wallSeconds": 60.13199999999963,
+    "stopReason": "wall-clock limit",
+    "errors": []
+  }
+]

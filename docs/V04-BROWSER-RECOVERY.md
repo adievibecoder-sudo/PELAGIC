@@ -33,3 +33,9 @@ The supported `open-chrome-window.js` dry-run selected Default correctly; no lau
 The existing `v04-p1-desktop-tests` result predated this recovery and was already visible in the Chrome tab. It was inspected, not overwritten. The original `v04-p1-final-stills` captures remain untouched.
 
 The exact internal reason Windows Computer Use failed its URL-confidence check remains UNVERIFIED. Wrong active target and minimized state were observed; they are not proof of the safety implementation's internal cause. The supported extension workflow now verifies the intended tab directly.
+
+## Sustained-run follow-up
+
+An agent-created, normal Chrome window isolates the validation tab from unrelated user tabs. Intermittent Page.getFrameTree/Runtime.evaluate timeouts still occur across automatic page reloads. Management queries remain responsive. The window was observed minimized again during a baseline navigation; both servers independently returned HTTP200. Restoring it through `windows.update({state:'normal',focused:true})` resumed progress. The cause of minimization is unknown. Verify window state after navigation and retain per-frame visibility; do not infer a GPU or server failure from one stale page handle. No restart was needed.
+
+Current application adapter is NVIDIA/Ampere. A host capture matches Chrome's GPU process PID18756 with the NVIDIA process table on the RTX3050 Laptop GPU. Chrome executable version156.0.8078.48, driver617.14,4096MiB. This corroboration is separate from the older owner chrome://gpu text and from the unknown-origin supplied stills.

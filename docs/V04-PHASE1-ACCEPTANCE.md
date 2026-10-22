@@ -1,4 +1,27 @@
-# Phase 1 acceptance register - interim, 22 October 2026
+# Phase 1 acceptance register - 22 October 2026
+
+Current handoff: SRC = inspected source; TEST = executed test; VIS = observed render. PASS applies only to the stated experiment. All inherited realism obligations remain open. Phases 2+3 are NOT authorized.
+
+| Gate | Current decision | Evidence and unresolved scope |
+|---|---|---|
+| S1 | TEST PASS bounded model; physical naturalism UNVERIFIED | Deterministic fixed-location replay, independent clocks, constant swell, monotone wave time in originals. Moving-camera sea-history partition and material foam-history closure remain unverified. |
+| S2 | TEST PASS command contract; UI evidence in handoff | Explicit preview and natural modes. Configuration restore does not serialize live foam/particle textures. |
+| S3 | TEST PASS tested envelope | Six GPU batches x1024. Minimum-width error1 before correction,7.224687438e-6 after; tolerance2e-5. CPU rebasing/1000 km tests pass. Narrow fronts at every distant origin are not certified. |
+| L1 | TEST/VIS PASS relative coupling; calibrated optics UNVERIFIED | Covered Sun factor0.00127983 vs clear1, darker underwater volume; isolated veil attenuates Sun/Moon. Existing water/cloud realism FAIL. |
+| L2 | TEST/VIS partial; full temporal quality UNVERIFIED | Frozen-sea reflection changes locally as weather moves. Dedicated20 s recording. Six-frame cache cadence/spatial approximation remain. |
+| L3 | TEST/VIS partial; photographic quality FAIL | Twelve fresh1080p stills and six veil controls. Shared inputs improve weather response; night/cloud/water/immersion quality remains deficient. |
+| L4 | SRC/TEST PASS stated controls | Feedback removed; clear control mean difference0.00198045/255. Light readbacks at100/1000 frames exactly equal. Display dither changes with frame; matched-dither follow-up reported separately. |
+| N1 | TEST PASS | 32 CPU tests, nine GPU FFT checks, five optical groups, six regional batches after boundary correction; zero reported GPU errors. |
+| V1 | Evidence delivered; owner review PENDING | Twelve baseline/current pairs, five main final clips, two light clips. Decode/playback/visual scopes remain distinct. Overall realism FAIL. |
+| P1 | Measurements delivered; target performance FAIL | Actual RTX3050 corroborated. Baseline/current60 s cases,120 s repeat, readback/yaw ablations. Seven-frame sampling corrects cache-phase aliasing. Allocation payload is not VRAM residency. |
+| P2 | Reproduced inherited FAIL; cause UNVERIFIED | Baseline golden:12 intervals>500 ms,max1007.3 ms. Eight current runs:none. This does not isolate cause or certify endurance. No full browser-internal trace. |
+| OWNER | PENDING / STOP | Source, originals, report and reproduction submitted for owner review; no later-phase authorization. |
+
+Source/capture limits: first boundary failing report's `boundary-test` annotation maps to798c67b in the command log; it is not a Git revision. Passing report identifies919dfb4. Owner-retained unknown-origin stills are unchanged; fresh Chrome reruns reproduce11/12 byte-for-byte, storm differs by at most one code. Final preservation/publication checks are separate from visual acceptance.
+
+## Historical interim register (superseded)
+
+The following interruption/checkpoint text records the earlier incomplete state; it is retained as history, not the current acceptance decision.
 
 Phase 1 is NOT complete. No approval of Phases 2+3 is requested or implied. SRC = inspected source; TEST = executed test; VIS = observed render; HYP = hypothesis. Owner visual acceptance remains pending. Retain all inherited W1-R1 and E1-E6 failures.
 

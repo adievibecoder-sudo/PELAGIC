@@ -1,6 +1,6 @@
 # PELAGIC 0.4 — Persistent Verified State
 
-**Implementation update:** 22 October 2026 - Phase 1 remains INCOMPLETE. Rendering source b6349d3 integrates regional weather, versioned lighting and ice-veil shadows. All 32 CPU tests passed at that source. Twelve later still pairs were preserved and inspected, with browser-host provenance unresolved; see `V04-PHASE1-VISUAL-REVIEW.md`. Final GPU regression tests, continuous-motion inspection, sustained profiling, UI validation and remote publication remain pending. Desktop Computer Use stopped again at its Chrome URL safety check; no further browser input followed. Phase 0 FAILs remain.
+**Current checkpoint, 22 October 2026:** Phase 1 engineering handoff; STOP for owner approval before Phases 2+3. Chrome automation recovered through its supported extension runtime, without security changes or restarts. RTX 3050 use is corroborated with the Chrome GPU PID. Final rendering source `919dfb4`: 32 CPU tests, nine FFT checks, five optical groups and six regional batches PASS. Twelve controlled 1080p still pairs, seven final 20 s clips, isolated lighting controls, nine completed browser playbacks and UI restore/share tests are preserved. Corrected sustained FPS: Golden Balanced 21.72, Storm Balanced 31.02, Golden High 10.87. Targets FAIL; baseline one-second stalls reproduced, cause UNVERIFIED. See `V04-PHASE1-REPORT.md`, `V04-PHASE1-ACCEPTANCE.md`, `V04-PHASE1-REPRODUCE.md`. Publication proof is stored separately in the Phase 1 handoff evidence. No inherited realism failure is closed.
 **Working branch:** `development/pelagic-0.4`
 **Current authorized phase:** **Phase 1 ONLY**
 **Next phase gate:** STOP after Phase 1; future Phase 2+3 requires separate approval and internal owner cloud checkpoint. User retains independent visual sign-off.
@@ -14,7 +14,9 @@
 - 0.3 acceptance W1/W2/L1/L2/B1/C1/U1/G1/A1/T1/R1: numerical progress, but visual quality broadly FAIL; numerical/physical gaps remain UNVERIFIED.
 - Reported RTX 3050 at 1080p: 22.83 FPS Golden Balanced, 32.24 Storm Balanced, 9.85 Golden High, 18.59 Storm High. These are **0.3 evidence**, not new 0.4 measurements.
 
-## Phase 1 resume checkpoint - 22 October
+## Historical Phase 1 resume checkpoint - superseded by current checkpoint above
+
+The pending tasks and browser interruption statements in this section describe earlier checkpoints. Do not use them as current browser state; original artifacts remain preserved.
 
 - Browser recovery: existing Chrome extension connection restored without a restart or security change. Exact localhost tab claimed and verified. Current bootstrap returns the Agent rather than assigning a global. Official host diagnostics pass; initial sandbox profile/registry errors were misleading. See `V04-BROWSER-RECOVERY.md`. Fresh regional (4 batches), FFT (9 checks) and optics (5 groups) GPU tests PASS in `v04-p1-recovered-tests`; final controlled motion collection is underway. Earlier interruption descriptions below remain historical.
 

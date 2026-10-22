@@ -40,7 +40,7 @@ if missing:print(f'INCOMPLETE: {len(rows)}/{len(cases)} pairs; see capture-compl
 print(json.dumps([{'name':r['name'],'mean':r['meanAbsoluteDisplayCode'],'matched':r['matchedSettings'] and r['matchedCamera']} for r in rows],indent=2))
 
 performance=[]
-for directory in ['v04-p1-baseline-performance','v04-p1-performance']:
+for directory in ['v04-p1-baseline-performance','v04-p1-performance','v04-p1-profile-corrected']:
  for p in sorted((root/directory).glob('*.json')):
     r=json.loads(p.read_text());frames=r.get('frameRecords',[]);m=r.get('measurements',[])
     def stats(values):
@@ -53,7 +53,7 @@ for directory in ['v04-p1-baseline-performance','v04-p1-performance']:
         tasks=[t for t in r.get('browserTasks',[]) if t['start']<f.get('raf',0) and t['start']+t['duration']>f.get('raf',0)-f['frame']]
         stalls.append({'frame':f,'overlappingBrowserTasks':tasks})
     performance.append({'name':directory+'/'+p.stem,'source':r.get('sourceCheckpoint'),'adapter':r['adapter'],'sampleFrames':len(frames),'fps':1000/frame['mean'] if frame else None,'frame':frame,'gpu':gpu,'stalls':stalls,'allocation':r.get('allocations'),'visibility':list(set(f['visibility'] for f in frames)),
-      'cpu':stats([f['cpu'] for f in frames]),'submit':stats([f['submitEnd']-f['submitStart'] for f in frames]),
+      'cpu':stats([f['cpu'] for f in frames]),'submit':stats([f['submitEnd']-f['submitStart'] for f in frames if 'submitEnd' in f and 'submitStart' in f]),
       'queryCompletionDelay':stats([v['readbackCompleted']-v['submitEnd'] for v in m if 'readbackCompleted' in v and 'submitEnd' in v]),
       'cacheAgeFrames':stats([f['cacheAgeFrames'] for f in frames if 'cacheAgeFrames' in f]),
       'probeAgeFrames':stats([f['probeAgeFrames'] for f in frames if 'probeAgeFrames' in f]),

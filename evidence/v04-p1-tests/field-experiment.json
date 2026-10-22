@@ -1,0 +1,62 @@
+{
+  "seed": 1307,
+  "points": 100000,
+  "domainMeters": 64000,
+  "grid": 256,
+  "mapSpacingMeters": 250.98039215686273,
+  "maxAbsoluteCoverageError": 0.002091702031607613,
+  "rmsCoverageError": 0.00021594226544982998,
+  "runs": [
+    {
+      "name": "analytic",
+      "ms": 11.832400000000007
+    },
+    {
+      "name": "bilinear256",
+      "ms": 12.720200000000006
+    },
+    {
+      "name": "analytic",
+      "ms": 9.842399999999998
+    },
+    {
+      "name": "bilinear256",
+      "ms": 12.747600000000006
+    },
+    {
+      "name": "analytic",
+      "ms": 17.539900000000003
+    },
+    {
+      "name": "bilinear256",
+      "ms": 2.7923000000000116
+    },
+    {
+      "name": "analytic",
+      "ms": 8.6267
+    },
+    {
+      "name": "bilinear256",
+      "ms": 3.6036
+    },
+    {
+      "name": "analytic",
+      "ms": 8.7406
+    },
+    {
+      "name": "bilinear256",
+      "ms": 3.4455999999999847
+    },
+    {
+      "name": "analytic",
+      "ms": 9.216700000000003
+    },
+    {
+      "name": "bilinear256",
+      "ms": 3.5511999999999944
+    }
+  ],
+  "checksum": 95710.19722374447,
+  "decision": "Analytic event selected: exact continuous support, no map upload/coordinate rebake. CPU timings are an implementation experiment, not GPU performance. A larger multi-event meteorological field may justify a map later.",
+  "limits": "One prescribed smooth regional event; no observed weather calibration."
+}

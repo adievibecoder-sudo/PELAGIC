@@ -1,0 +1,1162 @@
+{
+  "version": "0.4-phase1",
+  "sourceCheckpoint": "development",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": null
+  },
+  "backend": "native-webgpu",
+  "timestampQuery": true,
+  "settings": {
+    "windSpeed": 8,
+    "windDir": 118,
+    "fetchKm": 110,
+    "swellHs": 2,
+    "swellDir": 94,
+    "swellLength": 135,
+    "swellSpread": 48,
+    "choppy": 1.12,
+    "turbidity": 0.25,
+    "foam": 1,
+    "sunElev": 48,
+    "sunAzim": 4,
+    "exposure": 0.95,
+    "haze": 1.4,
+    "clouds": 0.32,
+    "veil": 0.1,
+    "bloom": 0.045,
+    "spray": 0.65,
+    "rain": 0,
+    "cloudDepth": 1.5,
+    "cloudType": 0,
+    "seed": 1307,
+    "quality": "Balanced",
+    "resolution": 1,
+    "adaptive": false,
+    "timeScale": 1,
+    "weatherRate": 1,
+    "seaRate": 60,
+    "astronomyRate": 0,
+    "environmentMode": "natural",
+    "frontEnabled": false,
+    "frontX": 18000,
+    "frontZ": 0,
+    "frontWidth": 20,
+    "frontHeading": 180,
+    "frontSpeed": 12,
+    "electrified": false,
+    "paused": false,
+    "cameraMode": "surface",
+    "astronomy": false,
+    "date": "2026-10-25",
+    "hour": 17,
+    "latitude": 32,
+    "longitude": -30,
+    "debug": 0,
+    "currentSpeed": 0.12,
+    "currentDir": 35,
+    "cameraSpeed": 6,
+    "fov": 58
+  },
+  "camera": {
+    "x": 0,
+    "y": 2.4,
+    "z": 0,
+    "yaw": 0,
+    "pitch": -0.09599310885968812,
+    "fovY": 1.0122909661567112,
+    "speed": 6
+  },
+  "simulationTime": 0.13333333333333333,
+  "frameIndex": 8,
+  "width": 960,
+  "height": 540,
+  "nodes": 712,
+  "errors": [],
+  "measurements": [],
+  "frameRecords": [],
+  "allocations": {
+    "liveBytes": 111953240,
+    "peakBytes": 114026840,
+    "allocations": [
+      {
+        "kind": "buffer",
+        "label": "sim ubo",
+        "bytes": 224
+      },
+      {
+        "kind": "buffer",
+        "label": "h0",
+        "bytes": 6291456
+      },
+      {
+        "kind": "buffer",
+        "label": "unit phase oscillators",
+        "bytes": 3145728
+      },
+      {
+        "kind": "buffer",
+        "label": "specA",
+        "bytes": 6291456
+      },
+      {
+        "kind": "buffer",
+        "label": "specB",
+        "bytes": 6291456
+      },
+      {
+        "kind": "buffer",
+        "label": "tmpA",
+        "bytes": 6291456
+      },
+      {
+        "kind": "buffer",
+        "label": "tmpB",
+        "bytes": 6291456
+      },
+      {
+        "kind": "texture",
+        "label": "disp",
+        "bytes": 4194288
+      },
+      {
+        "kind": "texture",
+        "label": "deriv",
+        "bytes": 4194288
+      },
+      {
+        "kind": "texture",
+        "label": "moments",
+        "bytes": 4194288
+      },
+      {
+        "kind": "texture",
+        "label": "previous displacement",
+        "bytes": 4194288
+      },
+      {
+        "kind": "texture",
+        "label": "periodic cloud morphology",
+        "bytes": 9586980
+      },
+      {
+        "kind": "texture",
+        "label": "foam detail",
+        "bytes": 1398100
+      },
+      {
+        "kind": "texture",
+        "label": "foam world 0",
+        "bytes": 5592400
+      },
+      {
+        "kind": "texture",
+        "label": "foam world 1",
+        "bytes": 5592400
+      },
+      {
+        "kind": "buffer",
+        "label": "foam ubo",
+        "bytes": 192
+      },
+      {
+        "kind": "buffer",
+        "label": "atmo ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "texture",
+        "label": "transmittance",
+        "bytes": 131072
+      },
+      {
+        "kind": "texture",
+        "label": "multiscatter",
+        "bytes": 8192
+      },
+      {
+        "kind": "texture",
+        "label": "solar and lunar skyview",
+        "bytes": 589824
+      },
+      {
+        "kind": "texture",
+        "label": "env cube",
+        "bytes": 1048560
+      },
+      {
+        "kind": "texture",
+        "label": "angular radiance staging",
+        "bytes": 1048560
+      },
+      {
+        "kind": "texture",
+        "label": "environment transmittance snapshot",
+        "bytes": 131072
+      },
+      {
+        "kind": "texture",
+        "label": "environment sky snapshot",
+        "bytes": 589824
+      },
+      {
+        "kind": "buffer",
+        "label": "environment state snapshot",
+        "bytes": 688
+      },
+      {
+        "kind": "texture",
+        "label": "hemispherical irradiance",
+        "bytes": 12288
+      },
+      {
+        "kind": "buffer",
+        "label": "frame ubo",
+        "bytes": 688
+      },
+      {
+        "kind": "buffer",
+        "label": "sun visibility",
+        "bytes": 16
+      },
+      {
+        "kind": "texture",
+        "label": "spatial cloud transmittance",
+        "bytes": 524288
+      },
+      {
+        "kind": "buffer",
+        "label": "spray and rain particles",
+        "bytes": 786432
+      },
+      {
+        "kind": "texture",
+        "label": "resolved Eulerian gravity height",
+        "bytes": 1398096
+      },
+      {
+        "kind": "texture",
+        "label": "resolved gravity-wave solar visibility",
+        "bytes": 1048576
+      },
+      {
+        "kind": "buffer",
+        "label": "probe out",
+        "bytes": 16
+      },
+      {
+        "kind": "texture",
+        "label": "curved near-plane medium",
+        "bytes": 73728
+      },
+      {
+        "kind": "buffer",
+        "label": "probe read",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "grid idx",
+        "bytes": 6912
+      },
+      {
+        "kind": "buffer",
+        "label": "instances",
+        "bytes": 131072
+      },
+      {
+        "kind": "buffer",
+        "label": "composite ubo",
+        "bytes": 32
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "ts resolve",
+        "bytes": 64
+      },
+      {
+        "kind": "buffer",
+        "label": "ts read",
+        "bytes": 64
+      },
+      {
+        "kind": "texture",
+        "label": "cloud radiance and extinction",
+        "bytes": 460800
+      },
+      {
+        "kind": "texture",
+        "label": "unlabelled",
+        "bytes": 16588800
+      },
+      {
+        "kind": "texture",
+        "label": "unlabelled",
+        "bytes": 8294400
+      },
+      {
+        "kind": "texture",
+        "label": "unlabelled",
+        "bytes": 4147200
+      },
+      {
+        "kind": "texture",
+        "label": "unlabelled",
+        "bytes": 1381232
+      }
+    ],
+    "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+  },
+  "environment": {
+    "schema": 1,
+    "seed": 1307,
+    "revision": 0,
+    "mode": "natural",
+    "clocks": {
+      "weather": 0,
+      "astronomy": 0,
+      "wave": 0.13333333333333333,
+      "exposure": 0.13333333333333333
+    },
+    "remainder": 0.13333333333333333,
+    "utcEpoch": 1792947600000,
+    "weather": {
+      "clouds": 0.32,
+      "veil": 0.1,
+      "haze": 1.4,
+      "rain": 0,
+      "cloudDepth": 1.5,
+      "cloudType": 0,
+      "windSpeed": 8,
+      "windDir": 118,
+      "weights": [
+        1,
+        0,
+        0
+      ]
+    },
+    "target": {
+      "clouds": 0.32,
+      "veil": 0.1,
+      "haze": 1.4,
+      "rain": 0,
+      "cloudDepth": 1.5,
+      "cloudType": 0,
+      "windSpeed": 8,
+      "windDir": 118,
+      "weights": [
+        1,
+        0,
+        0
+      ]
+    },
+    "sea": {
+      "windSpeed": 8,
+      "windDir": 118,
+      "fetchKm": 110,
+      "swellHs": 2,
+      "swellDir": 94,
+      "swellLength": 135
+    },
+    "swellTarget": {
+      "swellHs": 2,
+      "swellDir": 94,
+      "swellLength": 135
+    },
+    "fetchTarget": 110,
+    "drift": [
+      0,
+      0
+    ],
+    "front": {
+      "enabled": false,
+      "id": 1307,
+      "x": 18000,
+      "z": 0,
+      "width": 20000,
+      "length": 30000,
+      "speed": 12,
+      "heading": 180,
+      "electrified": false
+    }
+  },
+  "lightCache": {
+    "published": {
+      "version": 2,
+      "frame": 2,
+      "weather": 0,
+      "astronomy": 0,
+      "commandRevision": 0,
+      "camera": [
+        0,
+        2.4,
+        0
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "publishedFrame": 7
+    },
+    "history": [
+      {
+        "version": 1,
+        "frame": 1,
+        "weather": 0,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2.4,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 1
+      },
+      {
+        "version": 2,
+        "frame": 2,
+        "weather": 0,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2.4,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 7
+      }
+    ],
+    "units": "relative scene-linear RGB radiance / irradiance; not absolute SI calibrated",
+    "latency": "complete snapshot, six-frame angular build; direct shadow current frame"
+  },
+  "browserTasks": [
+    {
+      "type": "long-animation-frame",
+      "start": 1770.2000000029802,
+      "duration": 999.5999999940395,
+      "blockingDuration": 0,
+      "scripts": []
+    },
+    {
+      "type": "long-animation-frame",
+      "start": 2769.9000000059605,
+      "duration": 999.5999999940395,
+      "blockingDuration": 0,
+      "scripts": []
+    },
+    {
+      "type": "long-animation-frame",
+      "start": 4777.29999999702,
+      "duration": 1005.9000000059605,
+      "blockingDuration": 0,
+      "scripts": []
+    },
+    {
+      "type": "long-animation-frame",
+      "start": 5783.29999999702,
+      "duration": 1006.8000000119209,
+      "blockingDuration": 0,
+      "scripts": []
+    },
+    {
+      "type": "long-animation-frame",
+      "start": 6790.20000000298,
+      "duration": 1000,
+      "blockingDuration": 0,
+      "scripts": []
+    },
+    {
+      "type": "longtask",
+      "start": 7853.79999999702,
+      "duration": 147,
+      "blockingDuration": 0
+    },
+    {
+      "type": "longtask",
+      "start": 8043.100000008941,
+      "duration": 100,
+      "blockingDuration": 0
+    }
+  ],
+  "phase0": {
+    "query": {
+      "preset": "midday",
+      "shot": "compile.png",
+      "stage": "v04-p1-prototype",
+      "frames": "8",
+      "w": "960",
+      "h": "540",
+      "adaptive": "0",
+      "ui": "0",
+      "validate": "1"
+    },
+    "profile": false,
+    "note": "Experimental toggles are Phase 0 hypotheses, not accepted features."
+  },
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+  "foamPatternCalibration": {
+    "texels": 262144,
+    "checks": [
+      {
+        "requestedArea": 0.01,
+        "actualArea": 0.00858306884765625
+      },
+      {
+        "requestedArea": 0.05,
+        "actualArea": 0.04764556884765625
+      },
+      {
+        "requestedArea": 0.1,
+        "actualArea": 0.0986785888671875
+      },
+      {
+        "requestedArea": 0.25,
+        "actualArea": 0.2498779296875
+      },
+      {
+        "requestedArea": 0.5,
+        "actualArea": 0.5004425048828125
+      },
+      {
+        "requestedArea": 0.75,
+        "actualArea": 0.7501373291015625
+      },
+      {
+        "requestedArea": 0.9,
+        "actualArea": 0.9028854370117188
+      }
+    ],
+    "maxAbsoluteAreaError": 0.002885437011718728,
+    "scope": "Texture-texel threshold coverage only. Bilinear sampling, shading footprint and evolving foam density require separate validation."
+  },
+  "worldOrigin": [
+    0,
+    0
+  ],
+  "benchmarkStopReason": null,
+  "benchmarkWallSeconds": 3.78320000000298,
+  "surfaceProbe": {
+    "height": 1.2704391479492188,
+    "scope": "Asynchronous camera-point height; optical classification uses the current GPU near-plane map."
+  },
+  "timingMode": "queue-completion capture throughput",
+  "memoryEstimate": {
+    "renderTargetsMiB": 29.443359375,
+    "note": "Analytic lower bound for main MSAA/depth/HDR/bloom/cloud render targets only. Excludes simulation, driver alignment, browser compositor, and transient resources."
+  },
+  "spectral": {
+    "status": "PASS",
+    "cascades": [
+      {
+        "patchMetres": 1103,
+        "height": {
+          "mean": -3.765971996472217e-7,
+          "variance": 0.38771601565079356,
+          "min": -2.673828125,
+          "max": 2.248046875,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": 2.895376383094117e-8,
+          "variance": 0.0006922790116584115,
+          "min": -0.09808349609375,
+          "max": 0.091796875,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": 9.267751011066139e-10,
+          "variance": 0.002363971648692346,
+          "min": -0.1722412109375,
+          "max": 0.2005615234375,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.387991826137496,
+        "spectralInstantVariance": 0.3879898511640472,
+        "significantHeightInstant": 2.490673854685253,
+        "parsevalRelative": 0.0007057800930413528,
+        "slopeParsevalRelative": [
+          0.0007036172312117896,
+          0.0007008982975598338
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.0006927664540727025,
+          0.002365629714531918,
+          -0.0006654469894857356
+        ],
+        "momentMaxAbsoluteRounding": 0.000009000301361083984,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 211.3,
+        "height": {
+          "mean": -5.559995770454407e-7,
+          "variance": 0.0631753515264015,
+          "min": -0.90478515625,
+          "max": 0.88671875,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": 1.2679265637416393e-8,
+          "variance": 0.002738867728638255,
+          "min": -0.2210693359375,
+          "max": 0.2071533203125,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -5.110814527142793e-8,
+          "variance": 0.004339055908196317,
+          "min": -0.2529296875,
+          "max": 0.24169921875,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.06274823009283319,
+        "spectralInstantVariance": 0.0632198740809309,
+        "significantHeightInstant": 1.0053882953478341,
+        "parsevalRelative": 0.0007042493389405405,
+        "slopeParsevalRelative": [
+          0.0007006642952675665,
+          0.000701882661880979
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.002740788101001521,
+          0.004342103555397943,
+          -0.0007708431449747005
+        ],
+        "momentMaxAbsoluteRounding": 0.000048026442527770996,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 39.7,
+        "height": {
+          "mean": 5.00676833325997e-9,
+          "variance": 0.0024617671776142507,
+          "min": -0.1953125,
+          "max": 0.1845703125,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": 8.278493623947725e-8,
+          "variance": 0.003955759350406169,
+          "min": -0.255126953125,
+          "max": 0.243896484375,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -6.440677680075169e-8,
+          "variance": 0.004007059629289603,
+          "min": -0.24462890625,
+          "max": 0.252197265625,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.0024894625642015874,
+        "spectralInstantVariance": 0.002463483770682503,
+        "significantHeightInstant": 0.19846479496834699,
+        "parsevalRelative": 0.0006968152535369098,
+        "slopeParsevalRelative": [
+          0.0007089859333312588,
+          0.0006974229387314415
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.003958565917958166,
+          0.0040098561949809975,
+          -0.000004807047081110081
+        ],
+        "momentMaxAbsoluteRounding": 0.0001068115234375,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 7.43,
+        "height": {
+          "mean": 7.4214767664670944e-9,
+          "variance": 0.00008717341592552521,
+          "min": -0.031494140625,
+          "max": 0.034332275390625,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": 4.635330697055906e-8,
+          "variance": 0.003605192807918167,
+          "min": -0.21923828125,
+          "max": 0.2203369140625,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -5.963192961644381e-8,
+          "variance": 0.0035326505014799036,
+          "min": -0.2261962890625,
+          "max": 0.2109375,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.00008726803254767891,
+        "spectralInstantVariance": 0.0000872347717899258,
+        "significantHeightInstant": 0.03734668197856944,
+        "parsevalRelative": 0.0007033418342441341,
+        "slopeParsevalRelative": [
+          0.0007005768126285696,
+          0.0007013131119980289
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.0036077202931019637,
+          0.003535129734315193,
+          0.00017932709788266143
+        ],
+        "momentMaxAbsoluteRounding": 0.000046834349632263184,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 1.393,
+        "height": {
+          "mean": -7.130438461899757e-10,
+          "variance": 0.000002777087368713891,
+          "min": -0.005802154541015625,
+          "max": 0.00717926025390625,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": -1.337948560831137e-7,
+          "variance": 0.0039330047351062575,
+          "min": -0.228271484375,
+          "max": 0.2325439453125,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -8.029292075661942e-8,
+          "variance": 0.0040787373033873645,
+          "min": -0.2314453125,
+          "max": 0.2255859375,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.0000025482558865307594,
+        "spectralInstantVariance": 0.00000277904681588079,
+        "significantHeightInstant": 0.006665838124303819,
+        "parsevalRelative": 0.0007050788621844822,
+        "slopeParsevalRelative": [
+          0.0007013121207780534,
+          0.0007069858096000802
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.003935764934759538,
+          0.004081622952895199,
+          -0.00009869987983610456
+        ],
+        "momentMaxAbsoluteRounding": 0.0000457763671875,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 0.2617,
+        "height": {
+          "mean": 5.4569682106375694e-11,
+          "variance": 1.614516953707068e-7,
+          "min": -0.0015125274658203125,
+          "max": 0.0013294219970703125,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": -7.94570951256901e-8,
+          "variance": 0.005691268535683804,
+          "min": -0.322021484375,
+          "max": 0.28857421875,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -1.3528097042581066e-7,
+          "variance": 0.005605628009460325,
+          "min": -0.298583984375,
+          "max": 0.312744140625,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 1.6267769337722283e-7,
+        "spectralInstantVariance": 1.6156515058278926e-7,
+        "significantHeightInstant": 0.0016072420869089102,
+        "parsevalRelative": 0.0007022257688197032,
+        "slopeParsevalRelative": [
+          0.0007045917438915661,
+          0.0007019896308696781
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.005695281383926058,
+          0.005609565866532312,
+          0.00012642148911875363
+        ],
+        "momentMaxAbsoluteRounding": 0.0001068115234375,
+        "status": "PASS"
+      }
+    ],
+    "continuousSpectrum": {
+      "windM0": 0.21405573184045168,
+      "windSlopeVariance": 0.043334813259592965,
+      "swellM0": 0.25,
+      "windPeakPeriod": 5.972260463356036,
+      "combinedHs": 2.724865447952839,
+      "model": "JONSWAP / Elfouhaily hybrid; normalized band-limited swell"
+    },
+    "measuredIndependentCascadeHs": 2.693527787299916,
+    "slopeVarianceLinear": 0.04454347516991692,
+    "coxMunkReferenceAtUnconvertedU10": 0.043960000000000006,
+    "observationalStatus": "UNVERIFIED: one realization, linear slopes; Cox-Munk uses U12.5, not U10; no ensemble confidence interval.",
+    "whitecapStatus": "UNVERIFIED: no long-duration, area-weighted coverage observation.",
+    "tolerance": "Parseval <0.0015 includes binary16 storage; conjugate coefficients <1e-7. Zero NaN/Inf in sampled fields."
+  },
+  "foam": {
+    "layers": [
+      {
+        "layer": 0,
+        "meanDensity": 0.00007118215694390528,
+        "maxDensity": 0.3335726261138916,
+        "invalid": 0,
+        "densityThresholds": [
+          0.05,
+          0.2,
+          0.5
+        ],
+        "areaFractions": [
+          0.000461578369140625,
+          0.00003814697265625,
+          0
+        ]
+      },
+      {
+        "layer": 1,
+        "meanDensity": 0,
+        "maxDensity": 0,
+        "invalid": 0,
+        "densityThresholds": [
+          0.05,
+          0.2,
+          0.5
+        ],
+        "areaFractions": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "interpretation": "Simulation-memory density over uniform parameter-space texels, not observed projected optical whitecap coverage. A single instant cannot validate a wind-coverage fit."
+  },
+  "hdr": {
+    "status": "PASS",
+    "invalid": 0,
+    "negative": 0,
+    "max": 0.748046875,
+    "over60000": 0,
+    "pixels": 518400,
+    "storageDivisor": 32,
+    "radianceBands": [
+      {
+        "verticalThird": 0,
+        "meanRGB": [
+          0.5285650232103136,
+          0.6825184341713234,
+          0.9678754707618996
+        ],
+        "meanLuminance": 0.6703907170428277,
+        "geometricMeanLuminance": 0.5875238017144142
+      },
+      {
+        "verticalThird": 1,
+        "meanRGB": [
+          0.3845641616538719,
+          0.469412309328715,
+          0.5691306131857413
+        ],
+        "meanLuminance": 0.4585732546715213,
+        "geometricMeanLuminance": 0.30790639333281183
+      },
+      {
+        "verticalThird": 2,
+        "meanRGB": [
+          0.2730133791102303,
+          0.2868595352879277,
+          0.3270343706342909
+        ],
+        "meanLuminance": 0.28681646559656215,
+        "geometricMeanLuminance": 0.11839059984300938
+      }
+    ],
+    "scope": "All RGB samples in pre-exposed resolved linear HDR, before bloom and tone mapping. Bands undo storage divisor, retain renderer-relative radiance units; no sky/ocean segmentation."
+  },
+  "light": {
+    "shadow": {
+      "width": 256,
+      "height": 256,
+      "means": [
+        [
+          0.7941021186134094,
+          1,
+          0,
+          0
+        ]
+      ],
+      "centres": [
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      "invalid": 0
+    },
+    "irradiance": {
+      "width": 16,
+      "height": 16,
+      "means": [
+        [
+          0.6277751922607422,
+          0.8656644821166992,
+          1.3202285766601562,
+          1
+        ],
+        [
+          0.6115703582763672,
+          0.8318977355957031,
+          1.2691402435302734,
+          1
+        ],
+        [
+          0.7401027679443359,
+          1.0558052062988281,
+          1.7640495300292969,
+          1
+        ],
+        [
+          0.2785458564758301,
+          0.3698999881744385,
+          0.5140933990478516,
+          1
+        ],
+        [
+          0.5421371459960938,
+          0.7501125335693359,
+          1.1613349914550781,
+          1
+        ],
+        [
+          0.7994499206542969,
+          1.0574665069580078,
+          1.5404605865478516,
+          1
+        ]
+      ],
+      "centres": [
+        [
+          0.65673828125,
+          0.89697265625,
+          1.3388671875,
+          1
+        ],
+        [
+          0.63134765625,
+          0.83447265625,
+          1.234375,
+          1
+        ],
+        [
+          0.65771484375,
+          0.95166015625,
+          1.69140625,
+          1
+        ],
+        [
+          0.0810546875,
+          0.11004638671875,
+          0.1656494140625,
+          1
+        ],
+        [
+          0.58544921875,
+          0.7880859375,
+          1.1728515625,
+          1
+        ],
+        [
+          0.90869140625,
+          1.1640625,
+          1.626953125,
+          1
+        ]
+      ],
+      "invalid": 0
+    },
+    "angular": {
+      "width": 32,
+      "height": 32,
+      "means": [
+        [
+          0.16483347676694393,
+          0.25037671625614166,
+          0.4160805568099022,
+          1
+        ],
+        [
+          0.23498142510652542,
+          0.29539448767900467,
+          0.42018526792526245,
+          1
+        ],
+        [
+          0.1137637197971344,
+          0.2076791524887085,
+          0.45075178146362305,
+          1
+        ],
+        [
+          0.0028698211535811424,
+          0.00524812750518322,
+          0.011388882994651794,
+          1
+        ],
+        [
+          0.2069364283233881,
+          0.2721264436841011,
+          0.4012661874294281,
+          1
+        ],
+        [
+          0.3331929184496403,
+          0.4182223230600357,
+          0.5760268718004227,
+          1
+        ]
+      ],
+      "centres": [
+        [
+          0.468505859375,
+          0.60693359375,
+          0.728515625,
+          1
+        ],
+        [
+          0.455078125,
+          0.57958984375,
+          0.68701171875,
+          1
+        ],
+        [
+          0.071044921875,
+          0.15283203125,
+          0.36572265625,
+          1
+        ],
+        [
+          0.0015277862548828125,
+          0.00324249267578125,
+          0.007686614990234375,
+          1
+        ],
+        [
+          0.51904296875,
+          0.6708984375,
+          0.7822265625,
+          1
+        ],
+        [
+          0.73193359375,
+          0.90478515625,
+          1.005859375,
+          1
+        ]
+      ],
+      "invalid": 0
+    },
+    "convention": "shadow RG direct Sun/Moon transmittance; B supported precipitation; A regional event. Cubes +X -X +Y -Y +Z -Z. Relative linear RGB."
+  }
+}
