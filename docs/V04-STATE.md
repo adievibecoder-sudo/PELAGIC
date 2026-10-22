@@ -6,7 +6,7 @@
 
 Balanced baseline/candidate FPS: daylight2 m22.39/20.41; daylight50 m18.63/15.41; low-Sun2 m21.86/20.07; low-Sun50 m29.86/26.62. Cinematic daylight2 m1.89/1.75, mean GPU530.08/585.74 ms. No real-time target achieved. Fresh ~1 s cadence isolated to minimized Chrome; restoring it resolves that run. Historical intermittent stalls remain UNVERIFIED; Cinematic has >1 s outliers too. Allocation payload is195.10/271.93 MiB by preset, not residency; active desktop/thermal limits disclosed.
 
-Nine unexplained old evidence differences remain untouched and unstaged;24 originals still match preservation copies. New evidence uses exclusive writes. Source/evidence publication verification is recorded separately in the Milestone A handoff directory; no frozen branch or tag may move.
+Nine unexplained old evidence differences remain untouched and unstaged;24 originals still match preservation copies. New evidence uses exclusive writes. Published evidence checkpoint `79505007b6804433fadea23276e082998b2daf83`:217 evidence hashes sealed;96 unique LFS objects/101 media paths freshly downloaded and SHA-256 verified. Remote main/0.3/release refs unchanged. Proof: `evidence/v04-ma-handoff-01/publication.json`. No visual acceptance or ruleset protection implied.
 
 Hardware: current Chrome GPU PID18756 appears on the RTX 3050 in `v04-ma-hardware-20261022`; application identifies native WebGPU NVIDIA/Ampere. Allocation payload is not residency. Supplied reference clip reviewed as 2 fps frames, not full perceptual playback: extension file-selection permission blocked; native VLC app approval timed out. Do not bypass either gate or claim complete playback.
 

@@ -108,6 +108,8 @@ Tracked renderer buffer/texture payload: **195.10 MiB Balanced**, **271.93 MiB C
 
 Nine unexpected old evidence differences remain untouched and unstaged. All 24 current files still match their copies in `v04-ma-preservation-20261022`. The published originals remain in Git/LFS. Hash/mtime/source inspection established recapture differences, not the identity of the initiating browser. No restoration, cleaning or replacement is required for this checkpoint.
 
+Development evidence checkpoint **`79505007b6804433fadea23276e082998b2daf83` is published** to `development/pelagic-0.4`. `v04-ma-handoff-01/manifest.json` seals217 evidence files (756,131,438 bytes) plus source hashes; a post-seal read found zero changed hashes. `v04-ma-handoff-01/publication.json` independently verifies the remote checkpoint, unchanged main/0.3/release refs and a fresh download of all96 unique Milestone A LFS objects (101 media paths,657,305,060 bytes), all SHA-256 matches. The report/proof follow-up commit adds documentation only. Raw Windows evidence retains its original CRLF/whitespace bytes. Publication integrity does not confer visual acceptance or GitHub ruleset protection.
+
 No engine migration, scenery, later-milestone VFX or waterline reconstruction. Next work requires owner review: retain/refine/reject this cloud trial; then choose the next bounded Milestone A intervention. Recommended investigation is displaced wave geometry versus filtered normals/roughness under the same four views, with a separate cloud-integration cost/quality experiment if this morphology remains worth pursuing. B/C and the full 48-view final acceptance remain pending, not waived.
 
 ## Reproduce and inspect
