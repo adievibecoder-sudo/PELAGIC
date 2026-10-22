@@ -1,8 +1,9 @@
 export const REGIONAL_WEATHER=/* wgsl */`
 fn regionalWeight(cameraRelativeKm:vec2f)->f32 {
   let d=cameraRelativeKm-F.front.xy;
-  let along=dot(d,F.frontControl.xy)/max(F.front.z,1.0);
-  let across=dot(d,vec2f(-F.frontControl.y,F.frontControl.x))/max(F.front.w,1.0);
+  // Validated axes are half widths, in km; the 1 km UI width has a 0.5 km axis.
+  let along=dot(d,F.frontControl.xy)/max(F.front.z,0.5);
+  let across=dot(d,vec2f(-F.frontControl.y,F.frontControl.x))/max(F.front.w,0.5);
   return (1.0-smoothstep(0.55,1.0,length(vec2f(along,across))))*F.frontControl.z;
 }
 fn regionalCoverage(p:vec2f)->f32{return mix(F.regional.x,0.98,regionalWeight(p));}
