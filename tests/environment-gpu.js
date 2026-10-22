@@ -4,13 +4,14 @@ import {FRAME_BYTES,FRAME_FLOATS} from '../src/spatial-origin.js';
 import {DEFAULTS} from '../src/settings.js';
 import {createEnvironment,sampleEnvironment,environmentUniforms} from '../src/environment.js';
 const result=document.querySelector('#result');
-document.querySelector('#run').onclick=async()=>{
+const params=new URLSearchParams(location.search);
+async function run(){
  let device;
  try{
   const adapter=await navigator.gpu?.requestAdapter({powerPreference:'high-performance'});if(!adapter)throw Error('Native WebGPU required');
   device=await adapter.requestDevice();const errors=[];device.onuncapturederror=e=>errors.push(e.error.message);
   const identity={vendor:adapter.info.vendor,architecture:adapter.info.architecture,device:adapter.info.device,description:adapter.info.description};
-  if(/software|swiftshader|llvmpipe/i.test(JSON.stringify(identity)))throw Error('Software adapter rejected');
+  if(adapter.isFallbackAdapter===true||/software|swiftshader|llvmpipe|lavapipe|warp|microsoft basic render|softpipe/i.test(JSON.stringify(identity)))throw Error('Software adapter rejected');
   const source=FRAME_WGSL+`@group(0) @binding(0) var<uniform> F:Frame;
    @group(0) @binding(1) var<storage,read> points:array<vec2f>;
    @group(0) @binding(2) var<storage,read_write> results:array<vec4f>;`+REGIONAL_WEATHER+`
@@ -33,8 +34,12 @@ document.querySelector('#run').onclick=async()=>{
    // Worst-case f32 kilometre cancellation at 1000 km / 20 km envelope < 2e-5.
    checks.push({cameraX,count,maxAbsoluteError:maxError,tolerance:2e-5,invalid,status:maxError<2e-5&&!invalid?'PASS':'FAIL'});
   }
-  const report={adapter:identity,backend:'native-webgpu',checks,errors,status:checks.every(c=>c.status==='PASS')&&!errors.length?'PASS':'FAIL'};
+  const report={time:new Date().toISOString(),sourceCheckpoint:params.get('revision')||'UNSPECIFIED',userAgent:navigator.userAgent,adapter:identity,backend:'native-webgpu',checks,errors,status:checks.every(c=>c.status==='PASS')&&!errors.length?'PASS':'FAIL'};
   result.textContent=JSON.stringify(report,null,2);document.title='ENVIRONMENT TESTS '+report.status;
-  await fetch('/__evidence?stage=v04-p1-tests&name=environment-gpu.json',{method:'POST',body:JSON.stringify(report,null,2)});
+  const stage=encodeURIComponent(params.get('stage')||'v04-p1-tests');
+  const response=await fetch('/__evidence?stage='+stage+'&name=environment-gpu.json',{method:'POST',body:JSON.stringify(report,null,2)});
+  if(!response.ok)throw Error('Evidence save failed: HTTP '+response.status);
  }catch(e){result.textContent=e.stack;document.title='ENVIRONMENT TESTS FAIL';}finally{device?.destroy();}
-};
+}
+document.querySelector('#run').onclick=run;
+if(params.get('auto')==='1')run();

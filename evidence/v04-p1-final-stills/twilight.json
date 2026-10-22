@@ -1,0 +1,5283 @@
+{
+  "version": "0.4-phase1",
+  "sourceCheckpoint": "b6349d3",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": null
+  },
+  "backend": "native-webgpu",
+  "timestampQuery": true,
+  "settings": {
+    "windSpeed": 5,
+    "windDir": 118,
+    "fetchKm": 65,
+    "swellHs": 1.5,
+    "swellDir": 94,
+    "swellLength": 150,
+    "swellSpread": 48,
+    "choppy": 1.05,
+    "turbidity": 0.25,
+    "foam": 1,
+    "sunElev": -5,
+    "sunAzim": 4,
+    "exposure": 4,
+    "haze": 2,
+    "clouds": 0.25,
+    "veil": 0.18,
+    "bloom": 0.045,
+    "spray": 0.3,
+    "rain": 0,
+    "cloudDepth": 1.5,
+    "cloudType": 0,
+    "seed": 1307,
+    "quality": "Balanced",
+    "resolution": 1,
+    "adaptive": false,
+    "timeScale": 1,
+    "weatherRate": 1,
+    "seaRate": 60,
+    "astronomyRate": 0,
+    "environmentMode": "natural",
+    "frontEnabled": false,
+    "frontX": 18000,
+    "frontZ": 0,
+    "frontWidth": 20,
+    "frontHeading": 180,
+    "frontSpeed": 12,
+    "electrified": false,
+    "paused": false,
+    "cameraMode": "free",
+    "astronomy": false,
+    "date": "2026-10-25",
+    "hour": 17,
+    "latitude": 32,
+    "longitude": -30,
+    "debug": 0,
+    "currentSpeed": 0.12,
+    "currentDir": 35,
+    "cameraSpeed": 6,
+    "fov": 58
+  },
+  "camera": {
+    "x": 0,
+    "y": 2,
+    "z": 0,
+    "yaw": 0.06981317007977318,
+    "pitch": -0.09599310885968812,
+    "fovY": 1.0122909661567112,
+    "speed": 6
+  },
+  "simulationTime": 21.666666666666572,
+  "frameIndex": 100,
+  "width": 1920,
+  "height": 1080,
+  "nodes": 712,
+  "errors": [],
+  "measurements": [
+    {
+      "gpu": 40.435712,
+      "simulation": 0.98304,
+      "atmosphere": 20.97152,
+      "surface": 17.760256,
+      "post": 0.32768,
+      "skyLUT": 0.196608,
+      "cloudScreen": 16.580608,
+      "cloudShadow": 0.131072,
+      "environment": 4.063232,
+      "irradiance": 0,
+      "transparent": 0,
+      "id": 32,
+      "submitEnd": 1724.7000000001863,
+      "cpu": 0.40000000037252903,
+      "frame": 44,
+      "width": 1920,
+      "height": 1080,
+      "readbackCompleted": 1768.7999999998137
+    },
+    {
+      "gpu": 39.64928,
+      "simulation": 1.245184,
+      "atmosphere": 19.857408,
+      "surface": 17.760256,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 16.318464,
+      "cloudShadow": 0.131072,
+      "environment": 3.2768,
+      "irradiance": 0,
+      "transparent": 0,
+      "id": 40,
+      "submitEnd": 2077.2000000001863,
+      "cpu": 0.40000000037252903,
+      "frame": 44.1999999997206,
+      "width": 1920,
+      "height": 1080,
+      "readbackCompleted": 2119.100000000093
+    },
+    {
+      "gpu": 41.28768,
+      "simulation": 1.31072,
+      "atmosphere": 21.233664,
+      "surface": 18.087936,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 16.05632,
+      "cloudShadow": 0.131072,
+      "environment": 4.9152,
+      "irradiance": 0,
+      "transparent": 0,
+      "id": 48,
+      "submitEnd": 2424.100000000093,
+      "cpu": 0.39999999990686774,
+      "frame": 42.200000000186265,
+      "width": 1920,
+      "height": 1080,
+      "readbackCompleted": 2468.100000000093
+    },
+    {
+      "gpu": 40.828928,
+      "simulation": 1.048576,
+      "atmosphere": 21.233664,
+      "surface": 17.760256,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 16.908288,
+      "cloudShadow": 0.065536,
+      "environment": 4.063232,
+      "irradiance": 0,
+      "transparent": 0.065536,
+      "id": 56,
+      "submitEnd": 2776.2000000001863,
+      "cpu": 0.3000000002793968,
+      "frame": 45.10000000009313,
+      "width": 1920,
+      "height": 1080,
+      "readbackCompleted": 2820.2999999998137
+    },
+    {
+      "gpu": 40.108032,
+      "simulation": 1.245184,
+      "atmosphere": 19.922944,
+      "surface": 18.219008,
+      "post": 0.393216,
+      "skyLUT": 0.196608,
+      "cloudScreen": 16.318464,
+      "cloudShadow": 0.131072,
+      "environment": 3.2768,
+      "irradiance": 0,
+      "transparent": 0,
+      "id": 64,
+      "submitEnd": 3127.2999999998137,
+      "cpu": 0.5,
+      "frame": 43.59999999962747,
+      "width": 1920,
+      "height": 1080,
+      "readbackCompleted": 3170.600000000093
+    },
+    {
+      "gpu": 41.680896,
+      "simulation": 1.048576,
+      "atmosphere": 22.216704,
+      "surface": 17.69472,
+      "post": 0.393216,
+      "skyLUT": 0.196608,
+      "cloudScreen": 17.03936,
+      "cloudShadow": 0.131072,
+      "environment": 4.849664,
+      "irradiance": 0,
+      "transparent": 0,
+      "id": 72,
+      "submitEnd": 3479.600000000093,
+      "cpu": 0.5,
+      "frame": 45.10000000009313,
+      "width": 1920,
+      "height": 1080,
+      "readbackCompleted": 3523.7000000001863
+    },
+    {
+      "gpu": 41.28768,
+      "simulation": 1.048576,
+      "atmosphere": 21.561344,
+      "surface": 18.0224,
+      "post": 0.393216,
+      "skyLUT": 0.196608,
+      "cloudScreen": 17.104896,
+      "cloudShadow": 0.131072,
+      "environment": 4.128768,
+      "irradiance": 0,
+      "transparent": 0,
+      "id": 80,
+      "submitEnd": 3833.7000000001863,
+      "cpu": 0.5,
+      "frame": 44.700000000186265,
+      "width": 1920,
+      "height": 1080,
+      "readbackCompleted": 3877.2999999998137
+    },
+    {
+      "gpu": 40.239104,
+      "simulation": 1.31072,
+      "atmosphere": 19.98848,
+      "surface": 18.219008,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 16.384,
+      "cloudShadow": 0.131072,
+      "environment": 3.342336,
+      "irradiance": 0,
+      "transparent": 0,
+      "id": 88,
+      "submitEnd": 4189.299999999814,
+      "cpu": 0.39999999990686774,
+      "frame": 44.1999999997206,
+      "width": 1920,
+      "height": 1080,
+      "readbackCompleted": 4232.299999999814
+    },
+    {
+      "gpu": 41.353216,
+      "simulation": 1.245184,
+      "atmosphere": 21.364736,
+      "surface": 18.087936,
+      "post": 0.393216,
+      "skyLUT": 0.131072,
+      "cloudScreen": 16.187392,
+      "cloudShadow": 0.131072,
+      "environment": 4.9152,
+      "irradiance": 0,
+      "transparent": 0,
+      "id": 96,
+      "submitEnd": 4538.600000000093,
+      "cpu": 0.39999999990686774,
+      "frame": 41.90000000037253,
+      "width": 1920,
+      "height": 1080,
+      "readbackCompleted": 4582.799999999814
+    }
+  ],
+  "frameRecords": [
+    {
+      "id": 31,
+      "raf": 1680.2999999998137,
+      "cpuStart": 1680.2999999998137,
+      "submitStart": 1680.7000000001863,
+      "submitEnd": 1680.7000000001863,
+      "frame": 44.39999999990687,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible",
+      "time": 20.516666666666637,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 6,
+      "cacheAgeFrames": 5,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.516666666666637,
+          "exposure": 0.5166666666666666
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.11154986172914505
+    },
+    {
+      "id": 32,
+      "raf": 1724.2999999998137,
+      "cpuStart": 1724.2999999998137,
+      "submitStart": 1724.7000000001863,
+      "submitEnd": 1724.7000000001863,
+      "frame": 44,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible",
+      "time": 20.533333333333303,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 6,
+      "cacheAgeFrames": 6,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.533333333333303,
+          "exposure": 0.5333333333333333
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.11154986172914505
+    },
+    {
+      "id": 33,
+      "raf": 1768.7999999998137,
+      "cpuStart": 1768.7999999998137,
+      "submitStart": 1769.2000000001863,
+      "submitEnd": 1769.2000000001863,
+      "frame": 44.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible",
+      "time": 20.54999999999997,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 6,
+      "cacheAgeFrames": 7,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.54999999999997,
+          "exposure": 0.55
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.13951396942138672
+    },
+    {
+      "id": 34,
+      "raf": 1815.1000000000931,
+      "cpuStart": 1815.1000000000931,
+      "submitStart": 1815.3999999999069,
+      "submitEnd": 1815.3999999999069,
+      "frame": 46.3000000002794,
+      "cpu": 0.2999999998137355,
+      "visibility": "visible",
+      "time": 20.566666666666634,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 6,
+      "cacheAgeFrames": 8,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.566666666666634,
+          "exposure": 0.5666666666666668
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.13951396942138672
+    },
+    {
+      "id": 35,
+      "raf": 1858.2999999998137,
+      "cpuStart": 1858.2999999998137,
+      "submitStart": 1858.8999999999069,
+      "submitEnd": 1858.8999999999069,
+      "frame": 43.1999999997206,
+      "cpu": 0.6000000000931323,
+      "visibility": "visible",
+      "time": 20.5833333333333,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 6,
+      "cacheAgeFrames": 9,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.5833333333333,
+          "exposure": 0.5833333333333335
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.13951396942138672
+    },
+    {
+      "id": 36,
+      "raf": 1901.2000000001863,
+      "cpuStart": 1901.2000000001863,
+      "submitStart": 1901.5,
+      "submitEnd": 1901.6000000000931,
+      "frame": 42.90000000037253,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 20.599999999999966,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 6,
+      "cacheAgeFrames": 10,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.599999999999966,
+          "exposure": 0.6000000000000002
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.13951396942138672
+    },
+    {
+      "id": 37,
+      "raf": 1944.3999999999069,
+      "cpuStart": 1944.3999999999069,
+      "submitStart": 1944.7999999998137,
+      "submitEnd": 1944.8999999999069,
+      "frame": 43.1999999997206,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.61666666666663,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 7,
+      "cacheAgeFrames": 5,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.61666666666663,
+          "exposure": 0.6166666666666669
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.13951396942138672
+    },
+    {
+      "id": 38,
+      "raf": 1989.2000000001863,
+      "cpuStart": 1989.2000000001863,
+      "submitStart": 1989.6000000000931,
+      "submitEnd": 1989.6000000000931,
+      "frame": 44.8000000002794,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 20.633333333333297,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 7,
+      "cacheAgeFrames": 6,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.633333333333297,
+          "exposure": 0.6333333333333336
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.13951396942138672
+    },
+    {
+      "id": 39,
+      "raf": 2032.6000000000931,
+      "cpuStart": 2032.6000000000931,
+      "submitStart": 2033,
+      "submitEnd": 2033,
+      "frame": 43.39999999990687,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 20.649999999999963,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 7,
+      "cacheAgeFrames": 7,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.649999999999963,
+          "exposure": 0.6500000000000004
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.13951396942138672
+    },
+    {
+      "id": 40,
+      "raf": 2076.7999999998137,
+      "cpuStart": 2076.7999999998137,
+      "submitStart": 2077.2000000001863,
+      "submitEnd": 2077.2000000001863,
+      "frame": 44.1999999997206,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible",
+      "time": 20.66666666666663,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 7,
+      "cacheAgeFrames": 8,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.66666666666663,
+          "exposure": 0.6666666666666671
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.13951396942138672
+    },
+    {
+      "id": 41,
+      "raf": 2119.100000000093,
+      "cpuStart": 2119.100000000093,
+      "submitStart": 2119.5,
+      "submitEnd": 2119.5,
+      "frame": 42.3000000002794,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 20.683333333333294,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 7,
+      "cacheAgeFrames": 9,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.683333333333294,
+          "exposure": 0.6833333333333338
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.1384708732366562
+    },
+    {
+      "id": 42,
+      "raf": 2161.7999999998137,
+      "cpuStart": 2161.7999999998137,
+      "submitStart": 2162.2999999998137,
+      "submitEnd": 2162.2999999998137,
+      "frame": 42.6999999997206,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.69999999999996,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 7,
+      "cacheAgeFrames": 10,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.69999999999996,
+          "exposure": 0.7000000000000005
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.1384708732366562
+    },
+    {
+      "id": 43,
+      "raf": 2205.7999999998137,
+      "cpuStart": 2205.7999999998137,
+      "submitStart": 2206.2000000001863,
+      "submitEnd": 2206.2000000001863,
+      "frame": 44,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible",
+      "time": 20.716666666666626,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 8,
+      "cacheAgeFrames": 5,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.716666666666626,
+          "exposure": 0.7166666666666672
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.1384708732366562
+    },
+    {
+      "id": 44,
+      "raf": 2250.2000000001863,
+      "cpuStart": 2250.2000000001863,
+      "submitStart": 2250.7999999998137,
+      "submitEnd": 2250.7999999998137,
+      "frame": 44.40000000037253,
+      "cpu": 0.599999999627471,
+      "visibility": "visible",
+      "time": 20.73333333333329,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 8,
+      "cacheAgeFrames": 6,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.73333333333329,
+          "exposure": 0.733333333333334
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.1384708732366562
+    },
+    {
+      "id": 45,
+      "raf": 2293.899999999907,
+      "cpuStart": 2293.899999999907,
+      "submitStart": 2294.399999999907,
+      "submitEnd": 2294.399999999907,
+      "frame": 43.6999999997206,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.749999999999957,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 8,
+      "cacheAgeFrames": 7,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.749999999999957,
+          "exposure": 0.7500000000000007
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.1384708732366562
+    },
+    {
+      "id": 46,
+      "raf": 2338.2000000001863,
+      "cpuStart": 2338.2000000001863,
+      "submitStart": 2338.7000000001863,
+      "submitEnd": 2338.7000000001863,
+      "frame": 44.3000000002794,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.766666666666623,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 8,
+      "cacheAgeFrames": 8,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.766666666666623,
+          "exposure": 0.7666666666666674
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.1384708732366562
+    },
+    {
+      "id": 47,
+      "raf": 2381.5,
+      "cpuStart": 2381.5,
+      "submitStart": 2381.899999999907,
+      "submitEnd": 2382,
+      "frame": 43.299999999813735,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.78333333333329,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 8,
+      "cacheAgeFrames": 9,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.78333333333329,
+          "exposure": 0.7833333333333341
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.1384708732366562
+    },
+    {
+      "id": 48,
+      "raf": 2423.7000000001863,
+      "cpuStart": 2423.7000000001863,
+      "submitStart": 2424.100000000093,
+      "submitEnd": 2424.100000000093,
+      "frame": 42.200000000186265,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 20.799999999999955,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 8,
+      "cacheAgeFrames": 10,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.799999999999955,
+          "exposure": 0.8000000000000008
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.1384708732366562
+    },
+    {
+      "id": 49,
+      "raf": 2468.100000000093,
+      "cpuStart": 2468.100000000093,
+      "submitStart": 2468.600000000093,
+      "submitEnd": 2468.7000000001863,
+      "frame": 44.39999999990687,
+      "cpu": 0.6000000000931323,
+      "visibility": "visible",
+      "time": 20.81666666666662,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 9,
+      "cacheAgeFrames": 5,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.81666666666662,
+          "exposure": 0.8166666666666675
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.13795462250709534
+    },
+    {
+      "id": 50,
+      "raf": 2512.7999999998137,
+      "cpuStart": 2512.7999999998137,
+      "submitStart": 2513.2999999998137,
+      "submitEnd": 2513.2999999998137,
+      "frame": 44.6999999997206,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.833333333333286,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 9,
+      "cacheAgeFrames": 6,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.833333333333286,
+          "exposure": 0.8333333333333343
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.13795462250709534
+    },
+    {
+      "id": 51,
+      "raf": 2557,
+      "cpuStart": 2557,
+      "submitStart": 2557.399999999907,
+      "submitEnd": 2557.399999999907,
+      "frame": 44.200000000186265,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 20.84999999999995,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 9,
+      "cacheAgeFrames": 7,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.84999999999995,
+          "exposure": 0.850000000000001
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.13795462250709534
+    },
+    {
+      "id": 52,
+      "raf": 2601.100000000093,
+      "cpuStart": 2601.100000000093,
+      "submitStart": 2601.600000000093,
+      "submitEnd": 2601.600000000093,
+      "frame": 44.10000000009313,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.866666666666617,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 9,
+      "cacheAgeFrames": 8,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.866666666666617,
+          "exposure": 0.8666666666666677
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.13795462250709534
+    },
+    {
+      "id": 53,
+      "raf": 2644,
+      "cpuStart": 2644,
+      "submitStart": 2644.399999999907,
+      "submitEnd": 2644.399999999907,
+      "frame": 42.89999999990687,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 20.883333333333283,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 9,
+      "cacheAgeFrames": 9,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.883333333333283,
+          "exposure": 0.8833333333333344
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.13795462250709534
+    },
+    {
+      "id": 54,
+      "raf": 2687.2999999998137,
+      "cpuStart": 2687.2999999998137,
+      "submitStart": 2687.600000000093,
+      "submitEnd": 2687.600000000093,
+      "frame": 43.299999999813735,
+      "cpu": 0.3000000002793968,
+      "visibility": "visible",
+      "time": 20.89999999999995,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 9,
+      "cacheAgeFrames": 10,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.89999999999995,
+          "exposure": 0.9000000000000011
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.13795462250709534
+    },
+    {
+      "id": 55,
+      "raf": 2730.7999999998137,
+      "cpuStart": 2730.7999999998137,
+      "submitStart": 2731.2999999998137,
+      "submitEnd": 2731.399999999907,
+      "frame": 43.5,
+      "cpu": 0.6000000000931323,
+      "visibility": "visible",
+      "time": 20.916666666666615,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 10,
+      "cacheAgeFrames": 5,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.916666666666615,
+          "exposure": 0.9166666666666679
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.13795462250709534
+    },
+    {
+      "id": 56,
+      "raf": 2775.899999999907,
+      "cpuStart": 2775.899999999907,
+      "submitStart": 2776.2000000001863,
+      "submitEnd": 2776.2000000001863,
+      "frame": 45.10000000009313,
+      "cpu": 0.3000000002793968,
+      "visibility": "visible",
+      "time": 20.93333333333328,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 10,
+      "cacheAgeFrames": 6,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.93333333333328,
+          "exposure": 0.9333333333333346
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.13795462250709534
+    },
+    {
+      "id": 57,
+      "raf": 2820.2999999998137,
+      "cpuStart": 2820.2999999998137,
+      "submitStart": 2820.7000000001863,
+      "submitEnd": 2820.7999999998137,
+      "frame": 44.39999999990687,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.949999999999946,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 10,
+      "cacheAgeFrames": 7,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.949999999999946,
+          "exposure": 0.9500000000000013
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.15305618941783905
+    },
+    {
+      "id": 58,
+      "raf": 2863.2000000001863,
+      "cpuStart": 2863.2000000001863,
+      "submitStart": 2863.600000000093,
+      "submitEnd": 2863.600000000093,
+      "frame": 42.90000000037253,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 20.96666666666661,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 10,
+      "cacheAgeFrames": 8,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.96666666666661,
+          "exposure": 0.966666666666668
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.15305618941783905
+    },
+    {
+      "id": 59,
+      "raf": 2907.600000000093,
+      "cpuStart": 2907.600000000093,
+      "submitStart": 2908.100000000093,
+      "submitEnd": 2908.100000000093,
+      "frame": 44.39999999990687,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.983333333333277,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 10,
+      "cacheAgeFrames": 9,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 20,
+          "astronomy": 0,
+          "wave": 20.983333333333277,
+          "exposure": 0.9833333333333347
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.15305618941783905
+    },
+    {
+      "id": 60,
+      "raf": 2951.2999999998137,
+      "cpuStart": 2951.2999999998137,
+      "submitStart": 2951.7999999998137,
+      "submitEnd": 2951.7999999998137,
+      "frame": 43.6999999997206,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 20.999999999999943,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 10,
+      "cacheAgeFrames": 10,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 20.999999999999943,
+          "exposure": 1.0000000000000013
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.15305618941783905
+    },
+    {
+      "id": 61,
+      "raf": 2995.2000000001863,
+      "cpuStart": 2995.2000000001863,
+      "submitStart": 2995.7000000001863,
+      "submitEnd": 2995.7000000001863,
+      "frame": 43.90000000037253,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.01666666666661,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 11,
+      "cacheAgeFrames": 5,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.01666666666661,
+          "exposure": 1.016666666666668
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.15305618941783905
+    },
+    {
+      "id": 62,
+      "raf": 3040.399999999907,
+      "cpuStart": 3040.399999999907,
+      "submitStart": 3040.7999999998137,
+      "submitEnd": 3040.899999999907,
+      "frame": 45.1999999997206,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.033333333333275,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 11,
+      "cacheAgeFrames": 6,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.033333333333275,
+          "exposure": 1.0333333333333345
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.15305618941783905
+    },
+    {
+      "id": 63,
+      "raf": 3083.2000000001863,
+      "cpuStart": 3083.2000000001863,
+      "submitStart": 3083.7000000001863,
+      "submitEnd": 3083.7000000001863,
+      "frame": 42.8000000002794,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.04999999999994,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 11,
+      "cacheAgeFrames": 7,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.04999999999994,
+          "exposure": 1.0500000000000012
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.15305618941783905
+    },
+    {
+      "id": 64,
+      "raf": 3126.7999999998137,
+      "cpuStart": 3126.7999999998137,
+      "submitStart": 3127.2999999998137,
+      "submitEnd": 3127.2999999998137,
+      "frame": 43.59999999962747,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.066666666666606,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 11,
+      "cacheAgeFrames": 8,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.066666666666606,
+          "exposure": 1.0666666666666678
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.15305618941783905
+    },
+    {
+      "id": 65,
+      "raf": 3170.600000000093,
+      "cpuStart": 3170.600000000093,
+      "submitStart": 3171.100000000093,
+      "submitEnd": 3171.100000000093,
+      "frame": 43.8000000002794,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.08333333333327,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 11,
+      "cacheAgeFrames": 9,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.08333333333327,
+          "exposure": 1.0833333333333344
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.17926499247550964
+    },
+    {
+      "id": 66,
+      "raf": 3214.399999999907,
+      "cpuStart": 3214.399999999907,
+      "submitStart": 3214.7000000001863,
+      "submitEnd": 3214.7000000001863,
+      "frame": 43.799999999813735,
+      "cpu": 0.3000000002793968,
+      "visibility": "visible",
+      "time": 21.099999999999937,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 11,
+      "cacheAgeFrames": 10,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.099999999999937,
+          "exposure": 1.100000000000001
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.17926499247550964
+    },
+    {
+      "id": 67,
+      "raf": 3258.399999999907,
+      "cpuStart": 3258.399999999907,
+      "submitStart": 3258.7999999998137,
+      "submitEnd": 3258.7999999998137,
+      "frame": 44,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 21.116666666666603,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 12,
+      "cacheAgeFrames": 5,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.116666666666603,
+          "exposure": 1.1166666666666676
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.17926499247550964
+    },
+    {
+      "id": 68,
+      "raf": 3302.7999999998137,
+      "cpuStart": 3302.7999999998137,
+      "submitStart": 3303.100000000093,
+      "submitEnd": 3303.100000000093,
+      "frame": 44.39999999990687,
+      "cpu": 0.3000000002793968,
+      "visibility": "visible",
+      "time": 21.13333333333327,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 12,
+      "cacheAgeFrames": 6,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.13333333333327,
+          "exposure": 1.1333333333333342
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.17926499247550964
+    },
+    {
+      "id": 69,
+      "raf": 3345.899999999907,
+      "cpuStart": 3345.899999999907,
+      "submitStart": 3346.2999999998137,
+      "submitEnd": 3346.399999999907,
+      "frame": 43.10000000009313,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.149999999999935,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 12,
+      "cacheAgeFrames": 7,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.149999999999935,
+          "exposure": 1.1500000000000008
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.17926499247550964
+    },
+    {
+      "id": 70,
+      "raf": 3391.100000000093,
+      "cpuStart": 3391.100000000093,
+      "submitStart": 3391.399999999907,
+      "submitEnd": 3391.399999999907,
+      "frame": 45.200000000186265,
+      "cpu": 0.2999999998137355,
+      "visibility": "visible",
+      "time": 21.1666666666666,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 12,
+      "cacheAgeFrames": 8,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.1666666666666,
+          "exposure": 1.1666666666666674
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.17926499247550964
+    },
+    {
+      "id": 71,
+      "raf": 3434,
+      "cpuStart": 3434,
+      "submitStart": 3434.5,
+      "submitEnd": 3434.5,
+      "frame": 42.89999999990687,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.183333333333266,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 12,
+      "cacheAgeFrames": 9,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.183333333333266,
+          "exposure": 1.183333333333334
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.17926499247550964
+    },
+    {
+      "id": 72,
+      "raf": 3479.100000000093,
+      "cpuStart": 3479.100000000093,
+      "submitStart": 3479.600000000093,
+      "submitEnd": 3479.600000000093,
+      "frame": 45.10000000009313,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.199999999999932,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 12,
+      "cacheAgeFrames": 10,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.199999999999932,
+          "exposure": 1.2000000000000006
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.17926499247550964
+    },
+    {
+      "id": 73,
+      "raf": 3523.7000000001863,
+      "cpuStart": 3523.7000000001863,
+      "submitStart": 3524.100000000093,
+      "submitEnd": 3524.100000000093,
+      "frame": 44.60000000009313,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 21.216666666666598,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 13,
+      "cacheAgeFrames": 5,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.216666666666598,
+          "exposure": 1.2166666666666672
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.20427130162715912
+    },
+    {
+      "id": 74,
+      "raf": 3567.5,
+      "cpuStart": 3567.5,
+      "submitStart": 3567.7999999998137,
+      "submitEnd": 3567.7999999998137,
+      "frame": 43.799999999813735,
+      "cpu": 0.2999999998137355,
+      "visibility": "visible",
+      "time": 21.233333333333263,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 13,
+      "cacheAgeFrames": 6,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.233333333333263,
+          "exposure": 1.2333333333333338
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.20427130162715912
+    },
+    {
+      "id": 75,
+      "raf": 3612.2999999998137,
+      "cpuStart": 3612.2999999998137,
+      "submitStart": 3612.7000000001863,
+      "submitEnd": 3612.7000000001863,
+      "frame": 44.799999999813735,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible",
+      "time": 21.24999999999993,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 13,
+      "cacheAgeFrames": 7,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.24999999999993,
+          "exposure": 1.2500000000000004
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.20427130162715912
+    },
+    {
+      "id": 76,
+      "raf": 3658.7000000001863,
+      "cpuStart": 3658.7000000001863,
+      "submitStart": 3659.100000000093,
+      "submitEnd": 3659.100000000093,
+      "frame": 46.40000000037253,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 21.266666666666595,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 13,
+      "cacheAgeFrames": 8,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.266666666666595,
+          "exposure": 1.266666666666667
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.20427130162715912
+    },
+    {
+      "id": 77,
+      "raf": 3701.2000000001863,
+      "cpuStart": 3701.2000000001863,
+      "submitStart": 3701.600000000093,
+      "submitEnd": 3701.600000000093,
+      "frame": 42.5,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 21.28333333333326,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 13,
+      "cacheAgeFrames": 9,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.28333333333326,
+          "exposure": 1.2833333333333337
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.20427130162715912
+    },
+    {
+      "id": 78,
+      "raf": 3744.7000000001863,
+      "cpuStart": 3744.7000000001863,
+      "submitStart": 3745,
+      "submitEnd": 3745.100000000093,
+      "frame": 43.5,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 21.299999999999926,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 13,
+      "cacheAgeFrames": 10,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.299999999999926,
+          "exposure": 1.3000000000000003
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.20427130162715912
+    },
+    {
+      "id": 79,
+      "raf": 3788.5,
+      "cpuStart": 3788.5,
+      "submitStart": 3789.100000000093,
+      "submitEnd": 3789.100000000093,
+      "frame": 43.799999999813735,
+      "cpu": 0.6000000000931323,
+      "visibility": "visible",
+      "time": 21.316666666666592,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 14,
+      "cacheAgeFrames": 5,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.316666666666592,
+          "exposure": 1.3166666666666669
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.20427130162715912
+    },
+    {
+      "id": 80,
+      "raf": 3833.2000000001863,
+      "cpuStart": 3833.2000000001863,
+      "submitStart": 3833.600000000093,
+      "submitEnd": 3833.7000000001863,
+      "frame": 44.700000000186265,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.333333333333258,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 14,
+      "cacheAgeFrames": 6,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.333333333333258,
+          "exposure": 1.3333333333333335
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.20427130162715912
+    },
+    {
+      "id": 81,
+      "raf": 3877.2999999998137,
+      "cpuStart": 3877.2999999998137,
+      "submitStart": 3877.7000000001863,
+      "submitEnd": 3877.7000000001863,
+      "frame": 44.09999999962747,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible",
+      "time": 21.349999999999923,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 14,
+      "cacheAgeFrames": 7,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.349999999999923,
+          "exposure": 1.35
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.2222929745912552
+    },
+    {
+      "id": 82,
+      "raf": 3921.7999999998137,
+      "cpuStart": 3921.7999999998137,
+      "submitStart": 3922.2000000001863,
+      "submitEnd": 3922.2000000001863,
+      "frame": 44.5,
+      "cpu": 0.40000000037252903,
+      "visibility": "visible",
+      "time": 21.36666666666659,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 14,
+      "cacheAgeFrames": 8,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.36666666666659,
+          "exposure": 1.3666666666666667
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.2222929745912552
+    },
+    {
+      "id": 83,
+      "raf": 3964.399999999907,
+      "cpuStart": 3964.399999999907,
+      "submitStart": 3964.7999999998137,
+      "submitEnd": 3964.7999999998137,
+      "frame": 42.60000000009313,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 21.383333333333255,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 14,
+      "cacheAgeFrames": 9,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.383333333333255,
+          "exposure": 1.3833333333333333
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.2222929745912552
+    },
+    {
+      "id": 84,
+      "raf": 4009.2999999998137,
+      "cpuStart": 4009.2999999998137,
+      "submitStart": 4009.899999999907,
+      "submitEnd": 4009.899999999907,
+      "frame": 44.89999999990687,
+      "cpu": 0.6000000000931323,
+      "visibility": "visible",
+      "time": 21.39999999999992,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 14,
+      "cacheAgeFrames": 10,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.39999999999992,
+          "exposure": 1.4
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.2222929745912552
+    },
+    {
+      "id": 85,
+      "raf": 4054.2999999998137,
+      "cpuStart": 4054.2999999998137,
+      "submitStart": 4054.600000000093,
+      "submitEnd": 4054.600000000093,
+      "frame": 45,
+      "cpu": 0.3000000002793968,
+      "visibility": "visible",
+      "time": 21.416666666666586,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 15,
+      "cacheAgeFrames": 5,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.416666666666586,
+          "exposure": 1.4166666666666665
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.2222929745912552
+    },
+    {
+      "id": 86,
+      "raf": 4100,
+      "cpuStart": 4100,
+      "submitStart": 4100.299999999814,
+      "submitEnd": 4100.299999999814,
+      "frame": 45.700000000186265,
+      "cpu": 0.2999999998137355,
+      "visibility": "visible",
+      "time": 21.433333333333252,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 15,
+      "cacheAgeFrames": 6,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.433333333333252,
+          "exposure": 1.4333333333333331
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.2222929745912552
+    },
+    {
+      "id": 87,
+      "raf": 4144.700000000186,
+      "cpuStart": 4144.700000000186,
+      "submitStart": 4145.200000000186,
+      "submitEnd": 4145.200000000186,
+      "frame": 44.700000000186265,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.449999999999918,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 15,
+      "cacheAgeFrames": 7,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.449999999999918,
+          "exposure": 1.4499999999999997
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.2222929745912552
+    },
+    {
+      "id": 88,
+      "raf": 4188.899999999907,
+      "cpuStart": 4188.899999999907,
+      "submitStart": 4189.299999999814,
+      "submitEnd": 4189.299999999814,
+      "frame": 44.1999999997206,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 21.466666666666583,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 15,
+      "cacheAgeFrames": 8,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.466666666666583,
+          "exposure": 1.4666666666666663
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.2222929745912552
+    },
+    {
+      "id": 89,
+      "raf": 4232.299999999814,
+      "cpuStart": 4232.299999999814,
+      "submitStart": 4232.600000000093,
+      "submitEnd": 4232.600000000093,
+      "frame": 43.39999999990687,
+      "cpu": 0.3000000002793968,
+      "visibility": "visible",
+      "time": 21.48333333333325,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 15,
+      "cacheAgeFrames": 9,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.48333333333325,
+          "exposure": 1.483333333333333
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.24610815942287445
+    },
+    {
+      "id": 90,
+      "raf": 4274.5,
+      "cpuStart": 4274.5,
+      "submitStart": 4274.899999999907,
+      "submitEnd": 4274.899999999907,
+      "frame": 42.200000000186265,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 21.499999999999915,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 15,
+      "cacheAgeFrames": 10,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.499999999999915,
+          "exposure": 1.4999999999999996
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.24610815942287445
+    },
+    {
+      "id": 91,
+      "raf": 4319.799999999814,
+      "cpuStart": 4319.799999999814,
+      "submitStart": 4320.200000000186,
+      "submitEnd": 4320.299999999814,
+      "frame": 45.299999999813735,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.51666666666658,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 16,
+      "cacheAgeFrames": 5,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.51666666666658,
+          "exposure": 1.5166666666666662
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.24610815942287445
+    },
+    {
+      "id": 92,
+      "raf": 4363.600000000093,
+      "cpuStart": 4363.600000000093,
+      "submitStart": 4364.200000000186,
+      "submitEnd": 4364.200000000186,
+      "frame": 43.8000000002794,
+      "cpu": 0.6000000000931323,
+      "visibility": "visible",
+      "time": 21.533333333333246,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 16,
+      "cacheAgeFrames": 6,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.533333333333246,
+          "exposure": 1.5333333333333328
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.24610815942287445
+    },
+    {
+      "id": 93,
+      "raf": 4408.600000000093,
+      "cpuStart": 4408.600000000093,
+      "submitStart": 4409,
+      "submitEnd": 4409,
+      "frame": 45,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 21.549999999999912,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 16,
+      "cacheAgeFrames": 7,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.549999999999912,
+          "exposure": 1.5499999999999994
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 5,
+      "readbackHeight": -0.24610815942287445
+    },
+    {
+      "id": 94,
+      "raf": 4453.700000000186,
+      "cpuStart": 4453.700000000186,
+      "submitStart": 4454.200000000186,
+      "submitEnd": 4454.200000000186,
+      "frame": 45.10000000009313,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.566666666666578,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 16,
+      "cacheAgeFrames": 8,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.566666666666578,
+          "exposure": 1.566666666666666
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 6,
+      "readbackHeight": -0.24610815942287445
+    },
+    {
+      "id": 95,
+      "raf": 4496.299999999814,
+      "cpuStart": 4496.299999999814,
+      "submitStart": 4496.700000000186,
+      "submitEnd": 4496.799999999814,
+      "frame": 42.59999999962747,
+      "cpu": 0.5,
+      "visibility": "visible",
+      "time": 21.583333333333243,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 16,
+      "cacheAgeFrames": 9,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.583333333333243,
+          "exposure": 1.5833333333333326
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 7,
+      "readbackHeight": -0.24610815942287445
+    },
+    {
+      "id": 96,
+      "raf": 4538.200000000186,
+      "cpuStart": 4538.200000000186,
+      "submitStart": 4538.600000000093,
+      "submitEnd": 4538.600000000093,
+      "frame": 41.90000000037253,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 21.59999999999991,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 16,
+      "cacheAgeFrames": 10,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.59999999999991,
+          "exposure": 1.5999999999999992
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 8,
+      "readbackHeight": -0.24610815942287445
+    },
+    {
+      "id": 97,
+      "raf": 4582.799999999814,
+      "cpuStart": 4582.799999999814,
+      "submitStart": 4583.100000000093,
+      "submitEnd": 4583.100000000093,
+      "frame": 44.59999999962747,
+      "cpu": 0.3000000002793968,
+      "visibility": "visible",
+      "time": 21.616666666666575,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 17,
+      "cacheAgeFrames": 5,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.616666666666575,
+          "exposure": 1.6166666666666658
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 1,
+      "readbackHeight": -0.25912120938301086
+    },
+    {
+      "id": 98,
+      "raf": 4627,
+      "cpuStart": 4627,
+      "submitStart": 4627.399999999907,
+      "submitEnd": 4627.399999999907,
+      "frame": 44.200000000186265,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 21.63333333333324,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 17,
+      "cacheAgeFrames": 6,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.63333333333324,
+          "exposure": 1.6333333333333324
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 2,
+      "readbackHeight": -0.25912120938301086
+    },
+    {
+      "id": 99,
+      "raf": 4670.899999999907,
+      "cpuStart": 4670.899999999907,
+      "submitStart": 4671.200000000186,
+      "submitEnd": 4671.299999999814,
+      "frame": 43.89999999990687,
+      "cpu": 0.39999999990686774,
+      "visibility": "visible",
+      "time": 21.649999999999906,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 17,
+      "cacheAgeFrames": 7,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.649999999999906,
+          "exposure": 1.649999999999999
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 3,
+      "readbackHeight": -0.25912120938301086
+    },
+    {
+      "id": 100,
+      "raf": 4715.399999999907,
+      "cpuStart": 4715.399999999907,
+      "submitStart": 4715.899999999907,
+      "submitEnd": 4716,
+      "frame": 44.5,
+      "cpu": 0.6000000000931323,
+      "visibility": "visible",
+      "time": 21.666666666666572,
+      "camera": [
+        0,
+        2,
+        0,
+        0.06981317007977318,
+        -0.09599310885968812
+      ],
+      "cacheVersion": 17,
+      "cacheAgeFrames": 8,
+      "weather": {
+        "clouds": 0.25,
+        "cloudDepth": 1.5,
+        "weights": [
+          1,
+          0,
+          0
+        ],
+        "veil": 0.18,
+        "haze": 2,
+        "rain": 0,
+        "windSpeed": 5,
+        "windDir": 118,
+        "gust": 1,
+        "wind": [
+          -2.3473578139294546,
+          4.414737964294634
+        ],
+        "convection": 0,
+        "lightningEligible": false,
+        "frontId": 0,
+        "frontWeight": 0,
+        "clocks": {
+          "weather": 21,
+          "astronomy": 0,
+          "wave": 21.666666666666572,
+          "exposure": 1.6666666666666656
+        },
+        "swellHs": 1.5,
+        "seaWind": 5
+      },
+      "probeAgeFrames": 4,
+      "readbackHeight": -0.25912120938301086
+    }
+  ],
+  "allocations": {
+    "liveBytes": 204574152,
+    "peakBytes": 212868552,
+    "allocations": [
+      {
+        "kind": "buffer",
+        "label": "sim ubo",
+        "bytes": 224
+      },
+      {
+        "kind": "buffer",
+        "label": "h0",
+        "bytes": 6291456
+      },
+      {
+        "kind": "buffer",
+        "label": "unit phase oscillators",
+        "bytes": 3145728
+      },
+      {
+        "kind": "buffer",
+        "label": "specA",
+        "bytes": 6291456
+      },
+      {
+        "kind": "buffer",
+        "label": "specB",
+        "bytes": 6291456
+      },
+      {
+        "kind": "buffer",
+        "label": "tmpA",
+        "bytes": 6291456
+      },
+      {
+        "kind": "buffer",
+        "label": "tmpB",
+        "bytes": 6291456
+      },
+      {
+        "kind": "texture",
+        "label": "disp",
+        "bytes": 4194288
+      },
+      {
+        "kind": "texture",
+        "label": "deriv",
+        "bytes": 4194288
+      },
+      {
+        "kind": "texture",
+        "label": "moments",
+        "bytes": 4194288
+      },
+      {
+        "kind": "texture",
+        "label": "previous displacement",
+        "bytes": 4194288
+      },
+      {
+        "kind": "texture",
+        "label": "periodic cloud morphology",
+        "bytes": 9586980
+      },
+      {
+        "kind": "texture",
+        "label": "foam detail",
+        "bytes": 1398100
+      },
+      {
+        "kind": "texture",
+        "label": "foam world 0",
+        "bytes": 5592400
+      },
+      {
+        "kind": "texture",
+        "label": "foam world 1",
+        "bytes": 5592400
+      },
+      {
+        "kind": "buffer",
+        "label": "foam ubo",
+        "bytes": 192
+      },
+      {
+        "kind": "buffer",
+        "label": "atmo ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "texture",
+        "label": "transmittance",
+        "bytes": 131072
+      },
+      {
+        "kind": "texture",
+        "label": "multiscatter",
+        "bytes": 8192
+      },
+      {
+        "kind": "texture",
+        "label": "solar and lunar skyview",
+        "bytes": 589824
+      },
+      {
+        "kind": "texture",
+        "label": "env cube",
+        "bytes": 1048560
+      },
+      {
+        "kind": "texture",
+        "label": "angular radiance staging",
+        "bytes": 1048560
+      },
+      {
+        "kind": "texture",
+        "label": "environment transmittance snapshot",
+        "bytes": 131072
+      },
+      {
+        "kind": "texture",
+        "label": "environment sky snapshot",
+        "bytes": 589824
+      },
+      {
+        "kind": "buffer",
+        "label": "environment state snapshot",
+        "bytes": 688
+      },
+      {
+        "kind": "texture",
+        "label": "hemispherical irradiance",
+        "bytes": 12288
+      },
+      {
+        "kind": "buffer",
+        "label": "frame ubo",
+        "bytes": 688
+      },
+      {
+        "kind": "buffer",
+        "label": "sun visibility",
+        "bytes": 16
+      },
+      {
+        "kind": "texture",
+        "label": "spatial cloud transmittance",
+        "bytes": 524288
+      },
+      {
+        "kind": "buffer",
+        "label": "spray and rain particles",
+        "bytes": 786432
+      },
+      {
+        "kind": "texture",
+        "label": "resolved Eulerian gravity height",
+        "bytes": 1398096
+      },
+      {
+        "kind": "texture",
+        "label": "resolved gravity-wave solar visibility",
+        "bytes": 1048576
+      },
+      {
+        "kind": "buffer",
+        "label": "probe out",
+        "bytes": 16
+      },
+      {
+        "kind": "texture",
+        "label": "curved near-plane medium",
+        "bytes": 73728
+      },
+      {
+        "kind": "buffer",
+        "label": "probe read",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "grid idx",
+        "bytes": 6912
+      },
+      {
+        "kind": "buffer",
+        "label": "instances",
+        "bytes": 131072
+      },
+      {
+        "kind": "buffer",
+        "label": "composite ubo",
+        "bytes": 32
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "bloom ubo",
+        "bytes": 16
+      },
+      {
+        "kind": "buffer",
+        "label": "ts resolve",
+        "bytes": 144
+      },
+      {
+        "kind": "buffer",
+        "label": "ts read",
+        "bytes": 144
+      },
+      {
+        "kind": "texture",
+        "label": "cloud radiance and extinction",
+        "bytes": 1843200
+      },
+      {
+        "kind": "texture",
+        "label": "unlabelled",
+        "bytes": 66355200
+      },
+      {
+        "kind": "texture",
+        "label": "unlabelled",
+        "bytes": 33177600
+      },
+      {
+        "kind": "texture",
+        "label": "unlabelled",
+        "bytes": 16588800
+      },
+      {
+        "kind": "texture",
+        "label": "unlabelled",
+        "bytes": 5528384
+      }
+    ],
+    "scope": "Renderer-owned buffer/texture payload requests. Excludes diagnostic readback helper allocations, pipelines, alignment, driver/browser/compositor and residency."
+  },
+  "environment": {
+    "schema": 1,
+    "seed": 1307,
+    "revision": 0,
+    "mode": "natural",
+    "clocks": {
+      "weather": 21,
+      "astronomy": 0,
+      "wave": 21.666666666666572,
+      "exposure": 1.6666666666666656
+    },
+    "remainder": 0.6666666666666685,
+    "utcEpoch": 1792947600000,
+    "weather": {
+      "clouds": 0.25,
+      "veil": 0.18,
+      "haze": 2,
+      "rain": 0,
+      "cloudDepth": 1.5,
+      "cloudType": 0,
+      "windSpeed": 5,
+      "windDir": 118,
+      "weights": [
+        1,
+        0,
+        0
+      ]
+    },
+    "target": {
+      "clouds": 0.25,
+      "veil": 0.18,
+      "haze": 2,
+      "rain": 0,
+      "cloudDepth": 1.5,
+      "cloudType": 0,
+      "windSpeed": 5,
+      "windDir": 118,
+      "weights": [
+        1,
+        0,
+        0
+      ]
+    },
+    "sea": {
+      "windSpeed": 5,
+      "windDir": 118,
+      "fetchKm": 65,
+      "swellHs": 1.5,
+      "swellDir": 94,
+      "swellLength": 150
+    },
+    "swellTarget": {
+      "swellHs": 1.5,
+      "swellDir": 94,
+      "swellLength": 150
+    },
+    "fetchTarget": 65,
+    "drift": [
+      -32.04143416013706,
+      60.26117321262175
+    ],
+    "front": {
+      "enabled": false,
+      "id": 1307,
+      "x": 18000,
+      "z": 0,
+      "width": 10000,
+      "length": 15000,
+      "speed": 12,
+      "heading": 180,
+      "electrified": false
+    }
+  },
+  "lightCache": {
+    "published": {
+      "version": 17,
+      "frame": 92,
+      "weather": 21,
+      "astronomy": 0,
+      "commandRevision": 0,
+      "camera": [
+        0,
+        2,
+        0
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "publishedFrame": 97
+    },
+    "history": [
+      {
+        "version": 1,
+        "frame": 1,
+        "weather": 20,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 1
+      },
+      {
+        "version": 2,
+        "frame": 2,
+        "weather": 20,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 7
+      },
+      {
+        "version": 3,
+        "frame": 8,
+        "weather": 20,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 13
+      },
+      {
+        "version": 4,
+        "frame": 14,
+        "weather": 20,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 19
+      },
+      {
+        "version": 5,
+        "frame": 20,
+        "weather": 20,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 25
+      },
+      {
+        "version": 6,
+        "frame": 26,
+        "weather": 20,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 31
+      },
+      {
+        "version": 7,
+        "frame": 32,
+        "weather": 20,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 37
+      },
+      {
+        "version": 8,
+        "frame": 38,
+        "weather": 20,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 43
+      },
+      {
+        "version": 9,
+        "frame": 44,
+        "weather": 20,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 49
+      },
+      {
+        "version": 10,
+        "frame": 50,
+        "weather": 20,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 55
+      },
+      {
+        "version": 11,
+        "frame": 56,
+        "weather": 20,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 61
+      },
+      {
+        "version": 12,
+        "frame": 62,
+        "weather": 21,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 67
+      },
+      {
+        "version": 13,
+        "frame": 68,
+        "weather": 21,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 73
+      },
+      {
+        "version": 14,
+        "frame": 74,
+        "weather": 21,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 79
+      },
+      {
+        "version": 15,
+        "frame": 80,
+        "weather": 21,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 85
+      },
+      {
+        "version": 16,
+        "frame": 86,
+        "weather": 21,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 91
+      },
+      {
+        "version": 17,
+        "frame": 92,
+        "weather": 21,
+        "astronomy": 0,
+        "commandRevision": 0,
+        "camera": [
+          0,
+          2,
+          0
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "publishedFrame": 97
+      }
+    ],
+    "units": "relative scene-linear RGB radiance / irradiance; not absolute SI calibrated",
+    "latency": "complete snapshot, six-frame angular build; direct shadow current frame"
+  },
+  "browserTasks": [
+    {
+      "type": "longtask",
+      "start": 4906.299999999814,
+      "duration": 93,
+      "blockingDuration": 0
+    },
+    {
+      "type": "longtask",
+      "start": 5031.600000000093,
+      "duration": 211,
+      "blockingDuration": 0
+    }
+  ],
+  "phase0": {
+    "query": {
+      "cam": "0,2,0,4,-5.5",
+      "cameraMode": "free",
+      "quality": "Balanced",
+      "w": "1920",
+      "h": "1080",
+      "seed": "1307",
+      "t": "20",
+      "frames": "100",
+      "ui": "0",
+      "adaptive": "0",
+      "stage": "v04-p1-final-stills",
+      "shot": "twilight.png",
+      "validate": "1",
+      "p0": "1",
+      "p0Profile": "1",
+      "revision": "b6349d3",
+      "name": "twilight",
+      "preset": "twilight"
+    },
+    "profile": true,
+    "note": "Experimental toggles are Phase 0 hypotheses, not accepted features."
+  },
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+  "foamPatternCalibration": {
+    "texels": 262144,
+    "checks": [
+      {
+        "requestedArea": 0.01,
+        "actualArea": 0.00858306884765625
+      },
+      {
+        "requestedArea": 0.05,
+        "actualArea": 0.04764556884765625
+      },
+      {
+        "requestedArea": 0.1,
+        "actualArea": 0.0986785888671875
+      },
+      {
+        "requestedArea": 0.25,
+        "actualArea": 0.2498779296875
+      },
+      {
+        "requestedArea": 0.5,
+        "actualArea": 0.5004425048828125
+      },
+      {
+        "requestedArea": 0.75,
+        "actualArea": 0.7501373291015625
+      },
+      {
+        "requestedArea": 0.9,
+        "actualArea": 0.9028854370117188
+      }
+    ],
+    "maxAbsoluteAreaError": 0.002885437011718728,
+    "scope": "Texture-texel threshold coverage only. Bilinear sampling, shading footprint and evolving foam density require separate validation."
+  },
+  "worldOrigin": [
+    0,
+    0
+  ],
+  "benchmarkStopReason": null,
+  "benchmarkWallSeconds": 4.611,
+  "surfaceProbe": {
+    "height": -0.25912120938301086,
+    "scope": "Asynchronous camera-point height; optical classification uses the current GPU near-plane map."
+  },
+  "timingMode": "queue-completion capture throughput",
+  "memoryEstimate": {
+    "renderTargetsMiB": 117.7734375,
+    "note": "Analytic lower bound for main MSAA/depth/HDR/bloom/cloud render targets only. Excludes simulation, driver alignment, browser compositor, and transient resources."
+  },
+  "spectral": {
+    "status": "PASS",
+    "cascades": [
+      {
+        "patchMetres": 1103,
+        "height": {
+          "mean": -6.349418981699273e-7,
+          "variance": 0.1316572161225508,
+          "min": -1.2705078125,
+          "max": 1.3310546875,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": -1.0704752639867365e-9,
+          "variance": 0.0000570285290794946,
+          "min": -0.03436279296875,
+          "max": 0.028350830078125,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": 2.1966116037219763e-8,
+          "variance": 0.0005047875327926865,
+          "min": -0.105712890625,
+          "max": 0.078125,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.13174301851410633,
+        "spectralInstantVariance": 0.13174987886117454,
+        "significantHeightInstant": 1.4513839801929787,
+        "parsevalRelative": 0.0007033231409751657,
+        "slopeParsevalRelative": [
+          0.0007058278480063079,
+          0.0006977252191659936
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.00005706880983472853,
+          0.0005051399816971257,
+          -0.00006389827013269298
+        ],
+        "momentMaxAbsoluteRounding": 0.0000014156103134155273,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 211.3,
+        "height": {
+          "mean": -1.2993041309528053e-8,
+          "variance": 0.05010427897876426,
+          "min": -0.7890625,
+          "max": 0.81884765625,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": -3.099376044701785e-8,
+          "variance": 0.0018574635706181287,
+          "min": -0.1732177734375,
+          "max": 0.1524658203125,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -1.0532858141232282e-8,
+          "variance": 0.0036750228698998874,
+          "min": -0.2359619140625,
+          "max": 0.264404296875,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.05030380979573402,
+        "spectralInstantVariance": 0.05013964429694281,
+        "significantHeightInstant": 0.8953594047421561,
+        "parsevalRelative": 0.0007053364393473536,
+        "slopeParsevalRelative": [
+          0.0007072189508341221,
+          0.0007052506966132395
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.0018587781337397055,
+          0.0036776165115065037,
+          -0.001091433429329821
+        ],
+        "momentMaxAbsoluteRounding": 0.000034749507904052734,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 39.7,
+        "height": {
+          "mean": 1.1297106539132074e-7,
+          "variance": 0.00220661245245793,
+          "min": -0.171142578125,
+          "max": 0.154052734375,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": 2.831075107678771e-8,
+          "variance": 0.003574179720318674,
+          "min": -0.2117919921875,
+          "max": 0.2215576171875,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -2.0686820789705962e-7,
+          "variance": 0.003835875325775676,
+          "min": -0.2159423828125,
+          "max": 0.230712890625,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.0022380567066876906,
+        "spectralInstantVariance": 0.00220815427786715,
+        "significantHeightInstant": 0.18789837476499596,
+        "parsevalRelative": 0.0006982417056063916,
+        "slopeParsevalRelative": [
+          0.0007069304243386974,
+          0.0007044576497796506
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.0035767082041671815,
+          0.0038385794424281813,
+          -0.0002576735064751737
+        ],
+        "momentMaxAbsoluteRounding": 0.00004482269287109375,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 7.43,
+        "height": {
+          "mean": 6.364643923006952e-9,
+          "variance": 0.00009792075417959516,
+          "min": -0.037750244140625,
+          "max": 0.037322998046875,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": 2.1680534700863063e-8,
+          "variance": 0.003923355985679543,
+          "min": -0.240966796875,
+          "max": 0.2548828125,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -2.4108885554596782e-8,
+          "variance": 0.003936077990514108,
+          "min": -0.253662109375,
+          "max": 0.218017578125,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.00009769604162767359,
+        "spectralInstantVariance": 0.00009798962983029453,
+        "significantHeightInstant": 0.03958196643515229,
+        "parsevalRelative": 0.0007028871403908168,
+        "slopeParsevalRelative": [
+          0.0007027252731235068,
+          0.0007040087474743963
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.003926114965891263,
+          0.0039388509760562495,
+          0.00007844294383279712
+        ],
+        "momentMaxAbsoluteRounding": 0.00005888938903808594,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 1.393,
+        "height": {
+          "mean": -2.5247572921216488e-9,
+          "variance": 0.000002056065977962762,
+          "min": -0.0061187744140625,
+          "max": 0.004711151123046875,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": -4.9041773308999836e-8,
+          "variance": 0.0023198889101614575,
+          "min": -0.209716796875,
+          "max": 0.164306640625,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": 7.982634997460991e-9,
+          "variance": 0.0024197224224690073,
+          "min": -0.182861328125,
+          "max": 0.1783447265625,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 0.000001991643471654388,
+        "spectralInstantVariance": 0.000002057505350838317,
+        "significantHeightInstant": 0.005735595491961074,
+        "parsevalRelative": 0.0006995718747309226,
+        "slopeParsevalRelative": [
+          0.0007038767382597682,
+          0.0007018370026072646
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.0023215229761817274,
+          0.0024214218659334417,
+          -0.00010423847347697758
+        ],
+        "momentMaxAbsoluteRounding": 0.00003719329833984375,
+        "status": "PASS"
+      },
+      {
+        "patchMetres": 0.2617,
+        "height": {
+          "mean": 2.6648194761946797e-10,
+          "variance": 6.766396301418882e-8,
+          "min": -0.0009284019470214844,
+          "max": 0.0009388923645019531,
+          "invalid": 0
+        },
+        "slopeX": {
+          "mean": 5.5871169024612755e-8,
+          "variance": 0.002205052652186439,
+          "min": -0.1627197265625,
+          "max": 0.19580078125,
+          "invalid": 0
+        },
+        "slopeZ": {
+          "mean": -2.095293893944472e-8,
+          "variance": 0.0023981640695669793,
+          "min": -0.1800537109375,
+          "max": 0.178466796875,
+          "invalid": 0
+        },
+        "phaseAverageVariance": 6.49890862880564e-8,
+        "spectralInstantVariance": 6.771183289372106e-8,
+        "significantHeightInstant": 0.0010404919068532062,
+        "parsevalRelative": 0.0007069647576572983,
+        "slopeParsevalRelative": [
+          0.0007045660197212922,
+          0.0007059715886787221
+        ],
+        "hermitianMaxError": 0,
+        "slopeVarianceSpectral": [
+          0.002206607352746051,
+          0.0023998583013445833,
+          -0.000012973356149500783
+        ],
+        "momentMaxAbsoluteRounding": 0.00003896653652191162,
+        "status": "PASS"
+      }
+    ],
+    "continuousSpectrum": {
+      "windM0": 0.05187023342433708,
+      "windSlopeVariance": 0.030383028014127123,
+      "swellM0": 0.140625,
+      "windPeakPeriod": 4.284883017042113,
+      "combinedHs": 1.754971149275507,
+      "model": "JONSWAP / Elfouhaily hybrid; normalized band-limited swell"
+    },
+    "measuredIndependentCascadeHs": 1.7161265782588118,
+    "slopeVarianceLinear": 0.03070661957906208,
+    "coxMunkReferenceAtUnconvertedU10": 0.0286,
+    "observationalStatus": "UNVERIFIED: one realization, linear slopes; Cox-Munk uses U12.5, not U10; no ensemble confidence interval.",
+    "whitecapStatus": "UNVERIFIED: no long-duration, area-weighted coverage observation.",
+    "tolerance": "Parseval <0.0015 includes binary16 storage; conjugate coefficients <1e-7. Zero NaN/Inf in sampled fields."
+  },
+  "foam": {
+    "layers": [
+      {
+        "layer": 0,
+        "meanDensity": 0.000022639400413027033,
+        "maxDensity": 0.1750592589378357,
+        "invalid": 0,
+        "densityThresholds": [
+          0.05,
+          0.2,
+          0.5
+        ],
+        "areaFractions": [
+          0.000125885009765625,
+          0,
+          0
+        ]
+      },
+      {
+        "layer": 1,
+        "meanDensity": 0,
+        "maxDensity": 0,
+        "invalid": 0,
+        "densityThresholds": [
+          0.05,
+          0.2,
+          0.5
+        ],
+        "areaFractions": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "interpretation": "Simulation-memory density over uniform parameter-space texels, not observed projected optical whitecap coverage. A single instant cannot validate a wind-coverage fit."
+  },
+  "hdr": {
+    "status": "PASS",
+    "invalid": 0,
+    "negative": 0,
+    "max": 0.001979827880859375,
+    "over60000": 0,
+    "pixels": 2073600,
+    "storageDivisor": 16.5,
+    "radianceBands": [
+      {
+        "verticalThird": 0,
+        "meanRGB": [
+          0.00473282230604026,
+          0.002752416431127737,
+          0.004010172825073824
+        ],
+        "meanLuminance": 0.0032642607317770233,
+        "geometricMeanLuminance": 0.002390691576332795
+      },
+      {
+        "verticalThird": 1,
+        "meanRGB": [
+          0.005471746498434287,
+          0.001960985251935199,
+          0.0015129129353186322
+        ],
+        "meanLuminance": 0.0026750222716812218,
+        "geometricMeanLuminance": 0.0010351074586109174
+      },
+      {
+        "verticalThird": 2,
+        "meanRGB": [
+          0.0005654471345608019,
+          0.00031256263765196005,
+          0.0004796186075287147
+        ],
+        "meanLuminance": 0.0003783873227199434,
+        "geometricMeanLuminance": 0.00023180633180403315
+      }
+    ],
+    "scope": "All RGB samples in pre-exposed resolved linear HDR, before bloom and tone mapping. Bands undo storage divisor, retain renderer-relative radiance units; no sky/ocean segmentation."
+  },
+  "light": {
+    "shadow": {
+      "width": 256,
+      "height": 256,
+      "means": [
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      "centres": [
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      "invalid": 0
+    },
+    "irradiance": {
+      "width": 16,
+      "height": 16,
+      "means": [
+        [
+          0.004112305119633675,
+          0.0021854806691408157,
+          0.003587629646062851,
+          1
+        ],
+        [
+          0.003512069582939148,
+          0.0018992647528648376,
+          0.0032899491488933563,
+          1
+        ],
+        [
+          0.004312228411436081,
+          0.002533677965402603,
+          0.0049739256501197815,
+          1
+        ],
+        [
+          0.002091145608574152,
+          0.0009930646046996117,
+          0.0013134749606251717,
+          1
+        ],
+        [
+          0.0013154642656445503,
+          0.0009532179683446884,
+          0.0022467151284217834,
+          1
+        ],
+        [
+          0.00783228874206543,
+          0.003734022378921509,
+          0.005072750151157379,
+          1
+        ]
+      ],
+      "centres": [
+        [
+          0.004360198974609375,
+          0.0022983551025390625,
+          0.0036373138427734375,
+          1
+        ],
+        [
+          0.0028743743896484375,
+          0.0016031265258789062,
+          0.0029315948486328125,
+          1
+        ],
+        [
+          0.002803802490234375,
+          0.001995086669921875,
+          0.004756927490234375,
+          1
+        ],
+        [
+          0.0006566047668457031,
+          0.0003209114074707031,
+          0.0004897117614746094,
+          1
+        ],
+        [
+          0.0011034011840820312,
+          0.000835418701171875,
+          0.002010345458984375,
+          1
+        ],
+        [
+          0.00917816162109375,
+          0.004207611083984375,
+          0.005382537841796875,
+          1
+        ]
+      ],
+      "invalid": 0
+    },
+    "angular": {
+      "width": 32,
+      "height": 32,
+      "means": [
+        [
+          0.0011505692382343113,
+          0.0006629648851230741,
+          0.0012209517299197614,
+          1
+        ],
+        [
+          0.0007855294388718903,
+          0.00047789508244022727,
+          0.0009403183939866722,
+          1
+        ],
+        [
+          0.0007278909906744957,
+          0.0005490870680660009,
+          0.001442793756723404,
+          1
+        ],
+        [
+          0.000018595135770738125,
+          0.000013962097000330687,
+          0.00003667041892185807,
+          1
+        ],
+        [
+          0.0003513903357088566,
+          0.0002621819148771465,
+          0.0006421847501769662,
+          1
+        ],
+        [
+          0.003152138087898493,
+          0.001484011416323483,
+          0.00193853018572554,
+          1
+        ]
+      ],
+      "centres": [
+        [
+          0.00209808349609375,
+          0.0010652542114257812,
+          0.0013580322265625,
+          1
+        ],
+        [
+          0.0011692047119140625,
+          0.0007448196411132812,
+          0.0011043548583984375,
+          1
+        ],
+        [
+          0.00051116943359375,
+          0.0004024505615234375,
+          0.0011196136474609375,
+          1
+        ],
+        [
+          0.00001043081283569336,
+          0.000008225440979003906,
+          0.00002300739288330078,
+          1
+        ],
+        [
+          0.0005006790161132812,
+          0.00040793418884277344,
+          0.0007839202880859375,
+          1
+        ],
+        [
+          0.019317626953125,
+          0.00569915771484375,
+          0.0026683807373046875,
+          1
+        ]
+      ],
+      "invalid": 0
+    },
+    "convention": "shadow RG direct Sun/Moon transmittance; B supported precipitation; A regional event. Cubes +X -X +Y -Y +Z -Z. Relative linear RGB."
+  }
+}
