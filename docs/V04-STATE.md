@@ -16,6 +16,8 @@
 
 ## Phase 1 resume checkpoint - 22 October
 
+- Browser recovery: existing Chrome extension connection restored without a restart or security change. Exact localhost tab claimed and verified. Current bootstrap returns the Agent rather than assigning a global. Official host diagnostics pass; initial sandbox profile/registry errors were misleading. See `V04-BROWSER-RECOVERY.md`. Fresh regional (4 batches), FFT (9 checks) and optics (5 groups) GPU tests PASS in `v04-p1-recovered-tests`; final controlled motion collection is underway. Earlier interruption descriptions below remain historical.
+
 - Renderer commits: 237c1a3 environment/cache integration; 942362f full-width front correction and experiment harness; b6349d3 shared ice-veil extinction. No Phase 1 commits pushed yet.
 - Original local evidence: baseline de7b32b 12 still pairs + five 10 s clips; preliminary Phase 1 237c1a3 12 still pairs and 942362f five 20 s clips. The b6349d3-labelled directory now contains twelve still pairs generated between sessions; owner authorized provenance inspection without overwriting. All twelve were inspected at original resolution. Chrome156/NVIDIA-Ampere metadata is consistent, exact browser host unknown. Final videos remain absent.
 - `tests/phase1-inventory.mjs`: 138 retained Phase 0 evidence hashes match; frozen main/0.2/0.3 refs match; 70 Phase 1 original files inventoried. Check is local, not GitHub publication verification.

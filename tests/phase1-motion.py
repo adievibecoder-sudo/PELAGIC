@@ -14,7 +14,9 @@ for directory in ['v04-p1-baseline-motion',args.after]:
     packets=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_packets','-show_entries','packet=pts_time','-of','json',str(movie)]))['packets']
     pts=[float(p['pts_time']) for p in packets];assert all(b>a for a,b in zip(pts,pts[1:]))
     duration=pts[-1]-pts[0];stream=next(s for s in probe['streams'] if s['codec_type']=='video')
-    decode=subprocess.run(['ffmpeg','-v','error','-i',str(movie),'-f','null','-'],capture_output=True,text=True)
+    # Preserve the WebM millisecond time base; nominal-rate quantization can
+    # produce duplicate null-mux DTS even when original packet PTS increase.
+    decode=subprocess.run(['ffmpeg','-v','error','-i',str(movie),'-enc_time_base','1:1000','-fps_mode','passthrough','-f','null','-'],capture_output=True,text=True)
     times=[.5,duration*.25,duration*.5,duration*.75,max(.5,duration-.5)];sheet=Image.new('RGB',(960*len(times),570),(15,25,30));draw=ImageDraw.Draw(sheet)
     for i,t in enumerate(times):
       path=out/f'{directory}-{movie.stem}-{i}.png'

@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Phase 1 lighting controls</title>
+<style>body{margin:0;background:#101b20;color:#e6ede7;font:14px Consolas,monospace}header{padding:12px}button{margin:0 12px}iframe{border:0;width:100vw;height:calc(100vh - 60px)}</style>
+<header>PHASE 1 / ISOLATED LIGHTING <button id="run">Run lighting controls</button><span id="status">Ready</span></header><iframe id="view" title="Lighting control"></iframe>
+<script type="module">
+const args=new URLSearchParams(location.search),motion=args.get('mode')==='motion';
+const cases=motion?[
+ {name:'reflection-drift',preset:'midday',clouds:.5,veil:0,debug:12,weatherRate:60,timeScale:0},
+ {name:'glitter-weather',preset:'golden',motion:'environment'},
+]:[
+ ...['midday','golden','moonlit'].flatMap(preset=>[0,1].map(veil=>({name:`veil-${preset}-${veil}`,preset,clouds:0,veil,paused:1}))),
+ {name:'steady-100',preset:'midday',clouds:.5,veil:0,paused:1,frames:100},
+ {name:'steady-1000',preset:'midday',clouds:.5,veil:0,paused:1,frames:1000},
+ {name:'reflection-100',preset:'midday',clouds:.5,veil:0,timeScale:0,weatherRate:60,debug:12,frames:100},
+ {name:'reflection-700',preset:'midday',clouds:.5,veil:0,timeScale:0,weatherRate:60,debug:12,frames:700},
+];
+let index=Number(args.get('start')||0),running=false;
+const view=document.querySelector('#view'),status=document.querySelector('#status');
+function next(){
+ if(index===cases.length){document.title='LIGHTING CONTROLS DONE';status.textContent='Complete';running=false;return;}
+ const c=cases[index],q=new URLSearchParams({cam:'0,2,0,4,-5.5',cameraMode:'free',quality:'Balanced',w:1920,h:1080,seed:1307,t:20,frames:100,ui:0,adaptive:0,validate:1,p0:1,p0Profile:1,
+  stage:args.get('stage')||'v04-p1-light-controls',revision:args.get('revision')||'UNCOMMITTED',...c});
+ if(motion){q.set('video',c.name);q.set('duration',20);}else q.set('shot',c.name+'.png');
+ status.textContent=`${index+1}/${cases.length}: ${c.name}`;view.src='/?'+q;
+}
+document.querySelector('#run').onclick=()=>{if(!running){running=true;next();}};
+addEventListener('message',e=>{
+ if(e.origin!==location.origin||e.source!==view.contentWindow||e.data?.type!==(motion?'pelagic-video':'pelagic-capture'))return;
+ index++;if(index<cases.length){args.set('start',index);args.set('auto','1');location.href='phase1-light.html?'+args;}else next();
+});
+if(args.get('auto')==='1'){running=true;next();}
+</script></html>

@@ -1,0 +1,48 @@
+{
+  "time": "2026-10-22T04:34:28.599Z",
+  "sourceCheckpoint": "efcf4bb",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": ""
+  },
+  "backend": "native-webgpu",
+  "checks": [
+    {
+      "cameraX": 511.9,
+      "count": 1024,
+      "maxAbsoluteError": 5.795310002998377e-7,
+      "tolerance": 0.00002,
+      "invalid": 0,
+      "status": "PASS"
+    },
+    {
+      "cameraX": 512.1,
+      "count": 1024,
+      "maxAbsoluteError": 5.795310002998377e-7,
+      "tolerance": 0.00002,
+      "invalid": 0,
+      "status": "PASS"
+    },
+    {
+      "cameraX": 1024.1,
+      "count": 1024,
+      "maxAbsoluteError": 0.0000010332847371063991,
+      "tolerance": 0.00002,
+      "invalid": 0,
+      "status": "PASS"
+    },
+    {
+      "cameraX": 1000000,
+      "count": 1024,
+      "maxAbsoluteError": 0.000004948281455474657,
+      "tolerance": 0.00002,
+      "invalid": 0,
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}
