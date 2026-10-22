@@ -5,10 +5,11 @@ from PIL import Image,ImageDraw
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--after',default='v04-p1-final-motion')
 parser.add_argument('--output',default='v04-p1-final-review')
+parser.add_argument('--skip-baseline',action='store_true',help='Baseline originals already decoded in a retained review')
 args=parser.parse_args()
 root=Path('evidence');out=root/args.output;out.mkdir(exist_ok=True)
 results=[]
-for directory in ['v04-p1-baseline-motion',args.after]:
+for directory in ([args.after] if args.skip_baseline else ['v04-p1-baseline-motion',args.after]):
  for movie in sorted((root/directory).glob('*.webm')):
     probe=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_format','-show_streams','-of','json',str(movie)]))
     packets=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_packets','-show_entries','packet=pts_time','-of','json',str(movie)]))['packets']

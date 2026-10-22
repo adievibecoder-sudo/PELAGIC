@@ -14,28 +14,37 @@ const retained=phase0.files.filter(f=>f.kind==='evidence'),mismatches=[];
 for(const f of retained){
   try{if(sha(await readFile(f.path))!==f.sha256)mismatches.push(f.path);}catch{mismatches.push(f.path);}
 }
-const directories=['v04-p1-baseline','v04-p1-baseline-motion','v04-p1-stills','v04-p1-motion','v04-p1-final-stills','v04-p1-final-motion'];
+const output=process.argv[2]||'evidence/v04-p1-tests/local-inventory.json';
+const directories=(await readdir('evidence')).filter(name=>name.startsWith('v04-p1-')).sort();
 const originals=[],stages=[];
 for(const directory of directories){
   const entries=await readdir('evidence/'+directory).catch(()=>[]);let media=0;
   for(const name of entries.sort()){
-    if(!/\.(png|webm|json)$/.test(name))continue;
+    if(!/\.(png|webm|jpg|json|txt)$/.test(name))continue;
     const path='evidence/'+directory+'/'+name,bytes=await readFile(path),record={path,bytes:bytes.length,sha256:sha(bytes)};
+    if(path===output)continue;
     if(/\.(png|webm)$/.test(name)){
       media++;
-      const report=JSON.parse(await readFile(path.replace(/\.(png|webm)$/,'.json'),'utf8'));
-      record.reportedCheckpoint=report.sourceCheckpoint;
-      record.resolvedCommit=git('rev-parse',report.sourceCheckpoint+'^{commit}');
-      record.reportedAdapter=report.adapter;
+      const report=await readFile(path.replace(/\.(png|webm)$/,'.json'),'utf8').then(JSON.parse).catch(()=>null);
+      if(report?.sourceCheckpoint){
+        record.reportedCheckpoint=report.sourceCheckpoint;
+        try{record.resolvedCommit=git('rev-parse',report.sourceCheckpoint+'^{commit}');}catch{record.resolvedCommit=null;}
+        record.reportedAdapter=report.adapter;
+      }
     }
     originals.push(record);
   }
   stages.push({directory,media});
 }
+const sources=[];
+for(const path of git('ls-files').split('\n').filter(p=>!p.startsWith('evidence/'))){
+  const bytes=await readFile(path);sources.push({path,bytes:bytes.length,sha256:sha(bytes)});
+}
 const report={createdUTC:new Date().toISOString(),head:git('rev-parse','HEAD'),branch:git('branch','--show-current'),
   scope:'Local inventory only; capture revisions are supplied labels resolved to commits, not contemporaneous source attestations. Not publication verification or phase acceptance.',
-  frozenRefs:refs,phase0Evidence:{files:retained.length,mismatches,status:mismatches.length?'FAIL':'PASS'},stages,originals};
-await mkdir('evidence/v04-p1-tests',{recursive:true});
-await writeFile('evidence/v04-p1-tests/local-inventory.json',JSON.stringify(report,null,2)+'\n');
+  frozenRefs:refs,phase0Evidence:{files:retained.length,mismatches,status:mismatches.length?'FAIL':'PASS'},stages,originals,sources};
+await mkdir(output.slice(0,output.lastIndexOf('/')),{recursive:true});
+// Existing checkpoint manifests are immutable evidence. Choose a fresh output.
+await writeFile(output,JSON.stringify(report,null,2)+'\n',{flag:'wx'});
 console.log(JSON.stringify({frozenRefs:refs,phase0Evidence:report.phase0Evidence,stages,originals:originals.length},null,2));
 if(mismatches.length||refs.some(r=>r.status==='FAIL'))process.exitCode=1;

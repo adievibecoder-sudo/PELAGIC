@@ -52,6 +52,12 @@ for directory in ['v04-p1-baseline-performance','v04-p1-performance']:
         if f['frame']<500:continue
         tasks=[t for t in r.get('browserTasks',[]) if t['start']<f.get('raf',0) and t['start']+t['duration']>f.get('raf',0)-f['frame']]
         stalls.append({'frame':f,'overlappingBrowserTasks':tasks})
-    performance.append({'name':directory+'/'+p.stem,'adapter':r['adapter'],'sampleFrames':len(frames),'fps':1000/frame['mean'] if frame else None,'frame':frame,'gpu':gpu,'stalls':stalls,'allocation':r.get('allocations'),'visibility':list(set(f['visibility'] for f in frames)),'errors':r['errors']})
+    performance.append({'name':directory+'/'+p.stem,'source':r.get('sourceCheckpoint'),'adapter':r['adapter'],'sampleFrames':len(frames),'fps':1000/frame['mean'] if frame else None,'frame':frame,'gpu':gpu,'stalls':stalls,'allocation':r.get('allocations'),'visibility':list(set(f['visibility'] for f in frames)),
+      'cpu':stats([f['cpu'] for f in frames]),'submit':stats([f['submitEnd']-f['submitStart'] for f in frames]),
+      'queryCompletionDelay':stats([v['readbackCompleted']-v['submitEnd'] for v in m if 'readbackCompleted' in v and 'submitEnd' in v]),
+      'cacheAgeFrames':stats([f['cacheAgeFrames'] for f in frames if 'cacheAgeFrames' in f]),
+      'probeAgeFrames':stats([f['probeAgeFrames'] for f in frames if 'probeAgeFrames' in f]),
+      'visibilityCounts':{v:sum(f['visibility']==v for f in frames) for v in set(f['visibility'] for f in frames)},
+      'browserTaskCount':len(r.get('browserTasks',[])),'wallSeconds':r.get('benchmarkWallSeconds'),'stopReason':r.get('benchmarkStopReason'),'errors':r['errors']})
 (out/'performance-analysis.json').write_text(json.dumps(performance,indent=2))
 for p in performance:print(p['name'],p['fps'],'FPS',len(p['stalls']),'stalls')

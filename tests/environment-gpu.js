@@ -24,15 +24,26 @@ async function run(){
   const count=1024,frame=device.createBuffer({size:FRAME_BYTES,usage:B.UNIFORM|B.COPY_DST}),points=device.createBuffer({size:count*8,usage:B.STORAGE|B.COPY_DST}),out=device.createBuffer({size:count*16,usage:B.STORAGE|B.COPY_SRC}),read=device.createBuffer({size:count*16,usage:B.MAP_READ|B.COPY_DST});
   const bg=device.createBindGroup({layout:pipe.getBindGroupLayout(0),entries:[frame,points,out].map((buffer,binding)=>({binding,resource:{buffer}}))});
   const checks=[];
-  for(const cameraX of [511.9,512.1,1024.1,1000000]){
-   const state=createEnvironment({...DEFAULTS,frontEnabled:true,frontX:18000,frontZ:-3000,frontHeading:137,clouds:.2,rain:.3});state.clocks.weather=137.5;
+  const cases=[... [511.9,512.1,1024.1,1000000].map(cameraX=>({cameraX,frontWidth:20})),
+   {cameraX:18000,frontWidth:1,edgeGrid:true},{cameraX:18000,frontWidth:100,edgeGrid:true}];
+  for(const {cameraX,frontWidth,edgeGrid} of cases){
+   const state=createEnvironment({...DEFAULTS,frontEnabled:true,frontX:18000,frontZ:-3000,frontHeading:137,frontWidth,clouds:.2,rain:.3});state.clocks.weather=137.5;
    const f=new Float32Array(FRAME_FLOATS);environmentUniforms(state,{x:cameraX,z:5000},f);device.queue.writeBuffer(frame,0,f);
    const p=new Float32Array(count*2),reference=[];
-   for(let i=0;i<count;i++){const x=-20000+(i%32)*2000,z=-30000+Math.floor(i/32)*2000;p[i*2]=(x-cameraX)*.001;p[i*2+1]=(z-5000)*.001;const e=sampleEnvironment(state,x,z);reference.push([e.frontWeight,e.clouds,e.rain,e.weights[2]]);}
+   for(let i=0;i<count;i++){
+    let x=-20000+(i%32)*2000,z=-30000+Math.floor(i/32)*2000;
+    if(edgeGrid){
+     const a=state.front.heading*Math.PI/180,along=((i%32)-15.5)/12*state.front.width,across=(Math.floor(i/32)-15.5)/12*state.front.length;
+     x=state.front.x+Math.cos(a)*(state.front.speed*state.clocks.weather+along)-Math.sin(a)*across;
+     z=state.front.z+Math.sin(a)*(state.front.speed*state.clocks.weather+along)+Math.cos(a)*across;
+    }
+    p[i*2]=(x-cameraX)*.001;p[i*2+1]=(z-5000)*.001;const e=sampleEnvironment(state,x,z);reference.push([e.frontWeight,e.clouds,e.rain,e.weights[2]]);
+   }
    device.queue.writeBuffer(points,0,p);const enc=device.createCommandEncoder(),cp=enc.beginComputePass();cp.setPipeline(pipe);cp.setBindGroup(0,bg);cp.dispatchWorkgroups(count/64);cp.end();enc.copyBufferToBuffer(out,0,read,0,count*16);device.queue.submit([enc.finish()]);
    await read.mapAsync(GPUMapMode.READ);const values=new Float32Array(read.getMappedRange());let maxError=0,invalid=0;for(let i=0;i<count;i++)for(let c=0;c<4;c++){const value=values[i*4+c];if(!Number.isFinite(value))invalid++;maxError=Math.max(maxError,Math.abs(value-reference[i][c]));}read.unmap();
-   // Worst-case f32 kilometre cancellation at 1000 km / 20 km envelope < 2e-5.
-   checks.push({cameraX,count,maxAbsoluteError:maxError,tolerance:2e-5,invalid,status:maxError<2e-5&&!invalid?'PASS':'FAIL'});
+   // f32 kilometre cancellation: far camera / 20 km envelope, or nearby
+   // 1 km front. This tolerance does not certify narrow fronts at 1000 km.
+   checks.push({cameraX,frontWidthKm:frontWidth,count,maxAbsoluteError:maxError,tolerance:2e-5,invalid,status:maxError<2e-5&&!invalid?'PASS':'FAIL'});
   }
   const report={time:new Date().toISOString(),sourceCheckpoint:params.get('revision')||'UNSPECIFIED',userAgent:navigator.userAgent,adapter:identity,backend:'native-webgpu',checks,errors,status:checks.every(c=>c.status==='PASS')&&!errors.length?'PASS':'FAIL'};
   result.textContent=JSON.stringify(report,null,2);document.title='ENVIRONMENT TESTS '+report.status;

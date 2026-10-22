@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Phase 1 motion playback</title>
+<style>body{margin:0;background:#101b20;color:#e6ede7;font:14px Consolas,monospace}header{padding:12px}video{display:block;width:100%;max-height:calc(100vh - 110px)}button,select{margin:6px}pre{white-space:pre-wrap}</style>
+<header>PHASE 1 / ORIGINAL MOTION <select id="clip" aria-label="Original recording"></select><button id="play">Play selected</button><p id="status">Ready</p></header>
+<video id="movie" controls preload="metadata"></video><pre id="result"></pre>
+<script type="module">
+const cases=[
+ ...['broken-motion','weather-evolution','front-flight','instant-preview','underwater-weather'].map(name=>({name,stage:'v04-p1-recovered-motion'})),
+ ...['reflection-drift','glitter-weather'].map(name=>({name,stage:'v04-p1-light-motion'})),
+ ...['broken-motion','underwater-weather'].map(name=>({name:'baseline-'+name,file:name,stage:'v04-p1-baseline-motion'}))
+];
+const q=new URLSearchParams(location.search),select=document.querySelector('#clip'),video=document.querySelector('#movie'),status=document.querySelector('#status');
+for(const [i,c] of cases.entries())select.add(new Option(c.name,String(i)));
+select.value=q.get('case')||'0';let active=null,frames=[],callback=null,started=0;
+function observe(now,m){frames.push({mediaTime:m.mediaTime,presentedFrames:m.presentedFrames,presentationTime:m.presentationTime,expectedDisplayTime:m.expectedDisplayTime,visibility:document.visibilityState});callback=video.requestVideoFrameCallback(observe);}
+document.querySelector('#play').onclick=async()=>{
+ if(callback!==null)video.cancelVideoFrameCallback(callback);
+ active=cases[Number(select.value)];frames=[];started=performance.now();
+ video.src=`evidence/${active.stage}/${active.file||active.name}.webm`;
+ document.title='PLAYING '+active.name;callback=video.requestVideoFrameCallback(observe);
+ try{await video.play();}catch(e){status.textContent=String(e);}
+};
+video.ontimeupdate=()=>{status.textContent=`${active?.name||''} / ${video.currentTime.toFixed(2)} s / ${video.ended?'ENDED':video.paused?'PAUSED':'PLAYING'}`;};
+video.onended=async()=>{
+ if(callback!==null)video.cancelVideoFrameCallback(callback);
+ const quality=video.getVideoPlaybackQuality();
+ const report={time:new Date().toISOString(),source:video.getAttribute('src'),userAgent:navigator.userAgent,width:video.videoWidth,height:video.videoHeight,mediaSeconds:video.currentTime,wallSeconds:(performance.now()-started)/1000,
+  totalVideoFrames:quality.totalVideoFrames,droppedVideoFrames:quality.droppedVideoFrames,frames,
+  scope:'Browser playback to ended with frame callbacks. Visual observations are recorded separately; successful playback is not proof of natural motion.'};
+ const response=await fetch('/__evidence?stage=v04-p1-playback&name='+active.name+'.json',{method:'POST',body:JSON.stringify(report,null,2)});
+ document.title=response.ok?'PLAYBACK DONE '+active.name:'PLAYBACK SAVE FAILED';
+ document.querySelector('#result').textContent=JSON.stringify({...report,frames:frames.length},null,2);
+};
+</script></html>
