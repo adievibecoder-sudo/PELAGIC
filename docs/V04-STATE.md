@@ -1,6 +1,6 @@
 # PELAGIC 0.4 — Persistent Verified State
 
-**Implementation update:** 21 October 2026 - Phase 1 environment/radiance integration under validation. Separate unchanged de7b32b baseline captured: 12 original 1080p stills, five original 10 s videos. 32 CPU tests PASS; first native GPU render compiles and captures. Actual adapter NVIDIA/Ampere corroborates existing owner RTX 3050 evidence. No visual acceptance yet. See `V04-PHASE1-LAB.md`; Phase 0 FAILs remain.
+**Implementation update:** 22 October 2026 - Phase 1 remains INCOMPLETE. Rendering source b6349d3 integrates regional weather, versioned lighting and ice-veil shadows. All 32 CPU tests passed again at that source. Final GPU regression tests, continuous-motion inspection, sustained profiling, UI validation and remote publication remain pending. Desktop Computer Use stopped because its safety check could not determine Chrome's current URL; no browser automation continued afterward. See `V04-PHASE1-ACCEPTANCE.md`; Phase 0 FAILs remain.
 **Working branch:** `development/pelagic-0.4`
 **Current authorized phase:** **Phase 1 ONLY**
 **Next phase gate:** STOP after Phase 1; future Phase 2+3 requires separate approval and internal owner cloud checkpoint. User retains independent visual sign-off.
@@ -14,7 +14,18 @@
 - 0.3 acceptance W1/W2/L1/L2/B1/C1/U1/G1/A1/T1/R1: numerical progress, but visual quality broadly FAIL; numerical/physical gaps remain UNVERIFIED.
 - Reported RTX 3050 at 1080p: 22.83 FPS Golden Balanced, 32.24 Storm Balanced, 9.85 Golden High, 18.59 Storm High. These are **0.3 evidence**, not new 0.4 measurements.
 
-## Verified current state
+## Phase 1 resume checkpoint - 22 October
+
+- Renderer commits: 237c1a3 environment/cache integration; 942362f full-width front correction and experiment harness; b6349d3 shared ice-veil extinction. No Phase 1 commits pushed yet.
+- Original local evidence: baseline de7b32b 12 still pairs + five 10 s clips; preliminary Phase 1 237c1a3 12 still pairs and 942362f five 20 s clips. Final b6349d3 directory contains only `clear.png/json`; do not mix initial and final revision evidence.
+- `tests/phase1-inventory.mjs`: 138 retained Phase 0 evidence hashes match; frozen main/0.2/0.3 refs match; 70 Phase 1 original files inventoried. Check is local, not GitHub publication verification.
+- CPU test command `node --test tests/*.test.mjs`: 32 PASS, zero failures. Previous regional GPU result predates the width correction; final GPU FFT/optics/regional runs are outstanding.
+- `tests/phase1-evidence.py` now defaults to final capture/output directories, reports missing pairs explicitly and reads the correct `simulation` timing field. Executed: 1/12 final pairs available; clear control mean RGB difference 0.00198045 display codes. Original preliminary analysis preserved.
+- Browser runtime: local servers restarted on 8081 (unchanged baseline) and 8082 (current). Computer Use stopped at Chrome URL policy verification. Do not claim new GPU captures or performance from this session.
+- Next: resume `/phase1.html?stage=v04-p1-final-stills&revision=b6349d3&start=1` on port 8082; run final GPU test pages and five final motion cases. Inspect playback; test settings save/load/share. Run `phase1-benchmark.html` on baseline and current servers with foreground/visibility controls; collect readback ablations and trace evidence.
+- Then produce final report, reproduce guide, acceptance decisions and source/media manifest; commit originals through LFS, publish only the 0.4 development checkpoint, independently verify remote objects. STOP before Phases 2+3.
+
+## Retained Phase 0 findings
 
 | Field | Verified current value |
 |---|---|

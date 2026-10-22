@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>PELAGIC Phase 1 evidence review</title><style>body{background:#101b20;color:#e6ede7;font:15px/1.5 Consolas,monospace;margin:24px}a{color:#c4d9bf}section{margin:32px 0}article{display:grid;grid-template-columns:1fr 1fr;gap:12px}img,video{width:100%;background:#050a0d}h2{font-size:18px}small{color:#a4b6bb}</style>
+<h1>PELAGIC 0.4 / Phase 1</h1><p>INTERIM REVIEW: these captures precede the final ice-veil shadow correction. Phase 1 is incomplete; final GPU tests, motion review, profiling and owner acceptance remain pending.</p><p>Environment and lighting integration. Existing cloud, ocean and waterline realism defects remain open. Originals below; click images for full resolution. Scientific tests do not establish visual acceptance. Baseline and upgraded weather/front videos use different transition protocols; they are not matched proof of temporal superiority.</p><p><a href="docs/V04-PHASE1-LAB.md">Laboratory decisions</a> / <a href="docs/V04-STATE.md">Verified state and remaining gates</a> / <a href="evidence/v04-p1-review/image-analysis.json">Preliminary matched image measurements</a></p><main id="content"></main>
+<script type="module">
+const root=document.querySelector('#content');
+for(const name of ['clear','broken','covered','golden','storm','twilight','moonlit','underwater-clear','underwater-covered','reflection','body-covered','glitter-covered']){
+ const section=document.createElement('section'),h=document.createElement('h2');h.textContent=name;section.append(h);const row=document.createElement('article');
+ for(const [stage,label]of [['v04-p1-baseline','Baseline de7b32b'],['v04-p1-stills','Phase 1 237c1a3']]){
+  const div=document.createElement('div'),a=document.createElement('a'),img=document.createElement('img');a.href=`evidence/${stage}/${name}.png`;img.src=a.href;img.alt=label+' / '+name;img.loading='lazy';a.append(img);div.append(label,a);row.append(div);
+ }section.append(row);root.append(section);
+}
+for(const name of ['broken-motion','weather-evolution','front-flight','instant-preview','underwater-weather']){
+ const section=document.createElement('section'),h=document.createElement('h2');h.textContent=name+' / motion';section.append(h);const row=document.createElement('article');
+ for(const [stage,label]of [['v04-p1-baseline-motion','Baseline, 10 s'],['v04-p1-motion','Phase 1, 20 s']]){
+  const div=document.createElement('div'),video=document.createElement('video');video.src=`evidence/${stage}/${name}.webm`;video.controls=true;video.preload='none';div.append(label,video);row.append(div);
+ }section.append(row);root.append(section);
+}
+</script></html>

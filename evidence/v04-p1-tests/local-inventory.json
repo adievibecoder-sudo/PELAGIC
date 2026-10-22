@@ -1,0 +1,730 @@
+{
+  "createdUTC": "2026-10-22T03:31:12.242Z",
+  "head": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+  "branch": "development/pelagic-0.4",
+  "scope": "Local inventory only; capture revisions are supplied labels resolved to commits, not contemporaneous source attestations. Not publication verification or phase acceptance.",
+  "frozenRefs": [
+    {
+      "ref": "main",
+      "expected": "151aadaa6d2402c46f4e02454f2fc33ab7744661",
+      "actual": "151aadaa6d2402c46f4e02454f2fc33ab7744661",
+      "status": "PASS"
+    },
+    {
+      "ref": "v0.2.0^{}",
+      "expected": "151aadaa6d2402c46f4e02454f2fc33ab7744661",
+      "actual": "151aadaa6d2402c46f4e02454f2fc33ab7744661",
+      "status": "PASS"
+    },
+    {
+      "ref": "development/pelagic-0.3",
+      "expected": "87ce051ce43dd03b2967034ae2ca4d560a17f222",
+      "actual": "87ce051ce43dd03b2967034ae2ca4d560a17f222",
+      "status": "PASS"
+    },
+    {
+      "ref": "v0.3.0-dev.1^{}",
+      "expected": "be3f5c47d923e90303dece20ed19dbfc4bb17636",
+      "actual": "be3f5c47d923e90303dece20ed19dbfc4bb17636",
+      "status": "PASS"
+    }
+  ],
+  "phase0Evidence": {
+    "files": 138,
+    "mismatches": [],
+    "status": "PASS"
+  },
+  "stages": [
+    {
+      "directory": "v04-p1-baseline",
+      "media": 12
+    },
+    {
+      "directory": "v04-p1-baseline-motion",
+      "media": 5
+    },
+    {
+      "directory": "v04-p1-stills",
+      "media": 12
+    },
+    {
+      "directory": "v04-p1-motion",
+      "media": 5
+    },
+    {
+      "directory": "v04-p1-final-stills",
+      "media": 1
+    },
+    {
+      "directory": "v04-p1-final-motion",
+      "media": 0
+    }
+  ],
+  "originals": [
+    {
+      "path": "evidence/v04-p1-baseline/body-covered.json",
+      "bytes": 40593,
+      "sha256": "f971a83df7fb08a6e1a556d662a26dc1b5e434bf1721e93e9145c4f7a6589d06"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/body-covered.png",
+      "bytes": 3031946,
+      "sha256": "bc79e12839edb2be69cf948c0426c19a23300b2bf8142b1b2848d161fa42226b",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/broken.json",
+      "bytes": 40553,
+      "sha256": "af9cb9b8258cc5f46af78cee322f26375a6a65b11edb87c9b34a792ec6a808a2"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/broken.png",
+      "bytes": 4429225,
+      "sha256": "626f88fcf475248e47e4f99591a79ffd6c73b07c0b55463e8d8018286f800e22",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/clear.json",
+      "bytes": 40841,
+      "sha256": "caabef52491b5c2a1edd20305565b7d6be82d24681c0525978ff1fa80b27e4ae"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/clear.png",
+      "bytes": 4129416,
+      "sha256": "29ed9b85d718748c3f4a135fb931ce48eda11483a68cc2157ff9767bd85e4624",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/covered.json",
+      "bytes": 40743,
+      "sha256": "d2ec0c850557bc1ed35c0e74a66d062728f0b71c1146d18241f07a3d3cf4f281"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/covered.png",
+      "bytes": 4038836,
+      "sha256": "67ac9dcfc7b3a4ec8d46c5c8aae81e383bf55a807274d8859318ae5d6160200f",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/glitter-covered.json",
+      "bytes": 40581,
+      "sha256": "c4c615b3a155f3902c9a7a2f923e552bee8428a9cfed68f0a9ad7b1470de9376"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/glitter-covered.png",
+      "bytes": 2785341,
+      "sha256": "810064627adeec33f7bb1bc76aa9c3f75f886eab8177fb374284525182951adc",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/golden.json",
+      "bytes": 40436,
+      "sha256": "5bea95c7f0ca44eca604c496a3b18458213bf9383d5f1c98aa8aaf79ee72bd05"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/golden.png",
+      "bytes": 4480559,
+      "sha256": "a987cbd3301a5a45d916f8bd5040b6df8a68d61e814566a81929641224fc1fb2",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/moonlit.json",
+      "bytes": 40507,
+      "sha256": "a90b15591144209e5da053551cfc23e55c6d490a0f3ccb034cdebdfff1140ff6"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/moonlit.png",
+      "bytes": 3443462,
+      "sha256": "3d49d1bd1cd928b2a7329d092e897ea6d1bdb7dffcdab6e79c34fedfb475dc52",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/reflection.json",
+      "bytes": 40582,
+      "sha256": "8acc0c971a49727b52e3be763d51de0e7382770dcc957761c47e64285482931c"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/reflection.png",
+      "bytes": 4426038,
+      "sha256": "f21348e43bdf37b1a836b7eed2a8fe1ad8399f46af9b06fd1a61a813351e2d80",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/storm.json",
+      "bytes": 40484,
+      "sha256": "a42d457a79be269b939462f0f2b7eef8caed80bc7471917b13b50e66fe8b8043"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/storm.png",
+      "bytes": 4045161,
+      "sha256": "ab8d2fa1b15060e74c3add520a7ba847a6868843930f0cd6c6faa5c2fe1b86e1",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/twilight.json",
+      "bytes": 40425,
+      "sha256": "7d2371310109e5a00aef31c1d56d4b1ee9896f47b4042d75eadc81fab9267515"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/twilight.png",
+      "bytes": 3521589,
+      "sha256": "3600a29eb2af356f678271cee3d8ac259242242861fb179320b83ea94a98c469",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/underwater-clear.json",
+      "bytes": 40482,
+      "sha256": "d82f91561d0ded284e4dcff3cc7b9fd3808436b2c6a49d17e9f03888d672da29"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/underwater-clear.png",
+      "bytes": 3225025,
+      "sha256": "e8d30a7089d9339b1e053caa8285cac09d0f31673e317575709e30472aa67985",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline/underwater-covered.json",
+      "bytes": 40555,
+      "sha256": "3d546926bb2a7507200e14d0e4efeadce8f5d416e3f71d76a846b8ee16ad4233"
+    },
+    {
+      "path": "evidence/v04-p1-baseline/underwater-covered.png",
+      "bytes": 3190256,
+      "sha256": "29fed4a18d2a017ed119c72a1b8c14427122d2395db0a466f88d892439178ecb",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/broken-motion.json",
+      "bytes": 77287,
+      "sha256": "80f9e43fd68db89b90bde183bad24da0b24813e380f8d0f2bc4f6f7b81c7844c"
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/broken-motion.webm",
+      "bytes": 13203860,
+      "sha256": "0bd1b3e640f7525160bfbc8c2d6893e56e5fcf6746625e5051f1265eb1aca25a",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/front-flight.json",
+      "bytes": 80844,
+      "sha256": "9857580e49617d8dc5ef029465b49dfbdec56c55319ab014f48bd8c52f2478c7"
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/front-flight.webm",
+      "bytes": 14115620,
+      "sha256": "ea7e58079289f361412e25664ca0dd4f890f2474f7e0291678c4043e8db639db",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/instant-preview.json",
+      "bytes": 76802,
+      "sha256": "e6e140ab9ae018f803e6ae5536a6b05c0a255aa746807da20b0d90f01fed5148"
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/instant-preview.webm",
+      "bytes": 13671858,
+      "sha256": "f19dab8080fd558338c081db8d123acc53ea8cd1b0f07070c396141920adaf40",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/underwater-weather.json",
+      "bytes": 57939,
+      "sha256": "598755d07f211604c1c515d6181aba2824c05be9b1aeebfb9e737ed334fe4403"
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/underwater-weather.webm",
+      "bytes": 9512921,
+      "sha256": "57f31a44a4d8daf8b5dbdafb05e9cd5eb199927af082d6e0c909f5135adbf052",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/weather-evolution.json",
+      "bytes": 77945,
+      "sha256": "cbac99a87328e0818c21922c6922376c194fd6485c9e7ff4a06147bcf70eddaa"
+    },
+    {
+      "path": "evidence/v04-p1-baseline-motion/weather-evolution.webm",
+      "bytes": 14256876,
+      "sha256": "8246c392d1477e4c46e4094e4426daa43417f2ff016cbaabdffd344063003069",
+      "reportedCheckpoint": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "resolvedCommit": "de7b32b1c88e025f1d9f815039ee004cd6eb44a0",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/body-covered.json",
+      "bytes": 120126,
+      "sha256": "952142a92db2fc440df69538eef21e50e47d87fbd7ce72d8f370653247cceeff"
+    },
+    {
+      "path": "evidence/v04-p1-stills/body-covered.png",
+      "bytes": 3032001,
+      "sha256": "723efda01a99851236614b089ee25103280993c802a6c5b4491c953bd6262a2a",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/broken.json",
+      "bytes": 120644,
+      "sha256": "0f84d6911668440203e034b0c1019e95c70209b19b410531916b071c95da13e1"
+    },
+    {
+      "path": "evidence/v04-p1-stills/broken.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/clear.json",
+      "bytes": 120897,
+      "sha256": "41eee0a8f3bfaaac935718fef0fd5290ec4c41ccb51aaeb603836875b765a5cd"
+    },
+    {
+      "path": "evidence/v04-p1-stills/clear.png",
+      "bytes": 4129720,
+      "sha256": "023b368fe738ab30d33cee660d67c15bca704963d3df8175169e91bbe2a8f0ce",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/covered.json",
+      "bytes": 120718,
+      "sha256": "f5abb563e2a725a2cc88047dea7103df0e3b93febfe23c6687d3b23868a7a217"
+    },
+    {
+      "path": "evidence/v04-p1-stills/covered.png",
+      "bytes": 4038900,
+      "sha256": "3153072ef7c365740a7a075bbc8d4ca05acf9cf26b030e1608189d9f68c8e26a",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/glitter-covered.json",
+      "bytes": 120319,
+      "sha256": "8932a6da8d07571419530e4b160a766559fdee991440b6b8a741d3d2dc8290b3"
+    },
+    {
+      "path": "evidence/v04-p1-stills/glitter-covered.png",
+      "bytes": 2785508,
+      "sha256": "adf2d4d972eab38d5f0b0916a3fa2dd3233d407b0d2aa6ce56880f9a98fee223",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/golden.json",
+      "bytes": 120662,
+      "sha256": "66e0fa8fddd6ccf0e3fea16cbad7593c22db29e49b652022743bfda369ad1a80"
+    },
+    {
+      "path": "evidence/v04-p1-stills/golden.png",
+      "bytes": 4480629,
+      "sha256": "159ad81ecbb6bfc193f89f1ce44bde0d1af64e2bf0308198b91d16034345d135",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/moonlit.json",
+      "bytes": 121083,
+      "sha256": "02ca8f5d029985a2a4ac7848e8b6599bb9985e246d43cebc24567457eb9e4f0b"
+    },
+    {
+      "path": "evidence/v04-p1-stills/moonlit.png",
+      "bytes": 3443661,
+      "sha256": "12ada358119006d802866e87f63e41cb11d2f24d2da43ce989956b7312bd169d",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/reflection.json",
+      "bytes": 120054,
+      "sha256": "a853802aa32348b8a97516b826ffb9780c45db80bc0d83c8e500344700bc4a7f"
+    },
+    {
+      "path": "evidence/v04-p1-stills/reflection.png",
+      "bytes": 4425778,
+      "sha256": "62d9b7c3942b48cedd1237102a38c60037c1fd2ec3026abf69924aef1efefe6c",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/storm.json",
+      "bytes": 120623,
+      "sha256": "3b61ec48c611b87aaaa76f5f85c7e48edecb05f6a0ed610c83d062fd8658aa20"
+    },
+    {
+      "path": "evidence/v04-p1-stills/storm.png",
+      "bytes": 4044105,
+      "sha256": "c9aeec1c47ac3776e7484afb652438c3ae9e53335b051e4c36037f055f4e329b",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/twilight.json",
+      "bytes": 120545,
+      "sha256": "225c7fa48a57f2bbfe895e0e2fce148726c9b93923aad7cfc208d6844c962a99"
+    },
+    {
+      "path": "evidence/v04-p1-stills/twilight.png",
+      "bytes": 3521612,
+      "sha256": "7bf1466356411f16f33f460ae89d9e742a72721678bd5bbe97361cd9b7444d42",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/underwater-clear.json",
+      "bytes": 120143,
+      "sha256": "f0f9623d25ba3a47e71db1557bc78b59a6a54785f7a94ea93abca50ce2cf9f7a"
+    },
+    {
+      "path": "evidence/v04-p1-stills/underwater-clear.png",
+      "bytes": 3211330,
+      "sha256": "f177509676d0130456f45a62b8248434b8c251af3245948bbb908d1d1493dbbd",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-stills/underwater-covered.json",
+      "bytes": 120138,
+      "sha256": "b9c029f12a2fc91415f1a07e7ad6a850629c65d35d745cc5bbf21b8339a40bfa"
+    },
+    {
+      "path": "evidence/v04-p1-stills/underwater-covered.png",
+      "bytes": 2981892,
+      "sha256": "b3b72d02c25681df4abf77c96f1db11a71bd07e69894681b983aea75992a82e0",
+      "reportedCheckpoint": "237c1a3",
+      "resolvedCommit": "237c1a395c6389c0c9ec3c1c2e71519fad73e74d",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-motion/broken-motion.json",
+      "bytes": 522851,
+      "sha256": "bce5a459826131a8636445460ee7321cec9a03b9069f226e31e1938b2f76c10c"
+    },
+    {
+      "path": "evidence/v04-p1-motion/broken-motion.webm",
+      "bytes": 25969729,
+      "sha256": "c0db15c31f8e1ff4baca9b19e625af1a9288218f0fc1a0401855e52e148b4b4d",
+      "reportedCheckpoint": "942362f",
+      "resolvedCommit": "942362f7cc4141c096b5760d6b7261b4d3f351d4",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-motion/front-flight.json",
+      "bytes": 870355,
+      "sha256": "5d85c057b2c81eb40ab7742665df662c3822df4979b4ba4f5c880e958aa05499"
+    },
+    {
+      "path": "evidence/v04-p1-motion/front-flight.webm",
+      "bytes": 33655746,
+      "sha256": "c441a27a68ae0f24ffc99cf6f24f1feded70fbba26412dd373f57f4d5758c673",
+      "reportedCheckpoint": "942362f",
+      "resolvedCommit": "942362f7cc4141c096b5760d6b7261b4d3f351d4",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-motion/instant-preview.json",
+      "bytes": 735348,
+      "sha256": "ee90205a8f3856af17d97db9a359797935b50a60d4e0c71c3ceba9676a752c86"
+    },
+    {
+      "path": "evidence/v04-p1-motion/instant-preview.webm",
+      "bytes": 33938730,
+      "sha256": "ba9dbe395013086480e24a5882f585f1cd2e9198380edda0e8b3adca9dab0c93",
+      "reportedCheckpoint": "942362f",
+      "resolvedCommit": "942362f7cc4141c096b5760d6b7261b4d3f351d4",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-motion/underwater-weather.json",
+      "bytes": 608562,
+      "sha256": "76a05a7a7f71df96365520533e5a581ba3d3e878c5acac9713f0ad2c38f8f6a8"
+    },
+    {
+      "path": "evidence/v04-p1-motion/underwater-weather.webm",
+      "bytes": 26826521,
+      "sha256": "6b8756e4fa357f8e41850f7ab08d3c7e2a76f0566dd8722613cee798d2210e40",
+      "reportedCheckpoint": "942362f",
+      "resolvedCommit": "942362f7cc4141c096b5760d6b7261b4d3f351d4",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-motion/weather-evolution.json",
+      "bytes": 704042,
+      "sha256": "5ac29e81b86338b5602ebf7e506e8fb794d4a2b5959a1d7ab3e2e89205b88c24"
+    },
+    {
+      "path": "evidence/v04-p1-motion/weather-evolution.webm",
+      "bytes": 32783781,
+      "sha256": "9e6172fcc770d3ea99a306c1aa1fa2c4444e270d34b17af519237f78cb03f146",
+      "reportedCheckpoint": "942362f",
+      "resolvedCommit": "942362f7cc4141c096b5760d6b7261b4d3f351d4",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/clear.json",
+      "bytes": 120426,
+      "sha256": "f9bb548e69d0188d38618e17562e1c595cc6fb4847835bc78137780233c3be08"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/clear.png",
+      "bytes": 4129720,
+      "sha256": "023b368fe738ab30d33cee660d67c15bca704963d3df8175169e91bbe2a8f0ce",
+      "reportedCheckpoint": "b6349d3",
+      "resolvedCommit": "b6349d33faa56caa156cdb81819111ff9e8f70ca",
+      "reportedAdapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    }
+  ]
+}
