@@ -28,4 +28,8 @@ New captures must use unique directories and exclusive writes. Source labels fro
 
 ## Live state
 
-Preparation underway. No new rendering improvement accepted. Research: consult existing decisions for a specific experiment; no automatic import of proprietary or unverified techniques. The supplied video still requires full playback review; earlier inspection was sampled frames only.
+First checkpoint delivered for owner review: `V04-MILESTONE-A-CHECKPOINT.md`. Default renderer unchanged; opt-in convective-cloud experiment varies placement and height but fails photographic quality and costs more GPU time. Rejected alternatives remain preserved. Four Balanced image/motion pairs, two Cinematic image pairs, GPU checks and display-paced profiles are available through `/milestone-a-review.html`. Source `3541dc8`; final evidence/source manifest and publication proof are separate.
+
+CPU35/GPU FFT9/optics5/cloud11 checks PASS within their test envelope. Overall realism and real-time targets FAIL. Historical stall cause, matched real/AAA comparisons and full supplied-video perceptual review remain UNVERIFIED. The minimized-window cadence failure is isolated only for the fresh run. Nine old evidence differences remain untouched; initiating browser unknown.
+
+**STOP / owner HOLD.** Recommended next bounded investigation, only after approval: displaced wave silhouettes versus derivative/filtered-roughness contributions under the same four-view protocol. No further cloud or ocean reconstruction starts from this checkpoint without the owner decision. B/C remain unauthorized.

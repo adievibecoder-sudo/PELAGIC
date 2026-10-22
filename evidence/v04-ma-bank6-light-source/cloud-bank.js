@@ -1,0 +1,58 @@
+// Experimental density only. Kilometres throughout; lighting/extinction unchanged.
+// Regional support, vertically narrowing bodies and independent erosion replace
+// the repeated ellipsoidal support. This is a morphological model, not moist fluid dynamics.
+export const CLOUD_BANK = /* wgsl */ `
+const BANK_BIAS:f32=0.30;
+fn cloudBankDensity(p:vec3f,detail:bool,footprint:f32)->f32 {
+  let altitude=p.y+dot(p.xz,p.xz)/(2.0*RG);
+  let depth=mix(F.regional.y,3.5,regionalWeight(p.xz));
+  if(altitude<=F.cloudP.x || altitude>=F.cloudP.x+depth){return 0.0;}
+  let coverage=regionalCoverage(p.xz);
+  if(coverage<0.001){return 0.0;}
+  let world=p+vec3f(F.camPos.x*0.001+F.worldOrigin.x,0,F.camPos.z*0.001+F.worldOrigin.y)-vec3f(F.cloudDrift.x,0,F.cloudDrift.y);
+  let bankWeather=textureSampleLevel(cloudNoise,cloudNoiseSampler,vec3f(world.x*.008,.31,world.z*.008),max(log2(max(footprint,.001)*1.024),0.0));
+  let regional=textureSampleLevel(cloudNoise,cloudNoiseSampler,vec3f((world.x+world.z*.37)*.027,.73,(world.z-world.x*.37)*.027),max(log2(max(footprint,.001)*3.7),0.0));
+  // Bounded modulation preserves the empty/full endpoints. The old 3.2 gain
+  // was calibrated for sparse ellipsoid seeds, not a continuous support field.
+  let cover=clamp(coverage+coverage*(1.0-coverage)*((bankWeather.a-.5)*1.8+(regional.a-.5)*1.4),0.0,1.0);
+  let bottom=F.cloudP.x+depth*(.025+.06*regional.r);
+  let h=(altitude-bottom)/max(depth*(.48+.44*bankWeather.r),.1);
+  if(h<=0.0 || h>=1.0 || cover<.001){return 0.0;}
+  let wind=F.windP[0].xy;
+  let shear=wind*h*h*depth*.24;
+  let warp=(regional.rg-.5)*.6;
+  let q=vec3f((world.x+shear.x)*.36+warp.x,(altitude-F.cloudP.x)*.30,(world.z+shear.y)*.36+warp.y);
+  let lod=max(log2(max(footprint,.001)*.36*128.0),0.0);
+  let n=textureSampleLevel(cloudNoise,cloudNoiseSampler,q,lod);
+  let billow=textureSampleLevel(cloudNoise,cloudNoiseSampler,q*2.37+vec3f(.31,.73,.17),lod+1.245);
+  let signal=(n.r-.5)*1.7+.55+(n.g-.4)*.45+(billow.r-.5)*.8;
+  let threshold=1.10-cover+.18*smoothstep(.26,.95,h)+BANK_BIAS;
+  var d=clamp((signal-threshold)*6.0,0.0,1.0);
+  if(d<=0.0){return 0.0;}
+  let edge=(1.0-billow.b)*mix(.32,.18,smoothstep(.05,.5,h));
+  d=max(0.0,d-edge*(1.0-d));
+  return d*smoothstep(0.0,.08,h)*(1.0-smoothstep(.65,1.0,h));
+}
+`;
+
+export function cloudBankShader(code,query){
+  if(query.get('maLight')==='centroid')code=code.replace('let p=ro+dir*t;','var p=ro+dir*t;')
+    .replace('var density=0.0;','var density=0.0;var segmentT=1.0;var locationMoment=0.0;')
+    .replace('density+=cloudDensityFiltered(ro+dir*(a+ds*(f32(sub)+0.5)*0.25),true,footprint)*0.25;',`
+      let sampleT=a+ds*(f32(sub)+0.5)*0.25;
+      let sampleDensity=cloudDensityFiltered(ro+dir*sampleT,true,footprint);
+      let sampleAlpha=1.0-exp(-sampleDensity*F.cloudP.z*6.0*ds*.25);
+      locationMoment+=sampleT*segmentT*sampleAlpha;
+      segmentT*=1.0-sampleAlpha;density+=sampleDensity*.25;`)
+    .replace('if(density>0.001) {','if(density>0.001) {\n      p=ro+dir*locationMoment/max(1.0-segmentT,1e-6);');
+  if(query.get('maCloud')!=='bank'||!code.includes('fn cloudDensityFiltered('))return code;
+  return code.replace('fn cloudDensityFiltered(', 'fn cloudDensityLegacy(').replace('fn cloudDensity(p:',CLOUD_BANK+`
+fn cloudDensityFiltered(p:vec3f,detail:bool,footprint:f32)->f32 {
+  let legacyWeight=clamp(regionalTypes(p.xz).y+regionalTypes(p.xz).z,0.0,1.0);
+  if(legacyWeight>.9999){return cloudDensityLegacy(p,detail,footprint);}
+  let bank=cloudBankDensity(p,detail,footprint);
+  if(legacyWeight<.0001){return bank;}
+  return mix(bank,cloudDensityLegacy(p,detail,footprint),legacyWeight);
+}
+fn cloudDensity(p:`);
+}

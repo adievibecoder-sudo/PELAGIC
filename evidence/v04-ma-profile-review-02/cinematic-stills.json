@@ -1,0 +1,230 @@
+[
+  {
+    "name": "day-near",
+    "paths": [
+      "evidence\\v04-ma-base-cinematic-stills\\day-near.json",
+      "evidence\\v04-ma-convection-cinematic-stills\\day-near.json"
+    ],
+    "settingsMatch": true,
+    "cameraMatch": true,
+    "timeDifference": 0.0,
+    "resolution": [
+      [
+        1920,
+        1080
+      ],
+      [
+        1920,
+        1080
+      ]
+    ],
+    "sourceStable": [
+      true,
+      true
+    ],
+    "errors": [
+      [],
+      []
+    ],
+    "hdr": [
+      {
+        "status": "PASS",
+        "invalid": 0,
+        "negative": 0,
+        "max": 0.91162109375,
+        "over60000": 0,
+        "pixels": 2073600,
+        "storageDivisor": 32,
+        "radianceBands": [
+          {
+            "verticalThird": 0,
+            "meanRGB": [
+              0.5459099210633171,
+              0.6930258346486975,
+              0.9697055053710938
+            ],
+            "meanLuminance": 0.6817252636466222,
+            "geometricMeanLuminance": 0.5914961912317656
+          },
+          {
+            "verticalThird": 1,
+            "meanRGB": [
+              0.4263421955097605,
+              0.49260256656893975,
+              0.5754065510078713
+            ],
+            "meanLuminance": 0.48449405935824147,
+            "geometricMeanLuminance": 0.2669577597958242
+          },
+          {
+            "verticalThird": 2,
+            "meanRGB": [
+              0.1167018964169202,
+              0.14692506240473854,
+              0.21489062909726744
+            ],
+            "meanLuminance": 0.14540673123092443,
+            "geometricMeanLuminance": 0.10413357618610682
+          }
+        ],
+        "scope": "All RGB samples in pre-exposed resolved linear HDR, before bloom and tone mapping. Bands undo storage divisor, retain renderer-relative radiance units; no sky/ocean segmentation."
+      },
+      {
+        "status": "PASS",
+        "invalid": 0,
+        "negative": 0,
+        "max": 0.91162109375,
+        "over60000": 0,
+        "pixels": 2073600,
+        "storageDivisor": 32,
+        "radianceBands": [
+          {
+            "verticalThird": 0,
+            "meanRGB": [
+              0.4962677664226956,
+              0.6561392706411856,
+              0.9481201578069616
+            ],
+            "meanLuminance": 0.6432316088977165,
+            "geometricMeanLuminance": 0.5690239190050057
+          },
+          {
+            "verticalThird": 1,
+            "meanRGB": [
+              0.4038775366820671,
+              0.47817243070514115,
+              0.5710291322955379
+            ],
+            "meanLuminance": 0.4690815900906668,
+            "geometricMeanLuminance": 0.24570105919994015
+          },
+          {
+            "verticalThird": 2,
+            "meanRGB": [
+              0.10559679307871395,
+              0.13857927209801144,
+              0.21117973265824494
+            ],
+            "meanLuminance": 0.13680895031095452,
+            "geometricMeanLuminance": 0.09582804222667722
+          }
+        ],
+        "scope": "All RGB samples in pre-exposed resolved linear HDR, before bloom and tone mapping. Bands undo storage divisor, retain renderer-relative radiance units; no sky/ocean segmentation."
+      }
+    ]
+  },
+  {
+    "name": "gold-high",
+    "paths": [
+      "evidence\\v04-ma-base-cinematic-stills\\gold-high.json",
+      "evidence\\v04-ma-convection-cinematic-stills\\gold-high.json"
+    ],
+    "settingsMatch": false,
+    "cameraMatch": false,
+    "timeDifference": 0.0,
+    "resolution": [
+      [
+        1920,
+        1080
+      ],
+      [
+        1920,
+        1080
+      ]
+    ],
+    "sourceStable": [
+      true,
+      true
+    ],
+    "errors": [
+      [],
+      []
+    ],
+    "hdr": [
+      {
+        "status": "PASS",
+        "invalid": 0,
+        "negative": 0,
+        "max": 65.1875,
+        "over60000": 0,
+        "pixels": 2073600,
+        "storageDivisor": 32,
+        "radianceBands": [
+          {
+            "verticalThird": 0,
+            "meanRGB": [
+              0.998638219833374,
+              0.6065396969406693,
+              0.3281734569425936
+            ],
+            "meanLuminance": 0.6698018003797892,
+            "geometricMeanLuminance": 0.4259894292422717
+          },
+          {
+            "verticalThird": 1,
+            "meanRGB": [
+              0.8839221713609166,
+              0.4327179154312169,
+              0.14998347523035827
+            ],
+            "meanLuminance": 0.5082305136593652,
+            "geometricMeanLuminance": 0.07058071759144884
+          },
+          {
+            "verticalThird": 2,
+            "meanRGB": [
+              0.04565200003208938,
+              0.02990167402834804,
+              0.02384678868783845
+            ],
+            "meanLuminance": 0.03281303061515735,
+            "geometricMeanLuminance": 0.01732875340819341
+          }
+        ],
+        "scope": "All RGB samples in pre-exposed resolved linear HDR, before bloom and tone mapping. Bands undo storage divisor, retain renderer-relative radiance units; no sky/ocean segmentation."
+      },
+      {
+        "status": "PASS",
+        "invalid": 0,
+        "negative": 0,
+        "max": 3368,
+        "over60000": 0,
+        "pixels": 2073600,
+        "storageDivisor": 32,
+        "radianceBands": [
+          {
+            "verticalThird": 0,
+            "meanRGB": [
+              5.462764239487824,
+              2.6475470629003315,
+              0.8530144904719459
+            ],
+            "meanLuminance": 3.11649698291341,
+            "geometricMeanLuminance": 0.4030852533126774
+          },
+          {
+            "verticalThird": 1,
+            "meanRGB": [
+              1.125379244202265,
+              0.5462446531708594,
+              0.18279192244565046
+            ],
+            "meanLuminance": 0.6431273800657707,
+            "geometricMeanLuminance": 0.07367845667800438
+          },
+          {
+            "verticalThird": 2,
+            "meanRGB": [
+              0.23317594049153503,
+              0.11721958438003505,
+              0.0477956082423528
+            ],
+            "meanLuminance": 0.13685949461220165,
+            "geometricMeanLuminance": 0.021478504228140922
+          }
+        ],
+        "scope": "All RGB samples in pre-exposed resolved linear HDR, before bloom and tone mapping. Bands undo storage divisor, retain renderer-relative radiance units; no sky/ocean segmentation."
+      }
+    ]
+  }
+]

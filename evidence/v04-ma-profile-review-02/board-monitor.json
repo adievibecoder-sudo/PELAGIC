@@ -1,0 +1,30 @@
+{
+  "path": "evidence\\v04-ma-hardware-20261022\\benchmark-monitor.csv",
+  "rows": 2184,
+  "completeRows": 2183,
+  "firstTimestamp": "2026/10/22 20:55:18.390",
+  "lastTimestamp": "2026/10/22 22:08:21.416",
+  "ranges": {
+    "temperature.gpu": [
+      39.0,
+      88.0
+    ],
+    "power.draw [W]": [
+      3.11,
+      75.44
+    ],
+    "clocks.current.graphics [MHz]": [
+      210.0,
+      1980.0
+    ],
+    "utilization.gpu [%]": [
+      0.0,
+      100.0
+    ],
+    "memory.used [MiB]": [
+      498.0,
+      1486.0
+    ]
+  },
+  "scope": "Whole-board readings across active runs and idle gaps, other desktop apps open. Not application residency, per-run isolation or a thermal-stability claim. Final interrupted row excluded."
+}

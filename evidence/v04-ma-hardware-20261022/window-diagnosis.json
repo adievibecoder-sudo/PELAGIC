@@ -1,0 +1,23 @@
+{
+  "utc": "2026-10-22T15:47:09.923Z",
+  "tabId": 1264826802,
+  "windowId": 1264826808,
+  "before": {
+    "state": "minimized",
+    "focused": false,
+    "activeTab": true,
+    "discarded": false,
+    "frozen": false
+  },
+  "affectedRun": "v04-ma-base-performance-01/day-near.json",
+  "observed": {
+    "frameIndex": 61,
+    "postWarmupFrames": 31,
+    "wallSeconds": 60.2457,
+    "frameIntervalsAboutMilliseconds": 1000,
+    "pageVisibility": "visible",
+    "cpuAboutMilliseconds": 0.6
+  },
+  "action": "Supported management.windows.update: state normal, focused true. No browser flags, security settings, restart or renderer modifications.",
+  "scope": "Minimized state verified after affected run. Causal confirmation requires unchanged foreground repeat; historical intermittent stalls remain separate."
+}
