@@ -1,5 +1,9 @@
 # PELAGIC 0.4 — Astra Operating Rules
 
+## Current owner authorization - 23 October 2026
+
+Continue incomplete Milestone A autonomously from `d4f7d806`: first isolate displaced wave geometry from normals/BRDF roughness, then follow measured visual evidence. This supersedes the first-checkpoint HOLD and historical Phase 1-only scheduling. No acceptance gate has passed by authorization. Preserve the nine documented evidence modifications. One accountable agent; native WebGPU, JavaScript ES Modules, raw WGSL. Stop for explicit owner visual acceptance at a substantial integrated checkpoint. B remains unauthorized until A acceptance AND explicit B authorization; future B1 breaking/whitewater and B2 integrated dynamic weather checkpoints are mandatory. C remains separately gated. Current investigation: `docs/V04-MILESTONE-A-WAVES.md`.
+
 ## Current owner authorization - 22 October 2026
 
 Milestone A (Core Ocean Appearance) is authorized. This supersedes the historical Phase 1-only scope below. Use JavaScript ES Modules, raw WGSL and native Chrome WebGPU; one accountable agent. Preserve FFT/environment foundations and all frozen refs/evidence. Daylight and low-Sun, near-surface and elevated views are mandatory. One bounded intervention at a time; full-scene visual/motion, numerical and RTX 3050 cost evidence. STOP at the first substantial visual checkpoint for owner review. Milestones B/C remain unauthorized. See `docs/V04-MILESTONE-A.md` for the requirement crosswalk and live checkpoint.

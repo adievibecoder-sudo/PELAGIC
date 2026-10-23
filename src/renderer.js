@@ -33,6 +33,7 @@ import {phase0CloudColumns} from '../tests/phase0-readback.js';
 import {cloudBankShader} from './wgsl/cloud-bank.js';
 import {cloudConvectionShader} from './wgsl/cloud-convection.js';
 import {cloudConvectionChecks} from '../tests/cloud-convection-readback.js';
+import {waveDiagnosticShader} from '../tests/milestone-a-wave-shaders.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -111,7 +112,7 @@ async function main() {
   ctx.configure({ device, format: swapFormat, alphaMode: 'opaque', usage: TU.RENDER_ATTACHMENT | TU.COPY_SRC });
 
   async function shader(code, label) {
-    code=cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs);
+    code=waveDiagnosticShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs),qs);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
     let bad = false;
