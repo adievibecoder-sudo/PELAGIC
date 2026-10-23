@@ -1,0 +1,159 @@
+{
+  "settings": {
+    "windSpeed": 8,
+    "windDir": 118,
+    "fetchKm": 110,
+    "swellHs": 2,
+    "swellDir": 94,
+    "swellLength": 135,
+    "swellSpread": 48,
+    "choppy": 1.12,
+    "turbidity": 0.25,
+    "foam": 1,
+    "sunElev": 48,
+    "sunAzim": 4,
+    "exposure": 0.95,
+    "haze": 1.4,
+    "clouds": 0.5,
+    "veil": 0,
+    "bloom": 0.045,
+    "spray": 0.65,
+    "rain": 0,
+    "cloudDepth": 1.5,
+    "cloudType": 0,
+    "seed": 1307,
+    "quality": "Balanced",
+    "resolution": 1,
+    "adaptive": false,
+    "timeScale": 1,
+    "weatherRate": 1,
+    "seaRate": 1,
+    "astronomyRate": 0,
+    "environmentMode": "natural",
+    "frontEnabled": false,
+    "frontX": 18000,
+    "frontZ": 0,
+    "frontWidth": 20,
+    "frontHeading": 180,
+    "frontSpeed": 12,
+    "electrified": false,
+    "paused": false,
+    "cameraMode": "free",
+    "astronomy": false,
+    "date": "2026-10-25",
+    "hour": 17,
+    "latitude": 32,
+    "longitude": -30,
+    "debug": 0,
+    "currentSpeed": 0.12,
+    "currentDir": 35,
+    "cameraSpeed": 6,
+    "fov": 58
+  },
+  "target": {
+    "windM0": 0.21405573184045168,
+    "windSlopeVariance": 0.04333481325959298,
+    "swellM0": 0.25,
+    "windPeakPeriod": 5.972260463356036,
+    "combinedHs": 2.724865447952839,
+    "model": "JONSWAP / Elfouhaily hybrid; normalized band-limited swell"
+  },
+  "rows": [
+    {
+      "length": 1103,
+      "expectedHs": 2.7321392370341466,
+      "continuousHs": 2.724865447952839,
+      "varianceRatio": 1.0053459501697242,
+      "slope": [
+        0.020842357713330952,
+        0.02392142539346742,
+        -0.0015215696021311583
+      ],
+      "cascade0": {
+        "length": 1103,
+        "min": 0.002848225412890315,
+        "max": 0.17841510474681854,
+        "wavelength": [
+          35.216666862908234,
+          2206.0000162710267
+        ],
+        "occupied": 3084,
+        "elevationVariance": 0.4050828664045499,
+        "slopeCovariance": [
+          0.0007319233649527703,
+          0.002488885905520634,
+          -0.0007171008178545897
+        ],
+        "phaseMeanVariance": 0.0007620712024029553
+      },
+      "effectivePairs": 107.66031648379919,
+      "pairs50": 56,
+      "correlation1103": 1,
+      "correlation4093": 0.0074753547643841385
+    },
+    {
+      "length": 2207,
+      "expectedHs": 2.731751664008342,
+      "continuousHs": 2.724865447952839,
+      "varianceRatio": 1.0050607397165552,
+      "slope": [
+        0.020842502988436727,
+        0.023920632687651704,
+        -0.0015218811563740386
+      ],
+      "cascade0": {
+        "length": 2207,
+        "min": 0.0014234674163162708,
+        "max": 0.17841510474681854,
+        "wavelength": [
+          35.216666862908234,
+          4414.000092421902
+        ],
+        "occupied": 12352,
+        "elevationVariance": 0.404950512858976,
+        "slopeCovariance": [
+          0.000732068640058544,
+          0.002488093199704915,
+          -0.00071741237209747
+        ],
+        "phaseMeanVariance": 0.00018933402759627394
+      },
+      "effectivePairs": 433.05061129781745,
+      "pairs50": 224,
+      "correlation1103": -0.000010141119197536817,
+      "correlation4093": 0.006402950390135994
+    },
+    {
+      "length": 4093,
+      "expectedHs": 2.7315831493519953,
+      "continuousHs": 2.724865447952839,
+      "varianceRatio": 1.0049367443743185,
+      "slope": [
+        0.020842110193378904,
+        0.023919669142337556,
+        -0.0015215502421483677
+      ],
+      "cascade0": {
+        "length": 4093,
+        "min": 0.000767552584875375,
+        "max": 0.17841510474681854,
+        "wavelength": [
+          35.216666862908234,
+          8185.999801172927
+        ],
+        "occupied": 42444,
+        "elevationVariance": 0.4048929721096896,
+        "slopeCovariance": [
+          0.0007316758450007213,
+          0.0024871296543907706,
+          -0.0007170814578717992
+        ],
+        "phaseMeanVariance": 0.00005503180647472934
+      },
+      "effectivePairs": 1489.4644101975018,
+      "pairs50": 768,
+      "correlation1103": 0.000059092531278839575,
+      "correlation4093": 1
+    }
+  ]
+}
