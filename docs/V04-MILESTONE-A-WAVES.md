@@ -23,3 +23,15 @@ Fresh unchanged-source captures use exclusive `v04-ma-wave-base-*` directories. 
 Sandbox worker creation failed before CPU tests ran; approved host run passed. Source server also exited when sandbox blocked its Git child process; approved host server restored source attestation. These are execution-environment failures, not GPU correctness failures. Existing iframe batch capture stalls after its first navigation; use direct navigation to uncaptured cases, preserve originals.
 
 This is a live experiment log. It does not certify A or replace the immutable first-cloud checkpoint report.
+
+## Pixel-bandwidth trial
+
+VIS: neutral raster and shader-normal images confirm broad waves in both, much finer detail in shader normals. The isolated elevated daylight glitter reproduces most of the bright foil texture; reflected environment retains broad forms. Baseline GPU Parseval/height/slope checks and all slope-mip levels PASS within the retained tolerances. The aggregate linear slope variance is0.0442594, independent-cascade Hs2.69051 m at this phase, not an observational match.
+
+HYP: a one-pixel texture footprint leaves excessive resolved specular variation. Trial `maWaveFilter=2` (optional4 convergence comparator) enlarges both first/second-moment sampling footprints identically, preserving their parameter-space energy partition and leaving all displaced vertices, spectra, illumination and optical coefficients unchanged. The removed resolved variance enters the existing covariance path. This is a sampling diagnostic, NOT a calibrated physical roughness change; local deformed-moment closure and supersampled image agreement remain required. Reject if it only blurs the sea, hides needed waves, or fails to improve integrated motion.
+
+VIS result: daylight elevated and low-Sun near images soften, but retain the dominant glossy/wrinkled character. No substantial improvement; not adopted. Do not claim a physical or temporal fix from this trial.
+
+## Opaque patch ordering experiment
+
+SRC: current traversal emits patches in quadtree/spatial order, including distant patches before nearer occluders. HYP: unnecessary overdraw contributes to the measured surface bottleneck. `maOceanOrder=near` performs a stable sort by distance to each undisplaced patch box, retaining identical instance values, topology, shaders and greater-depth testing. No phenomenon is removed. CPU scratch payload229376 bytes, no new GPU allocation. Compare exact fixed-phase full-resolution pixels, motion and display-paced pass times; equal-depth boundaries may depend on draw order. Reject adoption if images change materially or cost does not improve. This is performance work within A, not visual acceptance or a substitute for reconstruction.

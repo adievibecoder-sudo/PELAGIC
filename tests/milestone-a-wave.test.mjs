@@ -17,4 +17,11 @@ test('wave isolation preserves default shaders and actual displaced vertex geome
     assert.equal(waveDiagnosticShader(SKY_BG, query), SKY_BG);
     assert.equal(waveDiagnosticShader(HEIGHT_PROBE, query), HEIGHT_PROBE);
   }
+  for (const filter of ['2', '4']) {
+    const query = new URLSearchParams({maWaveFilter: filter});
+    const result = waveDiagnosticShader(OCEAN, query);
+    assert.equal(result.slice(0, fragment), OCEAN.slice(0, fragment));
+    assert.equal(result.replace(`let dx=dxXZ*invL*${filter}.0;let dy=dyXZ*invL*${filter}.0;`,
+      'let dx=dxXZ*invL;let dy=dyXZ*invL;'), OCEAN);
+  }
 });

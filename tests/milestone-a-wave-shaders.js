@@ -1,7 +1,16 @@
 // Opt-in look-development views. Vertex displacement and production defaults stay exact.
 export function waveDiagnosticShader(code, query) {
+  if (!code.includes('fn reflectedEnvironment(')) return code;
+  const filter = query.get('maWaveFilter');
+  if (['2', '4'].includes(filter)) {
+    const marker = 'let dx=dxXZ*invL;let dy=dyXZ*invL;';
+    if (code.split(marker).length !== 2) throw Error('Wave filter splice contract changed');
+    // Same positive filter for first and second moments; removed mean-square
+    // slope becomes unresolved covariance instead of disappearing.
+    code = code.replace(marker, `let dx=dxXZ*invL*${filter}.0;let dy=dyXZ*invL*${filter}.0;`);
+  }
   const mode = query.get('maWaveView');
-  if (!['geometry', 'normal-light', 'normal-angle'].includes(mode) || !code.includes('fn reflectedEnvironment(')) return code;
+  if (!['geometry', 'normal-light', 'normal-angle'].includes(mode)) return code;
   const marker = '  let J = jac;';
   if (code.split(marker).length !== 2) throw Error('Wave diagnostic splice contract changed');
   const normal = mode === 'geometry' ? 'ng' : 'nrm';

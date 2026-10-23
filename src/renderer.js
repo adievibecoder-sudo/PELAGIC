@@ -34,6 +34,7 @@ import {cloudBankShader} from './wgsl/cloud-bank.js';
 import {cloudConvectionShader} from './wgsl/cloud-convection.js';
 import {cloudConvectionChecks} from '../tests/cloud-convection-readback.js';
 import {waveDiagnosticShader} from '../tests/milestone-a-wave-shaders.js';
+import {orderOceanNodes} from './ocean-order.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -423,6 +424,10 @@ async function main() {
   const idxBuf = mkBuf(idx.byteLength, GU.INDEX | GU.COPY_DST, 'grid idx');
   device.queue.writeBuffer(idxBuf, 0, idx);
   const instData = new Float32Array(MAX_NODES * 4);
+  const nearFirst=qs.get('maOceanOrder')==='near';
+  const orderedInstances=nearFirst?new Float32Array(instData.length):null;
+  const nodeOrder=nearFirst?new Uint32Array(MAX_NODES):null;
+  const nodeDistances=nearFirst?new Float64Array(MAX_NODES):null;
   const instBuf = mkBuf(instData.byteLength, GU.VERTEX | GU.COPY_DST, 'instances');
 
   // --------------------------------------------------------------------------------------
@@ -980,7 +985,10 @@ async function main() {
     device.queue.writeBuffer(simUBO, 0, simF);
     writeFoamUniforms(dt);
     selectAll();
-    if (nodeCount) device.queue.writeBuffer(instBuf, 0, instData, 0, nodeCount * 4);
+    if (nodeCount) {
+      const instances=nearFirst?orderOceanNodes(instData,orderedInstances,nodeOrder,nodeDistances,nodeCount,cam.x-origin[0],cam.z-origin[1]):instData;
+      device.queue.writeBuffer(instBuf, 0, instances, 0, nodeCount * 4);
+    }
 
     const enc = device.createCommandEncoder();
     let cp = enc.beginComputePass(computeDesc);
