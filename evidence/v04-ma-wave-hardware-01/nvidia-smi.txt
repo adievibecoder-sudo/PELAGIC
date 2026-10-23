@@ -1,0 +1,29 @@
+Fri Oct 23 16:50:32 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 617.14                 KMD Version: 617.14        CUDA UMD Version: 13.4     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                  Driver-Model | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 3050 ...  WDDM  |   00000000:01:00.0 Off |                  N/A |
+| N/A   49C    P8              3W /   75W |    1366MiB /   4096MiB |     12%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            8672    C+G   ...cw5n1h2txyewy\WidgetBoard.exe      N/A      |
+|    0   N/A  N/A            9212    C+G   ...\codex-computer-use-swift.exe      N/A      |
+|    0   N/A  N/A            9780    C+G   ...2txyewy\CrossDeviceResume.exe      N/A      |
+|    0   N/A  N/A           11132    C+G   ..._cw5n1h2txyewy\SearchHost.exe      N/A      |
+|    0   N/A  N/A           11144    C+G   ...y\StartMenuExperienceHost.exe      N/A      |
+|    0   N/A  N/A           12820    C+G   ...App_cw5n1h2txyewy\LockApp.exe      N/A      |
+|    0   N/A  N/A           13652    C+G   ....0.4283.62\msedgewebview2.exe      N/A      |
+|    0   N/A  N/A           17140    C+G   ...Chrome\Application\chrome.exe      N/A      |
+|    0   N/A  N/A           18756    C+G   ...Chrome\Application\chrome.exe      N/A      |
+|    0   N/A  N/A           20944    C+G   ...2p2nqsd0c76g0\app\ChatGPT.exe      N/A      |
++-----------------------------------------------------------------------------------------+

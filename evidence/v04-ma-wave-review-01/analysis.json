@@ -1,0 +1,1611 @@
+{
+  "profiles": [
+    {
+      "path": "v04-ma-wave-perf-base-01\\day-high.json",
+      "fps": 0.9959807358048648,
+      "frame": {
+        "mean": 1004.0354838709678,
+        "p50": 1006.5999999999987,
+        "p95": 1006.9999999999999,
+        "p99": 1007.0699999999989,
+        "max": 1007.0999999999985,
+        "samples": 31
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 145.424384,
+          "p50": 146.178048,
+          "p95": 197.91871999999998,
+          "p99": 202.0081664,
+          "max": 203.030528,
+          "samples": 4
+        },
+        "surface": {
+          "mean": 56.623104,
+          "p50": 58.49088,
+          "p95": 75.61871359999999,
+          "p99": 76.41300992,
+          "max": 76.611584,
+          "samples": 4
+        },
+        "cloudScreen": {
+          "mean": 49.135616,
+          "p50": 51.150847999999996,
+          "p95": 64.6250496,
+          "p99": 66.08781311999999,
+          "max": 66.453504,
+          "samples": 4
+        },
+        "environment": {
+          "mean": 15.990784000000001,
+          "p50": 14.942208,
+          "p95": 22.6787328,
+          "p99": 23.41011456,
+          "max": 23.59296,
+          "samples": 4
+        },
+        "simulation": {
+          "mean": 9.125888,
+          "p50": 7.012352,
+          "p95": 14.542438399999996,
+          "p99": 15.596257279999998,
+          "max": 15.859712,
+          "samples": 4
+        },
+        "post": {
+          "mean": 3.801088,
+          "p50": 3.801088,
+          "p95": 5.3542912000000005,
+          "p99": 5.37001984,
+          "max": 5.373952,
+          "samples": 4
+        }
+      },
+      "cpu": {
+        "mean": 0.6548387110233307,
+        "p50": 0.699999988079071,
+        "p95": 0.7000000029802322,
+        "p99": 0.7700000092387198,
+        "max": 0.800000011920929,
+        "samples": 31
+      },
+      "intervalsOver500ms": 31,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.30800000000596,
+      "sourceStable": true,
+      "sourceHash": "ea5cb5a9f6f4d81097d90504be6e63296400a96f935d67032b138e4a4cf6e445",
+      "errors": [],
+      "simulationSeconds": 3.0000000000000426,
+      "recordedWallSeconds": 30.125100000000003,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-base-02\\day-high.json",
+      "fps": 24.45472571050892,
+      "frame": {
+        "mean": 40.891891891891895,
+        "p50": 34.70000000000073,
+        "p95": 41.600000000000364,
+        "p99": 52.5440000000005,
+        "max": 1006.9999999999999,
+        "samples": 1443
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 34.40799067961165,
+          "p50": 33.619968,
+          "p95": 35.30752,
+          "p99": 38.581043199999996,
+          "max": 180.289536,
+          "samples": 206
+        },
+        "surface": {
+          "mean": 13.14346749514563,
+          "p50": 12.845056,
+          "p95": 13.35296,
+          "p99": 13.5626752,
+          "max": 71.43424,
+          "samples": 206
+        },
+        "cloudScreen": {
+          "mean": 13.779739339805825,
+          "p50": 13.369344,
+          "p95": 14.696448,
+          "p99": 16.92139519999999,
+          "max": 59.768832,
+          "samples": 206
+        },
+        "environment": {
+          "mean": 4.434814757281553,
+          "p50": 4.521984,
+          "p95": 5.0954239999999995,
+          "p99": 6.350438399999999,
+          "max": 21.692416,
+          "samples": 206
+        },
+        "simulation": {
+          "mean": 1.464379650485437,
+          "p50": 1.441792,
+          "p95": 1.507328,
+          "p99": 1.572864,
+          "max": 7.20896,
+          "samples": 206
+        },
+        "post": {
+          "mean": 0.44220893203883493,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.6455295999999978,
+          "max": 5.24288,
+          "samples": 206
+        }
+      },
+      "cpu": {
+        "mean": 0.43492723506767555,
+        "p50": 0.4000000059604645,
+        "p95": 0.6000000089406967,
+        "p99": 0.8999999997019767,
+        "max": 6.200000002980232,
+        "samples": 1443
+      },
+      "intervalsOver500ms": 10,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.137399999994045,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 50.055599999999394,
+      "recordedWallSeconds": 58.979200000000006,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-base-03\\day-high.json",
+      "fps": 9.23205192902628,
+      "frame": {
+        "mean": 108.31828153564899,
+        "p50": 34.70000000000073,
+        "p95": 1000.0,
+        "p99": 1006.9999999999999,
+        "max": 1006.9999999999999,
+        "samples": 547
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 35.00670976,
+          "p50": 32.899072,
+          "p95": 45.99971839999998,
+          "p99": 80.33140736000001,
+          "max": 81.59232,
+          "samples": 75
+        },
+        "surface": {
+          "mean": 13.44012288,
+          "p50": 12.648448,
+          "p95": 17.734041599999983,
+          "p99": 31.3458688,
+          "max": 31.588352,
+          "samples": 75
+        },
+        "cloudScreen": {
+          "mean": 13.873534293333334,
+          "p50": 13.1072,
+          "p95": 19.11685119999999,
+          "p99": 26.110853120000005,
+          "max": 26.935296,
+          "samples": 75
+        },
+        "environment": {
+          "mean": 4.383921493333333,
+          "p50": 4.456448,
+          "p95": 5.603327999999995,
+          "p99": 8.770027520000003,
+          "max": 9.109504,
+          "samples": 75
+        },
+        "simulation": {
+          "mean": 1.59383552,
+          "p50": 1.441792,
+          "p95": 2.287206399999999,
+          "p99": 6.5536,
+          "max": 6.5536,
+          "samples": 75
+        },
+        "post": {
+          "mean": 0.47011157333333337,
+          "p50": 0.393216,
+          "p95": 0.5636095999999996,
+          "p99": 2.1797273600000007,
+          "max": 2.228224,
+          "samples": 75
+        }
+      },
+      "cpu": {
+        "mean": 0.4806215724136537,
+        "p50": 0.5,
+        "p95": 0.6699999943375519,
+        "p99": 0.7999999970197678,
+        "max": 5.700000002980232,
+        "samples": 547
+      },
+      "intervalsOver500ms": 42,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.39340000001192,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 21.445800000000062,
+      "recordedWallSeconds": 59.2154,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-base-04\\day-high.json",
+      "fps": 29.721760938082486,
+      "frame": {
+        "mean": 33.64538198403649,
+        "p50": 34.70000000000073,
+        "p95": 34.80000000000291,
+        "p99": 35.04699999999932,
+        "max": 41.79999999999927,
+        "samples": 1754
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 33.56229632,
+          "p50": 33.619968,
+          "p95": 35.06176,
+          "p99": 35.68500736,
+          "max": 36.0448,
+          "samples": 250
+        },
+        "surface": {
+          "mean": 12.695109632,
+          "p50": 12.648448,
+          "p95": 13.238272,
+          "p99": 13.402767359999999,
+          "max": 13.631488,
+          "samples": 250
+        },
+        "cloudScreen": {
+          "mean": 13.61575936,
+          "p50": 13.43488,
+          "p95": 14.548992,
+          "p99": 15.237775359999999,
+          "max": 15.990784,
+          "samples": 250
+        },
+        "environment": {
+          "mean": 4.323540992,
+          "p50": 4.456448,
+          "p95": 5.177344,
+          "p99": 6.128271359999999,
+          "max": 6.815744,
+          "samples": 250
+        },
+        "simulation": {
+          "mean": 1.4548992,
+          "p50": 1.441792,
+          "p95": 1.6384,
+          "p99": 1.769472,
+          "max": 1.835008,
+          "samples": 250
+        },
+        "post": {
+          "mean": 0.40763392,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.5590220799999982,
+          "max": 0.65536,
+          "samples": 250
+        }
+      },
+      "cpu": {
+        "mean": 0.43688711512115963,
+        "p50": 0.4000000059604645,
+        "p95": 0.6000000089406967,
+        "p99": 0.7999999970197678,
+        "max": 1.2000000029802322,
+        "samples": 1754
+      },
+      "intervalsOver500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.163200000005965,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 58.97929999999935,
+      "recordedWallSeconds": 58.9793,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-base-04\\day-near.json",
+      "fps": 21.62302493479787,
+      "frame": {
+        "mean": 46.24699842022117,
+        "p50": 48.599999999998545,
+        "p95": 48.700000000004366,
+        "p99": 48.80000000000291,
+        "max": 55.600000000000364,
+        "samples": 1266
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 46.17210342541436,
+          "p50": 46.268416,
+          "p95": 48.562176,
+          "p99": 49.6369664,
+          "max": 50.003968,
+          "samples": 181
+        },
+        "surface": {
+          "mean": 20.52435447513812,
+          "p50": 20.250624,
+          "p95": 22.544384,
+          "p99": 23.357030399999996,
+          "max": 23.789568,
+          "samples": 181
+        },
+        "cloudScreen": {
+          "mean": 18.33523482872928,
+          "p50": 18.415616,
+          "p95": 19.267584,
+          "p99": 20.054016,
+          "max": 20.054016,
+          "samples": 181
+        },
+        "environment": {
+          "mean": 4.389825767955801,
+          "p50": 4.521984,
+          "p95": 5.636096,
+          "p99": 6.265241599999998,
+          "max": 6.750208,
+          "samples": 181
+        },
+        "simulation": {
+          "mean": 1.438171226519337,
+          "p50": 1.441792,
+          "p95": 1.507328,
+          "p99": 1.717043199999999,
+          "max": 1.769472,
+          "samples": 181
+        },
+        "post": {
+          "mean": 0.4134923314917127,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.65536,
+          "max": 0.65536,
+          "samples": 181
+        }
+      },
+      "cpu": {
+        "mean": 0.4424960508730739,
+        "p50": 0.4000000059604645,
+        "p95": 0.6000000089406967,
+        "p99": 0.7000000029802322,
+        "max": 1.2000000029802322,
+        "samples": 1266
+      },
+      "intervalsOver500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.196099999991056,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 58.50009999999966,
+      "recordedWallSeconds": 58.500099999999996,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-base-04\\gold-high.json",
+      "fps": 29.805905972527764,
+      "frame": {
+        "mean": 33.550397727272724,
+        "p50": 34.70000000000073,
+        "p95": 34.80000000000291,
+        "p99": 41.599999999998914,
+        "max": 43.20000000000073,
+        "samples": 1760
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 33.503517577689244,
+          "p50": 33.488896,
+          "p95": 35.06176,
+          "p99": 35.684352000000004,
+          "max": 36.37248,
+          "samples": 251
+        },
+        "surface": {
+          "mean": 12.682913147410359,
+          "p50": 12.713984,
+          "p95": 13.172736,
+          "p99": 13.369344,
+          "max": 13.43488,
+          "samples": 251
+        },
+        "cloudScreen": {
+          "mean": 13.639320988047809,
+          "p50": 13.500416,
+          "p95": 14.680064,
+          "p99": 15.5648,
+          "max": 15.794176,
+          "samples": 251
+        },
+        "environment": {
+          "mean": 4.332425689243028,
+          "p50": 4.521984,
+          "p95": 5.144576,
+          "p99": 6.22592,
+          "max": 6.5536,
+          "samples": 251
+        },
+        "simulation": {
+          "mean": 1.4535414820717132,
+          "p50": 1.441792,
+          "p95": 1.6384,
+          "p99": 1.736704,
+          "max": 1.900544,
+          "samples": 251
+        },
+        "post": {
+          "mean": 0.4104485737051793,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.65536,
+          "max": 0.65536,
+          "samples": 251
+        }
+      },
+      "cpu": {
+        "mean": 0.41772727281363176,
+        "p50": 0.4000000059604645,
+        "p95": 0.5999999940395355,
+        "p99": 0.7000000029802322,
+        "max": 6,
+        "samples": 1760
+      },
+      "intervalsOver500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.15449999998808,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 59.0139999999994,
+      "recordedWallSeconds": 59.014,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-base-04\\gold-near.json",
+      "fps": 18.396752068781325,
+      "frame": {
+        "mean": 54.3574211502783,
+        "p50": 55.5,
+        "p95": 55.70000000000073,
+        "p99": 91.94099999999993,
+        "max": 437.5,
+        "samples": 1078
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 54.09504209150327,
+          "p50": 53.149696,
+          "p95": 56.2561024,
+          "p99": 84.76164095999945,
+          "max": 127.926272,
+          "samples": 153
+        },
+        "surface": {
+          "mean": 24.17550222222222,
+          "p50": 23.396352,
+          "p95": 26.148864,
+          "p99": 45.76772095999959,
+          "max": 67.82976,
+          "samples": 153
+        },
+        "cloudScreen": {
+          "mean": 21.62816501960784,
+          "p50": 21.561344,
+          "p95": 23.003136,
+          "p99": 27.55395583999993,
+          "max": 41.811968,
+          "samples": 153
+        },
+        "environment": {
+          "mean": 5.125514875816993,
+          "p50": 5.24288,
+          "p95": 6.448742400000004,
+          "p99": 7.6650905599999986,
+          "max": 8.781824,
+          "samples": 153
+        },
+        "simulation": {
+          "mean": 1.6079878692810459,
+          "p50": 1.572864,
+          "p95": 1.7301504000000003,
+          "p99": 2.6319257599999886,
+          "max": 3.801088,
+          "samples": 153
+        },
+        "post": {
+          "mean": 0.4934475294117647,
+          "p50": 0.458752,
+          "p95": 0.524288,
+          "p99": 1.163919359999992,
+          "max": 3.538944,
+          "samples": 153
+        }
+      },
+      "cpu": {
+        "mean": 0.4253246753799672,
+        "p50": 0.4000000059604645,
+        "p95": 0.6000000089406967,
+        "p99": 0.7000000029802322,
+        "max": 1.800000011920929,
+        "samples": 1078
+      },
+      "intervalsOver500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.22840000000298,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 57.78920000000008,
+      "recordedWallSeconds": 58.5418,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-base-05\\day-near.json",
+      "fps": 21.564087854450086,
+      "frame": {
+        "mean": 46.37339667458433,
+        "p50": 48.599999999998545,
+        "p95": 48.700000000004366,
+        "p99": 49.537999999999954,
+        "max": 55.700000000004366,
+        "samples": 1263
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 46.30992213333333,
+          "p50": 46.268416,
+          "p95": 48.6965248,
+          "p99": 49.62451456,
+          "max": 49.676288,
+          "samples": 180
+        },
+        "surface": {
+          "mean": 20.603062044444446,
+          "p50": 20.414464000000002,
+          "p95": 22.6787328,
+          "p99": 23.020175360000003,
+          "max": 23.527424,
+          "samples": 180
+        },
+        "cloudScreen": {
+          "mean": 18.3894016,
+          "p50": 18.382848,
+          "p95": 19.726336,
+          "p99": 20.447232,
+          "max": 20.578304,
+          "samples": 180
+        },
+        "environment": {
+          "mean": 4.386178844444444,
+          "p50": 4.58752,
+          "p95": 5.180620799999999,
+          "p99": 6.22592,
+          "max": 6.356992,
+          "samples": 180
+        },
+        "simulation": {
+          "mean": 1.4428842666666666,
+          "p50": 1.441792,
+          "p95": 1.507328,
+          "p99": 1.7176985600000003,
+          "max": 1.835008,
+          "samples": 180
+        },
+        "post": {
+          "mean": 0.41542542222222223,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.65536,
+          "max": 0.65536,
+          "samples": 180
+        }
+      },
+      "cpu": {
+        "mean": 0.44402216929390803,
+        "p50": 0.4000000059604645,
+        "p95": 0.6000000089406967,
+        "p99": 0.7999999970197678,
+        "max": 5.700000002980232,
+        "samples": 1263
+      },
+      "intervalsOver500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.2104,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 58.5277999999997,
+      "recordedWallSeconds": 58.527800000000006,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-near-01\\day-high.json",
+      "fps": 26.584239125824713,
+      "frame": {
+        "mean": 37.61627313337588,
+        "p50": 34.79999999999927,
+        "p95": 41.80000000000291,
+        "p99": 48.70000000000013,
+        "max": 187.60000000000036,
+        "samples": 1567
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 33.32651885714286,
+          "p50": 33.09568,
+          "p95": 35.323904,
+          "p99": 37.3456896,
+          "max": 59.63776,
+          "samples": 224
+        },
+        "surface": {
+          "mean": 12.335396571428571,
+          "p50": 12.255232,
+          "p95": 12.845056,
+          "p99": 13.142589440000002,
+          "max": 22.28224,
+          "samples": 224
+        },
+        "cloudScreen": {
+          "mean": 13.79298742857143,
+          "p50": 13.43488,
+          "p95": 15.2600576,
+          "p99": 17.47386368000001,
+          "max": 26.673152,
+          "samples": 224
+        },
+        "environment": {
+          "mean": 4.274468571428572,
+          "p50": 4.456448,
+          "p95": 4.9152,
+          "p99": 5.227806720000001,
+          "max": 6.22592,
+          "samples": 224
+        },
+        "simulation": {
+          "mean": 1.3431954285714285,
+          "p50": 1.376256,
+          "p95": 2.0217856,
+          "p99": 2.475294720000001,
+          "max": 2.62144,
+          "samples": 224
+        },
+        "post": {
+          "mean": 0.4096,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.458752,
+          "max": 0.720896,
+          "samples": 224
+        }
+      },
+      "cpu": {
+        "mean": 0.5263560945697096,
+        "p50": 0.5,
+        "p95": 0.7000000029802322,
+        "p99": 1.0339999979734338,
+        "max": 5.5,
+        "samples": 1567
+      },
+      "intervalsOver500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.1635,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 58.790399999999345,
+      "recordedWallSeconds": 58.91,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-near-02\\day-high.json",
+      "fps": 29.887038846377234,
+      "frame": {
+        "mean": 33.45932011331445,
+        "p50": 34.70000000000073,
+        "p95": 34.80000000000291,
+        "p99": 41.599999999998545,
+        "max": 42.5,
+        "samples": 1765
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 33.350542222222224,
+          "p50": 33.357824,
+          "p95": 34.7930624,
+          "p99": 35.38812928,
+          "max": 35.586048,
+          "samples": 252
+        },
+        "surface": {
+          "mean": 12.415951238095237,
+          "p50": 12.386304,
+          "p95": 12.976128,
+          "p99": 13.1072,
+          "max": 13.172736,
+          "samples": 252
+        },
+        "cloudScreen": {
+          "mean": 13.671797841269841,
+          "p50": 13.500416,
+          "p95": 14.644019199999999,
+          "p99": 15.169617920000002,
+          "max": 15.597568,
+          "samples": 252
+        },
+        "environment": {
+          "mean": 4.303270603174603,
+          "p50": 4.456448,
+          "p95": 5.010227199999999,
+          "p99": 5.99588864,
+          "max": 6.22592,
+          "samples": 252
+        },
+        "simulation": {
+          "mean": 1.4758603174603175,
+          "p50": 1.441792,
+          "p95": 1.6384,
+          "p99": 1.835008,
+          "max": 2.555904,
+          "samples": 252
+        },
+        "post": {
+          "mean": 0.41090031746031747,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.458752,
+          "max": 0.65536,
+          "samples": 252
+        }
+      },
+      "cpu": {
+        "mean": 0.5326345609369089,
+        "p50": 0.5,
+        "p95": 0.7000000029802322,
+        "p99": 0.8999999910593033,
+        "max": 1.2999999970197678,
+        "samples": 1765
+      },
+      "intervalsOver500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.16180000000596,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 59.02089999999951,
+      "recordedWallSeconds": 59.020900000000005,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-near-02\\day-near.json",
+      "fps": 24.883782198917284,
+      "frame": {
+        "mean": 40.18681693989071,
+        "p50": 41.60000000000582,
+        "p95": 41.80000000000291,
+        "p99": 48.69999999999709,
+        "max": 48.80000000000291,
+        "samples": 1464
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 40.13562610526316,
+          "p50": 40.042496,
+          "p95": 43.188224,
+          "p99": 44.483215359999996,
+          "max": 45.023232,
+          "samples": 209
+        },
+        "surface": {
+          "mean": 14.378096688995216,
+          "p50": 14.09024,
+          "p95": 17.301504,
+          "p99": 17.825792,
+          "max": 18.153472,
+          "samples": 209
+        },
+        "cloudScreen": {
+          "mean": 18.3795555215311,
+          "p50": 18.284544,
+          "p95": 19.7656576,
+          "p99": 20.17984512,
+          "max": 21.364736,
+          "samples": 209
+        },
+        "environment": {
+          "mean": 4.460210832535886,
+          "p50": 4.653056,
+          "p95": 5.8720256,
+          "p99": 6.477578239999998,
+          "max": 6.5536,
+          "samples": 209
+        },
+        "simulation": {
+          "mean": 1.4414784306220094,
+          "p50": 1.441792,
+          "p95": 1.507328,
+          "p99": 1.698693119999999,
+          "max": 1.703936,
+          "samples": 209
+        },
+        "post": {
+          "mean": 0.4098351770334928,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.458752,
+          "max": 0.65536,
+          "samples": 209
+        }
+      },
+      "cpu": {
+        "mean": 0.5505464479856478,
+        "p50": 0.5,
+        "p95": 0.7000000029802322,
+        "p99": 0.9000000059604645,
+        "max": 5.5,
+        "samples": 1464
+      },
+      "intervalsOver500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.18389999999702,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 58.791799999999185,
+      "recordedWallSeconds": 58.7918,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-near-02\\gold-high.json",
+      "fps": 30.103652734556217,
+      "frame": {
+        "mean": 33.2185601799775,
+        "p50": 34.69999999999982,
+        "p95": 34.80000000000291,
+        "p99": 35.02299999999967,
+        "max": 41.80000000000291,
+        "samples": 1778
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 33.188565669291336,
+          "p50": 33.226752,
+          "p95": 34.668544,
+          "p99": 35.38944,
+          "max": 35.651584,
+          "samples": 254
+        },
+        "surface": {
+          "mean": 12.316639748031497,
+          "p50": 12.255232,
+          "p95": 12.845056,
+          "p99": 12.976128,
+          "max": 13.172736,
+          "samples": 254
+        },
+        "cloudScreen": {
+          "mean": 13.712246929133858,
+          "p50": 13.697024,
+          "p95": 14.614528,
+          "p99": 15.10408192,
+          "max": 15.859712,
+          "samples": 254
+        },
+        "environment": {
+          "mean": 4.317119496062992,
+          "p50": 4.489216,
+          "p95": 5.046272,
+          "p99": 6.25672192,
+          "max": 6.488064,
+          "samples": 254
+        },
+        "simulation": {
+          "mean": 1.450048503937008,
+          "p50": 1.441792,
+          "p95": 1.6384,
+          "p99": 1.703936,
+          "max": 1.703936,
+          "samples": 254
+        },
+        "post": {
+          "mean": 0.4138572598425197,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.65536,
+          "max": 0.720896,
+          "samples": 254
+        }
+      },
+      "cpu": {
+        "mean": 0.5039932507564836,
+        "p50": 0.5,
+        "p95": 0.7000000029802322,
+        "p99": 0.8999999910593033,
+        "max": 1.4000000059604645,
+        "samples": 1778
+      },
+      "intervalsOver500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.16300000000298,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 59.034899999999595,
+      "recordedWallSeconds": 59.0349,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-near-02\\gold-near.json",
+      "fps": 25.206727459695582,
+      "frame": {
+        "mean": 39.67194875252866,
+        "p50": 41.600000000000364,
+        "p95": 41.80000000000018,
+        "p99": 48.599999999998545,
+        "max": 48.80000000000291,
+        "samples": 1483
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 39.63691471698113,
+          "p50": 39.518208,
+          "p95": 42.6934272,
+          "p99": 43.76363008,
+          "max": 44.957696,
+          "samples": 212
+        },
+        "surface": {
+          "mean": 14.198127094339622,
+          "p50": 13.795328000000001,
+          "p95": 17.068851199999997,
+          "p99": 17.75304704,
+          "max": 18.0224,
+          "samples": 212
+        },
+        "cloudScreen": {
+          "mean": 18.190567849056603,
+          "p50": 18.153472,
+          "p95": 19.428147199999998,
+          "p99": 20.170670079999997,
+          "max": 20.840448,
+          "samples": 212
+        },
+        "environment": {
+          "mean": 4.432335698113207,
+          "p50": 4.521984,
+          "p95": 5.993267199999999,
+          "p99": 6.2842470399999995,
+          "max": 6.88128,
+          "samples": 212
+        },
+        "simulation": {
+          "mean": 1.4402463396226415,
+          "p50": 1.441792,
+          "p95": 1.572864,
+          "p99": 1.703936,
+          "max": 1.703936,
+          "samples": 212
+        },
+        "post": {
+          "mean": 0.40743607547169813,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.458752,
+          "max": 0.65536,
+          "samples": 212
+        }
+      },
+      "cpu": {
+        "mean": 0.5284558328035629,
+        "p50": 0.5,
+        "p95": 0.7000000029802322,
+        "p99": 0.800000011920929,
+        "max": 5.5999999940395355,
+        "samples": 1483
+      },
+      "intervalsOver500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.19509999999404,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 58.79179999999931,
+      "recordedWallSeconds": 58.7918,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    },
+    {
+      "path": "v04-ma-wave-perf-near-03\\day-near.json",
+      "fps": 25.081821796714895,
+      "frame": {
+        "mean": 39.86951219512195,
+        "p50": 41.60000000000218,
+        "p95": 41.80000000000291,
+        "p99": 48.60000000000582,
+        "max": 48.70000000000073,
+        "samples": 1476
+      },
+      "gpu": {
+        "gpu": {
+          "mean": 39.80675275829384,
+          "p50": 39.583744,
+          "p95": 42.92608,
+          "p99": 43.8304768,
+          "max": 44.433408,
+          "samples": 211
+        },
+        "surface": {
+          "mean": 14.268522767772511,
+          "p50": 13.893632,
+          "p95": 16.809984,
+          "p99": 17.69472,
+          "max": 17.825792,
+          "samples": 211
+        },
+        "cloudScreen": {
+          "mean": 18.231431886255923,
+          "p50": 18.219008,
+          "p95": 19.464191999999997,
+          "p99": 20.0474624,
+          "max": 20.119552,
+          "samples": 211
+        },
+        "environment": {
+          "mean": 4.370723184834123,
+          "p50": 4.521984,
+          "p95": 5.373952,
+          "p99": 6.160384,
+          "max": 6.291456,
+          "samples": 211
+        },
+        "simulation": {
+          "mean": 1.4498675260663507,
+          "p50": 1.441792,
+          "p95": 1.5400960000000001,
+          "p99": 1.769472,
+          "max": 1.900544,
+          "samples": 211
+        },
+        "post": {
+          "mean": 0.4093670521327014,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.5767168000000007,
+          "max": 0.65536,
+          "samples": 211
+        }
+      },
+      "cpu": {
+        "mean": 0.5560298104919392,
+        "p50": 0.5,
+        "p95": 0.7999999970197678,
+        "p99": 0.9000000059604645,
+        "max": 1.4000000059604645,
+        "samples": 1476
+      },
+      "intervalsOver500ms": 0,
+      "visibility": [
+        "visible"
+      ],
+      "wallSeconds": 60.16409999999106,
+      "sourceStable": true,
+      "sourceHash": "096e3c518d461fa7c5041734c6ce0398bb18d1251dcf65bc771eace07ae3da23",
+      "errors": [],
+      "simulationSeconds": 58.8056999999991,
+      "recordedWallSeconds": 58.8057,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      }
+    }
+  ],
+  "stillPairs": [
+    {
+      "base": "v04-ma-wave-base-01\\day-high.png",
+      "candidate": "v04-ma-order-stills-01\\day-high.png",
+      "sha256": [
+        "e443fc044213093fd489b078ae7b11d3e8259df07dc804581826d4ac89a8f6ba",
+        "e443fc044213093fd489b078ae7b11d3e8259df07dc804581826d4ac89a8f6ba"
+      ],
+      "meanAbsoluteDisplayRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "settingsMatch": true,
+      "cameraMatch": true,
+      "timeDelta": 0.0,
+      "sourceStable": [
+        true,
+        true
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "base": "v04-ma-wave-base-02\\day-near.png",
+      "candidate": "v04-ma-order-stills-01\\day-near.png",
+      "sha256": [
+        "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1",
+        "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1"
+      ],
+      "meanAbsoluteDisplayRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "settingsMatch": true,
+      "cameraMatch": true,
+      "timeDelta": 0.0,
+      "sourceStable": [
+        true,
+        true
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "base": "v04-ma-wave-base-01\\gold-high.png",
+      "candidate": "v04-ma-order-stills-01\\gold-high.png",
+      "sha256": [
+        "7d083bd9e0892782b2189ca431195bfce74f164febcb64320445871db4387172",
+        "7d083bd9e0892782b2189ca431195bfce74f164febcb64320445871db4387172"
+      ],
+      "meanAbsoluteDisplayRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "settingsMatch": true,
+      "cameraMatch": true,
+      "timeDelta": 0.0,
+      "sourceStable": [
+        true,
+        true
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "base": "v04-ma-wave-base-01\\gold-near.png",
+      "candidate": "v04-ma-order-stills-01\\gold-near.png",
+      "sha256": [
+        "7be3daeff64d1c82b4f0da32d77f928c4c67e30bf4552c2dc58c2c849416b35d",
+        "7be3daeff64d1c82b4f0da32d77f928c4c67e30bf4552c2dc58c2c849416b35d"
+      ],
+      "meanAbsoluteDisplayRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "settingsMatch": true,
+      "cameraMatch": true,
+      "timeDelta": 0.0,
+      "sourceStable": [
+        true,
+        true
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "base": "v04-ma-wave-base-01\\day-high.png",
+      "candidate": "v04-ma-wave-filter2-01\\day-high.png",
+      "sha256": [
+        "e443fc044213093fd489b078ae7b11d3e8259df07dc804581826d4ac89a8f6ba",
+        "bcff0047b66a8db817cf299f39f65eb753e4e8e490147b22de880438d76f90e3"
+      ],
+      "meanAbsoluteDisplayRGB": [
+        4.595641396604938,
+        3.838993537808642,
+        2.762309027777778
+      ],
+      "settingsMatch": true,
+      "cameraMatch": true,
+      "timeDelta": 0.0,
+      "sourceStable": [
+        true,
+        true
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "base": "v04-ma-wave-base-01\\gold-near.png",
+      "candidate": "v04-ma-wave-filter2-01\\gold-near.png",
+      "sha256": [
+        "7be3daeff64d1c82b4f0da32d77f928c4c67e30bf4552c2dc58c2c849416b35d",
+        "0ac2628ffabf8a4085ac46ba611f2368777f832da45a54fc7f6ace2af6e36567"
+      ],
+      "meanAbsoluteDisplayRGB": [
+        4.351784818672839,
+        3.591102912808642,
+        2.5701784336419755
+      ],
+      "settingsMatch": true,
+      "cameraMatch": true,
+      "timeDelta": 0.0,
+      "sourceStable": [
+        true,
+        true
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "base": "v04-ma-wave-base-01\\day-high.png",
+      "candidate": "v04-ma-wave-cov-ablation-01\\day-high.png",
+      "sha256": [
+        "e443fc044213093fd489b078ae7b11d3e8259df07dc804581826d4ac89a8f6ba",
+        "cafca12cd1978aee51686a5a8f369f6b6935859d25ce19d96b859c0ff1669a5b"
+      ],
+      "meanAbsoluteDisplayRGB": [
+        2.894730902777778,
+        2.37397762345679,
+        1.6808217592592594
+      ],
+      "settingsMatch": true,
+      "cameraMatch": true,
+      "timeDelta": 0.0,
+      "sourceStable": [
+        true,
+        true
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "base": "v04-ma-wave-base-01\\gold-near.png",
+      "candidate": "v04-ma-wave-cov-ablation-01\\gold-near.png",
+      "sha256": [
+        "7be3daeff64d1c82b4f0da32d77f928c4c67e30bf4552c2dc58c2c849416b35d",
+        "168b121001ab8fc40bd2769d36c8e854faba77d21c2550978a288fe9919f7fbe"
+      ],
+      "meanAbsoluteDisplayRGB": [
+        1.5808738425925926,
+        1.2738319830246914,
+        0.9388695987654321
+      ],
+      "settingsMatch": true,
+      "cameraMatch": true,
+      "timeDelta": 0.0,
+      "sourceStable": [
+        true,
+        true
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    }
+  ],
+  "scope": "Display RGB difference is not a perceptual or scene-linear radiometric metric. Performance is sequential active-desktop evidence, not thermal isolation. perf-base-01 is a known inactive-tab confound.",
+  "motion": [
+    {
+      "path": "v04-ma-order-motion-01\\day-high.webm",
+      "sha256": "261fb7eaafff70bc3a241bb3a4d1fa84eec43c48b4dfeb7f3610fb4c109682a8",
+      "stream": {
+        "codec_name": "vp9",
+        "width": 1920,
+        "height": 1080
+      },
+      "frames": 653,
+      "firstTime": 0.0,
+      "lastTime": 23.928,
+      "increasing": true,
+      "intervals": {
+        "mean": 36.69938650306749,
+        "p50": 36.000000000001364,
+        "p95": 40.99999999999993,
+        "p99": 44.49000000000022,
+        "max": 59.00000000000016,
+        "samples": 652
+      },
+      "decodeExit": 0,
+      "decodeErrors": "",
+      "settingsMatch": true,
+      "cameraMatch": true,
+      "baseline": "v04-ma-base-motion-02\\day-high.webm",
+      "visibility": [
+        "visible"
+      ],
+      "sourceStable": true,
+      "errors": [],
+      "recordedWallSeconds": 23.7265,
+      "simulationSeconds": 23.72649999999985,
+      "phaseScope": "Same t=20 start parameter, wall-clock continuous capture; frame phases are not identical between runs."
+    },
+    {
+      "path": "v04-ma-order-motion-01\\day-near.webm",
+      "sha256": "b51bcc4067ecdc2d7b8c60f0a2d8a66bcdbf233a87912b1b81c448b4c8fd0186",
+      "stream": {
+        "codec_name": "vp9",
+        "width": 1920,
+        "height": 1080
+      },
+      "frames": 550,
+      "firstTime": 0.0,
+      "lastTime": 23.947,
+      "increasing": true,
+      "intervals": {
+        "mean": 43.619307832422585,
+        "p50": 43.99999999999871,
+        "p95": 48.00000000000004,
+        "p99": 49.520000000001346,
+        "max": 56.00000000000094,
+        "samples": 549
+      },
+      "decodeExit": 0,
+      "decodeErrors": "",
+      "settingsMatch": true,
+      "cameraMatch": true,
+      "baseline": "v04-ma-base-motion-02\\day-near.webm",
+      "visibility": [
+        "visible"
+      ],
+      "sourceStable": true,
+      "errors": [],
+      "recordedWallSeconds": 23.67590000000596,
+      "simulationSeconds": 23.675900000006003,
+      "phaseScope": "Same t=20 start parameter, wall-clock continuous capture; frame phases are not identical between runs."
+    },
+    {
+      "path": "v04-ma-order-motion-01\\gold-high.webm",
+      "sha256": "7b300b5527b72faadf20ea30da5e2c204236e98e9dd5b5a4c8f2bdd314a08e8a",
+      "stream": {
+        "codec_name": "vp9",
+        "width": 1920,
+        "height": 1080
+      },
+      "frames": 657,
+      "firstTime": 0.0,
+      "lastTime": 23.957,
+      "increasing": true,
+      "intervals": {
+        "mean": 36.519817073170735,
+        "p50": 36.000000000001364,
+        "p95": 40.000000000000036,
+        "p99": 42.00000000000086,
+        "max": 68.99999999999906,
+        "samples": 656
+      },
+      "decodeExit": 0,
+      "decodeErrors": "",
+      "settingsMatch": true,
+      "cameraMatch": true,
+      "baseline": "v04-ma-base-motion-02\\gold-high.webm",
+      "visibility": [
+        "visible"
+      ],
+      "sourceStable": true,
+      "errors": [],
+      "recordedWallSeconds": 23.76429999999702,
+      "simulationSeconds": 23.764299999997,
+      "phaseScope": "Same t=20 start parameter, wall-clock continuous capture; frame phases are not identical between runs."
+    },
+    {
+      "path": "v04-ma-order-motion-01\\gold-near.webm",
+      "sha256": "aaf1fec6c25b5e5921b24af879ecca56dd2b6413a7dbe1562f43b5fd06393d84",
+      "stream": {
+        "codec_name": "vp9",
+        "width": 1920,
+        "height": 1080
+      },
+      "frames": 550,
+      "firstTime": 0.0,
+      "lastTime": 23.946,
+      "increasing": true,
+      "intervals": {
+        "mean": 43.61748633879782,
+        "p50": 43.99999999999871,
+        "p95": 48.99999999999949,
+        "p99": 50.999999999999304,
+        "max": 54.99999999999999,
+        "samples": 549
+      },
+      "decodeExit": 0,
+      "decodeErrors": "",
+      "settingsMatch": true,
+      "cameraMatch": true,
+      "baseline": "v04-ma-base-motion-02\\gold-near.webm",
+      "visibility": [
+        "visible"
+      ],
+      "sourceStable": true,
+      "errors": [],
+      "recordedWallSeconds": 23.67620000000298,
+      "simulationSeconds": 23.676200000003092,
+      "phaseScope": "Same t=20 start parameter, wall-clock continuous capture; frame phases are not identical between runs."
+    }
+  ]
+}
