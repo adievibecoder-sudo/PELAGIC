@@ -40,7 +40,7 @@ export async function cloudViewChecks(device,frame,noise,sampler,cloudHeight){
     result[xy.y*64u+xy.x]=vec4f(0);return;
   }
   let count=u32(probe[0].x);let phase=probe[0].y;
-  let exponential=probe[0].z<0.5;let filter=u32(probe[0].w);
+  let exponential=probe[0].z<0.5;let filterMode=u32(probe[0].w);
   let logRange=log((finish+1.0)/(start+1.0));
   let pixAng=2.0*length(F.camUp.xyz)/probe[1].y;
   var integral=0.0;var occupied=0.0;var first=finish;var moment=0.0;
@@ -55,8 +55,8 @@ export async function cloudViewChecks(device,frame,noise,sampler,cloudHeight){
     for(var sub=0u;sub<subdivisions;sub++){
       let t=a+ds*(f32(sub)+phase)/f32(subdivisions);
       let pixel=t*pixAng;
-      var footprint=select(max(ds*0.14,(a+b)*0.5*pixAng),pixel,filter==1u);
-      if(filter==2u){footprint=0.0;}
+      var footprint=select(max(ds*0.14,(a+b)*0.5*pixAng),pixel,filterMode==1u);
+      if(filterMode==2u){footprint=0.0;}
       let d=cloudDensityFiltered(ro+dir*t,true,footprint);
       let weight=ds/f32(subdivisions);
       integral+=d*weight;moment+=d*weight*t;
