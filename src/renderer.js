@@ -38,6 +38,7 @@ import {cloudLightPathChecks} from '../tests/cloud-light-path-readback.js';
 import {cloudAppearanceShader} from '../tests/cloud-appearance-shaders.js';
 import {cloudViewChecks} from '../tests/cloud-view-readback.js';
 import {cloudCondensateShader} from './wgsl/cloud-condensate.js';
+import {deformedSlopeChecks} from '../tests/deformed-slope-readback.js';
 import {waveDiagnosticShader} from '../tests/milestone-a-wave-shaders.js';
 import {orderOceanNodes} from './ocean-order.js';
 
@@ -1206,6 +1207,7 @@ async function main() {
     if(qs.get('maChecks')==='1')report.cloudChecks=await cloudConvectionChecks(device,frameUBO,cloudNoiseView,cloudSampler,qs);
     if(qs.get('maLightChecks')==='1')report.cloudLightChecks=await cloudLightPathChecks(device,frameUBO,cloudNoiseView,cloudSampler);
     if(qs.get('maViewChecks')==='1')report.cloudViewChecks=await cloudViewChecks(device,frameUBO,cloudNoiseView,cloudSampler,cloudH);
+    if(qs.get('maSlopeChecks')==='1')report.deformedSlopes=await deformedSlopeChecks(device,frameUBO,dispTex.createView(),derivTex.createView(),momTex.createView(),sampRepeat);
     if(qs.get('validate')==='1')report.spectral=await spectralReadback(device,{h0:h0Buf,specA,disp:dispTex,deriv:derivTex,mom:momTex},P);
     if(qs.get('validate')==='1')report.foam=await foamReadback(device,foamW[foamCur]);
     if(qs.get('validate')==='1'){report.hdr=await hdrReadback(device,hdrTex,frameF[60]);report.light=await phase1LightReadback(device,shadowTex,irradianceTex,envTex);}

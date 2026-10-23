@@ -1,0 +1,13 @@
+# Cloud view integration and condensate trial
+
+23 October 2026. A incomplete; continuation authorized, B/C unauthorized.
+
+`bb0c266` isolates opacity along 64x32 rays in the upper half of each actual camera. Same spherical entry/exit, parabolic density, 360-row cloud angular footprint. Production96 exponential segments/four subpoints compared with shifted quarter/mid/three-quarter positions, pixel-only filtering, and uniform1024/2048/4096 references. No illumination, exposure or early termination in the probe.
+
+Near/elevated mean absolute opacity error of production versus4096:0.00016683/0.00018689. Reference2048 versus4096:0.00001635/0.00001989. Production maximum errors0.04044/0.02937; shifted-quarter elevated maximum0.09863. Thus local edge errors remain. Both numerical gates pass; source stable, errors empty, production stills byte-identical to published baseline. Originals: `v04-ma-view-integral-02`; direct-opacity/error maps and analysis: `v04-ma-view-review-01`. Initial01 diagnostic failed because `filter` is a WGSL reserved word; its PNG has no completed report and is not an accepted pair.
+
+Dense unfiltered versus pixel-filtered reference mean opacity error0.00435/0.00387, with isolated near-one differences. Filtering the noise before nonlinear density is not equivalent to filtering opacity. The sparse ray grid does not prove every image row converged or that filtering is physically correct. Within the measured views, more view samples cannot explain away the broad repeated silhouettes; density remains implicated.
+
+`bd82793`, `maCloud=condensate`: bounded density-only trial replaces ellipsoid support with a shared horizontal condensate-surplus field, height-dependent crown threshold and smaller 3D perturbation. No moist thermodynamics claim. Existing transport, extinction, ocean and pure stratus/storm remain exact. GPU11 invariants PASS; vertical256/512 relative difference0.00003244. VIS FAIL: broad smooth extruded masses and excessive coverage. Mean vertical tau7.03245, versus approximately0.87 baseline, so neither equal-occupancy nor equal-quality comparison. Original `v04-ma-condensate-01/day-near.png/json` preserved. Rejected for adoption immediately; no full matrix, motion or matched speedup claimed. No further tuning of this field is justified by the result.
+
+Next bounded ocean test measures complete deformed slope energy with horizontal-area weights. Existing tests cover linear spectral variance and mip moments, but do not close the choppy inverse-Jacobian contribution to actual roughness. This is a falsifying measurement, not permission to alter roughness arbitrarily.
