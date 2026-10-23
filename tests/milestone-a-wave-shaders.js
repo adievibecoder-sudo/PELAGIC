@@ -1,6 +1,13 @@
 // Opt-in look-development views. Vertex displacement and production defaults stay exact.
 export function waveDiagnosticShader(code, query) {
   if (!code.includes('fn reflectedEnvironment(')) return code;
+  if (query.get('maWaveCov') === 'unstrained') {
+    const marker = 'let C = A*mat2x2f(cov.x,cov.z,cov.z,cov.y)*transpose(A);';
+    if (code.split(marker).length !== 2) throw Error('Wave covariance splice contract changed');
+    // Ablation only: remove strain from unresolved covariance, retaining the
+    // actual geometry and deformed mean normal. Not a physical replacement.
+    code = code.replace(marker, 'let C = mat2x2f(cov.x,cov.z,cov.z,cov.y);');
+  }
   const filter = query.get('maWaveFilter');
   if (['2', '4'].includes(filter)) {
     const marker = 'let dx=dxXZ*invL;let dy=dyXZ*invL;';

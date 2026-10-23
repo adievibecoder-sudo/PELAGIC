@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PELAGIC / Wave investigation</title>
+<style>body{margin:24px;background:#101b20;color:#e6ede7;font:15px/1.5 Consolas,monospace}a{color:#a9d2dc}select,button{padding:8px;margin:6px}img,video{display:block;width:100%;height:auto}figure{margin:8px 0}section{display:grid;grid-template-columns:1fr 1fr;gap:20px}pre{white-space:pre-wrap}h1{font-size:24px}@media(max-width:900px){section{grid-template-columns:1fr}}</style>
+<h1>Milestone A / Wave investigation</h1>
+<p>Core appearance remains FAIL. Near-first opaque patch ordering reduces near-surface GPU work; all four still pairs are byte-identical. Geometry, spectra, optical shaders and exposure are preserved. Wider filtering and covariance ablation are rejected appearance fixes. Milestones B/C remain gated.</p>
+<p><a href="docs/V04-MILESTONE-A-WAVES.md">Investigation and reproduction</a> / <a href="evidence/v04-ma-wave-review-01/analysis.json">Original measurements and media analysis</a></p>
+<label>Scene <select id="scene"><option>day-near</option><option>day-high</option><option>gold-near</option><option>gold-high</option></select></label>
+<section id="stills"></section>
+<label>Motion <select id="version"><option value="baseline">Published baseline</option><option value="candidate">Near-first order</option></select></label>
+<button id="play">Play complete original</button><p id="status">24 s: stationary, 75-degree pan, stationary. Actual captured cadence. Separate recordings are not frame-phase aligned.</p>
+<video id="movie" style="max-height:85vh;object-fit:contain" controls playsinline muted></video><pre id="result"></pre>
+<script type="module">
+const q=new URLSearchParams(location.search),scene=document.querySelector('#scene'),version=document.querySelector('#version'),video=document.querySelector('#movie');
+scene.value=q.get('scene')||'day-near';version.value=q.get('version')||'candidate';
+function stills(){const base=scene.value==='day-near'?'v04-ma-wave-base-02':'v04-ma-wave-base-01';document.querySelector('#stills').replaceChildren(...[base,'v04-ma-order-stills-01'].map((stage,i)=>{
+ const figure=document.createElement('figure'),caption=document.createElement('figcaption'),link=document.createElement('a'),img=document.createElement('img');
+ caption.textContent=i?'Near-first order':'Unchanged baseline';link.href=`evidence/${stage}/${scene.value}.png`;img.src=link.href;img.alt=caption.textContent+' '+scene.value;link.append(img);figure.append(caption,link);return figure;
+}));}scene.onchange=stills;stills();
+let frames=[],callback=null,started=0,source='';
+function observe(now,m){frames.push({time:m.mediaTime,presented:m.presentedFrames,expected:m.expectedDisplayTime,visibility:document.visibilityState});callback=video.requestVideoFrameCallback(observe);}
+document.querySelector('#play').onclick=async()=>{
+ if(callback!==null)video.cancelVideoFrameCallback(callback);frames=[];started=performance.now();
+ source=`evidence/${version.value==='baseline'?'v04-ma-base-motion-02':'v04-ma-order-motion-01'}/${scene.value}.webm`;
+ video.src=source;callback=video.requestVideoFrameCallback(observe);document.title='PLAYING '+scene.value;await video.play();video.scrollIntoView({block:'start'});
+};
+video.ontimeupdate=()=>document.querySelector('#status').textContent=`${source} / ${video.currentTime.toFixed(2)} s / ${video.ended?'ENDED':video.paused?'PAUSED':'PLAYING'}`;
+video.onended=async()=>{
+ if(callback!==null)video.cancelVideoFrameCallback(callback);const quality=video.getVideoPlaybackQuality();
+ const report={source,utc:new Date().toISOString(),width:video.videoWidth,height:video.videoHeight,seconds:video.currentTime,wallSeconds:(performance.now()-started)/1000,totalFrames:quality.totalVideoFrames,droppedFrames:quality.droppedVideoFrames,frames,scope:'Complete playback with frame callbacks. Sampled perceptual observations recorded separately; not proof of natural motion.'};
+ document.querySelector('#result').textContent=JSON.stringify({...report,frames:frames.length},null,2);
+ if(q.has('reviewRun')){
+  const response=await fetch(`/__evidence?stage=v04-ma-wave-playback-${encodeURIComponent(q.get('reviewRun'))}&name=${version.value}-${scene.value}.json`,{method:'POST',body:JSON.stringify(report,null,2)});
+  if(!response.ok)throw Error('Evidence save rejected: '+response.status);
+ }
+ document.title='PLAYBACK DONE';
+};
+</script></html>

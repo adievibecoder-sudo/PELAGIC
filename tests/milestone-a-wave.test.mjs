@@ -9,6 +9,13 @@ test('wave isolation preserves default shaders and actual displaced vertex geome
     assert.equal(waveDiagnosticShader(source, new URLSearchParams('maWaveView=unknown')), source);
   }
   const fragment = OCEAN.indexOf('@fragment fn fs(');
+  const covarianceQuery = new URLSearchParams('maWaveCov=unstrained');
+  const covariance = waveDiagnosticShader(OCEAN, covarianceQuery);
+  assert.equal(covariance.replace('let C = mat2x2f(cov.x,cov.z,cov.z,cov.y);',
+    'let C = A*mat2x2f(cov.x,cov.z,cov.z,cov.y)*transpose(A);'), OCEAN);
+  assert.equal(waveDiagnosticShader(OCEAN, new URLSearchParams('maWaveCov=unknown')), OCEAN);
+  assert.equal(waveDiagnosticShader(SKY_BG, covarianceQuery), SKY_BG);
+  assert.equal(waveDiagnosticShader(HEIGHT_PROBE, covarianceQuery), HEIGHT_PROBE);
   for (const mode of ['geometry', 'normal-light', 'normal-angle']) {
     const query = new URLSearchParams({maWaveView: mode});
     const result = waveDiagnosticShader(OCEAN, query);

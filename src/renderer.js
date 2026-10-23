@@ -424,7 +424,7 @@ async function main() {
   const idxBuf = mkBuf(idx.byteLength, GU.INDEX | GU.COPY_DST, 'grid idx');
   device.queue.writeBuffer(idxBuf, 0, idx);
   const instData = new Float32Array(MAX_NODES * 4);
-  const nearFirst=qs.get('maOceanOrder')==='near';
+  const nearFirst=qs.get('maOceanOrder')!=='spatial';
   const orderedInstances=nearFirst?new Float32Array(instData.length):null;
   const nodeOrder=nearFirst?new Uint32Array(MAX_NODES):null;
   const nodeDistances=nearFirst?new Float64Array(MAX_NODES):null;

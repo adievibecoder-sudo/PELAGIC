@@ -1,5 +1,7 @@
 # PELAGIC 0.4 — Persistent Verified State
 
+**23 October wave investigation:** Geometry/normal/glitter isolation completed. Wider footprint and covariance-strain ablation do not fix appearance; remain opt-in. Near-first opaque patch ordering is adopted after four byte-identical still pairs, four new24 s originals, four-view60 s profiles and reverse-order near-surface repeats. Daylight-near surface work20.52-20.60 ms becomes14.27-14.38 ms; frame rate21.56-21.62 becomes24.88-25.08 FPS. CPU37/GPU FFT9/optics5 PASS within scope. Core-appearance transformation NOT achieved; A remains incomplete and authorized to continue. B/C unauthorized. Full evidence and next bounded cloud-light-path hypothesis: `V04-MILESTONE-A-WAVES.md`. Nine old evidence modifications remain preserved.
+
 **23 October continuation:** Owner explicitly authorizes further Milestone A work; the first-cloud-checkpoint HOLD below is historical. A is incomplete, no visual acceptance. B requires both A owner acceptance and explicit B authorization; B1 breaking/whitewater and B2 integrated weather remain future gates. C unauthorized. Local and GitHub development HEAD verified `d4f7d806ffc5cb6ffc88e9aa9637edbfe3b5d574`; frozen refs unchanged. Nine documented old evidence modifications preserved; all 24 files match their preservation copies. Baseline CPU35 PASS after approved host execution (sandbox worker creation failed). First bounded investigation and new evidence: `V04-MILESTONE-A-WAVES.md`.
 
 **Current owner authorization, 22 October 2026: Milestone A only.** Supersedes the historical Phase 1-only scheduling below. One bounded intervention, four-view daylight/low-Sun benchmark, STOP at first substantial visual checkpoint. B/C remain unauthorized; all inherited failures remain open. See `V04-MILESTONE-A.md`.
@@ -14,8 +16,8 @@ Hardware: current Chrome GPU PID18756 appears on the RTX 3050 in `v04-ma-hardwar
 
 **Historical Phase 1 checkpoint, 22 October 2026 (scheduling superseded):** Phase 1 engineering handoff; STOP for owner approval before Phases 2+3. Chrome automation recovered through its supported extension runtime, without security changes or restarts. RTX 3050 use is corroborated with the Chrome GPU PID. Final rendering source `919dfb4`: 32 CPU tests, nine FFT checks, five optical groups and six regional batches PASS. Twelve controlled 1080p still pairs, seven final 20 s clips, isolated lighting controls, nine completed browser playbacks and UI restore/share tests are preserved. Corrected sustained FPS: Golden Balanced 21.72, Storm Balanced 31.02, Golden High 10.87. Targets FAIL; baseline one-second stalls reproduced, cause UNVERIFIED. See `V04-PHASE1-REPORT.md`, `V04-PHASE1-ACCEPTANCE.md`, `V04-PHASE1-REPRODUCE.md`. Publication proof is stored separately in the Phase 1 handoff evidence. No inherited realism failure is closed.
 **Working branch:** `development/pelagic-0.4`
-**Current authorized programme:** **Milestone A, first-checkpoint HOLD**
-**Next gate:** Owner review before expanding reconstruction. B/C remain unauthorized. User retains independent visual sign-off.
+**Current authorized programme:** **Milestone A continuation, 23 October authorization**
+**Next gate:** Explicit owner visual acceptance after substantial integrated improvement. B additionally requires explicit authorization; C remains separately gated.
 
 ## Preserved baseline
 

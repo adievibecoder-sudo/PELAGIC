@@ -35,3 +35,42 @@ VIS result: daylight elevated and low-Sun near images soften, but retain the dom
 ## Opaque patch ordering experiment
 
 SRC: current traversal emits patches in quadtree/spatial order, including distant patches before nearer occluders. HYP: unnecessary overdraw contributes to the measured surface bottleneck. `maOceanOrder=near` performs a stable sort by distance to each undisplaced patch box, retaining identical instance values, topology, shaders and greater-depth testing. No phenomenon is removed. CPU scratch payload229376 bytes, no new GPU allocation. Compare exact fixed-phase full-resolution pixels, motion and display-paced pass times; equal-depth boundaries may depend on draw order. Reject adoption if images change materially or cost does not improve. This is performance work within A, not visual acceptance or a substitute for reconstruction.
+
+## Covariance ablation and decisions
+
+`maWaveCov=unstrained` removes only the inverse-Jacobian transform of unresolved covariance. Geometry and the deformed mean normal remain exact. This is an intentionally incomplete diagnostic, not a physical material replacement. Daylight elevated and low-Sun near originals retain the glossy/wrinkled character. Mean absolute display-channel changes are about 2.89/2.37/1.68 and 1.58/1.27/0.94 out of255. These differences are not perceptual acceptance metrics. Covariance strain is not the dominant cause in these two views; full deformed-moment closure remains UNVERIFIED. The ablation and wider-filter trial are not adopted.
+
+Near-first ordering is adopted as the default after the controlled results below; `maOceanOrder=spatial` retains the old traversal for reproduction. No appearance shader, displacement, spectral energy or optical coefficient is changed by this adoption. The original four baseline PNGs match the published first-checkpoint originals byte-for-byte, and all four reordered PNGs match those baselines exactly. Settings/camera/time match; source manifests are stable and GPU errors empty. This is a performance improvement, not the substantial core-appearance transformation required for A.
+
+## RTX 3050 timing evidence
+
+Native Chrome WebGPU NVIDIA/Ampere; Chrome GPU PID corroboration and RTX3050 Laptop board records are in `v04-ma-wave-hardware-01`. New60 s display-paced runs use fixed1920x1080 Balanced targets, adaptation off. `v04-ma-wave-perf-base-04` and `v04-ma-wave-perf-near-02` form the four-view comparison. Warmup submission/frame IDs<=30 are excluded; timestamp queries sample approximately every seventh frame.
+
+| Scene | FPS baseline / near-first | Mean GPU ms baseline / near-first | Surface ms baseline / near-first |
+|---|---|---|---|
+| Daylight2 m |21.62 /24.88|46.17 /40.14|20.52 /14.38|
+| Daylight50 m |29.72 /29.89|33.56 /33.35|12.70 /12.42|
+| Low Sun2 m |18.40 /25.21|54.10 /39.64|24.18 /14.20|
+| Low Sun50 m |29.81 /30.10|33.50 /33.19|12.68 /12.32|
+
+Reverse-order daylight-near repeats (`near-03`, then `base-05`) give25.08 /21.56 FPS and14.27 /20.60 ms surface work. This is the strongest evidence for about30% less near-surface surface-pass work and about16% greater frame rate. The low-Sun baseline has larger timing variation; do not attribute its entire improvement to ordering. Elevated savings are small. Active desktop, changing temperatures/clocks and nonidentical continuous phases limit causal precision. Balanced60 FPS remains FAIL. Payload allocations remain195.10 MiB plus229376 bytes CPU scratch; no new GPU allocation and no residency claim.
+
+All eight main runs and the two near-surface repeats have zero recorded intervals>500 ms. Earlier confounded profiles remain preserved: `base-01` about1 Hz/inactive tab, `base-02` ten long intervals, `base-03`42 long intervals with the window found minimized. The owner authorized a dedicated window and keeping it visible. Stable runs were observed restored/active at their boundaries; this is not continuous OS tracing. Page visibility alone remained `visible` during throttling. Historical intermittent-stall cause remains UNVERIFIED. Whole-board monitoring includes idle periods and other applications; its truncated final row is excluded from statistics.
+
+## Motion, regression and limits
+
+Four new original1080p VP9 recordings in `v04-ma-order-motion-01` contain550/653/550/657 frames for day-near/day-high/gold-near/gold-high. Their last frame timestamps are23.928-23.957 s; all decode fully with strictly increasing timestamps and no GPU errors. Recorded simulation progression agrees with recorded wall time; no timestep-cap loss appears in these ranges. Actual encoded intervals, frame callbacks and visual observations must remain separate quantities.
+
+Published `v04-ma-base-motion-02` originals are reused as the baseline: four current stills exactly match `v04-ma-base-stills-02`, and each motion pair has equal settings and final camera. Both use t20 and the same24 s stationary/pan/stationary protocol. Wall-clock warmup and continuous captures are not frame-phase aligned; do not claim pixel-equal videos. Full-resolution extracted3/12/21 s frames are in `v04-ma-wave-review-01`; selected frames and an in-capture low-Sun elevated view were inspected. Complete playback telemetry is separate. No new photographic or natural-motion PASS is claimed.
+
+CPU37/37 PASS after promotion; GPU FFT9/9 and optical5 groups PASS on the same unchanged shader bodies. All scopes/tolerances remain in the raw reports (`v04-ma-wave-gpu-01`). `v04-ma-wave-review-01/analysis.json` contains exact comparisons, p50/p95/p99 timings and media checks. The nine pre-existing evidence modifications remain untouched. A is incomplete: MA-W1/O1/C1/C2/P1/P2/R1 stay open; B/C remain unauthorized.
+
+## Reproduce this investigation
+
+Use the first-checkpoint URL protocol with a new exclusive stage. Current default uses near-first ordering; append `maOceanOrder=spatial` for the old traversal, `maWaveView=geometry|normal-light|normal-angle` for isolated views, `maWaveFilter=2` for the rejected footprint trial, or `maWaveCov=unstrained` for the rejected covariance ablation. Do not combine appearance probes when comparing their individual effects. View originals at `/milestone-a-waves-review.html`.
+
+Reanalyze into a new, already-created directory with `python tests/milestone-a-wave-evidence.py . evidence/v04-ma-NEW-review/analysis.json`. Requires existing Python/Pillow and FFmpeg/ffprobe, no application dependency. The script reads the explicitly named experiment stages; it does not infer visual success.
+
+Next bounded appearance hypothesis: Balanced cloud self-shadow quadrature spans2.173146 km regardless of layer exit, with non-midpoint samples after its first interval. At low Sun it can omit later obstructing cloud. Isolate finite-path optical-depth integration from morphology, retain density and view-ray sample counts, test manufactured slabs and actual-field convergence before judging matched full scenes. This is a source finding and proposed test, not an implemented cloud improvement. Incorrect density shapes remain an independent failure.
+
+Promoted-default check: `v04-ma-order-default-01/day-near.png`, without an ordering query, matches the baseline SHA-256 `cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1`. Four complete original browser playbacks are recorded separately in `v04-ma-wave-playback-01`; sampled rendered views retain broad wave forms, dense reflective detail and repeated cloud shapes. Playback completion is not continuous human perceptual certification. CPU mean frame work rises from about0.418-0.442 ms to0.504-0.551 ms in the primary profiles. Whole-board monitor ranges are47-88 C,3.36-75.06 W,210-1965 MHz and1121-2182 MiB across active and idle periods; other applications are included.
