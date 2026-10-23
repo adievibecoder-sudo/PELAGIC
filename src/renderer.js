@@ -35,6 +35,7 @@ import {cloudConvectionShader} from './wgsl/cloud-convection.js';
 import {cloudConvectionChecks} from '../tests/cloud-convection-readback.js';
 import {cloudLightPathShader} from './wgsl/cloud-light-path.js';
 import {cloudLightPathChecks} from '../tests/cloud-light-path-readback.js';
+import {cloudAppearanceShader} from '../tests/cloud-appearance-shaders.js';
 import {waveDiagnosticShader} from '../tests/milestone-a-wave-shaders.js';
 import {orderOceanNodes} from './ocean-order.js';
 
@@ -115,7 +116,7 @@ async function main() {
   ctx.configure({ device, format: swapFormat, alphaMode: 'opaque', usage: TU.RENDER_ATTACHMENT | TU.COPY_SRC });
 
   async function shader(code, label) {
-    code=cloudLightPathShader(waveDiagnosticShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs),qs),qs);
+    code=cloudAppearanceShader(cloudLightPathShader(waveDiagnosticShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs),qs),qs),qs);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
     let bad = false;
