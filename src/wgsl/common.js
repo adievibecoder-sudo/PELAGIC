@@ -1,7 +1,8 @@
 // Adapted from Noniv/web-ocean, MIT. See THIRD-PARTY-LICENSE.txt.
 import { fromURL, QUALITY } from '../settings.js';
 export const CONFIG = fromURL(typeof location === 'undefined' ? '' : location.search);
-export const Q = QUALITY[CONFIG.quality];
+const geometryProbe=new URLSearchParams(typeof location==='undefined'?'':location.search).get('maGeometry');
+export const Q = ['48','96'].includes(geometryProbe)?{...QUALITY[CONFIG.quality],grid:Number(geometryProbe)}:QUALITY[CONFIG.quality];
 export const N = 256;          // FFT resolution per cascade
 export const LOGN = 8;
 export const CASCADES = 6;
