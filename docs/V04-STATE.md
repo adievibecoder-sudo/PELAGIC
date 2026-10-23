@@ -1,5 +1,7 @@
 # PELAGIC 0.4 — Persistent Verified State
 
+**Latest continuation checkpoint:** `V04-MILESTONE-A-CONTINUATION-CHECKPOINT.md`. Rendering source `9ac1461`, final CPU40/GPU FFT9/optics5 PASS; final default still byte-identical to baseline. Only near-first ordering adopted. Finite cloud-light path and larger long-wave grid rejected; opacity/neutral diagnostics confirm remaining cloud structure defects. A appearance transformation NOT achieved; continuation remains authorized, no owner acceptance or B/C authorization. New work is local, remote still `d4f7d806` at final check.
+
 **23 October long-grid probe:** Same FFT spectrum resampled on2207 m domain gives more long modes and removes1103 m recurrence, but fixed256 texture reconstruction retains only90.98% of long-band height variance (baseline97.59%). Four views still fail appearance. Opt-in only, not adopted; `V04-MILESTONE-A-LONG-GRID.md`. Existing source/default remains unchanged apart from verified near-first ordering.
 
 **23 October cloud-light probe:** Finite layer-exit quadrature tested without density/view-sample changes. Analytic GPU checks PASS; occupied-probe low-Sun transmission error worsens. Rims and artificial morphology persist. Candidate remains opt-in and rejected for adoption. Details: `V04-MILESTONE-A-LIGHT-PATH.md`. Wave source/evidence checkpoints are local `84c0ce9`/`59c2a58`; no publication claim. A still incomplete.
