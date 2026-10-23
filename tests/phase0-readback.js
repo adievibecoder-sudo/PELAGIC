@@ -3,6 +3,7 @@ import {CLOUD_VOLUME} from '../src/wgsl/clouds.js';
 import {phase0Shader} from './phase0-shaders.js';
 import {cloudBankShader} from '../src/wgsl/cloud-bank.js';
 import {cloudConvectionShader} from '../src/wgsl/cloud-convection.js';
+import {cloudCondensateShader} from '../src/wgsl/cloud-condensate.js';
 
 export async function phase0CloudColumns(device,frame,noise,sampler,query) {
   const noiseProbe=query.get('maNoise')==='1';
@@ -39,7 +40,7 @@ export async function phase0CloudColumns(device,frame,noise,sampler,query) {
  if(id.z==3u){v=vec4f(cover,signal,regionalCoverage(xz),F.regional.y);}
  result[id.z*1024u+id.y*32u+id.x]=v;
 }`;
-  let shader=cloudConvectionShader(cloudBankShader(phase0Shader(code,query),query),query);
+  let shader=cloudCondensateShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,query),query),query),query);
   if(noiseProbe)shader=FRAME_WGSL+'\nconst RG:f32=6360.0;\n@group(0) @binding(0) var<uniform> F:Frame;\n'+prefix+probe;
   if(sweep)shader=shader.replace(/const BANK_BIAS:f32=[\d.]+;/,'var<private> BANK_BIAS:f32=0.0;');
   const module=device.createShaderModule({code:shader});

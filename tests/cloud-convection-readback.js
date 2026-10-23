@@ -1,8 +1,9 @@
 import {FRAME_WGSL} from '../src/wgsl/common.js';
 import {CLOUD_VOLUME} from '../src/wgsl/clouds.js';
 import {cloudConvectionShader} from '../src/wgsl/cloud-convection.js';
+import {cloudCondensateShader} from '../src/wgsl/cloud-condensate.js';
 
-export async function cloudConvectionChecks(device,frame,noise,sampler) {
+export async function cloudConvectionChecks(device,frame,noise,sampler,query=new URLSearchParams()) {
   const prefix=CLOUD_VOLUME.slice(0,CLOUD_VOLUME.indexOf('fn iceDensity('));
   const source=FRAME_WGSL+`
 const RG:f32=6360.0;
@@ -51,7 +52,8 @@ var<private> F:Frame;
  }
  result[id.z*1024u+id.y*32u+id.x]=values;
 }`;
-  const code=cloudConvectionShader(source,new URLSearchParams({maCloud:'convective'}));
+  const code=query.get('maCloud')==='condensate'?cloudCondensateShader(source,query):
+    cloudConvectionShader(source,new URLSearchParams({maCloud:'convective'}));
   const module=device.createShaderModule({code});
   const info=await module.getCompilationInfo();
   if(info.messages.some(m=>m.type==='error'))throw Error(info.messages.map(m=>m.message).join('\n'));
