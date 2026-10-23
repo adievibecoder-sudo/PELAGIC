@@ -33,6 +33,8 @@ import {phase0CloudColumns} from '../tests/phase0-readback.js';
 import {cloudBankShader} from './wgsl/cloud-bank.js';
 import {cloudConvectionShader} from './wgsl/cloud-convection.js';
 import {cloudConvectionChecks} from '../tests/cloud-convection-readback.js';
+import {cloudLightPathShader} from './wgsl/cloud-light-path.js';
+import {cloudLightPathChecks} from '../tests/cloud-light-path-readback.js';
 import {waveDiagnosticShader} from '../tests/milestone-a-wave-shaders.js';
 import {orderOceanNodes} from './ocean-order.js';
 
@@ -113,7 +115,7 @@ async function main() {
   ctx.configure({ device, format: swapFormat, alphaMode: 'opaque', usage: TU.RENDER_ATTACHMENT | TU.COPY_SRC });
 
   async function shader(code, label) {
-    code=waveDiagnosticShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs),qs);
+    code=cloudLightPathShader(waveDiagnosticShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs),qs),qs);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
     let bad = false;
@@ -1198,6 +1200,7 @@ async function main() {
     const report=evidenceReport();
     if(qs.get('p0Columns')==='1')report.cloudColumns=await phase0CloudColumns(device,frameUBO,cloudNoiseView,cloudSampler,qs);
     if(qs.get('maChecks')==='1')report.cloudChecks=await cloudConvectionChecks(device,frameUBO,cloudNoiseView,cloudSampler);
+    if(qs.get('maLightChecks')==='1')report.cloudLightChecks=await cloudLightPathChecks(device,frameUBO,cloudNoiseView,cloudSampler);
     if(qs.get('validate')==='1')report.spectral=await spectralReadback(device,{h0:h0Buf,specA,disp:dispTex,deriv:derivTex,mom:momTex},P);
     if(qs.get('validate')==='1')report.foam=await foamReadback(device,foamW[foamCur]);
     if(qs.get('validate')==='1'){report.hdr=await hdrReadback(device,hdrTex,frameF[60]);report.light=await phase1LightReadback(device,shadowTex,irradianceTex,envTex);}
