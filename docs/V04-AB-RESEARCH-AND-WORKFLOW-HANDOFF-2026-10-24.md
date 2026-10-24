@@ -48,3 +48,6 @@ These are visual goals, not a demand for six serial infrastructure phases:
 
 ## 6. What happens next
 **Preparation only:** Handoff documents staged in a separate branch / draft PR. Do not automatically merge, fetch+reset, cherry-pick, alter user-local work, start tests, modify renderer, or start a new sprint. Await the owner's next instruction for Astra's actual local integration and kickoff.
+
+## 7. Supplementary Argon research
+Use `docs/research/PELAGIC_V04_ARGON_VERIFIED_CANDIDATES_2026-10-24.md` as the complementary Part I/II digest: geometry/BRDF energy handoff, per-cascade high-frequency slope balance, visible-facet reflection A/B, plausible water-body radiance, and a lightweight shader comparison loop. It also records duplicated features and unsupported performance predictions. These are **candidates**, not new mandatory phases or validated GPU improvements.
