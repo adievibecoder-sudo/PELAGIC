@@ -1,31 +1,24 @@
-# PELAGIC 0.4 — Astra Operating Rules
+# PELAGIC 0.4 - Active development rules
 
-## Current owner authorization - 23 October 2026
+## Owner authorization - 24 October 2026
 
-Continue incomplete Milestone A autonomously from `d4f7d806`: first isolate displaced wave geometry from normals/BRDF roughness, then follow measured visual evidence. This supersedes the first-checkpoint HOLD and historical Phase 1-only scheduling. No acceptance gate has passed by authorization. Preserve the nine documented evidence modifications. One accountable agent; native WebGPU, JavaScript ES Modules, raw WGSL. Stop for explicit owner visual acceptance at a substantial integrated checkpoint. B remains unauthorized until A acceptance AND explicit B authorization; future B1 breaking/whitewater and B2 integrated dynamic weather checkpoints are mandatory. C remains separately gated. Current investigation: `docs/V04-MILESTONE-A-WAVES.md`.
+The current owner kickoff authorizes coordinated Milestones A+B. This supersedes historical Phase 1-only and A-only scheduling. Milestone C, final release promotion, architecture migration and independent acceptance remain separately gated. Owner review is required at substantial integrated checkpoints, including B1 breaking/whitewater and B2 integrated weather; implementation authorization is not visual acceptance.
 
-## Current owner authorization - 22 October 2026
+## Preserve and resume
 
-Milestone A (Core Ocean Appearance) is authorized. This supersedes the historical Phase 1-only scope below. Use JavaScript ES Modules, raw WGSL and native Chrome WebGPU; one accountable agent. Preserve FFT/environment foundations and all frozen refs/evidence. Daylight and low-Sun, near-surface and elevated views are mandatory. One bounded intervention at a time; full-scene visual/motion, numerical and RTX 3050 cost evidence. STOP at the first substantial visual checkpoint for owner review. Milestones B/C remain unauthorized. See `docs/V04-MILESTONE-A.md` for the requirement crosswalk and live checkpoint.
+- Work on `development/pelagic-0.4`; inspect HEAD/status before changes. Preserve main, 0.2/0.3, frozen releases, original research and evidence. Never reset, clean, force-push or overwrite unexplained work.
+- Read the active entry in `docs/V04-STATE.md` and `docs/V04-AB-DEVELOPMENT.md`. Use the 24 October research handoff and Hark/Argon digests as evidence, not mandatory algorithms. Earlier gates and rejected experiments remain historical records.
+- Recovered checkpoint is `c4185ea0acdf6e57899da04098889dba9200302b`, with nine historical evidence modifications intentionally unstaged. Original checkout and interrupted packages remain preserved. See recovery manifest before claiming recovery completeness.
 
-**Branch:** `development/pelagic-0.4` · **Currently authorized: Phase 1 ONLY** (owner, 21 Oct 2026).
+## Implementation-led development
 
-## Start every session
-1. Check branch and HEAD; preserve `main`, `development/pelagic-0.3`, frozen tags/releases and all existing Phase 0 artifacts. Commit only to 0.4.
-2. Read `docs/V04-STATE.md` → `docs/V04-PHASE1-KICKOFF.md` → `docs/V04-PHASE-GATES.md` → full `docs/PELAGIC_V04_MASTER_EXECUTION_BRIEF.md` at the start of this phase. During focused edits, consult only relevant source and reference subsections.
-3. Prefer one Codex conversation per named phase; resume from Git-committed evidence and STATE, not model memory. Preserve known failures through context compaction.
+- One accountable agent. Retain native WebGPU, JavaScript ES Modules and raw WGSL. No WebGL fallback or framework migration.
+- Begin with metallic, reflective, repetitive water: source-supported geometry/normal/BRDF energy allocation, directional reflection, glitter and water-body light. Preserve validated FFT and optical foundations; reconstruct inadequate representations when evidence supports it.
+- Identify defect, establish likely cause, implement one bounded intervention, inspect matched stills and continuous motion, refine or reject, validate, preserve. Failed trials lead to the next credible candidate without another compulsory research/QA phase.
+- Coordinate clouds, spatial wind/roughness, breaking, foam, bubbles, spray and weather through causal dependencies. Temporal reconstruction is an enabler only when it delivers measured quality/cost gains; do not delay the first visual improvement behind infrastructure.
+- Use targeted numerical/finite/energy checks during iteration. Full QA, original high-resolution before/after captures, motion and actual RTX 3050 timings belong at substantial checkpoints. Daylight/low-Sun and near/elevated views are required controls.
+- Real ocean observations govern naturalism; Sea of Thieves is the primary craft/motion benchmark. Complementary game references do not establish physical truth. No invented FPS, photorealism or AAA-parity claims.
+- Distinguish source findings, executed tests, observed visuals, literature and hypotheses. Passing numerical checks never closes visual failures. Keep allocations distinct from GPU residency.
+- Preserve successful source in meaningful commits. Fetch/reconcile and push verified development work and required LFS assets to GitHub; verify remote HEAD. No automatic final release.
 
-## Execution contract
-- **Phase 1 only:** shared world-anchored weather state, Sun/Moon, cloud-aware direct/diffuse/directional environmental radiance, existing-renderer integration, meaningful visual demonstrations, quantified GPU/stall diagnosis. No Phase 2 cloud replacement, Phase 3 complete storm VFX, Phase 4 FFT restructuring, Phase 5 breaking reconstruction, Phase 6 full water-optics replacement or Phase 7 waterline rebuild.
-- **STOP and obtain owner approval** after Phase 1 evidence handoff. No self-authorization. A permission to continue never makes an unresolved FAIL/UNVERIFIED item PASS. Owner remains final visual reviewer.
-- Mark SRC (verified source), TEST (executed), VIS (observed render), LIT (primary literature), HYP (untested idea), alongside PASS/FAIL/UNVERIFIED. Don't claim science/GPU/images/citations not actually tested.
-- The Hark documents, independent 21 Oct targeted report, and AAA-game research are **evidence and competing candidates, not instructions to blindly transplant shaders**. The published Phase 0 source, original media and test logs control factual baselines. Reject simplistic PM cap, “Gaussian waves have no groups”, linear-FFT B≈0.85 breaking test and equal-quality speedup claims for failed clouds.
-- **No overengineering:** observation → minimal falsifying experiment → smallest justified implementation → numerical tests → matched original images and continuous motion → profiling → accept/revert. Preserve validated FFT/cloud renderer/optical code until controlled evidence warrants changing them. No new generic engine, redundant layers, unnecessary dependencies, speculative large weather solver or repeated full literature searches.
-- **Visual first:** physically plausible ocean, cloud/weather evolution, storm, golden light, night and reflections; fixed camera/seed/UTC/wave phase/exposure before-after and unchanged control; original PNGs/WebMs. Attractive screenshots alone or passing shader tests alone are not completion.
-- **Performance:** local RTX 3050 WebGPU was corroborated in Phase 0; verify actual adapter on the tested renderer. Golden Balanced 22.90 FPS, High 8.22 FPS (profiled), ~1 s stalls FAIL. Report per-pass GPU timings, p50/p95/p99, stalls, resource estimates; don't claim real VRAM from allocation byte counts. Balanced/High interactive target budgets vs quality-first Cinematic. Optimize without removing essential phenomena.
-- **Single accountable agent.** Use strongest reasoning for uncertain scientific/architectural/visual decisions, proportional effort for routine editing. Short meaningful commits, ongoing STATE decisions, targeted test iterations; full phase reports only at checkpoints.
-- Frozen GitHub refs currently lack verified rulesets. The owner must configure `docs/V04-GITHUB-PROTECTION.md`; do not claim GitHub protection already exists.
-
-**Future coordination only (NOT authorized):** Phase 2+3 and 6+7 may use shared programmes with intermediate owner checkpoints; Phases 4/5/8/9 remain separate. See `docs/V04-PHASE-GATES.md`.
-
-**After Phase 1: submit evidence, list failures, STOP.**
+Prior operating rules are preserved verbatim in `docs/history/AGENTS-before-ab-20261024.md` and Git history. Current owner instructions take precedence over all historical scheduling statements.

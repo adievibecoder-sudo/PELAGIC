@@ -1,5 +1,8 @@
 # PELAGIC 0.4 acceptance and decision register
 
+**Active owner decision, 24 October 2026:** Combined Milestones A+B are authorized by the current kickoff. Historical Phase 1-only / A-only scheduling below is superseded; failures and original evidence remain historical facts. Implementation-led water appearance first, then coupled clouds, Living Sea, breaking/whitewater, spray and weather. Owner review at substantial integrated checkpoints; B1/B2 remain review milestones. Milestone C, final release and independent acceptance remain separately gated. Recovery and current programme: `V04-AB-DEVELOPMENT.md`.
+
+
 Phase 0 factual baseline, 20 October 2026; Phase 1 integration update, 22 October. **Phase 1 source and evidence are delivered for owner review; no later phase is authorized.** Priorities: P0 prerequisite; P1 critical; P2 high. SRC = source inspection; TEST = executed test; VIS = inspected media; LIT = consulted literature; HYP = hypothesis. Owner approval remains independent. **No inherited visual defect is closed.** Historical defect rows below retain the original observations; current narrow integration decisions are in `V04-PHASE1-ACCEPTANCE.md`.
 
 | ID / priority | Observed problem and causal status | Decision / smallest next experiment | Evidence needed for closure | Current status |

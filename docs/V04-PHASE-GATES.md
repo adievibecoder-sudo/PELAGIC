@@ -1,5 +1,8 @@
 # PELAGIC 0.4 — Coordinated Phase Plan and Owner Gates
 
+**Active owner decision, 24 October 2026:** Combined Milestones A+B are authorized by the current kickoff. Historical Phase 1-only / A-only scheduling below is superseded; failures and original evidence remain historical facts. Implementation-led water appearance first, then coupled clouds, Living Sea, breaking/whitewater, spray and weather. Owner review at substantial integrated checkpoints; B1/B2 remain review milestones. Milestone C, final release and independent acceptance remain separately gated. Recovery and current programme: `V04-AB-DEVELOPMENT.md`.
+
+
 **22 October owner update:** Milestone A authorized under `V04-MILESTONE-A.md`. Its A/B/C requirement crosswalk supersedes scheduling in the historical table below. STOP at the first substantial visual checkpoint. Milestones B/C remain unauthorized; no original requirement or failure is removed.
 
 The full original phases and defect scopes remain intact. **Only Phase 1 is presently authorized**; this is a scheduling plan, not approval of future work.

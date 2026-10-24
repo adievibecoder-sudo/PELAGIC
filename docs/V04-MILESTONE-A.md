@@ -1,5 +1,8 @@
 # Milestone A: Core Ocean Appearance
 
+**Active owner decision, 24 October 2026:** Combined Milestones A+B are authorized by the current kickoff. Historical Phase 1-only / A-only scheduling below is superseded; failures and original evidence remain historical facts. Implementation-led water appearance first, then coupled clouds, Living Sea, breaking/whitewater, spray and weather. Owner review at substantial integrated checkpoints; B1/B2 remain review milestones. Milestone C, final release and independent acceptance remain separately gated. Recovery and current programme: `V04-AB-DEVELOPMENT.md`.
+
+
 **23 October owner continuation:** A remains incomplete and further A work is authorized, starting with geometry/normal/roughness isolation. This supersedes the first-checkpoint HOLD below, without closing any failure or approving B/C. Stop for explicit owner visual acceptance after substantial integrated improvement. Future B requires separate authorization, with B1 breaking/whitewater and B2 integrated dynamic ocean/weather owner checkpoints. See `V04-MILESTONE-A-WAVES.md`.
 
 Owner authorized 22 October 2026. STOP at the first substantial visual checkpoint. B/C are not authorized. Primary craft/motion target: Sea of Thieves; additional references: supplied demonstration, Horizon Forbidden West, Skull and Bones, Crimson Desert. Real footage remains the physical standard. No target achieved by assertion or numerical tests alone.

@@ -11,7 +11,8 @@ const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, `http://127.0.0.1:${port}`);
     if(req.method==='GET' && url.pathname==='/__source'){
-      res.writeHead(200,{'content-type':'application/json','cache-control':'no-store'}).end(JSON.stringify(await sourceManifest(root)));return;
+      const source=await sourceManifest(root);
+      res.writeHead(200,{'content-type':'application/json','cache-control':'no-store'}).end(JSON.stringify(source));return;
     }
     if (req.method === 'POST') {
       if (req.headers.origin && ![`http://127.0.0.1:${port}`, `http://localhost:${port}`].includes(req.headers.origin)) { res.writeHead(403).end(); return; }
