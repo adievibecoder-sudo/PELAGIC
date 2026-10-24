@@ -1,0 +1,358 @@
+{
+  "head": "97f68a1de53a877e5b2b2681c308a08aefbf0c74",
+  "status": "## development/pelagic-0.4...origin/development/pelagic-0.4 [ahead 2]\n M CHANGELOG.md\n M docs/V04-AB-DEVELOPMENT.md\n M docs/V04-STATE.md\n M evidence/v04-p1-final-stills/broken.json\n M evidence/v04-p1-final-stills/broken.png\n M evidence/v04-p1-final-stills/covered.json\n M evidence/v04-p1-final-stills/covered.png\n M evidence/v04-p1-final-stills/golden.json\n M evidence/v04-p1-final-stills/moonlit.json\n M evidence/v04-p1-final-stills/storm.json\n M evidence/v04-p1-final-stills/storm.png\n M evidence/v04-p1-final-stills/twilight.json\n M package.json\n M src/wgsl/cloud-plumes.js\n?? ab2-review.html\n?? docs/V04-AB-CONTINUATION-02.md\n?? tools/recover-ab3.mjs\n",
+  "records": [
+    {
+      "file": "CHANGELOG.md",
+      "bytes": 1914,
+      "sha256": "7df27630898f2bdfe11a216f4720b616937fd8f08b1d0dbecdef1e4e2084e8bb"
+    },
+    {
+      "file": "docs/V04-AB-DEVELOPMENT.md",
+      "bytes": 9020,
+      "sha256": "77ab02ba7d8c75d1dbc6c46fa96142fe696aa81ceada29408b50c8106df178c2"
+    },
+    {
+      "file": "docs/V04-STATE.md",
+      "bytes": 20400,
+      "sha256": "3d2e7cdd58ddd7c90d550f9130ef12aa2fcc46ec8dde944d78d1292ed1a3df3d"
+    },
+    {
+      "file": "evidence/v04-p1-final-stills/broken.json",
+      "bytes": 121208,
+      "sha256": "5313223cb9747fe1ca4ed5f75189359d31d6ce10929df8a2493cb961ca16433a"
+    },
+    {
+      "file": "evidence/v04-p1-final-stills/broken.png",
+      "bytes": 4947549,
+      "sha256": "7c50464f04d455bc63cd67613036ce1326abaa06140ec0f27f513749b0078aaa"
+    },
+    {
+      "file": "evidence/v04-p1-final-stills/covered.json",
+      "bytes": 121165,
+      "sha256": "1a9fd9600f8e8af0d79d475ec8fcf60006b11787e87808d93009da4773e83d40"
+    },
+    {
+      "file": "evidence/v04-p1-final-stills/covered.png",
+      "bytes": 4249786,
+      "sha256": "b08aec41c8ed42acadcb53a0e7afd743d939d2267f97cc402687bc1e05f61c4d"
+    },
+    {
+      "file": "evidence/v04-p1-final-stills/golden.json",
+      "bytes": 121594,
+      "sha256": "9fdf965a64084910721642ae1bb22621aa90c78d282c25a48f512361ccefca68"
+    },
+    {
+      "file": "evidence/v04-p1-final-stills/moonlit.json",
+      "bytes": 122170,
+      "sha256": "5053cea394a9e63471c3ff1c7b0031886af7060fdc92558596e0f9bcd3808098"
+    },
+    {
+      "file": "evidence/v04-p1-final-stills/storm.json",
+      "bytes": 121555,
+      "sha256": "016e2d0633e380db0691630f9fb1673320c4421e2570678edffddf666966a31d"
+    },
+    {
+      "file": "evidence/v04-p1-final-stills/storm.png",
+      "bytes": 4044097,
+      "sha256": "b4fe5f2bbc34fcf2a660c84cd9ed3c15177ee2430dbcd57f75b56a1e9bc016f2"
+    },
+    {
+      "file": "evidence/v04-p1-final-stills/twilight.json",
+      "bytes": 121444,
+      "sha256": "48ba683b71a2daac5abf1b9978ea0eff01e2e562f6bb36b3025931a3c66fad7b"
+    },
+    {
+      "file": "package.json",
+      "bytes": 292,
+      "sha256": "0c29768af69fb741542d868fef660b2478ee7dcad450ac586973c6ee0144b993"
+    },
+    {
+      "file": "src/wgsl/cloud-plumes.js",
+      "bytes": 6419,
+      "sha256": "b780cc72f7b4b8deea614e2b17fcb49b1c87158994603f8c98d17d0605be6acf"
+    },
+    {
+      "file": "ab2-review.html",
+      "bytes": 3994,
+      "sha256": "1e7a5ce4a0d5e2058beba1176b5970e1ab7b7f1eaa65cc46125e8acbc33950c4"
+    },
+    {
+      "file": "docs/V04-AB-CONTINUATION-02.md",
+      "bytes": 3457,
+      "sha256": "67cb2bb35bc6652ef0e562f6c3e42f5f2aabf3d5609a38133a29bac25f65f1e6"
+    },
+    {
+      "file": "tools/recover-ab3.mjs",
+      "bytes": 1683,
+      "sha256": "557df6f673d332bf71aa5bc9c4304454f491f929fd3ccab59f20b1876bea9f21"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "evidence\\v04-ma-ab2-angular-01\\gold-near.json",
+      "bytes": 159221,
+      "sha256": "d2c67fc253d8fb2733992270037aaafdaac51a50d429e1c765e63bd8bfd22c00"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-angular-01\\gold-near.png",
+      "bytes": 4606004,
+      "sha256": "9afa08a7269a6083c6c46a856d9906034513df5e15214c45c99e5c27c3b62325"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-breaking-01\\onset-12s.png",
+      "bytes": 1321643,
+      "sha256": "934edc2edbbe24cdafca8c09164adfa7b6f8337d0f0b0fd323b477134b16dd49"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-breaking-01\\onset.json",
+      "bytes": 999706,
+      "sha256": "3c6e72923a2170983178644b9c7c9983bdc8efcf0bcd003e937e0be3ded0ddeb"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-breaking-01\\onset.webm",
+      "bytes": 40691258,
+      "sha256": "63a1ed7821608d47629cb1a93ea8a0711101a73a5073d6107ed6c48554f0d3c9"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-cloud-motion-01\\entrained.json",
+      "bytes": 451786,
+      "sha256": "d7672ea91a4f29079160ea0213412ebfdaa32f3630ea3ee68fce1a2ad0d140c0"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-cloud-motion-01\\entrained.webm",
+      "bytes": 20967229,
+      "sha256": "54760d476295e5695d7981cc5c05b98ef42df729a1fd88cf3c8165fecf61b3c3"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-cloud-orders-01\\day-near.json",
+      "bytes": 158939,
+      "sha256": "4a585df9b76cab4a1ca455d87402a3eeb879bb535face9330b61dd662575aba5"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-cloud-orders-01\\day-near.png",
+      "bytes": 4197427,
+      "sha256": "8315ec8e5240ca93f53296b6a2f20d70b6c3ce9aef4119c9b66bf535f28fe202"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-coherent-01\\day-high.json",
+      "bytes": 160449,
+      "sha256": "718d96ce8c8318ee9f73109a93da0a89c008b2a5a96652379df30d2aff61b75e"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-coherent-01\\day-high.png",
+      "bytes": 4805782,
+      "sha256": "ef35611df06b65bce2bd50f731eb88c010060ea3ffca8a009ede48b3338833e5"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-conditional-01\\day-high.json",
+      "bytes": 159030,
+      "sha256": "ab5e329a9252ce2c738359a7bb094851a33d1842f4595ee8ad6aea9d7d858f7b"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-conditional-01\\day-high.png",
+      "bytes": 4667246,
+      "sha256": "0ec612bb4a0e6897b1fbe9e1e978c44b7b3456218b6b2cdc768a810ddf1189c4"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-crest-01\\crest-12s.png",
+      "bytes": 1330748,
+      "sha256": "612759e1fb49348895c28dd064bc88766efc1d66370c811f393e938e2e886f1c"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-crest-01\\crest.json",
+      "bytes": 1007861,
+      "sha256": "6b986b5628f50b2fe1f57b3c998176bfda6e271c29f91493647d6d352beb695f"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-crest-01\\crest.webm",
+      "bytes": 41660927,
+      "sha256": "6231874be1d619305db44663c5179c92b21fe68bb20b07261fca90c9120c33dc"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-entrained-01\\day-near.json",
+      "bytes": 158680,
+      "sha256": "9aaec6f4b9b935d0cc854b12e89e700060eaa5b99d045582e57bd671f7929ebb"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-entrained-01\\day-near.png",
+      "bytes": 4266151,
+      "sha256": "cf4326a137df8f093eed07bce603ede8a454e51b2fa189c04a02fa406b3791df"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-entrained-02\\day-near.json",
+      "bytes": 158703,
+      "sha256": "30bdefd1bda61f7ffb0bf78633f8a2d898b5688a62b197c3a8dfe05a23ba18ce"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-entrained-02\\day-near.png",
+      "bytes": 4287519,
+      "sha256": "6cf33b94b41046e93bbbf439c921145f73f2418b05dacf97c6e9e48157d8bf04"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-fold-01\\fold-12s.png",
+      "bytes": 1259519,
+      "sha256": "857e3e29bf31339c13e6afbcc985afd79d5c8b54d801c1e9e77a49092ef352f4"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-fold-01\\fold.json",
+      "bytes": 1013769,
+      "sha256": "45dd866d74eb7b82e9f7132b439d3458766406b08942a8221adef7eea82073b3"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-fold-01\\fold.webm",
+      "bytes": 41215377,
+      "sha256": "5bf848024d433071b790ad64ddee44a12e9f527cbce8a3378f555bbcab4556f7"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-footprint-01\\day-high.json",
+      "bytes": 158457,
+      "sha256": "d9883fa0164212cf581ffd90c6a45cf7c5c15a161e38f5a36ba6d47e6fce979f"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-footprint-01\\day-high.png",
+      "bytes": 4650721,
+      "sha256": "c60bbcd1a326b049eb5c1722f382425378874102176e2bb51601625d73e92946"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-footprint-01\\day-near.json",
+      "bytes": 159618,
+      "sha256": "ab6c73e7f7763aef3feeb00c8241782062c6d54751d3384d88da7b1442df4d03"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-footprint-01\\day-near.png",
+      "bytes": 4360654,
+      "sha256": "3372e5598ea7f20c6578fd312d8d7c52595abd999a3330937fc1e74128efa365"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-path-01\\gold-near.json",
+      "bytes": 158434,
+      "sha256": "659538450ff8586f63e4498c9d38bad9cead16beb19aab60b92b05b1687efb75"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-path-01\\gold-near.png",
+      "bytes": 4405366,
+      "sha256": "72baa463d67df49946212409fb00855e718b77590a26259eb364fcf3dfe75858"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-plumes-01\\day-near.json",
+      "bytes": 159512,
+      "sha256": "260b37b4517bebae991921ff79755a10c11ee3bba369bd61a9f0248a1a4fb27e"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-plumes-01\\day-near.png",
+      "bytes": 4369045,
+      "sha256": "31a3859185e36bea7254b2baa41d871643128f97047ed37d6056161140d9a360"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-plumes-02\\day-near.json",
+      "bytes": 158809,
+      "sha256": "276d37b63ef3558b58e379fadbc571bb5f0e82105f129f3b3c7bf19e3bdbf603"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-plumes-02\\day-near.png",
+      "bytes": 4437791,
+      "sha256": "284d52a2cbf5210f17bf40e00e38b1b28b63f889f69a2048dbe3c5e62042a3dd"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-plumes-phase-01\\day-near.json",
+      "bytes": 159118,
+      "sha256": "5a00ff50bdfcf1da9e1e1f8164235b8532973b72e08e68054104ce3de6566ae6"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-plumes-phase-01\\day-near.png",
+      "bytes": 4419135,
+      "sha256": "1081e9c68f328d5d9763e5f9772258315c60fffb9bb2a54785168f63e63b6845"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-stress-01\\gold-near.json",
+      "bytes": 159133,
+      "sha256": "84f87eb63795122ac70ce729733cd9dc1c106ec6dcf674023f24cce11dca8c32"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-stress-01\\gold-near.png",
+      "bytes": 4596801,
+      "sha256": "419ad0ff8f7864111f85ce3dd1599c9f49492d3086e1baca4ad39428c8c402cf"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-tests-01\\appearance-gpu.json",
+      "bytes": 24130,
+      "sha256": "a07bf1ccb22e4aac696a7d6c6c8ae56177ebc6732ef469c1e8718a38ab5e01cc"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-tests-02\\appearance-gpu.json",
+      "bytes": 25003,
+      "sha256": "3bcfaa844d4b6ccd77f9f60d36eb0bce437fb4908902c2415f472d823770e6b0"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-visible-01\\gold-near.json",
+      "bytes": 158748,
+      "sha256": "32f53e277d2822d0da4c69a97ae7800dcfc9473c4529d88e64c9f90bb262cd71"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-visible-01\\gold-near.png",
+      "bytes": 4405405,
+      "sha256": "b336104eb0d3ce96409857974ccc0fab01a1152ee5347cef22039730c65b6dbb"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-water-motion-01\\day-near.json",
+      "bytes": 758855,
+      "sha256": "51d94729e397398c097dc05533e5a00f4751e5064f725ff1c0aec8c4fc86c6f4"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-water-motion-01\\day-near.webm",
+      "bytes": 36821199,
+      "sha256": "2a660b724c6eb2770ff164d3f6a684c77b970dac8deb1b00ea32b94232027023"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-water-motion-01\\gold-near.json",
+      "bytes": 766061,
+      "sha256": "fd1033c81e8ba9937ec74b24d7c9a27132f36bc5c38f24c83b7fc975ce3c54cb"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-water-motion-01\\gold-near.webm",
+      "bytes": 36744367,
+      "sha256": "b1f906e173b1b7b270cb6eaac6527e127c5270318d13d4471eca846411af26eb"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-water-stills-01\\day-high.json",
+      "bytes": 159175,
+      "sha256": "bd352700273bce7b2498b8d7e88a64a11925b545a35940efa116b3a9500c2a37"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-water-stills-01\\day-high.png",
+      "bytes": 4667344,
+      "sha256": "80c31808d857a3cd8c14f6953aa89ac5bc570ab538fd5d1f05ca527054a64405"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-water-stills-01\\day-near.json",
+      "bytes": 159010,
+      "sha256": "655a20d0b6f10c2089aa519c3e0ff71894fcb83c3a91cff0362288e738bd7aa5"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-water-stills-01\\day-near.png",
+      "bytes": 4282590,
+      "sha256": "a258fa5fb040eb6717ccdd990ccd0b1bdaed681ce6eedad8dae5a2450bf8ae06"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-water-stills-01\\gold-high.json",
+      "bytes": 160089,
+      "sha256": "c7810b7b070046e17cc7e3dd96f18ebd00a335a8fd6899e5beaa689e24426174"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-water-stills-01\\gold-high.png",
+      "bytes": 4588848,
+      "sha256": "832ed45234872c4ccc5efca5109dedb1421522709e4947d4743d60a1959a3a7b"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-water-stills-01\\gold-near.json",
+      "bytes": 160064,
+      "sha256": "2b8661abef69327f1805aa229c1ea57573995aa170b41b9d4c4f47e631a47865"
+    },
+    {
+      "file": "evidence\\v04-ma-ab2-water-stills-01\\gold-near.png",
+      "bytes": 4487086,
+      "sha256": "bdd3d17b4c9ddda43f871bd946486b0a573522f85947806d42a7ff381e774c6d"
+    }
+  ]
+}
