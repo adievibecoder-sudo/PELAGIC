@@ -38,6 +38,8 @@ import {cloudLightPathChecks} from '../tests/cloud-light-path-readback.js';
 import {cloudAppearanceShader} from '../tests/cloud-appearance-shaders.js';
 import {cloudViewChecks} from '../tests/cloud-view-readback.js';
 import {cloudCondensateShader} from './wgsl/cloud-condensate.js';
+import {cloudVolumeControlShader} from './wgsl/cloud-volume-control.js';
+import {loadCloudVolumeControl} from './cloud-volume-control.js';
 import {deformedSlopeChecks} from '../tests/deformed-slope-readback.js';
 import {waveDiagnosticShader} from '../tests/milestone-a-wave-shaders.js';
 import {orderOceanNodes} from './ocean-order.js';
@@ -96,6 +98,7 @@ async function main() {
     requiredFeatures: hasTS ? ['timestamp-query'] : [],
   });
   const allocations=gpuLedger(device);
+  const cloudControl=await loadCloudVolumeControl(device,allocations,qs);
   let stopped = false;
   addEventListener('pagehide',()=>{stopped=true;device.destroy();},{once:true});
   const errors=[];
@@ -120,7 +123,7 @@ async function main() {
 
   async function shader(code, label) {
     code=cloudAppearanceShader(cloudLightPathShader(waveDiagnosticShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs),qs),qs),qs);
-    code=cloudCondensateShader(code,qs);
+    code=cloudVolumeControlShader(cloudCondensateShader(code,qs),qs);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
     let bad = false;
@@ -1034,10 +1037,12 @@ async function main() {
     cp.dispatchWorkgroups(Math.ceil(SKY_W / 8), Math.ceil(SKY_H / 8),2);
     if(phase0Profile){cp.end();cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:9,endOfPassWriteIndex:10}:undefined});}
     cp.setPipeline(cloudPipe);
+    cloudControl?.bind(cp,cloudPipe);
     cp.setBindGroup(0,bgCloud);
     cp.dispatchWorkgroups(Math.ceil(cloudW/8),Math.ceil(cloudH/8));
     if(phase0Profile){cp.end();cp=enc.beginComputePass({timestampWrites:hasTS?{querySet:tsQuery,beginningOfPassWriteIndex:11,endOfPassWriteIndex:12}:undefined});}
     cp.setPipeline(shadowPipe);
+    cloudControl?.bind(cp,shadowPipe);
     cp.setBindGroup(0,bgShadow);
     cp.dispatchWorkgroups(32,32);
     if(P.spray>0 || P.rain>0 || originDelta.some(x=>x!==0)){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(PARTICLE_COUNT/64);}
@@ -1054,6 +1059,7 @@ async function main() {
     cacheF[70]=cacheFace;device.queue.writeBuffer(envFrame,0,cacheF);
     cp=enc.beginComputePass({timestampWrites:hasTS&&phase0Profile?{querySet:tsQuery,beginningOfPassWriteIndex:13,endOfPassWriteIndex:14}:undefined});
     cp.setPipeline(envPipe);
+    cloudControl?.bind(cp,envPipe);
     cp.setBindGroup(0, bgEnv);
     cp.dispatchWorkgroups(ENV_SIZE / 8, ENV_SIZE / 8, fullCache ? 6 : 1);
     const publish=fullCache||cacheFace===5;
@@ -1203,8 +1209,9 @@ async function main() {
     const stage=qs.get('stage')||'v03-local';
     await postEvidence('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm),blob);
     const report=evidenceReport();
-    if(qs.get('p0Columns')==='1')report.cloudColumns=await phase0CloudColumns(device,frameUBO,cloudNoiseView,cloudSampler,qs);
-    if(qs.get('maChecks')==='1')report.cloudChecks=await cloudConvectionChecks(device,frameUBO,cloudNoiseView,cloudSampler,qs);
+    if(cloudControl)report.cloudVolumeControl={...cloudControl.metadata,payloadBytes:cloudControl.payloadBytes};
+    if(qs.get('p0Columns')==='1')report.cloudColumns=await phase0CloudColumns(device,frameUBO,cloudNoiseView,cloudSampler,qs,cloudControl);
+    if(qs.get('maChecks')==='1')report.cloudChecks=await cloudConvectionChecks(device,frameUBO,cloudNoiseView,cloudSampler,qs,cloudControl);
     if(qs.get('maLightChecks')==='1')report.cloudLightChecks=await cloudLightPathChecks(device,frameUBO,cloudNoiseView,cloudSampler);
     if(qs.get('maViewChecks')==='1')report.cloudViewChecks=await cloudViewChecks(device,frameUBO,cloudNoiseView,cloudSampler,cloudH);
     if(qs.get('maSlopeChecks')==='1')report.deformedSlopes=await deformedSlopeChecks(device,frameUBO,dispTex.createView(),derivTex.createView(),momTex.createView(),sampRepeat);

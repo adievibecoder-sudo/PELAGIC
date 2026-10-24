@@ -1,0 +1,129 @@
+{
+  "title": "Walt Disney Animation Studios Cloud Data Set, sixteenth resolution",
+  "sourceURL": "https://assets.disneyanimation.com/wdas_cloud.zip",
+  "sourceMember": "wdas_cloud/wdas_cloud_sixteenth.vdb",
+  "sourceSHA256": "295c2a2e179e64b7c0c798f8934f78e0af8a74120f13a17ac23737c95351869f",
+  "copyright": "Copyright 2017 Disney Enterprises, Inc.",
+  "license": "CC BY-SA 3.0",
+  "licenseURL": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "photographicReference": "Kevin Udy, https://coclouds.com/436/cumulus/2012-07-26/",
+  "modifications": "Dense float16 grid, one-voxel zero border, conservative cell-average mipmaps; original shape and aspect ratio retained.",
+  "scope": "Independent authored volume control based on a photograph, not measured atmospheric condensate or a live weather simulation.",
+  "originalIndexBounds": [
+    [
+      -66,
+      -21,
+      -90
+    ],
+    [
+      59,
+      64,
+      63
+    ]
+  ],
+  "voxelSize": [
+    3.3333332538604736,
+    3.3333332538604736,
+    3.3333332538604736
+  ],
+  "format": "r16float little endian; x fastest, then y, then z; concatenated mip levels",
+  "sha256": "de6b21ad09686f1f0c6fd060213ab202fe375c9f15d46def99a6b7d262a750ca",
+  "levels": [
+    {
+      "size": [
+        128,
+        88,
+        156
+      ],
+      "offset": 0,
+      "bytes": 3514368,
+      "mean": 0.1072978675365448,
+      "quantizedMean": 0.10729781538248062,
+      "maxQuantizationError": 0.000244140625
+    },
+    {
+      "size": [
+        64,
+        44,
+        78
+      ],
+      "offset": 3514368,
+      "bytes": 439296,
+      "mean": 0.10729787199404595,
+      "quantizedMean": 0.10729778558015823,
+      "maxQuantizationError": 0.00024412572383880615
+    },
+    {
+      "size": [
+        32,
+        22,
+        39
+      ],
+      "offset": 3953664,
+      "bytes": 54912,
+      "mean": 0.10729787199404596,
+      "quantizedMean": 0.1072978675365448,
+      "maxQuantizationError": 0.00024399533867835999
+    },
+    {
+      "size": [
+        16,
+        11,
+        19
+      ],
+      "offset": 4008576,
+      "bytes": 6688,
+      "mean": 0.10729787199404596,
+      "quantizedMean": 0.10729728639125824,
+      "maxQuantizationError": 0.00024298233433772687
+    },
+    {
+      "size": [
+        8,
+        5,
+        9
+      ],
+      "offset": 4015264,
+      "bytes": 720,
+      "mean": 0.10729787199404596,
+      "quantizedMean": 0.10730389505624771,
+      "maxQuantizationError": 0.0002375942121081165
+    },
+    {
+      "size": [
+        4,
+        2,
+        4
+      ],
+      "offset": 4015984,
+      "bytes": 64,
+      "mean": 0.10729787199404593,
+      "quantizedMean": 0.10729871690273285,
+      "maxQuantizationError": 0.00011379212733614308
+    },
+    {
+      "size": [
+        2,
+        1,
+        2
+      ],
+      "offset": 4016048,
+      "bytes": 8,
+      "mean": 0.10729787199404593,
+      "quantizedMean": 0.1072998046875,
+      "maxQuantizationError": 2.9582049266979604e-05
+    },
+    {
+      "size": [
+        1,
+        1,
+        1
+      ],
+      "offset": 4016056,
+      "bytes": 2,
+      "mean": 0.10729787199404593,
+      "quantizedMean": 0.1072998046875,
+      "maxQuantizationError": 1.9326934540681018e-06
+    }
+  ]
+}

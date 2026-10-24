@@ -10,8 +10,8 @@ export async function sourceManifest(root) {
   async function walk(dir) {
     for (const item of await fs.readdir(path.join(root, dir), {withFileTypes:true})) {
       const rel = path.posix.join(dir, item.name);
-      if (item.isDirectory() && ['src','tests','tools'].includes(rel.split('/')[0])) await walk(rel);
-      else if (item.isFile() && /\.(js|mjs|html)$/.test(rel)) files.push(rel);
+      if (item.isDirectory() && ['src','tests','tools','assets'].includes(rel.split('/')[0])) await walk(rel);
+      else if (item.isFile() && (/\.(js|mjs|html)$/.test(rel)||rel.startsWith('assets/experiments/'))) files.push(rel);
     }
   }
   await walk('');

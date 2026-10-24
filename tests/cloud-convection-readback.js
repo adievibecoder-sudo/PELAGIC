@@ -1,9 +1,10 @@
 import {FRAME_WGSL} from '../src/wgsl/common.js';
 import {CLOUD_VOLUME} from '../src/wgsl/clouds.js';
 import {cloudConvectionShader} from '../src/wgsl/cloud-convection.js';
+import {cloudVolumeControlShader} from '../src/wgsl/cloud-volume-control.js';
 import {cloudCondensateShader} from '../src/wgsl/cloud-condensate.js';
 
-export async function cloudConvectionChecks(device,frame,noise,sampler,query=new URLSearchParams()) {
+export async function cloudConvectionChecks(device,frame,noise,sampler,query=new URLSearchParams(),cloudControl=null) {
   const prefix=CLOUD_VOLUME.slice(0,CLOUD_VOLUME.indexOf('fn iceDensity('));
   const source=FRAME_WGSL+`
 const RG:f32=6360.0;
@@ -52,7 +53,7 @@ var<private> F:Frame;
  }
  result[id.z*1024u+id.y*32u+id.x]=values;
 }`;
-  const code=query.get('maCloud')==='condensate'?cloudCondensateShader(source,query):
+  const code=query.get('maCloud')==='volume'?cloudVolumeControlShader(source,query):query.get('maCloud')==='condensate'?cloudCondensateShader(source,query):
     cloudConvectionShader(source,new URLSearchParams({maCloud:'convective'}));
   const module=device.createShaderModule({code});
   const info=await module.getCompilationInfo();
@@ -62,7 +63,7 @@ var<private> F:Frame;
   const read=device.createBuffer({size,usage:GPUBufferUsage.COPY_DST|GPUBufferUsage.MAP_READ});
   try {
     const bind=device.createBindGroup({layout:pipeline.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:frame}},{binding:5,resource:noise},{binding:6,resource:sampler},{binding:7,resource:{buffer}}]});
-    const enc=device.createCommandEncoder(),pass=enc.beginComputePass();pass.setPipeline(pipeline);pass.setBindGroup(0,bind);pass.dispatchWorkgroups(4,4,9);pass.end();enc.copyBufferToBuffer(buffer,0,read,0,size);device.queue.submit([enc.finish()]);
+    const enc=device.createCommandEncoder(),pass=enc.beginComputePass();pass.setPipeline(pipeline);pass.setBindGroup(0,bind);cloudControl?.bind(pass,pipeline);pass.dispatchWorkgroups(4,4,9);pass.end();enc.copyBufferToBuffer(buffer,0,read,0,size);device.queue.submit([enc.finish()]);
     await read.mapAsync(GPUMapMode.READ);const data=Array.from(new Float32Array(read.getMappedRange()));read.unmap();
     const channel=(g,c)=>data.slice(g*4096,(g+1)*4096).filter((_,i)=>i%4===c),mean=v=>v.reduce((a,b)=>a+b,0)/v.length;
     const delta=g=>Math.max(...channel(g,0).map((v,i)=>Math.abs(v-channel(g,1)[i])));

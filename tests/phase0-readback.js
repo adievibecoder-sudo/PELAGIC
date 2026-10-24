@@ -3,9 +3,10 @@ import {CLOUD_VOLUME} from '../src/wgsl/clouds.js';
 import {phase0Shader} from './phase0-shaders.js';
 import {cloudBankShader} from '../src/wgsl/cloud-bank.js';
 import {cloudConvectionShader} from '../src/wgsl/cloud-convection.js';
+import {cloudVolumeControlShader} from '../src/wgsl/cloud-volume-control.js';
 import {cloudCondensateShader} from '../src/wgsl/cloud-condensate.js';
 
-export async function phase0CloudColumns(device,frame,noise,sampler,query) {
+export async function phase0CloudColumns(device,frame,noise,sampler,query,cloudControl=null) {
   const noiseProbe=query.get('maNoise')==='1';
   const sweep=query.get('maSweep')==='1'&&query.get('maCloud')==='bank',count=noiseProbe?4:sweep?10:1;
   const prefix=CLOUD_VOLUME.slice(0,CLOUD_VOLUME.indexOf('fn iceDensity('));
@@ -43,6 +44,7 @@ export async function phase0CloudColumns(device,frame,noise,sampler,query) {
   let shader=cloudCondensateShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,query),query),query),query);
   if(noiseProbe)shader=FRAME_WGSL+'\nconst RG:f32=6360.0;\n@group(0) @binding(0) var<uniform> F:Frame;\n'+prefix+probe;
   if(sweep)shader=shader.replace(/const BANK_BIAS:f32=[\d.]+;/,'var<private> BANK_BIAS:f32=0.0;');
+  if(!noiseProbe)shader=cloudVolumeControlShader(shader,query);
   const module=device.createShaderModule({code:shader});
   const compilation=await module.getCompilationInfo();
   if(compilation.messages.some(m=>m.type==='error'))throw Error(compilation.messages.map(m=>m.message).join('\n'));
@@ -50,7 +52,7 @@ export async function phase0CloudColumns(device,frame,noise,sampler,query) {
   const buffer=device.createBuffer({size:16384*count,usage:GPUBufferUsage.STORAGE|GPUBufferUsage.COPY_SRC});
   const read=device.createBuffer({size:16384*count,usage:GPUBufferUsage.COPY_DST|GPUBufferUsage.MAP_READ});
   const bg=device.createBindGroup({layout:pipeline.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:frame}},{binding:5,resource:noise},{binding:6,resource:sampler},{binding:7,resource:{buffer}}]});
-  const encoder=device.createCommandEncoder(),pass=encoder.beginComputePass();pass.setPipeline(pipeline);pass.setBindGroup(0,bg);pass.dispatchWorkgroups(4,4,count);pass.end();encoder.copyBufferToBuffer(buffer,0,read,0,16384*count);device.queue.submit([encoder.finish()]);
+  const encoder=device.createCommandEncoder(),pass=encoder.beginComputePass();pass.setPipeline(pipeline);pass.setBindGroup(0,bg);if(!noiseProbe)cloudControl?.bind(pass,pipeline);pass.dispatchWorkgroups(4,4,count);pass.end();encoder.copyBufferToBuffer(buffer,0,read,0,16384*count);device.queue.submit([encoder.finish()]);
   await read.mapAsync(GPUMapMode.READ);const data=Array.from(new Float32Array(read.getMappedRange()));read.unmap();read.destroy();buffer.destroy();
   if(sweep)return {scope:'Density-threshold calibration, 10 x 1024 vertical columns. No visual or performance acceptance.',variants:Array.from({length:count},(_,i)=>{const t=data.slice(i*4096,(i+1)*4096).filter((_,j)=>j%4===0);return {bias:.24+i*.015,mean:t.reduce((a,b)=>a+b,0)/1024,fractionTauOver1:t.filter(x=>x>1).length/1024};}),invalid:data.filter(x=>!Number.isFinite(x)).length};
   if(noiseProbe)return {scope:'GPU noise and coverage diagnostics',groups:Array.from({length:4},(_,group)=>({name:['shape','weather','regional','cover-signal-coverage-depth'][group],channels:Array.from({length:4},(_,c)=>{const v=data.slice(group*4096,(group+1)*4096).filter((_,i)=>i%4===c).sort((a,b)=>a-b);return {min:v[0],mean:v.reduce((a,b)=>a+b,0)/v.length,p10:v[102],p50:v[512],p90:v[921],max:v.at(-1)};})}))};

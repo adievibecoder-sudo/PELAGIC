@@ -13,3 +13,5 @@ evidence/v04-ma-*/*.webm filter=lfs diff=lfs merge=lfs -text
 evidence/v04-ma-*/*.jpg filter=lfs diff=lfs merge=lfs -text
 # The already committed preservation copy retains its original Git representation.
 evidence/v04-ma-preservation-20261022/* -filter !diff !merge -text
+
+assets/experiments/**/*.r16f filter=lfs diff=lfs merge=lfs -text
