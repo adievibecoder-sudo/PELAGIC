@@ -10,7 +10,7 @@ export const LENS_MEDIUM=FRAME_WGSL+SHORT_WAVE_COUPLING+/* wgsl */`
 @group(0) @binding(5) var output:texture_storage_2d<rgba16float,write>;
 fn lensVertex(q:vec2f)->vec3f {
   var d=vec3f(0);
-  let amplitude=shortAmplitude(derivTex,linearRepeat,q,F.windP[1].y,F.waveOrigins);
+  let amplitude=surfaceAmplitude(derivTex,linearRepeat,q,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset);
   for(var c=0u;c<${CASCADES}u;c++){
     let texel=F.cascL[c>>2u][c&3u]/${N}.0;
     let lod=log2(max((2.0/F.lodP.y)/texel,1.0))+0.5;

@@ -49,6 +49,8 @@ struct Frame {
   cloudWeights: vec4f, // cumulus/stratus/storm mixture, ice veil
   cloudDrift: vec4f, // integrated xz km, weather seconds, command revision
   localWeather: vec4f, // local gust-modulated U10 xz m/s, gust, front id
+  roughnessWind: vec4f, // wind axis xz, short-spectrum response, seed
+  roughnessOffset: vec4f, // advected world phase in wind-field cells
 };
 `;
 

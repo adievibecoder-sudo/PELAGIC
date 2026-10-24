@@ -1,9 +1,9 @@
 import {PATCHES} from './numerics.js';
 
 export const ORIGIN_BLOCK=1024;
-export const FRAME_FLOATS=172;
+export const FRAME_FLOATS=180;
 export const FRAME_BYTES=FRAME_FLOATS*4;
-export const FOAM_BYTES=192;
+export const FOAM_BYTES=224;
 export const modulo=(x,period)=>((x%period)+period)%period;
 
 export function localOrigin(x,z) {

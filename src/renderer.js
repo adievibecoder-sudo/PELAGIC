@@ -43,6 +43,11 @@ import {loadCloudVolumeControl} from './cloud-volume-control.js';
 import {deformedSlopeChecks} from '../tests/deformed-slope-readback.js';
 import {waveDiagnosticShader} from '../tests/milestone-a-wave-shaders.js';
 import {orderOceanNodes} from './ocean-order.js';
+import {roughnessUniforms} from './wind-roughness.js';
+import {waterTransportShader} from './wgsl/water-transport.js';
+import {finiteGlintsShader} from './wgsl/finite-glints.js';
+import {cloudTransportShader} from './wgsl/cloud-transport.js';
+import {cloudAmbientShader} from './wgsl/cloud-ambient.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -124,6 +129,10 @@ async function main() {
   async function shader(code, label) {
     code=cloudAppearanceShader(cloudLightPathShader(waveDiagnosticShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs),qs),qs),qs);
     code=cloudVolumeControlShader(cloudCondensateShader(code,qs),qs);
+    code=waterTransportShader(code,qs);
+    code=finiteGlintsShader(code,qs);
+    code=cloudTransportShader(code,qs);
+    code=cloudAmbientShader(code,qs);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
     let bad = false;
@@ -782,6 +791,7 @@ async function main() {
     cascadeOrigin(origin,f,128);
     foamPatternOrigin(origin,[f[56],f[57]],time,[f[80],f[81]],f,140);
     environmentUniforms(environment,cam,f);
+    roughnessUniforms(environment,origin,qs.get('maRoughness')==='wind',f);
     device.queue.writeBuffer(frameUBO, 0, f);
   }
 
@@ -904,6 +914,7 @@ async function main() {
     foamUF[33] = Math.sin(P.windDir * D2R) * drift + Math.sin(P.currentDir*D2R)*P.currentSpeed;
     foamUF[34] = P.choppy;
     cascadeOrigin(origin,foamUF,36);
+    roughnessUniforms(environment,origin,qs.get('maRoughness')==='wind',foamUF,48);
     device.queue.writeBuffer(foamUBO, 0, foamUArr);
   }
 

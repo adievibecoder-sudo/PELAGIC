@@ -78,7 +78,7 @@ struct VSOut {
   let mk = clamp((d - 0.8 * R) / (0.2 * R), 0.0, 1.0);
   xz -= fract(g * 0.5) * 2.0 * spacing * mk;
   let eff = spacing * (1.0 + mk);
-  let amplitude=shortAmplitude(derivTex,sampR,xz,F.windP[1].y,F.waveOrigins);
+  let amplitude=surfaceAmplitude(derivTex,sampR,xz,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset);
   var disp = vec3f(0.0);
   for (var c = 0u; c < ${CASCADES}u; c++) {
     let texel = F.cascL[c >> 2u][c & 3u] / TEX_N;
@@ -180,8 +180,9 @@ fn reflectedEnvironment(point:vec3f,ray:vec3f,lod:f32,bodyRadiance:vec3f)->vec3f
   var jxz = 0.0;
   var shortDisp=vec3f(0);
   var cov = vec3f(0.0);
-  let amplitude=shortAmplitude(derivTex,sampR,xz,F.windP[1].y,F.waveOrigins);
-  let amplitudeGradient=shortAmplitudeGradient(derivTex,sampR,xz,F.windP[1].y,F.waveOrigins);
+  let coupling=surfaceCoupling(derivTex,sampR,xz,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset);
+  let amplitude=coupling.x;
+  let amplitudeGradient=coupling.yz;
   let dxXZ=dpdx(xz);let dyXZ=dpdy(xz);
   let rasterNormal=normalize(cross(dpdy(in.rel),dpdx(in.rel)));
   for (var c = 0u; c < ${CASCADES}u; c++) {
@@ -429,7 +430,7 @@ export const HEIGHT_PROBE = FRAME_WGSL + SHORT_WAVE_COUPLING + /* wgsl */ `
 @group(0) @binding(4) var derivTex:texture_2d_array<f32>;
 fn dispAt(xz: vec2f) -> vec3f {
   var d = vec3f(0.0);
-  let amplitude=shortAmplitude(derivTex,samp,xz,F.windP[1].y,F.waveOrigins);
+  let amplitude=surfaceAmplitude(derivTex,samp,xz,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset);
   for (var c = 0u; c < ${CASCADES}u; c++) {
     let texel=F.cascL[c>>2u][c&3u]/${N}.0;
     let lod=log2(max((2.0/F.lodP.y)/texel,1.0))+0.5;

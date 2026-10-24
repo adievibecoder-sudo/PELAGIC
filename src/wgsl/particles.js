@@ -26,7 +26,7 @@ fn rnd(v:u32)->f32{return f32(pcgHash(v)>>8u)/16777216.0;}
    let r=vec3f(rnd(seed+1u),rnd(seed+2u),rnd(seed+3u));
    // Source domain stays within the fine foam clipmap; no toroidal ghosts.
    let xz=F.camPos.xz+(r.xz-0.5)*select(116.0,70.0,rain);
-   let amplitude=shortAmplitude(derivatives,samp,xz,F.windP[1].y,F.waveOrigins);
+   let amplitude=surfaceAmplitude(derivatives,samp,xz,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset);
    var d=vec3f(0);var last=vec3f(0);for(var c=0u;c<${CASCADES}u;c++){
      d+=textureSampleLevel(disp,samp,cascadeUV(xz,c,F.cascInvL[c>>2u][c&3u],F.waveOrigins),c,0.0).xyz*select(1.0,amplitude,c>=3u);
      last+=textureSampleLevel(previousDisplacement,samp,cascadeUV(xz,c,F.cascInvL[c>>2u][c&3u],F.waveOrigins),c,0.0).xyz*select(1.0,amplitude,c>=3u);
