@@ -49,6 +49,8 @@ import {finiteGlintsShader} from './wgsl/finite-glints.js';
 import {cloudTransportShader} from './wgsl/cloud-transport.js';
 import {cloudAmbientShader} from './wgsl/cloud-ambient.js';
 import {breakingEventsShader} from './wgsl/breaking-events.js';
+import {footprintOpticsShader} from './wgsl/footprint-optics.js';
+import {cloudPlumesShader} from './wgsl/cloud-plumes.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -131,8 +133,10 @@ async function main() {
   async function shader(code, label) {
     code=cloudAppearanceShader(cloudLightPathShader(waveDiagnosticShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs),qs),qs),qs);
     code=cloudVolumeControlShader(cloudCondensateShader(code,qs),qs);
+    code=cloudPlumesShader(code,qs);
     code=waterTransportShader(code,qs);
     code=finiteGlintsShader(code,qs);
+    code=footprintOpticsShader(code,qs);
     code=cloudTransportShader(code,qs);
     code=cloudAmbientShader(code,qs);
     code=breakingEventsShader(code,qs);
