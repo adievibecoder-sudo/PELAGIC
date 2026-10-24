@@ -1,6 +1,6 @@
 # Combined A+B development - 24 October 2026
 
-Current continuation: `V04-AB-CONTINUATION-02.md`. Owner rejected visual acceptance of the first checkpoint. New work remains experimental; `ab2-review.html` retains matched comparisons. No default appearance promotion.
+Current continuation: `V04-AB-CONTINUATION-03.md`, recovered 25 October beyond the interrupted `97f68a1` checkpoint. Gravity-wave onset visibly reduces broad storm foam sheets; B1 owner review remains pending. Focused shader corrections and float32 precision measurements are complete; metallic low-Sun water and cloud morphology remain unresolved. `ab3-review.html` retains originals and motion. Appearance trials remain opt-in; no A+B acceptance or release promotion. Earlier entries below remain historical records.
 
 ## Recovered working state
 

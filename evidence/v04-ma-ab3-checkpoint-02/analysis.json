@@ -1,0 +1,375 @@
+{
+  "precision": [
+    {
+      "name": "day-near",
+      "matched": {
+        "camera": true,
+        "settings": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": [
+          true,
+          true
+        ]
+      },
+      "displayMeanAbsoluteRGB": [
+        0.023140432098765432,
+        0.01826340663580247,
+        0.012632137345679013
+      ],
+      "radianceBandChangePercent": [
+        0.0,
+        -0.10377443923196283,
+        -0.1585187341980987
+      ],
+      "spectrum": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ],
+      "allocationBytes": [
+        204574088,
+        212962664
+      ]
+    },
+    {
+      "name": "day-high",
+      "matched": {
+        "camera": true,
+        "settings": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": [
+          true,
+          true
+        ]
+      },
+      "displayMeanAbsoluteRGB": [
+        0.028017939814814815,
+        0.022855420524691358,
+        0.016375868055555555
+      ],
+      "radianceBandChangePercent": [
+        0.0019314228493216845,
+        -0.005775551146425251,
+        -0.26516688020107315
+      ],
+      "spectrum": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ],
+      "allocationBytes": [
+        204574088,
+        212962664
+      ]
+    },
+    {
+      "name": "gold-near",
+      "matched": {
+        "camera": true,
+        "settings": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": [
+          true,
+          true
+        ]
+      },
+      "displayMeanAbsoluteRGB": [
+        0.024911265432098765,
+        0.01959442515432099,
+        0.013550829475308642
+      ],
+      "radianceBandChangePercent": [
+        0.0,
+        -0.0024090303165635873,
+        0.014462487069177854
+      ],
+      "spectrum": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ],
+      "allocationBytes": [
+        204574088,
+        212962664
+      ]
+    },
+    {
+      "name": "gold-high",
+      "matched": {
+        "camera": true,
+        "settings": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": [
+          true,
+          true
+        ]
+      },
+      "displayMeanAbsoluteRGB": [
+        0.022594521604938272,
+        0.018747588734567902,
+        0.013949652777777778
+      ],
+      "radianceBandChangePercent": [
+        -0.016624063614112394,
+        -0.13268035179577753,
+        -0.04541964827342593
+      ],
+      "spectrum": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ],
+      "allocationBytes": [
+        204574088,
+        212962664
+      ]
+    }
+  ],
+  "foam": {
+    "matched": {
+      "camera": true,
+      "settings": true,
+      "time": true,
+      "dimensions": true,
+      "sourceStable": [
+        true,
+        true
+      ]
+    },
+    "simulationDensity": [
+      {
+        "layers": [
+          {
+            "layer": 0,
+            "meanDensity": 0.2866385991296738,
+            "maxDensity": 0.9388453960418701,
+            "invalid": 0,
+            "densityThresholds": [
+              0.05,
+              0.2,
+              0.5
+            ],
+            "areaFractions": [
+              0.8845634460449219,
+              0.6048622131347656,
+              0.15297317504882812
+            ]
+          },
+          {
+            "layer": 1,
+            "meanDensity": 0.0752349775411858,
+            "maxDensity": 0.9255383014678955,
+            "invalid": 0,
+            "densityThresholds": [
+              0.05,
+              0.2,
+              0.5
+            ],
+            "areaFractions": [
+              0.2802925109863281,
+              0.13148117065429688,
+              0.037677764892578125
+            ]
+          }
+        ],
+        "interpretation": "Simulation-memory density over uniform parameter-space texels, not observed projected optical whitecap coverage. A single instant cannot validate a wind-coverage fit."
+      },
+      {
+        "layers": [
+          {
+            "layer": 0,
+            "meanDensity": 0.034722470939641426,
+            "maxDensity": 0.9589645862579346,
+            "invalid": 0,
+            "densityThresholds": [
+              0.05,
+              0.2,
+              0.5
+            ],
+            "areaFractions": [
+              0.18787765502929688,
+              0.03670501708984375,
+              0.00725555419921875
+            ]
+          },
+          {
+            "layer": 1,
+            "meanDensity": 0.009171969264116342,
+            "maxDensity": 0.9715061187744141,
+            "invalid": 0,
+            "densityThresholds": [
+              0.05,
+              0.2,
+              0.5
+            ],
+            "areaFractions": [
+              0.04511260986328125,
+              0.01247406005859375,
+              0.00164794921875
+            ]
+          }
+        ],
+        "interpretation": "Simulation-memory density over uniform parameter-space texels, not observed projected optical whitecap coverage. A single instant cannot validate a wind-coverage fit."
+      }
+    ]
+  },
+  "profiles": [
+    {
+      "name": "storm-events",
+      "frames": 1326,
+      "samples": 189,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      },
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "wallSeconds": 60.04810000000149,
+      "timingMode": "queue-completion throughput; not display FPS",
+      "queueThroughput": 24.67697541421538,
+      "completionMs": {
+        "mean": 40.52360482654375,
+        "p95": 43.69999999552965,
+        "p99": 45.19999999552965
+      },
+      "gpuMs": {
+        "gpu": 36.95259496296296,
+        "simulation": 1.5163435343915344,
+        "surface": 23.276376042328046,
+        "cloudScreen": 8.09213561904762,
+        "environment": 2.269140656084656,
+        "post": 0.38628097354497354
+      }
+    },
+    {
+      "name": "storm-gravity",
+      "frames": 1336,
+      "samples": 191,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      },
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "wallSeconds": 60.04289999999851,
+      "timingMode": "queue-completion throughput; not display FPS",
+      "queueThroughput": 24.86381663307308,
+      "completionMs": {
+        "mean": 40.21908682634954,
+        "p95": 43.100000001490116,
+        "p99": 44.5
+      },
+      "gpuMs": {
+        "gpu": 36.74853997905759,
+        "simulation": 1.5100729633507854,
+        "surface": 23.166461319371727,
+        "cloudScreen": 8.09283819895288,
+        "environment": 2.2621929214659686,
+        "post": 0.3880691937172775
+      }
+    },
+    {
+      "name": "day-half",
+      "frames": 1251,
+      "samples": 179,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      },
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "wallSeconds": 60.07580000000447,
+      "timingMode": "queue-completion throughput; not display FPS",
+      "queueThroughput": 23.33128182174229,
+      "completionMs": {
+        "mean": 42.860911270983216,
+        "p95": 46.099999994039536,
+        "p99": 47.30000000447035
+      },
+      "gpuMs": {
+        "gpu": 39.41496134078212,
+        "simulation": 1.3293922681564245,
+        "surface": 14.483822122905027,
+        "cloudScreen": 17.846294882681565,
+        "environment": 4.297916782122905,
+        "post": 0.3957788603351955
+      }
+    },
+    {
+      "name": "day-f32",
+      "frames": 1109,
+      "samples": 158,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      },
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "wallSeconds": 60.07770000000298,
+      "timingMode": "queue-completion throughput; not display FPS",
+      "queueThroughput": 20.755119533767193,
+      "completionMs": {
+        "mean": 48.18088367899143,
+        "p95": 52.20000000298023,
+        "p99": 53.899999998509884
+      },
+      "gpuMs": {
+        "gpu": 44.66402835443038,
+        "simulation": 1.4982027341772153,
+        "surface": 19.560836860759494,
+        "cloudScreen": 17.858974784810126,
+        "environment": 4.275187037974684,
+        "post": 0.3936307848101266
+      }
+    }
+  ],
+  "scope": "Matched original stills. Image code differences are not realism scores. Simulation foam density is not visible whitecap area. Queue timings are not displayed FPS."
+}

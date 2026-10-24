@@ -1,0 +1,233 @@
+{
+  "precision": [
+    {
+      "name": "day-near",
+      "matched": {
+        "camera": true,
+        "settings": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": [
+          true,
+          true
+        ]
+      },
+      "displayMeanAbsoluteRGB": [
+        0.023140432098765432,
+        0.01826340663580247,
+        0.012632137345679013
+      ],
+      "radianceBandChangePercent": [
+        0.0,
+        -0.10377443923196283,
+        -0.1585187341980987
+      ],
+      "spectrum": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ],
+      "allocationBytes": [
+        204574088,
+        212962664
+      ]
+    },
+    {
+      "name": "day-high",
+      "matched": {
+        "camera": true,
+        "settings": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": [
+          true,
+          true
+        ]
+      },
+      "displayMeanAbsoluteRGB": [
+        0.028017939814814815,
+        0.022855420524691358,
+        0.016375868055555555
+      ],
+      "radianceBandChangePercent": [
+        0.0019314228493216845,
+        -0.005775551146425251,
+        -0.26516688020107315
+      ],
+      "spectrum": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ],
+      "allocationBytes": [
+        204574088,
+        212962664
+      ]
+    },
+    {
+      "name": "gold-near",
+      "matched": {
+        "camera": true,
+        "settings": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": [
+          true,
+          true
+        ]
+      },
+      "displayMeanAbsoluteRGB": [
+        0.024911265432098765,
+        0.01959442515432099,
+        0.013550829475308642
+      ],
+      "radianceBandChangePercent": [
+        0.0,
+        -0.0024090303165635873,
+        0.014462487069177854
+      ],
+      "spectrum": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ],
+      "allocationBytes": [
+        204574088,
+        212962664
+      ]
+    },
+    {
+      "name": "gold-high",
+      "matched": {
+        "camera": true,
+        "settings": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": [
+          true,
+          true
+        ]
+      },
+      "displayMeanAbsoluteRGB": [
+        0.022594521604938272,
+        0.018747588734567902,
+        0.013949652777777778
+      ],
+      "radianceBandChangePercent": [
+        -0.016624063614112394,
+        -0.13268035179577753,
+        -0.04541964827342593
+      ],
+      "spectrum": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ],
+      "allocationBytes": [
+        204574088,
+        212962664
+      ]
+    }
+  ],
+  "foam": {
+    "matched": {
+      "camera": true,
+      "settings": true,
+      "time": true,
+      "dimensions": true,
+      "sourceStable": [
+        true,
+        true
+      ]
+    },
+    "simulationDensity": [
+      {
+        "layers": [
+          {
+            "layer": 0,
+            "meanDensity": 0.2866385991296738,
+            "maxDensity": 0.9388453960418701,
+            "invalid": 0,
+            "densityThresholds": [
+              0.05,
+              0.2,
+              0.5
+            ],
+            "areaFractions": [
+              0.8845634460449219,
+              0.6048622131347656,
+              0.15297317504882812
+            ]
+          },
+          {
+            "layer": 1,
+            "meanDensity": 0.0752349775411858,
+            "maxDensity": 0.9255383014678955,
+            "invalid": 0,
+            "densityThresholds": [
+              0.05,
+              0.2,
+              0.5
+            ],
+            "areaFractions": [
+              0.2802925109863281,
+              0.13148117065429688,
+              0.037677764892578125
+            ]
+          }
+        ],
+        "interpretation": "Simulation-memory density over uniform parameter-space texels, not observed projected optical whitecap coverage. A single instant cannot validate a wind-coverage fit."
+      },
+      {
+        "layers": [
+          {
+            "layer": 0,
+            "meanDensity": 0.034722470939641426,
+            "maxDensity": 0.9589645862579346,
+            "invalid": 0,
+            "densityThresholds": [
+              0.05,
+              0.2,
+              0.5
+            ],
+            "areaFractions": [
+              0.18787765502929688,
+              0.03670501708984375,
+              0.00725555419921875
+            ]
+          },
+          {
+            "layer": 1,
+            "meanDensity": 0.009171969264116342,
+            "maxDensity": 0.9715061187744141,
+            "invalid": 0,
+            "densityThresholds": [
+              0.05,
+              0.2,
+              0.5
+            ],
+            "areaFractions": [
+              0.04511260986328125,
+              0.01247406005859375,
+              0.00164794921875
+            ]
+          }
+        ],
+        "interpretation": "Simulation-memory density over uniform parameter-space texels, not observed projected optical whitecap coverage. A single instant cannot validate a wind-coverage fit."
+      }
+    ]
+  },
+  "scope": "Matched original stills. Image code differences are not realism scores. Simulation foam density is not visible whitecap area. Queue timings are not displayed FPS."
+}
