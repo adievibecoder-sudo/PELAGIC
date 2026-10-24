@@ -3,6 +3,7 @@
 // Correlation-area and Gaussian-rank closures require temporal validation.
 import {glintCorrelation} from '../glint-correlation.js';
 import {CONFIG} from './common.js';
+import {expectShaderMarkers} from './shader-patch.js';
 export const GLINT_STATISTICS=/* wgsl */`
 fn normalCDF(x:f32)->f32 {
   let z=abs(x);let t=1.0/(1.0+0.2316419*z);
@@ -24,6 +25,7 @@ fn finiteGlintWeight(expected:f32,rank:f32)->f32 {
 export function finiteGlintsShader(code,query) {
   const mode=query.get('maGlints');
   if(!['finite','coherent','conditional'].includes(mode)||!code.includes('fn reflectedEnvironment('))return code;
+  expectShaderMarkers(code,'Finite glitter',['  var cov = vec3f(0.0);','    s += dv.xy;','  let spec = sunE *','fn foamCoverage(']);
   code=code.replace('  var cov = vec3f(0.0);','  var cov = vec3f(0.0);\n  var glintRank=0.5;');
   code=code.replace('    s += dv.xy;',/* wgsl */`
     if(c==5u){

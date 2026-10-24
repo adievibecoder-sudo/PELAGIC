@@ -1,5 +1,6 @@
 // Morphological cumulus model: heterogeneous updraft clusters and entrained liquid
 // water. Kilometres, g/m^3. This is an explicit representation, not fluid dynamics.
+import {expectShaderMarkers,replaceShader} from './shader-patch.js';
 export const CLOUD_PLUMES=/* wgsl */`
 fn cloudPlumeDensity(p:vec3f,footprint:f32)->f32 {
   let altitude=p.y+dot(p.xz,p.xz)/(2.0*RG);
@@ -57,7 +58,8 @@ fn cloudPlumeDensity(p:vec3f,footprint:f32)->f32 {
 `;
 
 export function cloudPlumesShader(code,query){
-  if(['droplet','orders'].includes(query.get('maCloudPhase'))){
+  if(['droplet','orders'].includes(query.get('maCloudPhase'))&&code.includes('fn cloudLayers(')){
+    expectShaderMarkers(code,'Cloud phase',['0.85*phaseHG(dot(dir,F.sunDir.xyz),0.68)','phaseHG(dot(dir,F.sunDir.xyz),0.28)','0.85*phaseHG(dot(dir,F.moonDir.xyz),0.68)','phaseHG(dot(dir,F.moonDir.xyz),0.28)']);
     // Water-droplet forward asymmetry. Higher-order angular convolutions of HG
     // have g^n; retain the old order weights for this isolated phase comparison.
     code=code.replaceAll('0.85*phaseHG(dot(dir,F.sunDir.xyz),0.68)+0.15*phaseHG(dot(dir,F.sunDir.xyz),-0.25)',
@@ -70,14 +72,16 @@ export function cloudPlumesShader(code,query){
       // The old point-density gate creates higher-order light even on a thin,
       // directly exposed boundary. Condition it on an incident collision path.
       // This remains a local scattering-order closure, not full cloud transport.
+      if(code.split(')*(1.0-exp(-density*5.0));').length!==3)throw Error('Cloud scattering-order markers changed');
       code=code.replace(')*(1.0-exp(-density*5.0));',')*(1.0-exp(-optical));')
         .replace(')*(1.0-exp(-density*5.0));',')*(1.0-exp(-moonOptical));');
     }
   }
   const mode=query.get('maCloud');
-  if(!['plumes','entrained'].includes(mode)||!code.includes('fn cloudDensityFiltered('))return code;
+  if(!['plumes','entrained','connected'].includes(mode)||!code.includes('fn cloudDensityFiltered('))return code;
+  expectShaderMarkers(code,'Cloud morphology',['fn cloudDensity(p:']);
   let density=CLOUD_PLUMES;
-  if(mode==='entrained'){
+  if(['entrained','connected'].includes(mode)){
     density=density.replace('let boundary=(large.r-.5)*.42+(detail.r-.5)*.32-(1.0-erosion)*.04;',/* wgsl */`
   let warp=vec3f(large.r-.5,large.a-.5,detail.r-.5);
   let billow=textureSampleLevel(cloudNoise,cloudNoiseSampler,world*.63+vec3f(.13,.79,.37),lod-.66);
@@ -94,6 +98,23 @@ export function cloudPlumesShader(code,query){
       .replace('let mixing=smoothstep(0.0,.09,envelope)*smoothstep(0.0,.035,rise);',/* wgsl */`
     let entrainment=max(0.0,(1.0-detail.g)*.06*radius+(0.5-billow.a)*.08);
     let mixing=smoothstep(entrainment,entrainment+.08,envelope)*smoothstep(0.0,.035,rise);`);
+  }
+  if(mode==='connected'){
+    density=replaceShader(density,'let boundary=(billow.r-.5)*.28+(detail.r-.5)*.075-(1.0-erosion)*.03;',
+      'let boundaryNoise=(billow.r-.5)*.28+(detail.r-.5)*.075-(1.0-erosion)*.03;');
+    density=replaceShader(density,'var envelope=-10.0;',/* wgsl */`
+    let boundary=boundaryNoise*min(radius,1.0);
+    // A common condensation core connects growing lobes. Boundary displacement
+    // scales with the cloud, preventing tiny clouds from becoming loose shreds.
+    let coreRadial=length(delta)/(radius*.72);
+    let coreVertical=(rise-height*.22)/max(height*.32,.04);
+    var envelope=(1.0-sqrt(coreRadial*coreRadial+coreVertical*coreVertical))*radius*.72;`);
+    density=replaceShader(density,'*radius*l.y+F.windP[0].xy*rise*.12;', '*radius*l.y*.65+F.windP[0].xy*rise*.12;');
+    density=replaceShader(density,'let entrainment=max(0.0,(1.0-detail.g)*.06*radius+(0.5-billow.a)*.08);',
+      'let entrainment=max(0.0,(1.0-detail.g)*.035+(0.5-billow.a)*.05)*radius;');
+    density=replaceShader(density,'let mixing=smoothstep(entrainment,entrainment+.08,envelope)*smoothstep(0.0,.035,rise);',/* wgsl */`
+    let edge=max(.04,radius*.14);
+    let mixing=smoothstep(entrainment-edge*.3,entrainment+edge,envelope)*smoothstep(0.0,max(.035,height*.08),rise);`);
   }
   return code.replace('fn cloudDensityFiltered(', 'fn cloudDensityLegacyPlumes(').replace('fn cloudDensity(p:',density+/* wgsl */`
 fn cloudDensityFiltered(p:vec3f,detail:bool,footprint:f32)->f32 {
