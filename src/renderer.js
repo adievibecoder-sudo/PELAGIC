@@ -52,6 +52,7 @@ import {breakingEventsShader} from './wgsl/breaking-events.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
+const queueDriven=qs.has('shot')||qs.has('video')||(qs.has('benchmark')&&qs.get('benchmarkMode')==='queue');
 const DBG = Number(qs.get('dbg')) || 0;
 const D2R = Math.PI / 180;
 const GU = globalThis.GPUBufferUsage;
@@ -1174,7 +1175,7 @@ async function main() {
       stopped=true;device.queue.onSubmittedWorkDone().then(async()=>{
         const report=evidenceReport();
         if(qs.get('validate')==='1'){
-          report.hdr=await hdrReadback(device,hdrTex);
+          report.hdr=await hdrReadback(device,hdrTex,frameF[60]);
           report.foam=await foamReadback(device,foamW[foamCur]);
         }
         await postEvidence('/__evidence?stage='+encodeURIComponent(qs.get('stage')||'v03-local')+'&name='+qs.get('benchmark')+'.json',JSON.stringify(report,null,2));document.title='BENCHMARK DONE';
@@ -1184,7 +1185,7 @@ async function main() {
     if(!shooting) scheduleFrame();
   }
   function scheduleFrame() {
-    if(shotName || qs.has('video')) device.queue.onSubmittedWorkDone().then(()=>frame(performance.now()));
+    if(queueDriven) device.queue.onSubmittedWorkDone().then(()=>frame(performance.now()));
     else requestAnimationFrame(frame);
   }
 
@@ -1193,7 +1194,7 @@ async function main() {
     phase0:{query:Object.fromEntries(qs),profile:phase0Profile,note:'Experimental toggles are Phase 0 hypotheses, not accepted features.'},userAgent:navigator.userAgent,
     foamPatternCalibration,worldOrigin:origin,benchmarkStopReason,benchmarkWallSeconds:benchmarkStart===null?0:(performance.now()-benchmarkStart)/1000,
     surfaceProbe:{height:waterH,scope:'Asynchronous camera-point height; optical classification uses the current GPU near-plane map.'},
-    timingMode:qs.has('benchmark')?'requestAnimationFrame, display paced':'queue-completion capture throughput',
+    timingMode:queueDriven?'queue-completion throughput; not display FPS':'requestAnimationFrame, display paced',
     memoryEstimate:{renderTargetsMiB:(W*H*56+(W>>1)*(H>>1)*8*4/3+cloudW*cloudH*8)/1048576,
       note:'Analytic lower bound for main MSAA/depth/HDR/bloom/cloud render targets only. Excludes simulation, driver alignment, browser compositor, and transient resources.'}};}
 
