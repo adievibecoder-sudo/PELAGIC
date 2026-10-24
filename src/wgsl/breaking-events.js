@@ -12,7 +12,7 @@ fn emissionProbability(referenceProbability:f32,dt:f32)->f32 {
 `;
 export function breakingEventsShader(code,query) {
   const mode=query.get('maBreaking');
-  if(!['events','onset'].includes(mode))return code;
+  if(!['events','onset','fold','crest'].includes(mode))return code;
   if(code.includes('struct FoamU {')){
     const start=code.indexOf('  let inject = smoothstep('),end=code.indexOf('  // Carry binary16',start);
     if(start<0||end<0)throw Error('Breaking-event splice contract changed');
@@ -27,8 +27,16 @@ export function breakingEventsShader(code,query) {
   var f=(prev.r+prev.a)*exp(-dt*U.p0.w);
   f=min(f+(1.0-f)*(1.0-exp(-dt*U.p1.z*fresh)),1.0);
 `+code.slice(end);
-    if(mode==='onset')code=code.replace('f=min(f+(1.0-f)*(1.0-exp(-dt*U.p1.z*fresh)),1.0);',
+    if(['onset','fold','crest'].includes(mode))code=code.replace('f=min(f+(1.0-f)*(1.0-exp(-dt*U.p1.z*fresh)),1.0);',
       'f=1.0-(1.0-f)*exp(-U.p1.z*increment);');
+    if(mode==='fold')code=code.replace('let signal=smoothstep(0.04,0.28,compression)*activity*U.p1.w;',
+      'let signal=max(-eigen,0.0)*activity*U.p1.w;');
+    if(mode==='crest')code=code.replace('let signal=smoothstep(0.04,0.28,compression)*activity*U.p1.w;',/* wgsl */`
+  // For one deep-water mode, 1-eigen = chop*k*a. Map the limiting Stokes
+  // steepness 0.443 into the existing deformation variable. Mixed seas still
+  // need a validated breaking criterion; this is a stricter crest proxy.
+  let limit=max(1.0-0.443*U.drift.z,0.001);
+  let signal=max(1.0-eigen/limit,0.0)*activity*U.p1.w;`);
     return code.replace('vec4f(stored, fresh, J, f-stored)','vec4f(stored, fresh, signal, f-stored)');
   }
   return code;

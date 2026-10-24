@@ -14,7 +14,7 @@ function next(){
  const q=new URLSearchParams({preset:'midday',ma:1,cam:`0,${c.y},0,4,${c.pitch}`,cameraMode:'free',quality:args.get('quality')||'Balanced',resolution:1,w:1920,h:1080,
   seed:1307,t:20,frames:100,ui:0,adaptive:0,stage:`v04-ma-${run}`,validate:1,p0:1,p0Profile:1,revision:args.get('revision')||'source-manifest',
   clouds:.5,veil:0,haze:1.4,cloudType:0,sunElev:c.sunElev,exposure:c.exposure,weatherRate:1,seaRate:1});
- for(const key of ['maCloud','debug','p0Columns','p0CloudView','clouds','paused','maGlints','maRoughness','maWater','maReflection','maCloudTransport','maAmbient','maBreaking','p0Desat'])if(args.has(key))q.set(key,args.get(key));
+ for(const key of ['maCloud','maCloudPhase','debug','p0Columns','p0CloudView','clouds','paused','maGlints','maRoughness','maWater','maReflection','maCloudTransport','maAmbient','maBreaking','p0Desat'])if(args.has(key))q.set(key,args.get(key));
  if(mode==='motion'){q.set('video',c.name);q.set('duration',24);q.set('motion','ma-pan');}
  else if(mode==='benchmark'){q.set('benchmark',c.name);q.set('benchmarkSeconds',60);q.set('frames',10000);}
  else q.set('shot',c.name+'.png');

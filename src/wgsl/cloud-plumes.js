@@ -57,8 +57,38 @@ fn cloudPlumeDensity(p:vec3f,footprint:f32)->f32 {
 `;
 
 export function cloudPlumesShader(code,query){
-  if(query.get('maCloud')!=='plumes'||!code.includes('fn cloudDensityFiltered('))return code;
-  return code.replace('fn cloudDensityFiltered(', 'fn cloudDensityLegacyPlumes(').replace('fn cloudDensity(p:',CLOUD_PLUMES+/* wgsl */`
+  if(query.get('maCloudPhase')==='droplet'){
+    // Water-droplet forward asymmetry. Higher-order angular convolutions of HG
+    // have g^n; retain the old order weights for this isolated phase comparison.
+    code=code.replaceAll('0.85*phaseHG(dot(dir,F.sunDir.xyz),0.68)+0.15*phaseHG(dot(dir,F.sunDir.xyz),-0.25)',
+      'phaseHG(dot(dir,F.sunDir.xyz),0.85)')
+      .replaceAll('phaseHG(dot(dir,F.sunDir.xyz),0.28)','phaseHG(dot(dir,F.sunDir.xyz),0.52200625)')
+      .replaceAll('0.85*phaseHG(dot(dir,F.moonDir.xyz),0.68)+0.15*phaseHG(dot(dir,F.moonDir.xyz),-0.25)',
+      'phaseHG(dot(dir,F.moonDir.xyz),0.85)')
+      .replaceAll('phaseHG(dot(dir,F.moonDir.xyz),0.28)','phaseHG(dot(dir,F.moonDir.xyz),0.52200625)');
+  }
+  const mode=query.get('maCloud');
+  if(!['plumes','entrained'].includes(mode)||!code.includes('fn cloudDensityFiltered('))return code;
+  let density=CLOUD_PLUMES;
+  if(mode==='entrained'){
+    density=density.replace('let boundary=(large.r-.5)*.42+(detail.r-.5)*.32-(1.0-erosion)*.04;',/* wgsl */`
+  let warp=vec3f(large.r-.5,large.a-.5,detail.r-.5);
+  let billow=textureSampleLevel(cloudNoise,cloudNoiseSampler,world*.63+vec3f(.13,.79,.37),lod-.66);
+  let boundary=(billow.r-.5)*.28+(detail.r-.5)*.075-(1.0-erosion)*.03;`)
+      .replace('let radius=.25+1.35*r.z*r.z;', 'let radius=.16+1.65*pow(r.z,2.5);')
+      .replace('let height=min(depth-.08,radius*(.75+.9*r.x));','let height=min(depth-.08,radius*(.5+1.4*r.x));')
+      .replace('let extent=radius*1.7+.45;', 'let extent=radius*2.8+.55;')
+      .replace('rise>height+.45','rise>height+radius*.7+.55')
+      .replace('let vertical=(rise-top*.48)/max(top*.54,.06);',/* wgsl */`
+      let developed=smoothstep(0.0,height*.7,rise);
+      let vertical=(rise+warp.y*radius*.8*developed-top*.48)/max(top*.54,.06);`)
+      .replace('let radial=length((world.xz-centre-shift)/width);','let radial=length((world.xz+warp.xz*radius*1.2-centre-shift)/width);')
+      .replace('let width=radius*(.24+.38*l.z);','let width=radius*(.3+.45*l.z);')
+      .replace('let mixing=smoothstep(0.0,.09,envelope)*smoothstep(0.0,.035,rise);',/* wgsl */`
+    let entrainment=max(0.0,(1.0-detail.g)*.06*radius+(0.5-billow.a)*.08);
+    let mixing=smoothstep(entrainment,entrainment+.08,envelope)*smoothstep(0.0,.035,rise);`);
+  }
+  return code.replace('fn cloudDensityFiltered(', 'fn cloudDensityLegacyPlumes(').replace('fn cloudDensity(p:',density+/* wgsl */`
 fn cloudDensityFiltered(p:vec3f,detail:bool,footprint:f32)->f32 {
   let weight=clamp(regionalTypes(p.xz).x,0.0,1.0);
   if(weight<.0001){return cloudDensityLegacyPlumes(p,detail,footprint);}

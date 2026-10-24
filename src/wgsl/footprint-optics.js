@@ -136,7 +136,8 @@ export function footprintOpticsShader(code,query) {
   var reflected=vec3f(0);var fresnelSum=0.0;let weights=1.0;
   let stretch=vec2f(dot(Vl.xz,ch0),dot(Vl.xz,ch1));
   let sigma=max(length(stretch),1e-7);
-  let axis=stretch/sigma;let perpendicular=vec2f(-axis.y,axis.x);
+  let axis=select(vec2f(1,0),stretch/sigma,dot(stretch,stretch)>1e-14);
+  let perpendicular=vec2f(-axis.y,axis.x);
   let quantiles=array<f32,8>(-1.53412054,-0.88714656,-0.48877641,-0.15731068,0.15731068,0.48877641,0.88714656,1.53412054);
   for(var tap=0u;tap<8u;tap++){
     // Sample projected visible density directly. Normalizing sparse NDF taps

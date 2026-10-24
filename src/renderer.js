@@ -50,6 +50,7 @@ import {cloudTransportShader} from './wgsl/cloud-transport.js';
 import {cloudAmbientShader} from './wgsl/cloud-ambient.js';
 import {breakingEventsShader} from './wgsl/breaking-events.js';
 import {footprintOpticsShader} from './wgsl/footprint-optics.js';
+import {stressRoughnessShader} from './wgsl/wind-roughness.js';
 import {cloudPlumesShader} from './wgsl/cloud-plumes.js';
 
 const qs = new URLSearchParams(location.search);
@@ -131,6 +132,7 @@ async function main() {
   ctx.configure({ device, format: swapFormat, alphaMode: 'opaque', usage: TU.RENDER_ATTACHMENT | TU.COPY_SRC });
 
   async function shader(code, label) {
+    code=stressRoughnessShader(code,qs);
     code=cloudAppearanceShader(cloudLightPathShader(waveDiagnosticShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs),qs),qs),qs);
     code=cloudVolumeControlShader(cloudCondensateShader(code,qs),qs);
     code=cloudPlumesShader(code,qs);
@@ -798,7 +800,7 @@ async function main() {
     cascadeOrigin(origin,f,128);
     foamPatternOrigin(origin,[f[56],f[57]],time,[f[80],f[81]],f,140);
     environmentUniforms(environment,cam,f);
-    roughnessUniforms(environment,origin,qs.get('maRoughness')==='wind',f);
+    roughnessUniforms(environment,origin,['wind','stress'].includes(qs.get('maRoughness')),f);
     device.queue.writeBuffer(frameUBO, 0, f);
   }
 
@@ -921,7 +923,7 @@ async function main() {
     foamUF[33] = Math.sin(P.windDir * D2R) * drift + Math.sin(P.currentDir*D2R)*P.currentSpeed;
     foamUF[34] = P.choppy;
     cascadeOrigin(origin,foamUF,36);
-    roughnessUniforms(environment,origin,qs.get('maRoughness')==='wind',foamUF,48);
+    roughnessUniforms(environment,origin,['wind','stress'].includes(qs.get('maRoughness')),foamUF,48);
     device.queue.writeBuffer(foamUBO, 0, foamUArr);
   }
 
