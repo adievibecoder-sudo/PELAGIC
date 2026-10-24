@@ -1,4 +1,6 @@
 import { CLOUD_VOLUME } from './clouds.js';
+import { SUN_DISC } from './sun-disc.js';
+import { CUBE_CROSS_FACE } from './cube-filter.js';
 // Physically based atmosphere (Hillaire 2020 style LUTs) + procedural cloud deck.
 import { FRAME_WGSL, ATMO_CORE_WGSL, NOISE_WGSL, SKY_W, SKY_H, ENV_SIZE } from './common.js';
 
@@ -281,7 +283,7 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
 }
 `;
 
-export const CUBE_MIPS = /* wgsl */ `
+export const CUBE_MIPS = CUBE_CROSS_FACE + /* wgsl */ `
 @group(0) @binding(0) var src: texture_2d_array<f32>;
 @group(0) @binding(1) var dst: texture_storage_2d_array<rgba16float, write>;
 @compute @workgroup_size(8, 8, 1)
@@ -295,9 +297,9 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
   var wsum = 0.0;
   for (var j = -1; j <= 2; j++) {
     for (var i = -1; i <= 2; i++) {
-      let q = clamp(p + vec2i(i, j), vec2i(0), srcSize - 1);
+      let q = p + vec2i(i, j);
       let w = select(1.0, 3.0, i == 0 || i == 1) * select(1.0, 3.0, j == 0 || j == 1);
-      acc += textureLoad(src, q, id.z, 0) * w;
+      acc += cubeLoad(src, q, id.z) * w;
       wsum += w;
     }
   }
@@ -307,7 +309,7 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
 
 // Cloud transmittance towards the sun (averaged over the solar disc), used to dim
 // direct sunlight on the water when the sun is behind clouds.
-export const SUN_VIS = FRAME_WGSL + ATMO_CORE_WGSL + /* wgsl */ `
+export const SUN_VIS = FRAME_WGSL + ATMO_CORE_WGSL + SUN_DISC + /* wgsl */ `
 @group(0) @binding(0) var<uniform> F: Frame;
 @group(0) @binding(1) var transLUT: texture_2d<f32>;
 @group(0) @binding(2) var skyLUT: texture_2d_array<f32>;
@@ -318,14 +320,9 @@ var<workgroup> part: array<f32, 8>;
 // one ray per thread (7 rays across the disc), then a tiny reduction
 @compute @workgroup_size(8)
 fn main(@builtin(local_invocation_index) k: u32) {
-  let sd = F.sunDir.xyz;
-  let tx = normalize(cross(sd, vec3f(0.0, 1.0, 0.0)));
-  let ty = cross(tx, sd);
   var t = 1.0;
   if (k < 7u) {
-    let a = f32(k) * 0.8975979;
-    let o = select(vec2f(cos(a), sin(a)) * 0.65, vec2f(0.0), k == 0u);
-    let dir = normalize(sd + (tx * o.x + ty * o.y) * SUN_ANG_R);
+    let dir = sunDiscDirection(F.sunDir.xyz,k);
     let cl = cloudLayers(dir, 0.0, vec2f(-1.0), &t);
   }
   part[k] = t;

@@ -11,9 +11,8 @@ export function waterTransportShader(code,query) {
   let viewInWater=-refract(-V,nrm,eta);
   let sunInWater=refract(-Ld,nrm,eta);
   let moonInWater=refract(-F.moonDir.xyz,nrm,eta);
-  let molecularBB=min(bb,vec3f(0.0007,0.001,0.0015));
-  let molecularScatter=2.0*molecularBB;
-  let particleScatter=12.0*max(bb-molecularBB,vec3f(0));
+  let molecularScatter=waterMolecularScatter(bb);
+  let particleScatter=waterParticleScatter(bb);
   let extinction=aWater+molecularScatter+particleScatter;
   let muV=max(dot(viewInWater,nrm),0.001);
   let muSun=max(-dot(sunInWater,nrm),0.001);
@@ -65,12 +64,5 @@ export function waterTransportShader(code,query) {
   // First-order angular transport only; multiple scattering is not represented.
   var body=(skyScatter+`);
   }
-  return code.replace('fn foamCoverage(',/* wgsl */`
-fn waterPhase(cosine:f32,molecular:vec3f,particles:vec3f)->vec3f {
-  // Rayleigh molecular phase; HG particle backscatter fraction is exactly 1/12.
-  let g=0.70223624;
-  let phase=(1.0-g*g)/(4.0*PI*pow(max(1.0+g*g-2.0*g*cosine,1e-5),1.5));
-  return molecular*(3.0/(16.0*PI))*(1.0+cosine*cosine)+particles*phase;
-}
-fn foamCoverage(`);
+  return code;
 }

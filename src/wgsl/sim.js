@@ -312,7 +312,8 @@ fn h2(i: vec2i, salt: u32) -> vec2f {
 }
 // "swiss cheese" foam: 1 in foam material, 0 inside bubbles; per-bubble radius
 fn bubbles(uv: vec2f, period: i32, salt: u32, rmin: f32, rmax: f32) -> f32 {
-  let w = vec2f(pfbm(uv * f32(period) * 0.5, period / 2, 3), pfbm(uv * f32(period) * 0.5 + 17.0, period / 2, 3));
+  let warpPeriod = max(period / 2, 1);
+  let w = vec2f(pfbm(uv * f32(warpPeriod), warpPeriod, 3), pfbm(uv * f32(warpPeriod) + 17.0, warpPeriod, 3));
   let p = uv * f32(period) + w * 0.9;
   let ip = vec2i(floor(p));
   let fp = p - floor(p);
