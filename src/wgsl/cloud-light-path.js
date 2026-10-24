@@ -30,18 +30,31 @@ fn cloudLightIntegral(p:vec3f,light:vec3f,count:u32)->f32 {
   }
   return integral;
 }
+fn cloudLightReference(p:vec3f,light:vec3f,count:u32)->f32 {
+  let ds=cloudLightExtent(p,light)/f32(count);
+  var integral=0.0;
+  for(var j=0u;j<count;j++){
+    integral+=cloudDensityFiltered(p+light*((f32(j)+0.5)*ds),false,0.0)*ds;
+  }
+  return integral;
+}
 `;
 
 export function cloudLightPathShader(code, query) {
-  if(query.get('maLightPath')!=='finite'||!code.includes('fn cloudLayers('))return code;
+  const mode=query.get('maLightPath');
+  const reference={'reference128':128,'reference256':256,'reference512':512}[mode];
+  if((mode!=='finite'&&!reference)||!code.includes('fn cloudLayers('))return code;
+  // Dense unfiltered integration is a convergence control, never a quality preset.
+  const integral=reference?'cloudLightReference':'cloudLightIntegral';
+  const count=reference?reference+'u':'u32(F.control.y)';
   const sunStart=code.indexOf('      var shadow=0.0;');
   const sunEnd=code.indexOf('      let sigma=',sunStart);
   const moonStart=code.indexOf('          var moonOptical=0.0;');
   const moonEnd=code.indexOf('          moonOptical*=sigma;',moonStart);
   if(sunStart<0||sunEnd<0||moonStart<0||moonEnd<0)throw Error('Cloud light splice contract changed');
   return code.slice(0,sunStart)+
-    '      let shadow=cloudLightIntegral(p,F.sunDir.xyz,u32(F.control.y));\n'+
+    `      let shadow=${integral}(p,F.sunDir.xyz,${count});\n`+
     code.slice(sunEnd,moonStart)+
-    '          var moonOptical=cloudLightIntegral(p,F.moonDir.xyz,u32(F.control.y));\n'+
+    `          var moonOptical=${integral}(p,F.moonDir.xyz,${count});\n`+
     code.slice(moonEnd)+CLOUD_LIGHT_PATH;
 }

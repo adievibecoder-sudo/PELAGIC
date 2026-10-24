@@ -13,3 +13,16 @@ test('finite cloud-light quadrature preserves default and density source',()=>{
   assert.ok(candidate.includes('cloudLightIntegral(p,F.moonDir.xyz,u32(F.control.y))'));
   assert.ok(!candidate.includes('lightStep*=2.1'));
 });
+
+test('dense light reference changes only self-shadow quadrature',()=>{
+  for(const count of [128,256,512]){
+    const candidate=cloudLightPathShader(CLOUD_VOLUME,new URLSearchParams('maLightPath=reference'+count));
+    assert.ok(candidate.includes(`cloudLightReference(p,F.sunDir.xyz,${count}u)`));
+    assert.ok(candidate.includes(`cloudLightReference(p,F.moonDir.xyz,${count}u)`));
+    const transport=CLOUD_VOLUME.slice(CLOUD_VOLUME.indexOf('      let sigma='),CLOUD_VOLUME.indexOf('          var moonOptical='));
+    assert.ok(candidate.includes(transport));
+    const density=CLOUD_VOLUME.slice(0,CLOUD_VOLUME.indexOf('fn iceDensity('));
+    assert.ok(candidate.startsWith(density));
+  }
+  assert.equal(cloudLightPathShader(CLOUD_VOLUME,new URLSearchParams('maLightPath=reference1024')),CLOUD_VOLUME);
+});
