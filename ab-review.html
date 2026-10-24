@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PELAGIC / A+B development checkpoint</title>
+<style>body{margin:24px;background:#101b20;color:#e6ede7;font:15px/1.5 Consolas,monospace}a{color:#a9d2dc}select,button{padding:8px;margin:6px}img,video{display:block;width:100%;height:auto}figure{margin:8px 0}section{display:grid;grid-template-columns:1fr 1fr;gap:20px}pre{white-space:pre-wrap}h1{font-size:24px}@media(max-width:900px){section{grid-template-columns:1fr}}</style>
+<h1>PELAGIC 0.4 / First A+B development checkpoint</h1>
+<p>Finite sunlight reveals wave groups in elevated daylight. Near-view glitter variance, low-Sun silver reflections and cloud morphology remain unresolved. Appearance candidates are experimental. A+B development remains incomplete; this is an owner review checkpoint.</p>
+<p><a href="docs/V04-AB-DEVELOPMENT.md">Implementation and limitations</a> / <a href="evidence/v04-ma-ab-checkpoint-01/analysis.json">Measurements</a></p>
+<label>Scene <select id="scene"><option>day-high</option><option>day-near</option><option>gold-high</option><option>gold-near</option></select></label>
+<section id="stills"></section>
+<p><a id="live">Open live candidate</a> / <a id="baseline">Open live baseline</a></p>
+<label>Motion <select id="clip"><option value="day-high">Daylight pan (before event-memory change)</option><option value="day-near">Daylight near surface</option><option value="gold-near">Low Sun near surface</option><option value="storm">Breaking-event storm</option></select></label>
+<button id="play">Play original recording</button><p id="status">Original 1080p capture, actual recorded cadence.</p>
+<video id="movie" controls playsinline muted></video><pre id="result"></pre>
+<script type="module">
+const scene=document.querySelector('#scene'),video=document.querySelector('#movie'),clip=document.querySelector('#clip');
+const flags={maGlints:'finite',maRoughness:'wind',p0Desat:'off',maCloudTransport:'centroid',maBreaking:'events'};
+function update(){
+ document.querySelector('#stills').replaceChildren(...['v04-ma-base-stills-02','v04-ma-ab-final-stills-02'].map((stage,i)=>{
+  const figure=document.createElement('figure'),caption=document.createElement('figcaption'),link=document.createElement('a'),img=document.createElement('img');
+  caption.textContent=i?'A+B candidate':'Recovered baseline';link.href=`evidence/${stage}/${scene.value}.png`;img.src=link.href;img.alt=caption.textContent+' '+scene.value;link.append(img);figure.append(caption,link);return figure;
+ }));
+ const high=scene.value.endsWith('high'),day=scene.value.startsWith('day');
+ const q=new URLSearchParams({preset:'midday',cam:`0,${high?50:2},0,4,${high?-12:-5.5}`,cameraMode:'free',quality:'Balanced',resolution:1,seed:1307,t:20,ui:1,adaptive:0,clouds:.5,veil:0,haze:1.4,cloudType:0,sunElev:day?48:5,exposure:day?.95:1.3,weatherRate:1,seaRate:1});
+ document.querySelector('#baseline').href='/?'+q;
+ for(const [k,v]of Object.entries(flags))q.set(k,v);
+ document.querySelector('#live').href='/?'+q;
+}scene.onchange=update;update();
+let frames=0,callback=null;
+function observe(){frames++;callback=video.requestVideoFrameCallback(observe);}
+document.querySelector('#play').onclick=async()=>{
+ if(callback!==null)video.cancelVideoFrameCallback(callback);frames=0;
+ document.querySelector('#result').textContent='';
+ video.src=`evidence/v04-ma-ab-motion-02/${clip.value}.webm`;
+ callback=video.requestVideoFrameCallback(observe);
+ try{await video.play();video.scrollIntoView({block:'start'});}
+ catch(error){video.cancelVideoFrameCallback(callback);document.querySelector('#status').textContent=`Playback failed: ${error.message}`;}
+};
+video.ontimeupdate=()=>document.querySelector('#status').textContent=`${clip.value}: ${video.currentTime.toFixed(2)} s / ${video.ended?'ENDED':video.paused?'PAUSED':'PLAYING'}`;
+video.onended=()=>{
+ if(callback!==null)video.cancelVideoFrameCallback(callback);
+ const quality=video.getVideoPlaybackQuality();
+ document.querySelector('#result').textContent=JSON.stringify({seconds:video.currentTime,width:video.videoWidth,height:video.videoHeight,observedFrames:frames,totalFrames:quality.totalVideoFrames,droppedFrames:quality.droppedVideoFrames},null,2);
+};
+</script></html>

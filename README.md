@@ -1,4 +1,8 @@
-# PELAGIC 0.4 development - Phase 1
+# PELAGIC 0.4 development - combined Milestones A+B
+
+**24 October 2026:** Recovered the actual unpublished `c4185ea` history and resumed combined A+B development. Open `/ab-review.html` for the first integrated visual candidates, matched original images and motion. Read [current development status](docs/V04-AB-DEVELOPMENT.md) and [changes](CHANGELOG.md). Finite daylight glitter improves wave readability; low-Sun metallic water, cloud morphology and final breaking/weather acceptance remain open. Candidates are opt-in. Default emission scheduling is corrected. **A+B is incomplete; Milestone C and release promotion remain gated.**
+
+The reports and performance figures below are preserved historical checkpoints; their earlier scheduling restrictions are superseded by the current owner authorization.
 
 **Phase 1 engineering handoff; owner review pending.** Shared regional environment, independent clocks and cloud-aware lighting are integrated. Read the [implementation report](docs/V04-PHASE1-REPORT.md), [acceptance register](docs/V04-PHASE1-ACCEPTANCE.md), [reproduction guide](docs/V04-PHASE1-REPRODUCE.md) and [persistent state](docs/V04-STATE.md). Run `git lfs pull`, then `npm start`; open `/phase1-review.html` for original comparisons and motion. Current RTX 3050 1080p measurements: 21.72 FPS Golden Balanced, 31.02 Storm Balanced, 10.87 Golden High. Numerical tests pass; overall realism and practical performance targets remain FAIL. **Phases 2+3 require explicit owner approval.**
 

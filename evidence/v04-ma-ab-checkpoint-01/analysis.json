@@ -1,0 +1,269 @@
+{
+  "generated": "2026-10-24T11:29:29.517Z",
+  "stills": [
+    {
+      "name": "day-near",
+      "matchedSettings": true,
+      "matchedCamera": true,
+      "matchedTime": true,
+      "source": "5e5bbd194351904611f0b938d291398abf26b0429a3f890fb93092cf1a855088",
+      "errors": [],
+      "spectral": "PASS",
+      "hdr": "PASS",
+      "radianceBandChangePercent": [
+        -0.6820821438592528,
+        -12.585132171703407,
+        1.9529994025295538
+      ],
+      "foam": [
+        {
+          "layer": 0,
+          "meanDensity": 0.0025324026682937983,
+          "invalid": 0
+        },
+        {
+          "layer": 1,
+          "meanDensity": 0.00008387171192225651,
+          "invalid": 0
+        }
+      ],
+      "scope": "Integrated changes; one-frame pre-tone-map bands include sky. Not a pure glitter energy-closure test."
+    },
+    {
+      "name": "day-high",
+      "matchedSettings": true,
+      "matchedCamera": true,
+      "matchedTime": true,
+      "source": "5e5bbd194351904611f0b938d291398abf26b0429a3f890fb93092cf1a855088",
+      "errors": [],
+      "spectral": "PASS",
+      "hdr": "PASS",
+      "radianceBandChangePercent": [
+        -1.4697100224702275,
+        1.29127239180582,
+        6.200504336915369
+      ],
+      "foam": [
+        {
+          "layer": 0,
+          "meanDensity": 0.0025324026682937983,
+          "invalid": 0
+        },
+        {
+          "layer": 1,
+          "meanDensity": 0.00008387171192225651,
+          "invalid": 0
+        }
+      ],
+      "scope": "Integrated changes; one-frame pre-tone-map bands include sky. Not a pure glitter energy-closure test."
+    },
+    {
+      "name": "gold-near",
+      "matchedSettings": true,
+      "matchedCamera": true,
+      "matchedTime": true,
+      "source": "c7fff05d1c4e853d54dca6398a6de608d35e4931a51f0cdc92833ece5465ba5c",
+      "errors": [],
+      "spectral": "PASS",
+      "hdr": "PASS",
+      "radianceBandChangePercent": [
+        -0.544684972749232,
+        -0.15582887946103963,
+        0.49967937507817695
+      ],
+      "foam": [
+        {
+          "layer": 0,
+          "meanDensity": 0.0025324026682937983,
+          "invalid": 0
+        },
+        {
+          "layer": 1,
+          "meanDensity": 0.00008387171192225651,
+          "invalid": 0
+        }
+      ],
+      "scope": "Integrated changes; one-frame pre-tone-map bands include sky. Not a pure glitter energy-closure test."
+    },
+    {
+      "name": "gold-high",
+      "matchedSettings": true,
+      "matchedCamera": true,
+      "matchedTime": true,
+      "source": "5e5bbd194351904611f0b938d291398abf26b0429a3f890fb93092cf1a855088",
+      "errors": [],
+      "spectral": "PASS",
+      "hdr": "PASS",
+      "radianceBandChangePercent": [
+        -1.1521415353160092,
+        0.7892039483553548,
+        0.5645031753268137
+      ],
+      "foam": [
+        {
+          "layer": 0,
+          "meanDensity": 0.0025324026682937983,
+          "invalid": 0
+        },
+        {
+          "layer": 1,
+          "meanDensity": 0.00008387171192225651,
+          "invalid": 0
+        }
+      ],
+      "scope": "Integrated changes; one-frame pre-tone-map bands include sky. Not a pure glitter energy-closure test."
+    }
+  ],
+  "profiles": [
+    {
+      "variant": "base",
+      "name": "day-near",
+      "source": "1e4e725fb7201a6337aa22508c947669df5cac28966022e6a59e17477dab35a8",
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      },
+      "width": 1920,
+      "height": 1080,
+      "wallSeconds": 60.07570000000112,
+      "timingMode": "queue-completion throughput; not display FPS",
+      "frames": 1287,
+      "samples": 184,
+      "errors": [],
+      "hiddenFrames": 0,
+      "throughputFramesPerSecond": 24.010566888178126,
+      "performanceComparisonValid": true,
+      "frameMs": {
+        "mean": 41.64832944832974,
+        "p95": 45,
+        "p99": 47.09999999962747,
+        "max": 55.59999999962747
+      },
+      "gpuMs": {
+        "gpu": 38.17080208695651,
+        "simulation": 1.3114323478260907,
+        "surface": 13.648940521739132,
+        "cloudScreen": 17.539072,
+        "environment": 4.204276869565217,
+        "post": 0.40639443478260895
+      }
+    },
+    {
+      "variant": "base",
+      "name": "day-high",
+      "source": "1e4e725fb7201a6337aa22508c947669df5cac28966022e6a59e17477dab35a8",
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      },
+      "width": 1920,
+      "height": 1080,
+      "wallSeconds": 60.06530000000075,
+      "timingMode": "queue-completion throughput; not display FPS",
+      "frames": 1559,
+      "samples": 223,
+      "errors": [],
+      "hiddenFrames": 0,
+      "throughputFramesPerSecond": 28.9265628971838,
+      "performanceComparisonValid": true,
+      "frameMs": {
+        "mean": 34.57030147530445,
+        "p95": 37.59999999962747,
+        "p99": 40.19999999925494,
+        "max": 67.90000000037253
+      },
+      "gpuMs": {
+        "gpu": 31.59246636771301,
+        "simulation": 1.1185202511210794,
+        "surface": 11.792659515695068,
+        "cloudScreen": 13.040782349775784,
+        "environment": 4.165503426008967,
+        "post": 0.402914152466367
+      }
+    },
+    {
+      "variant": "candidate",
+      "name": "day-near",
+      "source": "967257e83dec42e3ea97e830ae6968ca9b7ebdc91a8e8361b32e53fd27ed8cc7",
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      },
+      "width": 1920,
+      "height": 1080,
+      "wallSeconds": 60.072,
+      "timingMode": "queue-completion throughput; not display FPS",
+      "frames": 1277,
+      "samples": 182,
+      "errors": [],
+      "hiddenFrames": 0,
+      "throughputFramesPerSecond": 23.81578481123596,
+      "performanceComparisonValid": true,
+      "frameMs": {
+        "mean": 41.98895849647641,
+        "p95": 45.29999999888241,
+        "p99": 46.90000000037253,
+        "max": 66.40000000037253
+      },
+      "gpuMs": {
+        "gpu": 38.57657810989009,
+        "simulation": 1.314680967032971,
+        "surface": 13.900473670329673,
+        "cloudScreen": 17.68463753846155,
+        "environment": 4.232833406593408,
+        "post": 0.39357608791208837
+      }
+    },
+    {
+      "variant": "candidate",
+      "name": "day-high",
+      "source": "1e4e725fb7201a6337aa22508c947669df5cac28966022e6a59e17477dab35a8",
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      },
+      "width": 1920,
+      "height": 1080,
+      "wallSeconds": 60.07029999999888,
+      "timingMode": "queue-completion throughput; not display FPS",
+      "frames": 1517,
+      "samples": 217,
+      "errors": [],
+      "hiddenFrames": 0,
+      "throughputFramesPerSecond": 28.21044958195702,
+      "performanceComparisonValid": true,
+      "frameMs": {
+        "mean": 35.44785761371152,
+        "p95": 37.29999999888241,
+        "p99": 39.59999999962747,
+        "max": 53
+      },
+      "gpuMs": {
+        "gpu": 32.49679572350231,
+        "simulation": 1.1298164792626733,
+        "surface": 12.386304000000008,
+        "cloudScreen": 13.246728258064511,
+        "environment": 4.268296258064516,
+        "post": 0.3941220276497692
+      }
+    }
+  ],
+  "qa": {
+    "fft": "PASS",
+    "optics": "PASS",
+    "appearance": "PASS"
+  },
+  "scope": "RTX 3050 Laptop/Chrome native WebGPU. Explicit queue-completion 60 s profiles, first 5 s of recorded frames excluded. Throughput is not displayed FPS. Display-paced attempts in base-01/02 are retained separately and invalid for comparison because a one-second cadence recurred. GPU timestamps are quantized; allocation payload is not residency. Appearance remains experimental; A+B incomplete."
+}

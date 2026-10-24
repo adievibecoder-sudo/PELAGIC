@@ -1,0 +1,748 @@
+{
+  "time": "2026-10-24T10:03:20.985Z",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "ampere",
+    "device": "",
+    "description": ""
+  },
+  "irradiance": {
+    "status": "PASS",
+    "cases": [
+      {
+        "mode": "isotropic",
+        "status": "PASS",
+        "maxRelative": 0.0003080137040323283,
+        "invalid": 0,
+        "tolerance": 0.0015
+      },
+      {
+        "mode": "linear angular gradient",
+        "status": "PASS",
+        "maxRelative": 0.0031498677975936307,
+        "invalid": 0,
+        "tolerance": 0.008
+      }
+    ],
+    "inputRadiance": [
+      0.25,
+      0.5,
+      1
+    ],
+    "expectedIrradiance": [
+      0.7853981633974483,
+      1.5707963267948966,
+      3.141592653589793
+    ],
+    "testedNormals": 1536,
+    "tolerance": "Isotropic: 0.15% includes binary16 rounding. Linear angular gradient: 0.8% includes finite 128-point quadrature and 32-pixel cubemap sampling. Analytic E(n)=pi*(0.5+n/6)."
+  },
+  "errors": [],
+  "coupling": {
+    "status": "PASS",
+    "amplitudeError": 0.00014635735576074005,
+    "gradientError": 0.00005820260367128498,
+    "invalid": 0,
+    "samples": 2048,
+    "tolerance": "Absolute amplitude 0.0003; derivative 0.00015 per metre. Includes binary16 samples and bilinear gradient changes across a 4.31 m cell; reference is analytic, not copied sampler code.",
+    "scope": "Manufactured long-wave convergence field. Not observational validation of the bounded modulation model."
+  },
+  "waveVisibility": {
+    "status": "PASS",
+    "cases": [
+      {
+        "name": "flat-grazing",
+        "amplitude": 0,
+        "wavelength": 32,
+        "tangent": 0.08,
+        "samples": 512,
+        "clear": 512,
+        "shadowed": 0,
+        "transition": 0,
+        "incorrect": 0,
+        "reflectionIncorrect": 0,
+        "invalid": 0,
+        "min": 1,
+        "max": 1,
+        "maxPruningDifference": 0,
+        "status": "PASS"
+      },
+      {
+        "name": "sine-grazing",
+        "amplitude": 2,
+        "wavelength": 32,
+        "tangent": 0.12,
+        "samples": 512,
+        "clear": 137,
+        "shadowed": 276,
+        "transition": 99,
+        "incorrect": 0,
+        "reflectionIncorrect": 0,
+        "invalid": 0,
+        "min": 0,
+        "max": 1,
+        "maxPruningDifference": 0,
+        "status": "PASS"
+      },
+      {
+        "name": "sine-high-sun",
+        "amplitude": 2,
+        "wavelength": 32,
+        "tangent": 1.73,
+        "samples": 512,
+        "clear": 512,
+        "shadowed": 0,
+        "transition": 0,
+        "incorrect": 0,
+        "reflectionIncorrect": 0,
+        "invalid": 0,
+        "min": 1,
+        "max": 1,
+        "maxPruningDifference": 0,
+        "status": "PASS"
+      },
+      {
+        "name": "flat-downward",
+        "amplitude": 0,
+        "wavelength": 32,
+        "tangent": -0.08,
+        "samples": 512,
+        "clear": 0,
+        "shadowed": 512,
+        "transition": 0,
+        "incorrect": 0,
+        "reflectionIncorrect": 0,
+        "invalid": 0,
+        "min": 0,
+        "max": 0,
+        "maxPruningDifference": 0,
+        "status": "PASS"
+      },
+      {
+        "name": "sine-downward",
+        "amplitude": 2,
+        "wavelength": 32,
+        "tangent": -0.12,
+        "samples": 512,
+        "clear": 0,
+        "shadowed": 512,
+        "transition": 0,
+        "incorrect": 0,
+        "reflectionIncorrect": 0,
+        "invalid": 0,
+        "min": 0,
+        "max": 0,
+        "maxPruningDifference": 0,
+        "status": "PASS"
+      }
+    ],
+    "reference": "Dense CPU analytic sinusoid intersection at 0.0625 m intervals. Not a duplicate of the logarithmic GPU ray traversal.",
+    "tolerance": "Classification only outside 0.15/0.30 m transition margins. Margins cover finite solar radius, 0.065 m near bias and far atlas interpolation error (~0.15 m for this wavelength).",
+    "limitations": "Manufactured one-dimensional waves. Production inversion at folds and two-dimensional storm silhouettes remain separate visual/numerical gates."
+  },
+  "lensMedium": {
+    "status": "PASS",
+    "results": [
+      {
+        "name": "plane-above",
+        "maxError": 0.000029432508680565794,
+        "maxResidual": 0,
+        "invalid": 0,
+        "wet": 1280,
+        "dry": 7936,
+        "status": "PASS"
+      },
+      {
+        "name": "plane-below",
+        "maxError": 0.000029432508680565794,
+        "maxResidual": 0,
+        "invalid": 0,
+        "wet": 7936,
+        "dry": 1280,
+        "status": "PASS"
+      },
+      {
+        "name": "curved-interface",
+        "maxError": 0.0001310120131974013,
+        "maxResidual": 0,
+        "invalid": 0,
+        "wet": 4736,
+        "dry": 4480,
+        "status": "PASS"
+      },
+      {
+        "name": "translated-interface",
+        "maxError": 0.0001310120131974013,
+        "maxResidual": 0,
+        "invalid": 0,
+        "wet": 4736,
+        "dry": 4480,
+        "status": "PASS"
+      }
+    ],
+    "tolerance": "0.15 mm signed-height error: binary16 input/output, texture interpolation and 0.0833 m raster triangles on a 7.43 m sinusoid. Linear mesh interpolation bound A*k^2*spacing^2/8 is 0.075 mm; remaining budget covers quantization and texture sampling. Constant translation inversion residual <0.01 mm.",
+    "scope": "Production near-plane shader, flat/curved/translated manufactured surfaces against an analytic sinusoid. Does not certify inversion at folded storm crests or coarser/morphed raster nodes."
+  },
+  "coordinates": {
+    "status": "PASS",
+    "cases": [
+      {
+        "origin": [
+          0,
+          0
+        ],
+        "samples": 3072,
+        "maxPositionError": 0.00006098421181555125,
+        "maxSineError": 0.0008639240846443352,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "origin": [
+          1024,
+          -1024
+        ],
+        "samples": 3072,
+        "maxPositionError": 0.00008487701424697569,
+        "maxSineError": 0.0009550560904972652,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "origin": [
+          100352,
+          -100352
+        ],
+        "samples": 3072,
+        "maxPositionError": 0.00009179115302804242,
+        "maxSineError": 0.0009244708827880754,
+        "invalid": 0,
+        "status": "PASS"
+      },
+      {
+        "origin": [
+          1000000512,
+          -1000000512
+        ],
+        "samples": 3072,
+        "maxPositionError": 0.00009226798994044216,
+        "maxSineError": 0.0008853895799031133,
+        "invalid": 0,
+        "status": "PASS"
+      }
+    ],
+    "tolerance": "0.12 mm phase-equivalent position error and 0.0025 unit-sinusoid amplitude error. Bounds cover f32 local-coordinate rounding, inverse length and UV multiply/add across 512 m; CPU reference uses double global modulo.",
+    "scope": "Production UV helper on native GPU, six cascade periods, global origins through 1e9 m. Does not validate remote atmosphere precision or all material motion across rebases."
+  },
+  "status": "PASS",
+  "serverEvidence": {
+    "receivedUTC": "2026-10-24T10:03:21.848Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "source": {
+      "head": "93ea5712d76e177388714b98cf5145b3cb0c0b69",
+      "sha256": "c7fff05d1c4e853d54dca6398a6de608d35e4931a51f0cdc92833ece5465ba5c",
+      "files": [
+        {
+          "file": "ab-review.html",
+          "sha256": "52e8490736f77bf451241706992b23c163e17da00c672ac69423cb153c919731"
+        },
+        {
+          "file": "appearance-tests.html",
+          "sha256": "94626b1e952cf94d54378a353e5325e5f28cc87dcd6e5abd87483c20cf9fd2f6"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/ORIGINAL-README.txt",
+          "sha256": "f79dddd6295fb9126027f03e32f69f0c14b9485725fdd663600a84f8371b44c0"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/density.r16f",
+          "sha256": "de6b21ad09686f1f0c6fd060213ab202fe375c9f15d46def99a6b7d262a750ca"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/metadata.json",
+          "sha256": "364740e6e13e835bf1f378dfbf5cbf68956fca847ec48d5e44a1b2d0498caae9"
+        },
+        {
+          "file": "dynamics.html",
+          "sha256": "51a28203fb90902ec049b7a2dd0fd5791dbc8042bec0643e6d4b1bc984f43238"
+        },
+        {
+          "file": "ensemble.html",
+          "sha256": "18c36227377f39d14c8ce6c9b728ac159fa34a6445d4ab01a5b3fcb971256ef8"
+        },
+        {
+          "file": "environment-tests.html",
+          "sha256": "e1d9c63c4cf00c1b09bb775a80ce8fdc29edce6d033158d925316715fc86b282"
+        },
+        {
+          "file": "gallery.html",
+          "sha256": "a717cbd34a57b97db470b7f21db3f07b384497d3d591ab973e584697ce59a725"
+        },
+        {
+          "file": "index.html",
+          "sha256": "41e1301a9d5f60af6c890a29fe022a90ec3b6294588ff332c9f96bd9d35e93d7"
+        },
+        {
+          "file": "lab.html",
+          "sha256": "1dc677003c241cd4cd48dc14316852e54cf76951dd5f4ce1707942694cdc93bd"
+        },
+        {
+          "file": "matrix.html",
+          "sha256": "d5a7733712a90487e12525d724dfafb097aec52200a9a96bf36a874f8705e2c6"
+        },
+        {
+          "file": "milestone-a-review.html",
+          "sha256": "ea8c27d3710325f4ed2da2051415aee7ff7a0c545ab83af7c6c79c0a009040af"
+        },
+        {
+          "file": "milestone-a-waves-review.html",
+          "sha256": "c2e460e41ca081ca17f3b0a649161edc3fe9095576a0061352de6f06303d22ff"
+        },
+        {
+          "file": "milestone-a.html",
+          "sha256": "a2465cd9f225c615401459609c5323e80685ae9a8cc8bf109811e2cefef46198"
+        },
+        {
+          "file": "motion.html",
+          "sha256": "81b4b81dfdcf67e5e27e006ad10d526d5616c8aceead7258601ea8f6d733290f"
+        },
+        {
+          "file": "optics.html",
+          "sha256": "e2e7b4d70fbf7d75d6ca56b6a36754bc00603ff3f7dc43f71bf9787ca0fa75d8"
+        },
+        {
+          "file": "phase0-review.html",
+          "sha256": "77a45c55b2722b8d523346e116edb1d4f8c43dc0178145de08324dea3c97c378"
+        },
+        {
+          "file": "phase0.html",
+          "sha256": "c0b8023a95762da8370fc85ed605706a18dce043e4f77325cb3718bda231cd8d"
+        },
+        {
+          "file": "phase1-benchmark.html",
+          "sha256": "59ccd68d38599e91f82a1ddfb4a7df8623acba2d7d8eb9d56bed29997fec9d1a"
+        },
+        {
+          "file": "phase1-light.html",
+          "sha256": "f730abb4485f45b9c08f0e656349242961792301a760cf4ee7a1d5c441d57f2f"
+        },
+        {
+          "file": "phase1-motion-review.html",
+          "sha256": "697b255303a775df14e2296f7b754181f3f72cca7c9b177684027fe8f60e8f58"
+        },
+        {
+          "file": "phase1-review.html",
+          "sha256": "52e491dcfba25adc0d04551cebccf3d91dbafe2c4e1ccdb19dec1b40b7864926"
+        },
+        {
+          "file": "phase1.html",
+          "sha256": "135d3b188bc24e516cfb49440a179144db9bcd386104f61a30027a3f1f25e4c9"
+        },
+        {
+          "file": "reference-motion.html",
+          "sha256": "dc029686b696f6f846334189d31cf3664ba72b61021a5f3847d82ccb81f37799"
+        },
+        {
+          "file": "review-03.html",
+          "sha256": "9a232b4b3fe3bc56db051d1283b28c991717760e488360fad2ef26b43f378251"
+        },
+        {
+          "file": "server.mjs",
+          "sha256": "5cf3653eff37f95e5c8134eb2a418f26c7f4f9546555ec3107a626032ef753dd"
+        },
+        {
+          "file": "src/astronomy.js",
+          "sha256": "d8bec68ab1b0beb1014b5b8ae1b929fad103b244fd9b1c4881a72f1c6551c009"
+        },
+        {
+          "file": "src/celestial-light.js",
+          "sha256": "8fb00527413062c0a43188fad9c08df7007bbcc78c20257cb561cf88b52a0112"
+        },
+        {
+          "file": "src/cloud-volume-control.js",
+          "sha256": "290deec52c69fed965df3f989bc0db8353f4801830adad5cc60cc96073eb01b0"
+        },
+        {
+          "file": "src/environment.js",
+          "sha256": "9fa9f81e1745085bc6a720b0683afaafda350e5d19ec4b226de27383f2522993"
+        },
+        {
+          "file": "src/foam-pattern.js",
+          "sha256": "f79bf8be59cff58b2a8ac7b71ad61eae873c77751d3a687fc35fac5f73be24ef"
+        },
+        {
+          "file": "src/gpu-ledger.js",
+          "sha256": "b69f789610f296e31c5a1366ef7b9a7493b436872b17fee8f0f0ca3d7bb0abe5"
+        },
+        {
+          "file": "src/numerics.js",
+          "sha256": "a1bdb5e8c2c4346db412b461aa74885b70668c9e7f889f8f6c297a8aa775ab7e"
+        },
+        {
+          "file": "src/ocean-contracts.js",
+          "sha256": "9040a4c36ff563a5d836c3252660dc41087a6faaa2ba66308e2722339e248ccc"
+        },
+        {
+          "file": "src/ocean-order.js",
+          "sha256": "dde289b060fd0b021bc928d8b6cae5965140eea28f9503273fc34e46ddecfa4f"
+        },
+        {
+          "file": "src/renderer.js",
+          "sha256": "d905bcbf506c523ae8907aa0b88d87df2de0d5b23351e8427a3b20d951ef566b"
+        },
+        {
+          "file": "src/runtime-input.js",
+          "sha256": "9e71659fad92b35ee05760bd85d25b231af2beaabed6cbeaa788c09efa8859a0"
+        },
+        {
+          "file": "src/sea-spectrum.js",
+          "sha256": "5f526c1eb6387be9064bd549ed2379ad32588bd4d9ea36156a83bad4faf9d422"
+        },
+        {
+          "file": "src/settings.js",
+          "sha256": "ff41532aff826057d416de1415bb42713df0970f8caa9184a7d1c9a4b0d159f0"
+        },
+        {
+          "file": "src/spatial-origin.js",
+          "sha256": "ef4a7aca8f43ab3402feb5ea6c447f702558a40380dd5216e4045bc795aa2c89"
+        },
+        {
+          "file": "src/ui.js",
+          "sha256": "4668cbd15f8b497154ea4b582e0cb728c5065800ca0c54cbeb167def0914c893"
+        },
+        {
+          "file": "src/wgsl/breaking-events.js",
+          "sha256": "558024eb0933f7f62e133ad09f7dbc85ff8fa292d3cd0fbca7ff655a58eb1a83"
+        },
+        {
+          "file": "src/wgsl/cloud-ambient.js",
+          "sha256": "1b28c59f69ee67d02a7e1e0d1f64492d8a2ac6b567677144c5d514532dfd0c69"
+        },
+        {
+          "file": "src/wgsl/cloud-bank.js",
+          "sha256": "2ecb417a8d2a60db7467e56e29835cd58410dc520deca77e583785be2f85e2b7"
+        },
+        {
+          "file": "src/wgsl/cloud-condensate.js",
+          "sha256": "164bf5f8f870352d6b451e5b629dc80f9e9c21f30a69a96b723b34792ea9a4d5"
+        },
+        {
+          "file": "src/wgsl/cloud-convection.js",
+          "sha256": "7fc81a6c69b0ce6ca44a789aa063a6179f1d252ea24d5461fd00390f74460471"
+        },
+        {
+          "file": "src/wgsl/cloud-light-path.js",
+          "sha256": "d423e43bcbaf8c06c46cc655e55d2abd33e3b8bf05543dee75be153d9a51b3de"
+        },
+        {
+          "file": "src/wgsl/cloud-noise.js",
+          "sha256": "99d0ed409fe836805975a0b394ae22db5b8b2ebbb5c208c76393c3d5db387ef6"
+        },
+        {
+          "file": "src/wgsl/cloud-transport.js",
+          "sha256": "4dcc00148ac7de3a4bf2afa00274994054366598be9dba217aef3f0952f62052"
+        },
+        {
+          "file": "src/wgsl/cloud-volume-control.js",
+          "sha256": "d4303f87165c850f40d76a9517c65061d25836ae529c5f829545ce139f1c9688"
+        },
+        {
+          "file": "src/wgsl/clouds.js",
+          "sha256": "f2d853b834be0bfaf91762427fa1273a32b04ae6de4d3d0f55163160f16b9142"
+        },
+        {
+          "file": "src/wgsl/common.js",
+          "sha256": "7e8c4faacbfed0001572c34f7212b91c9e6ac0a10f431e5427bfd45357611aa5"
+        },
+        {
+          "file": "src/wgsl/coordinates.js",
+          "sha256": "cbe1808c797aaf9532b6ff94baa752a19c6cb912777026ccd70547914447c53e"
+        },
+        {
+          "file": "src/wgsl/coupling.js",
+          "sha256": "bc90ba50e98f903d358713cc3f02617b2bcb09274cfc4b576ac8ff8aab86a9e6"
+        },
+        {
+          "file": "src/wgsl/environment.js",
+          "sha256": "c51d50511622d857d0e02461b4269af7777518d20a080b7906a82f94fcc61def"
+        },
+        {
+          "file": "src/wgsl/finite-glints.js",
+          "sha256": "f8492d18e5e52626202a2e67440fb3dab7d6444c1e1ea36f745d6a6caf9e9ef0"
+        },
+        {
+          "file": "src/wgsl/immersion.js",
+          "sha256": "e019c49171d11cd712e160f0ee69e4ee5ff18ed1bbcff944a056e586e2eb9433"
+        },
+        {
+          "file": "src/wgsl/irradiance.js",
+          "sha256": "f296385d1d84d3042cc7dc2d7759a771b9d9d6125a75be3fd86b933c4f4b2639"
+        },
+        {
+          "file": "src/wgsl/lens-medium.js",
+          "sha256": "9c25cb450aa5129c85e523637bd10958ac467f6be9e8b308e6d7bb4a9df960f1"
+        },
+        {
+          "file": "src/wgsl/ocean.js",
+          "sha256": "a012a6ff9266f7a6924fd849acf065c077782c942058485d2111c1b693a08cf3"
+        },
+        {
+          "file": "src/wgsl/particles.js",
+          "sha256": "d008bd88c9ea4dfa8ee4727ffbb374337ed2f7610236c38755cb358f0126098d"
+        },
+        {
+          "file": "src/wgsl/post.js",
+          "sha256": "8bd6eb2e65f2c9e5c85263a692da0188c50e94c68437c8445965d6e17c045df9"
+        },
+        {
+          "file": "src/wgsl/sim.js",
+          "sha256": "adc9c6bdd37343bb1ff0abfe2e901c510675659537807e455e183b5567bee191"
+        },
+        {
+          "file": "src/wgsl/sky.js",
+          "sha256": "7f449ff85f9bf53b9786715a086cdb4bc64ef3fbc3c51a1600c8a2e4fd3647d1"
+        },
+        {
+          "file": "src/wgsl/water-transport.js",
+          "sha256": "59f7f33a2984b4f1b801daf9e4e9d9100dc93e99d806bdfc4ba967d61f645a33"
+        },
+        {
+          "file": "src/wgsl/wave-visibility.js",
+          "sha256": "8a59b274de5bffc7dc6dafaca13260aec529f5cc5e15b6da9d2f0e48535d1dd8"
+        },
+        {
+          "file": "src/wgsl/wind-roughness.js",
+          "sha256": "3bd0375b50413e9d04cb338050fee02c8655f9270816ecc38452c639d714c0b0"
+        },
+        {
+          "file": "src/wind-roughness.js",
+          "sha256": "f31119f9cb79e5c96efb763349db057214ab6175ad5994e4f5b66e328e36a68c"
+        },
+        {
+          "file": "tests.html",
+          "sha256": "91e401a51eb5a35c8eb54c5443f5192ed3e3abbfcf383e1cb8aecfc78df7118a"
+        },
+        {
+          "file": "tests/appearance-gpu.js",
+          "sha256": "b000e674641c8b5532df486e9a2bc0385c4f29c7fdc81dfdeda8aeba16aab549"
+        },
+        {
+          "file": "tests/celestial-light.test.mjs",
+          "sha256": "e54cbe66c71a52882fa549bdfa22d6a6f6c78e861ec0a77eaaa23b8abe784ca6"
+        },
+        {
+          "file": "tests/cloud-appearance-shaders.js",
+          "sha256": "795e86294cd582a2c5b9679ead0f1609388a6421b0a60df30dcb1453a93bba58"
+        },
+        {
+          "file": "tests/cloud-appearance.test.mjs",
+          "sha256": "0e2d1426887d51aec5e4cae93ea9dfa16596a7badb70df54eefe885de1f1b7f7"
+        },
+        {
+          "file": "tests/cloud-condensate.test.mjs",
+          "sha256": "c1ee48ee849a9c71f2ac82c2622bbedac32dbeda25093ec119ab49aaeb7b605a"
+        },
+        {
+          "file": "tests/cloud-convection-readback.js",
+          "sha256": "81987fee83dc12c8b1ffa85c29408b8b4b1e896e890dc114d6e829fda259e5f5"
+        },
+        {
+          "file": "tests/cloud-convection.test.mjs",
+          "sha256": "50f4c2bca31454b567e981a0205fd338b29fbee52fc9a96e35376441fa504f6f"
+        },
+        {
+          "file": "tests/cloud-light-path-readback.js",
+          "sha256": "f6bb223b97af71d9c171fe1483d9b51c93aa5b609646fd4e265313db93b9af94"
+        },
+        {
+          "file": "tests/cloud-light-path.test.mjs",
+          "sha256": "edce1fa083521373d9c335e67b437a528178dc542ce2a404161500972ea24850"
+        },
+        {
+          "file": "tests/cloud-view-readback.js",
+          "sha256": "6434cf8db7c3556a442f036bcb9c251eac190ef6ea20165eb2dc36dd71ac7022"
+        },
+        {
+          "file": "tests/cloud-volume-control.test.mjs",
+          "sha256": "5dcfb45d3284ab4349f69459ed0a0163e0e921f1df002090ec0a319808383b37"
+        },
+        {
+          "file": "tests/contracts.test.mjs",
+          "sha256": "f3da56b718f9ab970b334b9603a6c982612cb25954ef3e7ed445d47124eb1108"
+        },
+        {
+          "file": "tests/coordinates-gpu.js",
+          "sha256": "15fe7e0d9c4e1fc3262ed6c60b83ead08f32d3640973e6faa58cc5666043be23"
+        },
+        {
+          "file": "tests/coupling-gpu.js",
+          "sha256": "94d449b80579ebd08012eb2ad3522423acf5a08b394069404dc2be671d5b6ffe"
+        },
+        {
+          "file": "tests/deformed-slope-readback.js",
+          "sha256": "d57c5ccc8497264482cc965d1f13b6413489961302b1dda46f6ce9d9ea801a33"
+        },
+        {
+          "file": "tests/dynamics.js",
+          "sha256": "f8ed46514b217516692e9dd8bfa0edb3ab0db0c7d61ac8b7bffcd1ce57ecf9b1"
+        },
+        {
+          "file": "tests/ensemble.js",
+          "sha256": "2b7598201001f65262d5e951eac7b2c95e0986abb7679f5ff6511f870febb1d9"
+        },
+        {
+          "file": "tests/environment-gpu.js",
+          "sha256": "ee42f2b33883efc7b8e825d351b3485685b4a217925163cdecb51c6f061ec4a8"
+        },
+        {
+          "file": "tests/environment.test.mjs",
+          "sha256": "f008c34b7f7d6ab0d3cf3b4687a716653414417eb80d8287a8991a96140eaae9"
+        },
+        {
+          "file": "tests/evidence.test.mjs",
+          "sha256": "2ae67b6769d8e1ff051885169db92f3388947610ccc19529cf3c995b828e9648"
+        },
+        {
+          "file": "tests/foam-readback.js",
+          "sha256": "b21398149d9472aeb31d7649421369913b5e03293df8e73dbe6b4ed31caf288f"
+        },
+        {
+          "file": "tests/gpu.js",
+          "sha256": "10468e0c01dfe6599847ff89ef976886741064488aab7f9a08150472bfe20256"
+        },
+        {
+          "file": "tests/hdr-readback.js",
+          "sha256": "77a5ba61035e449d3e44a3952600d43f139d85b6264d8585cea7a4ae907ac516"
+        },
+        {
+          "file": "tests/irradiance-gpu.js",
+          "sha256": "2a0c62a511eae99edff7b170067ab2edd53d9347eb33cc8676e62dc5e4137b53"
+        },
+        {
+          "file": "tests/lens-gpu.js",
+          "sha256": "81f4c991bd1e8835779c1a5437a8c728388836c6466fd7b7ffcedc3aafe8e247"
+        },
+        {
+          "file": "tests/long-grid-study.mjs",
+          "sha256": "e09ff8cd428a304c7422a6641f6b39cafe3a750120e4f969760f48b5503c44b4"
+        },
+        {
+          "file": "tests/long-grid.test.mjs",
+          "sha256": "1093ac89f88fb365ed98c466a194c5ae154a00e3865804e417e6549a068443c0"
+        },
+        {
+          "file": "tests/milestone-a-manifest.mjs",
+          "sha256": "7d187aeb49cdcdb3f70eb2d76d3ee404e50c8e56965cdd4068dfeb79ddfc041b"
+        },
+        {
+          "file": "tests/milestone-a-publication.mjs",
+          "sha256": "59ac96e0864f82f7512f720ee031871d1a3ce76f1ed291610f75fc19bcfb726a"
+        },
+        {
+          "file": "tests/milestone-a-wave-shaders.js",
+          "sha256": "c190fdb3ff4b00eb0428b098c5389ed5d9b7d708e13ab123e02df9a3ec888796"
+        },
+        {
+          "file": "tests/milestone-a-wave.test.mjs",
+          "sha256": "0fcb404b32dd3d256399bb7ddf561d54d0c54a31ebaadbaf8d4735b69cf9864f"
+        },
+        {
+          "file": "tests/numerics.test.mjs",
+          "sha256": "ea351a2883ec392fad55bdb93fc0a56c12f63e6d0a2531637dd769c3fc9d7192"
+        },
+        {
+          "file": "tests/ocean-order.test.mjs",
+          "sha256": "2aaaa8fabe6c9c47dcb863889a47f5d661e7babb7105e8789c012c5f9da9df59"
+        },
+        {
+          "file": "tests/optics.test.mjs",
+          "sha256": "78ede7d0532d1add0b2ff1cb551cceae58498df66086a7e7c8cb545a8a4a8e8e"
+        },
+        {
+          "file": "tests/phase0-crest.mjs",
+          "sha256": "261446c3d2ff013d0c645f0a3f6cfd3ff7b5e8f65816e792c1af43dfed1369dc"
+        },
+        {
+          "file": "tests/phase0-manifest.mjs",
+          "sha256": "6d099326540b1b26f6e3846347980615219557ad7560beb74ef1cb74ea4d6819"
+        },
+        {
+          "file": "tests/phase0-optics.mjs",
+          "sha256": "b7d0f8a3cfb5992ae2326c13485ab759593341aff98bdec5a9407ed6927a47fe"
+        },
+        {
+          "file": "tests/phase0-readback.js",
+          "sha256": "f1f867692fa70a760ac61de7e1d19471158aa929d84984321fe839735a5a497b"
+        },
+        {
+          "file": "tests/phase0-science.mjs",
+          "sha256": "e404eb0bfe4b77a9d2cea5926c92879358a736edf0bfff137346e7813210207a"
+        },
+        {
+          "file": "tests/phase0-shaders.js",
+          "sha256": "a66d3df9ea1d50ba1a7c7e3e426458e321d9e12de4e268bbb393deb7e73e10c9"
+        },
+        {
+          "file": "tests/phase0.test.mjs",
+          "sha256": "5eff9a94200e3f603c028916787114e949e0353b1191ec73bd928c09e297d7b8"
+        },
+        {
+          "file": "tests/phase1-field-experiment.mjs",
+          "sha256": "96a912e3898d8e63c1ecf56d4c35ad8df9b4b172ef49acbe33eadf50756497f2"
+        },
+        {
+          "file": "tests/phase1-inventory.mjs",
+          "sha256": "3e6d17341f3308731823d4f9b301bc5d8a053dc6f4426da22e6c10b4bb08a480"
+        },
+        {
+          "file": "tests/phase1-light-readback.js",
+          "sha256": "7596345afc2d3916aa1dfe9938a247c9e9237c0b14fc2f4ffe272bbebbb4fe00"
+        },
+        {
+          "file": "tests/phase1-publication.mjs",
+          "sha256": "566bd225d34653f18e779b2514d06f2937edab7c6275afb199f28f33e0b5d1b6"
+        },
+        {
+          "file": "tests/runtime.test.mjs",
+          "sha256": "a1d4e74c7d7bb18a49aee37c4ae9e22b7c185ca245ef070b6d016c746c39373e"
+        },
+        {
+          "file": "tests/sea-spectrum.test.mjs",
+          "sha256": "bfde7381fae9a05e01f2965ade67d909d49a3250f7d95dc789850397a468eead"
+        },
+        {
+          "file": "tests/slope-readback.js",
+          "sha256": "efe38d2968108d0bc4667653f55990ba62cb233d8c88cd56b072f44cd9f05463"
+        },
+        {
+          "file": "tests/spatial-origin.test.mjs",
+          "sha256": "c905a023aebc8fb4dfaa2181a9568ad75f41539a1d8722dc61df085943d5a6c8"
+        },
+        {
+          "file": "tests/spectral-readback.js",
+          "sha256": "8587a093376d2eb824e4bdd853125f10e306f031dbaaed7b2f915c2e5412354a"
+        },
+        {
+          "file": "tests/visibility-gpu.js",
+          "sha256": "76530af8c213c0218081a306b372e42344de8873c4e32c41cdf4052af4e4f851"
+        },
+        {
+          "file": "tests/water-transport.test.mjs",
+          "sha256": "842354906809db1af5217d7d7d8736cfd0302f349e2bd55e9548dabecebca089"
+        },
+        {
+          "file": "tests/webgpu-hardware-probe.html",
+          "sha256": "048c6ada5c67c19b25c36f5fad7b5a481fb0b961301f1369dacf88701a572f42"
+        },
+        {
+          "file": "tests/wind-roughness.test.mjs",
+          "sha256": "3ddb3d0f82243744b1be1f38f55f8d3ee4c3ff528c62e3efb35ea45ddfda071e"
+        },
+        {
+          "file": "tools/evidence-store.mjs",
+          "sha256": "10a1fd89543850ba9977d57e35fcaab60d9b75a8fa93d2c60705ba7f2e8cda0f"
+        }
+      ]
+    }
+  }
+}

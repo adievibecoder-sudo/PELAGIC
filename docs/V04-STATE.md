@@ -1,5 +1,7 @@
 # PELAGIC 0.4 — Persistent Verified State
 
+**24 October A+B checkpoint:** Rendering source `8ac767b`, version `0.4.0-dev.ab1`. Actual unpublished `c4185ea` history recovered and preserved. Default particle emission now accounts for timestep; finite glitter, coupled wind roughness, collision-position cloud lighting and compression-event foam remain opt-in. Elevated daylight wave readability improves; low-Sun metallic water, cloud rims, temporal glitter statistics and B1/B2 acceptance remain open. CPU49 / FFT9 / optics5 / appearance11 PASS. Four matched 1080p stills and original continuous motion are available through `ab-review.html`. RTX 3050 candidate GPU work: 38.58 ms near / 32.50 ms elevated in daylight; queue throughput is not displayed FPS. One-second display pacing remains unresolved. A+B incomplete; owner visual review pending. See `V04-AB-DEVELOPMENT.md` for evidence and limits. Older checkpoint entries below remain historical.
+
 **Active owner decision, 24 October 2026:** Combined Milestones A+B are authorized by the current kickoff. Historical Phase 1-only / A-only scheduling below is superseded; failures and original evidence remain historical facts. Implementation-led water appearance first, then coupled clouds, Living Sea, breaking/whitewater, spray and weather. Owner review at substantial integrated checkpoints; B1/B2 remain review milestones. Milestone C, final release and independent acceptance remain separately gated. Recovery and current programme: `V04-AB-DEVELOPMENT.md`.
 
 
@@ -27,8 +29,8 @@ Hardware: current Chrome GPU PID18756 appears on the RTX 3050 in `v04-ma-hardwar
 
 **Historical Phase 1 checkpoint, 22 October 2026 (scheduling superseded):** Phase 1 engineering handoff; STOP for owner approval before Phases 2+3. Chrome automation recovered through its supported extension runtime, without security changes or restarts. RTX 3050 use is corroborated with the Chrome GPU PID. Final rendering source `919dfb4`: 32 CPU tests, nine FFT checks, five optical groups and six regional batches PASS. Twelve controlled 1080p still pairs, seven final 20 s clips, isolated lighting controls, nine completed browser playbacks and UI restore/share tests are preserved. Corrected sustained FPS: Golden Balanced 21.72, Storm Balanced 31.02, Golden High 10.87. Targets FAIL; baseline one-second stalls reproduced, cause UNVERIFIED. See `V04-PHASE1-REPORT.md`, `V04-PHASE1-ACCEPTANCE.md`, `V04-PHASE1-REPRODUCE.md`. Publication proof is stored separately in the Phase 1 handoff evidence. No inherited realism failure is closed.
 **Working branch:** `development/pelagic-0.4`
-**Current authorized programme:** **Milestone A continuation, 23 October authorization**
-**Next gate:** Explicit owner visual acceptance after substantial integrated improvement. B additionally requires explicit authorization; C remains separately gated.
+**Current authorized programme:** **Combined Milestones A+B, 24 October kickoff**
+**Next gate:** Owner visual review of substantial integrated checkpoints, including B1/B2. Milestone C and final release remain separately gated.
 
 ## Preserved baseline
 
