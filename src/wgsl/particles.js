@@ -1,8 +1,9 @@
 import {FRAME_WGSL,ATMO_CORE_WGSL,NOISE_WGSL,CASCADES,CONFIG} from './common.js';
 import {SKY_RENDER_FUNCS} from './sky.js';
 import {SHORT_WAVE_COUPLING} from './coupling.js';
+import {EMISSION_HAZARD} from './breaking-events.js';
 export const PARTICLE_COUNT=CONFIG.quality==='Balanced'?24576:49152;
-export const PARTICLE_UPDATE=FRAME_WGSL+NOISE_WGSL+SHORT_WAVE_COUPLING+/* wgsl */`
+export const PARTICLE_UPDATE=FRAME_WGSL+NOISE_WGSL+SHORT_WAVE_COUPLING+EMISSION_HAZARD+/* wgsl */`
 struct Particle {p:vec4f,v:vec4f};
 @group(0) @binding(0) var<uniform> F:Frame;
 @group(0) @binding(1) var<storage,read_write> particles:array<Particle>;
@@ -35,7 +36,7 @@ fn rnd(v:u32)->f32{return f32(pcgHash(v)>>8u)/16777216.0;}
    let windGate=smoothstep(select(4.0,9.0,spindrift),select(12.0,19.0,spindrift),F.windP[0].z);
    let rainSupport=textureSampleLevel(weatherSupport,weatherSampler,(xz-F.camPos.xz)/40000.0+0.5,0.0).b;
    let spawn=select(fresh*fresh*F.weather.y*windGate,rainSupport,rain);
-   if(rnd(seed+4u)>spawn){p.p=vec4f(xz.x,-1000,xz.y,0);particles[k]=p;return;}
+   if(rnd(seed+4u)>emissionProbability(spawn,dt)){p.p=vec4f(xz.x,-1000,xz.y,0);particles[k]=p;return;}
    let life=select(0.7+r.y*1.2,2.5+r.y*2.0,spindrift);
    p.p=vec4f(xz.x+d.x,select(d.y+0.12,F.camPos.y+8.0+r.y*25.0,rain),xz.y+d.z,select(life,4.0,rain));
    let orbital=clamp((d-last)/max(dt,0.001),vec3f(-8),vec3f(8));

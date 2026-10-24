@@ -7,18 +7,19 @@ const run=args.get('run');if(!run||!/^[a-z0-9-]{1,24}$/.test(run))throw Error('A
 const cases=[{name:'day-near',sunElev:48,exposure:.95,y:2,pitch:-5.5},{name:'day-high',sunElev:48,exposure:.95,y:50,pitch:-12},
  {name:'gold-near',sunElev:5,exposure:1.3,y:2,pitch:-5.5},{name:'gold-high',sunElev:5,exposure:1.3,y:50,pitch:-12}];
 let index=Number(args.get('start')||0),running=false;
-const view=document.querySelector('#view'),status=document.querySelector('#status');
+let view=document.querySelector('#view');const status=document.querySelector('#status');
 function next(){
  if(!running||index>=cases.length){running=false;document.title='MILESTONE A DONE';status.textContent=`${index}/4 complete`;return;}
  const c=cases[index];status.textContent=c.name+' / '+mode;
  const q=new URLSearchParams({preset:'midday',ma:1,cam:`0,${c.y},0,4,${c.pitch}`,cameraMode:'free',quality:args.get('quality')||'Balanced',resolution:1,w:1920,h:1080,
   seed:1307,t:20,frames:100,ui:0,adaptive:0,stage:`v04-ma-${run}`,validate:1,p0:1,p0Profile:1,revision:args.get('revision')||'source-manifest',
   clouds:.5,veil:0,haze:1.4,cloudType:0,sunElev:c.sunElev,exposure:c.exposure,weatherRate:1,seaRate:1});
- for(const key of ['maCloud','debug','p0Columns','p0CloudView','clouds','paused'])if(args.has(key))q.set(key,args.get(key));
+ for(const key of ['maCloud','debug','p0Columns','p0CloudView','clouds','paused','maGlints','maRoughness','maWater','maCloudTransport','maAmbient','maBreaking','p0Desat'])if(args.has(key))q.set(key,args.get(key));
  if(mode==='motion'){q.set('video',c.name);q.set('duration',24);q.set('motion','ma-pan');}
  else if(mode==='benchmark'){q.set('benchmark',c.name);q.set('benchmarkSeconds',60);q.set('frames',10000);}
  else q.set('shot',c.name+'.png');
- view.src='/?'+q;
+ const fresh=document.createElement('iframe');fresh.id='view';fresh.title='Controlled ocean scene';fresh.src='/?'+q;
+ view.replaceWith(fresh);view=fresh;
 }
 document.querySelector('#run').onclick=()=>{running=true;next();};document.querySelector('#stop').onclick=()=>running=false;
 addEventListener('message',e=>{

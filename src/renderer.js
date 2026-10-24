@@ -48,6 +48,7 @@ import {waterTransportShader} from './wgsl/water-transport.js';
 import {finiteGlintsShader} from './wgsl/finite-glints.js';
 import {cloudTransportShader} from './wgsl/cloud-transport.js';
 import {cloudAmbientShader} from './wgsl/cloud-ambient.js';
+import {breakingEventsShader} from './wgsl/breaking-events.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -133,6 +134,7 @@ async function main() {
     code=finiteGlintsShader(code,qs);
     code=cloudTransportShader(code,qs);
     code=cloudAmbientShader(code,qs);
+    code=breakingEventsShader(code,qs);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
     let bad = false;

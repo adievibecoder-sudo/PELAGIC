@@ -1,10 +1,11 @@
 import {WIND_ROUGHNESS} from '../src/wgsl/wind-roughness.js';
 import {GLINT_STATISTICS} from '../src/wgsl/finite-glints.js';
 import {CLOUD_COLLISION} from '../src/wgsl/cloud-transport.js';
+import {EMISSION_HAZARD} from '../src/wgsl/breaking-events.js';
 
 export async function verifyAppearance(device){
   const count=65536,B=GPUBufferUsage,results=[];
-  const code=WIND_ROUGHNESS+GLINT_STATISTICS+CLOUD_COLLISION+/* wgsl */`
+  const code=WIND_ROUGHNESS+GLINT_STATISTICS+CLOUD_COLLISION+EMISSION_HAZARD+/* wgsl */`
   @group(0) @binding(0) var<storage,read_write> output:array<vec4f>;
   @compute @workgroup_size(64) fn main(@builtin(global_invocation_id) id:vec3u){
     let i=id.x;let rank=(f32(i)+0.5)/65536.0;
@@ -19,6 +20,11 @@ export async function verifyAppearance(device){
     if(i<8u){
       let tau=array<f32,8>(0,0.001,0.049,0.051,0.5,2,10,100);
       output[9u*65536u+i]=vec4f(collisionFraction(tau[i]),0,0,0);
+    }
+    if(i<3u){
+      let rates=array<f32,3>(20,30,60);
+      let p=emissionProbability(0.01,1.0/rates[i]);
+      output[9u*65536u+8u+i]=vec4f(pow(1.0-p,rates[i]),0,0,0);
     }
   }`;
   const module=device.createShaderModule({code});
@@ -54,6 +60,9 @@ export async function verifyAppearance(device){
     collisionError=Math.max(collisionError,Math.abs(values[(9*count+i)*4]-moment/mass));
   }
   results.push({name:'Beer-weighted collision location',maxAbsoluteError:collisionError,status:collisionError<.00002?'PASS':'FAIL'});
+  const survival=[0,1,2].map(i=>values[(9*count+8+i)*4]),expectedSurvival=.99**60;
+  results.push({name:'Emission survival at 20/30/60 Hz',survival,expectedSurvival,
+    status:survival.every(x=>Math.abs(x-expectedSurvival)<.00001)?'PASS':'FAIL'});
   read.unmap();read.destroy();output.destroy();
   return {status:results.every(r=>r.status==='PASS')?'PASS':'FAIL',results,
     scope:'GPU numerical closures. Uniform-rank glint expectation does not establish actual FFT rank distribution, temporal stability or observational calibration.'};
