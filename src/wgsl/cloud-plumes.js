@@ -57,7 +57,7 @@ fn cloudPlumeDensity(p:vec3f,footprint:f32)->f32 {
 `;
 
 export function cloudPlumesShader(code,query){
-  if(query.get('maCloudPhase')==='droplet'){
+  if(['droplet','orders'].includes(query.get('maCloudPhase'))){
     // Water-droplet forward asymmetry. Higher-order angular convolutions of HG
     // have g^n; retain the old order weights for this isolated phase comparison.
     code=code.replaceAll('0.85*phaseHG(dot(dir,F.sunDir.xyz),0.68)+0.15*phaseHG(dot(dir,F.sunDir.xyz),-0.25)',
@@ -66,6 +66,13 @@ export function cloudPlumesShader(code,query){
       .replaceAll('0.85*phaseHG(dot(dir,F.moonDir.xyz),0.68)+0.15*phaseHG(dot(dir,F.moonDir.xyz),-0.25)',
       'phaseHG(dot(dir,F.moonDir.xyz),0.85)')
       .replaceAll('phaseHG(dot(dir,F.moonDir.xyz),0.28)','phaseHG(dot(dir,F.moonDir.xyz),0.52200625)');
+    if(query.get('maCloudPhase')==='orders'){
+      // The old point-density gate creates higher-order light even on a thin,
+      // directly exposed boundary. Condition it on an incident collision path.
+      // This remains a local scattering-order closure, not full cloud transport.
+      code=code.replace(')*(1.0-exp(-density*5.0));',')*(1.0-exp(-optical));')
+        .replace(')*(1.0-exp(-density*5.0));',')*(1.0-exp(-moonOptical));');
+    }
   }
   const mode=query.get('maCloud');
   if(!['plumes','entrained'].includes(mode)||!code.includes('fn cloudDensityFiltered('))return code;

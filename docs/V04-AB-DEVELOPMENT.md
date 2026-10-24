@@ -1,5 +1,7 @@
 # Combined A+B development - 24 October 2026
 
+Current continuation: `V04-AB-CONTINUATION-02.md`. Owner rejected visual acceptance of the first checkpoint. New work remains experimental; `ab2-review.html` retains matched comparisons. No default appearance promotion.
+
 ## Recovered working state
 
 The previously unpublished checkpoint was found locally, not reconstructed from GitHub. Original checkout: `C:/Users/adity/Documents/Codex/2026-10-18/build-an-extraordinary-real-time-3d/outputs/pelagic-github`. HEAD `c4185ea0acdf6e57899da04098889dba9200302b`, branch `development/pelagic-0.4`, 20 commits ahead of published `d4f7d806ffc5cb6ffc88e9aa9637edbfe3b5d574`.

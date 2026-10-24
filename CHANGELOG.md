@@ -1,5 +1,14 @@
 # Development changelog
 
+## 0.4.0-dev.ab2 - 24 October 2026
+
+- Preserve the owner's rejection of A+B visual acceptance; keep all appearance trials opt-in.
+- Add continuous, normalized FFT glitter ranks and spectrum-correlated conditional shutter integration. Preserve the earlier finite-glitter comparison.
+- Compare visible-slope quadrature, subpixel sunlight, wave-path and directional water scattering. Low-Sun appearance remains unresolved; none replaces the default renderer.
+- Add clustered/entrained cumulus, droplet-phase and path-conditioned scattering comparisons. Irregular silhouettes do not close cloud-lighting or morphology failures.
+- Compare onset-only foam deposition and stricter fold/crest proxies. Broad sheets or underproduction remain; no breaking/spray acceptance.
+- Validate CPU52 and GPU appearance24; retain matched original stills/motion and measured costs. No release promotion.
+
 ## 0.4.0-dev.ab1 - 24 October 2026
 
 - Recover actual unpublished `c4185ea` history and working evidence; reconcile the owner's combined A+B authorization with the research handoff.

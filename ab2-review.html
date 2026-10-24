@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PELAGIC / A+B continuation experiments</title>
+<style>body{margin:24px;background:#101b20;color:#e6ede7;font:15px/1.5 Consolas,monospace}a{color:#a9d2dc}select,button{padding:8px;margin:6px}img,video{display:block;width:100%;height:auto}figure{margin:8px 0}section{display:grid;grid-template-columns:1fr 1fr;gap:20px}h1{font-size:24px}@media(max-width:900px){section{grid-template-columns:1fr}}</style>
+<h1>PELAGIC 0.4 / A+B continuation experiments</h1>
+<p>Conditional shutter glitter, cloud morphology and stricter breaking trials. Experimental progress only. Low-Sun water, cloud lighting and convincing whitewater remain unresolved. A+B is not accepted; default appearance remains unchanged.</p>
+<p><a href="docs/V04-AB-CONTINUATION-02.md">Findings and limitations</a> / <a href="ab-review.html">Earlier checkpoint</a></p>
+<label>Matched water view <select id="scene"><option>day-near</option><option>day-high</option><option>gold-near</option><option>gold-high</option></select></label>
+<label>Before <select id="before"><option value="v04-ma-ab-final-stills-02">Previous finite glitter</option><option value="v04-ma-base-stills-02">Recovered baseline</option></select></label>
+<section id="stills"></section>
+<label>Original motion <select id="clip">
+<option value="v04-ma-ab2-water-motion-01/day-near">Conditional glitter / daylight</option>
+<option value="v04-ma-ab2-water-motion-01/gold-near">Conditional glitter / low Sun</option>
+<option value="v04-ma-ab2-cloud-motion-01/entrained">Entrained cloud comparison</option>
+<option value="v04-ma-ab-motion-02/day-near">Earlier finite glitter / daylight</option>
+<option value="v04-ma-ab-motion-02/gold-near">Earlier finite glitter / low Sun</option>
+<option value="v04-ma-ab-motion-02/storm">Earlier breaking-event storm</option>
+<option value="v04-ma-ab2-breaking-01/onset">Onset-only foam / broad sheets remain</option>
+<option value="v04-ma-ab2-fold-01/fold">Fold proxy / underproduces foam</option>
+<option value="v04-ma-ab2-crest-01/crest">Crest proxy / underproduces foam</option>
+</select></label><button id="play">Play original</button><p id="status">Original 1920 x 1080 recording.</p>
+<video id="movie" controls playsinline muted></video>
+<h2>Cloud iteration</h2><p>Irregular size and silhouettes; bright rims, dark bases and fragments still fail the visual target.</p>
+<section><figure><figcaption>Previous clouds</figcaption><img src="evidence/v04-ma-ab-final-stills-02/day-near.png" alt="Previous cloud morphology"></figure><figure><figcaption>Entrained cluster trial</figcaption><img src="evidence/v04-ma-ab2-entrained-02/day-near.png" alt="Entrained cloud morphology trial"></figure></section>
+<script type="module">
+const scene=document.querySelector('#scene'),before=document.querySelector('#before');
+function update(){document.querySelector('#stills').replaceChildren(...[before.value,'v04-ma-ab2-water-stills-01'].map((stage,i)=>{
+ const figure=document.createElement('figure'),caption=document.createElement('figcaption'),link=document.createElement('a'),img=document.createElement('img');
+ caption.textContent=i?'Conditional shutter trial':before.selectedOptions[0].textContent;link.href=`evidence/${stage}/${scene.value}.png`;img.src=link.href;img.alt=caption.textContent+' '+scene.value;link.append(img);figure.append(caption,link);return figure;
+}));}scene.onchange=before.onchange=update;update();
+const movie=document.querySelector('#movie'),clip=document.querySelector('#clip'),status=document.querySelector('#status');
+document.querySelector('#play').onclick=async()=>{movie.src=`evidence/${clip.value}.webm`;try{await movie.play();movie.scrollIntoView({block:'start'});}catch(e){status.textContent=e.message;}};
+movie.ontimeupdate=()=>status.textContent=`${clip.value}: ${movie.currentTime.toFixed(2)} s / ${movie.ended?'ENDED':movie.paused?'PAUSED':'PLAYING'}`;
+</script></html>
