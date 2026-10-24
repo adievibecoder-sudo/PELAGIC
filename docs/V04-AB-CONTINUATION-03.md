@@ -53,3 +53,7 @@ RTX 3050 Laptop, 4096 MiB, driver 617.14, desktop Chrome 156 native WebGPU. Four
 | Daylight near / float32 reference | 44.66 | 19.56 | 17.86 | 20.76 |
 
 Storm costs are essentially unchanged; one sequential pair does not demonstrate a speedup. Float32 adds about 5.25 ms in this daylight pair, mostly in the surface pass, supporting its diagnostic-only status. Queue completion p95/p99: gravity storm 43.1/44.5 ms, daylight half 46.1/47.3 ms, daylight float32 52.2/53.9 ms. These are not displayed FPS. The one-second display-pacing defect remains unresolved. No thermal-repeat confidence interval, new elevated/low-Sun sustained profiles or isolated reflection/lens-query timings are claimed. No speculative caching optimization was introduced.
+
+## Publication
+
+Checkpoint `f8703f8a6035170281c572fb45b88d5148d34184` was fast-forward published to `development/pelagic-0.4`, including recovered `f38b85a`/`97f68a1` history. The remote development HEAD matched. All 57 changed LFS objects since `a3e2a46` (517,754,863 bytes) were freshly downloaded to a new isolated cache and SHA-256 verified. Main, completed 0.3 and frozen release refs matched their preserved values. Proof: `evidence/v04-ma-ab3-publication-01/publication.json`. The subsequent handoff commit records this proof without changing renderer source or media. Nine inherited evidence modifications remain unstaged and match their recovery hashes. Publication does not confer visual acceptance.
