@@ -52,10 +52,13 @@ import {breakingEventsShader} from './wgsl/breaking-events.js';
 import {footprintOpticsShader} from './wgsl/footprint-optics.js';
 import {stressRoughnessShader} from './wgsl/wind-roughness.js';
 import {cloudPlumesShader} from './wgsl/cloud-plumes.js';
+import {slopePrecisionShader} from './wgsl/slope-precision.js';
+import {slopePrecisionReadback} from '../tests/slope-precision-readback.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
 const queueDriven=qs.has('shot')||qs.has('video')||(qs.has('benchmark')&&qs.get('benchmarkMode')==='queue');
+const lockedEvidence=qs.get('ma')==='1'&&(qs.has('shot')||qs.has('video')||qs.has('benchmark'));
 const DBG = Number(qs.get('dbg')) || 0;
 const D2R = Math.PI / 180;
 const GU = globalThis.GPUBufferUsage;
@@ -104,8 +107,10 @@ async function main() {
   const adapter = await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' });
   if (!adapter) fail('No WebGPU adapter found.');
   const hasTS = adapter.features.has('timestamp-query');
+  const preciseSlopes = qs.get('maMoments') === 'f32';
+  if (preciseSlopes && !adapter.features.has('float32-filterable')) fail('Float32 slope comparison requires float32-filterable WebGPU textures.');
   const device = await adapter.requestDevice({
-    requiredFeatures: hasTS ? ['timestamp-query'] : [],
+    requiredFeatures: [...(hasTS ? ['timestamp-query'] : []), ...(preciseSlopes ? ['float32-filterable'] : [])],
   });
   const allocations=gpuLedger(device);
   const cloudControl=await loadCloudVolumeControl(device,allocations,qs);
@@ -132,6 +137,7 @@ async function main() {
   ctx.configure({ device, format: swapFormat, alphaMode: 'opaque', usage: TU.RENDER_ATTACHMENT | TU.COPY_SRC });
 
   async function shader(code, label) {
+    code=slopePrecisionShader(code,preciseSlopes);
     code=stressRoughnessShader(code,qs);
     code=cloudAppearanceShader(cloudLightPathShader(waveDiagnosticShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs),qs),qs),qs);
     code=cloudVolumeControlShader(cloudCondensateShader(code,qs),qs);
@@ -176,13 +182,13 @@ async function main() {
   const tmpA = mkBuf(specBytes, GU.STORAGE, 'tmpA');
   const tmpB = mkBuf(specBytes, GU.STORAGE, 'tmpB');
 
-  const mkSimTex = (label) => allocations.texture({
-    label, size: [N, N, C], format: 'rgba16float', mipLevelCount: SIM_MIP_COUNT,
+  const mkSimTex = (label, format = 'rgba16float') => allocations.texture({
+    label, size: [N, N, C], format, mipLevelCount: SIM_MIP_COUNT,
     usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING | TU.COPY_SRC | TU.COPY_DST,
   });
   const dispTex = mkSimTex('disp');
-  const derivTex = mkSimTex('deriv');
-  const momTex = mkSimTex('moments');
+  const derivTex = mkSimTex('deriv', preciseSlopes ? 'rgba32float' : 'rgba16float');
+  const momTex = mkSimTex('moments', preciseSlopes ? 'rgba32float' : 'rgba16float');
   const lastDisp = mkSimTex('previous displacement');
   const lvl = (t, m, dim = '2d-array') => t.createView({ dimension: dim, baseMipLevel: m, mipLevelCount: 1 });
   const fullArr = (t) => t.createView({ dimension: '2d-array' });
@@ -616,18 +622,20 @@ async function main() {
   addEventListener('keydown', (e) => { if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return; keys[e.code] = true; if(e.code==='Space')e.preventDefault(); });
   addEventListener('keyup', (e) => { keys[e.code] = false; });
   addEventListener('blur', () => { for (const k in keys) keys[k] = false; });
-  canvas.addEventListener('dblclick', () => { if (document.pointerLockElement !== canvas) canvas.requestPointerLock().catch(()=>{}); });
+  canvas.addEventListener('dblclick', () => { if (!lockedEvidence && document.pointerLockElement !== canvas) canvas.requestPointerLock().catch(()=>{}); });
   let dragging = false;
-  canvas.addEventListener('mousedown', (e) => { if (e.button === 0 || e.button === 2) dragging = true; });
+  canvas.addEventListener('mousedown', (e) => { if (!lockedEvidence && (e.button === 0 || e.button === 2)) dragging = true; });
   addEventListener('mouseup', () => { dragging = false; });
   canvas.addEventListener('contextmenu', (e) => e.preventDefault());
   addEventListener('mousemove', (e) => {
+    if(lockedEvidence)return;
     if (document.pointerLockElement === canvas || dragging) {
       cam.yaw += e.movementX * 0.0022;
       cam.pitch = Math.max(-1.5, Math.min(1.5, cam.pitch - e.movementY * 0.0022));
     }
   });
   canvas.addEventListener('wheel', (e) => {
+    if(lockedEvidence)return;
     cam.speed = Math.max(0.5, Math.min(400, cam.speed * (e.deltaY < 0 ? 1.15 : 1 / 1.15)));
     P.cameraSpeed = cam.speed;
     ui.sync();
@@ -1229,6 +1237,7 @@ async function main() {
     const stage=qs.get('stage')||'v03-local';
     await postEvidence('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm),blob);
     const report=evidenceReport();
+    if(qs.get('maPrecisionChecks')==='1')report.slopePrecision=await slopePrecisionReadback(device,derivTex,momTex);
     if(cloudControl)report.cloudVolumeControl={...cloudControl.metadata,payloadBytes:cloudControl.payloadBytes};
     if(qs.get('p0Columns')==='1')report.cloudColumns=await phase0CloudColumns(device,frameUBO,cloudNoiseView,cloudSampler,qs,cloudControl);
     if(qs.get('maChecks')==='1')report.cloudChecks=await cloudConvectionChecks(device,frameUBO,cloudNoiseView,cloudSampler,qs,cloudControl);

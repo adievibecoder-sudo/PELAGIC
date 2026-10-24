@@ -5,12 +5,13 @@ export async function spectralReadback(device,{h0,specA,disp,deriv,mom},settings
  const B=GPUBufferUsage,n=N,C=CASCADES,size=n*n*C;
  const h=device.createBuffer({size:size*16,usage:B.COPY_DST|B.MAP_READ});
  const sp=device.createBuffer({size:size*16,usage:B.COPY_DST|B.MAP_READ});
- const arrays=[disp,deriv,mom].map(()=>device.createBuffer({size:size*8,usage:B.COPY_DST|B.MAP_READ}));
+ const textures=[disp,deriv,mom],bytes=textures.map(t=>t.format==='rgba32float'?16:8);
+ const arrays=textures.map((t,i)=>device.createBuffer({size:size*bytes[i],usage:B.COPY_DST|B.MAP_READ}));
  const enc=device.createCommandEncoder();enc.copyBufferToBuffer(h0,0,h,0,size*16);enc.copyBufferToBuffer(specA,0,sp,0,size*16);
- [disp,deriv,mom].forEach((t,i)=>enc.copyTextureToBuffer({texture:t},{buffer:arrays[i],bytesPerRow:n*8,rowsPerImage:n},[n,n,C]));
+ textures.forEach((t,i)=>enc.copyTextureToBuffer({texture:t},{buffer:arrays[i],bytesPerRow:n*bytes[i],rowsPerImage:n},[n,n,C]));
  device.queue.submit([enc.finish()]);await Promise.all([h,sp,...arrays].map(b=>b.mapAsync(GPUMapMode.READ)));
  const coeff=new Float32Array(h.getMappedRange()),spectrum=new Float32Array(sp.getMappedRange());
- const data=arrays.map(b=>new Uint16Array(b.getMappedRange()));
+ const data=arrays.map((b,i)=>bytes[i]===16?new Float32Array(b.getMappedRange()):Float32Array.from(new Uint16Array(b.getMappedRange()),decodeHalf));
  const cascades=[];
  for(let c=0;c<C;c++){
    let ensemble=0,actual=0,hermitian=0,sxEnergy=0,szEnergy=0,crossEnergy=0;
@@ -23,8 +24,8 @@ export async function spectralReadback(device,{h0,specA,disp,deriv,mom},settings
      const energy=hr*hr+hi*hi;actual+=energy;sxEnergy+=kx*kx*energy;szEnergy+=kz*kz*energy;crossEnergy+=kx*kz*energy;
      ensemble+=2*(coeff[i]*coeff[i]+coeff[i+1]*coeff[i+1]);
      hermitian=Math.max(hermitian,Math.abs(coeff[i+2]-coeff[j]),Math.abs(coeff[i+3]+coeff[j+1]));
-     heights[y*n+x]=decodeHalf(data[0][i+1]);sx[y*n+x]=decodeHalf(data[1][i]);sz[y*n+x]=decodeHalf(data[1][i+1]);
-     lostMoment=Math.max(lostMoment,Math.abs(decodeHalf(data[2][i])-sx[y*n+x]**2));
+     heights[y*n+x]=data[0][i+1];sx[y*n+x]=data[1][i];sz[y*n+x]=data[1][i+1];
+     lostMoment=Math.max(lostMoment,Math.abs(data[2][i]-sx[y*n+x]**2));
    }
    const hStats=stats(heights),xs=stats(sx),zs=stats(sz);
    const parseval=Math.abs(hStats.variance-actual)/Math.max(actual,1e-20);
