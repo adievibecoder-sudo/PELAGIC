@@ -1,0 +1,256 @@
+TAP version 13
+# Subtest: lunar disc irradiance follows independently integrated projected Lambert sphere
+ok 1 - lunar disc irradiance follows independently integrated projected Lambert sphere
+  ---
+  duration_ms: 75.8785
+  type: 'test'
+  ...
+# Subtest: twilight adaptation is continuous across the former minus-seven-degree switch
+ok 2 - twilight adaptation is continuous across the former minus-seven-degree switch
+  ---
+  duration_ms: 2.2662
+  type: 'test'
+  ...
+# Subtest: cloud opacity probe replaces screen and environment composition
+ok 3 - cloud opacity probe replaces screen and environment composition
+  ---
+  duration_ms: 1.5488
+  type: 'test'
+  ...
+# Subtest: condensate trial preserves default, ocean and complete cloud transport
+ok 4 - condensate trial preserves default, ocean and complete cloud transport
+  ---
+  duration_ms: 4.1317
+  type: 'test'
+  ...
+# Subtest: cloud experiment is opt-in, leaves ocean and light transport source unchanged
+ok 5 - cloud experiment is opt-in, leaves ocean and light transport source unchanged
+  ---
+  duration_ms: 1.5146
+  type: 'test'
+  ...
+# Subtest: curved layer coordinates preserve altitude during horizontal transport
+ok 6 - curved layer coordinates preserve altitude during horizontal transport
+  ---
+  duration_ms: 2.0309
+  type: 'test'
+  ...
+# Subtest: finite cloud-light quadrature preserves default and density source
+ok 7 - finite cloud-light quadrature preserves default and density source
+  ---
+  duration_ms: 2.8227
+  type: 'test'
+  ...
+# Subtest: cascade intervals partition the represented radial band without gaps or overlap
+ok 8 - cascade intervals partition the represented radial band without gaps or overlap
+  ---
+  duration_ms: 1.7255
+  type: 'test'
+  ...
+# Subtest: directional wind spreading integrates to one over all supported frequency ratios
+ok 9 - directional wind spreading integrates to one over all supported frequency ratios
+  ---
+  duration_ms: 33.2806
+  type: 'test'
+  ...
+# Subtest: covariance transform agrees with independent transformed sample moments, including shear
+ok 10 - covariance transform agrees with independent transformed sample moments, including shear
+  ---
+  duration_ms: 2.0141
+  type: 'test'
+  ...
+# Subtest: discrete sea-state ledger has finite positive energy and positive semidefinite covariance
+ok 11 - discrete sea-state ledger has finite positive energy and positive semidefinite covariance
+  ---
+  duration_ms: 338.4965
+  type: 'test'
+  ...
+# Subtest: weather replay independent of render partition; swell history retained
+ok 12 - weather replay independent of render partition; swell history retained
+  ---
+  duration_ms: 29.3838
+  type: 'test'
+  ...
+# Subtest: snapshot preserves targets, clocks, fractional weather tick and drift
+ok 13 - snapshot preserves targets, clocks, fractional weather tick and drift
+  ---
+  duration_ms: 4.5561
+  type: 'test'
+  ...
+# Subtest: natural command preserves phase clock and drift; preview explicitly applies state
+ok 14 - natural command preserves phase clock and drift; preview explicitly applies state
+  ---
+  duration_ms: 0.6529
+  type: 'test'
+  ...
+# Subtest: regional support bounded, continuous, electrically active only by explicit flag
+ok 15 - regional support bounded, continuous, electrically active only by explicit flag
+  ---
+  duration_ms: 4.9794
+  type: 'test'
+  ...
+# Subtest: weather field invariant under camera origin rebasing, f32 bounded at 1000 km
+ok 16 - weather field invariant under camera origin rebasing, f32 bounded at 1000 km
+  ---
+  duration_ms: 1.0113
+  type: 'test'
+  ...
+# Subtest: astronomy, wave, weather and exposure clocks have independent pause/rates
+ok 17 - astronomy, wave, weather and exposure clocks have independent pause/rates
+  ---
+  duration_ms: 0.9014
+  type: 'test'
+  ...
+# Subtest: evidence writes reject collisions and traversal without altering originals
+ok 18 - evidence writes reject collisions and traversal without altering originals
+  ---
+  duration_ms: 27.5993
+  type: 'test'
+  ...
+# Subtest: long-grid probe keeps defaults and cascade boundary below Nyquist
+ok 19 - long-grid probe keeps defaults and cascade boundary below Nyquist
+  ---
+  duration_ms: 2.4185
+  type: 'test'
+  ...
+# Subtest: wave isolation preserves default shaders and actual displaced vertex geometry
+ok 20 - wave isolation preserves default shaders and actual displaced vertex geometry
+  ---
+  duration_ms: 2.1756
+  type: 'test'
+  ...
+# Subtest: independent recursive inverse FFT agrees with direct DFT, including Parseval
+ok 21 - independent recursive inverse FFT agrees with direct DFT, including Parseval
+  ---
+  duration_ms: 10.6863
+  type: 'test'
+  ...
+# Subtest: JONSWAP normalized swell integrates to Hm0 at multiple peak periods
+ok 22 - JONSWAP normalized swell integrates to Hm0 at multiple peak periods
+  ---
+  duration_ms: 82.9623
+  type: 'test'
+  ...
+# Subtest: directional swell normalization and dispersion derivative
+ok 23 - directional swell normalization and dispersion derivative
+  ---
+  duration_ms: 2387.3213
+  type: 'test'
+  ...
+# Subtest: dielectric limits and underwater total internal reflection
+ok 24 - dielectric limits and underwater total internal reflection
+  ---
+  duration_ms: 0.292
+  type: 'test'
+  ...
+# Subtest: configuration URL restores every setting; malformed input is bounded
+ok 25 - configuration URL restores every setting; malformed input is bounded
+  ---
+  duration_ms: 1.7865
+  type: 'test'
+  ...
+# Subtest: weather relaxation is timestep independent and wraps direction
+ok 26 - weather relaxation is timestep independent and wraps direction
+  ---
+  duration_ms: 0.7936
+  type: 'test'
+  ...
+# Subtest: astronomical vectors are normalized, equinox noon is overhead, lunar phase geometry changes
+ok 27 - astronomical vectors are normalized, equinox noon is overhead, lunar phase geometry changes
+  ---
+  duration_ms: 1.386
+  type: 'test'
+  ...
+# Subtest: near-first patch order is an exact stable permutation, including rebased coordinates
+ok 28 - near-first patch order is an exact stable permutation, including rebased coordinates
+  ---
+  duration_ms: 3.2923
+  type: 'test'
+  ...
+# Subtest: linearized solar-disc covariance matches independent uniform-disc integration
+ok 29 - linearized solar-disc covariance matches independent uniform-disc integration
+  ---
+  duration_ms: 63.2939
+  type: 'test'
+  ...
+# Subtest: five-facet quadrature conserves input slope covariance
+ok 30 - five-facet quadrature conserves input slope covariance
+  ---
+  duration_ms: 0.4332
+  type: 'test'
+  ...
+# Subtest: radiance through a dielectric obeys n squared and homogeneous volume has zero path limit
+ok 31 - radiance through a dielectric obeys n squared and homogeneous volume has zero path limit
+  ---
+  duration_ms: 0.2609
+  type: 'test'
+  ...
+# Subtest: Phase 0 default and unknown switches preserve production shader bytes
+ok 32 - Phase 0 default and unknown switches preserve production shader bytes
+  ---
+  duration_ms: 1.4649
+  type: 'test'
+  ...
+# Subtest: Cloud experiment replaces density only, keeps shadow and lighting equations
+ok 33 - Cloud experiment replaces density only, keeps shadow and lighting equations
+  ---
+  duration_ms: 0.3871
+  type: 'test'
+  ...
+# Subtest: Desaturation and cloud-opacity diagnostics reach actual shader operations
+ok 34 - Desaturation and cloud-opacity diagnostics reach actual shader operations
+  ---
+  duration_ms: 0.224
+  type: 'test'
+  ...
+# Subtest: capture URLs cannot upload invalid floats or allocate unbounded targets
+ok 35 - capture URLs cannot upload invalid floats or allocate unbounded targets
+  ---
+  duration_ms: 1.288
+  type: 'test'
+  ...
+# Subtest: imported camera has finite bounded pose including across quality reload
+ok 36 - imported camera has finite bounded pose including across quality reload
+  ---
+  duration_ms: 0.4873
+  type: 'test'
+  ...
+# Subtest: remote swell taper conserves Hm0, excludes wind-ripple tail
+ok 37 - remote swell taper conserves Hm0, excludes wind-ripple tail
+  ---
+  duration_ms: 120.3963
+  type: 'test'
+  ...
+# Subtest: hybrid wind spectrum is nonnegative, finite and continuous at branch boundaries
+ok 38 - hybrid wind spectrum is nonnegative, finite and continuous at branch boundaries
+  ---
+  duration_ms: 10.609
+  type: 'test'
+  ...
+# Subtest: spectral integration converges independently of log quadrature resolution
+ok 39 - spectral integration converges independently of log quadrature resolution
+  ---
+  duration_ms: 123.3935
+  type: 'test'
+  ...
+# Subtest: camera-local cascade phase remains accurate at distant global coordinates
+ok 40 - camera-local cascade phase remains accurate at distant global coordinates
+  ---
+  duration_ms: 1.5644
+  type: 'test'
+  ...
+# Subtest: rebasing preserves both foam toroidal phases and all four pattern coordinates
+ok 41 - rebasing preserves both foam toroidal phases and all four pattern coordinates
+  ---
+  duration_ms: 0.7309
+  type: 'test'
+  ...
+1..41
+# tests 41
+# suites 0
+# pass 41
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2730.9895

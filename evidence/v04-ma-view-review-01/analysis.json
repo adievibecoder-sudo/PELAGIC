@@ -1,0 +1,152 @@
+{
+  "day-near": {
+    "checks": {
+      "finite": true,
+      "nonnegative": true,
+      "referenceConvergence": true
+    },
+    "methods": {
+      "production-quarter": {
+        "opacityMAE": 0.00019731595607835024,
+        "opacityP95": 0.0006152298514693344,
+        "opacityMax": 0.045156707841551125,
+        "meanOpacity": 0.3912561151183559,
+        "occupiedRays": 885
+      },
+      "production-midpoint": {
+        "opacityMAE": 0.00016682746016659667,
+        "opacityP95": 0.0006768675426498567,
+        "opacityMax": 0.04043968367571771,
+        "meanOpacity": 0.3913244159535479,
+        "occupiedRays": 887
+      },
+      "production-three-quarter": {
+        "opacityMAE": 0.0001761231415155082,
+        "opacityP95": 0.000626043206814697,
+        "opacityMax": 0.030206782760547335,
+        "meanOpacity": 0.3913087502251878,
+        "occupiedRays": 887
+      },
+      "pixel-midpoint": {
+        "opacityMAE": 0.00016429393102763865,
+        "opacityP95": 0.0006599741790052852,
+        "opacityMax": 0.03508675586679866,
+        "meanOpacity": 0.39132255848267633,
+        "occupiedRays": 887
+      },
+      "unfiltered-midpoint": {
+        "opacityMAE": 0.003987037930156011,
+        "opacityP95": 0.008945406528203637,
+        "opacityMax": 0.8390748108609668,
+        "meanOpacity": 0.3951475233708431,
+        "occupiedRays": 897
+      },
+      "pixel-1024": {
+        "opacityMAE": 3.966453538726598e-05,
+        "opacityP95": 0.00014002016239467174,
+        "opacityMax": 0.006916449766994126,
+        "meanOpacity": 0.3912893215284827,
+        "occupiedRays": 887
+      },
+      "pixel-2048": {
+        "opacityMAE": 1.634722676292588e-05,
+        "opacityP95": 7.863014125353285e-05,
+        "opacityMax": 0.002081561636005702,
+        "meanOpacity": 0.3912858794473339,
+        "occupiedRays": 889
+      },
+      "pixel-4096": {
+        "opacityMAE": 0,
+        "opacityP95": 0,
+        "opacityMax": 0,
+        "meanOpacity": 0.39128302578090457,
+        "occupiedRays": 889
+      },
+      "unfiltered-4096": {
+        "opacityMAE": 0.004349414037084675,
+        "opacityP95": 0.00961291490820794,
+        "opacityMax": 0.8875744720481233,
+        "meanOpacity": 0.39549963915485375,
+        "occupiedRays": 902
+      }
+    },
+    "baselinePngIdentical": true,
+    "sourceStable": true,
+    "errors": []
+  },
+  "day-high": {
+    "checks": {
+      "finite": true,
+      "nonnegative": true,
+      "referenceConvergence": true
+    },
+    "methods": {
+      "production-quarter": {
+        "opacityMAE": 0.00024535334689278166,
+        "opacityP95": 0.0005472246991958668,
+        "opacityMax": 0.0986349125747405,
+        "meanOpacity": 0.3257143669355552,
+        "occupiedRays": 736
+      },
+      "production-midpoint": {
+        "opacityMAE": 0.00018688806523992123,
+        "opacityP95": 0.0005242283165729084,
+        "opacityMax": 0.029374336588079752,
+        "meanOpacity": 0.3256937384310897,
+        "occupiedRays": 740
+      },
+      "production-three-quarter": {
+        "opacityMAE": 0.00018469262558473606,
+        "opacityP95": 0.000579760701493931,
+        "opacityMax": 0.03889935255670518,
+        "meanOpacity": 0.32569102323428606,
+        "occupiedRays": 739
+      },
+      "pixel-midpoint": {
+        "opacityMAE": 0.0001845051202207281,
+        "opacityP95": 0.0005217762023147499,
+        "opacityMax": 0.029335203107713648,
+        "meanOpacity": 0.3256931178333166,
+        "occupiedRays": 740
+      },
+      "unfiltered-midpoint": {
+        "opacityMAE": 0.003906092854683519,
+        "opacityP95": 0.00835575348333499,
+        "opacityMax": 0.9953976353571756,
+        "meanOpacity": 0.3289640768318546,
+        "occupiedRays": 747
+      },
+      "pixel-1024": {
+        "opacityMAE": 3.983096050134956e-05,
+        "opacityP95": 0.00013750710601090343,
+        "opacityMax": 0.006762827119617509,
+        "meanOpacity": 0.32571445912915997,
+        "occupiedRays": 741
+      },
+      "pixel-2048": {
+        "opacityMAE": 1.988801317966207e-05,
+        "opacityP95": 5.6374850344667604e-05,
+        "opacityMax": 0.0034144372420263913,
+        "meanOpacity": 0.3257109959483225,
+        "occupiedRays": 740
+      },
+      "pixel-4096": {
+        "opacityMAE": 0,
+        "opacityP95": 0,
+        "opacityMax": 0,
+        "meanOpacity": 0.3257162220835753,
+        "occupiedRays": 741
+      },
+      "unfiltered-4096": {
+        "opacityMAE": 0.0038742033377842343,
+        "opacityP95": 0.008353969846023435,
+        "opacityMax": 0.9964114028381227,
+        "meanOpacity": 0.3289720777770104,
+        "occupiedRays": 750
+      }
+    },
+    "baselinePngIdentical": true,
+    "sourceStable": true,
+    "errors": []
+  }
+}

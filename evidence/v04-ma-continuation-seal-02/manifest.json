@@ -1,0 +1,2432 @@
+{
+  "utc": "2026-10-24T04:14:04.692Z",
+  "source": {
+    "head": "4bbcfca14d77b2b567e750fcfd402cf1aaade9db",
+    "sha256": "c2280b803ae7c488e5591f2b4b32867bca2d198c1759ae66e7ff34bef04bca92",
+    "files": [
+      {
+        "file": "assets/experiments/wdas-cloud/ORIGINAL-README.txt",
+        "sha256": "f79dddd6295fb9126027f03e32f69f0c14b9485725fdd663600a84f8371b44c0"
+      },
+      {
+        "file": "assets/experiments/wdas-cloud/density.r16f",
+        "sha256": "de6b21ad09686f1f0c6fd060213ab202fe375c9f15d46def99a6b7d262a750ca"
+      },
+      {
+        "file": "assets/experiments/wdas-cloud/metadata.json",
+        "sha256": "364740e6e13e835bf1f378dfbf5cbf68956fca847ec48d5e44a1b2d0498caae9"
+      },
+      {
+        "file": "dynamics.html",
+        "sha256": "51a28203fb90902ec049b7a2dd0fd5791dbc8042bec0643e6d4b1bc984f43238"
+      },
+      {
+        "file": "ensemble.html",
+        "sha256": "18c36227377f39d14c8ce6c9b728ac159fa34a6445d4ab01a5b3fcb971256ef8"
+      },
+      {
+        "file": "environment-tests.html",
+        "sha256": "e1d9c63c4cf00c1b09bb775a80ce8fdc29edce6d033158d925316715fc86b282"
+      },
+      {
+        "file": "gallery.html",
+        "sha256": "a717cbd34a57b97db470b7f21db3f07b384497d3d591ab973e584697ce59a725"
+      },
+      {
+        "file": "index.html",
+        "sha256": "41e1301a9d5f60af6c890a29fe022a90ec3b6294588ff332c9f96bd9d35e93d7"
+      },
+      {
+        "file": "lab.html",
+        "sha256": "1dc677003c241cd4cd48dc14316852e54cf76951dd5f4ce1707942694cdc93bd"
+      },
+      {
+        "file": "matrix.html",
+        "sha256": "d5a7733712a90487e12525d724dfafb097aec52200a9a96bf36a874f8705e2c6"
+      },
+      {
+        "file": "milestone-a-review.html",
+        "sha256": "ea8c27d3710325f4ed2da2051415aee7ff7a0c545ab83af7c6c79c0a009040af"
+      },
+      {
+        "file": "milestone-a-waves-review.html",
+        "sha256": "c2e460e41ca081ca17f3b0a649161edc3fe9095576a0061352de6f06303d22ff"
+      },
+      {
+        "file": "milestone-a.html",
+        "sha256": "1b528fca4ffc470389b4f4042bc53d5cdb5b2df675345745c130f5dce6b5d803"
+      },
+      {
+        "file": "motion.html",
+        "sha256": "81b4b81dfdcf67e5e27e006ad10d526d5616c8aceead7258601ea8f6d733290f"
+      },
+      {
+        "file": "optics.html",
+        "sha256": "e2e7b4d70fbf7d75d6ca56b6a36754bc00603ff3f7dc43f71bf9787ca0fa75d8"
+      },
+      {
+        "file": "phase0-review.html",
+        "sha256": "77a45c55b2722b8d523346e116edb1d4f8c43dc0178145de08324dea3c97c378"
+      },
+      {
+        "file": "phase0.html",
+        "sha256": "c0b8023a95762da8370fc85ed605706a18dce043e4f77325cb3718bda231cd8d"
+      },
+      {
+        "file": "phase1-benchmark.html",
+        "sha256": "59ccd68d38599e91f82a1ddfb4a7df8623acba2d7d8eb9d56bed29997fec9d1a"
+      },
+      {
+        "file": "phase1-light.html",
+        "sha256": "f730abb4485f45b9c08f0e656349242961792301a760cf4ee7a1d5c441d57f2f"
+      },
+      {
+        "file": "phase1-motion-review.html",
+        "sha256": "697b255303a775df14e2296f7b754181f3f72cca7c9b177684027fe8f60e8f58"
+      },
+      {
+        "file": "phase1-review.html",
+        "sha256": "52e491dcfba25adc0d04551cebccf3d91dbafe2c4e1ccdb19dec1b40b7864926"
+      },
+      {
+        "file": "phase1.html",
+        "sha256": "135d3b188bc24e516cfb49440a179144db9bcd386104f61a30027a3f1f25e4c9"
+      },
+      {
+        "file": "reference-motion.html",
+        "sha256": "dc029686b696f6f846334189d31cf3664ba72b61021a5f3847d82ccb81f37799"
+      },
+      {
+        "file": "review-03.html",
+        "sha256": "9a232b4b3fe3bc56db051d1283b28c991717760e488360fad2ef26b43f378251"
+      },
+      {
+        "file": "server.mjs",
+        "sha256": "408ae7c18b55a80f821c0ee4e5014f5d1e21a8a9ea84635d19abf74987e6c913"
+      },
+      {
+        "file": "src/astronomy.js",
+        "sha256": "d8bec68ab1b0beb1014b5b8ae1b929fad103b244fd9b1c4881a72f1c6551c009"
+      },
+      {
+        "file": "src/celestial-light.js",
+        "sha256": "8fb00527413062c0a43188fad9c08df7007bbcc78c20257cb561cf88b52a0112"
+      },
+      {
+        "file": "src/cloud-volume-control.js",
+        "sha256": "290deec52c69fed965df3f989bc0db8353f4801830adad5cc60cc96073eb01b0"
+      },
+      {
+        "file": "src/environment.js",
+        "sha256": "9fa9f81e1745085bc6a720b0683afaafda350e5d19ec4b226de27383f2522993"
+      },
+      {
+        "file": "src/foam-pattern.js",
+        "sha256": "f79bf8be59cff58b2a8ac7b71ad61eae873c77751d3a687fc35fac5f73be24ef"
+      },
+      {
+        "file": "src/gpu-ledger.js",
+        "sha256": "b69f789610f296e31c5a1366ef7b9a7493b436872b17fee8f0f0ca3d7bb0abe5"
+      },
+      {
+        "file": "src/numerics.js",
+        "sha256": "a1bdb5e8c2c4346db412b461aa74885b70668c9e7f889f8f6c297a8aa775ab7e"
+      },
+      {
+        "file": "src/ocean-contracts.js",
+        "sha256": "9040a4c36ff563a5d836c3252660dc41087a6faaa2ba66308e2722339e248ccc"
+      },
+      {
+        "file": "src/ocean-order.js",
+        "sha256": "dde289b060fd0b021bc928d8b6cae5965140eea28f9503273fc34e46ddecfa4f"
+      },
+      {
+        "file": "src/renderer.js",
+        "sha256": "5ffd79082bdef62e658c35669ba782721a8a6609cc8bb53c9b4d5171ebbf0c94"
+      },
+      {
+        "file": "src/runtime-input.js",
+        "sha256": "9e71659fad92b35ee05760bd85d25b231af2beaabed6cbeaa788c09efa8859a0"
+      },
+      {
+        "file": "src/sea-spectrum.js",
+        "sha256": "5f526c1eb6387be9064bd549ed2379ad32588bd4d9ea36156a83bad4faf9d422"
+      },
+      {
+        "file": "src/settings.js",
+        "sha256": "ff41532aff826057d416de1415bb42713df0970f8caa9184a7d1c9a4b0d159f0"
+      },
+      {
+        "file": "src/spatial-origin.js",
+        "sha256": "77ff877c23eabeda15ad03e00ad3f170327ddb882951593598a0b5eac3414dc4"
+      },
+      {
+        "file": "src/ui.js",
+        "sha256": "4668cbd15f8b497154ea4b582e0cb728c5065800ca0c54cbeb167def0914c893"
+      },
+      {
+        "file": "src/wgsl/cloud-bank.js",
+        "sha256": "2ecb417a8d2a60db7467e56e29835cd58410dc520deca77e583785be2f85e2b7"
+      },
+      {
+        "file": "src/wgsl/cloud-condensate.js",
+        "sha256": "164bf5f8f870352d6b451e5b629dc80f9e9c21f30a69a96b723b34792ea9a4d5"
+      },
+      {
+        "file": "src/wgsl/cloud-convection.js",
+        "sha256": "7fc81a6c69b0ce6ca44a789aa063a6179f1d252ea24d5461fd00390f74460471"
+      },
+      {
+        "file": "src/wgsl/cloud-light-path.js",
+        "sha256": "d423e43bcbaf8c06c46cc655e55d2abd33e3b8bf05543dee75be153d9a51b3de"
+      },
+      {
+        "file": "src/wgsl/cloud-noise.js",
+        "sha256": "99d0ed409fe836805975a0b394ae22db5b8b2ebbb5c208c76393c3d5db387ef6"
+      },
+      {
+        "file": "src/wgsl/cloud-volume-control.js",
+        "sha256": "d4303f87165c850f40d76a9517c65061d25836ae529c5f829545ce139f1c9688"
+      },
+      {
+        "file": "src/wgsl/clouds.js",
+        "sha256": "f2d853b834be0bfaf91762427fa1273a32b04ae6de4d3d0f55163160f16b9142"
+      },
+      {
+        "file": "src/wgsl/common.js",
+        "sha256": "6a8604d4ea61bbf6d011453add317624634a4632b6c331db9bd5391470a2c5e7"
+      },
+      {
+        "file": "src/wgsl/coordinates.js",
+        "sha256": "cbe1808c797aaf9532b6ff94baa752a19c6cb912777026ccd70547914447c53e"
+      },
+      {
+        "file": "src/wgsl/coupling.js",
+        "sha256": "f55d554a469b1d36d6d48953bc86efbca7a188c0328b4152e9c339359fbf0cab"
+      },
+      {
+        "file": "src/wgsl/environment.js",
+        "sha256": "c51d50511622d857d0e02461b4269af7777518d20a080b7906a82f94fcc61def"
+      },
+      {
+        "file": "src/wgsl/immersion.js",
+        "sha256": "e019c49171d11cd712e160f0ee69e4ee5ff18ed1bbcff944a056e586e2eb9433"
+      },
+      {
+        "file": "src/wgsl/irradiance.js",
+        "sha256": "f296385d1d84d3042cc7dc2d7759a771b9d9d6125a75be3fd86b933c4f4b2639"
+      },
+      {
+        "file": "src/wgsl/lens-medium.js",
+        "sha256": "987b99ab5b55797fcf3691b8625f9f29bef7b9298e0b810dd0d4ec719c66311a"
+      },
+      {
+        "file": "src/wgsl/ocean.js",
+        "sha256": "7a3563b86ebabae4d18cdc6c3751648a526d2f2d9787e11ee984f64152aa0c3e"
+      },
+      {
+        "file": "src/wgsl/particles.js",
+        "sha256": "96733bb075341fc069bd0f58266acc104a55f5a853bc1821fa4d65acb115b9b7"
+      },
+      {
+        "file": "src/wgsl/post.js",
+        "sha256": "8bd6eb2e65f2c9e5c85263a692da0188c50e94c68437c8445965d6e17c045df9"
+      },
+      {
+        "file": "src/wgsl/sim.js",
+        "sha256": "cfe641d00a901099225df5e25f6cd53aeed9d9fea926c66f8dd423ae90503053"
+      },
+      {
+        "file": "src/wgsl/sky.js",
+        "sha256": "7f449ff85f9bf53b9786715a086cdb4bc64ef3fbc3c51a1600c8a2e4fd3647d1"
+      },
+      {
+        "file": "src/wgsl/wave-visibility.js",
+        "sha256": "8a59b274de5bffc7dc6dafaca13260aec529f5cc5e15b6da9d2f0e48535d1dd8"
+      },
+      {
+        "file": "tests.html",
+        "sha256": "91e401a51eb5a35c8eb54c5443f5192ed3e3abbfcf383e1cb8aecfc78df7118a"
+      },
+      {
+        "file": "tests/celestial-light.test.mjs",
+        "sha256": "e54cbe66c71a52882fa549bdfa22d6a6f6c78e861ec0a77eaaa23b8abe784ca6"
+      },
+      {
+        "file": "tests/cloud-appearance-shaders.js",
+        "sha256": "795e86294cd582a2c5b9679ead0f1609388a6421b0a60df30dcb1453a93bba58"
+      },
+      {
+        "file": "tests/cloud-appearance.test.mjs",
+        "sha256": "0e2d1426887d51aec5e4cae93ea9dfa16596a7badb70df54eefe885de1f1b7f7"
+      },
+      {
+        "file": "tests/cloud-condensate.test.mjs",
+        "sha256": "c1ee48ee849a9c71f2ac82c2622bbedac32dbeda25093ec119ab49aaeb7b605a"
+      },
+      {
+        "file": "tests/cloud-convection-readback.js",
+        "sha256": "81987fee83dc12c8b1ffa85c29408b8b4b1e896e890dc114d6e829fda259e5f5"
+      },
+      {
+        "file": "tests/cloud-convection.test.mjs",
+        "sha256": "50f4c2bca31454b567e981a0205fd338b29fbee52fc9a96e35376441fa504f6f"
+      },
+      {
+        "file": "tests/cloud-light-path-readback.js",
+        "sha256": "f6bb223b97af71d9c171fe1483d9b51c93aa5b609646fd4e265313db93b9af94"
+      },
+      {
+        "file": "tests/cloud-light-path.test.mjs",
+        "sha256": "edce1fa083521373d9c335e67b437a528178dc542ce2a404161500972ea24850"
+      },
+      {
+        "file": "tests/cloud-view-readback.js",
+        "sha256": "6434cf8db7c3556a442f036bcb9c251eac190ef6ea20165eb2dc36dd71ac7022"
+      },
+      {
+        "file": "tests/cloud-volume-control.test.mjs",
+        "sha256": "5dcfb45d3284ab4349f69459ed0a0163e0e921f1df002090ec0a319808383b37"
+      },
+      {
+        "file": "tests/contracts.test.mjs",
+        "sha256": "f3da56b718f9ab970b334b9603a6c982612cb25954ef3e7ed445d47124eb1108"
+      },
+      {
+        "file": "tests/coordinates-gpu.js",
+        "sha256": "15fe7e0d9c4e1fc3262ed6c60b83ead08f32d3640973e6faa58cc5666043be23"
+      },
+      {
+        "file": "tests/coupling-gpu.js",
+        "sha256": "94d449b80579ebd08012eb2ad3522423acf5a08b394069404dc2be671d5b6ffe"
+      },
+      {
+        "file": "tests/deformed-slope-readback.js",
+        "sha256": "63ec60457ad90e2d19989857b070090c1b967a05d2960e2060b55b3071a02d10"
+      },
+      {
+        "file": "tests/dynamics.js",
+        "sha256": "f8ed46514b217516692e9dd8bfa0edb3ab0db0c7d61ac8b7bffcd1ce57ecf9b1"
+      },
+      {
+        "file": "tests/ensemble.js",
+        "sha256": "2b7598201001f65262d5e951eac7b2c95e0986abb7679f5ff6511f870febb1d9"
+      },
+      {
+        "file": "tests/environment-gpu.js",
+        "sha256": "ee42f2b33883efc7b8e825d351b3485685b4a217925163cdecb51c6f061ec4a8"
+      },
+      {
+        "file": "tests/environment.test.mjs",
+        "sha256": "f008c34b7f7d6ab0d3cf3b4687a716653414417eb80d8287a8991a96140eaae9"
+      },
+      {
+        "file": "tests/evidence.test.mjs",
+        "sha256": "2ae67b6769d8e1ff051885169db92f3388947610ccc19529cf3c995b828e9648"
+      },
+      {
+        "file": "tests/foam-readback.js",
+        "sha256": "b21398149d9472aeb31d7649421369913b5e03293df8e73dbe6b4ed31caf288f"
+      },
+      {
+        "file": "tests/gpu.js",
+        "sha256": "10468e0c01dfe6599847ff89ef976886741064488aab7f9a08150472bfe20256"
+      },
+      {
+        "file": "tests/hdr-readback.js",
+        "sha256": "77a5ba61035e449d3e44a3952600d43f139d85b6264d8585cea7a4ae907ac516"
+      },
+      {
+        "file": "tests/irradiance-gpu.js",
+        "sha256": "2a0c62a511eae99edff7b170067ab2edd53d9347eb33cc8676e62dc5e4137b53"
+      },
+      {
+        "file": "tests/lens-gpu.js",
+        "sha256": "81f4c991bd1e8835779c1a5437a8c728388836c6466fd7b7ffcedc3aafe8e247"
+      },
+      {
+        "file": "tests/long-grid-study.mjs",
+        "sha256": "e09ff8cd428a304c7422a6641f6b39cafe3a750120e4f969760f48b5503c44b4"
+      },
+      {
+        "file": "tests/long-grid.test.mjs",
+        "sha256": "1093ac89f88fb365ed98c466a194c5ae154a00e3865804e417e6549a068443c0"
+      },
+      {
+        "file": "tests/milestone-a-manifest.mjs",
+        "sha256": "7d187aeb49cdcdb3f70eb2d76d3ee404e50c8e56965cdd4068dfeb79ddfc041b"
+      },
+      {
+        "file": "tests/milestone-a-publication.mjs",
+        "sha256": "59ac96e0864f82f7512f720ee031871d1a3ce76f1ed291610f75fc19bcfb726a"
+      },
+      {
+        "file": "tests/milestone-a-wave-shaders.js",
+        "sha256": "c190fdb3ff4b00eb0428b098c5389ed5d9b7d708e13ab123e02df9a3ec888796"
+      },
+      {
+        "file": "tests/milestone-a-wave.test.mjs",
+        "sha256": "0fcb404b32dd3d256399bb7ddf561d54d0c54a31ebaadbaf8d4735b69cf9864f"
+      },
+      {
+        "file": "tests/numerics.test.mjs",
+        "sha256": "ea351a2883ec392fad55bdb93fc0a56c12f63e6d0a2531637dd769c3fc9d7192"
+      },
+      {
+        "file": "tests/ocean-order.test.mjs",
+        "sha256": "2aaaa8fabe6c9c47dcb863889a47f5d661e7babb7105e8789c012c5f9da9df59"
+      },
+      {
+        "file": "tests/optics.test.mjs",
+        "sha256": "78ede7d0532d1add0b2ff1cb551cceae58498df66086a7e7c8cb545a8a4a8e8e"
+      },
+      {
+        "file": "tests/phase0-crest.mjs",
+        "sha256": "261446c3d2ff013d0c645f0a3f6cfd3ff7b5e8f65816e792c1af43dfed1369dc"
+      },
+      {
+        "file": "tests/phase0-manifest.mjs",
+        "sha256": "6d099326540b1b26f6e3846347980615219557ad7560beb74ef1cb74ea4d6819"
+      },
+      {
+        "file": "tests/phase0-optics.mjs",
+        "sha256": "b7d0f8a3cfb5992ae2326c13485ab759593341aff98bdec5a9407ed6927a47fe"
+      },
+      {
+        "file": "tests/phase0-readback.js",
+        "sha256": "f1f867692fa70a760ac61de7e1d19471158aa929d84984321fe839735a5a497b"
+      },
+      {
+        "file": "tests/phase0-science.mjs",
+        "sha256": "e404eb0bfe4b77a9d2cea5926c92879358a736edf0bfff137346e7813210207a"
+      },
+      {
+        "file": "tests/phase0-shaders.js",
+        "sha256": "a66d3df9ea1d50ba1a7c7e3e426458e321d9e12de4e268bbb393deb7e73e10c9"
+      },
+      {
+        "file": "tests/phase0.test.mjs",
+        "sha256": "5eff9a94200e3f603c028916787114e949e0353b1191ec73bd928c09e297d7b8"
+      },
+      {
+        "file": "tests/phase1-field-experiment.mjs",
+        "sha256": "96a912e3898d8e63c1ecf56d4c35ad8df9b4b172ef49acbe33eadf50756497f2"
+      },
+      {
+        "file": "tests/phase1-inventory.mjs",
+        "sha256": "3e6d17341f3308731823d4f9b301bc5d8a053dc6f4426da22e6c10b4bb08a480"
+      },
+      {
+        "file": "tests/phase1-light-readback.js",
+        "sha256": "7596345afc2d3916aa1dfe9938a247c9e9237c0b14fc2f4ffe272bbebbb4fe00"
+      },
+      {
+        "file": "tests/phase1-publication.mjs",
+        "sha256": "566bd225d34653f18e779b2514d06f2937edab7c6275afb199f28f33e0b5d1b6"
+      },
+      {
+        "file": "tests/runtime.test.mjs",
+        "sha256": "a1d4e74c7d7bb18a49aee37c4ae9e22b7c185ca245ef070b6d016c746c39373e"
+      },
+      {
+        "file": "tests/sea-spectrum.test.mjs",
+        "sha256": "bfde7381fae9a05e01f2965ade67d909d49a3250f7d95dc789850397a468eead"
+      },
+      {
+        "file": "tests/slope-readback.js",
+        "sha256": "efe38d2968108d0bc4667653f55990ba62cb233d8c88cd56b072f44cd9f05463"
+      },
+      {
+        "file": "tests/spatial-origin.test.mjs",
+        "sha256": "c905a023aebc8fb4dfaa2181a9568ad75f41539a1d8722dc61df085943d5a6c8"
+      },
+      {
+        "file": "tests/spectral-readback.js",
+        "sha256": "8587a093376d2eb824e4bdd853125f10e306f031dbaaed7b2f915c2e5412354a"
+      },
+      {
+        "file": "tests/visibility-gpu.js",
+        "sha256": "76530af8c213c0218081a306b372e42344de8873c4e32c41cdf4052af4e4f851"
+      },
+      {
+        "file": "tests/webgpu-hardware-probe.html",
+        "sha256": "048c6ada5c67c19b25c36f5fad7b5a481fb0b961301f1369dacf88701a572f42"
+      },
+      {
+        "file": "tools/evidence-store.mjs",
+        "sha256": "10a1fd89543850ba9977d57e35fcaab60d9b75a8fa93d2c60705ba7f2e8cda0f"
+      }
+    ]
+  },
+  "frozen": {
+    "main": "151aadaa6d2402c46f4e02454f2fc33ab7744661",
+    "development/pelagic-0.3": "87ce051ce43dd03b2967034ae2ca4d560a17f222",
+    "v0.2.0^{}": "151aadaa6d2402c46f4e02454f2fc33ab7744661",
+    "v0.3.0-dev.1^{}": "be3f5c47d923e90303dece20ed19dbfc4bb17636"
+  },
+  "preservedCurrentOriginals": 24,
+  "files": [
+    {
+      "path": "evidence/v04-ma-bank1-stills/day-near.json",
+      "bytes": 172481,
+      "sha256": "6887bc914b2673cd7c384fb9abfb601a9c205cfba04dfd90e73ed8d5aed0e41f"
+    },
+    {
+      "path": "evidence/v04-ma-bank1-stills/day-near.png",
+      "bytes": 4145835,
+      "sha256": "2623f3370b9b5cd7a660ac0db3a9dd98e7a88b8e51781bf8700a5eb18b623bf9"
+    },
+    {
+      "path": "evidence/v04-ma-bank2-calibration/day-near.json",
+      "bytes": 148806,
+      "sha256": "97a199264df97596456ad3bcc9e6772aa88dc56bb84ee5a8c02613ebbe530829"
+    },
+    {
+      "path": "evidence/v04-ma-bank2-calibration/day-near.png",
+      "bytes": 4304673,
+      "sha256": "5204e029b6fb4fa42b2ea6c28abe4672216bba39331967e15105039107be9f58"
+    },
+    {
+      "path": "evidence/v04-ma-bank2-source/cloud-bank.js",
+      "bytes": 2742,
+      "sha256": "58c3e17b5c354d96343c1ee5f7e99cc9ad6d95db73f8804faee3e4a2be3bc72d"
+    },
+    {
+      "path": "evidence/v04-ma-bank2-source/phase0-readback.js",
+      "bytes": 4993,
+      "sha256": "f8bc342acda04253c951fa8d1a1cd07c09eeca7422df11efb195fc6437b39f67"
+    },
+    {
+      "path": "evidence/v04-ma-bank3-calibration/day-near.json",
+      "bytes": 148425,
+      "sha256": "ccc54e8671780af39515d1456c46390afa8801a7ac844bd1fd7a30e7407afb27"
+    },
+    {
+      "path": "evidence/v04-ma-bank3-calibration/day-near.png",
+      "bytes": 4296145,
+      "sha256": "e89b8239856ddf4418e661aef3681536b3d79399b9936f8a208fa1a938bdc18a"
+    },
+    {
+      "path": "evidence/v04-ma-bank4-calibration/day-near.json",
+      "bytes": 148287,
+      "sha256": "7c21ac69c1613df741e28ca2d00e6a1fce33ba54bdcef6db462a136e9f18e826"
+    },
+    {
+      "path": "evidence/v04-ma-bank4-calibration/day-near.png",
+      "bytes": 4284175,
+      "sha256": "9d096ba8b21d3e6a9a5a8e5f9044cdccd4bb95be3dbe246b3b00366841475fc4"
+    },
+    {
+      "path": "evidence/v04-ma-bank4-source/cloud-bank.js",
+      "bytes": 2925,
+      "sha256": "6f21f82350e9866438ecbd7c91626d36c134281ed7e5ecabdcf519d427c67d02"
+    },
+    {
+      "path": "evidence/v04-ma-bank4-source/phase0-readback.js",
+      "bytes": 4994,
+      "sha256": "767c606457b2719bd7f054bbf13299358b54e08144e163d6e5073c3c4bd48411"
+    },
+    {
+      "path": "evidence/v04-ma-bank5-calibration/day-near.json",
+      "bytes": 148660,
+      "sha256": "cfa1df905509bfe1befdd9d83685135e650bd579448e49f50fe49000ebbf7fa6"
+    },
+    {
+      "path": "evidence/v04-ma-bank5-calibration/day-near.png",
+      "bytes": 4272228,
+      "sha256": "a83059573b0246fd448530614c59d02f2f1572210b830ec0d5025388d3ae96f3"
+    },
+    {
+      "path": "evidence/v04-ma-bank6-calibration/day-near.json",
+      "bytes": 148865,
+      "sha256": "7f0028a806a201176217e7b86d507717d87f3a6c9a8abeda79d63b72558db155"
+    },
+    {
+      "path": "evidence/v04-ma-bank6-calibration/day-near.png",
+      "bytes": 4427944,
+      "sha256": "466caf3915d17065595c17127b3280929188dc379e90530446d34617ba6be05e"
+    },
+    {
+      "path": "evidence/v04-ma-bank6-light-source/cloud-bank.js",
+      "bytes": 3635,
+      "sha256": "7e2cc3829188db65ec4f67e50918b711779f067260f34aba553c6b3d495350b7"
+    },
+    {
+      "path": "evidence/v04-ma-bank6-source/cloud-bank.js",
+      "bytes": 2928,
+      "sha256": "4f3c1a3f208eef357b3590c9d0c4122f342fb90d593f918618f92792be68b3fa"
+    },
+    {
+      "path": "evidence/v04-ma-bank6-source/phase0-readback.js",
+      "bytes": 4994,
+      "sha256": "34173e42680e389db195fc0771a19feddd435e0335445777f69a4e14f6b7e128"
+    },
+    {
+      "path": "evidence/v04-ma-bank7-calibration/day-near.json",
+      "bytes": 149097,
+      "sha256": "05920dd1b78ed0bf8b58945d83fc2c1cbe2eb068f3dc396ffd2f6c85745fca5d"
+    },
+    {
+      "path": "evidence/v04-ma-bank7-calibration/day-near.png",
+      "bytes": 4384860,
+      "sha256": "46052a4d7ab42dfc021df523caede38cada8d6c02254b256455575c51de7ab66"
+    },
+    {
+      "path": "evidence/v04-ma-bank8-balanced/day-near.json",
+      "bytes": 162615,
+      "sha256": "77192ef05829a0542b3f5738e30997774efdc4528eb1960ccfb8c880a132cf9e"
+    },
+    {
+      "path": "evidence/v04-ma-bank8-balanced/day-near.png",
+      "bytes": 4345530,
+      "sha256": "8b1f0b0c5f0888d034cb3a4a87061ce20f63188ac8e98bbe492ca9ec1bd1cc69"
+    },
+    {
+      "path": "evidence/v04-ma-bank8-high/day-near.json",
+      "bytes": 162687,
+      "sha256": "b6c163c314dca06bffda4eeb82dbd1495e94dc8c3c9ef037e23d7a8b97e5b8d3"
+    },
+    {
+      "path": "evidence/v04-ma-bank8-high/day-near.png",
+      "bytes": 4358998,
+      "sha256": "fd046ffc522ff1e60f5b72e94402171013740688b473a174a9a5964f60ffb1d6"
+    },
+    {
+      "path": "evidence/v04-ma-bank8-source/cloud-bank.js",
+      "bytes": 3734,
+      "sha256": "131200ddfdff56d79514f520b8c1afb3310b469613629c50ed3556560d8183ee"
+    },
+    {
+      "path": "evidence/v04-ma-bank8-source/phase0-readback.js",
+      "bytes": 4994,
+      "sha256": "34173e42680e389db195fc0771a19feddd435e0335445777f69a4e14f6b7e128"
+    },
+    {
+      "path": "evidence/v04-ma-base-cinematic-performance-01/day-near.json",
+      "bytes": 180464,
+      "sha256": "1106d7c8c6ff41f1273278fe8c5297b345924d06b26dfaf11197ce15d148ee4b"
+    },
+    {
+      "path": "evidence/v04-ma-base-cinematic-stills/day-near.json",
+      "bytes": 163591,
+      "sha256": "ea4e1cdc10d4bc2b778fb9631cc0f2f4d0b4e3dc69014d3e0a54dcfc884b782e"
+    },
+    {
+      "path": "evidence/v04-ma-base-cinematic-stills/day-near.png",
+      "bytes": 4467339,
+      "sha256": "b783fb80f3be43ffab2458f922f4b3c3229cce69cc187f0e9847b3699c3e6d62"
+    },
+    {
+      "path": "evidence/v04-ma-base-cinematic-stills/gold-high.json",
+      "bytes": 163509,
+      "sha256": "435c3e47f31fcb9a4da77eed86fb02c26f7fafc7168c18d9728b3a9a12917b60"
+    },
+    {
+      "path": "evidence/v04-ma-base-cinematic-stills/gold-high.png",
+      "bytes": 4626624,
+      "sha256": "94b7114b9b39ac3b25ad2e34f5e428261f5cd7b055a1e60f6600cbd5ea6b3923"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-01/day-high.json",
+      "bytes": 853152,
+      "sha256": "f402621095f091c5d672b123d961e7b87e388198ec57da0255fe395c88ac78c4"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-01/day-high.webm",
+      "bytes": 39355931,
+      "sha256": "1d82724ac0c053fb1a211676da820d6869db4d4e682b6d5387076f72ea016c41"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-01/day-near.json",
+      "bytes": 713727,
+      "sha256": "cec508a997f0c3d4c8f38e0a3e96202c6ab7ae345ed283aeefdd9740e6981083"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-01/day-near.webm",
+      "bytes": 35199013,
+      "sha256": "72fc49efd5e1c1e688edba368e0fc153622e7e24f36460244f31bac767ed34e4"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-01/gold-high.json",
+      "bytes": 864877,
+      "sha256": "bc92e31b1e3e67db7c2e50ce719fd375b7eed9427924b132a9580ba7c993f551"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-01/gold-high.webm",
+      "bytes": 39107852,
+      "sha256": "99fa4337e772bf45db3a2ca08e9431d8ffd13ded951752320e085892bfcdb3c4"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-01/gold-near.json",
+      "bytes": 713464,
+      "sha256": "5279e21c9941c6569651fe4d28f292f4848cd67d394bdb320df2e1d16d633e95"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-01/gold-near.webm",
+      "bytes": 34926122,
+      "sha256": "f3b2f77a0ed30f296a0e617a846103a1e056f9b50f326c57d8b49235ace4fbe2"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-02/day-high.json",
+      "bytes": 909905,
+      "sha256": "26fcc0166de8e83b3e1cf28a3ec0b9d41f1bd56b9dad3e2c77ec0c49480d4378"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-02/day-high.webm",
+      "bytes": 40676987,
+      "sha256": "fe654bf44a9aaa659296972436ae899ee4cb0c31302bd4955e415b5ff158e57a"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-02/day-near.json",
+      "bytes": 709314,
+      "sha256": "c15498370c178073322085d1e75a01c159cde8129bc89b2605bbf136241461a9"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-02/day-near.webm",
+      "bytes": 34574368,
+      "sha256": "f5d499bce5d10a0b168b72a5a7ff354a879d0002279c9215e78d7bcd8143691d"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-02/gold-high.json",
+      "bytes": 905188,
+      "sha256": "2eb08b4c6952ae49b4f575e60d520da67d76d45a29334ed728a2a56c1e24e80d"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-02/gold-high.webm",
+      "bytes": 40071631,
+      "sha256": "c5e74d0bd834a1c1b3f48bcdb74f75b37ee9e4d98f4b20bf1777442e21bd38f5"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-02/gold-near.json",
+      "bytes": 675169,
+      "sha256": "3f9a3f83a6f56df0d21b08bb0c25dff41f68e28cce423c14017fb4af3b368fb0"
+    },
+    {
+      "path": "evidence/v04-ma-base-motion-02/gold-near.webm",
+      "bytes": 31972755,
+      "sha256": "4980cbd8d8b7b760ba94028b0f221185dc25c240c2d8f27c39c984c74bc5d03c"
+    },
+    {
+      "path": "evidence/v04-ma-base-performance-01/day-near.json",
+      "bytes": 84032,
+      "sha256": "6229a1eaca1be0aa2409d4ef5265e14b4c65b9b814f855b9f02de291fe9609bb"
+    },
+    {
+      "path": "evidence/v04-ma-base-performance-02/day-high.json",
+      "bytes": 1566344,
+      "sha256": "870a6454b63e4775a3afd6d9dc962675a1b2bbe398a8050b1f79b1483245d012"
+    },
+    {
+      "path": "evidence/v04-ma-base-performance-02/day-near.json",
+      "bytes": 1791108,
+      "sha256": "62ca36e11274197d1471079f7eeea5fed6a200e1f0d03e16d592a46c9e6614de"
+    },
+    {
+      "path": "evidence/v04-ma-base-performance-02/gold-high.json",
+      "bytes": 2373906,
+      "sha256": "26d4ae55577714b3a008a9a03bb16893a94a088b66443367df39449aebaafe4f"
+    },
+    {
+      "path": "evidence/v04-ma-base-performance-02/gold-near.json",
+      "bytes": 1750208,
+      "sha256": "4519738dc5344ac1a74bd0e09b1a9ea4c5b4ed9edf270d06333e4e59f2ae305b"
+    },
+    {
+      "path": "evidence/v04-ma-base-stills-01/day-near.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1"
+    },
+    {
+      "path": "evidence/v04-ma-base-stills-02/day-high.json",
+      "bytes": 159901,
+      "sha256": "c3499cda7783ec9ef78e0a15aed37f388452c2ef627ebd9ec2cc165e50d3fcbe"
+    },
+    {
+      "path": "evidence/v04-ma-base-stills-02/day-high.png",
+      "bytes": 4613147,
+      "sha256": "e443fc044213093fd489b078ae7b11d3e8259df07dc804581826d4ac89a8f6ba"
+    },
+    {
+      "path": "evidence/v04-ma-base-stills-02/day-near.json",
+      "bytes": 160743,
+      "sha256": "b89890d7f2b649054928be34127be0103ed4f979cfd7dde95a2fdf32a31857de"
+    },
+    {
+      "path": "evidence/v04-ma-base-stills-02/day-near.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1"
+    },
+    {
+      "path": "evidence/v04-ma-base-stills-02/gold-high.json",
+      "bytes": 159997,
+      "sha256": "8e02458d5caa2c5f4b4d609485df0a599ee42390eaa0052e29f813ff26c6b9b7"
+    },
+    {
+      "path": "evidence/v04-ma-base-stills-02/gold-high.png",
+      "bytes": 4586980,
+      "sha256": "7d083bd9e0892782b2189ca431195bfce74f164febcb64320445871db4387172"
+    },
+    {
+      "path": "evidence/v04-ma-base-stills-02/gold-near.json",
+      "bytes": 160156,
+      "sha256": "ddfcccc92811d630d00a2876038473ce3cac9467cd8cb05b7c1ee5b4a3937776"
+    },
+    {
+      "path": "evidence/v04-ma-base-stills-02/gold-near.png",
+      "bytes": 4530698,
+      "sha256": "7be3daeff64d1c82b4f0da32d77f928c4c67e30bf4552c2dc58c2c849416b35d"
+    },
+    {
+      "path": "evidence/v04-ma-centroid-test-01/day-near.json",
+      "bytes": 161793,
+      "sha256": "8f6dcded5e766066d981aad804bcbe16c18a79066f7732e0f250fa1c255339e8"
+    },
+    {
+      "path": "evidence/v04-ma-centroid-test-01/day-near.png",
+      "bytes": 4426177,
+      "sha256": "c2b0eb31f4714e5e54e7b036e13c876bc89af3c3812eaded68df307c085bf6bd"
+    },
+    {
+      "path": "evidence/v04-ma-cloud-shape-diag-01/day-near-opacity.json",
+      "bytes": 153198,
+      "sha256": "d8c9893c7c365c2e5ad7d68f7de28ccdcbfe2abb85d33d4627dc170eea145312"
+    },
+    {
+      "path": "evidence/v04-ma-cloud-shape-diag-01/day-near-opacity.png",
+      "bytes": 4403272,
+      "sha256": "85886a443d2231c4c2046a122d5f7ecbd8c66b9942d641f2f18201275eba4835"
+    },
+    {
+      "path": "evidence/v04-ma-cloud-shape-diag-03/day-near-neutral.json",
+      "bytes": 151929,
+      "sha256": "a935602cc924fc8a4933f23f930c49e9a15e25cf335d403c345a3bf205af7294"
+    },
+    {
+      "path": "evidence/v04-ma-cloud-shape-diag-03/day-near-neutral.png",
+      "bytes": 4348417,
+      "sha256": "4d7380a0754045132c6a66ba332d7d254e5eb60612fba5612957bcea8294e0f4"
+    },
+    {
+      "path": "evidence/v04-ma-cloud-shape-diag-03/day-near-opacity.json",
+      "bytes": 151993,
+      "sha256": "886b47c787986bbc4b18644d5b15d1eb92ec49bdf9d82c049f078d51d27ecc4c"
+    },
+    {
+      "path": "evidence/v04-ma-cloud-shape-diag-03/day-near-opacity.png",
+      "bytes": 4182919,
+      "sha256": "42a920a1420c085b790d1e2ed99d9e356617384357ba236694f2e99667e5282b"
+    },
+    {
+      "path": "evidence/v04-ma-condensate-01/day-near.json",
+      "bytes": 177008,
+      "sha256": "6ddd1809e3e89d6e7caafd7a8f7f63cd78a11f6a863fd144044008e8b16f807f"
+    },
+    {
+      "path": "evidence/v04-ma-condensate-01/day-near.png",
+      "bytes": 4279019,
+      "sha256": "9015ea743049fdfb09877c8dcc2f75d60d1b43f6a48b2b4dc68a7b564aa8dc0f"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-default-03/day-near.json",
+      "bytes": 155280,
+      "sha256": "364dc429e4fb3996bcd834233b8d6f5eb8c6d94cf7b4ff728c805952a868430c"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-default-03/day-near.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-hardware-02/host.txt",
+      "bytes": 2967,
+      "sha256": "a6c469631f3cb9f94dcf37a59f59b86855803fc74da3897850c668eaa9a49968"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-qa-01/cpu.txt",
+      "bytes": 9041,
+      "sha256": "c9107180f68a7c80cc26ea59450bf9425d7286f4e568a09a67ed15c93fc36d8d"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-qa-01/default-day-near.json",
+      "bytes": 152897,
+      "sha256": "8869a6abe2316b03d93f3e9455c05d8d7fc7c0cbeae4d8a12216ef0babb79da0"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-qa-01/default-day-near.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-qa-01/gpu-fft.json",
+      "bytes": 18550,
+      "sha256": "74eea5509ab049ea529fc25cf94d9d251454eeeef06e32c81c0f89a1cb46ecca"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-qa-01/gpu-optics.json",
+      "bytes": 22964,
+      "sha256": "f0e673ac483b03fc5e442fbbb522fecbf23346fbd35221c9bbf4fea7f9454e7b"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-qa-02/cpu.txt",
+      "bytes": 9258,
+      "sha256": "01ea946eeb6a7e1b6b1589a1da4573deb16bda0d8f6431eed2749c5d2ae344f0"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-qa-03/cpu.txt",
+      "bytes": 9669,
+      "sha256": "694407cd172708169947bb190015805f7a0c551c16ea97cfd9e6c33f6b10f688"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-qa-04/cpu.txt",
+      "bytes": 9860,
+      "sha256": "3885850c78773004364186191664379bb3f54e0397f128e28dddb7de63ee3f39"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-qa-04/gpu-fft.json",
+      "bytes": 20197,
+      "sha256": "179570e657bd8f3b91c78456ad5f75979cecea3dde33cc7ea17f96196bd7eb56"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-qa-04/gpu-optics.json",
+      "bytes": 24611,
+      "sha256": "6f25497d0546f82e78bb9e7436837cfb2107ad8f705264b94b5b2db73b5b2ac7"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-review-02/analysis.json",
+      "bytes": 22548,
+      "sha256": "f6797d3ce57f793dedbf810f614fdc9b16145c44d1d57a0e26444a69f45b4415"
+    },
+    {
+      "path": "evidence/v04-ma-continuation-seal-01/manifest.json",
+      "bytes": 79996,
+      "sha256": "07180d829d17b6f0d9cb315bf091a9e3093a6cd97de7eb122a6d708407d348e4"
+    },
+    {
+      "path": "evidence/v04-ma-convection-cinematic-performance-01/day-near.json",
+      "bytes": 167972,
+      "sha256": "575de37e7c2032b02ee069013e5ef6cb2b54455a94ff2dd8443400c801bf88b1"
+    },
+    {
+      "path": "evidence/v04-ma-convection-cinematic-stills/day-near.json",
+      "bytes": 167153,
+      "sha256": "a0fe34baffd2a835286fe0595bf8a90152099e52e2402193a144409dc14bbb42"
+    },
+    {
+      "path": "evidence/v04-ma-convection-cinematic-stills/day-near.png",
+      "bytes": 4395469,
+      "sha256": "f7d4b41f3af5ce1b69bae9e38b0ba4c4e7219b0995dc1584f677a3b08e53c80f"
+    },
+    {
+      "path": "evidence/v04-ma-convection-cinematic-stills/gold-high.json",
+      "bytes": 162436,
+      "sha256": "d1edbebc754629879917aaa9eb41ce816fa58a28b36396812b31b51797df046f"
+    },
+    {
+      "path": "evidence/v04-ma-convection-cinematic-stills/gold-high.png",
+      "bytes": 4586358,
+      "sha256": "75217cbce6f9f1ed7019b92981cb0bde8e3c6fc1a613ce2ef50247d8dacd8d29"
+    },
+    {
+      "path": "evidence/v04-ma-convection-final-stills/day-high.json",
+      "bytes": 161621,
+      "sha256": "fe84075764d1493343f8c61870e9e1c3c39faff893ed3b24c431159b76ff1e1d"
+    },
+    {
+      "path": "evidence/v04-ma-convection-final-stills/day-high.png",
+      "bytes": 4584322,
+      "sha256": "22f1f1dddb104d2c5fac052e5648f38984b849859e079bffc23a7e95263d00e3"
+    },
+    {
+      "path": "evidence/v04-ma-convection-final-stills/day-near.json",
+      "bytes": 160496,
+      "sha256": "6ec0e3630e27cc785996060ec768a98d8e859f989420b83175198fd840cc5840"
+    },
+    {
+      "path": "evidence/v04-ma-convection-final-stills/day-near.png",
+      "bytes": 4361141,
+      "sha256": "e8713335d25a71b58e6c8aa65e90490a6931e6be1c9a714965711b5eab84430f"
+    },
+    {
+      "path": "evidence/v04-ma-convection-final-stills/gold-near.json",
+      "bytes": 162784,
+      "sha256": "2354d2d4b6130b2a40e928caac7d94872b74f82a070c0ab3d95bd0993a91691c"
+    },
+    {
+      "path": "evidence/v04-ma-convection-final-stills/gold-near.png",
+      "bytes": 4422635,
+      "sha256": "6ccdf41ae3022cebe13a2f4c9943ff3a106964f76901d44c45d3938b98f4c17f"
+    },
+    {
+      "path": "evidence/v04-ma-convection-motion-02/day-high.json",
+      "bytes": 770938,
+      "sha256": "e4cd14e602fb6c68aeb70cdc8039be12c71508fc9a8c2c03f2ad4d2219891aa2"
+    },
+    {
+      "path": "evidence/v04-ma-convection-motion-02/day-high.webm",
+      "bytes": 37549771,
+      "sha256": "aa139178eb4caca10eeb1697d7220285a90ebf555af8d940d5e30186ad365162"
+    },
+    {
+      "path": "evidence/v04-ma-convection-motion-02/day-near.json",
+      "bytes": 602895,
+      "sha256": "b2798c9115355f20097308170cf985ab65af3e6dda5b58b9a83c3e50f1125db6"
+    },
+    {
+      "path": "evidence/v04-ma-convection-motion-02/day-near.webm",
+      "bytes": 29016434,
+      "sha256": "46c70be32a90ca691c47c866f88f9e056ec1d56b000bc7ffa8c15ffc3c8688fe"
+    },
+    {
+      "path": "evidence/v04-ma-convection-motion-02/gold-high.json",
+      "bytes": 767030,
+      "sha256": "05c67c0288c9afb12a1d16d3ca7ddeb13376ebf8cf9face7ccc6e50c80a7d9ad"
+    },
+    {
+      "path": "evidence/v04-ma-convection-motion-02/gold-high.webm",
+      "bytes": 35803786,
+      "sha256": "0c6914344a371f0987aea17cccd065166a7e496712666d1e2d01dee89600eca5"
+    },
+    {
+      "path": "evidence/v04-ma-convection-motion-02/gold-near.json",
+      "bytes": 609038,
+      "sha256": "149ce0436ac0a0d2250ac1173433372b5a1453b27d449d6f12485f8b5d78d12a"
+    },
+    {
+      "path": "evidence/v04-ma-convection-motion-02/gold-near.webm",
+      "bytes": 28571015,
+      "sha256": "c2c495d79156848324f17bb0f5c70e7a7cd105674ad88a50a0cd08c9efb3acfb"
+    },
+    {
+      "path": "evidence/v04-ma-convection-performance-02/day-high.json",
+      "bytes": 1315354,
+      "sha256": "cd59de41903cce74870c81ac29f3e7545f553c59db300cf685b25cb5c448f9ce"
+    },
+    {
+      "path": "evidence/v04-ma-convection-performance-02/day-near.json",
+      "bytes": 1684136,
+      "sha256": "3ed5f3ff234cc4d3b553daca82fbddd95198e7f8da99b400e3451cfb1ffc6219"
+    },
+    {
+      "path": "evidence/v04-ma-convection-performance-02/gold-high.json",
+      "bytes": 2125016,
+      "sha256": "c0749979c5dd0071e6a8c41f8ca4b7c8dc12ab1e79586fb01cf626b9ede763f0"
+    },
+    {
+      "path": "evidence/v04-ma-convection-performance-02/gold-near.json",
+      "bytes": 1680032,
+      "sha256": "fb7fe9920dee89a0ab24cecb0cff655504daec5a8d83b55f74b9556de4820c78"
+    },
+    {
+      "path": "evidence/v04-ma-convection-stills-02/day-high.json",
+      "bytes": 161831,
+      "sha256": "8f8238180c2d3e63a9b19156dd846ee3e8de371710dd97615c1eed7bca296651"
+    },
+    {
+      "path": "evidence/v04-ma-convection-stills-02/day-high.png",
+      "bytes": 4583627,
+      "sha256": "0da63a5495c8bd41d3a02c92f97458f666a4c5dbb0d00392f835a60c65ca8c59"
+    },
+    {
+      "path": "evidence/v04-ma-convection-stills-02/day-near.json",
+      "bytes": 162568,
+      "sha256": "b7ee1dc18b80816a76b055fbf0d002a33194d6a16a5b451f6d9981427bd2ea72"
+    },
+    {
+      "path": "evidence/v04-ma-convection-stills-02/day-near.png",
+      "bytes": 4360181,
+      "sha256": "ec9050b42fe3ceb5681fe017d6690ae78e74d7b880a031d7742e5a576f95ea05"
+    },
+    {
+      "path": "evidence/v04-ma-convection-stills-02/gold-high.json",
+      "bytes": 161410,
+      "sha256": "5661ceaa823390db313eedf20359828a13f0e902f72c6a89c939bf1b3fe4a633"
+    },
+    {
+      "path": "evidence/v04-ma-convection-stills-02/gold-high.png",
+      "bytes": 4541530,
+      "sha256": "1fa787540283f9e4c9c3ef3c82b6bddfd399f86f4fd0bd7428fa07e326a778db"
+    },
+    {
+      "path": "evidence/v04-ma-convection-stills-02/gold-near.json",
+      "bytes": 161574,
+      "sha256": "6a6914fe7324ede07b3a48f125966d2d9618a6cae4df6c8fb96b1bf5cd89c25d"
+    },
+    {
+      "path": "evidence/v04-ma-convection-stills-02/gold-near.png",
+      "bytes": 4422186,
+      "sha256": "a14f080a08ce5dffce6912e8168d4dbf140b4849211df538c52e50b77d82a442"
+    },
+    {
+      "path": "evidence/v04-ma-convection-stills-03/gold-near.json",
+      "bytes": 161915,
+      "sha256": "82dc7d4ba832d8b33f2fd476894c549ed833d32c252f366a083bd393481144f6"
+    },
+    {
+      "path": "evidence/v04-ma-convection-stills-03/gold-near.png",
+      "bytes": 4422186,
+      "sha256": "a14f080a08ce5dffce6912e8168d4dbf140b4849211df538c52e50b77d82a442"
+    },
+    {
+      "path": "evidence/v04-ma-convective-test-01/day-near.json",
+      "bytes": 159355,
+      "sha256": "27915a8f20a650348c5c675e33ba83b60c790bfd135203342c6f78b36cc66d8d"
+    },
+    {
+      "path": "evidence/v04-ma-convective-test-01/day-near.png",
+      "bytes": 4357383,
+      "sha256": "3cce00a82e57e5838892645c1807d9202a3ef1ef1f8206f2bf40d2ebf78db508"
+    },
+    {
+      "path": "evidence/v04-ma-convective1-source/cloud-bank.js",
+      "bytes": 4873,
+      "sha256": "461b07fc9011aad91bd3d6cba7bab8f1a40a29d7a3d2a9d77ec56793b9029d7d"
+    },
+    {
+      "path": "evidence/v04-ma-convective2-calibration/day-near.json",
+      "bytes": 160151,
+      "sha256": "7dc9aa3023fb640bd67d4416c8b4419b172b415f439c868fb176501b4d7be5ae"
+    },
+    {
+      "path": "evidence/v04-ma-convective2-calibration/day-near.png",
+      "bytes": 4361141,
+      "sha256": "e8713335d25a71b58e6c8aa65e90490a6931e6be1c9a714965711b5eab84430f"
+    },
+    {
+      "path": "evidence/v04-ma-deformed-slopes-01/day-high.json",
+      "bytes": 5590113,
+      "sha256": "747709485611bad7d0b446a9090bb0baf6ebe22b039f707caec0ff3c9f15acd9"
+    },
+    {
+      "path": "evidence/v04-ma-deformed-slopes-01/day-high.png",
+      "bytes": 4613147,
+      "sha256": "e443fc044213093fd489b078ae7b11d3e8259df07dc804581826d4ac89a8f6ba"
+    },
+    {
+      "path": "evidence/v04-ma-geometry-01/day-high.json",
+      "bytes": 154422,
+      "sha256": "8f8bbe89d6308dec3aefe8e612a45ad412f07d7eb764893b88f07bfd5415ba82"
+    },
+    {
+      "path": "evidence/v04-ma-geometry-01/day-high.png",
+      "bytes": 4616363,
+      "sha256": "08fec294cc4c29d44da36c3e454b89f03971b68a49f39d7e2c14eb42b73fbc1a"
+    },
+    {
+      "path": "evidence/v04-ma-geometry-01/gold-near.json",
+      "bytes": 153816,
+      "sha256": "56db088474aad9bc86feb7f11deb08c0194ad0895cbf31eedb79febc36668c0c"
+    },
+    {
+      "path": "evidence/v04-ma-geometry-01/gold-near.png",
+      "bytes": 4528539,
+      "sha256": "7901e68f035c8e3e86a9f2c5b6361e0fb7c6b20cfabf45ff972a43074a4307a9"
+    },
+    {
+      "path": "evidence/v04-ma-geometry-perf-01/gold-near.json",
+      "bytes": 1756211,
+      "sha256": "98ebdd23e46447e8eb9de3e5f4cc275e5bdd32a7a1617d1bd66bcccdee2ac43c"
+    },
+    {
+      "path": "evidence/v04-ma-geometry-perf-default-01/gold-near.json",
+      "bytes": 2074280,
+      "sha256": "1112d29978caeb57a2069a6404e4e3a25a255f82dbc464de61a721a7c4430094"
+    },
+    {
+      "path": "evidence/v04-ma-gpu-tests-01/gpu-fft.json",
+      "bytes": 16324,
+      "sha256": "3ccdcfc7d29861fbf0271c8f09330c8e1eb047ea95cae8097790af559c2f6b13"
+    },
+    {
+      "path": "evidence/v04-ma-gpu-tests-01/gpu-optics.json",
+      "bytes": 20738,
+      "sha256": "082ab2efd67983f4c1ef27707a771444f900d1f32140adc0245fb8454e9b0b04"
+    },
+    {
+      "path": "evidence/v04-ma-handoff-01/manifest.json",
+      "bytes": 55649,
+      "sha256": "4620dd7b1297d6a77bf28d4a8a117ab4bcd0f07a4430c98b49b534c8e143c8f9"
+    },
+    {
+      "path": "evidence/v04-ma-handoff-01/publication.json",
+      "bytes": 993,
+      "sha256": "51e5c980ad592219423475cbff1c7fb1c3b823c77d758ee9d11d9e4949a8d72a"
+    },
+    {
+      "path": "evidence/v04-ma-hardware-20261022/benchmark-monitor.csv",
+      "bytes": 239752,
+      "sha256": "0dd65e711c90165131f9aaa919be112aff1a9fe2b3a963f12dde63e4f3d90066"
+    },
+    {
+      "path": "evidence/v04-ma-hardware-20261022/chrome-gpu-process.json",
+      "bytes": 111,
+      "sha256": "e114b7fe18c0f7db3e89e37f50f0b234fa58bbbff767a04ea974ef08b23cdb99"
+    },
+    {
+      "path": "evidence/v04-ma-hardware-20261022/nvidia-smi.txt",
+      "bytes": 2825,
+      "sha256": "5f8b1b31d10536aad3ecab65dd1cc0ddc3f2b9d683d6ed88b5e4a237c7bdf55c"
+    },
+    {
+      "path": "evidence/v04-ma-hardware-20261022/time.txt",
+      "bytes": 35,
+      "sha256": "c70467153a697ef8996643ebc693562f186a6dfca5687b9c289504ea2800eac5"
+    },
+    {
+      "path": "evidence/v04-ma-hardware-20261022/window-diagnosis.json",
+      "bytes": 810,
+      "sha256": "63673bf211916425ee567307e5a32a31f08fce8f5d2a035f258d0e87b7fbf689"
+    },
+    {
+      "path": "evidence/v04-ma-light-path-01/day-high.json",
+      "bytes": 218749,
+      "sha256": "d23a547d0b18197b7ad40fbfb9122aa7cd7e60d24dbf60cdfb77cf497d277b33"
+    },
+    {
+      "path": "evidence/v04-ma-light-path-01/day-high.png",
+      "bytes": 4592764,
+      "sha256": "9e6f7604b84f8bf11de2550ed941449dcdbe0dc2813813af1a8440079df995ef"
+    },
+    {
+      "path": "evidence/v04-ma-light-path-01/gold-near.json",
+      "bytes": 151335,
+      "sha256": "5cec7e73d31a5c411b73c6c8e0be6a5e0ff7da165772c0c4bb5fb42df8dc52d0"
+    },
+    {
+      "path": "evidence/v04-ma-light-path-01/gold-near.png",
+      "bytes": 4567782,
+      "sha256": "10e65e3d6ed1e33fc09334ad61f9a97a5d88c41acec38abb1496b2d19ec5a24c"
+    },
+    {
+      "path": "evidence/v04-ma-light-path-motion-01/gold-near.json",
+      "bytes": 787694,
+      "sha256": "b973fd144b8e9b1ef6136dd2f33f521e0293acc41b15bd65aad1f3b381e1fc1b"
+    },
+    {
+      "path": "evidence/v04-ma-light-path-motion-01/gold-near.webm",
+      "bytes": 37769879,
+      "sha256": "f8b3a11804b2d9cddf9411694d5c342e3d834138fceb0345f82bea134d0a9ed1"
+    },
+    {
+      "path": "evidence/v04-ma-light-path-perf-01/gold-near.json",
+      "bytes": 2062583,
+      "sha256": "5c26641ddcfa4f2d814bfcba939687081bf38ee277b59a34ee8fc62fe7f2dec0"
+    },
+    {
+      "path": "evidence/v04-ma-light-reference-128-01/gold-near.json",
+      "bytes": 160045,
+      "sha256": "c981daf342f70c4eb3dca445de956393bdf529ac27484ae419fb6505782e25a4"
+    },
+    {
+      "path": "evidence/v04-ma-light-reference-128-01/gold-near.png",
+      "bytes": 4575261,
+      "sha256": "f8d99775285c406a38b1deb24b49114e97198efaa6a1fe65daa3560cd112a2e2"
+    },
+    {
+      "path": "evidence/v04-ma-light-reference-256-01/gold-near.json",
+      "bytes": 159868,
+      "sha256": "3060016fd881338fd52ccdb030dbd2b3a016a3646e9512e4c6794c2c766e3936"
+    },
+    {
+      "path": "evidence/v04-ma-light-reference-256-01/gold-near.png",
+      "bytes": 4569750,
+      "sha256": "97a19567a153f2cb038724a3724ff57f54bc1be0f0aa35a360112fe6bf5e10c8"
+    },
+    {
+      "path": "evidence/v04-ma-light-reference-512-01/gold-near.json",
+      "bytes": 159461,
+      "sha256": "acdb34700a8e021a9d81651e1e6c381e95a55f423b2bd87e7013c36aca1c1b39"
+    },
+    {
+      "path": "evidence/v04-ma-light-reference-512-01/gold-near.png",
+      "bytes": 4568845,
+      "sha256": "34d6897eb340d37335a61227d2d07f82b570c5da6e040865e09a63131dc80fe9"
+    },
+    {
+      "path": "evidence/v04-ma-light-reference-review-01/analysis.json",
+      "bytes": 9510,
+      "sha256": "0b78d8e59122760a8a00172db7afed55c12498a67efb4a11dfb396a4be9f515a"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-01/day-high.json",
+      "bytes": 175680,
+      "sha256": "c38c5e46905ca4d2741af427b49a44d66004c89d4dfc3c616a923cb614601149"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-01/day-high.png",
+      "bytes": 4620772,
+      "sha256": "f31791e0cc67f0334256f48ca9a2c2cdf0b43aba9a488cf0c2c8872e839b1cbe"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-01/day-near.json",
+      "bytes": 152078,
+      "sha256": "cfb844a49a354bd90bb6469ecb4b1c49cdcec71b0241261954f8b0c00f2fea3b"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-01/day-near.png",
+      "bytes": 4496818,
+      "sha256": "643acda4f002ba81730b3bb31c6d2c18b802f592826770e640fd2dbad76fa934"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-01/gold-high.json",
+      "bytes": 151785,
+      "sha256": "387dbf47ccf16d76f1a699a40f6d5f6698acd75a5a58c340277a6dc8a8cd76cc"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-01/gold-high.png",
+      "bytes": 4622239,
+      "sha256": "3b312012bcf9da6794aab051bf844deed74c6d27ab81f6f8f753c741ba53a279"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-01/gold-near.json",
+      "bytes": 151856,
+      "sha256": "f3220d124326003578ac025a9088207aba68153eedb5b3ef17327d7c25cdadc0"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-01/gold-near.png",
+      "bytes": 4621006,
+      "sha256": "6b2de442d038b21f0de89014309a531780db89a7d2d78ebc3a01d740434922b2"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-motion-01/day-high.json",
+      "bytes": 936294,
+      "sha256": "4a174db4fda05f5b80315ef7a091b9b30c8c6852a32a398d89acbae19b3449fd"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-motion-01/day-high.webm",
+      "bytes": 40328951,
+      "sha256": "6eadb4fc09f37ccc854e4f90948ae7a6379feb967fbbdf4cf847e512438abf1b"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-perf-01/day-high.json",
+      "bytes": 2461638,
+      "sha256": "f6ea56653d0292d95bfdbe741c26328db219f54779b73200b3ad2d045b92634a"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-science-01/long-domain-study.json",
+      "bytes": 4068,
+      "sha256": "3630e5d72e158a8490b7603d5c9ee41f08cbb1674569fbadcb08873adb942f46"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-science-01/long-grid-filter-study.json",
+      "bytes": 814,
+      "sha256": "f92a8b4a4e855fd381dd712c2bcb69c6a0e61823e42d51ae3a2da173b5ce1a73"
+    },
+    {
+      "path": "evidence/v04-ma-long-grid-science-01/reconstruction.json",
+      "bytes": 3481,
+      "sha256": "60ddec5272de44c9a1e3f9518857cad05086927a8e7067000f94a018f9851a9f"
+    },
+    {
+      "path": "evidence/v04-ma-noise-diagnostic-01/day-near.json",
+      "bytes": 151733,
+      "sha256": "12f583cf476072f9266b0df816b8e63594688668bf5c611a33dace053c4aaa04"
+    },
+    {
+      "path": "evidence/v04-ma-noise-diagnostic-01/day-near.png",
+      "bytes": 4304673,
+      "sha256": "5204e029b6fb4fa42b2ea6c28abe4672216bba39331967e15105039107be9f58"
+    },
+    {
+      "path": "evidence/v04-ma-off-sun-01/day-high.json",
+      "bytes": 153286,
+      "sha256": "6d3f50a46e0e3156e8d586ac61f35a6ce020f64bec92fb67da2d41cee6c4ee90"
+    },
+    {
+      "path": "evidence/v04-ma-off-sun-01/day-high.png",
+      "bytes": 4196661,
+      "sha256": "5de7a860c09a8a1fd8de555a0279b2717df2aee7a7af1d98b658e75d11a738e1"
+    },
+    {
+      "path": "evidence/v04-ma-order-default-01/day-near.json",
+      "bytes": 150301,
+      "sha256": "81c2001cc91a53ad444029c27ec136cffe577d351f945520c79996ff9d33a963"
+    },
+    {
+      "path": "evidence/v04-ma-order-default-01/day-near.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1"
+    },
+    {
+      "path": "evidence/v04-ma-order-motion-01/day-high.json",
+      "bytes": 902757,
+      "sha256": "702af007d296d68e0f89d4faa212361d550d22e2f3aae976f3c81f21deb323e0"
+    },
+    {
+      "path": "evidence/v04-ma-order-motion-01/day-high.webm",
+      "bytes": 40740210,
+      "sha256": "261fb7eaafff70bc3a241bb3a4d1fa84eec43c48b4dfeb7f3610fb4c109682a8"
+    },
+    {
+      "path": "evidence/v04-ma-order-motion-01/day-near.json",
+      "bytes": 764518,
+      "sha256": "1795967cdbf84554e783e40a376136f37c991a480b588b38c082a6fe901e0c1a"
+    },
+    {
+      "path": "evidence/v04-ma-order-motion-01/day-near.webm",
+      "bytes": 37107519,
+      "sha256": "b51bcc4067ecdc2d7b8c60f0a2d8a66bcdbf233a87912b1b81c448b4c8fd0186"
+    },
+    {
+      "path": "evidence/v04-ma-order-motion-01/gold-high.json",
+      "bytes": 910026,
+      "sha256": "104b3c6da50b14f02a14f695c50465845d5eaba6fd87d08f070b0c62753cdf51"
+    },
+    {
+      "path": "evidence/v04-ma-order-motion-01/gold-high.webm",
+      "bytes": 40843007,
+      "sha256": "7b300b5527b72faadf20ea30da5e2c204236e98e9dd5b5a4c8f2bdd314a08e8a"
+    },
+    {
+      "path": "evidence/v04-ma-order-motion-01/gold-near.json",
+      "bytes": 764637,
+      "sha256": "5f99e732636b5cde58611d54f834702885a709b88ce3b5c2af5a995beceef5d2"
+    },
+    {
+      "path": "evidence/v04-ma-order-motion-01/gold-near.webm",
+      "bytes": 36815468,
+      "sha256": "aaf1fec6c25b5e5921b24af879ecca56dd2b6413a7dbe1562f43b5fd06393d84"
+    },
+    {
+      "path": "evidence/v04-ma-order-stills-01/day-high.json",
+      "bytes": 151265,
+      "sha256": "c7ae94d1bd3679d05d6507684b1680f99c05daf0d47bb7916b18e5ac7a46dadb"
+    },
+    {
+      "path": "evidence/v04-ma-order-stills-01/day-high.png",
+      "bytes": 4613147,
+      "sha256": "e443fc044213093fd489b078ae7b11d3e8259df07dc804581826d4ac89a8f6ba"
+    },
+    {
+      "path": "evidence/v04-ma-order-stills-01/day-near.json",
+      "bytes": 150140,
+      "sha256": "770dc9ed688e98206225a076385bc006d1230c4005ae727b81575f9f0ee1b9be"
+    },
+    {
+      "path": "evidence/v04-ma-order-stills-01/day-near.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1"
+    },
+    {
+      "path": "evidence/v04-ma-order-stills-01/gold-high.json",
+      "bytes": 150674,
+      "sha256": "64b8e555003e0a76de54415b94795c3e73446f59a5d93d4967058f704af86d90"
+    },
+    {
+      "path": "evidence/v04-ma-order-stills-01/gold-high.png",
+      "bytes": 4586980,
+      "sha256": "7d083bd9e0892782b2189ca431195bfce74f164febcb64320445871db4387172"
+    },
+    {
+      "path": "evidence/v04-ma-order-stills-01/gold-near.json",
+      "bytes": 150491,
+      "sha256": "c66b7c82d39dd06c4c71d834f1bca5296cbd34cdd314c60b5eddccc5ca847a74"
+    },
+    {
+      "path": "evidence/v04-ma-order-stills-01/gold-near.png",
+      "bytes": 4530698,
+      "sha256": "7be3daeff64d1c82b4f0da32d77f928c4c67e30bf4552c2dc58c2c849416b35d"
+    },
+    {
+      "path": "evidence/v04-ma-pixel-footprint-01/day-near.json",
+      "bytes": 162035,
+      "sha256": "eb4caaab78c7d8b4565f4dbdd04ca19c6e61d0c943bf51dd2af3348b7d668b2b"
+    },
+    {
+      "path": "evidence/v04-ma-pixel-footprint-01/day-near.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1"
+    },
+    {
+      "path": "evidence/v04-ma-playback-01/baseline-day-high.json",
+      "bytes": 16956,
+      "sha256": "e401c0651bba13f75f9688013b01941954d578b20e1d664a09e7b6d8b4adc999"
+    },
+    {
+      "path": "evidence/v04-ma-playback-01/baseline-day-near.json",
+      "bytes": 17520,
+      "sha256": "8b90616f04184de3cd32b662594871290b0ef58b0ac20fc17f0d3d12a3f01185"
+    },
+    {
+      "path": "evidence/v04-ma-playback-01/baseline-gold-high.json",
+      "bytes": 23249,
+      "sha256": "15a3a63fbcf20827012dcc9d927bc181f55e42177320abd6606920713cc7d34c"
+    },
+    {
+      "path": "evidence/v04-ma-playback-01/baseline-gold-near.json",
+      "bytes": 19716,
+      "sha256": "be6ccceb49934f2a00be5459722d0f1ab32f2e6e63b09f8a1a79a4ffecb8cd3c"
+    },
+    {
+      "path": "evidence/v04-ma-playback-01/candidate-day-high.json",
+      "bytes": 22713,
+      "sha256": "6778dbb17f47234e8613d2e381d2cb47f64b082921005e3c079bf62ca71f8a8e"
+    },
+    {
+      "path": "evidence/v04-ma-playback-01/candidate-day-near.json",
+      "bytes": 16840,
+      "sha256": "5355544205270eca86452c9fa6eb73c97443648cf71332f15a209868a2332c9f"
+    },
+    {
+      "path": "evidence/v04-ma-playback-01/candidate-gold-high.json",
+      "bytes": 22004,
+      "sha256": "7de747f6e6d4372a1449d7ee7aa9d6a6ae07fa6744ce037e89a8a57b5cdd2008"
+    },
+    {
+      "path": "evidence/v04-ma-playback-01/candidate-gold-near.json",
+      "bytes": 20962,
+      "sha256": "fcf56e70bca29e994cce7c070eaeb702e66d79547a3ec736d17d01c51d1c32d9"
+    },
+    {
+      "path": "evidence/v04-ma-playback-02/baseline-gold-near.json",
+      "bytes": 68887,
+      "sha256": "dd641c35760db8f6d8fe47e0996e7b75aaa6635cb7ef23642ed80f6796b1b988"
+    },
+    {
+      "path": "evidence/v04-ma-playback-02/candidate-gold-near.json",
+      "bytes": 62485,
+      "sha256": "adabd73df61838322d8307b6072c05c541409abab00bde1b8d29ea07d6f95c71"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/body-covered.json",
+      "bytes": 120572,
+      "sha256": "d55c0e368c8d464e65a77c5b60e4d9f9935fc0c1b26dbb93127dd587e1babaa6"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/body-covered.png",
+      "bytes": 3032001,
+      "sha256": "723efda01a99851236614b089ee25103280993c802a6c5b4491c953bd6262a2a"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/broken.json",
+      "bytes": 121208,
+      "sha256": "5313223cb9747fe1ca4ed5f75189359d31d6ce10929df8a2493cb961ca16433a"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/broken.png",
+      "bytes": 4947549,
+      "sha256": "7c50464f04d455bc63cd67613036ce1326abaa06140ec0f27f513749b0078aaa"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/clear.json",
+      "bytes": 120806,
+      "sha256": "65d6c364ad72979d60c6567cbb09199dc1ac54748969158f4ce64c7b63d785c6"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/clear.png",
+      "bytes": 4129720,
+      "sha256": "023b368fe738ab30d33cee660d67c15bca704963d3df8175169e91bbe2a8f0ce"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/covered.json",
+      "bytes": 121165,
+      "sha256": "1a9fd9600f8e8af0d79d475ec8fcf60006b11787e87808d93009da4773e83d40"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/covered.png",
+      "bytes": 4249786,
+      "sha256": "b08aec41c8ed42acadcb53a0e7afd743d939d2267f97cc402687bc1e05f61c4d"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/glitter-covered.json",
+      "bytes": 120636,
+      "sha256": "1404fed124e6522225b4482343adf4748a42bfb31b4fdd67cf10c30e66aae25a"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/glitter-covered.png",
+      "bytes": 2785508,
+      "sha256": "adf2d4d972eab38d5f0b0916a3fa2dd3233d407b0d2aa6ce56880f9a98fee223"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/golden.json",
+      "bytes": 121594,
+      "sha256": "9fdf965a64084910721642ae1bb22621aa90c78d282c25a48f512361ccefca68"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/golden.png",
+      "bytes": 4480662,
+      "sha256": "afa2e5e285c94a4110227a6d7cb750a2730051407c84daa5f8ea7699879084df"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/manifest.json",
+      "bytes": 7999,
+      "sha256": "1badec29e328bd98a65be3b5f44ee3c4d361a38bda36d741a338d1dc62ce490b"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/moonlit.json",
+      "bytes": 122170,
+      "sha256": "5053cea394a9e63471c3ff1c7b0031886af7060fdc92558596e0f9bcd3808098"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/moonlit.png",
+      "bytes": 3443661,
+      "sha256": "12ada358119006d802866e87f63e41cb11d2f24d2da43ce989956b7312bd169d"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/reflection.json",
+      "bytes": 120720,
+      "sha256": "27f146a3be3a8d217d0f2f925ed539cdc20cfb0e47c716321d03d1978c22419d"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/reflection.png",
+      "bytes": 4425778,
+      "sha256": "62d9b7c3942b48cedd1237102a38c60037c1fd2ec3026abf69924aef1efefe6c"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/storm.json",
+      "bytes": 121555,
+      "sha256": "016e2d0633e380db0691630f9fb1673320c4421e2570678edffddf666966a31d"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/storm.png",
+      "bytes": 4044097,
+      "sha256": "b4fe5f2bbc34fcf2a660c84cd9ed3c15177ee2430dbcd57f75b56a1e9bc016f2"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/twilight.json",
+      "bytes": 121444,
+      "sha256": "48ba683b71a2daac5abf1b9978ea0eff01e2e562f6bb36b3025931a3c66fad7b"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/twilight.png",
+      "bytes": 3521612,
+      "sha256": "7bf1466356411f16f33f460ae89d9e742a72721678bd5bbe97361cd9b7444d42"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/underwater-clear.json",
+      "bytes": 120612,
+      "sha256": "6da19e14f2775aafd8fc830678d75bd50349c35f256cdef9b47cffd93a41db89"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/underwater-clear.png",
+      "bytes": 3211330,
+      "sha256": "f177509676d0130456f45a62b8248434b8c251af3245948bbb908d1d1493dbbd"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/underwater-covered.json",
+      "bytes": 120408,
+      "sha256": "2e1251e95ec0c1e945322014c59609fb8ccf46055a8d2ca039fb6d9a7b958cea"
+    },
+    {
+      "path": "evidence/v04-ma-preservation-20261022/underwater-covered.png",
+      "bytes": 2981892,
+      "sha256": "b3b72d02c25681df4abf77c96f1db11a71bd07e69894681b983aea75992a82e0"
+    },
+    {
+      "path": "evidence/v04-ma-profile-review-01/performance.json",
+      "bytes": 377413,
+      "sha256": "c5eea868386038972862a3ce065d7edca72a4e61b73f127d43407da5bc5b59b0"
+    },
+    {
+      "path": "evidence/v04-ma-profile-review-01/preservation.json",
+      "bytes": 193,
+      "sha256": "92e0195b2131043229f1362418456af567de455c1ee1083df407739c5838ae53"
+    },
+    {
+      "path": "evidence/v04-ma-profile-review-02/board-monitor.json",
+      "bytes": 757,
+      "sha256": "838d0ff59b2dba14a6d03681178cd33a10b5ee1b276d2cdbe5b92c4da78b3931"
+    },
+    {
+      "path": "evidence/v04-ma-profile-review-02/cinematic-stills.json",
+      "bytes": 6611,
+      "sha256": "52652e8cb81454352ec60770d036a29218801641e7ce86ac1326836cd7a64863"
+    },
+    {
+      "path": "evidence/v04-ma-profile-review-02/performance.json",
+      "bytes": 379693,
+      "sha256": "908350f7850c9e6d770250269d6780bf3a09111b0292a1e1ce3f7afdd1a6edc0"
+    },
+    {
+      "path": "evidence/v04-ma-profile-review-02/preservation.json",
+      "bytes": 193,
+      "sha256": "92e0195b2131043229f1362418456af567de455c1ee1083df407739c5838ae53"
+    },
+    {
+      "path": "evidence/v04-ma-remap-source/cloud-bank.js",
+      "bytes": 3832,
+      "sha256": "627b8aab11dd99da0b2cbe5eda25aef46e44acafc8441340c1495ec06001a2af"
+    },
+    {
+      "path": "evidence/v04-ma-remap-test-01/day-near.json",
+      "bytes": 169006,
+      "sha256": "1c784fefbaa71409632687d25600223c1daa390a8489f7c899379ca35422cbdc"
+    },
+    {
+      "path": "evidence/v04-ma-remap-test-01/day-near.png",
+      "bytes": 4107161,
+      "sha256": "5e1b2ef3de49a240d3d92f51380823afebfc203bc3becdf29d7fc02429460fee"
+    },
+    {
+      "path": "evidence/v04-ma-view-integral-01/day-near.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1"
+    },
+    {
+      "path": "evidence/v04-ma-view-integral-01/failure.json",
+      "bytes": 287,
+      "sha256": "f195af80fe01ae7d5f3bbe6195a7f8900df50739126b88173a78cf646db10e1a"
+    },
+    {
+      "path": "evidence/v04-ma-view-integral-02/day-high.json",
+      "bytes": 1555934,
+      "sha256": "2db24d787ec91772097f469ecbfa1000d46732eaa86512c71af9d1d6e00ec736"
+    },
+    {
+      "path": "evidence/v04-ma-view-integral-02/day-high.png",
+      "bytes": 4613147,
+      "sha256": "e443fc044213093fd489b078ae7b11d3e8259df07dc804581826d4ac89a8f6ba"
+    },
+    {
+      "path": "evidence/v04-ma-view-integral-02/day-near.json",
+      "bytes": 1642974,
+      "sha256": "a66905d1345efe1ee72f8b256853253ef2ca73c552619bc05163b5fe23137cf8"
+    },
+    {
+      "path": "evidence/v04-ma-view-integral-02/day-near.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1"
+    },
+    {
+      "path": "evidence/v04-ma-view-review-01/analysis.json",
+      "bytes": 4830,
+      "sha256": "b0faeed384120100617cf87d732a536b6b0c9d980f7aaebcefd1db5956cca86d"
+    },
+    {
+      "path": "evidence/v04-ma-view-review-01/day-high-opacity.png",
+      "bytes": 12797,
+      "sha256": "56a0887da537d5b290d58d70aa9bfc0e9886cb2da8641f1826d1f13824d829b9"
+    },
+    {
+      "path": "evidence/v04-ma-view-review-01/day-near-opacity.png",
+      "bytes": 13811,
+      "sha256": "a0b7ed760e744db8cddcf0965c0c6498bae81af92dd2f6bed4c10382e8fd9740"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/matched-sheet.png",
+      "bytes": 5751132,
+      "sha256": "2101694385549f566c0cbddbfd3e1233990af88709616a8eb1edafaeb08c0541"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/motion.json",
+      "bytes": 7822,
+      "sha256": "7b761778ef9cdfd0d1dac8554e63b4bf1d3509476553796be85c8e1f15ec6191"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/preservation.json",
+      "bytes": 193,
+      "sha256": "92e0195b2131043229f1362418456af567de455c1ee1083df407739c5838ae53"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/stills.json",
+      "bytes": 16901,
+      "sha256": "d34dec7efa397bee40bceddbfe1b58204981890d72afbd754a2466d78a33b57f"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-high-0.5s.png",
+      "bytes": 2223656,
+      "sha256": "9df421228cd99d52e209dc518ff4974cfffd59056271917d922faa37060ca143"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-high-12s.png",
+      "bytes": 2058947,
+      "sha256": "00bf946b43460eae1286c6c8dc063bde2b6ffa3f865fe04cd00789fdbd0fc249"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-high-18s.png",
+      "bytes": 1517536,
+      "sha256": "62244554509ab55100792b1b334c2df2fe0e51a04b73167b06765d301557d269"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-high-23s.png",
+      "bytes": 1618890,
+      "sha256": "ec688a672c3ad7b28df96e84b7987c2ee83154f84c8328a7efd0a138c9dc1ba0"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-high-4s.png",
+      "bytes": 2055021,
+      "sha256": "c6bcee1476415b3ca3a28ee895adb1a5eeba86a24ad376fe74ee265c333a3d06"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-high-8s.png",
+      "bytes": 2029156,
+      "sha256": "a2a605c7c8b68db5f99f85b9e95faf106537be4353f71983eb49aee7ee8db344"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-high-sheet.png",
+      "bytes": 3863341,
+      "sha256": "bd3e41214a2f0971585ad72f535c53bda85a0b851271b2c2cd5e843395d5cac7"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-near-0.5s.png",
+      "bytes": 1495227,
+      "sha256": "d141609aedea896e3757742ad6c177ab5fc6d7d3d030badb6fee416695df00e5"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-near-12s.png",
+      "bytes": 1371579,
+      "sha256": "9574df1ffbf562cb1d42ca54d3a1cdae095f1df8de24772740d3ce46275faf9c"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-near-18s.png",
+      "bytes": 1334830,
+      "sha256": "8fed26b2e2e3b73c72065449975a6373fc33e93161be60812009a73bf0423b30"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-near-23s.png",
+      "bytes": 1374054,
+      "sha256": "e6af9136c306b0441793986fbed3234011689bfcfed0af33d2ff8ea409accb7c"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-near-4s.png",
+      "bytes": 1627849,
+      "sha256": "c44d6550676926c72a731c847f755fb07974bcb2d0f48e86cdfaab86cd078de8"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-near-8s.png",
+      "bytes": 1589597,
+      "sha256": "3e7be63704857e636a9fb273db215f975d9a94ca4ef0cda8e992b84863dc56d4"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-day-near-sheet.png",
+      "bytes": 3059245,
+      "sha256": "d44e0731e68cfddadec94e507b31baaec180bf5f408569050a915824537ead21"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-high-0.5s.png",
+      "bytes": 2028197,
+      "sha256": "7cda81968f8aeebf4584c69c80da45c5d5b8f9a11c9785fd18835bd2fd0b626d"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-high-12s.png",
+      "bytes": 2032710,
+      "sha256": "20d3654d77c8884bb04d572ac608d9b408caf557a3cba47e5b9311f04ebde0f4"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-high-18s.png",
+      "bytes": 1539866,
+      "sha256": "f14aedfc70fd37f3fe4920f916f788f18aa1baeec5666b3ae932cf1965043d13"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-high-23s.png",
+      "bytes": 1803875,
+      "sha256": "8b7d7b1dd8f316a048267834caaa106f33535f1014eb30f96edc43301e31d0bd"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-high-4s.png",
+      "bytes": 1835944,
+      "sha256": "a0b6f8f2b3623e99b0c3a4861791de5893a94357f49b4e63bab3419de0489076"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-high-8s.png",
+      "bytes": 1862425,
+      "sha256": "a00022d1181052c6b5c77336310a673fbd4ff04eff6a2f5ca8442418b679c5d8"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-high-sheet.png",
+      "bytes": 3670208,
+      "sha256": "5bcee7734e0ebb67d0120d754433730da849c257962e1f08e0036142740bcf15"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-near-0.5s.png",
+      "bytes": 1505141,
+      "sha256": "a1a7dd780ba2802d78a6b9e51974bf683f9eec4f442179417f4346b2333432f5"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-near-12s.png",
+      "bytes": 1548784,
+      "sha256": "70c367ac428e0ee189d632f83dab3cb96054fd591f2df8a5b267397b0d28dedf"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-near-18s.png",
+      "bytes": 1404507,
+      "sha256": "d5b34636dd63dbaba9de99a39065edf9e833cf66edbb4ed8ee9a4d0bfaf05850"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-near-23s.png",
+      "bytes": 1396966,
+      "sha256": "3901394e8bccb74c38f78e78e9dac0dd6293d597be61d143952d0b7d7a1b571e"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-near-4s.png",
+      "bytes": 1542623,
+      "sha256": "f1e5e0f8bf04906959d33e5e3db3d981c571a6827212463d68b87b1179141255"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-near-8s.png",
+      "bytes": 1587695,
+      "sha256": "27008fa1a232ecb51cef513b5c87628f885f3c4e9f556234b6b21468e65728be"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-base-motion-02-gold-near-sheet.png",
+      "bytes": 3152498,
+      "sha256": "87fcc89339a781cd313d631b6de700f6e2841a92387a1eb4de0e5a3ec5d59042"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-high-0.5s.png",
+      "bytes": 2267680,
+      "sha256": "6632f081c367ff57c861b089de86d93d38985038f5c23426d9d6bb5b8e5a7982"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-high-12s.png",
+      "bytes": 1923839,
+      "sha256": "42d078d7bd6df5d685f38f7e68c3af75b5d6bdadda13bf18936bbd92484a6fb6"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-high-18s.png",
+      "bytes": 1590988,
+      "sha256": "52c35b697744654c6447f6e2a3f7c2d0327f9fc8abd5bcf2c0eb9506e4a83fb8"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-high-23s.png",
+      "bytes": 1492752,
+      "sha256": "e3ec902dbb46b931860c2ca076fdf4d93a844cd4a516e67e56190227c6cc38c4"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-high-4s.png",
+      "bytes": 1990922,
+      "sha256": "c3d750db4ab7e8602e6616be262e52dd9b6277c3ea335c22a1a7a45a3de327bf"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-high-8s.png",
+      "bytes": 2104740,
+      "sha256": "b4155efb6c6a6207823d4eac3b6028d8592d44f257ea144758a5e87c63e2a1d9"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-high-sheet.png",
+      "bytes": 3748975,
+      "sha256": "0e9b1cead48b20a0bb79b944476b8e29a01ea003f1e0e866a70b40e12f47220b"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-near-0.5s.png",
+      "bytes": 1471335,
+      "sha256": "419bd91e797b68fe715a4e9ec1e8a2892fadd89fee58a1f6eaffd22e4e634cbe"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-near-12s.png",
+      "bytes": 1330001,
+      "sha256": "524d07cea25efb22b54812b4778e4b609c2acf2156b65919c04710ae0c31e0dd"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-near-18s.png",
+      "bytes": 1177698,
+      "sha256": "fcfb906e8b7c086451ef1e17e587a10fc339753d4ff00a14dc30b25d7250fb22"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-near-23s.png",
+      "bytes": 1190887,
+      "sha256": "4cf51569284aa5ba0feeae5c4aaf90fc40e76972289dbc67ad4a34cd2f812511"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-near-4s.png",
+      "bytes": 1567951,
+      "sha256": "ba6895d2c82fa018f1f079668564af384a82d23ed4705c478d976d33cc89c2ec"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-near-8s.png",
+      "bytes": 1477120,
+      "sha256": "aca37244768ad93b495fa5124fdffe0b9717ff85ba91e76ef333a4ae04cf761b"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-day-near-sheet.png",
+      "bytes": 2835148,
+      "sha256": "d2bd499f04dbc94baae7137f1daaa4ba11256d8b634ebc313c99dd1f86be401f"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-high-0.5s.png",
+      "bytes": 1985358,
+      "sha256": "9e192bc91f8bfb07bcec9a92da67fc30c5477cf14ecbf4a81d9286139734e284"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-high-12s.png",
+      "bytes": 1765794,
+      "sha256": "a51e491cde061eff4c84d49b3720ceca8acb0de46788bbfaffc5759721c7f01e"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-high-18s.png",
+      "bytes": 1598629,
+      "sha256": "9ade749e4e13a3020c8be46d517b39683e9fb39e0cacb6e7946c1ea67212aa0f"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-high-23s.png",
+      "bytes": 1511399,
+      "sha256": "d5fd69adc6b419c360039898722469fd43c4d5dc2bde42567612a5e8200429f7"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-high-4s.png",
+      "bytes": 1870643,
+      "sha256": "7819c386d317ee77ac1bdd192fc744fc6d55a77a1046c41f1914ab0955bfbce0"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-high-8s.png",
+      "bytes": 1780407,
+      "sha256": "5fe4cfbd4364ced7f4b3da53e34384f7f9db0643e8ed98e3df2613cb32944c91"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-high-sheet.png",
+      "bytes": 3443892,
+      "sha256": "e4ea31ab51badfefa4367bc062a57ed1bfb7cdb3f5e5d11868e786113e3907d0"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-near-0.5s.png",
+      "bytes": 1444452,
+      "sha256": "324879efb8ae3ffc4116b5b298af4fe51fbfed0b195f2e85105381f1fa3d442d"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-near-12s.png",
+      "bytes": 1443925,
+      "sha256": "a9b4adff26359d8fd9f0fb8fe4c32d56213668bb944aac94f1d75b5a1327508b"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-near-18s.png",
+      "bytes": 1363468,
+      "sha256": "edc1f5534f5f2f8de00ccac47252abb7f8ed7a886a65d4877006565f464f408b"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-near-23s.png",
+      "bytes": 1237900,
+      "sha256": "903cbfaf76f95b8467945b875a9d026673e27aa140be79ca80bcb1ef905d176e"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-near-4s.png",
+      "bytes": 1449968,
+      "sha256": "0494310df1696a84c9a164a6efc1d2bbcbdea469e43c5766d2fb5bae995d075f"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-near-8s.png",
+      "bytes": 1438742,
+      "sha256": "4ec072eae6eff82184f609754b42883231c821cc1a7b0a247a43b76fb1238662"
+    },
+    {
+      "path": "evidence/v04-ma-visual-review-01/v04-ma-convection-motion-02-gold-near-sheet.png",
+      "bytes": 2870639,
+      "sha256": "af6995c40e476d1b12f6981bfc0e3eee69388ed44c26d3a198cdad5dc8be2db8"
+    },
+    {
+      "path": "evidence/v04-ma-volume-01/day-high.json",
+      "bytes": 158288,
+      "sha256": "b09d4446af16ffa16bd09d3b2923d8355e3d85287ef4e8632f4de04023b40bb4"
+    },
+    {
+      "path": "evidence/v04-ma-volume-01/day-high.png",
+      "bytes": 4556492,
+      "sha256": "1014977a58a9e9fb21bffc8ff9cd024bf82580035fc0c16a4c23c4cfbb6160df"
+    },
+    {
+      "path": "evidence/v04-ma-volume-01/day-near.json",
+      "bytes": 170834,
+      "sha256": "e32abe95a6db749a6d73a6871b7a55db4bc64ad382fd359c5717fdc86a6cb679"
+    },
+    {
+      "path": "evidence/v04-ma-volume-01/day-near.png",
+      "bytes": 4364079,
+      "sha256": "acdb2a72ee6725438d06679a8caaf70772a6a72cd4c11464a09ce8d87537dc4b"
+    },
+    {
+      "path": "evidence/v04-ma-volume-01/gold-high.json",
+      "bytes": 159201,
+      "sha256": "a84ceabf2795749dd1f954efb363a3c02c4c0fa7c1cdf1e157b7e127bffc388b"
+    },
+    {
+      "path": "evidence/v04-ma-volume-01/gold-high.png",
+      "bytes": 4612929,
+      "sha256": "9bed78c3eee3375be463dd43667a238dd5ef922e8e3035841be76624a509e9f1"
+    },
+    {
+      "path": "evidence/v04-ma-volume-01/gold-near.json",
+      "bytes": 158674,
+      "sha256": "75b56c4e5e297ca9f7a6c85b9de3b7d17bf3d7cd290ef83788b7feb98935500c"
+    },
+    {
+      "path": "evidence/v04-ma-volume-01/gold-near.png",
+      "bytes": 4524329,
+      "sha256": "c5a1ee3b58e48bf0045b31d95a674a72feaf692e742a8fbc7f296804036debe2"
+    },
+    {
+      "path": "evidence/v04-ma-volume-motion-01/gold-near.json",
+      "bytes": 994886,
+      "sha256": "4816e5d302dbaec9d736c8a7bba3b62e73c65092cd67ceafc8aa5fab1eef4796"
+    },
+    {
+      "path": "evidence/v04-ma-volume-motion-01/gold-near.webm",
+      "bytes": 39188643,
+      "sha256": "9f784f170d9847eb4c2d025c4da1aec02cc5e9f3c58a9eea138eff5435f126ed"
+    },
+    {
+      "path": "evidence/v04-ma-volume-perf-01/gold-near.json",
+      "bytes": 2658163,
+      "sha256": "cd872e67493053bf63b7882916d7e46d963e6f47979d8a6d9dad5a030d83ff7f"
+    },
+    {
+      "path": "evidence/v04-ma-volume-review-01/analysis.json",
+      "bytes": 23133,
+      "sha256": "50507a1538af9ae8f380511a76dedcaba804cdc1a8faceda2ce6211da782854c"
+    },
+    {
+      "path": "evidence/v04-ma-volume-review-01/gold-near-12s.png",
+      "bytes": 1611991,
+      "sha256": "388a2d532f498c579b6b3944947ca013255c45a0ed3245f6c6cc728eeb1c6cf2"
+    },
+    {
+      "path": "evidence/v04-ma-volume-review-01/gold-near-21s.png",
+      "bytes": 1543120,
+      "sha256": "be33ec36fd553f182bb23fa963606b2c652d14f7c350c4597acc83064b8e6029"
+    },
+    {
+      "path": "evidence/v04-ma-volume-review-01/gold-near-3s.png",
+      "bytes": 1293724,
+      "sha256": "a838eba4538bd335ce49601c11d0d12ea515bd0678b9d53977f4f4eb11980cd3"
+    },
+    {
+      "path": "evidence/v04-ma-wave-base-01/day-high.json",
+      "bytes": 172570,
+      "sha256": "6dc387f01d96b47d51d5cfb35a48d2db975618cda9a20e9066f7686c31c49011"
+    },
+    {
+      "path": "evidence/v04-ma-wave-base-01/day-high.png",
+      "bytes": 4613147,
+      "sha256": "e443fc044213093fd489b078ae7b11d3e8259df07dc804581826d4ac89a8f6ba"
+    },
+    {
+      "path": "evidence/v04-ma-wave-base-01/gold-high.json",
+      "bytes": 149094,
+      "sha256": "92005549e3006bec591125ac600300bc99a39855a097568147b733b949299eab"
+    },
+    {
+      "path": "evidence/v04-ma-wave-base-01/gold-high.png",
+      "bytes": 4586980,
+      "sha256": "7d083bd9e0892782b2189ca431195bfce74f164febcb64320445871db4387172"
+    },
+    {
+      "path": "evidence/v04-ma-wave-base-01/gold-near.json",
+      "bytes": 148788,
+      "sha256": "1a32d4f2d51d7bcaabd850320940cf2a796de9507ac4e7210ee84f84cb6cc67f"
+    },
+    {
+      "path": "evidence/v04-ma-wave-base-01/gold-near.png",
+      "bytes": 4530698,
+      "sha256": "7be3daeff64d1c82b4f0da32d77f928c4c67e30bf4552c2dc58c2c849416b35d"
+    },
+    {
+      "path": "evidence/v04-ma-wave-base-02/day-near.json",
+      "bytes": 148754,
+      "sha256": "33e0df77ad8cc923963df20d37c1c14b66287fc61680271165ac3e721c99e729"
+    },
+    {
+      "path": "evidence/v04-ma-wave-base-02/day-near.png",
+      "bytes": 4429298,
+      "sha256": "cdfd3f9c7900ea3cc40a8dc1caa39e19de243ef8c33594cf6cdd1d3c047e2db1"
+    },
+    {
+      "path": "evidence/v04-ma-wave-cov-ablation-01/day-high.json",
+      "bytes": 150929,
+      "sha256": "09e6015e499469bcb95e3648bc38423cdce7d62f9a829ce62be0f802c8f767f1"
+    },
+    {
+      "path": "evidence/v04-ma-wave-cov-ablation-01/day-high.png",
+      "bytes": 4592516,
+      "sha256": "cafca12cd1978aee51686a5a8f369f6b6935859d25ce19d96b859c0ff1669a5b"
+    },
+    {
+      "path": "evidence/v04-ma-wave-cov-ablation-01/gold-near.json",
+      "bytes": 150580,
+      "sha256": "947fcb75685be55466feb11dac9d0cc7911baff5511abfa5dfe2a534799a7126"
+    },
+    {
+      "path": "evidence/v04-ma-wave-cov-ablation-01/gold-near.png",
+      "bytes": 4524932,
+      "sha256": "168b121001ab8fc40bd2769d36c8e854faba77d21c2550978a288fe9919f7fbe"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-high-body.json",
+      "bytes": 151073,
+      "sha256": "e984e11888f322d060cadc7a1d80f89d98bd565557c4f6a7d2d766eb65a9b002"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-high-body.png",
+      "bytes": 3043928,
+      "sha256": "3e03136c54655c1da57aab97830af973ba98ad63f1b8e0747c68f4b8d5287755"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-high-geometry.json",
+      "bytes": 149654,
+      "sha256": "02ad93c95f062459e138f01e732a49cdb5b4e4666db6617f3e32f066e379dc89"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-high-geometry.png",
+      "bytes": 2414451,
+      "sha256": "a6702f649520dc669677aeff3de530e8838c2de81e76ebaef5cfb6558478b0b0"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-high-glitter.json",
+      "bytes": 150360,
+      "sha256": "8a3395d3964e6b2ac55883b9fb982d42ae373b72601fb57d561154b89e25312a"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-high-glitter.png",
+      "bytes": 4256875,
+      "sha256": "ccb0738638e7b337bc4cb5e11172cacc36fa42dc55487733f03dd53d046f78ba"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-high-normal.json",
+      "bytes": 149493,
+      "sha256": "94be41c2af7ebfaa351c01016599fc292c00921e6646b668349a3d3711b078af"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-high-normal.png",
+      "bytes": 2655212,
+      "sha256": "4465a2608c00cfb3382ede48f8477e562a06fae0f89ba099b67ff9f74021ea94"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-high-reflection.json",
+      "bytes": 150181,
+      "sha256": "45a71fc8335ebd888d371e01b9d5b2fc2f4e0119644e85db371e2071e2e90473"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-high-reflection.png",
+      "bytes": 4512548,
+      "sha256": "7969ded1f761636c24d4208a97a785c9dcfee7c399e622993a30cd244d18ff89"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-near-geometry.json",
+      "bytes": 149747,
+      "sha256": "80425ad20566427efeba1bf606f0272178dd607012815108006d5e7dfa1122e6"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-near-geometry.png",
+      "bytes": 2497065,
+      "sha256": "21b2f172ff699656ca0597ff554a34506fed65181e00114091f9ae6e33605ae9"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-near-normal.json",
+      "bytes": 149404,
+      "sha256": "dba51412c9bf3e13f79b310577f69eff52a70d905fe9793acd87bd6700b4efda"
+    },
+    {
+      "path": "evidence/v04-ma-wave-diag-01/day-near-normal.png",
+      "bytes": 2713231,
+      "sha256": "092e2b2082dabc17ef5a03c34a3096ec9d639b08c9a2c1bc783653f55c58bbfb"
+    },
+    {
+      "path": "evidence/v04-ma-wave-filter2-01/day-high.json",
+      "bytes": 149850,
+      "sha256": "6e1a822b3ede241b886f3b2b898f3b5bfe5e05866d966aa14cb5d430ac31c406"
+    },
+    {
+      "path": "evidence/v04-ma-wave-filter2-01/day-high.png",
+      "bytes": 4227757,
+      "sha256": "bcff0047b66a8db817cf299f39f65eb753e4e8e490147b22de880438d76f90e3"
+    },
+    {
+      "path": "evidence/v04-ma-wave-filter2-01/gold-near.json",
+      "bytes": 150218,
+      "sha256": "a4c005d121ac86704763502e0db66c9a4ab3292f43f3fa4cb20967a9ca5ea22b"
+    },
+    {
+      "path": "evidence/v04-ma-wave-filter2-01/gold-near.png",
+      "bytes": 4210515,
+      "sha256": "0ac2628ffabf8a4085ac46ba611f2368777f832da45a54fc7f6ace2af6e36567"
+    },
+    {
+      "path": "evidence/v04-ma-wave-gpu-01/cpu.txt",
+      "bytes": 8427,
+      "sha256": "b19675805f3438689bab28628415d69a2cc7d3b2aba81480f4b5141d9f976473"
+    },
+    {
+      "path": "evidence/v04-ma-wave-gpu-01/gpu-fft.json",
+      "bytes": 17275,
+      "sha256": "33f36e5a43bf742848d98d89e2f6cdb79ee3a9e0c7be0586f767fc498d3c41ae"
+    },
+    {
+      "path": "evidence/v04-ma-wave-gpu-01/gpu-optics.json",
+      "bytes": 21689,
+      "sha256": "0e42af1e049b1b7bd4edce9560fa9836af7969c272d2ee771a23abde7dbf2edb"
+    },
+    {
+      "path": "evidence/v04-ma-wave-hardware-01/chrome-gpu-process.json",
+      "bytes": 845,
+      "sha256": "a755b54e50c644d8d603e9edc450e481aa51335ec86fb9f1dc860d996f04aba0"
+    },
+    {
+      "path": "evidence/v04-ma-wave-hardware-01/foreground-monitor.csv",
+      "bytes": 376552,
+      "sha256": "b8205f468ba34629186ae8edec258e6ade28610bd242b211dc35525a5acb6933"
+    },
+    {
+      "path": "evidence/v04-ma-wave-hardware-01/nvidia-smi.txt",
+      "bytes": 2546,
+      "sha256": "e4ea7378aa416bccea7aab08624eaba644e8af3f4f85f3ccbe25ff17838531d5"
+    },
+    {
+      "path": "evidence/v04-ma-wave-hardware-01/time.txt",
+      "bytes": 30,
+      "sha256": "758315d16dd6d11b301fc7d90e094daa0f961d091939eaa2c52e9d75dea00904"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-base-01/day-high.json",
+      "bytes": 85880,
+      "sha256": "dda8eb17551088a0835312554ea4a800c32285f1def90ab9d9752e670dde1e8c"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-base-02/day-high.json",
+      "bytes": 1965723,
+      "sha256": "d644917097eae5ee4525f247be0038e23fadb54fc2bd564bfaf30549a5bd7272"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-base-03/day-high.json",
+      "bytes": 777068,
+      "sha256": "58c95ae15d177fea12438f37d4fd038396279a321f4b42739673e5c591b2e2f0"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-base-04/day-high.json",
+      "bytes": 2363172,
+      "sha256": "024c48b8822925159b9dbb744b0c64b33bfceab074937211474cf6fea3c9378f"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-base-04/day-near.json",
+      "bytes": 1725519,
+      "sha256": "7bcb9ee5296aeebe6a8ee091d04c8dbcdf9f4566749932b5711db785ae3bd3bc"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-base-04/gold-high.json",
+      "bytes": 2373751,
+      "sha256": "bcb0316c44ce8c60279c7834a0eb299212ad7d10e432f1d8a72923d7627a31d1"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-base-04/gold-near.json",
+      "bytes": 1553534,
+      "sha256": "35d0a2fc50590ee1ba1528bd8a60babc21c36172bb1c8d343daf40e2a18cc8ef"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-base-05/day-near.json",
+      "bytes": 1723129,
+      "sha256": "f08293fe084de0a602034a2d1befb44b55244d104c5be6b230af142bfb2c4076"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-near-01/day-high.json",
+      "bytes": 2124892,
+      "sha256": "a6abdd616611161a9ac8153e8ca75eb8f23872bc9af1c772f4ac0e8794dcae8b"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-near-02/day-high.json",
+      "bytes": 2373846,
+      "sha256": "a2a61f914abebc50a7aafe0962921cc3dc502b9f52c6149a6c8aa6f208d7cd47"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-near-02/day-near.json",
+      "bytes": 1984596,
+      "sha256": "59d508dd6ae7c69574eb766a55140b3fa2c0b3bb6ee05000225182b805b96ee1"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-near-02/gold-high.json",
+      "bytes": 2390725,
+      "sha256": "cd17ea9e7794dcba3feef457771cb821f12b78d734e6e590460af73612d46f05"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-near-02/gold-near.json",
+      "bytes": 2009760,
+      "sha256": "75be58fcbf5ed8804245d8a70610624b47efccf363d07a09b3ab66e92d883507"
+    },
+    {
+      "path": "evidence/v04-ma-wave-perf-near-03/day-near.json",
+      "bytes": 2000818,
+      "sha256": "a06f96f97079d02375a8ae0d44ef0cc79fc4eec414f9ff475d423aed42f3ebd7"
+    },
+    {
+      "path": "evidence/v04-ma-wave-playback-01/candidate-day-high.json",
+      "bytes": 90420,
+      "sha256": "1e796ee7e8bc056226b23a662b94166f2f9c6cba17582341867cbbe30089042c"
+    },
+    {
+      "path": "evidence/v04-ma-wave-playback-01/candidate-day-near.json",
+      "bytes": 78540,
+      "sha256": "a38820a7d5e84ea405b7f6745762b1e98a191b80dd39aff6ef330bd67208f7b9"
+    },
+    {
+      "path": "evidence/v04-ma-wave-playback-01/candidate-gold-high.json",
+      "bytes": 20841,
+      "sha256": "07fa808069499578321cc2d2a0416282b4e31b8d0ac2148590aa091cbac9d457"
+    },
+    {
+      "path": "evidence/v04-ma-wave-playback-01/candidate-gold-near.json",
+      "bytes": 78536,
+      "sha256": "24982fe734262406f3ecede65de40cbb1b8999df1a709766fd4c16236493f4d7"
+    },
+    {
+      "path": "evidence/v04-ma-wave-playback-02/candidate-gold-high.json",
+      "bytes": 90847,
+      "sha256": "e32e1aaa0a509a4e22eaf3da4f6759f6bf890fe74989c826c0665dfe00219945"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/analysis.json",
+      "bytes": 44326,
+      "sha256": "7e55a2e0602377a30f934650441543dd7cd72549bac476c6a437670f7548650e"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/day-high-12s.png",
+      "bytes": 1943895,
+      "sha256": "aea09dbb8529f426b84739a0db86ba265590bd526b0b1208a4b0e0d6cbbfae84"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/day-high-21s.png",
+      "bytes": 1683077,
+      "sha256": "f123ba029d35abe959e67983932161f888ccec6399223a8a7876a72b13a51f93"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/day-high-3s.png",
+      "bytes": 2326651,
+      "sha256": "2f9b624fda7bc28d5482f5224aa2eafae5b4c323347f8967ead7531b9da6be29"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/day-near-12s.png",
+      "bytes": 1412320,
+      "sha256": "2a0833337f7d134e09d08f9eac563e9ce788c682f7e0e447baf68d53e7c95e72"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/day-near-21s.png",
+      "bytes": 1695113,
+      "sha256": "28640ae43e923b18379c4bbd39eeed36955a3c10fe6521ded7d612914fbdd672"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/day-near-3s.png",
+      "bytes": 1549178,
+      "sha256": "e4f648187331ecf840adb0e44f969ccfda9673bf13c20958565467c24926b13f"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/gold-high-12s.png",
+      "bytes": 1903752,
+      "sha256": "21b41e6f97421cb08ef288fb9ae15c3a3a098f757b346c8335aba6d1aef7edda"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/gold-high-21s.png",
+      "bytes": 1744422,
+      "sha256": "3f0f570f4ad5c2215a47f6be4c2c2ca42eefcdad1c8b675bafefc059dda696d4"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/gold-high-3s.png",
+      "bytes": 1918929,
+      "sha256": "89f9b935b4f82ee64286cca90e42dfc59ab9de4d78efec458dc69edf352324f3"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/gold-near-12s.png",
+      "bytes": 1555000,
+      "sha256": "9c30ba53f05829b85774ff93676ecbf00d399cc3e3b9e7caef998a604b29198c"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/gold-near-21s.png",
+      "bytes": 1494969,
+      "sha256": "9cd6911439676f53de314dec6f9cc5870a0b24aa1cb9aa18bbc42036f10b86cf"
+    },
+    {
+      "path": "evidence/v04-ma-wave-review-01/gold-near-3s.png",
+      "bytes": 1620529,
+      "sha256": "d238535516bd731525b45577ae903d512e942a84a6250f8720f222ce61ffda2a"
+    },
+    {
+      "path": "evidence/v04-ma-wave-seal-01/manifest.json",
+      "bytes": 72604,
+      "sha256": "8a666dc092e285c7138f56fb827520ba1c4a3f7c6558b46e12738b58d352e92d"
+    }
+  ],
+  "bytes": 1310544983,
+  "scope": "Local byte inventory, source attestation and preserved local refs only. Not remote publication, visual acceptance or branch protection. Source snapshots accompany some rejected experiments; hashes alone cannot recreate an unsaved intermediate shader."
+}
