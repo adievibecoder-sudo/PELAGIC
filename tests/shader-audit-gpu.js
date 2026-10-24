@@ -2,28 +2,29 @@ import {FOAM_TEX} from '../src/wgsl/sim.js';
 import {SUN_DISC} from '../src/wgsl/sun-disc.js';
 import {CUBE_COORDINATES} from '../src/wgsl/cube-filter.js';
 import {WATER_OPTICS} from '../src/wgsl/water-optics.js';
+import {verifyCubeMips} from './cube-mips-gpu.js';
 
 export async function shaderAuditChecks(device){
   const count=4096,B=GPUBufferUsage;
   const foam=FOAM_TEX.slice(0,FOAM_TEX.lastIndexOf('@compute')).replace('@group(0) @binding(0) var dst: texture_storage_2d<rgba8unorm, write>;','');
-  const code=foam+SUN_DISC+CUBE_COORDINATES+WATER_OPTICS+/* wgsl */`
+  const legacy=foam.slice(foam.indexOf('fn bubbles(')).replace('fn bubbles(', 'fn bubblesLegacy(')
+    .replace('uv * f32(warpPeriod)', 'uv * f32(period) * 0.5').replace('uv * f32(warpPeriod)', 'uv * f32(period) * 0.5');
+  const code=foam+legacy+SUN_DISC+CUBE_COORDINATES+WATER_OPTICS+/* wgsl */`
   @group(0) @binding(0) var<storage,read_write> output:array<vec4f>;
   @compute @workgroup_size(64) fn main(@builtin(global_invocation_id) id:vec3u){
     let t=(f32(id.x)+.5)/4096.0;
-    var seam=0.0;var derivative=0.0;
+    var seam=0.0;var legacySeam=0.0;
     for(var k=0u;k<2u;k++){
-      let period=select(29,61,k==1u);let eps=1.0/65536.0;
+      let period=select(29,61,k==1u);
       for(var axis=0u;axis<2u;axis++){
         let p=select(vec2f(0,t),vec2f(t,0),axis==1u);
         let shift=select(vec2f(1,0),vec2f(0,1),axis==1u);
         let a=bubbles(p,period,37u,.06,.45);let b=bubbles(p+shift,period,37u,.06,.45);
         seam=max(seam,abs(a-b));
-        let left=(a-bubbles(p-shift*eps,period,37u,.06,.45))/eps;
-        let right=(bubbles(p+shift*eps,period,37u,.06,.45)-a)/eps;
-        derivative=max(derivative,abs(left-right));
+        legacySeam=max(legacySeam,abs(bubblesLegacy(p,period,37u,.06,.45)-bubblesLegacy(p+shift,period,37u,.06,.45)));
       }
     }
-    output[id.x]=vec4f(seam,derivative,0,0);
+    output[id.x]=vec4f(seam,legacySeam,0,0);
     if(id.x<7u){
       let up=sunDiscDirection(vec3f(0,1,0),id.x);let down=sunDiscDirection(vec3f(0,-1,0),id.x);
       output[4096u+id.x]=vec4f(up,length(down));
@@ -46,9 +47,9 @@ export async function shaderAuditChecks(device){
   const group=device.createBindGroup({layout:pipe.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:out}}]});
   const e=device.createCommandEncoder(),p=e.beginComputePass();p.setPipeline(pipe);p.setBindGroup(0,group);p.dispatchWorkgroups(count/64);p.end();
   e.copyBufferToBuffer(out,0,read,0,out.size);device.queue.submit([e.finish()]);await read.mapAsync(GPUMapMode.READ);
-  const values=new Float32Array(read.getMappedRange());let seam=0,derivative=0,cubeError=0;const integral=[0,0,0],backscatter=[0,0,0];
+  const values=new Float32Array(read.getMappedRange());let seam=0,legacySeam=0,cubeError=0;const integral=[0,0,0],backscatter=[0,0,0];
   for(let i=0;i<count;i++){
-    seam=Math.max(seam,values[i*4]);derivative=Math.max(derivative,values[i*4+1]);cubeError=Math.max(cubeError,values[(8192+i)*4+3]);
+    seam=Math.max(seam,values[i*4]);legacySeam=Math.max(legacySeam,values[i*4+1]);cubeError=Math.max(cubeError,values[(8192+i)*4+3]);
     for(let c=0;c<3;c++){integral[c]+=values[(8192+i)*4+c]*4*Math.PI/count;if(i<count/2)backscatter[c]+=values[(8192+i)*4+c]*4*Math.PI/count;}
   }
   const ring=[0,0,0];let finite=true;
@@ -59,9 +60,10 @@ export async function shaderAuditChecks(device){
   const total=expected.map((bb,i)=>2*molecular[i]+12*(bb-molecular[i]));
   const energyError=Math.max(...integral.map((x,i)=>Math.abs(x/total[i]-1)));
   const backscatterError=Math.max(...backscatter.map((x,i)=>Math.abs(x/expected[i]-1)));
-  const results=[{name:'Foam odd-period boundary values',seam,maxOneSidedDerivativeDifference:derivative,status:seam<.0002?'PASS':'FAIL'},
+  const results=[{name:'Foam odd-period boundary values',seam,legacySeam,status:seam<.0002&&legacySeam>.1?'PASS':'FAIL'},
     {name:'Solar zenith/nadir finite basis and sixfold symmetry',finite,ring,status:finite&&Math.hypot(ring[0],ring[2])<1e-8?'PASS':'FAIL'},
     {name:'Cubemap cross-face directional round trip',maxError:cubeError,status:cubeError<1e-6?'PASS':'FAIL'},
     {name:'Shared water scattering energy/backscatter conventions',energyError,backscatterError,status:energyError<.0001&&backscatterError<.00001?'PASS':'FAIL'}];
-  read.unmap();read.destroy();out.destroy();return {results,status:results.every(x=>x.status==='PASS')?'PASS':'FAIL'};
+  read.unmap();read.destroy();out.destroy();results.push(await verifyCubeMips(device));
+  return {results,status:results.every(x=>x.status==='PASS')?'PASS':'FAIL'};
 }

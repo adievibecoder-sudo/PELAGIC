@@ -54,6 +54,7 @@ import {stressRoughnessShader} from './wgsl/wind-roughness.js';
 import {cloudPlumesShader} from './wgsl/cloud-plumes.js';
 import {slopePrecisionShader} from './wgsl/slope-precision.js';
 import {slopePrecisionReadback} from '../tests/slope-precision-readback.js';
+import {inversionReadback} from '../tests/inversion-readback.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -1238,6 +1239,7 @@ async function main() {
     await postEvidence('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm),blob);
     const report=evidenceReport();
     if(qs.get('maPrecisionChecks')==='1')report.slopePrecision=await slopePrecisionReadback(device,derivTex,momTex);
+    if(qs.get('maInversionChecks')==='1')report.surfaceInversion=await inversionReadback(device,waveHeight,lensMedium);
     if(cloudControl)report.cloudVolumeControl={...cloudControl.metadata,payloadBytes:cloudControl.payloadBytes};
     if(qs.get('p0Columns')==='1')report.cloudColumns=await phase0CloudColumns(device,frameUBO,cloudNoiseView,cloudSampler,qs,cloudControl);
     if(qs.get('maChecks')==='1')report.cloudChecks=await cloudConvectionChecks(device,frameUBO,cloudNoiseView,cloudSampler,qs,cloudControl);

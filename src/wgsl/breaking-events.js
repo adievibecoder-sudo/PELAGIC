@@ -51,8 +51,15 @@ export function breakingEventsShader(code,query) {
     return code.replace('vec4f(stored, fresh, J, f-stored)','vec4f(stored, fresh, signal, f-stored)');
   }
   if(mode==='gravity'&&code.includes('fn reflectedEnvironment(')){
+    code=replaceShader(code,'  var cov = vec3f(0.0);','  var cov = vec3f(0.0);\n  var gravityStrain=vec3f(0);');
+    code=replaceShader(code,'    jxz += av.w;','    jxz += av.w;\n    if(c<3u){gravityStrain+=vec3f(dv.z,dv.w,av.w);}');
     const marker='  let fresh=smoothstep(0.04,0.28,1.0-smoothstep(0.18,0.65+0.009*min(F.windP[0].z,25.0),compression))*min(F.foamP.z,1.0);';
-    code=replaceShader(code,marker,'  let fresh=clamp(fwl.g,0.0,1.0);');
+    code=replaceShader(code,marker,/* wgsl */`
+  let strain=gravityStrain/max(F.windP[1].y,.1);
+  let steepness=-.5*(strain.x+strain.y-sqrt((strain.x-strain.y)*(strain.x-strain.y)+4.0*strain.z*strain.z));
+  // Same band-limited criterion outside the persistent clipmaps. Fade the
+  // instantaneous far-field proxy into the actual event memory near the viewer.
+  let fresh=clamp(fwl.g+(1.0-w1)*smoothstep(.28,.443,steepness)*min(F.foamP.z,1.0),0.0,1.0);`);
   }
   return code;
 }
