@@ -1,0 +1,701 @@
+{
+  "profiles": [
+    {
+      "path": "evidence/v04-ma-ab5-profile-base-01/day-balanced.json",
+      "frames": 589,
+      "gpuSamples": 84,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "quality": "Balanced",
+      "wallSeconds": 30.1795,
+      "timingMode": "requestAnimationFrame, display paced",
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "unfocusedFrames": 0,
+      "embeddedFrames": 0,
+      "rafFramesPerSecond": 24.81431394109444,
+      "intervalsMs": {
+        "mean": 40.29932088285229,
+        "p50": 41.60000000000218,
+        "p95": 41.899999999999636,
+        "p99": 48.61200000000019
+      },
+      "gpuMs": {
+        "gpu": {
+          "mean": 40.20399542857143,
+          "p50": 40.239104,
+          "p95": 42.5984,
+          "p99": 43.15611136
+        },
+        "simulation": {
+          "mean": 1.4917241904761902,
+          "p50": 1.507328,
+          "p95": 1.507328,
+          "p99": 1.572864
+        },
+        "surface": {
+          "mean": 14.681624380952382,
+          "p50": 14.876672,
+          "p95": 17.12128,
+          "p99": 17.63180544
+        },
+        "cloudScreen": {
+          "mean": 18.18936076190476,
+          "p50": 18.087936,
+          "p95": 18.7990016,
+          "p99": 19.03886336
+        },
+        "environment": {
+          "mean": 4.3526826666666665,
+          "p50": 4.58752,
+          "p95": 5.046272,
+          "p99": 5.12294912
+        },
+        "post": {
+          "mean": 0.41818209523809524,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.458752
+        },
+        "atmosphere": {
+          "mean": 23.275422476190478,
+          "p50": 23.429119999999998,
+          "p95": 24.3695616,
+          "p99": 24.67495936
+        }
+      },
+      "allocationBytes": 204574632
+    },
+    {
+      "path": "evidence/v04-ma-ab5-profile-base-01/day-high.json",
+      "frames": 261,
+      "gpuSamples": 38,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "quality": "High",
+      "wallSeconds": 30.393000000000747,
+      "timingMode": "requestAnimationFrame, display paced",
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "unfocusedFrames": 0,
+      "embeddedFrames": 0,
+      "rafFramesPerSecond": 11.596340710264762,
+      "intervalsMs": {
+        "mean": 86.23409961685823,
+        "p50": 83.40000000000146,
+        "p95": 90.40000000000146,
+        "p99": 97.19999999999854
+      },
+      "gpuMs": {
+        "gpu": {
+          "mean": 86.114304,
+          "p50": 85.68832,
+          "p95": 90.0005888,
+          "p99": 91.3506304
+        },
+        "simulation": {
+          "mean": 1.4935309473684213,
+          "p50": 1.507328,
+          "p95": 1.5171584,
+          "p99": 1.572864
+        },
+        "surface": {
+          "mean": 17.43774989473684,
+          "p50": 17.498112,
+          "p95": 19.9753728,
+          "p99": 21.180579840000004
+        },
+        "cloudScreen": {
+          "mean": 46.92032673684211,
+          "p50": 46.956543999999994,
+          "p95": 48.218112,
+          "p99": 48.9095168
+        },
+        "environment": {
+          "mean": 18.608774736842104,
+          "p50": 18.907136,
+          "p95": 20.1392128,
+          "p99": 20.250624
+        },
+        "post": {
+          "mean": 0.4190854736842107,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.458752
+        },
+        "atmosphere": {
+          "mean": 66.43108378947369,
+          "p50": 66.3552,
+          "p95": 69.26499840000001,
+          "p99": 69.72309504
+        }
+      },
+      "allocationBytes": 213961896
+    },
+    {
+      "path": "evidence/v04-ma-ab5-profile-base-01/day-ultra.json",
+      "frames": 191,
+      "gpuSamples": 28,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "quality": "Ultra",
+      "wallSeconds": 30.477900000000744,
+      "timingMode": "requestAnimationFrame, display paced",
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "unfocusedFrames": 0,
+      "embeddedFrames": 0,
+      "rafFramesPerSecond": 8.77039921387835,
+      "intervalsMs": {
+        "mean": 114.01989528795814,
+        "p50": 111.20000000000073,
+        "p95": 118.29999999999927,
+        "p99": 124.61000000000203
+      },
+      "gpuMs": {
+        "gpu": {
+          "mean": 113.85943771428572,
+          "p50": 113.37728000000001,
+          "p95": 118.04672,
+          "p99": 120.02721792
+        },
+        "simulation": {
+          "mean": 2.2305645714285713,
+          "p50": 2.228224,
+          "p95": 2.29376,
+          "p99": 2.29376
+        },
+        "surface": {
+          "mean": 19.660800000000002,
+          "p50": 19.890176,
+          "p95": 22.85568,
+          "p99": 23.86952192
+        },
+        "cloudScreen": {
+          "mean": 64.84787200000001,
+          "p50": 64.651264,
+          "p95": 66.256896,
+          "p99": 66.92667392
+        },
+        "environment": {
+          "mean": 25.460736,
+          "p50": 26.247168000000002,
+          "p95": 27.3481728,
+          "p99": 27.44188928
+        },
+        "post": {
+          "mean": 0.40960000000000013,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.458752
+        },
+        "atmosphere": {
+          "mean": 91.20270628571427,
+          "p50": 91.488256,
+          "p95": 94.12608,
+          "p99": 94.33645056
+        }
+      },
+      "allocationBytes": 247523240
+    },
+    {
+      "path": "evidence/v04-ma-ab5-profile-final-01/day-high-baseline.json",
+      "frames": 630,
+      "gpuSamples": 90,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "quality": "High",
+      "wallSeconds": 60.402,
+      "timingMode": "requestAnimationFrame, display paced",
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "unfocusedFrames": 0,
+      "embeddedFrames": 0,
+      "rafFramesPerSecond": 11.957272678960514,
+      "intervalsMs": {
+        "mean": 83.63111111111111,
+        "p50": 83.30000000000291,
+        "p95": 90.30000000000291,
+        "p99": 90.5
+      },
+      "gpuMs": {
+        "gpu": {
+          "mean": 83.60573155555556,
+          "p50": 83.525632,
+          "p95": 86.99904000000001,
+          "p99": 88.74950656
+        },
+        "simulation": {
+          "mean": 1.4694627555555555,
+          "p50": 1.441792,
+          "p95": 1.507328,
+          "p99": 1.507328
+        },
+        "surface": {
+          "mean": 16.60609422222222,
+          "p50": 16.351232,
+          "p95": 19.98848,
+          "p99": 20.73100288
+        },
+        "cloudScreen": {
+          "mean": 45.66839751111111,
+          "p50": 45.678592,
+          "p95": 46.53056,
+          "p99": 46.67604992
+        },
+        "environment": {
+          "mean": 18.233571555555553,
+          "p50": 18.644992000000002,
+          "p95": 19.696844799999997,
+          "p99": 19.857408
+        },
+        "post": {
+          "mean": 0.4114204444444444,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.458752
+        },
+        "atmosphere": {
+          "mean": 64.78160782222221,
+          "p50": 64.978944,
+          "p95": 66.781184,
+          "p99": 66.92667392
+        }
+      },
+      "allocationBytes": 213961896
+    },
+    {
+      "path": "evidence/v04-ma-ab5-profile-final-01/day-high-repeat.json",
+      "frames": 928,
+      "gpuSamples": 132,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "quality": "High",
+      "wallSeconds": 60.26920000000149,
+      "timingMode": "requestAnimationFrame, display paced",
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "unfocusedFrames": 0,
+      "embeddedFrames": 0,
+      "rafFramesPerSecond": 17.422616734348274,
+      "intervalsMs": {
+        "mean": 57.39665948275863,
+        "p50": 55.60000000000218,
+        "p95": 62.69999999999709,
+        "p99": 69.4730000000004
+      },
+      "gpuMs": {
+        "gpu": {
+          "mean": 57.28740072727273,
+          "p50": 57.409536,
+          "p95": 62.42303999999999,
+          "p99": 63.83665152
+        },
+        "simulation": {
+          "mean": 1.458176,
+          "p50": 1.441792,
+          "p95": 1.507328,
+          "p99": 1.55254784
+        },
+        "surface": {
+          "mean": 16.346763636363633,
+          "p50": 16.05632,
+          "p95": 19.6247552,
+          "p99": 20.51735552
+        },
+        "cloudScreen": {
+          "mean": 31.566506666666665,
+          "p50": 31.391744,
+          "p95": 32.9285632,
+          "p99": 33.357824
+        },
+        "environment": {
+          "mean": 6.475651878787879,
+          "p50": 7.20896,
+          "p95": 10.289152,
+          "p99": 10.77280768
+        },
+        "post": {
+          "mean": 0.41059296969696973,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.458752
+        },
+        "atmosphere": {
+          "mean": 38.739719757575756,
+          "p50": 39.190528,
+          "p95": 42.6278912,
+          "p99": 43.974656
+        }
+      },
+      "allocationBytes": 213961896
+    },
+    {
+      "path": "evidence/v04-ma-ab5-profile-final-01/day-high.json",
+      "frames": 787,
+      "gpuSamples": 113,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "quality": "High",
+      "wallSeconds": 60.321099999999255,
+      "timingMode": "requestAnimationFrame, display paced",
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "unfocusedFrames": 0,
+      "embeddedFrames": 0,
+      "rafFramesPerSecond": 14.802470714806983,
+      "intervalsMs": {
+        "mean": 67.55628970775096,
+        "p50": 69.40000000000146,
+        "p95": 76.40000000000146,
+        "p99": 76.5
+      },
+      "gpuMs": {
+        "gpu": {
+          "mean": 67.48700092035398,
+          "p50": 67.567616,
+          "p95": 74.05568,
+          "p99": 76.3363328
+        },
+        "simulation": {
+          "mean": 1.618681203539823,
+          "p50": 1.6384,
+          "p95": 1.6384,
+          "p99": 1.6960716799999995
+        },
+        "surface": {
+          "mean": 19.23394605309735,
+          "p50": 18.743296,
+          "p95": 23.409459199999997,
+          "p99": 23.91277568
+        },
+        "cloudScreen": {
+          "mean": 37.37349890265487,
+          "p50": 37.421056,
+          "p95": 38.2468096,
+          "p99": 40.11851776
+        },
+        "environment": {
+          "mean": 7.670031858407079,
+          "p50": 8.454144,
+          "p95": 12.3469824,
+          "p99": 12.50164736
+        },
+        "post": {
+          "mean": 0.46281175221238924,
+          "p50": 0.458752,
+          "p95": 0.524288,
+          "p99": 0.524288
+        },
+        "atmosphere": {
+          "mean": 45.824163115044236,
+          "p50": 46.661632,
+          "p95": 50.5544704,
+          "p99": 50.7904
+        }
+      },
+      "allocationBytes": 213961896
+    },
+    {
+      "path": "evidence/v04-ma-ab5-profile-work-01/day-high-compact.json",
+      "frames": 425,
+      "gpuSamples": 61,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "quality": "High",
+      "wallSeconds": 30.267300000000745,
+      "timingMode": "requestAnimationFrame, display paced",
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "unfocusedFrames": 0,
+      "embeddedFrames": 0,
+      "rafFramesPerSecond": 18.14944035666853,
+      "intervalsMs": {
+        "mean": 55.09811764705883,
+        "p50": 55.50000000000182,
+        "p95": 62.599999999998545,
+        "p99": 62.67599999999831
+      },
+      "gpuMs": {
+        "gpu": {
+          "mean": 55.08999134426229,
+          "p50": 55.574528,
+          "p95": 59.113472,
+          "p99": 61.7218048
+        },
+        "simulation": {
+          "mean": 1.4299740327868857,
+          "p50": 1.441792,
+          "p95": 1.441792,
+          "p99": 1.441792
+        },
+        "surface": {
+          "mean": 16.1132611147541,
+          "p50": 15.990784,
+          "p95": 19.202048,
+          "p99": 19.4510848
+        },
+        "cloudScreen": {
+          "mean": 29.848962098360655,
+          "p50": 29.81888,
+          "p95": 30.212096,
+          "p99": 30.343168
+        },
+        "environment": {
+          "mean": 6.273191868852457,
+          "p50": 6.946816,
+          "p95": 10.027008,
+          "p99": 10.15808
+        },
+        "post": {
+          "mean": 0.396439081967213,
+          "p50": 0.393216,
+          "p95": 0.393216,
+          "p99": 0.458752
+        },
+        "atmosphere": {
+          "mean": 36.80652170491804,
+          "p50": 37.486592,
+          "p95": 40.63232,
+          "p99": 40.9468928
+        }
+      },
+      "allocationBytes": 213961896
+    },
+    {
+      "path": "evidence/v04-ma-ab5-profile-work-01/day-high.json",
+      "frames": 419,
+      "gpuSamples": 60,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "quality": "High",
+      "wallSeconds": 30.262700000000745,
+      "timingMode": "requestAnimationFrame, display paced",
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "unfocusedFrames": 0,
+      "embeddedFrames": 0,
+      "rafFramesPerSecond": 17.861405722470415,
+      "intervalsMs": {
+        "mean": 55.98663484486874,
+        "p50": 55.599999999998545,
+        "p95": 62.600000000000364,
+        "p99": 62.80000000000226
+      },
+      "gpuMs": {
+        "gpu": {
+          "mean": 55.92186879999999,
+          "p50": 56.459264,
+          "p95": 60.361932800000005,
+          "p99": 61.71918335999999
+        },
+        "simulation": {
+          "mean": 1.429777066666667,
+          "p50": 1.441792,
+          "p95": 1.441792,
+          "p99": 1.441792
+        },
+        "surface": {
+          "mean": 16.196130133333334,
+          "p50": 16.023552,
+          "p95": 19.084083200000002,
+          "p99": 19.61033728
+        },
+        "cloudScreen": {
+          "mean": 30.5987584,
+          "p50": 30.605312,
+          "p95": 30.936268799999997,
+          "p99": 31.02539776
+        },
+        "environment": {
+          "mean": 6.272887466666668,
+          "p50": 6.946816,
+          "p95": 9.961472,
+          "p99": 9.961472
+        },
+        "post": {
+          "mean": 0.39867733333333333,
+          "p50": 0.393216,
+          "p95": 0.458752,
+          "p99": 0.458752
+        },
+        "atmosphere": {
+          "mean": 37.567419733333324,
+          "p50": 38.207488,
+          "p95": 41.222144,
+          "p99": 41.70776576
+        }
+      },
+      "allocationBytes": 213961896
+    }
+  ],
+  "cloudStills": [
+    {
+      "name": "day-near",
+      "matched": {
+        "settings": true,
+        "camera": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": true
+      },
+      "byteIdentical": true,
+      "changedPixels": 0,
+      "maxCodeDifference": 0,
+      "hdr": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "name": "gold-near",
+      "matched": {
+        "settings": true,
+        "camera": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": true
+      },
+      "byteIdentical": true,
+      "changedPixels": 0,
+      "maxCodeDifference": 0,
+      "hdr": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "name": "day-high",
+      "matched": {
+        "settings": true,
+        "camera": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": true
+      },
+      "byteIdentical": true,
+      "changedPixels": 0,
+      "maxCodeDifference": 0,
+      "hdr": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "name": "gold-high",
+      "matched": {
+        "settings": true,
+        "camera": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": true
+      },
+      "byteIdentical": true,
+      "changedPixels": 0,
+      "maxCodeDifference": 0,
+      "hdr": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    }
+  ],
+  "motion": [
+    {
+      "scene": "storm",
+      "frames": 96,
+      "fps": 24,
+      "seconds": 4.0,
+      "allMatched": true,
+      "changedFrames": 96,
+      "errors": []
+    },
+    {
+      "scene": "cloud",
+      "frames": 48,
+      "fps": 24,
+      "seconds": 2.0,
+      "allMatched": true,
+      "changedFrames": 0,
+      "errors": []
+    }
+  ],
+  "inheritedEvidence": [
+    {
+      "path": "evidence/v04-p1-final-stills/broken.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/broken.png",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/covered.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/covered.png",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/golden.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/moonlit.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/storm.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/storm.png",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/twilight.json",
+      "unchanged": true
+    }
+  ],
+  "scope": "First five seconds of retained rAF records excluded. GPU timestamps aligned by frame ID. Sequential foreground runs, no thermal confidence interval; rAF is not compositor presentation. Allocation payload is not residency. Exact-image comparisons do not establish naturalism."
+}

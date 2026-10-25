@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PELAGIC / scene and cloud-work checkpoint</title>
+<style>body{margin:24px;background:#101b20;color:#e6ede7;font:15px/1.5 Consolas,monospace}a{color:#a9d2dc}button,select{padding:8px;margin:6px}img,video{display:block;width:100%;height:auto}figure{margin:8px 0}section{display:grid;grid-template-columns:1fr 1fr;gap:20px}h1{font-size:24px}video{max-height:85vh}small{color:#b7c8c9}table{border-collapse:collapse}td,th{padding:8px;text-align:left;border-bottom:1px solid #43606a}@media(max-width:900px){section{grid-template-columns:1fr}body{margin:16px}}</style>
+<h1>PELAGIC 0.4 / scenes, cloud work and whitewater trials</h1>
+<p>Scene buttons now apply complete environments immediately. Evolve weather preserves gradual transitions. Cloud optimization preserves all four matched stills and all 48 cloud-motion frames byte-for-byte. Foam and rain trials remain opt-in; whitewater volume, water optics, clouds and integrated weather remain unfinished.</p>
+<p><a href="docs/V04-AB-CONTINUATION-05.md">Implementation, measurements and limits</a> / <a href="evidence/v04-ma-ab5-checkpoint-01/analysis.json">Measured comparisons</a> / <a href="ab4-review.html">Hybrid checkpoint</a> / <a href="/?preset=midday&amp;adaptive=0">Interactive scene controls</a></p>
+<table><caption>RTX 3050 Laptop / High / 1920 x 1080 / 60-second foreground runs</caption><thead><tr><th>Path</th><th>GPU mean</th><th>GPU p95</th><th>rAF cadence</th></tr></thead><tbody><tr><td>Previous cloud work</td><td>83.61 ms</td><td>87.00 ms</td><td>11.96 FPS</td></tr><tr><td>Optimized cloud work</td><td>57.29 ms</td><td>62.42 ms</td><td>17.42 FPS</td></tr></tbody></table>
+<p>About 31% less GPU work. No quality/resolution reduction. Another optimized run reached 14.80 FPS; sustained 20-30 FPS remains unmet. These are rAF cadence measurements, not compositor presentation traces. Allocation payload remains 204.05 MiB, not measured residency.</p>
+<h2>Matched High originals</h2><label>View <select id="scene"><option>day-near</option><option>gold-near</option><option>day-high</option><option>gold-high</option></select></label><p>Both images are intentionally identical. Open either for its original 1920 x 1080 PNG.</p><section id="stills"></section>
+<h2>Whitewater and rain experiments</h2><p>Same warmed storm, seed, camera and time. Finer cellular breakup and a conservative slab-scattering trial give modest changes; flat foam and weak storm atmosphere remain. Rain follows projected velocity with independent width/length filtering.</p>
+<section><figure><figcaption>Reference</figcaption><a href="evidence/v04-ma-ab5-storm-01/reference.png"><img loading="lazy" src="evidence/v04-ma-ab5-storm-01/reference.png" alt="Storm reference"></a></figure><figure><figcaption>Experimental foam and rain</figcaption><a href="evidence/v04-ma-ab5-storm-01/cellular-rain.png"><img loading="lazy" src="evidence/v04-ma-ab5-storm-01/cellular-rain.png" alt="Experimental storm foam and rain"></a></figure></section>
+<h2>Lossless motion originals</h2>
+<label>Recording <select id="clip"><option value="storm-base">Storm reference</option><option value="storm-work">Experimental storm</option><option value="cloud-work">Optimized cloud pan</option></select></label>
+<label>Playback <select id="rate"><option value="1">Real time</option><option value="0.25">Quarter speed</option></select></label>
+<button id="play">Play original</button><p id="status" role="status">Storm: 96 frames / 4 seconds. Clouds: 48 frames / 2 seconds. Fixed 24 Hz simulation; every decoded RGB frame verified. Videos 152-298 MiB.</p><video id="movie" controls playsinline muted preload="none"></video>
+<p>The optimized cloud video also represents every baseline frame exactly; the redundant video is omitted. Matched original frame metadata and hashes remain available. Short clips do not certify long-term stability or storm naturalism. Hybrid TAA stays opt-in.</p>
+<h2>Live storm comparison</h2><p><a id="live-base">Reference storm</a> / <a id="live-work">Experimental foam and rain</a>. Allow whitewater to develop; simulation starts at the same wave phase. B1/B2 owner review remains pending.</p>
+<script type="module">
+const scene=document.querySelector('#scene');
+function update(){document.querySelector('#stills').replaceChildren(...['base','stills'].map(mode=>{
+ const figure=document.createElement('figure'),caption=document.createElement('figcaption'),link=document.createElement('a'),img=document.createElement('img');
+ caption.textContent=mode==='base'?'Previous cloud work':'Optimized cloud work';
+ link.href=`evidence/v04-ma-ab4-ab5-work-${mode}-01/${scene.value}-reference.png`;
+ img.src=link.href;img.alt=caption.textContent+' / '+scene.value;link.append(img);figure.append(caption,link);return figure;
+}));}scene.onchange=update;update();
+const movie=document.querySelector('#movie'),clip=document.querySelector('#clip'),status=document.querySelector('#status');
+document.querySelector('#play').onclick=async()=>{movie.src=`evidence/v04-ma-ab5-motion-${clip.value}-01/${clip.value.split('-')[0]}.webm`;movie.playbackRate=Number(document.querySelector('#rate').value);try{await movie.play();movie.scrollIntoView({block:'start'});}catch(error){status.textContent=error.message;}};
+movie.ontimeupdate=movie.onended=()=>{const q=movie.getVideoPlaybackQuality();status.textContent=`${clip.value}: ${movie.currentTime.toFixed(2)} s / ${movie.ended?'ENDED':movie.paused?'PAUSED':'PLAYING'} / ${q.totalVideoFrames} frames / ${q.droppedVideoFrames} dropped`;};
+const query=new URLSearchParams({preset:'storm',maGlints:'conditional',maRoughness:'wind',p0Desat:'off',maCloudTransport:'centroid',maBreaking:'gravity',cam:'0,5,0,79,-9',cameraMode:'free',quality:'Balanced',resolution:1,adaptive:0,seed:1307,t:20,weatherRate:1,seaRate:1});
+document.querySelector('#live-base').href='/?'+query;query.set('abFoam','transport');query.set('abFoamPattern','bubbles');query.set('abRain','velocity');document.querySelector('#live-work').href='/?'+query;
+</script></html>
