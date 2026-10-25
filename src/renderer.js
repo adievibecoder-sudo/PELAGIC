@@ -64,10 +64,14 @@ import {createTAA} from './taa.js';
 import {cloudWorkShader,environmentSymmetryShader} from './wgsl/cloud-work.js';
 import {cloudWorkChecks} from '../tests/cloud-work-readback.js';
 import {foamTransportShader} from './wgsl/foam-transport.js';
+import {whitewaterShader,WHITEWATER_COUNT} from './wgsl/whitewater.js';
+import {whitewaterChecks} from '../tests/whitewater-readback.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
 const temporalEnabled=qs.get('aa')==='taa';
+const whitewaterParcels=qs.get('abWhitewater')==='parcels';
+const particleCount=PARTICLE_COUNT+(whitewaterParcels?WHITEWATER_COUNT:0);
 const cameraHistory=temporalEnabled?temporalCamera(qs.get('taaJitter')||'msaa4'):null;
 const queueDriven=qs.has('shot')||qs.has('video')||(qs.has('benchmark')&&qs.get('benchmarkMode')==='queue');
 const lockedEvidence=qs.get('ma')==='1'&&(qs.has('shot')||qs.has('video')||qs.has('benchmark'));
@@ -162,6 +166,7 @@ async function main() {
     code=breakingEventsShader(code,qs);
     code=foamTransportShader(code,qs);
     code=particleMotionShader(code,qs);
+    code=whitewaterShader(code,qs);
     code=cloudShadowDiagnostic(code,qs);
     code=cloudShadowShader(code,qs);
     code=temporalShader(code,temporalEnabled);
@@ -371,7 +376,7 @@ async function main() {
   const bgTrans = bg(transPipe, [{ buffer: atmoUBO }, transView], 'trans');
   const bgMS = bg(msPipe, [{ buffer: atmoUBO }, transView, sampClamp, msView], 'ms');
   const bgSkyView = bg(skyViewPipe, [{ buffer: frameUBO }, transView, msView, sampClamp, skyView], 'skyview');
-  const particleBuf=mkBuf(PARTICLE_COUNT*32,GU.STORAGE|GU.COPY_DST,'spray and rain particles');
+  const particleBuf=mkBuf(particleCount*32,GU.STORAGE|GU.COPY_DST,'spray, rain and optional whitewater particles');
   const particleCompute=await computePipe(PARTICLE_UPDATE,'particle transport');
   const particleModule=await shader(PARTICLE_RENDER,'particle rendering');
   const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim,fullArr(derivTex),fullArr(lastDisp),shadowView,sampClamp]));
@@ -395,7 +400,7 @@ async function main() {
   const MSAA = 4;
   const HDR = 'rgba16float';
   const particlePipe=await device.createRenderPipelineAsync({layout:'auto',vertex:{module:particleModule,entryPoint:'vs'},fragment:{module:particleModule,entryPoint:'fs',targets:[{format:HDR,blend:{color:{srcFactor:'src-alpha',dstFactor:'one-minus-src-alpha'},alpha:{srcFactor:'one',dstFactor:'one-minus-src-alpha'}}}]},primitive:{topology:'triangle-list'},depthStencil:{format:'depth32float',depthWriteEnabled:false,depthCompare:'greater'},multisample:{count:MSAA}});
-  const particleDrawBG=bg(particlePipe,[{buffer:frameUBO},{buffer:particleBuf},irradianceView,sampClamp,shadowView,transView,sampClamp]);
+  const particleDrawBG=bg(particlePipe,[{buffer:frameUBO},{buffer:particleBuf},irradianceView,sampClamp,shadowView,transView,sampClamp,...(whitewaterParcels?[waveShadow.createView()]:[])]);
   const [oceanMod, skyMod, downMod, upMod, compMod] = await Promise.all([
     shader(OCEAN, 'ocean'), shader(SKY_BG, 'sky'), shader(BLOOM_DOWN, 'bloom down'),
     shader(BLOOM_UP, 'bloom up'), shader(COMPOSITE, 'composite'),
@@ -1119,7 +1124,7 @@ async function main() {
     cloudControl?.bind(cp,shadowPipe);
     cp.setBindGroup(0,bgShadow);
     cp.dispatchWorkgroups(32,32);
-    if(P.spray>0 || P.rain>0 || originDelta.some(x=>x!==0)){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(PARTICLE_COUNT/64);}
+    if(P.spray>0 || P.rain>0 || whitewaterParcels || originDelta.some(x=>x!==0)){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(particleCount/64);}
     cp.end();
     const fullCache=envFull>0;
     if(fullCache)cacheFace=0;
@@ -1168,7 +1173,7 @@ async function main() {
     rp.draw(3);
     rp.end();
     const particles=enc.beginRenderPass(transparentPass);
-    if(P.spray>0 || P.rain>0){particles.setPipeline(particlePipe);particles.setBindGroup(0,particleDrawBG);particles.draw(6,PARTICLE_COUNT);}
+    if(P.spray>0 || P.rain>0 || whitewaterParcels){particles.setPipeline(particlePipe);particles.setBindGroup(0,particleDrawBG);particles.draw(6,particleCount);}
     particles.end();
 
     if(taa){
@@ -1297,6 +1302,7 @@ async function main() {
     const stage=qs.get('stage')||'v03-local';
     await postEvidence('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm),blob);
     const report=evidenceReport();
+    if(qs.get('abWhitewaterChecks')==='1')report.whitewaterChecks=await whitewaterChecks(device);
     if(qs.get('abShadowChecks')==='1')report.cloudShadowChecks=await cloudShadowReadback(device,frameUBO,cloudNoiseView,cloudSampler);
     if(qs.get('maPrecisionChecks')==='1')report.slopePrecision=await slopePrecisionReadback(device,derivTex,momTex);
     if(qs.get('maInversionChecks')==='1')report.surfaceInversion=await inversionReadback(device,waveHeight,lensMedium);
