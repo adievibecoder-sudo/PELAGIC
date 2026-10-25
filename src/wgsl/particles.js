@@ -2,7 +2,27 @@ import {FRAME_WGSL,ATMO_CORE_WGSL,NOISE_WGSL,CASCADES,CONFIG} from './common.js'
 import {SKY_RENDER_FUNCS} from './sky.js';
 import {SHORT_WAVE_COUPLING} from './coupling.js';
 import {EMISSION_HAZARD} from './breaking-events.js';
+import {replaceShader} from './shader-patch.js';
 export const PARTICLE_COUNT=CONFIG.quality==='Balanced'?24576:49152;
+export function particleMotionShader(code,query){
+ if(query.get('abRain')!=='velocity'||!code.includes('let stretch=select(1.0,12.0,rain);'))return code;
+ code=replaceShader(code,' let world=p.p.xyz+right*uv.x*drawRadius+up*uv.y*drawRadius*stretch;',/* wgsl */`
+ // Project the simulated velocity, including perspective motion, into the
+ // billboard plane. Camera-up streaks otherwise rotate independently of wind.
+ let relative=p.p.xyz-F.camPos.xyz;
+ let depth=max(dot(relative,F.camFwd.xyz),0.1);
+ let velocity=p.v.xyz-relative*(dot(p.v.xyz,F.camFwd.xyz)/depth);
+ let projected=vec2f(dot(velocity,right),dot(velocity,up));
+ let axis=select(vec2f(0,1),projected/max(length(projected),0.0001),rain&&dot(projected,projected)>0.00000001);
+ let along=right*axis.x+up*axis.y;let across=right*axis.y-up*axis.x;
+ // Filter width and length independently. A subpixel drop must not become a
+ // twelve-pixel needle solely because its width reached one pixel.
+ let halfLength=radius*stretch;
+ let drawLength=max(halfLength,pixelRadius);
+ let world=p.p.xyz+across*uv.x*drawRadius+along*uv.y*drawLength;`);
+ return replaceShader(code,'radius*radius/max(drawRadius*drawRadius,0.000001)',
+   'radius*halfLength/max(drawRadius*drawLength,0.000001)');
+}
 export const PARTICLE_UPDATE=FRAME_WGSL+NOISE_WGSL+SHORT_WAVE_COUPLING+EMISSION_HAZARD+/* wgsl */`
 struct Particle {p:vec4f,v:vec4f};
 @group(0) @binding(0) var<uniform> F:Frame;

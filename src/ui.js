@@ -33,16 +33,24 @@ export function setupUI(P,cam,api) {
   for(const [value,label]of ['Cumulus','Stratocumulus','Storm towers'].entries()){const option=document.createElement('option');option.value=value;option.textContent=label;cloudSelect.append(option);}
   const cloudLabel=document.createElement('label');cloudLabel.className='control';cloudLabel.textContent='Cloud formation';cloudLabel.append(cloudSelect);$('control-groups').children[2].append(cloudLabel);
   cloudSelect.onchange=()=>api.change('cloudType',Number(cloudSelect.value));
-  const mode=document.createElement('select');mode.setAttribute('aria-label','Environment changes');
-  for(const [value,label]of [['natural','Natural weather evolution'],['instant','Instant scene preview']]){const o=document.createElement('option');o.value=value;o.textContent=label;mode.append(o);}
-  mode.value=P.environmentMode;mode.onchange=()=>api.change('environmentMode',mode.value);$('control-groups').prepend(mode);
-  const front=document.createElement('label');front.textContent=' Regional weather front';const enabled=document.createElement('input');enabled.type='checkbox';enabled.checked=P.frontEnabled;enabled.setAttribute('aria-label','Regional weather front');enabled.onchange=()=>api.change('frontEnabled',enabled.checked);front.prepend(enabled);mode.after(front);
+  const mode=document.createElement('select');mode.setAttribute('aria-label','Parameter changes');
+  for(const [value,label]of [['natural','Gradual wind and weather edits'],['instant','Immediate parameter edits']]){const o=document.createElement('option');o.value=value;o.textContent=label;mode.append(o);}
+  const modeRow=document.createElement('label');modeRow.className='select-row';modeRow.textContent='Edits';modeRow.append(mode);
+  mode.value=P.environmentMode;mode.onchange=()=>api.change('environmentMode',mode.value);$('control-groups').prepend(modeRow);
+  const front=document.createElement('label');front.className='check';front.textContent=' Regional weather front';const enabled=document.createElement('input');enabled.type='checkbox';enabled.checked=P.frontEnabled;enabled.setAttribute('aria-label','Regional weather front');enabled.onchange=()=>api.change('frontEnabled',enabled.checked);front.prepend(enabled);modeRow.after(front);
+  const transition=document.createElement('div');transition.className='select-row';
+  const target=document.createElement('select');target.setAttribute('aria-label','Gradual weather target');
+  for(const [id,p]of Object.entries(PRESETS)){const option=document.createElement('option');option.value=id;option.textContent=p.label;target.append(option);}
+  const evolve=document.createElement('button');evolve.textContent='Evolve weather';
+  evolve.onclick=()=>{api.weather(target.value);sync();setScene(null);$('scene-title').textContent='Weather evolving';$('scene-note').textContent='Target: '+PRESETS[target.value].label+'. Sun, swell and time preserved.';};
+  transition.append(target,evolve);front.after(transition);
   function sync(){for(const [k,set]of controls)set(P[k]);mode.value=P.environmentMode;enabled.checked=P.frontEnabled;cloudSelect.value=P.cloudType;$('pause').textContent=P.paused?'Play':'Pause';$('quality').value=P.quality;$('camera-mode').value=P.cameraMode;$('astronomy').checked=P.astronomy;$('adaptive').checked=P.adaptive;$('date').value=P.date;$('seed').value=P.seed;$('debug').value=P.debug;}
   let ordinal=0;
   for(const [id,p]of Object.entries(PRESETS)) {
     const b=document.createElement('button');b.className='scene';b.dataset.preset=id;
     const n=document.createElement('span');n.textContent=++ordinal;b.append(n,({calm:'Calm',midday:'Midday',golden:'Golden hour',storm:'Storm',twilight:'Twilight',moonlit:'Moonlight'})[id]);
-    b.onclick=()=>{api.preset(id);sync();setScene(id);if(P.environmentMode==='natural'){$('scene-title').textContent='Weather evolving';$('scene-note').textContent='Target: '+p.label+'. Swell and astronomical time preserved.';}};$('scenes').append(b);
+    b.title='Preview the full scene immediately';
+    b.onclick=()=>{api.preset(id);sync();setScene(id);toast('Full scene applied: '+p.label);};$('scenes').append(b);
   }
   function setScene(id){$('scene-title').textContent=PRESETS[id]?.label||'Your ocean';$('scene-note').textContent=PRESETS[id]?.note||'A sea state of your own';document.querySelectorAll('.scene').forEach(el=>el.classList.toggle('selected',el.dataset.preset===id));}
   const initialQuery=new URLSearchParams(location.search);setScene(initialQuery.has('config')?null:initialQuery.get('preset')||'golden');
@@ -60,7 +68,7 @@ export function setupUI(P,cam,api) {
   $('import').onchange=async(e)=>{try{const f=e.target.files[0];if(!f)return;const state=JSON.parse(await f.text());if(!state.settings)throw Error('Missing settings');api.restore(state);sync();setScene(null);toast('Configuration imported');}catch(e){toast('Import failed: '+e.message);}};
   $('quality').onchange=e=>api.quality(e.target.value);$('camera-mode').onchange=e=>api.change('cameraMode',e.target.value);$('debug').onchange=e=>api.change('debug',Number(e.target.value));
   $('astronomy').onchange=e=>api.change('astronomy',e.target.checked);$('adaptive').onchange=e=>api.change('adaptive',e.target.checked);$('date').onchange=e=>api.change('date',e.target.value);$('seed').onchange=e=>api.change('seed',Number(e.target.value));
-  $('developed').onclick=()=>{api.developed();toast('Target sea state applied');};$('reset-camera').onclick=()=>{api.resetCamera();sync();};
+  $('developed').onclick=()=>{api.developed();sync();toast('Current weather and sea targets applied');};$('reset-camera').onclick=()=>{api.resetCamera();sync();};
   document.querySelectorAll('[data-altitude]').forEach(b=>b.onclick=()=>{api.altitude(Number(b.dataset.altitude));sync();});
   $('gpu-tests').onclick=()=>window.open('/tests.html','_blank','noopener');
   addEventListener('keydown',e=>{if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if(e.code==='KeyH')document.body.classList.toggle('cinema');if(e.code==='KeyP')$('pause').click();if(e.code==='KeyF')panelOpen($('panel').classList.contains('hidden'));});

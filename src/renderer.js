@@ -5,7 +5,7 @@ import {phase1LightReadback} from '../tests/phase1-light-readback.js';
 // FFT ocean (6 cascades) + CDLOD surface mesh + physically based sky + HDR post.
 // Large per-frame arrays are reused; diagnostics and browser API descriptors still allocate.
 import { N, CASCADES, SKY_W, SKY_H, ENV_SIZE, ENV_MIPS, CONFIG, Q } from './wgsl/common.js';
-import { sanitize, preset, PRESETS, QUALITY, toURL } from './settings.js';
+import { sanitize, preset, scenePreset, PRESETS, QUALITY, toURL } from './settings.js';
 import {createEnvironment,commandEnvironment,advanceEnvironment,sampleEnvironment,environmentUniforms,environmentSnapshot,restoreEnvironment,WEATHER_KEYS,SEA_KEYS} from './environment.js';
 import { cosSpreadNorm, PATCHES, omega } from './numerics.js';
 import { swellAlpha } from './sea-spectrum.js';
@@ -13,7 +13,7 @@ import { celestial } from './astronomy.js';
 import { lunarLight, twilightExposure } from './celestial-light.js';
 import {localOrigin,cascadeOrigin,foamPatternOrigin,FRAME_BYTES,FRAME_FLOATS,FOAM_BYTES} from './spatial-origin.js';
 import { runtimeInput, validCamera } from './runtime-input.js';
-import { PARTICLE_COUNT, PARTICLE_UPDATE, PARTICLE_RENDER } from './wgsl/particles.js';
+import { PARTICLE_COUNT, PARTICLE_UPDATE, PARTICLE_RENDER, particleMotionShader } from './wgsl/particles.js';
 import { spectralReadback } from '../tests/spectral-readback.js';
 import { foamReadback } from '../tests/foam-readback.js';
 import { hdrReadback } from '../tests/hdr-readback.js';
@@ -61,6 +61,9 @@ import {cloudShadowReadback} from '../tests/cloud-shadow-readback.js';
 import {temporalCamera} from './temporal-camera.js';
 import {temporalShader} from './wgsl/taa.js';
 import {createTAA} from './taa.js';
+import {cloudWorkShader,environmentSymmetryShader} from './wgsl/cloud-work.js';
+import {cloudWorkChecks} from '../tests/cloud-work-readback.js';
+import {foamTransportShader} from './wgsl/foam-transport.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -157,9 +160,12 @@ async function main() {
     code=cloudTransportShader(code,qs);
     code=cloudAmbientShader(code,qs);
     code=breakingEventsShader(code,qs);
+    code=foamTransportShader(code,qs);
+    code=particleMotionShader(code,qs);
     code=cloudShadowDiagnostic(code,qs);
     code=cloudShadowShader(code,qs);
     code=temporalShader(code,temporalEnabled);
+    code=environmentSymmetryShader(cloudWorkShader(code,qs),qs);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
     let bad = false;
@@ -277,6 +283,11 @@ async function main() {
     device.queue.submit([enc.finish()]);
     await read.mapAsync(GPUMapMode.READ);
     const pixels=new Uint8Array(read.getMappedRange()).slice();
+    if(qs.get('abFoamPattern')==='bubbles'){
+      // Use the existing cellular population for occupied area. Keep its
+      // original G channel for optical thickness; rank calibration preserves area.
+      for(let i=0;i<pixels.length;i+=4)pixels[i]=pixels[i+1];
+    }
     foamPatternCalibration=equalizeFoamPattern(pixels);
     read.unmap();read.destroy();
     device.queue.writeTexture({texture:foamTex},pixels,{bytesPerRow:FOAM_SIZE*4},[FOAM_SIZE,FOAM_SIZE]);
@@ -360,7 +371,7 @@ async function main() {
   const bgTrans = bg(transPipe, [{ buffer: atmoUBO }, transView], 'trans');
   const bgMS = bg(msPipe, [{ buffer: atmoUBO }, transView, sampClamp, msView], 'ms');
   const bgSkyView = bg(skyViewPipe, [{ buffer: frameUBO }, transView, msView, sampClamp, skyView], 'skyview');
-  const particleBuf=mkBuf(PARTICLE_COUNT*32,GU.STORAGE,'spray and rain particles');
+  const particleBuf=mkBuf(PARTICLE_COUNT*32,GU.STORAGE|GU.COPY_DST,'spray and rain particles');
   const particleCompute=await computePipe(PARTICLE_UPDATE,'particle transport');
   const particleModule=await shader(PARTICLE_RENDER,'particle rendering');
   const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim,fullArr(derivTex),fullArr(lastDisp),shadowView,sampClamp]));
@@ -841,8 +852,8 @@ async function main() {
 
   // --------------------------------------------------------------------------------------
   // Interface communicates through validated commands; no GPU resources escape this module.
-  let captureRequested=false,recorder=null,movieStart=0,movieChunks=[];
-  function applyConfig(config){cameraHistory?.reset('configuration replaced');Object.assign(P,sanitize(config,P));environment=createEnvironment(P,simTime);needSpectrum=true;needLUT=true;envFull=1;cam.speed=P.cameraSpeed;cam.fovY=P.fov*D2R;}
+  let captureRequested=false,recorder=null,movieStart=0,movieChunks=[],sceneReset=false;
+  function applyConfig(config){cameraHistory?.reset('configuration replaced');Object.assign(P,sanitize(config,P));environment=createEnvironment(P,simTime);needSpectrum=true;needLUT=true;envFull=1;foamFirst=true;sceneReset=true;cam.speed=P.cameraSpeed;cam.fovY=P.fov*D2R;}
   const ui=setupUI(P,cam,{
     adapter:adapterInfo,time:()=>simTime,snapshot:()=>environmentSnapshot(environment),
     change(key,value){
@@ -861,11 +872,9 @@ async function main() {
       if(key==='fov')cam.fovY=P.fov*D2R;
       if(P.environmentMode==='instant')envFull=1;
     },
-    preset(name){
-      if(P.environmentMode==='natural')commandEnvironment(environment,Object.fromEntries(WEATHER_KEYS.map(k=>[k,preset(name)[k]])),{weatherOnly:true});
-      else {const quality=P.quality,resolution=P.resolution;applyConfig({...preset(name),quality,resolution,environmentMode:'instant'});}
-    },
-    developed(){commandEnvironment(environment,{}, {instant:true});Object.assign(P,environment.sea);needSpectrum=true;},
+    preset(name){applyConfig(scenePreset(name,P));},
+    weather(name){commandEnvironment(environment,Object.fromEntries(WEATHER_KEYS.map(k=>[k,preset(name)[k]])),{weatherOnly:true});},
+    developed(){commandEnvironment(environment,{}, {instant:true});Object.assign(P,environment.sea);needSpectrum=true;envFull=1;cameraHistory?.reset('targets applied');},
     quality(value){const url=toURL({...P,quality:value,resolution:QUALITY[value].scale},cam,simTime,location.href,environmentSnapshot(environment));location.href=url;},
     capture(){captureRequested=true;},
     record(){if(recorder?.state==='recording'){recorder.stop();return;}startRecording(false);},
@@ -1038,10 +1047,12 @@ async function main() {
     Object.assign(P,environment.sea,{clouds:local.clouds,cloudDepth:local.cloudDepth,rain:local.rain,haze:local.haze,veil:local.veil});
     if(frameIndex%4===0){const signature=SEA_KEYS.map(k=>P[k].toFixed(7)).join(',');if(signature!==lastSeaSignature){needSpectrum=true;lastSeaSignature=signature;}}
     if(Math.abs(P.haze-lutHaze)>.005){needLUT=true;lutHaze=P.haze;}
-    dt = P.paused ? 0 : Math.min(dt*P.timeScale,0.1);
+    // A scene cut has no meaningful velocity from the previous scene's FFT.
+    dt = P.paused || sceneReset ? 0 : Math.min(dt*P.timeScale,0.1);
     nowDT=dt;
     if(simTime-phaseEpoch>120) resetPhases(simTime);
     simTime = environment.clocks.wave;
+    if(sceneReset)resetPhases(simTime);
     frameIndex++;
     if(P.adaptive && !qs.has('w') && frameIndex%120===0 && gpuMs>0) {
       const target=P.quality==='Balanced'?16.67:33.33;
@@ -1063,6 +1074,7 @@ async function main() {
     }
 
     const enc = device.createCommandEncoder();
+    if(sceneReset){enc.clearBuffer(particleBuf);sceneReset=false;}
     let cp = enc.beginComputePass(computeDesc);
     if (needSpectrum) {
       cp.setPipeline(initPipe);
@@ -1293,6 +1305,7 @@ async function main() {
     if(qs.get('maChecks')==='1')report.cloudChecks=await cloudConvectionChecks(device,frameUBO,cloudNoiseView,cloudSampler,qs,cloudControl);
     if(qs.get('maLightChecks')==='1')report.cloudLightChecks=await cloudLightPathChecks(device,frameUBO,cloudNoiseView,cloudSampler);
     if(qs.get('maViewChecks')==='1')report.cloudViewChecks=await cloudViewChecks(device,frameUBO,cloudNoiseView,cloudSampler,cloudH);
+    if(qs.get('abWorkChecks')==='1')report.cloudWorkChecks=await cloudWorkChecks(device,frameUBO,cloudNoiseView,cloudSampler,qs.get('abCloudWork')||'bounded');
     if(qs.get('maSlopeChecks')==='1')report.deformedSlopes=await deformedSlopeChecks(device,frameUBO,dispTex.createView(),derivTex.createView(),momTex.createView(),sampRepeat);
     if(qs.get('validate')==='1')report.spectral=await spectralReadback(device,{h0:h0Buf,specA,disp:dispTex,deriv:derivTex,mom:momTex},P);
     if(qs.get('validate')==='1')report.foam=await foamReadback(device,foamW[foamCur]);

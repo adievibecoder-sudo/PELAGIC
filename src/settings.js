@@ -51,6 +51,12 @@ export function sanitize(input, base = DEFAULTS) {
   return result;
 }
 export function preset(name) { return sanitize(PRESETS[name], DEFAULTS); }
+export function scenePreset(name, current) {
+  if (!Object.hasOwn(PRESETS, name)) throw Error('Unknown scene preset: '+name);
+  const next=preset(name);
+  for(const key of ['quality','resolution','adaptive','paused','cameraMode','cameraSpeed','fov','environmentMode'])next[key]=current[key];
+  return sanitize(next);
+}
 export function fromURL(search) {
   const q = new URLSearchParams(search);
   let config = preset(q.get('preset') || 'golden');
