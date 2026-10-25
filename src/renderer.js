@@ -55,9 +55,17 @@ import {cloudPlumesShader} from './wgsl/cloud-plumes.js';
 import {slopePrecisionShader} from './wgsl/slope-precision.js';
 import {slopePrecisionReadback} from '../tests/slope-precision-readback.js';
 import {inversionReadback} from '../tests/inversion-readback.js';
+import {cloudShadowDiagnostic} from '../tests/cloud-shadow-diagnostic.js';
+import {cloudShadowShader} from './wgsl/cloud-shadow.js';
+import {cloudShadowReadback} from '../tests/cloud-shadow-readback.js';
+import {temporalCamera} from './temporal-camera.js';
+import {temporalShader} from './wgsl/taa.js';
+import {createTAA} from './taa.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
+const temporalEnabled=qs.get('aa')==='taa';
+const cameraHistory=temporalEnabled?temporalCamera(qs.get('taaJitter')||'msaa4'):null;
 const queueDriven=qs.has('shot')||qs.has('video')||(qs.has('benchmark')&&qs.get('benchmarkMode')==='queue');
 const lockedEvidence=qs.get('ma')==='1'&&(qs.has('shot')||qs.has('video')||qs.has('benchmark'));
 const DBG = Number(qs.get('dbg')) || 0;
@@ -149,6 +157,9 @@ async function main() {
     code=cloudTransportShader(code,qs);
     code=cloudAmbientShader(code,qs);
     code=breakingEventsShader(code,qs);
+    code=cloudShadowDiagnostic(code,qs);
+    code=cloudShadowShader(code,qs);
+    code=temporalShader(code,temporalEnabled);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
     let bad = false;
@@ -191,6 +202,7 @@ async function main() {
   const derivTex = mkSimTex('deriv', preciseSlopes ? 'rgba32float' : 'rgba16float');
   const momTex = mkSimTex('moments', preciseSlopes ? 'rgba32float' : 'rgba16float');
   const lastDisp = mkSimTex('previous displacement');
+  const lastDerivatives=temporalEnabled?mkSimTex('previous derivatives',preciseSlopes?'rgba32float':'rgba16float'):null;
   const lvl = (t, m, dim = '2d-array') => t.createView({ dimension: dim, baseMipLevel: m, mipLevelCount: 1 });
   const fullArr = (t) => t.createView({ dimension: '2d-array' });
 
@@ -396,6 +408,8 @@ async function main() {
     depthStencil: { format: 'depth32float', depthWriteEnabled: false, depthCompare: 'equal' },
     multisample: { count: MSAA },
   });
+  const taa=temporalEnabled?await createTAA({device,allocations,shader,frame:frameUBO,displacement:dispTex,derivatives:derivTex,
+    previousDisplacement:lastDisp,previousDerivatives:lastDerivatives,sampler:sampRepeat,ocean:OCEAN}):null;
   const downPipe = await device.createRenderPipelineAsync({
     label: 'bloom down', layout: 'auto',
     vertex: { module: downMod, entryPoint: 'vs' },
@@ -484,12 +498,13 @@ async function main() {
     depthStencilAttachment: { view: null, depthClearValue: 0, depthLoadOp: 'clear', depthStoreOp: 'store' },
   };
   const transparentPass={colorAttachments:[{view:null,resolveTarget:null,loadOp:'load',storeOp:'discard'}],
-    depthStencilAttachment:{view:null,depthLoadOp:'load',depthStoreOp:'discard'}};
+    depthStencilAttachment:{view:null,depthLoadOp:'load',depthStoreOp:temporalEnabled?'store':'discard'}};
   const compPass = {
     colorAttachments: [{ view: null, clearValue: { r: 0, g: 0, b: 0, a: 1 }, loadOp: 'clear', storeOp: 'store' }],
     timestampWrites: undefined,
   };
   let downPasses = [], upPasses = [], downBGs = [], upBGs = [], bgComp = null;
+  let temporalDown=[],temporalComposite=[],temporalState=null;
 
   function resize() {
     const fw = runtime.width, fh = runtime.height;
@@ -510,7 +525,7 @@ async function main() {
       {binding:11,resource:shadowView},{binding:13,resource:irradianceView}]});
     for (const t of [colorMS, depthMS, hdrTex, bloomTex]) t && t.destroy();
     colorMS = allocations.texture({ size: [W, H], format: HDR, sampleCount: MSAA, usage: TU.RENDER_ATTACHMENT });
-    depthMS = allocations.texture({ size: [W, H], format: 'depth32float', sampleCount: MSAA, usage: TU.RENDER_ATTACHMENT });
+    depthMS = allocations.texture({ size: [W, H], format: 'depth32float', sampleCount: MSAA, usage: TU.RENDER_ATTACHMENT | (temporalEnabled?TU.TEXTURE_BINDING:0) });
     hdrTex = allocations.texture({ size: [W, H], format: HDR, usage: TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING | TU.COPY_SRC });
     const bw = Math.max(1, W >> 1), bh = Math.max(1, H >> 1);
     bloomTex = allocations.texture({ size: [bw, bh], format: HDR, mipLevelCount: BLOOM_LEVELS, usage: TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING });
@@ -541,6 +556,12 @@ async function main() {
       upPasses.push({ colorAttachments: [{ view: bv[m - 1], loadOp: 'load', storeOp: 'store' }] });
     }
     bgComp = bg(compPipe, [hdrView, bv[0], linSamp, { buffer: compUBO }]);
+    if(taa){
+      cameraHistory.reset('resize');
+      const views=taa.resize(W,H,hdrTex,depthMS);
+      temporalDown=views.map(v=>bg(downPipe,[v,linSamp,{buffer:bloomUBOs[0]}]));
+      temporalComposite=views.map(v=>bg(compPipe,[v,bv[0],linSamp,{buffer:compUBO}]));
+    }
   }
 
   // --------------------------------------------------------------------------------------
@@ -552,7 +573,7 @@ async function main() {
   const measurements=[];
   const frameRecords=[];let timingFrame={cpu:0,frame:0,width:0,height:0};
   let firstPassTS = undefined;
-  const phase0Profile=qs.get('p0Profile')==='1',queryCount=phase0Profile?18:8;
+  const phase0Profile=qs.get('p0Profile')==='1',queryCount=temporalEnabled?22:phase0Profile?18:8;
   if (hasTS) {
     tsQuery = device.createQuerySet({ type: 'timestamp', count: queryCount });
     tsResolve = mkBuf(queryCount*8, GU.QUERY_RESOLVE | GU.COPY_SRC, 'ts resolve');
@@ -568,7 +589,8 @@ async function main() {
     const ms = Number(t[7] - t[0]) / 1e6;
     Object.keys(passMs).forEach((key,i)=>passMs[key]=Number(t[i*2+1]-t[i*2])/1e6);
     const subpasses=phase0Profile?{skyLUT:Number(t[8]-t[2])/1e6,cloudScreen:Number(t[10]-t[9])/1e6,cloudShadow:Number(t[12]-t[11])/1e6,environment:Number(t[14]-t[13])/1e6,irradiance:Number(t[3]-t[15])/1e6}:{};
-    if(frameIndex>30)measurements.push({gpu:ms,...passMs,...subpasses,...(phase0Profile?{transparent:Number(t[17]-t[16])/1e6}:{}),...timingFrame,readbackCompleted:performance.now()});
+    if(frameIndex>30)measurements.push({gpu:ms,...passMs,...subpasses,...(phase0Profile?{transparent:Number(t[17]-t[16])/1e6}:{}),
+      ...(temporalEnabled?{motion:Number(t[19]-t[18])/1e6,taa:Number(t[21]-t[20])/1e6}:{}),...timingFrame,readbackCompleted:performance.now()});
     if(measurements.length>4000)measurements.shift();
     if (ms > 0 && ms < 1000) gpuMs = gpuMs ? gpuMs * 0.8 + ms * 0.2 : ms;
     tsRead.unmap();
@@ -810,6 +832,7 @@ async function main() {
     foamPatternOrigin(origin,[f[56],f[57]],time,[f[80],f[81]],f,140);
     environmentUniforms(environment,cam,f);
     roughnessUniforms(environment,origin,['wind','stress'].includes(qs.get('maRoughness')),f);
+    if(cameraHistory)temporalState=cameraHistory.write(f,[cam.x,cam.y,cam.z],fixedDt||frameMs/1000,environment.revision);
     device.queue.writeBuffer(frameUBO, 0, f);
   }
 
@@ -876,7 +899,8 @@ async function main() {
   const shotFrames = runtime.frames;
   const shotSeq = runtime.sequence;
   let shotIdx = 0;
-  const fixedDt = shotName ? 1 / 60 : 0;
+  const fixedDt = shotName ? Math.max(1/240,Math.min(1/15,Number(qs.get('captureStep'))||1/60)) : 0;
+  const captureCamera={...cam};
   let last = performance.now();
   let fpsAcc = 0, fpsN = 0, fpsT = 0;
   let shooting = false;
@@ -999,6 +1023,10 @@ async function main() {
       cam.yaw=(4+75*u*u*(3-2*u))*D2R;
     }
     if (fixedDt) dt = fixedDt;
+    if(shotName&&qs.get('captureMotion')==='pan'){
+      const elapsed=Math.max(0,frameIndex+1-shotFrames)*fixedDt;
+      cam.x=captureCamera.x+elapsed*1.5;cam.yaw=captureCamera.yaw+elapsed*.08;
+    }
     phase1Motion(now);
     advanceEnvironment(environment,dt,P,cam.x,cam.z);
     const local=sampleEnvironment(environment,cam.x,cam.z);
@@ -1109,7 +1137,6 @@ async function main() {
     if(publish){cp.setPipeline(irradiancePipe);cp.setBindGroup(0,bgIrradiance);cp.dispatchWorkgroups(IRRADIANCE_SIZE/8,IRRADIANCE_SIZE/8,6);}
     cp.end();
     cacheFace=publish?0:cacheFace+1;envFull=0;
-    for(let m=0;m<SIM_MIP_COUNT;m++)enc.copyTextureToTexture({texture:dispTex,mipLevel:m},{texture:lastDisp,mipLevel:m},[N>>m,N>>m,C]);
 
     const rp = enc.beginRenderPass(mainPass);
     if (nodeCount) {
@@ -1126,6 +1153,19 @@ async function main() {
     const particles=enc.beginRenderPass(transparentPass);
     if(P.spray>0 || P.rain>0){particles.setPipeline(particlePipe);particles.setBindGroup(0,particleDrawBG);particles.draw(6,PARTICLE_COUNT);}
     particles.end();
+
+    if(taa){
+      const historyIndex=taa.encode(enc,{instances:instBuf,indices:idxBuf,grid:GRID,nodeCount,timestamps:hasTS?{
+        motion:{querySet:tsQuery,beginningOfPassWriteIndex:18,endOfPassWriteIndex:19},
+        resolve:{querySet:tsQuery,beginningOfPassWriteIndex:20,endOfPassWriteIndex:21}}:null});
+      downBGs[0]=temporalDown[historyIndex];bgComp=temporalComposite[historyIndex];
+    }
+    // Foam and particle transport already consumed the preceding displacement.
+    // Retain it through motion rendering, then publish this frame for all readers.
+    for(let m=0;m<SIM_MIP_COUNT;m++){
+      enc.copyTextureToTexture({texture:dispTex,mipLevel:m},{texture:lastDisp,mipLevel:m},[N>>m,N>>m,C]);
+      if(lastDerivatives)enc.copyTextureToTexture({texture:derivTex,mipLevel:m},{texture:lastDerivatives,mipLevel:m},[N>>m,N>>m,C]);
+    }
 
     bloomFirstData.set([1/W,1/H,1,frameF[60]]);
     device.queue.writeBuffer(bloomUBOs[0],0,bloomFirstData);
@@ -1180,7 +1220,7 @@ async function main() {
     submitList[0] = enc.finish();
     const submitStart=performance.now();device.queue.submit(submitList);const submitEnd=performance.now();
     cpuMs=performance.now()-cpuStart;
-    if(frameIndex>30){frameRecords.push({id:frameIndex,raf:now,cpuStart,submitStart,submitEnd,frame:frameMs,cpu:cpuMs,visibility:document.visibilityState,time:simTime,camera:[cam.x,cam.y,cam.z,cam.yaw,cam.pitch],cacheVersion:cachePublished?.version,cacheAgeFrames:frameIndex-(cachePublished?.frame||0),
+    if(frameIndex>30){frameRecords.push({id:frameIndex,raf:now,cpuStart,submitStart,submitEnd,frame:frameMs,cpu:cpuMs,visibility:document.visibilityState,focused:document.hasFocus(),embedded:parent!==window,time:simTime,camera:[cam.x,cam.y,cam.z,cam.yaw,cam.pitch],cacheVersion:cachePublished?.version,cacheAgeFrames:frameIndex-(cachePublished?.frame||0),
       weather:{...local,clocks:{...environment.clocks},swellHs:P.swellHs,seaWind:P.windSpeed},probeAgeFrames:frameIndex-probeCompletedFrame,readbackHeight:waterH});if(frameRecords.length>4000)frameRecords.shift();}
     if (doProbe) { probePending = true;probeSubmittedFrame=frameIndex; probeRead.mapAsync(GPUMapMode.READ).then(onProbe, onProbeFail); }
     if (doTs) { timingFrame={id:frameIndex,submitEnd,cpu:cpuMs,frame:frameMs,width:W,height:H};tsPending = true; tsRead.mapAsync(GPUMapMode.READ).then(onTsMapped, onTsFail); }
@@ -1190,7 +1230,7 @@ async function main() {
       stopped=true;device.queue.onSubmittedWorkDone().then(async()=>{
         const report=evidenceReport();
         if(qs.get('validate')==='1'){
-          report.hdr=await hdrReadback(device,hdrTex,frameF[60]);
+          report.hdr=await hdrReadback(device,taa?.output||hdrTex,frameF[60]);
           report.foam=await foamReadback(device,foamW[foamCur]);
         }
         await postEvidence('/__evidence?stage='+encodeURIComponent(qs.get('stage')||'v03-local')+'&name='+qs.get('benchmark')+'.json',JSON.stringify(report,null,2));document.title='BENCHMARK DONE';
@@ -1210,6 +1250,8 @@ async function main() {
     foamPatternCalibration,worldOrigin:origin,benchmarkStopReason,benchmarkWallSeconds:benchmarkStart===null?0:(performance.now()-benchmarkStart)/1000,
     surfaceProbe:{height:waterH,scope:'Asynchronous camera-point height; optical classification uses the current GPU near-plane map.'},
     timingMode:queueDriven?'queue-completion throughput; not display FPS':'requestAnimationFrame, display paced',
+    antialiasing:{mode:temporalEnabled?'4x MSAA + short HDR TAA':'4x MSAA',jitter:qs.get('taaJitter')||'msaa4',state:temporalState,
+      clouds:'current-frame clouds; conservative whole-frame history, no S5 reconstruction'},
     memoryEstimate:{renderTargetsMiB:(W*H*56+(W>>1)*(H>>1)*8*4/3+cloudW*cloudH*8)/1048576,
       note:'Analytic lower bound for main MSAA/depth/HDR/bloom/cloud render targets only. Excludes simulation, driver alignment, browser compositor, and transient resources.'}};}
 
@@ -1238,6 +1280,7 @@ async function main() {
     const stage=qs.get('stage')||'v03-local';
     await postEvidence('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm),blob);
     const report=evidenceReport();
+    if(qs.get('abShadowChecks')==='1')report.cloudShadowChecks=await cloudShadowReadback(device,frameUBO,cloudNoiseView,cloudSampler);
     if(qs.get('maPrecisionChecks')==='1')report.slopePrecision=await slopePrecisionReadback(device,derivTex,momTex);
     if(qs.get('maInversionChecks')==='1')report.surfaceInversion=await inversionReadback(device,waveHeight,lensMedium);
     if(cloudControl)report.cloudVolumeControl={...cloudControl.metadata,payloadBytes:cloudControl.payloadBytes};
@@ -1248,7 +1291,7 @@ async function main() {
     if(qs.get('maSlopeChecks')==='1')report.deformedSlopes=await deformedSlopeChecks(device,frameUBO,dispTex.createView(),derivTex.createView(),momTex.createView(),sampRepeat);
     if(qs.get('validate')==='1')report.spectral=await spectralReadback(device,{h0:h0Buf,specA,disp:dispTex,deriv:derivTex,mom:momTex},P);
     if(qs.get('validate')==='1')report.foam=await foamReadback(device,foamW[foamCur]);
-    if(qs.get('validate')==='1'){report.hdr=await hdrReadback(device,hdrTex,frameF[60]);report.light=await phase1LightReadback(device,shadowTex,irradianceTex,envTex);}
+    if(qs.get('validate')==='1'){report.hdr=await hdrReadback(device,taa?.output||hdrTex,frameF[60]);report.light=await phase1LightReadback(device,shadowTex,irradianceTex,envTex);}
     if(qs.get('contracts')==='1'){
       report.discreteSpectrum=discreteSpectrumLedger(P);
       report.slopeMipBudget=await slopeMipReadback(device,derivTex,momTex);
@@ -1258,7 +1301,6 @@ async function main() {
     shotIdx++;
     shooting = false;
     if (shotIdx < shotSeq) { scheduleFrame(); return; }
-    if (shotSeq > 1) await fetch('/__shot?name=' + encodeURIComponent(shotName), { method: 'POST', body: blob });
     document.title = 'SHOT DONE';
     if(parent!==window)parent.postMessage({type:'pelagic-capture',name:nm},location.origin);
     if (qs.get('keep') === '1') scheduleFrame();

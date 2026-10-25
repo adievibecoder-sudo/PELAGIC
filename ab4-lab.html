@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>PELAGIC A+B controlled comparisons</title>
+<style>body{margin:0;background:#102029;color:#e3e9e8;font:14px Consolas,monospace}header{height:36px;display:flex;gap:24px;align-items:center;padding:0 16px}iframe{width:100vw;height:calc(100vh - 36px);border:0}</style>
+<header>A+B / MSAA AND TEMPORAL CONTROLS <span id="status">Ready</span></header><iframe id="view" title="Controlled ocean view"></iframe>
+<script type="module">
+const args=new URLSearchParams(location.search),run=args.get('run');
+if(!run||!/^[a-z0-9-]{1,24}$/.test(run))throw Error('Unique run required');
+const mode=args.get('mode')||'shadow';
+const views=[{name:'gold-near',y:2,pitch:-5.5,sunElev:5,exposure:1.3},
+ {name:'gold-high',y:50,pitch:-12,sunElev:5,exposure:1.3},
+ {name:'day-near',y:2,pitch:-5.5,sunElev:48,exposure:.95},
+ {name:'day-high',y:50,pitch:-12,sunElev:48,exposure:.95}];
+const selected=args.has('views')?views.filter(v=>args.get('views').split(',').includes(v.name)):views;
+const variants=mode==='shadow'?['reference','unshadowed']:mode==='taa'?['msaa','hybrid']:['reference'];
+const cases=selected.flatMap(v=>variants.map(variant=>({...v,variant})));
+let index=Number(args.get('start')||0),view=document.querySelector('#view');
+function next(){
+ if(index===cases.length){document.title='AB4 DONE';document.querySelector('#status').textContent='Complete';return;}
+ const c=cases[index],name=c.name+'-'+c.variant;
+ const q=new URLSearchParams({preset:'midday',ma:1,cam:`0,${c.y},0,4,${c.pitch}`,cameraMode:'free',quality:'Balanced',resolution:1,w:1920,h:1080,
+  seed:1307,t:20,frames:100,ui:0,adaptive:0,stage:'v04-ma-ab4-'+run,validate:1,p0:1,p0Profile:1,
+  clouds:.5,veil:0,haze:1.4,cloudType:0,sunElev:c.sunElev,exposure:c.exposure,weatherRate:1,seaRate:1});
+ for(const [key,value] of args)if(!['run','mode','views','start'].includes(key))q.set(key,value);
+ if(c.variant==='unshadowed')q.set('abCloudShadow','off');
+ if(c.variant==='hybrid')q.set('aa','taa');
+ if(args.get('capture')==='benchmark'){q.set('benchmark',name);q.set('benchmarkSeconds',args.get('benchmarkSeconds')||20);q.set('frames',10000);}
+ else q.set('shot',name+'.png');
+ document.querySelector('#status').textContent=`${index+1}/${cases.length} ${name}`;
+ const fresh=document.createElement('iframe');fresh.id='view';fresh.title=name;fresh.src='/?'+q;view.replaceWith(fresh);view=fresh;
+}
+addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==view.contentWindow||!['pelagic-capture','pelagic-benchmark'].includes(e.data?.type))return;index++;if(index===cases.length)next();else{args.set('start',index);location.href='ab4-lab.html?'+args;}});
+next();
+</script></html>

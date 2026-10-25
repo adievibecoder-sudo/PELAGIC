@@ -51,6 +51,13 @@ struct Frame {
   localWeather: vec4f, // local gust-modulated U10 xz m/s, gust, front id
   roughnessWind: vec4f, // wind axis xz, short-spectrum response, seed
   roughnessOffset: vec4f, // advected world phase in wind-field cells
+  previousViewProj: mat4x4f,
+  previousCamera: vec4f, // previous local xyz, chop
+  previousWaveOrigins: array<vec4f,3>,
+  previousRoughnessWind: vec4f,
+  previousRoughnessOffset: vec4f,
+  jitter: vec4f, // current/previous NDC; matrices remain unjittered
+  temporal: vec4f, // valid history, previous/current storage divisor, wall dt, enabled
 };
 `;
 
