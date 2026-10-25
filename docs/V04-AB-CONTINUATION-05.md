@@ -73,3 +73,7 @@ The meaningful default improvements are complete preset switching and lower GPU 
 Next implementation should address the remaining whitewater body/crest connection and water directional-light allocation using the existing scattering, slope filtering and FFT contracts. Cloud temporal reconstruction remains conditional on credible morphology and measured motion/cost gains; no duplicate temporal system was added.
 
 All 626 local checkpoint files are inventoried with SHA-256. Publication selects 348 paths, including all frame reports, complete lossless videos, selected motion PNG endpoints and all matched stills. Original motion PNGs remain local; each is recoverable from verified lossless RGB video. The byte-identical cloud baseline does not need a duplicate video. `v04-ma-ab5-checkpoint-01/evidence-inventory.json` records this distinction; publication does not imply owner visual acceptance.
+
+## Publication verified
+
+Rendering `173c1534af7e33b6150b69238dc3e464e0879ae7` and evidence `6bc4cee91c5a4333ebda1d9abf827d61bfa31aa2` are published on `development/pelagic-0.4`. Remote HEAD matched. All 20 unique changed LFS objects (26 media paths, 813,021,082 bytes) were freshly downloaded into an isolated cache and SHA-256 verified. Main, completed 0.3 and frozen release refs remain unchanged. Nine inherited evidence edits and the lockfile still match their preservation hashes. Proof: `evidence/v04-ma-ab5-publication-01/publication.json`. The following handoff commit records this proof without changing source or media. No final release or visual acceptance.
