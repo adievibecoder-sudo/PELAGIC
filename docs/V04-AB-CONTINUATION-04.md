@@ -8,6 +8,8 @@ Started on `development/pelagic-0.4`, inspected inherited changes, fetched and f
 
 Initial implementation commit: `aa13379`; final refinement: `1a992ff`. Final refinement replaces bilinear history with bounded Catmull-Rom sampling and reduces surface history. Exact per-capture source hashes distinguish those revisions; a recorded HEAD alone does not identify uncommitted shader changes.
 
+Final review also adds explicit history resets on configuration replacement and interactive parameter edits: a fresh environment can reuse revision zero, while seed/optics/celestial edits bypass the environment revision. This correction affects interactive cuts only, not the recorded locked-scene shading or timing paths. No full recapture is warranted by the reset hooks.
+
 ## Implemented, opt-in
 
 - `aa=taa`: 4x MSAA plus short HDR history. Default MSAA shaders remain unchanged by the temporal shader transform. The new MSAA golden original is byte-identical to the earlier reference.

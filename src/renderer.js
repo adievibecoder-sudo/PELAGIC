@@ -842,10 +842,12 @@ async function main() {
   // --------------------------------------------------------------------------------------
   // Interface communicates through validated commands; no GPU resources escape this module.
   let captureRequested=false,recorder=null,movieStart=0,movieChunks=[];
-  function applyConfig(config){Object.assign(P,sanitize(config,P));environment=createEnvironment(P,simTime);needSpectrum=true;needLUT=true;envFull=1;cam.speed=P.cameraSpeed;cam.fovY=P.fov*D2R;}
+  function applyConfig(config){cameraHistory?.reset('configuration replaced');Object.assign(P,sanitize(config,P));environment=createEnvironment(P,simTime);needSpectrum=true;needLUT=true;envFull=1;cam.speed=P.cameraSpeed;cam.fovY=P.fov*D2R;}
   const ui=setupUI(P,cam,{
     adapter:adapterInfo,time:()=>simTime,snapshot:()=>environmentSnapshot(environment),
     change(key,value){
+      // Seed, optics and celestial edits do not all increment environment.revision.
+      cameraHistory?.reset('interactive '+key);
       const next=sanitize({[key]:value},P);
       if(SEA_KEYS.includes(key)||WEATHER_KEYS.includes(key)||key.startsWith('front')||key==='electrified'){
         commandEnvironment(environment,{[key]:next[key]},{instant:P.environmentMode==='instant'});

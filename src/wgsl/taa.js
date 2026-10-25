@@ -118,7 +118,7 @@ fn sampleHistory(uv:vec2f)->vec4f{
   if(z>0.0 && farZ==0.0){valid=0.0;}
   let oldPixel=clamp(vec2i(oldUV*vec2f(dims)),vec2i(0),vec2i(dims)-1);
   let previousZ=textureLoad(historyDepth,oldPixel,0).r;
-  // Binary16 motion-depth rounding contributes at most 2^-25 absolute error.
+  // Relative tolerance covers normal binary16 rounding; subnormals need a 2^-25 floor.
   if((z==0.0)!=(previousZ==0.0)||abs(previousZ-expectedZ)>max(expectedZ*.025,3.1e-8)){valid=0.0;}
   let old=sampleHistory(oldUV);
   var lo=vec3f(1e30);var hi=vec3f(-1e30);var mean=vec3f(0);var square=vec3f(0);
