@@ -1,5 +1,7 @@
 # Combined A+B development - 24 October 2026
 
+Current continuation: `V04-AB-CONTINUATION-04.md`, 25 October. Opt-in hybrid temporal foundation and cloud-shadow controls implemented; default MSAA preserved. Final CPU58/GPU temporal9 pass; fine-detail loss, reflection motion, low-Sun optics, clouds and B1/B2 remain open. Foreground GPU cost increases 38.94 to 40.74 ms in the matched near-low-Sun pair. `ab4-review.html` exposes original stills and lossless motion. Substantial checkpoint awaits owner visual review; no A+B acceptance.
+
 Current continuation: `V04-AB-CONTINUATION-03.md`, recovered 25 October beyond the interrupted `97f68a1` checkpoint. Gravity-wave onset visibly reduces broad storm foam sheets; B1 owner review remains pending. Focused shader corrections and float32 precision measurements are complete; metallic low-Sun water and cloud morphology remain unresolved. `ab3-review.html` retains originals and motion. Appearance trials remain opt-in; no A+B acceptance or release promotion. Earlier entries below remain historical records.
 
 ## Recovered working state

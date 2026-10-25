@@ -1,0 +1,231 @@
+{
+  "stills": [
+    {
+      "name": "gold-near",
+      "paths": [
+        "evidence\\v04-ma-ab4-controls-01\\gold-near-msaa.png",
+        "evidence\\v04-ma-ab4-final-stills-01\\gold-near-reference.png"
+      ],
+      "matched": {
+        "camera": true,
+        "settings": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": [
+          true,
+          true
+        ]
+      },
+      "lowerThirdGradient": [
+        9.231014251708984,
+        7.608062744140625
+      ],
+      "gradientRatio": 0.8241849201708367,
+      "meanAbsoluteCodeDifference": 3.14635968208313,
+      "hdr": [
+        "PASS",
+        "PASS"
+      ],
+      "spectrum": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "name": "gold-high",
+      "paths": [
+        "evidence\\v04-ma-ab4-controls-01\\gold-high-msaa.png",
+        "evidence\\v04-ma-ab4-final-stills-01\\gold-high-reference.png"
+      ],
+      "matched": {
+        "camera": true,
+        "settings": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": [
+          true,
+          true
+        ]
+      },
+      "lowerThirdGradient": [
+        5.736893177032471,
+        4.872820854187012
+      ],
+      "gradientRatio": 0.849383229531839,
+      "meanAbsoluteCodeDifference": 2.613980770111084,
+      "hdr": [
+        "PASS",
+        "PASS"
+      ],
+      "spectrum": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "name": "day-near",
+      "paths": [
+        "evidence\\v04-ma-ab4-controls-01\\day-near-msaa.png",
+        "evidence\\v04-ma-ab4-final-stills-01\\day-near-reference.png"
+      ],
+      "matched": {
+        "camera": true,
+        "settings": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": [
+          true,
+          true
+        ]
+      },
+      "lowerThirdGradient": [
+        8.916499137878418,
+        7.286725997924805
+      ],
+      "gradientRatio": 0.8172182697769654,
+      "meanAbsoluteCodeDifference": 3.108320713043213,
+      "hdr": [
+        "PASS",
+        "PASS"
+      ],
+      "spectrum": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    },
+    {
+      "name": "day-high",
+      "paths": [
+        "evidence\\v04-ma-ab4-controls-01\\day-high-msaa.png",
+        "evidence\\v04-ma-ab4-final-stills-01\\day-high-reference.png"
+      ],
+      "matched": {
+        "camera": true,
+        "settings": true,
+        "time": true,
+        "dimensions": true,
+        "sourceStable": [
+          true,
+          true
+        ]
+      },
+      "lowerThirdGradient": [
+        10.221190452575684,
+        9.47781753540039
+      ],
+      "gradientRatio": 0.9272713955752613,
+      "meanAbsoluteCodeDifference": 3.111689805984497,
+      "hdr": [
+        "PASS",
+        "PASS"
+      ],
+      "spectrum": [
+        "PASS",
+        "PASS"
+      ],
+      "errors": [
+        [],
+        []
+      ]
+    }
+  ],
+  "motion": [
+    {
+      "mode": "msaa",
+      "frames": 48,
+      "fps": 30,
+      "seconds": 1.6,
+      "lowerThirdMeanGradient": 8.592854708433151,
+      "rawUnregisteredFrameDifference": 17.70289798493081,
+      "sourceStable": true,
+      "errors": [],
+      "lossless": true
+    },
+    {
+      "mode": "taa",
+      "frames": 48,
+      "fps": 30,
+      "seconds": 1.6,
+      "lowerThirdMeanGradient": 8.181674549976984,
+      "rawUnregisteredFrameDifference": 17.391077650354262,
+      "sourceStable": true,
+      "errors": [],
+      "lossless": true
+    }
+  ],
+  "profiles": [
+    {
+      "name": "gold-hybrid",
+      "frames": 580,
+      "gpuSamples": 82,
+      "wallSeconds": 30.19719999999702,
+      "timingMode": "requestAnimationFrame, display paced",
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "unfocusedFrames": 0,
+      "embeddedFrames": 0,
+      "rafFramesPerSecond": 24.492519224516172,
+      "intervalsMs": {
+        "mean": 40.82879310344827,
+        "median": 41.600000000000364,
+        "p95": 48.19999999999718,
+        "p99": 48.70000000000073,
+        "maximum": 49
+      },
+      "gpuMs": {
+        "gpu": 40.74181307317073,
+        "simulation": 1.463370926829268,
+        "surface": 14.369966829268293,
+        "cloudScreen": 17.809008390243903,
+        "environment": 4.293407219512194,
+        "post": 0.43077931707317074,
+        "motion": 0.5482645853658537,
+        "taa": 0.7097069268292682
+      },
+      "allocationBytes": 324890584
+    },
+    {
+      "name": "gold-msaa",
+      "frames": 612,
+      "gpuSamples": 88,
+      "wallSeconds": 30.1773,
+      "timingMode": "requestAnimationFrame, display paced",
+      "sourceStable": true,
+      "errors": [],
+      "hiddenFrames": 0,
+      "unfocusedFrames": 0,
+      "embeddedFrames": 0,
+      "rafFramesPerSecond": 25.64790290676233,
+      "intervalsMs": {
+        "mean": 38.98954248366013,
+        "median": 41.400000000001455,
+        "p95": 41.900000000001455,
+        "p99": 42.100000000000364,
+        "maximum": 48.70000000000073
+      },
+      "gpuMs": {
+        "gpu": 38.93583127272727,
+        "simulation": 1.4559418181818176,
+        "surface": 14.239185454545456,
+        "cloudScreen": 17.597160727272726,
+        "environment": 4.263563636363636,
+        "post": 0.4140683636363635
+      },
+      "allocationBytes": 204574632
+    }
+  ],
+  "scope": "Original 1080p images; lower-third gradients and unregistered differences are not realism/flicker scores. One sequential foreground timing pair; no thermal confidence interval. Allocation payload is not GPU residency."
+}

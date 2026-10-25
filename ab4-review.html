@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PELAGIC / hybrid temporal checkpoint</title>
+<style>body{margin:24px;background:#101b20;color:#e6ede7;font:15px/1.5 Consolas,monospace}a{color:#a9d2dc}button,select{padding:8px;margin:6px}img,video{display:block;width:100%;height:auto}figure{margin:8px 0}section{display:grid;grid-template-columns:1fr 1fr;gap:20px}h1{font-size:24px}video{max-height:85vh}small{color:#b7c8c9}@media(max-width:900px){section{grid-template-columns:1fr}}</style>
+<h1>PELAGIC 0.4 / hybrid temporal checkpoint</h1>
+<p>Experimental 4x MSAA + short HDR TAA. MSAA-only remains default. Fine-detail retention improves over the first temporal trial, but static-view softness and reflection motion remain unresolved. Metallic low-Sun water, cloud morphology, B1 and B2 remain open. Owner visual acceptance pending.</p>
+<p><a href="docs/V04-AB-CONTINUATION-04.md">Implementation, measurements and limits</a> / <a href="evidence/v04-ma-ab4-checkpoint-01/analysis.json">Measured comparisons</a> / <a href="ab3-review.html">Previous checkpoint</a></p>
+<p>RTX 3050, 1080p Balanced, sequential 30-second foreground runs: MSAA 38.94 ms GPU / 25.65 rAF frames/s; hybrid 40.74 ms / 24.49. Allocation payload 195.10 / 309.84 MiB; residency unavailable. No 1 Hz gaps reproduced; historical cause unresolved. No speedup claim.</p>
+<h2>Matched original stills</h2>
+<label>View <select id="scene"><option>gold-near</option><option>gold-high</option><option>day-near</option><option>day-high</option></select></label>
+<p>Identical settings, camera and simulation time. Click either image for its original 1920 x 1080 PNG. Static lower-third gradient retention: 82-93%; this is not a realism score.</p><section id="stills"></section>
+<h2>Lossless camera and wave motion</h2>
+<label>Recording <select id="clip"><option value="msaa">4x MSAA</option><option value="taa">Experimental hybrid</option></select></label>
+<label>Playback <select id="rate"><option value="1">Real time</option><option value="0.25">Quarter speed</option></select></label>
+<button id="play">Play original</button><p id="status" role="status">48 matched frames, 30 Hz fixed simulation, 1.6 seconds. Lossless VP9 RGB; every decoded frame matches its PNG. Files approximately 150 MiB each.</p><video id="movie" controls playsinline muted preload="none"></video>
+<p>Motion-sequence gradient retention 95.2%. Raw unregistered frame difference decreases 1.8%; real motion is included, so this does not establish flicker reduction. These clips do not certify storm, waterline or long-history behavior.</p>
+<h2>Low-Sun cloud attenuation diagnostic</h2>
+<p>Removing only direct solar cloud attenuation restores a strong near-camera sun column. Shadow removal is rejected as final physics. Dense curved-path quadrature confirms substantial real extinction; geometry alone does not solve the appearance.</p>
+<section><figure><figcaption>MSAA / cloud attenuation enabled</figcaption><a href="evidence/v04-ma-ab4-shadow-01/gold-near-reference.png"><img loading="lazy" src="evidence/v04-ma-ab4-shadow-01/gold-near-reference.png" alt="Low-Sun original with cloud shadow"></a></figure><figure><figcaption>Diagnostic only / attenuation disabled</figcaption><a href="evidence/v04-ma-ab4-shadow-01/gold-near-unshadowed.png"><img loading="lazy" src="evidence/v04-ma-ab4-shadow-01/gold-near-unshadowed.png" alt="Low-Sun diagnostic without direct cloud shadow"></a></figure></section>
+<h2>Storm simulation continuity</h2><p>Historical gravity-onset settings, warmed to t30. MSAA and hybrid foam memory match exactly. Grey film-like foam remains a B1 failure.</p>
+<section><figure><figcaption>4x MSAA</figcaption><a href="evidence/v04-ma-ab4-storm-01/msaa.png"><img loading="lazy" src="evidence/v04-ma-ab4-storm-01/msaa.png" alt="Storm MSAA reference"></a></figure><figure><figcaption>Experimental hybrid</figcaption><a href="evidence/v04-ma-ab4-storm-01/hybrid.png"><img loading="lazy" src="evidence/v04-ma-ab4-storm-01/hybrid.png" alt="Storm hybrid control"></a></figure></section>
+<h2>Live comparisons</h2><p><a id="live-msaa">Open MSAA</a> / <a id="live-taa">Open hybrid</a>. These open the same controlled near low-Sun view with camera controls enabled. Hybrid uses more GPU time and memory.</p>
+<script type="module">
+const scene=document.querySelector('#scene');
+function update(){document.querySelector('#stills').replaceChildren(...['msaa','taa'].map(mode=>{
+ const figure=document.createElement('figure'),caption=document.createElement('figcaption'),link=document.createElement('a'),img=document.createElement('img');
+ caption.textContent=mode==='msaa'?'4x MSAA reference':'Experimental hybrid';
+ link.href=mode==='msaa'?`evidence/v04-ma-ab4-controls-01/${scene.value}-msaa.png`:`evidence/v04-ma-ab4-final-stills-01/${scene.value}-reference.png`;
+ img.src=link.href;img.alt=caption.textContent+' / '+scene.value;link.append(img);figure.append(caption,link);return figure;
+}));}
+scene.onchange=update;update();
+const movie=document.querySelector('#movie'),clip=document.querySelector('#clip'),status=document.querySelector('#status');
+document.querySelector('#play').onclick=async()=>{movie.src=`evidence/v04-ma-ab4-motion-${clip.value}-01/gold-lossless.webm`;movie.playbackRate=Number(document.querySelector('#rate').value);try{await movie.play();movie.scrollIntoView({block:'start'});}catch(error){status.textContent=error.message;}};
+movie.ontimeupdate=movie.onended=()=>{const q=movie.getVideoPlaybackQuality();status.textContent=`${clip.value}: ${movie.currentTime.toFixed(2)} s / ${movie.ended?'ENDED':movie.paused?'PAUSED':'PLAYING'} / ${q.totalVideoFrames} frames / ${q.droppedVideoFrames} dropped`;};
+const query=new URLSearchParams({preset:'midday',cam:'0,2,0,4,-5.5',cameraMode:'free',quality:'Balanced',resolution:1,adaptive:0,seed:1307,t:20,clouds:.5,veil:0,haze:1.4,cloudType:0,sunElev:5,exposure:1.3});
+document.querySelector('#live-msaa').href='/?'+query;query.set('aa','taa');document.querySelector('#live-taa').href='/?'+query;
+</script></html>

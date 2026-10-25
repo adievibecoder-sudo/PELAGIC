@@ -1,0 +1,26 @@
+{
+  "gpu": [
+    "name, driver_version, memory.total [MiB], power.draw [W], temperature.gpu",
+    "NVIDIA GeForce RTX 3050 Laptop GPU, 617.14, 4096 MiB, 3.22 W, 48"
+  ],
+  "chromeGPU": {
+    "ProcessId": 15816,
+    "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+  },
+  "note": "Chrome GPU PID corroborated against NVIDIA process list. Per-process residency unavailable. Desktop apps remain active.",
+  "utc": "2026-10-25T08:20:36.8868605Z",
+  "applications": [
+    "pid, process_name, used_gpu_memory [MiB]",
+    "9300, C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\CrossDeviceResume.exe, [N/A]",
+    "3920, C:\\Windows\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe, [N/A]",
+    "4460, C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe, [N/A]",
+    "14192, C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\155.0.4283.62\\msedgewebview2.exe, [N/A]",
+    "18092, C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1021.3705.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe, [N/A]",
+    "17596, C:\\Users\\adity\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1fb7137c46617d50\\bin\\node_modules\\@oai\\sky\\bin\\windows\\swift\\x64\\codex-computer-use-swift.exe, [N/A]",
+    "11332, C:\\Program Files\\WindowsApps\\MicrosoftWindows.Client.WebExperience_526.21100.40.0_x64__cw5n1h2txyewy\\WidgetBoard.exe, [N/A]",
+    "15816, C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe, [N/A]",
+    "1408, C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe, [N/A]",
+    "8368, C:\\Users\\adity\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1fb7137c46617d50\\bin\\node_modules\\@oai\\sky\\bin\\windows\\codex-computer-use.exe, [N/A]",
+    "11152, C:\\Program Files\\WindowsApps\\TelegramMessengerLLP.TelegramDesktop_7.3.3.0_x64__t4vj0pshhgkwm\\Telegram.exe, [N/A]"
+  ]
+}

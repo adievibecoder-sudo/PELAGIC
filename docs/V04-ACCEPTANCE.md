@@ -1,5 +1,7 @@
 # PELAGIC 0.4 acceptance and decision register
 
+**25 October checkpoint, no acceptance:** Opt-in hybrid 4x MSAA + TAA foundation exists (`V04-AB-CONTINUATION-04.md`). CPU58 and native resolve9 pass; static detail loss and reflection transport remain unresolved. Cloud-shadow quadrature correction is opt-in, not an appearance fix. Fresh foreground runs do not reproduce 1 Hz gaps; T1 root cause remains open. All inherited visual defect rows remain open. B1, B2 and combined A+B still require owner visual review.
+
 **Active owner decision, 24 October 2026:** Combined Milestones A+B are authorized by the current kickoff. Historical Phase 1-only / A-only scheduling below is superseded; failures and original evidence remain historical facts. Implementation-led water appearance first, then coupled clouds, Living Sea, breaking/whitewater, spray and weather. Owner review at substantial integrated checkpoints; B1/B2 remain review milestones. Milestone C, final release and independent acceptance remain separately gated. Recovery and current programme: `V04-AB-DEVELOPMENT.md`.
 
 

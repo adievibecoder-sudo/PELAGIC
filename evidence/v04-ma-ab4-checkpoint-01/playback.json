@@ -1,0 +1,20 @@
+{
+  "playbackRate": 0.25,
+  "clips": [
+    {
+      "mode": "msaa",
+      "ended": true,
+      "seconds": 1.6,
+      "totalVideoFrames": 48,
+      "droppedVideoFrames": 0
+    },
+    {
+      "mode": "taa",
+      "ended": true,
+      "seconds": 1.6,
+      "totalVideoFrames": 48,
+      "droppedVideoFrames": 0
+    }
+  ],
+  "scope": "Chrome DOM playback completion and sampled opening/endpoint screenshots. Not exhaustive perceptual certification. Earlier interactive real-time playback showed drops; not a renderer FPS measurement."
+}
