@@ -832,7 +832,10 @@ async function main() {
     foamPatternOrigin(origin,[f[56],f[57]],time,[f[80],f[81]],f,140);
     environmentUniforms(environment,cam,f);
     roughnessUniforms(environment,origin,['wind','stress'].includes(qs.get('maRoughness')),f);
-    if(cameraHistory)temporalState=cameraHistory.write(f,[cam.x,cam.y,cam.z],fixedDt||frameMs/1000,environment.revision);
+    if(cameraHistory){
+      temporalState=cameraHistory.write(f,[cam.x,cam.y,cam.z],fixedDt||frameMs/1000,environment.revision);
+      if(qs.get('taaHistory')==='off')f[224]=0;
+    }
     device.queue.writeBuffer(frameUBO, 0, f);
   }
 

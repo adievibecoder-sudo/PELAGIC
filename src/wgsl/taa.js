@@ -78,6 +78,21 @@ export const TAA_RESOLVE=FRAME_WGSL+/* wgsl */`
 @group(0) @binding(8) var outputDepth:texture_storage_2d<r32float,write>;
 fn ycocg(c:vec3f)->vec3f{return vec3f(dot(c,vec3f(.25,.5,.25)),(c.r-c.b)*.5,dot(c,vec3f(-.25,.5,-.25)));}
 fn rgb(c:vec3f)->vec3f{return vec3f(c.x+c.y-c.z,c.x+c.z,c.x-c.y-c.z);}
+fn sampleHistory(uv:vec2f)->vec4f{
+  let dims=vec2f(textureDimensions(history));let p=uv*dims-.5;let base=floor(p);let f=p-base;
+  let w0=f*(-.5+f*(1.0-.5*f));let w1=1.0+f*f*(-2.5+1.5*f);
+  let w2=f*(.5+f*(2.0-1.5*f));let w3=f*f*(-.5+.5*f);let middle=w1+w2;
+  let px=vec3f(base.x-.5,base.x+.5+w2.x/middle.x,base.x+2.5)/dims.x;
+  let py=vec3f(base.y-.5,base.y+.5+w2.y/middle.y,base.y+2.5)/dims.y;
+  let wx=vec3f(w0.x,middle.x,w3.x);let wy=vec3f(w0.y,middle.y,w3.y);
+  var value=vec4f(0);
+  // Catmull-Rom's middle taps collapse to one bilinear lookup per axis.
+  // Neighbourhood clipping bounds negative lobes before HDR accumulation.
+  for(var y=0u;y<3u;y++){for(var x=0u;x<3u;x++){
+    value+=textureSampleLevel(history,linearSampler,vec2f(px[x],py[y]),0.0)*wx[x]*wy[y];
+  }}
+  return vec4f(max(value.rgb,vec3f(0)),clamp(value.a,0.0,1.0));
+}
 @compute @workgroup_size(8,8) fn main(@builtin(global_invocation_id) id:vec3u){
   let dims=textureDimensions(output);if(any(id.xy>=dims)){return;}
   let p=vec2i(id.xy);let uv=(vec2f(id.xy)+.5)/vec2f(dims);
@@ -105,7 +120,7 @@ fn rgb(c:vec3f)->vec3f{return vec3f(c.x+c.y-c.z,c.x+c.z,c.x-c.y-c.z);}
   let previousZ=textureLoad(historyDepth,oldPixel,0).r;
   // Binary16 motion-depth rounding contributes at most 2^-25 absolute error.
   if((z==0.0)!=(previousZ==0.0)||abs(previousZ-expectedZ)>max(expectedZ*.025,3.1e-8)){valid=0.0;}
-  let old=textureSampleLevel(history,linearSampler,oldUV,0);
+  let old=sampleHistory(oldUV);
   var lo=vec3f(1e30);var hi=vec3f(-1e30);var mean=vec3f(0);var square=vec3f(0);
   for(var y=-1;y<=1;y++){for(var x=-1;x<=1;x++){
     let c=ycocg(textureLoad(current,clamp(p+vec2i(x,y),vec2i(0),vec2i(dims)-1),0).rgb);
@@ -121,11 +136,13 @@ fn rgb(c:vec3f)->vec3f{return vec3f(c.x+c.y-c.z,c.x+c.z,c.x-c.y-c.z);}
   let disagreement=abs(previous.x-lum)/max(max(abs(previous.x),abs(lum)),1e-5);
   let speed=length((oldUV-uv)*vec2f(dims));
   let reactive=max(now.a,old.a);
-  var weight=mix(.72,.35,clamp(speed/12.0,0.0,1.0))*(1.0-.9*reactive);
+  // Wave geometry motion does not transport a changing reflected environment.
+  // Keep the surface history shorter than clear-sky history.
+  var weight=mix(.45,.2,clamp(speed/12.0,0.0,1.0))*(1.0-.9*reactive);
   weight*=1.0-smoothstep(.15,.7,disagreement);
   // Cloud opacity marks finite-distance volumes: rotation-only sky motion is
   // insufficient for cloud parallax/advection. S5 owns their separate history.
-  if(z==0.0){weight=min(weight,mix(.72,.08,now.a));}
+  if(z==0.0){weight=min(.6*(1.0-.9*reactive)*(1.0-smoothstep(.15,.7,disagreement)),mix(.6,.08,now.a));}
   weight*=valid;
   let result=max(mix(now.rgb,rgb(clipped),weight),vec3f(0));
   textureStore(output,p,vec4f(result,now.a));textureStore(outputDepth,p,vec4f(z));
