@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>AB6 capture</title><style>body{margin:0;background:#102029;color:white;font:14px Consolas}iframe{width:100vw;height:calc(100vh - 30px);border:0}header{height:30px}</style><header id="status">Preparing</header><iframe title="Controlled whitewater" id="view"></iframe><script type="module">
+const args=new URLSearchParams(location.search),index=Number(args.get('index')||0);
+const cases=[['storm','base',72],['storm','work',72],['calm','base',1],['calm','work',1]];
+if(index>=cases.length){document.title='AB6 DONE';document.querySelector('#status').textContent='Complete';}
+else{
+const [scene,variant,count]=cases[index];
+const q=new URLSearchParams({preset:scene,quality:'High',resolution:1,adaptive:0,cam:scene==='storm'?'0,5,0,79,-9':'0,2,0,4,-5.5',cameraMode:'free',seed:1307,t:20,ma:1,shot:scene+'.png',frames:240,captureStep:1/24,w:1920,h:1080,stage:`v04-ma-ab6-${scene==='storm'?'motion':'calm'}-${variant}-01`,maBreaking:'gravity',abFoam:'transport',abFoamPattern:'bubbles',abRain:'velocity',p0Profile:1,seq:count,ui:0});
+if(count>1)q.set('captureMotion','pan');else q.set('validate',1);
+if(variant==='work')q.set('abWhitewater','parcels');
+document.querySelector('#view').src='/?'+q;document.querySelector('#status').textContent=`${index+1}/4 ${scene} ${variant}`;
+let received=0;addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==document.querySelector('#view').contentWindow||e.data?.type!=='pelagic-capture')return;if(++received===1){args.set('index',index+1);location.search=args.toString();}});
+}
+</script></html>
+

@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PELAGIC / crest-attached whitewater</title>
+<style>body{margin:24px;background:#101b20;color:#e6ede7;font:15px/1.5 Consolas,monospace}a{color:#a9d2dc}button,select{padding:8px;margin:6px}img,video{display:block;width:100%;height:auto}figure{margin:8px 0}section{display:grid;grid-template-columns:1fr 1fr;gap:20px}h1{font-size:24px}video{max-height:82vh}small{color:#b7c8c9}@media(max-width:900px){section{grid-template-columns:1fr}body{margin:16px}}</style>
+<h1>PELAGIC 0.4 / crest-attached whitewater</h1>
+<p>Opt-in B1 development: porous aerated parcels follow gravity-wave events above the existing residual foam. Added depth and crest breakup; isolated rounded patches and incomplete roller continuity remain. B1 and A+B are not accepted.</p>
+<p>Matched High, 1920 x 1080, seed 1307, 10-second storm warmup; 72 fixed-step frames at 24 Hz. Original RGB losslessly preserved. Calm control retained.</p>
+<p><a id="live-base">Live baseline</a> / <a id="live-work">Live whitewater</a> / <a href="docs/V04-AB-CONTINUATION-06.md">Mechanism and limits</a></p>
+<section><figure><figcaption>Before: surface foam</figcaption><a href="evidence/v04-ma-ab6-motion-base-01/storm_48.png"><img src="evidence/v04-ma-ab6-motion-base-01/storm_48.png" alt="Baseline storm after matched warmup"></a></figure><figure><figcaption>After: crest-attached aerated parcels</figcaption><a href="evidence/v04-ma-ab6-motion-work-01/storm_48.png"><img src="evidence/v04-ma-ab6-motion-work-01/storm_48.png" alt="Storm with localized whitewater bodies"></a></figure></section>
+<label>Motion <select id="clip"><option value="base">Before</option><option value="work" selected>After</option></select></label>
+<label>Playback <select id="rate"><option value="1">Normal speed</option><option value="0.25">Quarter speed</option></select></label>
+<button id="play">Play original</button><p id="status">Ready</p><video id="movie" controls preload="metadata" playsinline></video>
+<script type="module">
+const movie=document.querySelector('#movie'),clip=document.querySelector('#clip'),status=document.querySelector('#status');
+document.querySelector('#play').onclick=async()=>{movie.src=`evidence/v04-ma-ab6-motion-${clip.value}-01/storm.webm`;movie.playbackRate=Number(document.querySelector('#rate').value);await movie.play();movie.scrollIntoView({block:'start'});};
+movie.ontimeupdate=movie.onended=()=>{const q=movie.getVideoPlaybackQuality();status.textContent=`${clip.value}: ${movie.currentTime.toFixed(2)} s / ${movie.ended?'ENDED':movie.paused?'PAUSED':'PLAYING'} / ${q.totalVideoFrames} frames / ${q.droppedVideoFrames} dropped`;};
+const query=new URLSearchParams({preset:'storm',maBreaking:'gravity',abFoam:'transport',abFoamPattern:'bubbles',abRain:'velocity',cam:'0,5,0,79,-9',cameraMode:'free',quality:'High',resolution:1,adaptive:0,seed:1307,t:20});
+document.querySelector('#live-base').href='/?'+query;query.set('abWhitewater','parcels');document.querySelector('#live-work').href='/?'+query;
+</script></html>

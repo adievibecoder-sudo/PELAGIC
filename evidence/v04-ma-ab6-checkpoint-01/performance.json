@@ -1,0 +1,79 @@
+{
+  "runs": [
+    {
+      "variant": "base",
+      "rAFcadenceFPS": 23.81460220897128,
+      "frameInterval": {
+        "mean": 41.99104361370716,
+        "p50": 7.100000000005821,
+        "p95": 118.09999999999854
+      },
+      "gpu": {
+        "mean": 41.69728,
+        "p50": 41.713663999999994,
+        "p95": 45.2788224
+      },
+      "transparent": {
+        "mean": 0.07837751351351349,
+        "p50": 0.065536,
+        "p95": 0.262144
+      },
+      "simulation": {
+        "mean": 1.2416415135135135,
+        "p50": 1.114112,
+        "p95": 1.441792
+      },
+      "surface": {
+        "mean": 19.458878270270272,
+        "p50": 19.234816000000002,
+        "p95": 22.1282304
+      },
+      "allocationPayloadBytes": 213961896,
+      "hidden": 0,
+      "unfocused": 0,
+      "embedded": 0,
+      "errors": [],
+      "stableSource": true,
+      "frames": 1284,
+      "measuredFrames": 148
+    },
+    {
+      "variant": "work",
+      "rAFcadenceFPS": 23.56064685022558,
+      "frameInterval": {
+        "mean": 42.443656422379824,
+        "p50": 7.100000000005821,
+        "p95": 118.46000000000058
+      },
+      "gpu": {
+        "mean": 42.38383693150685,
+        "p50": 42.27072,
+        "p95": 46.383103999999996
+      },
+      "transparent": {
+        "mean": 0.4874801095890411,
+        "p50": 0.196608,
+        "p95": 2.080768
+      },
+      "simulation": {
+        "mean": 1.264485698630137,
+        "p50": 1.14688,
+        "p95": 1.441792
+      },
+      "surface": {
+        "mean": 19.59346849315068,
+        "p50": 19.398656,
+        "p95": 22.085632
+      },
+      "allocationPayloadBytes": 214355112,
+      "hidden": 0,
+      "unfocused": 0,
+      "embedded": 0,
+      "errors": [],
+      "stableSource": true,
+      "frames": 1269,
+      "measuredFrames": 146
+    }
+  ],
+  "scope": "Sequential 60 s foreground native RTX 3050 storm runs. First 5 s of retained records excluded. rAF cadence is not compositor presentation. No repeats/confidence interval; phase sampling differs between elapsed-time runs."
+}
