@@ -1,5 +1,7 @@
 # Combined A+B development - 24 October 2026
 
+AB6 publication verified, 26 October: rendering `24a88e3`, evidence `57ad49f`; 16 changed LFS objects freshly downloaded and hashed. Main/0.3/frozen refs and inherited work preserved. Private research stays untracked. Proof: `evidence/v04-ma-ab6-publication-01/publication.json`. No milestone acceptance or release promotion.
+
 Current continuation: `V04-AB-CONTINUATION-06.md`, 25 October. Rendering `24a88e3` adds opt-in porous whitewater parcels attached to gravity-wave events, using the existing particle pipeline and preserving spray/rain. Matched High storm motion shows local crest breakup; rounded patches and roller continuity remain open. Calm is byte-identical. CPU64/GPU5 pass within scope. Water entry-refraction trial rejected for negligible visual change; original source/evidence retained. Owner ZIP verified locally; `_local_references` and `local references` ignored, no reference binaries published. B1/B2/A+B still unaccepted; no release promotion.
 
 AB5 publication verified: rendering `173c153`, evidence `6bc4cee`, matching remote development HEAD; all 20 changed LFS objects freshly downloaded and hashed. Main/0.3/frozen refs unchanged; inherited edits/lockfile preserved. Proof: `evidence/v04-ma-ab5-publication-01/publication.json`. Subsequent handoff records proof; no acceptance or release promotion.

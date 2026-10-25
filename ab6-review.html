@@ -8,7 +8,7 @@
 <section><figure><figcaption>Before: surface foam</figcaption><a href="evidence/v04-ma-ab6-motion-base-01/storm_48.png"><img src="evidence/v04-ma-ab6-motion-base-01/storm_48.png" alt="Baseline storm after matched warmup"></a></figure><figure><figcaption>After: crest-attached aerated parcels</figcaption><a href="evidence/v04-ma-ab6-motion-work-01/storm_48.png"><img src="evidence/v04-ma-ab6-motion-work-01/storm_48.png" alt="Storm with localized whitewater bodies"></a></figure></section>
 <label>Motion <select id="clip"><option value="base">Before</option><option value="work" selected>After</option></select></label>
 <label>Playback <select id="rate"><option value="1">Normal speed</option><option value="0.25">Quarter speed</option></select></label>
-<button id="play">Play original</button><p id="status">Ready</p><video id="movie" controls preload="metadata" playsinline></video>
+<button id="play">Play original</button><p id="status">Ready</p><video id="movie" controls preload="metadata" playsinline src="evidence/v04-ma-ab6-motion-work-01/storm.webm" poster="evidence/v04-ma-ab6-motion-work-01/storm_0.png"></video>
 <script type="module">
 const movie=document.querySelector('#movie'),clip=document.querySelector('#clip'),status=document.querySelector('#status');
 document.querySelector('#play').onclick=async()=>{movie.src=`evidence/v04-ma-ab6-motion-${clip.value}-01/storm.webm`;movie.playbackRate=Number(document.querySelector('#rate').value);await movie.play();movie.scrollIntoView({block:'start'});};

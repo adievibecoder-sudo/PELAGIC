@@ -52,3 +52,7 @@ The new representation adds work. Mean whole-frame difference is 0.69 ms in this
 ## Next bounded work
 
 Replace the remaining isolated rounded parcels with more continuous crest-relative breakup and phase-aware lateral support. Couple actual event strength to spray launch and entrained-body decay. Judge the moving crest and calm control before expanding the model. Water directional-light allocation remains the next A priority; the rejected entry-refraction trial is not a reason to repeat the old filtering or TAA loops.
+
+## Publication verified
+
+26 October: rendering `24a88e3` and evidence `57ad49f` published on `development/pelagic-0.4`; remote HEAD matched. All 16 unique new LFS objects (17 media paths, 528,102,276 bytes) freshly downloaded into an isolated cache and SHA-256 verified. Main/0.3/frozen refs unchanged. All 25 entry-preserved files still match, including the nine inherited evidence edits and lockfile. Neither private-reference folder contains a tracked file. Proof: `evidence/v04-ma-ab6-publication-01/publication.json`. The subsequent handoff commit records this proof and gives the review video an initial source/poster; renderer source is unchanged. No B1/B2/A+B acceptance or release promotion.
