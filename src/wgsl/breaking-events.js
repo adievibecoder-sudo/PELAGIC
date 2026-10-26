@@ -12,7 +12,8 @@ fn emissionProbability(referenceProbability:f32,dt:f32)->f32 {
 }
 `;
 export function breakingEventsShader(code,query) {
-  const mode=query.get('maBreaking');
+  const handoff=query.get('abBreaking')==='handoff';
+  const mode=handoff?'gravity':query.get('maBreaking');
   if(!['events','onset','fold','crest','gravity'].includes(mode))return code;
   if(code.includes('struct FoamU {')){
     const start=code.indexOf('  let inject = smoothstep('),end=code.indexOf('  // Carry binary16',start);
@@ -48,6 +49,10 @@ export function breakingEventsShader(code,query) {
   // steepness. Excludes capillary strain; not a nonlinear overturning solve.
   let signal=smoothstep(.28,.443,steepness)*activity*U.p1.w;`);
     }
+    if(handoff){
+      code=replaceShader(code,'f=1.0-(1.0-f)*exp(-U.p1.z*increment);',
+        'let retired=prev.g*(1.0-survival);\n  f=1.0-(1.0-f)*(1.0-retired);');
+    }
     return code.replace('vec4f(stored, fresh, J, f-stored)','vec4f(stored, fresh, signal, f-stored)');
   }
   if(mode==='gravity'&&code.includes('fn reflectedEnvironment(')){
@@ -60,6 +65,12 @@ export function breakingEventsShader(code,query) {
   // Same band-limited criterion outside the persistent clipmaps. Fade the
   // instantaneous far-field proxy into the actual event memory near the viewer.
   let fresh=clamp(fwl.g+(1.0-w1)*smoothstep(.28,.443,steepness)*min(F.foamP.z,1.0),0.0,1.0);`);
+  }
+  if(handoff&&code.includes('fn reflectedEnvironment(')){
+    code=replaceShader(code,'max(fwl.r+fwl.a, fresh*(1.0-w1)*0.45)+fwl.g*0.22',
+      'max(fwl.r+fwl.a, fresh*(1.0-w1)*0.45)');
+    code=replaceShader(code,'let freshK = clamp(fwl.g * 2.0 + fresh, 0.0, 1.0);',
+      'let freshK = clamp(fresh, 0.0, 1.0);');
   }
   return code;
 }

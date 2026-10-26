@@ -3,7 +3,7 @@ import {FRAME_WGSL} from '../src/wgsl/common.js';
 import {WAVE_COORDINATES} from '../src/wgsl/coordinates.js';
 import {CREST_SHEET_COUNT,CREST_SHEET_NODES,CREST_SHEET_NODE_BYTES} from '../src/wgsl/crest-sheet.js';
 
-export async function crestSheetReadback(device,nodes){
+export async function crestSheetReadback(device,nodes,opticalEnds=false){
   const size=CREST_SHEET_COUNT*CREST_SHEET_NODES*CREST_SHEET_NODE_BYTES;
   const read=device.createBuffer({size,usage:GPUBufferUsage.MAP_READ|GPUBufferUsage.COPY_DST});
   try{
@@ -19,14 +19,15 @@ export async function crestSheetReadback(device,nodes){
         if(values[k+7]>0)active.push({node:n,position:Array.from(values.slice(k,k+3)),radius:values[k+3],activity:values[k+7],age:values[k+11]});
       }
       if(!active.length)continue;
-      openEnds+=active[0].radius!==0||active.at(-1).radius!==0;
+      const closed=n=>opticalEnds?n.activity<=.000101:n.radius===0;
+      openEnds+=!closed(active[0])||!closed(active.at(-1));
       for(let n=1;n<active.length;n++)maxGap=Math.max(maxGap,Math.hypot(...active[n].position.map((v,i)=>v-active[n-1].position[i])));
       const code=values[(chain*CREST_SHEET_NODES+4)*stride+15];
       const reasons=['unset','ridge projection','tangent turn','event support','trace limit'];
       chains.push({index:chain,ends:[reasons[code%16],reasons[Math.floor(code/16)]],nodes:active});
     }
     read.unmap();
-    return {status:nonfinite===0&&openEnds===0?'PASS':'FAIL',nonfinite,openEnds,maxAdjacentDistance:maxGap,activeChains:chains.length,chains,
+    return {status:nonfinite===0&&openEnds===0?'PASS':'FAIL',nonfinite,openEnds,opticalEnds,maxAdjacentDistance:maxGap,activeChains:chains.length,chains,
       scope:'Actual production sheet nodes. Finite state and closed endpoints only; not visual, phase-identity or physical-breaking certification.'};
   }finally{read.destroy();}
 }

@@ -8,12 +8,14 @@ import {SKY_RENDER_FUNCS} from './sky.js';
 export const CREST_SHEET_COUNT=WHITEWATER_COUNT/4;
 export const CREST_SHEET_NODES=9;
 export const CREST_SHEET_VERTICES=8*4*6;
-export const CREST_SHEET_NODE_BYTES=64;
-const NODE=/* wgsl */`struct CrestNode {position:vec4f,across:vec4f,front:vec4f,back:vec4f};`;
+export const CREST_SHEET_NODE_BYTES=144;
+const NODE=/* wgsl */`struct CrestNode {position:vec4f,across:vec4f,front:vec4f,back:vec4f,section:array<vec4f,5>};`;
+export {NODE as CREST_NODE_WGSL};
 
 export function crestSheetShader(code,query){
   if(query.get('abCrestShape')!=='sheet')return code;
   if(query.get('abCrest')!=='phase')throw Error('Crest sheets require phase tracking');
+  if(code.includes('struct SheetOut'))return code;
   if(!code.includes('fn frothParcel(k:u32)'))return code;
   code=replaceShader(code,'fn frothParcel(k:u32){',NODE+/* wgsl */`
 @group(0) @binding(10) var<storage,read_write> crestNodes:array<CrestNode>;
@@ -28,8 +30,10 @@ fn sheetSurface(q:vec2f)->vec3f {
 fn sheetNode(index:u32,q:vec2f,axis:vec2f,radius:f32,activity:f32,age:f32){
   let centre=sheetSurface(q);
   let across=normalize(sheetSurface(q+axis*.2)-sheetSurface(q-axis*.2));
-  crestNodes[index]=CrestNode(vec4f(centre,radius),vec4f(across,activity),
-    vec4f(sheetSurface(q+axis*radius),age),vec4f(sheetSurface(q-axis*radius),0));
+  crestNodes[index].position=vec4f(centre,radius);
+  crestNodes[index].across=vec4f(across,activity);
+  crestNodes[index].front=vec4f(sheetSurface(q+axis*radius),age);
+  crestNodes[index].back=vec4f(sheetSurface(q-axis*radius),0);
 }
 fn buildCrestSheet(index:u32,crest:CrestSupport,oldQ:vec2f,radius:f32,activity:f32,spawn:bool){
   let base=index*9u;
@@ -112,6 +116,30 @@ fn sheetSurface(q:vec2f)->vec3f {`);
       'let fresh=sheetGravitySupport(next.q);');
     code=replaceShader(code,'if(fresh<=.01){termination[side]=3u;break;}',
       'if(fresh<=.05){termination[side]=3u;break;}');
+  }
+  if(query.get('abCrestEdge')==='fade'){
+    code=replaceShader(code,'sheetNode(base+n,points[n],axes[n],radius*taper,activity*birth,age);',
+      'sheetNode(base+n,points[n],axes[n],radius,activity*birth*max(taper,.0001),age);');
+  }
+  if(query.get('abCrestSurface')==='water'&&query.get('abCrestLife')==='supported'){
+    code=replaceShader(code,'  // Active froth follows phase;',`  if(!spawn&&support>.15){p.p.w=max(p.p.w,.35);}
+  p.v.y=mix(p.v.y,support,1.0-exp(-dt/.18));
+  // Active froth follows phase;`);
+    code=replaceShader(code,'p.v.y*=exp(-dt*1.6);','p.v.y*=exp(-dt*select(1.6,0.0,support>.15));');
+  }
+  if(query.get('abCrestSurface')==='water'){
+    code=replaceShader(code,'    crestNodes[index*9u+n].back.z-=F.worldOrigin.w;',`    crestNodes[index*9u+n].back.z-=F.worldOrigin.w;
+    for(var j=0u;j<5u;j++){
+      crestNodes[index*9u+n].section[j].x-=F.worldOrigin.z;
+      crestNodes[index*9u+n].section[j].z-=F.worldOrigin.w;
+    }`);
+    code=replaceShader(code,'  crestNodes[index].back=vec4f(sheetSurface(q-axis*radius),0);',/* wgsl */`
+  crestNodes[index].back=vec4f(sheetSurface(q-axis*radius),0);
+  for(var j=0u;j<5u;j++){
+    let u=f32(j)*.25;
+    let water=sheetSurface(q+axis*radius*(1.0-2.0*u));
+    crestNodes[index].section[j]=vec4f(water,0);
+  }`);
   }
   return code;
 }

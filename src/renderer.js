@@ -6,7 +6,7 @@ import {phase1LightReadback} from '../tests/phase1-light-readback.js';
 // Large per-frame arrays are reused; diagnostics and browser API descriptors still allocate.
 import { N, CASCADES, SKY_W, SKY_H, ENV_SIZE, ENV_MIPS, CONFIG, Q } from './wgsl/common.js';
 import { sanitize, preset, scenePreset, PRESETS, QUALITY, toURL } from './settings.js';
-import {createEnvironment,commandEnvironment,advanceEnvironment,sampleEnvironment,environmentUniforms,environmentSnapshot,restoreEnvironment,WEATHER_KEYS,SEA_KEYS} from './environment.js';
+import {createEnvironment,commandEnvironment,advanceEnvironment,sampleEnvironment,environmentUniforms,environmentSnapshot,environmentControls,restoreEnvironment,WEATHER_KEYS,SEA_KEYS} from './environment.js';
 import { cosSpreadNorm, PATCHES, omega } from './numerics.js';
 import { swellAlpha } from './sea-spectrum.js';
 import { celestial } from './astronomy.js';
@@ -69,6 +69,8 @@ import {whitewaterChecks} from '../tests/whitewater-readback.js';
 import {crestSupportChecks,crestTextureChecks,crestSheetReadback} from '../tests/crest-support-readback.js';
 import {crestWhitewaterShader} from './wgsl/crest-whitewater.js';
 import {crestSheetShader,CREST_SHEET_RENDER,CREST_SHEET_COUNT,CREST_SHEET_NODES,CREST_SHEET_VERTICES,CREST_SHEET_NODE_BYTES} from './wgsl/crest-sheet.js';
+import {crestSurfaceShader,CREST_SURFACE_SIZE,CREST_SURFACE_CLEAR,CREST_SURFACE_BUILD} from './wgsl/crest-surface.js';
+import {crestSurfaceChecks} from '../tests/crest-surface-readback.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
@@ -76,6 +78,7 @@ const temporalEnabled=qs.get('aa')==='taa';
 const whitewaterParcels=qs.get('abWhitewater')==='parcels';
 const crestTracking=qs.get('abCrest')==='phase';
 const crestSheets=qs.get('abCrestShape')==='sheet';
+const crestSurface=crestSheets&&qs.get('abCrestSurface')==='water';
 const particleCount=PARTICLE_COUNT+(whitewaterParcels?WHITEWATER_COUNT:0);
 const cameraHistory=temporalEnabled?temporalCamera(qs.get('taaJitter')||'msaa4'):null;
 const queueDriven=qs.has('shot')||qs.has('video')||(qs.has('benchmark')&&qs.get('benchmarkMode')==='queue');
@@ -179,6 +182,7 @@ async function main() {
     code=whitewaterShader(code,qs);
     code=crestWhitewaterShader(code,qs);
     code=crestSheetShader(code,qs);
+    code=crestSurfaceShader(code,qs);
     code=cloudShadowDiagnostic(code,qs);
     code=cloudShadowShader(code,qs);
     code=temporalShader(code,temporalEnabled);
@@ -389,8 +393,13 @@ async function main() {
   const bgMS = bg(msPipe, [{ buffer: atmoUBO }, transView, sampClamp, msView], 'ms');
   const bgSkyView = bg(skyViewPipe, [{ buffer: frameUBO }, transView, msView, sampClamp, skyView], 'skyview');
   const particleBuf=mkBuf(particleCount*32,GU.STORAGE|GU.COPY_DST,'spray, rain and optional whitewater particles');
-  const crestFrameBuf=crestTracking?mkBuf(WHITEWATER_COUNT*16,GU.STORAGE|GU.COPY_SRC,'phase crest frames'):null;
-  const crestNodeBuf=crestSheets?mkBuf(CREST_SHEET_COUNT*CREST_SHEET_NODES*CREST_SHEET_NODE_BYTES,GU.STORAGE|GU.COPY_SRC,'connected crest sheet nodes'):null;
+  const crestFrameBuf=crestTracking?mkBuf(WHITEWATER_COUNT*16,GU.STORAGE|GU.COPY_SRC|GU.COPY_DST,'phase crest frames'):null;
+  const crestNodeBuf=crestSheets?mkBuf(CREST_SHEET_COUNT*CREST_SHEET_NODES*CREST_SHEET_NODE_BYTES,GU.STORAGE|GU.COPY_SRC|GU.COPY_DST,'connected crest sheet nodes'):null;
+  const crestSurfaceBuf=crestSurface?mkBuf(CREST_SURFACE_SIZE*CREST_SURFACE_SIZE*4,GU.STORAGE,'surface crest activity'):null;
+  const crestSurfaceClear=crestSurface?await computePipe(CREST_SURFACE_CLEAR,'clear surface crests'):null;
+  const crestSurfaceBuild=crestSurface?await computePipe(CREST_SURFACE_BUILD,'union surface crests'):null;
+  const crestSurfaceClearBG=crestSurface?bg(crestSurfaceClear,[{buffer:crestSurfaceBuf}]):null;
+  const crestSurfaceBuildBG=crestSurface?bg(crestSurfaceBuild,[{buffer:frameUBO},{buffer:crestNodeBuf},{buffer:crestSurfaceBuf}]):null;
   const particleCompute=await computePipe(PARTICLE_UPDATE,'particle transport');
   const particleModule=await shader(PARTICLE_RENDER,'particle rendering');
   const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim,fullArr(derivTex),fullArr(lastDisp),shadowView,sampClamp,...(crestTracking?[{buffer:crestFrameBuf}]:[]),...(crestSheets?[{buffer:crestNodeBuf}]:[])]));
@@ -416,10 +425,11 @@ async function main() {
   const particlePipe=await device.createRenderPipelineAsync({layout:'auto',vertex:{module:particleModule,entryPoint:'vs'},fragment:{module:particleModule,entryPoint:'fs',targets:[{format:HDR,blend:{color:{srcFactor:'src-alpha',dstFactor:'one-minus-src-alpha'},alpha:{srcFactor:'one',dstFactor:'one-minus-src-alpha'}}}]},primitive:{topology:'triangle-list'},depthStencil:{format:'depth32float',depthWriteEnabled:false,depthCompare:'greater'},multisample:{count:MSAA}});
   const particleDrawBG=bg(particlePipe,[{buffer:frameUBO},{buffer:particleBuf},irradianceView,sampClamp,shadowView,transView,sampClamp,...(whitewaterParcels?[waveShadow.createView()]:[]),...(crestTracking?[{buffer:crestFrameBuf}]:[])]);
   let crestSheetPipe=null,crestSheetBG=null;
-  if(crestSheets){
+  if(crestSheets&&!crestSurface){
     const module=await shader(CREST_SHEET_RENDER,'connected crest sheet');
     crestSheetPipe=await device.createRenderPipelineAsync({layout:'auto',vertex:{module,entryPoint:'vs'},fragment:{module,entryPoint:'fs',targets:[{format:HDR,blend:{color:{srcFactor:'src-alpha',dstFactor:'one-minus-src-alpha'},alpha:{srcFactor:'one',dstFactor:'one-minus-src-alpha'}}}]},primitive:{topology:'triangle-list'},depthStencil:{format:'depth32float',depthWriteEnabled:false,depthCompare:'greater'},multisample:{count:MSAA}});
-    crestSheetBG=bg(crestSheetPipe,[{buffer:frameUBO},{buffer:crestNodeBuf},irradianceView,sampClamp,shadowView,waveShadow.createView(),transView]);
+    const entries=[{buffer:frameUBO},{buffer:crestNodeBuf},irradianceView,sampClamp,shadowView,waveShadow.createView(),transView].map((resource,binding)=>({binding,resource}));
+    crestSheetBG=device.createBindGroup({layout:crestSheetPipe.getBindGroupLayout(0),entries});
   }
   const [oceanMod, skyMod, downMod, upMod, compMod] = await Promise.all([
     shader(OCEAN, 'ocean'), shader(SKY_BG, 'sky'), shader(BLOOM_DOWN, 'bloom down'),
@@ -471,7 +481,7 @@ async function main() {
   const bgLens=bg(lensPipe,[{buffer:frameUBO},fullArr(dispTex),fullArr(derivTex),samplerSim,{buffer:probeOut},lensMedium.createView()]);
   const bgOcean = [0, 1].map((i) => bg(oceanPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp,
     fullArr(dispTex), fullArr(derivTex), fullArr(momTex), foamTex.createView(), envCubeView, sampRepeat,
-    fullArr(foamW[i]), shadowView,{buffer:probeOut},irradianceView,waveShadow.createView(),lensMedium.createView(),waveHeight.createView()], 'ocean' + i));
+    fullArr(foamW[i]), shadowView,{buffer:probeOut},irradianceView,waveShadow.createView(),lensMedium.createView(),waveHeight.createView(),...(crestSurface?[{buffer:crestSurfaceBuf}]:[])], 'ocean' + i));
   let bgSky, bgCloud, cloudTex;
 
   // Water height under the camera (async readback, a few frames of latency) so the
@@ -678,7 +688,10 @@ async function main() {
     }
   }
   const keys = Object.create(null);
-  addEventListener('keydown', (e) => { if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return; keys[e.code] = true; if(e.code==='Space')e.preventDefault(); });
+  addEventListener('keydown', (e) => {
+    if(e.ctrlKey||e.metaKey||e.altKey||e.isComposing||e.target.closest('input,select,textarea,button,summary,a,[contenteditable="true"],dialog'))return;
+    keys[e.code] = true;if(e.code==='Space')e.preventDefault();
+  });
   addEventListener('keyup', (e) => { keys[e.code] = false; });
   addEventListener('blur', () => { for (const k in keys) keys[k] = false; });
   canvas.addEventListener('dblclick', () => { if (!lockedEvidence && document.pointerLockElement !== canvas) canvas.requestPointerLock().catch(()=>{}); });
@@ -881,6 +894,7 @@ async function main() {
   function applyConfig(config){cameraHistory?.reset('configuration replaced');Object.assign(P,sanitize(config,P));environment=createEnvironment(P,simTime);needSpectrum=true;needLUT=true;envFull=1;foamFirst=true;sceneReset=true;cam.speed=P.cameraSpeed;cam.fovY=P.fov*D2R;}
   const ui=setupUI(P,cam,{
     adapter:adapterInfo,time:()=>simTime,snapshot:()=>environmentSnapshot(environment),
+    controls:()=>environmentControls(environment,P,cam.x,cam.z),
     change(key,value){
       // Seed, optics and celestial edits do not all increment environment.revision.
       cameraHistory?.reset('interactive '+key);
@@ -1099,7 +1113,14 @@ async function main() {
     }
 
     const enc = device.createCommandEncoder();
-    if(sceneReset){enc.clearBuffer(particleBuf);sceneReset=false;}
+    if(sceneReset){
+      enc.clearBuffer(particleBuf);
+      // A paused preset skips particle transport, so derived crest state must
+      // reset explicitly rather than surviving onto a different sea state.
+      if(crestFrameBuf)enc.clearBuffer(crestFrameBuf);
+      if(crestNodeBuf)enc.clearBuffer(crestNodeBuf);
+      sceneReset=false;
+    }
     let cp = enc.beginComputePass(computeDesc);
     if (needSpectrum) {
       cp.setPipeline(initPipe);
@@ -1145,6 +1166,10 @@ async function main() {
     cp.setBindGroup(0,bgShadow);
     cp.dispatchWorkgroups(32,32);
     if(P.spray>0 || P.rain>0 || whitewaterParcels || originDelta.some(x=>x!==0)){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(particleCount/64);}
+    if(crestSurface){
+      cp.setPipeline(crestSurfaceClear);cp.setBindGroup(0,crestSurfaceClearBG);cp.dispatchWorkgroups(CREST_SURFACE_SIZE*CREST_SURFACE_SIZE/64);
+      cp.setPipeline(crestSurfaceBuild);cp.setBindGroup(0,crestSurfaceBuildBG);cp.dispatchWorkgroups(Math.ceil(CREST_SHEET_COUNT/64));
+    }
     cp.end();
     const fullCache=envFull>0;
     if(fullCache)cacheFace=0;
@@ -1194,7 +1219,7 @@ async function main() {
     rp.end();
     const particles=enc.beginRenderPass(transparentPass);
     if(P.spray>0 || P.rain>0 || whitewaterParcels){particles.setPipeline(particlePipe);particles.setBindGroup(0,particleDrawBG);particles.draw(6,crestSheets?PARTICLE_COUNT:particleCount);}
-    if(crestSheets){particles.setPipeline(crestSheetPipe);particles.setBindGroup(0,crestSheetBG);particles.draw(CREST_SHEET_VERTICES,CREST_SHEET_COUNT);}
+    if(crestSheetPipe){particles.setPipeline(crestSheetPipe);particles.setBindGroup(0,crestSheetBG);particles.draw(CREST_SHEET_VERTICES,CREST_SHEET_COUNT);}
     particles.end();
 
     if(taa){
@@ -1323,7 +1348,8 @@ async function main() {
     const stage=qs.get('stage')||'v03-local';
     await postEvidence('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm),blob);
     const report=evidenceReport();
-    if(crestSheets&&qs.get('abSheetChecks')==='1')report.crestSheets=await crestSheetReadback(device,crestNodeBuf);
+    if(crestSheets&&qs.get('abSheetChecks')==='1')report.crestSheets=await crestSheetReadback(device,crestNodeBuf,qs.get('abCrestEdge')==='fade');
+    if(qs.get('abSurfaceChecks')==='1')report.crestSurfaceChecks=await crestSurfaceChecks(device);
     if(qs.get('abWhitewaterChecks')==='1')report.whitewaterChecks=await whitewaterChecks(device);
     if(qs.get('abCrestChecks')==='1')report.crestSupportChecks=await crestSupportChecks(device);
     if(qs.get('abCrestChecks')==='1')report.crestTextureChecks=await crestTextureChecks(device,frameUBO,dispTex.createView(),derivTex.createView(),samplerSim);

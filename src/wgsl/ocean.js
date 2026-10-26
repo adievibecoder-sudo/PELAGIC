@@ -150,7 +150,10 @@ fn foamCoverage(uv:vec2f,area:f32)->f32 {
   // Thresholding averaged mip values destroys area. Integrate unresolved holes
   // as their expected coverage once the approximately 1/10-tile patches blur.
   let footprint=max(length(dpdx(uv)),length(dpdy(uv)))*10.0;
-  return mix(resolved,area,smoothstep(0.12,0.6,footprint));
+  let coverage=mix(resolved,area,smoothstep(0.12,0.6,footprint));
+  // A softened threshold must not invent bubbles in an empty population.
+  // Evaluate derivatives first, then enforce exact empty/full occupancy.
+  return select(select(coverage,1.0,area>=1.0),0.0,area<=0.0);
 }
 
 fn reflectedEnvironment(point:vec3f,ray:vec3f,lod:f32,bodyRadiance:vec3f)->vec3f {

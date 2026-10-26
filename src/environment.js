@@ -89,6 +89,14 @@ export function advanceEnvironment(s,dt,settings,x=0,z=0){
 }
 
 export function environmentSnapshot(s){return copy(s);}
+
+// UI edits are commands. Keep their targets stable while rendered conditions evolve.
+export function environmentControls(s,settings,x=0,z=0){
+  const local=sampleEnvironment(s,x,z);
+  return {values:{...settings,...s.target,...s.swellTarget,fetchKm:s.fetchTarget},
+    current:{windSpeed:local.windSpeed,seaWindSpeed:s.sea.windSpeed,clouds:local.clouds,rain:local.rain},
+    target:{windSpeed:s.target.windSpeed,clouds:s.target.clouds,rain:s.target.rain}};
+}
 export function restoreEnvironment(raw,settings){
   if(!raw||raw.schema!==1)throw Error('Unsupported environment snapshot');
   const s=createEnvironment(settings);
