@@ -97,3 +97,7 @@ All W1/W2/L1/L2/B1/C1/A1/E1-E6/U1/G1/I1/T1/R1 remain open. B1/B2/integrated A+B 
 All four review videos decode/play to completion in Chrome. Playback drops10 frames for near AB9 and2 for each one-second clip; this is not flawless continuous playback. Appearance findings rely on the inspected original consecutive sequences. Raw playback state: `v04-ma-ab9-review-01/playback.json`.
 
 Resume: inspect branch/status and latest state, then continue from `d6400e9` plus subsequent evidence commits. Start with persistent crest-event identity/retirement and the sky-reflection/body diagnosis; preserve the final30m/s and near-tip comparisons. Next implement night/shared illumination and regional precipitation after the water intervention. Complete controls/preset, U1/G1 and verified foreground performance work. Do not replay reference discovery, treat max union as event identity, promote the experimental visual stack, or close acceptance from tests alone.
+
+### Publication verified
+
+Renderer `d6400e9`, review/evidence `4d3de95` published. All15 changed LFS media objects/511,133,215bytes freshly downloaded and SHA256 matched. Main/0.3/frozen refs unchanged. Proof: `evidence/v04-ma-ab9-publication-01/publication.json`. Ten protected files still match the inherited-hash manifest; private references and lockfile untracked. This publication closes checkpoint delivery only; the six-workstream status and implementation actions above remain unchanged.
