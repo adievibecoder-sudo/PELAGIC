@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PELAGIC / curved crest experiment</title>
+<style>
+:root{color-scheme:dark;--ink:#e6ede7;--muted:#b7c8c9;--sea:#101b20;--line:#34515a;--accent:#a9d2dc}
+*{box-sizing:border-box}body{margin:24px;background:var(--sea);color:var(--ink);font:15px/1.5 Consolas,monospace}
+main{max-width:1600px;margin:auto}a{color:var(--accent)}h1{font-size:26px;letter-spacing:-.5px}h2{font-size:19px;margin-top:36px}
+p{max-width:1050px}.label,small{color:var(--muted)}.label{letter-spacing:2px;font-size:12px}button,select{font:inherit;padding:9px;background:#20343c;color:var(--ink);border:1px solid var(--line)}button{cursor:pointer}button:hover{background:#2c4650}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:20px 0}
+section{display:grid;grid-template-columns:1fr 1fr;gap:20px}figure{margin:0}figcaption{padding:10px 0}img,video{display:block;width:100%;height:auto}video{max-height:82vh;background:#000}.defect{max-width:1000px}details{border-top:1px solid var(--line);padding:18px 0}summary{cursor:pointer}#status{min-height:24px}footer{border-top:1px solid var(--line);margin-top:36px;padding-top:16px}
+@media(max-width:900px){section{grid-template-columns:1fr}body{margin:16px}h1{font-size:22px}}
+</style>
+<main>
+<p class="label">PELAGIC 0.4 / A+B / EXPERIMENT 08</p>
+<h1>Curved attachment. Unfinished breaking.</h1>
+<p>Shared-node sheets follow curved gravity crests more closely than AB7's separate elongated parcels. Native initialization and a thin-triangle HDR fault are corrected. Smooth ribbons, independent replacements and pointed close-up geometry remain visible. B1, B2 and combined A+B remain unaccepted.</p>
+<p><a id="live-base">Live AB7</a> / <a id="live-work">Live AB8 experiment</a> / <a href="docs/V04-AB-CONTINUATION-08.md">Evidence, decisions and next actions</a></p>
+<h2>Matched original motion</h2>
+<p>High, 1920 x 1080, seed 1307. Camera 5 m, yaw 79 degrees, pitch -9 degrees. Simulation 30.000-31.958 s; 48 consecutive frames at 24 Hz after a 10-second warmup. Both VP9 files preserve every decoded RGB pixel. Frame sequences were inspected; this is a two-second window, not a long-duration stability claim.</p>
+<div class="controls"><label>Version <select id="clip"><option value="base">AB7 / elongated parcels</option><option value="work" selected>AB8 / shared crest sheets</option></select></label><label>Speed <select id="rate"><option value="1">Normal</option><option value="0.25">Quarter</option></select></label><button id="restart">Play from start</button></div>
+<p id="status" role="status">AB8 / ready</p>
+<video id="movie" controls preload="metadata" playsinline src="evidence/v04-ma-ab8-near-centroid-motion-01/storm.webm" poster="evidence/v04-ma-ab8-near-centroid-motion-01/storm_0.png" aria-label="Matched storm crest motion"></video>
+<small>Changing version preserves the playback position. File sizes are substantial because these are lossless originals.</small>
+<h2>Elevated view exposes the gaps</h2>
+<p>18 m / -35 degrees, simulation 30.500 s. Curved joins improve; separate smooth segments remain. All 24 consecutive frames from each view were inspected. The earlier 50 m view only exposed a narrow strip of the active region.</p>
+<section><figure><a href="evidence/v04-ma-ab8-elevated-base-02/storm_12.png"><img loading="lazy" src="evidence/v04-ma-ab8-elevated-base-02/storm_12.png" alt="AB7 elevated storm with separate straight crest pieces"></a><figcaption>AB7 / straight pieces</figcaption></figure><figure><a href="evidence/v04-ma-ab8-elevated-sheet-02/storm_12.png"><img loading="lazy" src="evidence/v04-ma-ab8-elevated-sheet-02/storm_12.png" alt="AB8 elevated storm with curved but disconnected whitewater"></a><figcaption>AB8 / curved pieces, incomplete continuity</figcaption></figure></section>
+<h2>Retained failure: pointed foreground sheet</h2>
+<p>At 32.083 s, a near-camera tapered sheet forms an artificial triangular tip. It occurs with ordinary lifetime as well as the rejected lifetime-extension trial. Finite nodes and clean HDR do not certify geometry or appearance. Explicit shared event ownership and a surface-conforming transition are the next representation work.</p>
+<figure class="defect"><a href="evidence/v04-ma-ab8-closeup-final-01/storm_2.png"><img loading="lazy" src="evidence/v04-ma-ab8-closeup-final-01/storm_2.png" alt="Pointed white foreground geometry beneath the main storm crest"></a><figcaption>Final ordinary-lifetime control / 32.083 s</figcaption></figure>
+<details><summary>Water optics: the bronze foreground survives in reflected sky</summary><p>Direct-only and sky-only low-Sun diagnostics. The normalized finite-Sun sampling trial produced no visible improvement and was removed. Reflection/body balance remains unresolved; neither diagnostic establishes a complete optical cause.</p><section><figure><img loading="lazy" src="evidence/v04-ma-ab4-ab8-solar-only-01/gold-near-reference.png" alt="Direct solar contribution concentrated near the horizon"><figcaption>Direct sunlight only on water</figcaption></figure><figure><img loading="lazy" src="evidence/v04-ma-ab4-ab8-reflection-only-01/gold-near-reference.png" alt="Reflected sky retains broad bronze foreground water"><figcaption>Reflected sky only on water</figcaption></figure></section></details>
+<details><summary>Validation and limits</summary><p>Six focused CPU tests pass. Native near, crossing, elevated, calm and low-Sun/daylight sequences check compilation and HDR. Calm emits no sheets. Centroid interpolation removes the reproduced negative-HDR black burst. These are narrow technical results; natural turbulent breakers remain absent.</p><p>Sheet/event options remain opt-in. Six-cascade FFT and default rendering are preserved. No matched foreground p95 cost result is claimed. NVIDIA device resets and historical presentation stalls remain unresolved. Clouds/weather received no source change this session.</p><p><a href="evidence/v04-ma-ab8-review-01/manifest.json">Published evidence manifest</a></p></details>
+<footer><small>Original PELAGIC captures only. Owner visual acceptance pending. No release promotion.</small></footer>
+</main>
+<script type="module">
+const movie=document.querySelector('#movie'),clip=document.querySelector('#clip'),rate=document.querySelector('#rate'),status=document.querySelector('#status');
+const folders={base:'v04-ma-ab8-driver-ab7-01',work:'v04-ma-ab8-near-centroid-motion-01'};
+let pendingTime=0,resume=false;
+function update(){const q=movie.getVideoPlaybackQuality();status.textContent=`${clip.value==='base'?'AB7':'AB8'} / simulation ${(30+movie.currentTime).toFixed(3)} s / ${movie.ended?'ended':movie.paused?'paused':'playing'} / ${q.droppedVideoFrames} playback frames dropped`;}
+clip.onchange=()=>{pendingTime=movie.currentTime;resume=!movie.paused;movie.pause();movie.poster=`evidence/${folders[clip.value]}/storm_0.png`;movie.src=`evidence/${folders[clip.value]}/storm.webm`;};
+movie.onloadedmetadata=async()=>{movie.currentTime=Math.min(pendingTime,Math.max(0,movie.duration-1/24));movie.playbackRate=Number(rate.value);if(resume){try{await movie.play();}catch{status.textContent='Playback paused. Use the video play control.';}}update();};
+rate.onchange=()=>{movie.playbackRate=Number(rate.value);};
+document.querySelector('#restart').onclick=async()=>{movie.currentTime=0;try{await movie.play();}catch{status.textContent='Use the video play control to begin playback.';}};
+movie.ontimeupdate=movie.onplay=movie.onpause=movie.onended=update;
+movie.onerror=()=>{status.textContent='Original video unavailable. Materialize Git LFS media, then reload.';};
+const query=new URLSearchParams({preset:'storm',maBreaking:'gravity',abFoam:'transport',abFoamPattern:'bubbles',abRain:'velocity',abWhitewater:'parcels',abCrest:'phase',abCrestShape:'elongated',cam:'0,5,0,79,-9',cameraMode:'free',quality:'High',resolution:1,adaptive:0,seed:1307,t:20});
+document.querySelector('#live-base').href='/?'+query;query.set('abCrestShape','sheet');query.set('abCrestEvent','shared');document.querySelector('#live-work').href='/?'+query;
+</script></html>
