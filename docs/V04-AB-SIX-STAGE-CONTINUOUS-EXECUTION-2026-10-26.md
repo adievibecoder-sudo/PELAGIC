@@ -1,157 +1,91 @@
-# PELAGIC 0.4 — Continuous Six-Stage Combined A+B Execution Contract (v2, tightened)
-**26 October 2026 | owner-directed active execution workflow | source-of-truth operational priority for the next Codex chat**
+# PELAGIC 0.4 — Combined A+B Development Programme
 
-## 1. Purpose and authority
-Across the authorized A+B programme, Astra is responsible for **all six outcome areas** below. Substantive Tier 1 progress takes priority over touching all six superficially; each session should continue from actual source state and leave a clear checkpoint for work it cannot finish. This is a work programme **inside the authorized combined A+B milestone**. It is not six new release milestones, not a claim that anything is solved, and not permission to enter C.
+**26 October 2026 · Active execution specification · `development/pelagic-0.4`**
 
-Stages may overlap at real technical dependencies. None may be silently abandoned. If a change fails or awaits owner visual acceptance, keep it as an opt-in candidate or unresolved item and continue with other authorized A+B work.
+## Objective and working priorities
 
-**Standard of success:** a beautiful, naturalistic, physically coherent ocean and environment in actual moving footage. Not the number of QA runs, commits or reports.
+Develop a visually extraordinary, naturalistic and physically coherent open ocean with integrated atmosphere and weather. **Sea of Thieves** is the primary reference for visual craft—readable wave forms, expressive breaking foam, convincing water colour and coherent lighting—not a calibrated fluid or optical model. Physical evidence and documented rendering constraints govern simulation correctness.
 
-**Priority order (what gets effort first).** The project's most important requirement is extraordinary water.
-1. **Tier 1:** Stage 3 (connected whitewater) and Stage 4 (water material), with the Stage 2 crest-support signal they depend on.
-2. **Tier 2:** the rest of Stage 2 (wave behaviour) and Stage 5 (clouds, atmosphere, weather). Stage 5 must still show real source progress; it may not be reduced to a retint.
-3. **Throughout:** Stage 6 (performance and integrated evidence) alongside the others.
+All six workstreams below belong to the already authorized combined **Milestones A+B**. They form one continuing programme, not six release milestones or a six-item checklist to touch superficially within a single agent session. Put the deepest implementation effort into **B1 crest-connected whitewater and A water material, together with the upstream wave geometry and event support they require**. Complete wave organization and atmosphere/weather work substantively as the programme advances. Performance and evidence belong alongside development. An unworked stage stays visible in the checkpoint ledger.
 
-Do not substitute easy Tier 2 wins for substantial Tier 1 work. Surface hard unresolved work in the blocker ledger (section 6).
+B1, B2 and integrated A+B require **owner visual acceptance**. No Milestone C, engine/framework migration, release promotion or claim of completed AAA parity is authorized.
 
-## 2. Handoff state (snapshot, not truth)
-**Verify every item below against `git status`, branch and the last ten commits. The working tree wins over this section.** Local work may be newer than what is listed.
+## Starting point and project continuity
 
-- Newest published renderer code: AB6 `24a88e37b18b`. Published evidence `57ad49f3e27c`. AB6 publication docs `716d63c17493`. Later Rare reference/kickoff commits are documentation only.
-- AB6 `abWhitewater=parcels&maBreaking=gravity` makes rounded, disconnected, opt-in raised whitewater. **B1 is not accepted.** Calm control unchanged. CPU64 and native GPU5 within scope. Measured storm GPU mean 41.70→42.38 ms (+0.68 ms), with uneven presented-frame pacing.
-- Still open: large metallic/silvery wave material, weak low-Sun glints and crest light, broad wave-scale organization, synthetic clouds, insufficient B2 integrated rain/lightning, night, and presentation/performance.
-- These are documented observations, not your own visual inspection.
+Resume the **same local checkout**, not a fresh project. Inspect the active branch, `git status`, unpublished edits, local versus remote commits, and recent **renderer-changing** source before deciding what to implement. Read `AGENTS.md`, the latest entries in `docs/V04-STATE.md`, `docs/V04-AB-CONTINUATION-06.md` or any newer continuation, `docs/V04-ACCEPTANCE.md`, and the Rare reference handoff. Older research records are consulted for specific uncertainties or rejected experiments, not replayed as a new audit.
 
-**Read order:** `AGENTS.md`; top/current `docs/V04-STATE.md`; `docs/V04-AB-CONTINUATION-06.md`; `docs/V04-ACCEPTANCE.md`; this file; `docs/V04-AB-RARE-TALK-VISUAL-AND-WAVE-BEHAVIOR-2026-10-26.md`; relevant shader modules. Consult AB3–5 and `docs/V04-AB-2026-10-25-RESEARCH-RECONCILIATION-AND-EXECUTION.md` only for specific questions and failed hypotheses. Historical S0–S6 research phases, optional TAA/temporal-cloud studies and old phase authorizations are not blockers. Current owner intent and active `AGENTS.md` take precedence.
+As of the publication snapshot informing this specification, AB6's most recent published **renderer** change is `24a88e3`: optional crest-attached porous whitewater parcels, not coherent rollers. Its documented visuals remain inadequate; B1 is not accepted. The reported 64 CPU tests and five GPU checks passed, while High storm GPU mean changed from 41.70 to 42.38 ms and presentation pacing was uneven. Later documentation SHAs do **not** indicate new renderer work. **Treat all SHAs and measurements here as historical snapshots; actual local Git/source and newer verified evidence take precedence.**
 
-## 3. New-chat recovery (quick, no new audit)
-- Open a new Codex chat in the **same existing PELAGIC workspace**. Use the working tree `development/pelagic-0.4`, not a clone.
-- Inspect `git status`, branch, the last ten commits and local-vs-remote changes. Separate rendering source from documentation/evidence. Preserve all local unpublished changes. Never reset, clean, force-push or overwrite unexplained data. Keep the nine inherited modified evidence files, the lockfile, original media and frozen refs.
-- Write a factual 5–8 line resume ledger of what AB6 did, failed and left next. Then work. No invented percentages, no request to re-explain the task.
-- Private references are in `_local_references/` (or `local references/` if that is what exists): six MOV originals, three PDFs, eight selected slide PNGs and indexes. Check actual paths and the manifest, not assumed filenames. These folders are ignored by the repository. **No third-party copyrighted media or slides in public GitHub.**
+Protect source, nine inherited evidence edits, existing lockfile, original captures and untracked work. Never use destructive reset/clean, overwrite unexplained work, rewrite history or force-push. Keep main, 0.2/0.3 and frozen releases untouched. The private `_local_references/` directory (or its actual verified equivalent) contains owner-provided media; reference videos, paper originals and talk screenshots remain untracked and must not be published to public GitHub.
 
-## 4. Inspection standard (applies to every stage)
-Visual claims are only as good as what was actually seen. Before relying on any inspection, state **which of these you can do** in this environment:
+## Workstreams and deliverables
 
-- **Direct video playback.** Only claim "watched" if you genuinely viewed it.
-- **Frame-sequence inspection.** Sample the full source timeline at a stated interval for event discovery, then inspect dense, timecoded consecutive-frame sequences around crest motion, foam formation/decay, glints and crossings. State the sampling coverage and any intervals not examined; source-frame-rate sampling is preferable for fast or subtle temporal behaviour.
-- **Neither.** Mark the item **VISUAL UNVERIFIED**. Do not substitute metrics for visual judgment.
+### 1. Establish a reliable reference interpretation
 
-Rules for all inspection claims:
-- Every claim cites the capture path and timecodes, and says which method above was used. "Watched start to finish" is valid only for method 1; otherwise say "inspected frames at N fps."
-- Isolated stills cannot establish temporal behaviour. Motion claims (flicker, connectedness over time, trailing decay, pacing) require genuine playback or sufficiently dense timecoded consecutive frames. A sequence-based observation is not the same as watching the original video; report its limits.
-- Difference images prove pixels changed. Temporal metrics can reveal flicker or instability. Neither shows the water looks better.
-- Tests passing, code compiling, a commit, changed pixels, "looked good" and "inspected" are not visual evidence by themselves.
+Inspect **all six original Sea of Thieves videos**, the **eight selected Rare talk slides**, the timestamped developer-talk synopsis and the three full papers:
 
-## 5. The six outcomes
+- Jerry Tessendorf, *Simulating Ocean Water* (26-page 1999–2004 notes): spectral dispersion, choppiness/Jacobian, geometric waves, optics and caveats. Rare's citation of Tessendorf 2001 does not establish that the supplied course notes are an identical 2001 publication.
+- Rare, *The Technical Art of Sea of Thieves* (SIGGRAPH 2018): physically informed wave dynamics paired with deliberate foam and crest-light art direction.
+- Fournier et al., *Dynamic Wave Trains* (2026): spatially varying wave behaviour and phase-linked effects; not a demonstrated solution for full volumetric overturning.
 
-### Stage 1. Reference grounding (do once, completely, move on)
-Inspect **all six original videos** using the method from section 4, at meaningful crest, light, foam and waterline intervals, with selected close-ups. Log a concise timecoded visual-craft guide. State plainly the inspection method and sampling rate used for each video. The earlier AB6 two-frames-per-video scan is not sufficient.
+**Inspection must reflect the actual tools available.** If direct video playback and observation are genuinely possible, report the original intervals viewed. Otherwise scan the full source timeline at a stated discovery interval, then inspect sufficiently dense **consecutive, timecoded frames** around wave crossings, crest progression, whitewater onset/decay and sun-glitter events. Use source-frame-rate sampling where needed to examine short-lived effects. State the discovery sampling interval, the dense windows examined and any intervals left unexamined. The phrase *watched end to end* is reserved for actual continuous playback. A few isolated frames do not establish temporal naturalism. If neither actual viewing nor meaningful frame inspection was possible, mark **VISUAL UNVERIFIED**. Do not substitute numerical motion metrics for visual observation.
 
-Read **all three PDFs fully**:
-- Tessendorf, *Simulating Ocean Water* (26 pages, 1999–2004 notes): dispersion, Gerstner vs statistical FFT, directional spectrum, chop/Jacobian fold, local interaction, Fresnel, water-volume scattering, and the figures and physical assumptions.
-- Rare, SIGGRAPH 2018 (2 pages): art-directed peak-mask colour, Jacobian-based and progressively blurred/texture-shaped foam.
-- Fournier et al. 2026, *Dynamic Wave Trains* (17 pages): spatial control and phase-linked foam; not 3D overturning, not proved spectrum matching.
+Record only a short, source-grounded set of timecoded findings linked to source decisions. Video footage is an artistic reference, not a measurement of hidden oceanographic parameters. Once the relevant sources have been examined, return to implementation; additional research should answer a specific unresolved technical question.
 
-Examine the eight selected slides and the timestamped developer-transcript synopsis. Separate source observations from inference. Do not equate attractive stylization with oceanographic truth. When done, **do not reopen reference study** absent a specific unresolved engineering question.
+### 2. Wave field, scale and crest support (A)
 
-**Output:** short internal observations (key time or paper section → next source change). No separate mega-report.
+Preserve validated native-WebGPU, six-cascade FFT, spectral-energy and horizontal-chop foundations. Improve the actual deficiencies in coherent gravity-wave groups, long-wave recurrence, wave-height hierarchy, spectral directionality, steepness evolution, and wind/swell transitions. Wave propagation must remain wavelength-, gravity- and (where relevant) depth-dependent; no arbitrary independent speed tuning. Crossing waves interfere; nonlinear energy exchange, overturning and entrainment do not automatically follow from linear FFT displacement.
 
-### Stage 2. Milestone A: dynamic wave behaviour and geometry
-Implement measurable improvements to wave height/size distribution, wavelength-dependent propagation speed, crest steepness/choppiness, coherent long-wave groups, crossings/interference, and dynamically evolving wind/swell. The existing six-cascade FFT, Gerstner-like horizontal chop, UI sea-state controls and dispersion work: **improve, don't rebuild, and add no arbitrary unphysical speed knob.**
+**Provide a coherent crest geometry/phase/tangent and breaking-event support signal for Stage 3.** Test the signal against moving calm, crossing-swell, choppy and storm cases, and preserve wave energy/slope and geometry LOD consistency. A spatial wave-train supplement is optional only when a measured defect warrants it; do not replace the renderer or FFT merely because another technique exists.
 
-- Deep-water gravity speed follows `c=√(g/k)`. Depth and capillary effects conditionally alter dispersion.
-- Treat crossing crests as interference. Nonlinear exchange, energy dissipation and overturning are **not** solved by an FFT heightfield.
-- Fix the source-verified W1 excessive repetition/small wrinkles if warranted, with energy/slope/LOD consistency.
-- Local wave-train control is an opt-in candidate, not required migration.
-- Provide a better coherent crest-support signal for breaking and foam (this is the Tier 1 dependency for Stage 3).
+### 3. Breaking, whitewater and spray (B1)
 
-**Proof:** geometry/spectrum/physics code actually changed, or a precise explanation of why no safe replacement exists; controlled moving comparisons of calm, swell, crossing and severe seas; no unrealistic speed or steepness tuning.
+**Before changing the whitewater representation, verify—and record in the pre-change target—whether Stage 2 supplies sufficient crest geometry, wave propagation, steepness evolution and temporally coherent breaking-event support.** Specify the evidence and its limits. Correct an inadequate upstream signal first rather than disguising the problem with extra white particles.
 
-### Stage 3. B1: continuous crest-connected whitewater, interaction and spray
-Continue AB6's specific failed appearance. **First verify that the upstream gravity-wave field supplies coherent crest geometry, propagation, steepness evolution and event support; correct a deficient Stage 2 input before compensating with additional foam geometry or particles.** Then replace disconnected porous blobs with spatially and temporally connected **crest-relative active aerated/roller structures**. Build support along the evolving crest tangent and phase. Link actual event strength to onset, breaking duration, fresh foam, aged lace/streaks, bubble body, spray/spindrift and eventual dissipation.
+The current AB6 parcels may be refined, reorganized or replaced with a bounded crest-relative representation when evidence warrants it. Target continuous, moving breaking structure along the crest; visible aeration and active foam; natural transition to aged streaks/lace, bubbles, spray and dissipation. Do not confuse a Jacobian compression mask, 2.5D parcel volume or linear wave fold with a complete nonlinear breaker. Avoid isolated rounded blobs, grey flat blankets and storm foam that persists unchanged in calm conditions.
 
-Avoid uniform foam blankets, isolated round dots, random white noise, or boosted opacity disguised as a breaker. The 2.5D parcel method may be refined, reorganized or locally replaced on evidence. Full 3D fluid simulation is neither present nor automatically required. Classify each effect as physically approximate or actually simulated. Keep real GPU feasibility.
+Demonstrate moving crest attachment and evolving decay against AB6, with both close and elevated storm views and a calm control. A functioning prototype that still fails the declared visual target remains **experimental**, not B1-complete.
 
-**Proof:** visible connected on-crest formation and trailing decay, better than AB6, supported by genuine playback or a sufficiently dense consecutive-frame sequence with explicitly stated observation limits, plus a physically plausible no-breaking calm case. B1 stays pending **owner** visual acceptance even if an improved candidate exists. Continue Stages 4–6 meanwhile.
+### 4. Water material, illumination and visual craftsmanship (A)
 
-### Stage 4. Milestone A: ocean water material and the "wow" factor
-Resolve steel/silver/bronze-like reflected water, low-Sun glitter loss, weak refracted/scattered lit shoulders, overly uniform fine specular, body-reflectance vs sky-water coupling, and optical scale separation. Deep troughs, body colour, selectively lit shoulders, foam and glitter each need a plausible lighting reason. Sea of Thieves is a **craft reference**, not a calibrated teal LUT, scattering coefficient or energy law.
+Address dark/watery-body versus reflective-surface imbalance, low-Sun metallic silver/bronze appearance, missing or incoherent sun glitter, weak illuminated wave shoulders, excessive fine wrinkles and environment/sea light coupling. Preserve credible Fresnel behaviour, filtered slope statistics, physically bounded volumetric absorption/scattering and coherent direct/diffuse light contributions; balance these with deliberate, restrained visual readability.
 
-Preserve Fresnel, finite sun, slope covariance and physically bounded body attenuation. AB6's entry-flank refraction experiment was rejected for negligible visual improvement: **do not repeat it, do not blanket-blur normals, do not retune failed TAA.** Compare daylight, golden/low-Sun, overcast, storm, near/elevated and waterline views under matched controls.
+Test near-water and elevated cameras in daylight and low-Sun conditions, plus an overcast or storm regression view. An attractive still with incorrect glint motion or artificial bright paint is not acceptable. Avoid repeating AB6's already rejected entry-flank refraction or unsuccessful blanket-filtering experiments without a new causal reason.
 
-**Proof:** visible moving radiance/hierarchy improvement without invented energy, flat glow, saturated overpainting, or a broken underwater/waterline.
+### 5. Clouds, atmosphere and integrated weather (A+B2)
 
-### Stage 5. Combined A+B2: clouds, atmosphere and weather
-Fix repetitive cloud morphology, smooth caps/rims, storm cloud-light transport and sea/sky palette consistency. Complete B2 coupling: wind/swell response over time, spatial rain curtains and visibility, wind-advected drops, cloud-associated lightning and its illumination in convective storms, storm aerosol/haze, coherent transitions. Preserve calm / clear / nonconvective gale / convective storm distinctions. Correct night/twilight/lunar exposure where in scope. Changing only cloud tint does not make clouds physically resolved. Keep proven AB5 equal-image cloud optimizations; do not replace volumetric clouds with unrelated meshes.
+Develop varied, natural cloud morphology and interior lighting rather than repeated domes, rims and cell patterns. Couple sky/sea radiance and wind-driven sea-state development with believable rain fields, visibility, wind-advection, aerosol effects and weather transitions. Lightning and its illumination belong to appropriate convective storms, not every windy scene. Retain useful AB5 cloud-work reductions at matched fidelity; address twilight/night radiance where within A+B scope.
 
-**Proof:** actual A+B environment code across relevant components; convincing sky-water motion in clear, cloudy, storm, twilight, night and rain where appropriate. B2 owner review remains outstanding but does not freeze parallel A work.
+This is a substantive required workstream, not a cosmetic retint. If it receives no source work during a given session because water takes priority, state that explicitly with the next intended implementation in the checkpoint ledger.
 
-### Stage 6. Equal-quality performance and integrated evidence
-Optimize discovered bottlenecks while implementing Stages 2–5. Then make **one substantive integrated A+B checkpoint**: representative before/after at native resolution; several matched short motion segments; targeted CPU/native GPU correctness; real foreground RTX 3050 GPU and presentation timing; truthful impact and memory.
+### 6. Performance, integration and review evidence
 
-- **Establish baseline p95 presented-frame pacing** for the representative foreground scene/hardware configuration before attributing a performance change, not only mean GPU time; AB6's uneven pacing makes this essential. Reuse the saved baseline while the configuration is genuinely unchanged rather than running a new long profile for every minor edit.
-- Do not reduce render resolution, cloud detail, spectral fidelity or effects and call it optimization.
-- Keep queue GPU time separate from rAF/display cadence.
-- Test extra AA/cloud temporal reconstruction only if compelling visual and cost data justify it.
+Optimize based on confirmed bottlenecks while developing the systems above. Preserve visible quality, simulation consistency and effects; lower resolution or missing clouds are not equivalent-performance improvements. Separate GPU pass/queue times from actually presented frames. Before attributing performance changes, establish or reuse a **matched baseline with p95 presented-frame pacing** on a visible, foreground RTX 3050 Chrome run; AB6's mean GPU timing did not capture its uneven presentation. Reuse a valid baseline when scene, hardware and settings are unchanged, rather than rebenchmarking every small shader edit.
 
-**Output:** owner-ready A+B review: changed source/commits, six-stage status (implemented / experimental / blocked with evidence), real before/after moving imagery, essential performance numbers, remaining acceptance defects.
+Produce short original high-resolution matched before/after footage, selected stills, focused correctness/regression results and truthful costs at **substantial integrated checkpoints**. B1, B2 and A+B acceptance belong to the owner.
 
-## 6. Evidence contract (lightweight; reuse existing tools)
-No `TARGET.md`/`LOG.md`, no new capture pipeline, no branch per shader hypothesis. Record a short pre-change target in the current checkpoint notes or the relevant existing acceptance row, using existing capture tools, deterministic scene settings and historical comparisons.
+## Method for each significant visual change
 
-### Before editing rendering code (a few factual lines)
-- **Defect and reference.** The observed failure; acceptance ID if one exists; the current code/capture baseline; the external evidence supporting the change (footage, physics, Sea of Thieves *art direction*, research). Unknown camera, illuminant and physical parameters in gameplay footage stay unknown.
-- **Predeclared qualitative target AND failure.** What should be visible, and what would disprove success. Examples:
-  - *B1:* connected moving crest-relative ribbons/rollers with fresh-to-aged foam and spray, not disconnected rounded patches or a flat grey mask; calm stays free of spurious breaking.
-  - *L1/L2:* low-Sun glints stay directional and temporally coherent without blanket metallic glare; near/elevated day and golden views keep wave-body contrast.
-  - *C1:* varied non-periodic cloud silhouettes with believable lit interiors, not repeated domes and rims.
+Use the project's existing deterministic capture, shader/GPU test and acceptance infrastructure; do not establish an additional mandatory document or full capture framework. Keep each experiment's record short.
 
-  These are visual targets, not invented numeric beauty scores.
-- **Reproducible controls.** Fixed seed, scene/weather/time, camera or camera path, frame interval, resolution/exposure, hardware timing basis. Keep a real before-capture or a verified prior matching artifact. Name **two or three failure-revealing views** for this change plus one non-target regression condition (for example, a water-lighting change must survive daylight and low-Sun; a whitewater change must survive close-up storm, elevated storm and calm). Record the measured baseline cost and any material physics/temporal check. No fabricated thresholds, no generic 1%/0.5 ms budget. If a trade-off needs owner judgment, flag it.
-- **Hypothesis and falsifier.** The narrowest plausible root cause, key upstream inputs, the intervention, and the one observation or measurement that would show it inadequate. Prefer one isolated variable per comparison; account for coupled changes rather than treating them as causal proof.
+**Before editing:** identify the observed defect and available physical or artistic reference. Save or reuse a verified **baseline** with fixed scene/seed, camera path, weather, time, duration, exposure and resolution. Write a qualitative pass target **and specific visible failure condition** before the result is known. Select two or three failure-revealing views and one regression condition. State the hypothesis, likely upstream dependencies, one falsifying observation, relevant physical checks and the current performance reference (including pacing when measured). For B1 explicitly record the upstream crest-support verification described above. Unknown reference-video physical settings remain unknown. Do not invent objective numerical scores for beauty or relax criteria after seeing the candidate.
 
-### After rendering (view by view)
-For each chosen view, using the inspection standard in section 4:
-1. **Describe first, without reference to the target.** Camera/scene/time, and the concrete visible structures, timing, direction and artifacts.
-2. **Then compare to the predeclared target.** Mark each success and failure feature **PRESENT / ABSENT / PARTIAL / NOT INSPECTED**. For every PARTIAL, say specifically what is missing.
-3. **State the most likely owner objection** for that view.
-4. **List regressions and relevant costs.**
+**Implement:** make the smallest sufficient source change that tests the hypothesis; isolate relevant variables when practical. Use focused research only if a real technical uncertainty remains. If repeated targeted changes demonstrate that the current representation cannot express the desired behaviour, justify a **bounded subsystem reconstruction** with causal evidence, proposed alternative, compatibility and cost. Preserve existing correct work and reversible candidates.
 
-Save the small matched evidence set and cite paths and timecodes so the owner can judge independently. A predeclared target may be revised only with an explicit evidence-based reason **before** interpreting the new result, never retroactively to pass a weak candidate.
+**Evaluate:** render under the identical baseline conditions and inspect actual motion or sufficiently dense frame sequences. For each selected view:
+1. Describe the **observed** shapes, timing, direction, lighting and artifacts *before looking back at the target*.
+2. Compare against the predeclared pass/fail description, marking **PRESENT / ABSENT / PARTIAL / NOT INSPECTED**. For PARTIAL, name precisely what remains missing; for unobserved motion say **VISUAL UNVERIFIED**.
+3. Name the strongest likely owner objection for that view.
+4. Record regressions, relevant physics/temporal checks and cost, citing capture paths and timecodes.
 
-### Blocker ledger and checkpoints
-At every meaningful source/integration checkpoint, surface **every persistent high-priority blocker across all six stages** in a compact table: stage/defect ID; observed failure; attempted approach and evidence; why still open; exact next source action or dependency. Do not bury hard wave/whitewater/lighting/cloud/weather failures behind an easy completed task. A failed or uninspected feature is **experimental, failed, or blocked, never finished**. A blocker may free you to work on another authorized stage but stays visible until resolved or owner-accepted.
+Tests, source compilation, changed pixels and difference images establish technical properties, **not** aesthetic success. If the result remains poor, revisit the causal model and attempt a *materially different* improvement rather than endless tuning or another identical QA campaign. If a hypothesis is falsified, revert the unsuccessful experiment or retain it clearly as opt-in evidence, without promoting it to a default result.
 
-**Durable checkpoint ledger** (short; update at substantive changes): current renderer SHA; predeclared target and baseline capture; changed code; per-view observations with timecodes; which stages advanced; all high-priority unresolved defects with evidence and next action.
+## Checkpoints, status and completion
 
-**When to update it:** before any long render, long research step or large refactor, and before ending a session. Context can compact mid-run, so state must be on disk first. Include a copy-pastable resume instruction. Never promise hidden background work.
+Maintain one concise durable checkpoint in existing project records. Save it **before lengthy research, renders, high-risk refactors, context compaction when anticipated, and session end**; include a copy-pastable resume instruction. Record the local renderer SHA, actual changes, baseline/visual observations with capture timecodes, performance where checked, and the next source action. Publishing substantial verified commits should not silently stage inherited edits or private references.
 
-## 7. Self-correcting implementation loop (all A+B work)
-Feature presence, passing tests, a commit or an impressive report are not delivery. Every change must move the *experienced* ocean, sky and environment closer to credible naturalism **and** coherent AAA-grade craft, judged in moving footage at meaningful scales and sea states. The owner's visual approval is separate from internal engineering judgment.
+Track **every one of the six workstreams**, not only the one most recently touched, with an explicit status: **not started/deprioritized, active, experimental, blocked, internally satisfactory, or owner accepted**. A stage with **no source progress in this session** must still appear as *deprioritized (not started this session)*, or *blocked* if a real dependency prevents it, with **why** and its **next intended action**. The reference-inspection stage may legitimately complete by evidence rather than code. Each high-priority unresolved defect remains visible with its last attempt, evidence and next action. No issue is silently closed because effort shifted elsewhere.
 
-1. **Define failure and target first.** Lock the baseline, state what should visibly improve and what would still fail, diagnose enough to make a physically reasoned change, and keep working foundations and reversible alternatives.
-2. **Inspect honestly** per sections 4 and 6, side by side against an equivalent baseline and owner references, in the failure-revealing view, and check other conditions for regression.
-3. **If still unsatisfactory, it is not finished.** Keep the partial experiment as opt-in or discard it. Convert artifacts into specific, testable causal questions about representation, temporal evolution, coupling, shading, optics, physics, scale, data and adjacent subsystems. Do not just list defects.
-4. **Trace the root cause across layer boundaries.** Bad breaking water may come from the event criterion, gravity spectral group structure, missing crest tangent/phase/support, detached foam transport, aeration geometry, lighting/compositing, or a spatial/temporal scale mismatch, not necessarily the foam shader. Metallic water can come from slope/normal energy, reflection/body transport, Sun/cloud occlusion and tone mapping. Synthetic clouds can come from the spatial field, advection and light integration. Use small diagnostics and focused research only to resolve a specific uncertainty; do not re-audit modules to feel thorough.
-5. **Correct the model, then reimplement.** Fix an established math/physics error; otherwise refine the representation or, where demonstrated inadequate, rebuild a **bounded** subsystem or its interface. Reconstruction is authorized inside A+B when backed by visible failure, a causal explanation, an evidence-based alternative and an integration/performance plan. Not authorized: speculative engine migration, project replacement, gratuitous modules, discarding verified work. Reserve dedicated branches for materially risky reconstruction; otherwise use reversible flags and focused commits.
-6. **Re-render and compare** against the previous live baseline and reference. Keep a candidate only for demonstrated improvement without unacceptable regression or cost. If weak, name the assumption that failed and make a **materially different** next attempt. Do not endlessly tune a poor representation.
-7. **Keep momentum.** After repeated evidence-backed trials, decide whether the root cause changed. If progress is truly blocked, record the concrete limitation and continue other authorized stages, returning when new evidence or dependencies make resolution credible. This is not permission to mark the failed feature complete.
+A **single hypothesis** ends when the predeclared observations and relevant regression checks support it, the hypothesis is falsified, or a specified real constraint prevents further work. A **stage** is not finished because tests passed or code exists; an unsatisfactory feature remains experimental or blocked. The **combined A+B milestone** is complete only after the owner reviews its integrated moving visuals and explicitly accepts it. When a session or tool budget ends, checkpoint honestly and resume the programme subsequently; do not promise unperformed background work.
 
-**Escalation:** repeated poor results call for a deeper causal review that yields a changed hypothesis or implementation, not more of the same QA or a long research document. No fixed retry count; choose by information gained, visual impact, cost and risk.
-
-## 8. Stop rules and status vocabulary
-- **Individual hypothesis** is resolved when it meets its predeclared visual and physics/regression criteria on actual evidence, is falsified and reverted, or hits a specific demonstrated limitation with a next approach.
-- **Whole A+B milestone** is not complete until the owner reviews the integrated result and authorizes acceptance. Internal judgment and numbers cannot substitute.
-- Status terms: *implemented prototype, visual candidate, internally satisfactory, blocked, owner accepted.* Only the **owner** accepts B1, B2 or combined A+B. No automatic release or C promotion.
-
-## 9. Execution rules (fixing "one thing then stop")
-1. "One bounded intervention" limits scope and risk **per iteration**, not total work. Keep moving through all six stages until substantial implementations and integration are delivered or a real external/runtime blocker intervenes. Do not ask permission after each phase; the owner authorized A+B engineering, not self-acceptance.
-2. **QA is proportional.** Shader compile and relevant math regression on a code change; short matched motion on a visual change; broader representative QA only after several real improvements or at a critical integration gate. Do not rerun unchanged full suites, publish near-identical screenshots/videos, re-audit the repository, or write documents instead of source code after insignificant changes. Fix real regressions promptly.
-3. **Tell the truth.** No invented percentages, no guaranteed AAA parity, no unobserved reference playback, no made-up source performance, no claim of physical breaking from the Jacobian/parcel approximation. If the standard cannot be reached within the session, state exactly what remains and preserve the working result.
-
-## 10. Verification and preservation
-Native **desktop Chrome WebGPU only**; WGSL/custom renderer; no WebGL fallback; no migration. Preserve user work, local private media, source branch and evidence. Never destructively reset or clean. `docs/V04-ACCEPTANCE.md` holds historical failure IDs and valid owner gates: read active entries first, and do not let older stage scheduling override currently authorized A+B. Main, previous releases and milestone C stay untouched.
-
-**Success for the authorized programme:** substantive progress in Tier 1 water and its dependencies, credible integrated progress across the remaining A+B areas, and a reviewable moving result. Session limits do not justify declaring all six complete: preserve unresolved work visibly and resume from a durable checkpoint.
+**Working principle:** serious diagnosis, visible source improvements, proportionate validation and preserved continuity. The standard is the resulting ocean, not the amount of process surrounding it.
