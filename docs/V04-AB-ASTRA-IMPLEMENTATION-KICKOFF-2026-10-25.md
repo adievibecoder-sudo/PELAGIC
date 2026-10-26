@@ -15,6 +15,14 @@ You are resuming the existing **PELAGIC 0.4 combined A+B** development in the SA
 5. **A+B2 sky/weather:** improve cloud morphology, cloud/sea lighting, integrated precipitation/visibility, wind/sea transitions, context-appropriate lightning and twilight/night.
 6. **Equal-fidelity optimization and integrated evidence:** keep same visual quality, measure foreground real GPU/display pacing, preserve significant renderer improvements, and present meaningful actual-motion before/after spanning all workstreams for owner review.
 
+## Evidence discipline without extra bureaucracy
+
+For each consequential visual change, **write its qualitative pass/fail target before editing** in the existing checkpoint/acceptance notes, linked to a fixed-seed, fixed-scene/camera/time baseline and a physical or artistic reference. Use existing PELAGIC capture tools, **not a new TARGET/LOG/capture framework**. Specify failure-revealing views and one regression condition. Define an explicit hypothesis and what would falsify it.
+
+After implementation, **actually inspect moving output** and record what is visibly PRESENT, ABSENT, PARTIAL or NOT INSPECTED **in each selected view**, citing captures/timecodes. Metrics and passing tests can identify stability/physics regressions but never certify beauty. If the agent cannot inspect media, mark VISUAL UNVERIFIED instead of claiming success. Explain performance cost and any new artifact. If still poor, diagnose and rework rather than marking it finished.
+
+At meaningful checkpoints **surface unresolved high-priority problems across all six stages**, including failed approaches and the next concrete action; continuing another stage is not permission to bury a hard blocker. An experimental candidate's stop is not A+B acceptance. Keep this compact and implementation-led.
+
 ## OWNER'S CORE ENGINEERING PHILOSOPHY — DO NOT SHIP AN UNSATISFACTORY PROTOTYPE AS “DONE”
 Astra, you must **own the final visual result**, not merely the existence of shader code or a passing test. If you implement whitewater, waves, lighting, clouds or weather and then observe that it remains artificial, disconnected, metallic, physically implausible or insufficiently beautiful, **that is an unfinished result, not completion**. Do not stop by telling me “implemented, but I'm not satisfied” and listing flaws as if implementation were delivered.
 
