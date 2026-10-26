@@ -66,14 +66,16 @@ import {cloudWorkChecks} from '../tests/cloud-work-readback.js';
 import {foamTransportShader} from './wgsl/foam-transport.js';
 import {whitewaterShader,WHITEWATER_COUNT} from './wgsl/whitewater.js';
 import {whitewaterChecks} from '../tests/whitewater-readback.js';
-import {crestSupportChecks,crestTextureChecks} from '../tests/crest-support-readback.js';
+import {crestSupportChecks,crestTextureChecks,crestSheetReadback} from '../tests/crest-support-readback.js';
 import {crestWhitewaterShader} from './wgsl/crest-whitewater.js';
+import {crestSheetShader,CREST_SHEET_RENDER,CREST_SHEET_COUNT,CREST_SHEET_NODES,CREST_SHEET_VERTICES,CREST_SHEET_NODE_BYTES} from './wgsl/crest-sheet.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
 const temporalEnabled=qs.get('aa')==='taa';
 const whitewaterParcels=qs.get('abWhitewater')==='parcels';
 const crestTracking=qs.get('abCrest')==='phase';
+const crestSheets=qs.get('abCrestShape')==='sheet';
 const particleCount=PARTICLE_COUNT+(whitewaterParcels?WHITEWATER_COUNT:0);
 const cameraHistory=temporalEnabled?temporalCamera(qs.get('taaJitter')||'msaa4'):null;
 const queueDriven=qs.has('shot')||qs.has('video')||(qs.has('benchmark')&&qs.get('benchmarkMode')==='queue');
@@ -147,7 +149,12 @@ async function main() {
   const adapterInfo={vendor:adapter.info.vendor,architecture:adapter.info.architecture,device:adapter.info.device,description:adapter.info.description,isFallbackAdapter:adapter.isFallbackAdapter ?? null};
   if(adapter.isFallbackAdapter || /swiftshader|llvmpipe|software/i.test(JSON.stringify(adapterInfo))) fail('Software WebGPU adapter detected. Select a hardware GPU in browser/OS graphics settings. No WebGL fallback.');
   log('Native WebGPU adapter: '+JSON.stringify(adapterInfo));
-  device.lost.then((i) => {stopped=true; const el=document.getElementById('err');el.style.display='block';el.textContent='WebGPU device lost: '+i.message+'\nReload to recreate GPU resources.';});
+  device.lost.then((i) => {
+    if(i.reason==='destroyed')return;
+    stopped=true;const message='WebGPU device lost ('+i.reason+'): '+i.message;
+    errors.push(message);log(message);
+    const el=document.getElementById('err');el.style.display='block';el.textContent=message+'\nReload to recreate GPU resources.';
+  });
   device.onuncapturederror = (e) => {errors.push(e.error.message);stopped=true;const el=document.getElementById('err');el.style.display='block';el.textContent='WebGPU rendering stopped: '+e.error.message;log('GPU error: ' + e.error.message);};
 
   const canvas = document.getElementById('c');
@@ -171,21 +178,22 @@ async function main() {
     code=particleMotionShader(code,qs);
     code=whitewaterShader(code,qs);
     code=crestWhitewaterShader(code,qs);
+    code=crestSheetShader(code,qs);
     code=cloudShadowDiagnostic(code,qs);
     code=cloudShadowShader(code,qs);
     code=temporalShader(code,temporalEnabled);
     code=environmentSymmetryShader(cloudWorkShader(code,qs),qs);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
-    let bad = false;
+    const diagnostics=[];
     for (const msg of info.messages) {
-      if (msg.type === 'error') bad = true;
+      if (msg.type === 'error') diagnostics.push(`${msg.lineNum}:${msg.linePos} ${msg.message}`);
       if (msg.type !== 'info') {
         const line = code.split('\n')[msg.lineNum - 1];
         log(`[${label}] ${msg.type} ${msg.lineNum}:${msg.linePos} ${msg.message}\n    ${line}`);
       }
     }
-    if (bad) fail('Shader compile error in ' + label + ' (see console)');
+    if (diagnostics.length) fail('Shader compile error in '+label+'\n'+diagnostics.join('\n'));
     return m;
   }
   async function computePipe(code, label) {
@@ -382,9 +390,10 @@ async function main() {
   const bgSkyView = bg(skyViewPipe, [{ buffer: frameUBO }, transView, msView, sampClamp, skyView], 'skyview');
   const particleBuf=mkBuf(particleCount*32,GU.STORAGE|GU.COPY_DST,'spray, rain and optional whitewater particles');
   const crestFrameBuf=crestTracking?mkBuf(WHITEWATER_COUNT*16,GU.STORAGE|GU.COPY_SRC,'phase crest frames'):null;
+  const crestNodeBuf=crestSheets?mkBuf(CREST_SHEET_COUNT*CREST_SHEET_NODES*CREST_SHEET_NODE_BYTES,GU.STORAGE|GU.COPY_SRC,'connected crest sheet nodes'):null;
   const particleCompute=await computePipe(PARTICLE_UPDATE,'particle transport');
   const particleModule=await shader(PARTICLE_RENDER,'particle rendering');
-  const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim,fullArr(derivTex),fullArr(lastDisp),shadowView,sampClamp,...(crestTracking?[{buffer:crestFrameBuf}]:[])]));
+  const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim,fullArr(derivTex),fullArr(lastDisp),shadowView,sampClamp,...(crestTracking?[{buffer:crestFrameBuf}]:[]),...(crestSheets?[{buffer:crestNodeBuf}]:[])]));
   const bgEnv = bg(envPipe, [{ buffer: envFrame }, envTrans.createView(), envSky.createView(), sampClamp, lvl(envBuild, 0),cloudNoiseView,cloudSampler], 'env');
   const bgSunVis = bg(sunVisPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, { buffer: sunVisBuf },cloudNoiseView,cloudSampler], 'sunvis');
   const bgCubeMips = [];
@@ -406,6 +415,12 @@ async function main() {
   const HDR = 'rgba16float';
   const particlePipe=await device.createRenderPipelineAsync({layout:'auto',vertex:{module:particleModule,entryPoint:'vs'},fragment:{module:particleModule,entryPoint:'fs',targets:[{format:HDR,blend:{color:{srcFactor:'src-alpha',dstFactor:'one-minus-src-alpha'},alpha:{srcFactor:'one',dstFactor:'one-minus-src-alpha'}}}]},primitive:{topology:'triangle-list'},depthStencil:{format:'depth32float',depthWriteEnabled:false,depthCompare:'greater'},multisample:{count:MSAA}});
   const particleDrawBG=bg(particlePipe,[{buffer:frameUBO},{buffer:particleBuf},irradianceView,sampClamp,shadowView,transView,sampClamp,...(whitewaterParcels?[waveShadow.createView()]:[]),...(crestTracking?[{buffer:crestFrameBuf}]:[])]);
+  let crestSheetPipe=null,crestSheetBG=null;
+  if(crestSheets){
+    const module=await shader(CREST_SHEET_RENDER,'connected crest sheet');
+    crestSheetPipe=await device.createRenderPipelineAsync({layout:'auto',vertex:{module,entryPoint:'vs'},fragment:{module,entryPoint:'fs',targets:[{format:HDR,blend:{color:{srcFactor:'src-alpha',dstFactor:'one-minus-src-alpha'},alpha:{srcFactor:'one',dstFactor:'one-minus-src-alpha'}}}]},primitive:{topology:'triangle-list'},depthStencil:{format:'depth32float',depthWriteEnabled:false,depthCompare:'greater'},multisample:{count:MSAA}});
+    crestSheetBG=bg(crestSheetPipe,[{buffer:frameUBO},{buffer:crestNodeBuf},irradianceView,sampClamp,shadowView,waveShadow.createView(),transView]);
+  }
   const [oceanMod, skyMod, downMod, upMod, compMod] = await Promise.all([
     shader(OCEAN, 'ocean'), shader(SKY_BG, 'sky'), shader(BLOOM_DOWN, 'bloom down'),
     shader(BLOOM_UP, 'bloom up'), shader(COMPOSITE, 'composite'),
@@ -1178,7 +1193,8 @@ async function main() {
     rp.draw(3);
     rp.end();
     const particles=enc.beginRenderPass(transparentPass);
-    if(P.spray>0 || P.rain>0 || whitewaterParcels){particles.setPipeline(particlePipe);particles.setBindGroup(0,particleDrawBG);particles.draw(6,particleCount);}
+    if(P.spray>0 || P.rain>0 || whitewaterParcels){particles.setPipeline(particlePipe);particles.setBindGroup(0,particleDrawBG);particles.draw(6,crestSheets?PARTICLE_COUNT:particleCount);}
+    if(crestSheets){particles.setPipeline(crestSheetPipe);particles.setBindGroup(0,crestSheetBG);particles.draw(CREST_SHEET_VERTICES,CREST_SHEET_COUNT);}
     particles.end();
 
     if(taa){
@@ -1307,6 +1323,7 @@ async function main() {
     const stage=qs.get('stage')||'v03-local';
     await postEvidence('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm),blob);
     const report=evidenceReport();
+    if(crestSheets&&qs.get('abSheetChecks')==='1')report.crestSheets=await crestSheetReadback(device,crestNodeBuf);
     if(qs.get('abWhitewaterChecks')==='1')report.whitewaterChecks=await whitewaterChecks(device);
     if(qs.get('abCrestChecks')==='1')report.crestSupportChecks=await crestSupportChecks(device);
     if(qs.get('abCrestChecks')==='1')report.crestTextureChecks=await crestTextureChecks(device,frameUBO,dispTex.createView(),derivTex.createView(),samplerSim);
