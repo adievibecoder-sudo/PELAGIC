@@ -1,0 +1,63 @@
+{
+  "ab7": {
+    "rafMs": {
+      "count": 1351,
+      "mean": 43.48638045891932,
+      "p50": 41.70000000000073,
+      "p95": 48.70000000000073,
+      "max": 104.20000000000073
+    },
+    "gpuMs": {
+      "count": 194,
+      "mean": 43.43482853608248,
+      "p50": 43.25376,
+      "p95": 48.300032,
+      "max": 53.08416
+    },
+    "cpuMs": {
+      "count": 1351,
+      "mean": 0.7410066617083364,
+      "p50": 0.6999999992549419,
+      "p95": 1.099999999627471,
+      "max": 6.199999999254942
+    },
+    "visible": 1351,
+    "focused": 1351,
+    "over500ms": 0,
+    "errors": [],
+    "hdr": "PASS",
+    "timingMode": "requestAnimationFrame, display paced",
+    "simulationEnd": 79.97759999999967
+  },
+  "ab8": {
+    "rafMs": {
+      "count": 1362,
+      "mean": 43.21674008810572,
+      "p50": 41.70000000000073,
+      "p95": 48.70000000000073,
+      "max": 55.700000000004366
+    },
+    "gpuMs": {
+      "count": 195,
+      "mean": 43.09311277948718,
+      "p50": 43.188224,
+      "p95": 46.989312,
+      "max": 49.872896
+    },
+    "cpuMs": {
+      "count": 1362,
+      "mean": 0.7397209985055871,
+      "p50": 0.6999999992549419,
+      "p95": 1.099999999627471,
+      "max": 6.699999999254942
+    },
+    "visible": 1362,
+    "focused": 1362,
+    "over500ms": 0,
+    "errors": [],
+    "hdr": "PASS",
+    "timingMode": "requestAnimationFrame, display paced",
+    "simulationEnd": 80.02779999999949
+  },
+  "scope": "Same RTX3050/driver617.14 High1080p storm, seed1307, fixed camera, 60s each. Maximized Chrome window verified focused. rAF callback cadence is not compositor-present telemetry; real elapsed scene times differ. No visual/performance acceptance."
+}
