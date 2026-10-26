@@ -1,50 +1,64 @@
 # PELAGIC 0.4 — Astra Development Kickoff
-**Combined Milestones A+B · New Codex chat · Existing workspace**
+**Combined Milestones A+B | Existing project workspace | New Codex conversation**
 
-Astra, resume PELAGIC 0.4 in the **same existing project folder**, on `development/pelagic-0.4`. Continue from the actual local source and unfinished implementation, not from a fresh project or assumptions about the latest published documentation commit.
+Astra, resume development of **PELAGIC 0.4** in the existing project folder on `development/pelagic-0.4`. This is a continuation of your earlier engineering work, not a new project or a restart. The objective is a physically coherent, naturalistic open ocean with exceptional visual craftsmanship, integrated atmosphere and weather. **Sea of Thieves is our primary artistic and motion reference**; real ocean behaviour and credible rendering physics remain essential.
 
-Start by checking `git status`, the active branch, recent renderer commits and unpublished changes. Read `AGENTS.md`, `docs/V04-AB-SIX-STAGE-CONTINUOUS-EXECUTION-2026-10-26.md`, the active entries in `docs/V04-STATE.md`, the latest A+B continuation and `docs/V04-ACCEPTANCE.md`. Protect existing source, inherited evidence modifications, lockfile, original captures and private research files. The last verified published AB6 renderer is `24a88e3`, but local work may be newer. Give a concise factual resume ledger, then begin implementing.
+## Establish the actual starting point
 
-## Objective and priorities
+Before making changes, inspect the local branch, `git status`, recent source commits and any unpublished modifications. Distinguish renderer implementation commits from documentation and evidence commits. Read the current `AGENTS.md`, `docs/V04-AB-SIX-STAGE-CONTINUOUS-EXECUTION-2026-10-26.md`, the latest entries in `docs/V04-STATE.md`, the newest A+B continuation, `docs/V04-ACCEPTANCE.md` and `docs/V04-AB-RARE-TALK-VISUAL-AND-WAVE-BEHAVIOR-2026-10-26.md`. These files define the active scope and preserve the history of attempted and rejected approaches.
 
-Build a physically coherent, naturalistic ocean that also achieves extraordinary visual craft: beautiful and readable wave forms, believable water-body colour, directionally appropriate sun glints, energetic crest-connected breaking, rich foam and spray, and an atmosphere that belongs to the same world. **Sea of Thieves is our primary visual benchmark**, not a substitute for physical reasoning or permission to copy arbitrary stylized constants.
+For orientation, the latest renderer published before this kickoff is **AB6, `24a88e3`**; check the actual local tree before relying on it.
 
-All six A+B workstreams belong to your continuing assignment. **Focus the deepest engineering effort on connected B1 whitewater and A water lighting/material, beginning with any upstream wave geometry or event-support deficiencies that cause those failures.** Continue the broader wave, weather and atmosphere work meaningfully; do not merely touch each area to claim coverage. Performance and integration checks accompany development rather than displace it.
+- The custom native-WebGPU/WGSL renderer already contains a six-cascade FFT ocean, horizontal chop, water optics, atmospheric rendering, weather controls, foam history and particle effects. Preserve these foundations where they are correct.
+- **AB4** introduced experimental hybrid MSAA/TAA. It remains opt-in because its visual benefit is unresolved; do not reopen temporal reconstruction without a specific new reason.
+- **AB5** corrected immediate scene preset switching and removed redundant cloud work without changing the validated comparison images. Cloud shape, ocean appearance, weather integration and performance still need substantial improvement.
+- **AB6** added opt-in crest-attached porous whitewater parcels. Technical tests passed, but the improvement was modest: rounded, disconnected patches remain, and coherent breaking rollers and spray are unfinished. An experimental illuminated-entry refraction approach did not meaningfully resolve metallic water and was rejected.
+- **B1 breaking/whitewater, B2 integrated weather and combined A+B have not been visually accepted.** Persistent issues include wave-group structure, metallic/low-Sun water, unnatural cloud morphology, night lighting and uneven presented-frame pacing. Later research and kickoff commits are instructions, not evidence of additional renderer development.
 
-## Research and reference inspection
+Confirm these findings against newer local changes, summarize the actual state briefly, and proceed directly to useful source work. Preserve existing modifications, original evidence, the inherited evidence edits, lockfile and private references. Do not destructively reset, clean, overwrite or force-push the project.
 
-The existing private `_local_references/` folder contains six original Sea of Thieves MOVs, three research PDFs, eight selected Rare developer slides and related notes. Confirm their actual paths and examine them. Study all three papers, especially Tessendorf's *Simulating Ocean Water*, together with Rare's technical-art material and Fournier's wave-train research.
+## Study the supplied references and apply the findings
 
-Be precise about what you have genuinely observed. If you cannot play videos directly, sample their **full timelines** for event discovery and examine **dense consecutive timecoded frames** around crest formation, breaking/foam decay, crossing waves and sunlight. Record the discovery sampling interval, examined windows and unexamined intervals. Do not claim playback when you only inspected frames. Use findings to guide implementation; do not turn research into a separate prolonged project.
+The ignored local reference directory (`_local_references/`, or its verified equivalent) contains **six original Sea of Thieves MOVs, three research PDFs, eight selected Rare developer slides** and supporting notes. Confirm the files are present and examine them as part of this development continuation.
 
-## Development work
+Read all three papers, including their figures and limitations: Tessendorf's *Simulating Ocean Water* (the principal wave/optics foundation), Rare's *The Technical Art of Sea of Thieves*, and Fournier's *Dynamic Wave Trains*. Study the Rare developer-talk notes alongside the selected slides.
 
-Improve wave scale, physically constrained dispersion, swell grouping, steepness and directional interactions while preserving the validated six-cascade FFT. Verify that the resulting moving field provides coherent crest shapes and event support; **record that evidence before redesigning the whitewater system**.
+Inspect all six video timelines. If you can genuinely observe full video playback, do so. Otherwise survey each complete timeline at a stated sampling interval, then inspect dense, consecutive timecoded frames around wave groups, crest motion, breaking/foam evolution, spray, sunlight and waterline behaviour. Record the inspection method, examined windows and unexamined intervals; never describe frame extraction as watching playback. Separate physical observations from deliberate artistic choices and unknown parameters.
 
-Develop B1 beyond AB6's rounded disconnected foam parcels. Aim for continuous crest-relative breaking structures, plausible aeration, fresh-to-aged foam, spray and dissipation. Do not mistake an FFT fold or Jacobian mask for complete nonlinear breaking.
+Extract a concise set of findings that can inform actual rendering changes. Once the relevant reference study is complete, return to engineering; investigate sources further only when a specific technical question warrants it. Keep original videos, PDFs and slides private and untracked.
 
-Rework the water material so illuminated wave shoulders, deep bodies, reflection, glitter and sky-water radiance read convincingly across midday, low Sun, storms and varied camera heights. Address metallic or uniformly wrinkled surfaces at their actual cause, not through arbitrary tint or superficial filtering.
+## Engineering priorities and A+B scope
 
-Advance cloud morphology, atmospheric scattering, weather transitions, spatial rainfall, appropriate convective lightning, twilight/night and the wind-to-sea relationship. Preserve previously demonstrated equal-quality optimizations.
+Your continuing responsibility covers all six connected workstreams. Give the most substantial attention to the ocean itself—especially **crest-connected breaking/whitewater and water material**, including the wave dynamics on which both depend. Do not spread effort thinly just to show activity in every area.
 
-At integrated checkpoints, measure real visible foreground GPU cost and **p95 presented-frame pacing**, compare representative matched motion and provide reviewable evidence. Preserve quality rather than reducing scene fidelity to inflate performance.
+**1. Reference understanding.** Establish a reliable scientific and visual interpretation of the supplied papers, gameplay footage and Rare's technical-art approach, then apply it to PELAGIC.
 
-## Quality and verification
+**2. Wave dynamics and structure (A).** Improve natural wave-height hierarchy, wavelength-dependent propagation, steepness, coherent swell groups, directional interactions and weather-driven sea-state evolution. Preserve validated spectral/FFT behaviour. Distinguish ordinary wave interference from nonlinear breaking. Develop and verify usable, temporally coherent crest geometry, phase and event signals.
 
-For each significant visual change, write down the **specific defect, matching baseline, qualitative pass and failure conditions, failure-revealing camera views and falsifiable root-cause hypothesis before editing**. Reuse existing PELAGIC capture and testing tools.
+**3. Breaking, whitewater and spray (B1).** Before substantially modifying AB6's whitewater, check the underlying gravity-wave crest support and record that verification. Correct deficient upstream behaviour rather than compensating with more particles or foam shading. Develop continuous crest-relative breaking structures with believable aeration, fresh-to-aged foam, lace, bubbles, spray and dissipation. Confirm that calm water does not produce inappropriate breaking.
 
-Implement a focused solution, inspect actual motion or sufficiently dense frame sequences, and describe **what you saw in each view before comparing it to the target**. Mark relevant features PRESENT, ABSENT, PARTIAL or NOT INSPECTED; explain partial results and identify the most likely owner objection. If media inspection is impossible, clearly state VISUAL UNVERIFIED. Passing tests, shaders compiling or pixels changing are not visual completion.
+**4. Water optics and visual quality (A).** Correct metallic or overly uniform reflections, weak low-Sun glitter, inadequate illuminated wave shoulders and poorly differentiated water-body colour. Develop coherent water/sky lighting and compelling, natural movement across near-water, elevated, daylight, low-Sun and storm views. Aim for deliberate AAA-grade craftsmanship without arbitrary colour boosts or physically unsupported light.
 
-When a result remains unconvincing, investigate the responsible physics, spectrum, geometry, temporal behaviour, materials, lighting and connected systems. Use targeted research where needed. A bounded subsystem reconstruction is appropriate when evidence shows why incremental patching cannot work, but preserve working foundations and avoid speculative engine rewrites. Reimplement and compare; change the hypothesis when an approach fails rather than endlessly retuning it.
+**5. Clouds, atmosphere and weather (A+B2).** Improve cloud scale and silhouette diversity, volumetric lighting, sky–sea radiance, storm structure, spatial rainfall, visibility, wind–sea response and believable weather transitions. Include lightning where appropriate to convective conditions and improve twilight/night integration. Preserve demonstrated equal-fidelity cloud optimizations.
 
-Use proportional validation and keep the effort centered on source quality. Do not finish a session by merely listing faults in a new prototype as though the feature were complete.
+**6. Performance and integrated review.** Profile confirmed bottlenecks while improving the renderer, without silently reducing resolution, simulation fidelity or visual detail. Use comparable real foreground RTX 3050 GPU measurements and presented-frame pacing—including p95—when assessing performance. Prepare original matched before/after motion, selective high-resolution stills and focused correctness evidence at substantive checkpoints.
 
-## Continuity and acceptance
+## How to approach visual problems
 
-At substantive checkpoints, keep **all six workstreams explicitly represented**, including any stage with no source progress this session. Mark such work *deprioritized (not started this session)* with the reason and next intended action, or *blocked* with its actual dependency. Keep every high-priority unresolved defect visible instead of burying difficult work behind completed easier tasks.
+Treat **a working implementation and a visually successful result as different things**. Before each meaningful change, establish or reuse a reproducible baseline, name the visual defect, define what a convincing result and an unsuccessful result would look like, choose failure-revealing camera views and state a falsifiable root-cause hypothesis. Record these briefly using existing project notes and capture tools.
 
-Update a short durable checkpoint before long rendering/research/refactoring operations and at session end: source SHA, source changes, visible results with capture references, costs where measured, outstanding defects and the precise next implementation. That allows continued work without repeating prior analysis.
+Implement a focused change, render it under matched conditions, and genuinely inspect moving imagery or sufficiently dense frame sequences. Describe what is visible **before** grading it against the stated target. For each revealing view, identify what is PRESENT, ABSENT, PARTIAL or NOT INSPECTED, explain the remaining defects, and name the strongest likely objection from an owner reviewing the footage. If visual inspection is not possible, mark it **VISUAL UNVERIFIED**. Numerical tests, changed pixels and compiled shaders cannot establish aesthetic success.
 
-Continue the authorized combined A+B programme through meaningful implementation and integration. **Only I can accept B1, B2 or A+B visually**. Do not enter Milestone C or promote a release. When a session ends before the standard is reached, preserve the work and honestly distinguish demonstrated improvements from remaining limitations.
+If the result is unconvincing, investigate the underlying cause across wave data, geometry, timing, optics, shading, lighting and dependent systems. Use focused research to resolve real uncertainties. When evidence shows that a representation cannot meet the goal through incremental improvements, redesign the **bounded subsystem** with a clear technical rationale and integration plan. Then implement and inspect again. Avoid repeated cosmetic tweaks, speculative rewrites and unnecessary QA cycles.
 
-Begin with the recovered renderer state and its highest-impact water problem. Produce genuine improvements in moving visuals, not simply more code, tests or reports.
+Use targeted numerical and GPU checks during development. Save broader high-resolution capture sets and performance studies for meaningful integrated checkpoints. Maintain the existing custom renderer and native desktop-Chrome WebGPU architecture; there is no WebGL fallback or engine migration.
+
+## Continuity and completion
+
+Keep a concise, durable checkpoint containing source commit(s), verified visual changes, relevant capture paths/timecodes, important regressions, unresolved defects and exact next actions. Update it before lengthy operations and session completion, so development can resume without repeating earlier work.
+
+Show the status of **all six workstreams** in each substantive checkpoint. If an area receives no source work in a session, identify it as **deprioritized (not started this session)** and explain the next intended action; reserve **blocked** for an actual demonstrated dependency or limitation. Unresolved high-priority issues remain visible even when work advances elsewhere.
+
+Continue the authorized combined A+B programme through substantive, connected implementations rather than ending after one isolated experiment. An unsuccessful prototype remains experimental; a justified limitation remains documented, not falsely completed. **I retain final visual acceptance authority for B1, B2 and combined A+B.** Do not enter Milestone C or promote a release.
+
+Start with the verified local renderer state, its highest-impact water defects and the reference evidence needed to solve them. Prioritize meaningful improvements to the **actual moving ocean and its environment**, preserving correctness, visual quality and development continuity.
