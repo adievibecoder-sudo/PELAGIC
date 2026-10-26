@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PELAGIC / surface whitewater experiment</title>
+<style>
+:root{color-scheme:dark;--ink:#e6ede7;--muted:#b7c8c9;--sea:#101b20;--line:#34515a;--accent:#a9d2dc}
+*{box-sizing:border-box}body{margin:24px;background:var(--sea);color:var(--ink);font:15px/1.5 Consolas,monospace}
+main{max-width:1600px;margin:auto}a{color:var(--accent)}h1{font-size:26px;letter-spacing:-.5px}h2{font-size:19px;margin-top:36px}
+p{max-width:1100px}.label,small{color:var(--muted)}.label{letter-spacing:2px;font-size:12px}button,select{font:inherit;padding:9px;background:#20343c;color:var(--ink);border:1px solid var(--line)}button{cursor:pointer}button:hover{background:#2c4650}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:20px 0}
+section{display:grid;grid-template-columns:1fr 1fr;gap:20px}figure{margin:0}figcaption{padding:10px 0}img,video{display:block;width:100%;height:auto}video{max-height:82vh;background:#000}details{border-top:1px solid var(--line);padding:18px 0}summary{cursor:pointer}#status{min-height:24px}footer{border-top:1px solid var(--line);margin-top:36px;padding-top:16px}
+@media(max-width:900px){section{grid-template-columns:1fr}body{margin:16px}h1{font-size:22px}}
+</style>
+<main>
+<p class="label">PELAGIC 0.4 / A+B / EXPERIMENT 09</p>
+<h1>Readable wave faces. Breaking still unfinished.</h1>
+<p>The experimental crest field shades the actual water surface, removing the observed pointed foreground sheet. Gravity-wave onset and separate active/residual populations reduce broad storm coverage. Fresh breaking remains soft and flat; residual patterns repeat. B1, B2 and integrated A+B remain unaccepted.</p>
+<p><a id="live-base">Live AB8 sheets</a> / <a id="live-work">Live surface experiment</a> / <a href="docs/V04-AB-CONTINUATION-09.md">Decisions, evidence limits and all six workstreams</a></p>
+<h2>Matched original motion</h2>
+<p id="scope">Near: 20 m/s, camera 5 m / yaw 79 / pitch -9 degrees. AB8 covers 32.000-32.958 s; AB9 covers 32.000-34.958 s. Only the first second is paired.</p>
+<p>High, 1920 x 1080, seed 1307, fixed 24 Hz simulation. Each video preserves every decoded RGB pixel from its PNG originals. All consecutive frames were inspected as timecoded sequences. Comparisons show the complete experiment stack, not an isolated atlas-only ablation.</p>
+<div class="controls">
+<label>View <select id="view"><option value="near">Near / pointed-sheet regression</option><option value="elevated">Elevated / 30 m/s coverage</option></select></label>
+<label>Version <select id="version"><option value="base">Before</option><option value="work" selected>AB9 experiment</option></select></label>
+<label>Speed <select id="rate"><option value="1">Normal</option><option value="0.25">Quarter</option></select></label>
+<button id="restart">Play from start</button></div>
+<p id="status" role="status">AB9 / ready</p>
+<video id="movie" controls preload="metadata" playsinline src="evidence/v04-ma-ab9-final-near-02/storm.webm" poster="evidence/v04-ma-ab9-final-near-02/storm_0.png" aria-label="Matched whitewater motion"></video>
+<small>Changing version preserves playback position within the available overlap. Lossless originals are large. Live experiments need the explicit links above; ordinary Share and quality reload do not preserve experimental query flags.</small>
+<h2>30 m/s: the dominant broad pattern is surface foam</h2>
+<p>Matched elevated views at 30.000 s. Disabling foam removes most of the broad lace while reflections and rain remain. This identifies the dominant contributor in this view; it does not classify every pale pixel as foam.</p>
+<section><figure><a href="evidence/v04-ma-ab9-default30-01/storm_0.png"><img loading="lazy" src="evidence/v04-ma-ab9-default30-01/storm_0.png" alt="Default storm with broad pale lace across wave faces"></a><figcaption>Default compression history / broad face coverage</figcaption></figure><figure><a href="evidence/v04-ma-ab9-nofoam30-01/storm.png"><img loading="lazy" src="evidence/v04-ma-ab9-nofoam30-01/storm.png" alt="Same storm with foam disabled, leaving reflective wave faces and rain"></a><figcaption>Foam disabled / diagnosis only</figcaption></figure></section>
+<h2>Surface conformity improves; natural breaking remains partial</h2>
+<section><figure><a href="evidence/v04-ma-ab8-closeup-final-01/storm_2.png"><img loading="lazy" src="evidence/v04-ma-ab8-closeup-final-01/storm_2.png" alt="AB8 pointed white sheet in the foreground at 32.083 seconds"></a><figcaption>AB8 / 32.083 s / pointed foreground sheet</figcaption></figure><figure><a href="evidence/v04-ma-ab9-final-near-02/storm_2.png"><img loading="lazy" src="evidence/v04-ma-ab9-final-near-02/storm_2.png" alt="AB9 surface foam at the same time without the raised triangular protrusion"></a><figcaption>AB9 / same camera and time / faint, attached patches</figcaption></figure></section>
+<p>Max union prevents overlapping traces from repeatedly adding opacity. It does not supply persistent breaking-event identity. Retirement of the active texture feeds residual history; traced crest geometry still lacks its own conserved handoff. No volumetric roller, entrainment or calibrated whitecap-area claim.</p>
+<details><summary>Zero-coverage bug: empty water previously generated false foam</summary>
+<p>Calm, foam = 0, spray = 0, diagnostic 11. Both history clipmaps are empty. A softened texture threshold nevertheless produced green flecks. Exact coverage endpoints remove these visible false bubbles without reducing global strength. Tiny full-frame HDR residuals are not claimed to be exactly zero.</p>
+<section><figure><img loading="lazy" src="evidence/v04-ma-ab9-zero-before-01/zero.png" alt="Green foam diagnostic speckles despite zero occupied area"><figcaption>Before / false foam</figcaption></figure><figure><img loading="lazy" src="evidence/v04-ma-ab9-zero-after-01/zero.png" alt="Black foam diagnostic after enforcing empty occupancy"><figcaption>After / visible false foam removed</figcaption></figure></section></details>
+<details><summary>Control repairs and calm regression</summary>
+<p>Next weather now describes an unapplied target; current wind, sea and cloud conditions remain visible. Requested values survive gradual evolution. Correct increments represent exposure 1.4 and flight speed 6 exactly. Focused seed/date edits survive refresh; bloom displays 0.045. Space activates disclosures and buttons; astronomy disables conflicting manual controls. A paused Storm-to-Calm reset clears derived crest state.</p>
+<section><figure><img loading="lazy" src="evidence/v04-ma-ab9-ui-01/paused-calm.png" alt="Paused calm scene with current conditions and a separate next-weather selector"><figcaption>Paused reset / control-state verification</figcaption></figure><figure><img loading="lazy" src="evidence/v04-ma-ab9-final-calm-01/calm_12.png" alt="Calm blue water with small swells and no visible whitewater"><figcaption>Calm / 30.500 s / zero active chains throughout 24 frames</figcaption></figure></section>
+<p>All 33 sliders accept minimum, intermediate and maximum keyboard commands. This is not a visual audit of all extremes or combinations. Preset/night appearance, flight, quality reload and import/export still need broader checks.</p></details>
+<details><summary>Validation, performance and unresolved work</summary>
+<p>71 CPU tests pass. Final near72/elevated24/calm24: all 120 frames pass native HDR and node checks, zero recorded GPU errors. Earlier crossing24 and five manufactured atlas checks pass within their recorded scope. Atlas: 512 square over 144 m; 0.28125 m cells. Longer motion, atlas edges and rebasing remain unverified.</p>
+<p>The AB9 timing attempt cannot support comparison: native foreground verification timed out. GPU 45.54 ms / rAF p95 131.9 ms is an uncontrolled observation predating the coverage fix. Historical matched AB8: GPU 43.09 ms / rAF p95 48.7 ms. No speedup or compositor-present FPS claim; High 30 FPS remains unmet.</p>
+<p>Water optics retain the bronze sky-reflection defect. Wave organization, night illumination, clouds, precipitation, convective lightning, waterline transitions and long-distance consistency remain open. Clouds/weather received no source work during AB9. No ship, Milestone C or release promotion.</p>
+<p><a href="evidence/v04-ma-ab9-review-01/manifest.json">Selected original evidence and source hashes</a> / <a href="evidence/v04-ma-ab9-validation-01/native-summary.json">Native check scope</a> / <a href="evidence/v04-ma-ab9-pacing-01/summary.json">Invalid timing comparison</a></p></details>
+<footer><small>Original PELAGIC captures only. Private owner references remain untracked. Owner visual acceptance pending.</small></footer>
+</main>
+<script type="module">
+const movie=document.querySelector('#movie'),view=document.querySelector('#view'),version=document.querySelector('#version'),rate=document.querySelector('#rate'),status=document.querySelector('#status');
+const clips={near:{base:'v04-ma-ab8-closeup-final-01',work:'v04-ma-ab9-final-near-02',start:32},elevated:{base:'v04-ma-ab9-default30-01',work:'v04-ma-ab9-final-elev30-01',start:30}};
+let pendingTime=0,resume=false;
+function update(){const q=movie.getVideoPlaybackQuality();status.textContent=`${view.value} / ${version.value==='base'?'before':'AB9'} / simulation ${(clips[view.value].start+movie.currentTime).toFixed(3)} s / ${movie.ended?'ended':movie.paused?'paused':'playing'} / ${q.droppedVideoFrames} playback frames dropped`;}
+function select(reset){pendingTime=reset?0:movie.currentTime;resume=!movie.paused;movie.pause();const folder=clips[view.value][version.value];movie.poster=`evidence/${folder}/storm_0.png`;movie.src=`evidence/${folder}/storm.webm`;document.querySelector('#scope').textContent=view.value==='near'?'Near: 20 m/s, camera 5 m / yaw 79 / pitch -9 degrees. AB8 covers 32.000-32.958 s; AB9 covers 32.000-34.958 s. Only the first second is paired.':'Elevated: 30 m/s, camera 18 m / yaw 79 / pitch -35 degrees. Both versions cover 30.000-30.958 s. Before uses default surface foam, without optional crest sheets.';}
+view.onchange=()=>select(true);version.onchange=()=>select(false);
+movie.onloadedmetadata=async()=>{movie.currentTime=Math.min(pendingTime,Math.max(0,movie.duration-1/24));movie.playbackRate=Number(rate.value);if(resume){try{await movie.play();}catch{status.textContent='Use the video play control to begin.';}}update();};
+rate.onchange=()=>{movie.playbackRate=Number(rate.value);};
+document.querySelector('#restart').onclick=async()=>{movie.currentTime=0;try{await movie.play();}catch{status.textContent='Use the video play control to begin.';}};
+movie.ontimeupdate=movie.onplay=movie.onpause=movie.onended=update;
+movie.onerror=()=>{status.textContent='Original video unavailable. Materialize Git LFS media, then reload.';};
+const query=new URLSearchParams({preset:'storm',maBreaking:'gravity',abFoam:'transport',abFoamPattern:'bubbles',abRain:'velocity',abWhitewater:'parcels',abCrest:'phase',abCrestShape:'sheet',abCrestEvent:'shared',cam:'0,5,0,79,-9',cameraMode:'free',quality:'High',resolution:1,adaptive:0,seed:1307,t:20});
+document.querySelector('#live-base').href='/?'+query;query.set('abCrestSurface','water');query.set('abCrestEdge','fade');query.set('abCrestLife','supported');query.set('abBreaking','handoff');document.querySelector('#live-work').href='/?'+query;
+</script></html>

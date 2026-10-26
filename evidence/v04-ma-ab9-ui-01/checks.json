@@ -1,0 +1,18 @@
+{
+  "renderer": "d6400e9cc2df7d2ad8a74fde9b90ad22b5a315ce",
+  "rangeChecks": "33 native sliders: Home, End, Home, five PageUp inputs; command/label response only.",
+  "verified": [
+    "Space opens Water & light and activates Pause/Play and Calm buttons without altitude movement",
+    "Paused Storm-to-Calm has no visible surviving storm footprints",
+    "Next weather selection alone preserves current conditions; Evolve sets target while paused; Apply settles target",
+    "Astronomy disables manual Sun controls; Escape restores Environment focus",
+    "Focused seed edit survives sync; bloom displays 0.045; scene edit clears selected preset",
+    "Share dialog has accessible name, focused URL and Escape returns Share focus"
+  ],
+  "limits": [
+    "No complete visual extremes/pairwise matrix",
+    "No broad preset/night/quality/import-export/flight acceptance",
+    "Share and quality serialization omit experimental query flags; explicit review URLs required"
+  ],
+  "screenshot": "paused-calm.png"
+}

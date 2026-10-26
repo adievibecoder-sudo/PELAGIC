@@ -1,0 +1,33 @@
+{
+  "checks": [
+    {
+      "ended": true,
+      "error": null,
+      "status": "near / AB9 / simulation 35.000 s / ended / 10 playback frames dropped",
+      "version": "work",
+      "view": "near"
+    },
+    {
+      "ended": true,
+      "error": null,
+      "status": "near / before / simulation 33.000 s / ended / 2 playback frames dropped",
+      "version": "base",
+      "view": "near"
+    },
+    {
+      "ended": true,
+      "error": null,
+      "status": "elevated / before / simulation 31.000 s / ended / 2 playback frames dropped",
+      "version": "base",
+      "view": "elevated"
+    },
+    {
+      "ended": true,
+      "error": null,
+      "status": "elevated / AB9 / simulation 31.000 s / ended / 2 playback frames dropped",
+      "version": "work",
+      "view": "elevated"
+    }
+  ],
+  "scope": "Browser decodes all four clips to completion. Dropped-frame counters do not support flawless continuous playback; appearance findings use consecutive original frame inspection."
+}

@@ -1,0 +1,39 @@
+{
+  "renderer": "d6400e9cc2df7d2ad8a74fde9b90ad22b5a315ce",
+  "utc": "2026-10-26T21:02:17.107077+00:00",
+  "cpu": {
+    "command": "node --test tests/*.test.mjs",
+    "tests": 71,
+    "passCount": 71,
+    "failCount": 0,
+    "execution": "Approved host run; sandbox worker spawning failed with EPERM"
+  },
+  "atlas": {
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "nonempty bounded footprint",
+        "status": "PASS"
+      },
+      {
+        "name": "duplicate occupancy is idempotent",
+        "status": "PASS"
+      },
+      {
+        "name": "union is independent of event order",
+        "status": "PASS"
+      },
+      {
+        "name": "outside footprint never wraps",
+        "status": "PASS"
+      },
+      {
+        "name": "empty frame clears previous occupancy",
+        "status": "PASS"
+      }
+    ],
+    "occupiedCells": 112,
+    "scope": "Manufactured production-atlas storage and overlap; no visual or fluid-physics claim."
+  },
+  "scope": "CPU and manufactured atlas checks do not certify appearance; crossing predates the zero-coverage correction."
+}
