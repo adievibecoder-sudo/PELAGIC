@@ -66,11 +66,14 @@ import {cloudWorkChecks} from '../tests/cloud-work-readback.js';
 import {foamTransportShader} from './wgsl/foam-transport.js';
 import {whitewaterShader,WHITEWATER_COUNT} from './wgsl/whitewater.js';
 import {whitewaterChecks} from '../tests/whitewater-readback.js';
+import {crestSupportChecks,crestTextureChecks} from '../tests/crest-support-readback.js';
+import {crestWhitewaterShader} from './wgsl/crest-whitewater.js';
 
 const qs = new URLSearchParams(location.search);
 const runtime=runtimeInput(location.search);
 const temporalEnabled=qs.get('aa')==='taa';
 const whitewaterParcels=qs.get('abWhitewater')==='parcels';
+const crestTracking=qs.get('abCrest')==='phase';
 const particleCount=PARTICLE_COUNT+(whitewaterParcels?WHITEWATER_COUNT:0);
 const cameraHistory=temporalEnabled?temporalCamera(qs.get('taaJitter')||'msaa4'):null;
 const queueDriven=qs.has('shot')||qs.has('video')||(qs.has('benchmark')&&qs.get('benchmarkMode')==='queue');
@@ -167,6 +170,7 @@ async function main() {
     code=foamTransportShader(code,qs);
     code=particleMotionShader(code,qs);
     code=whitewaterShader(code,qs);
+    code=crestWhitewaterShader(code,qs);
     code=cloudShadowDiagnostic(code,qs);
     code=cloudShadowShader(code,qs);
     code=temporalShader(code,temporalEnabled);
@@ -377,9 +381,10 @@ async function main() {
   const bgMS = bg(msPipe, [{ buffer: atmoUBO }, transView, sampClamp, msView], 'ms');
   const bgSkyView = bg(skyViewPipe, [{ buffer: frameUBO }, transView, msView, sampClamp, skyView], 'skyview');
   const particleBuf=mkBuf(particleCount*32,GU.STORAGE|GU.COPY_DST,'spray, rain and optional whitewater particles');
+  const crestFrameBuf=crestTracking?mkBuf(WHITEWATER_COUNT*16,GU.STORAGE|GU.COPY_SRC,'phase crest frames'):null;
   const particleCompute=await computePipe(PARTICLE_UPDATE,'particle transport');
   const particleModule=await shader(PARTICLE_RENDER,'particle rendering');
-  const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim,fullArr(derivTex),fullArr(lastDisp),shadowView,sampClamp]));
+  const particleBG=[0,1].map(i=>bg(particleCompute,[{buffer:frameUBO},{buffer:particleBuf},fullArr(foamW[i]),fullArr(dispTex),samplerSim,fullArr(derivTex),fullArr(lastDisp),shadowView,sampClamp,...(crestTracking?[{buffer:crestFrameBuf}]:[])]));
   const bgEnv = bg(envPipe, [{ buffer: envFrame }, envTrans.createView(), envSky.createView(), sampClamp, lvl(envBuild, 0),cloudNoiseView,cloudSampler], 'env');
   const bgSunVis = bg(sunVisPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp, { buffer: sunVisBuf },cloudNoiseView,cloudSampler], 'sunvis');
   const bgCubeMips = [];
@@ -400,7 +405,7 @@ async function main() {
   const MSAA = 4;
   const HDR = 'rgba16float';
   const particlePipe=await device.createRenderPipelineAsync({layout:'auto',vertex:{module:particleModule,entryPoint:'vs'},fragment:{module:particleModule,entryPoint:'fs',targets:[{format:HDR,blend:{color:{srcFactor:'src-alpha',dstFactor:'one-minus-src-alpha'},alpha:{srcFactor:'one',dstFactor:'one-minus-src-alpha'}}}]},primitive:{topology:'triangle-list'},depthStencil:{format:'depth32float',depthWriteEnabled:false,depthCompare:'greater'},multisample:{count:MSAA}});
-  const particleDrawBG=bg(particlePipe,[{buffer:frameUBO},{buffer:particleBuf},irradianceView,sampClamp,shadowView,transView,sampClamp,...(whitewaterParcels?[waveShadow.createView()]:[])]);
+  const particleDrawBG=bg(particlePipe,[{buffer:frameUBO},{buffer:particleBuf},irradianceView,sampClamp,shadowView,transView,sampClamp,...(whitewaterParcels?[waveShadow.createView()]:[]),...(crestTracking?[{buffer:crestFrameBuf}]:[])]);
   const [oceanMod, skyMod, downMod, upMod, compMod] = await Promise.all([
     shader(OCEAN, 'ocean'), shader(SKY_BG, 'sky'), shader(BLOOM_DOWN, 'bloom down'),
     shader(BLOOM_UP, 'bloom up'), shader(COMPOSITE, 'composite'),
@@ -1303,6 +1308,8 @@ async function main() {
     await postEvidence('/__shot?stage='+stage+'&name=' + encodeURIComponent(nm),blob);
     const report=evidenceReport();
     if(qs.get('abWhitewaterChecks')==='1')report.whitewaterChecks=await whitewaterChecks(device);
+    if(qs.get('abCrestChecks')==='1')report.crestSupportChecks=await crestSupportChecks(device);
+    if(qs.get('abCrestChecks')==='1')report.crestTextureChecks=await crestTextureChecks(device,frameUBO,dispTex.createView(),derivTex.createView(),samplerSim);
     if(qs.get('abShadowChecks')==='1')report.cloudShadowChecks=await cloudShadowReadback(device,frameUBO,cloudNoiseView,cloudSampler);
     if(qs.get('maPrecisionChecks')==='1')report.slopePrecision=await slopePrecisionReadback(device,derivTex,momTex);
     if(qs.get('maInversionChecks')==='1')report.surfaceInversion=await inversionReadback(device,waveHeight,lensMedium);
