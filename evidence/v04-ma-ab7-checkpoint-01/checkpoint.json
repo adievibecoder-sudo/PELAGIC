@@ -1,0 +1,140 @@
+{
+  "preservation": [
+    {
+      "path": "evidence/v04-p1-final-stills/broken.json",
+      "bytes": 121208,
+      "sha256": "5313223cb9747fe1ca4ed5f75189359d31d6ce10929df8a2493cb961ca16433a",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/broken.png",
+      "bytes": 4947549,
+      "sha256": "7c50464f04d455bc63cd67613036ce1326abaa06140ec0f27f513749b0078aaa",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/covered.json",
+      "bytes": 121165,
+      "sha256": "1a9fd9600f8e8af0d79d475ec8fcf60006b11787e87808d93009da4773e83d40",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/covered.png",
+      "bytes": 4249786,
+      "sha256": "b08aec41c8ed42acadcb53a0e7afd743d939d2267f97cc402687bc1e05f61c4d",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/golden.json",
+      "bytes": 121594,
+      "sha256": "9fdf965a64084910721642ae1bb22621aa90c78d282c25a48f512361ccefca68",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/moonlit.json",
+      "bytes": 122170,
+      "sha256": "5053cea394a9e63471c3ff1c7b0031886af7060fdc92558596e0f9bcd3808098",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/storm.json",
+      "bytes": 121555,
+      "sha256": "016e2d0633e380db0691630f9fb1673320c4421e2570678edffddf666966a31d",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/storm.png",
+      "bytes": 4044097,
+      "sha256": "b4fe5f2bbc34fcf2a660c84cd9ed3c15177ee2430dbcd57f75b56a1e9bc016f2",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/twilight.json",
+      "bytes": 121444,
+      "sha256": "48ba683b71a2daac5abf1b9978ea0eff01e2e562f6bb36b3025931a3c66fad7b",
+      "unchanged": true
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 258,
+      "sha256": "de745ade5b712e7dbc73bb4bebb3192be670b0f09cf80b2b02946b51ff1a0088",
+      "unchanged": true
+    }
+  ],
+  "captures": [
+    {
+      "stage": "v04-ma-ab7-phase-01",
+      "frames": 12,
+      "errors": [],
+      "times": [
+        30.00000000799986,
+        30.458333341699852
+      ],
+      "sourceHashes": [
+        "6ba202db474e7d2b1d0979eab244ed0e52a6b8502d76c7cd408994b0000063c6"
+      ],
+      "unstable": 0
+    },
+    {
+      "stage": "v04-ma-ab7-near-work-01",
+      "frames": 48,
+      "errors": [],
+      "times": [
+        30.00000000799986,
+        31.95833334289983
+      ],
+      "sourceHashes": [
+        "6ba202db474e7d2b1d0979eab244ed0e52a6b8502d76c7cd408994b0000063c6"
+      ],
+      "unstable": 0
+    },
+    {
+      "stage": "v04-ma-ab7-high-base-01",
+      "frames": 48,
+      "errors": [],
+      "times": [
+        30.00000000799986,
+        31.95833334289983
+      ],
+      "sourceHashes": [
+        "6dbdc37ab9fa3f32aa07125cc19ef64824274271bd679f831adf85b1bf925cfb"
+      ],
+      "unstable": 0
+    },
+    {
+      "stage": "v04-ma-ab7-high-work-01",
+      "frames": 48,
+      "errors": [],
+      "times": [
+        30.00000000799986,
+        31.95833334289983
+      ],
+      "sourceHashes": [
+        "6ba202db474e7d2b1d0979eab244ed0e52a6b8502d76c7cd408994b0000063c6"
+      ],
+      "unstable": 0
+    },
+    {
+      "stage": "v04-ma-ab7-near-work-02",
+      "frames": 48,
+      "errors": [],
+      "times": [
+        30.00000000799986,
+        31.95833334289983
+      ],
+      "sourceHashes": [
+        "6049158a8f40a054d82f6bf2d48121cdd28831deba11f0c03232201f5ac55f5f"
+      ],
+      "unstable": 0
+    }
+  ],
+  "profile": {
+    "retained": 102,
+    "p50": 458.1999999999989,
+    "p95": 1006.9999999999999,
+    "over500ms": 51,
+    "hidden": 0,
+    "unfocused": 0,
+    "scope": "Historical one-second cadence reproduced. Single baseline run, no candidate comparison; no optimization or presented FPS claim. Native window verification blocked by Computer Use URL safety verification."
+  }
+}
