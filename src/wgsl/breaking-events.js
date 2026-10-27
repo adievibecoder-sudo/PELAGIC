@@ -12,7 +12,8 @@ fn emissionProbability(referenceProbability:f32,dt:f32)->f32 {
 }
 `;
 export function breakingEventsShader(code,query) {
-  const handoff=query.get('abBreaking')==='handoff';
+  const population=query.get('abBreaking')==='population';
+  const handoff=query.get('abBreaking')==='handoff'||population;
   const mode=handoff?'gravity':query.get('maBreaking');
   if(!['events','onset','fold','crest','gravity'].includes(mode))return code;
   if(code.includes('struct FoamU {')){
@@ -53,6 +54,15 @@ export function breakingEventsShader(code,query) {
       code=replaceShader(code,'f=1.0-(1.0-f)*exp(-U.p1.z*increment);',
         'let retired=prev.g*(1.0-survival);\n  f=1.0-(1.0-f)*(1.0-retired);');
     }
+    if(population){
+      code=replaceShader(code,'let survival=exp(-dt*1.6);',
+        'let survival=exp(-dt/mix(.4,1.4,clamp(signal,0.0,1.0)));');
+      code=replaceShader(code,'var f=(prev.r+prev.a)*exp(-dt*U.p0.w);',`// Thin disconnected rafts drain faster; dense residual retains memory.
+  // Activity controls fresh lifetime, density controls residual dissolution.
+  let residual=max(prev.r+prev.a,0.0);
+  let decay=U.p0.w*(1.0+2.0*(1.0-smoothstep(.05,.65,residual)));
+  var f=residual*exp(-dt*decay);`);
+    }
     return code.replace('vec4f(stored, fresh, J, f-stored)','vec4f(stored, fresh, signal, f-stored)');
   }
   if(mode==='gravity'&&code.includes('fn reflectedEnvironment(')){
@@ -71,6 +81,17 @@ export function breakingEventsShader(code,query) {
       'max(fwl.r+fwl.a, fresh*(1.0-w1)*0.45)');
     code=replaceShader(code,'let freshK = clamp(fwl.g * 2.0 + fresh, 0.0, 1.0);',
       'let freshK = clamp(fresh, 0.0, 1.0);');
+  }
+  if(population&&code.includes('fn reflectedEnvironment(')){
+    code=replaceShader(code,'let activeArea=clamp(fwl.g*F.foamP.z*0.9,0.0,1.0);',
+      `let supportedActivity=max(fwl.g,fwl.b*fwl.g/(fwl.g+.04));
+  let activeArea=clamp((1.0-exp(-4.0*supportedActivity))*F.foamP.z,0.0,1.0);`);
+    code=replaceShader(code,'let activeCoverage=foamCoverage(material*0.29+F.patternOrigins[0].xy,activeArea);',`// Connected active fronts have porous interiors, rather than isolated
+  // rank-threshold flecks. The same activity supplies spray and bubble light.
+  let activePores=foamCoverage(material*.29+F.patternOrigins[0].xy,activeArea);
+  let activeCoverage=mix(activePores,activeArea,.35);`);
+    code=replaceShader(code,'  cover *= mix(0.45+1.1*smoothstep(0.25,0.75,streak),1.0,freshK);',
+      '  // Residual density is transported by the clipmap; no stationary wind-stripe multiplier.');
   }
   return code;
 }

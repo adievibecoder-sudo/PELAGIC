@@ -1,4 +1,5 @@
 import {PRESETS,RANGES,toURL} from './settings.js';
+import {renderOptions} from './render-options.js';
 const $=id=>document.getElementById(id);
 const descriptions={
   windSpeed:'Mean wind measured 10 m above water. The sea takes time to develop in gradual mode.',
@@ -102,7 +103,7 @@ export function setupUI(P,cam,api) {
   $('hide').onclick=()=>document.body.classList.add('cinema');$('restore-ui').onclick=()=>document.body.classList.remove('cinema');
   $('screenshot').onclick=()=>{api.capture();toast('Capturing full-resolution PNG');};$('record').onclick=()=>api.record();
   $('share').onclick=async()=>{const url=toURL(P,cam,api.time(),location.href,api.snapshot());$('share-url').value=url;$('share-dialog').showModal();try{await navigator.clipboard.writeText(url);toast('Reproducible URL copied');}catch{toast('Copy the URL from this dialog');}};
-  const configuration=()=>({settings:P,camera:cam,time:api.time(),environment:api.snapshot()});
+  const configuration=()=>({settings:P,camera:cam,time:api.time(),environment:api.snapshot(),rendering:renderOptions(new URLSearchParams(location.search))});
   $('save').onclick=()=>{localStorage.setItem('pelagic-config-v1',JSON.stringify(configuration()));toast('Configuration saved on this browser');};
   $('load').onclick=()=>{try{const state=JSON.parse(localStorage.getItem('pelagic-config-v1'));if(!state)throw Error('No saved configuration');api.restore(state);target.value='';evolve.disabled=true;sync();setScene(null);toast('Configuration restored');}catch(e){toast(e.message);}};
   $('export').onclick=()=>download(new Blob([JSON.stringify(configuration(),null,2)],{type:'application/json'}),'pelagic-config.json');

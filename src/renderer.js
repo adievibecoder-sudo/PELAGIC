@@ -13,6 +13,7 @@ import { celestial } from './astronomy.js';
 import { lunarLight, twilightExposure } from './celestial-light.js';
 import {localOrigin,cascadeOrigin,foamPatternOrigin,FRAME_BYTES,FRAME_FLOATS,FOAM_BYTES} from './spatial-origin.js';
 import { runtimeInput, validCamera } from './runtime-input.js';
+import {renderOptions,sameRenderOptions} from './render-options.js';
 import { PARTICLE_COUNT, PARTICLE_UPDATE, PARTICLE_RENDER, particleMotionShader } from './wgsl/particles.js';
 import { spectralReadback } from '../tests/spectral-readback.js';
 import { foamReadback } from '../tests/foam-readback.js';
@@ -45,6 +46,9 @@ import {waveDiagnosticShader} from '../tests/milestone-a-wave-shaders.js';
 import {orderOceanNodes} from './ocean-order.js';
 import {roughnessUniforms} from './wind-roughness.js';
 import {waterTransportShader} from './wgsl/water-transport.js';
+import {waterMaterialShader} from './wgsl/water-material.js';
+import {displayTransformShader} from './wgsl/display-transform.js';
+import {environmentLightShader} from './wgsl/environment-light.js';
 import {finiteGlintsShader} from './wgsl/finite-glints.js';
 import {cloudTransportShader} from './wgsl/cloud-transport.js';
 import {cloudAmbientShader} from './wgsl/cloud-ambient.js';
@@ -174,6 +178,9 @@ async function main() {
     code=waterTransportShader(code,qs);
     code=finiteGlintsShader(code,qs);
     code=footprintOpticsShader(code,qs);
+    code=waterMaterialShader(code,qs);
+    code=displayTransformShader(code,qs);
+    code=environmentLightShader(code,qs);
     code=cloudTransportShader(code,qs);
     code=cloudAmbientShader(code,qs);
     code=breakingEventsShader(code,qs);
@@ -256,7 +263,7 @@ async function main() {
 
   const bg = (pipe, entries, label) => device.createBindGroup({
     label, layout: pipe.getBindGroupLayout(0),
-    entries: entries.map((r, i) => ({ binding: i, resource: r })),
+    entries: entries.flatMap((r, i) => r == null ? [] : [{ binding: i, resource: r }]),
   });
   const cloudNoiseMips=Math.log2(CLOUD_NOISE_SIZE)+1;
   const cloudNoise=allocations.texture({label:'periodic cloud morphology',size:[CLOUD_NOISE_SIZE,CLOUD_NOISE_SIZE,CLOUD_NOISE_SIZE],dimension:'3d',format:'rgba8unorm',mipLevelCount:cloudNoiseMips,usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING});
@@ -479,7 +486,9 @@ async function main() {
   const lensMedium=allocations.texture({label:'curved near-plane medium',size:[128,72],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
   const lensPipe=await computePipe(LENS_MEDIUM,'near-plane surface inversion');
   const bgLens=bg(lensPipe,[{buffer:frameUBO},fullArr(dispTex),fullArr(derivTex),samplerSim,{buffer:probeOut},lensMedium.createView()]);
-  const bgOcean = [0, 1].map((i) => bg(oceanPipe, [{ buffer: frameUBO }, transView, skyView, sampClamp,
+  // Coupled marine fog uses envCube; its shader no longer references skyLUT.
+  const oceanSkyView=qs.get('abEnvironment')==='coupled'?null:skyView;
+  const bgOcean = [0, 1].map((i) => bg(oceanPipe, [{ buffer: frameUBO }, transView, oceanSkyView, sampClamp,
     fullArr(dispTex), fullArr(derivTex), fullArr(momTex), foamTex.createView(), envCubeView, sampRepeat,
     fullArr(foamW[i]), shadowView,{buffer:probeOut},irradianceView,waveShadow.createView(),lensMedium.createView(),waveHeight.createView(),...(crestSurface?[{buffer:crestSurfaceBuf}]:[])], 'ocean' + i));
   let bgSky, bgCloud, cloudTex;
@@ -921,7 +930,8 @@ async function main() {
       const config=sanitize(state.settings);const restoredCamera=validCamera(state.camera,cam);
       const restoredTime=Number.isFinite(Number(state.time))?Math.max(0,Math.min(864000,Number(state.time))):0;
       const restoredEnvironment=state.environment?restoreEnvironment(state.environment,config):createEnvironment(config,restoredTime);
-      if(config.quality!==P.quality){location.href=toURL(config,restoredCamera,restoredTime,location.href,restoredEnvironment);return;}
+      const rendering=renderOptions(state.rendering??qs);
+      if(config.quality!==P.quality||!sameRenderOptions(rendering,qs)){location.href=toURL(config,restoredCamera,restoredTime,location.href,restoredEnvironment,rendering);return;}
       applyConfig(config);if(state.camera)for(const k of ['x','y','z','yaw','pitch','speed','fovY'])if(Number.isFinite(state.camera[k]))cam[k]=state.camera[k];
       cam.y=Math.max(-200,Math.min(10000,cam.y));cam.pitch=Math.max(-1.5,Math.min(1.5,cam.pitch));
       Object.assign(cam,restoredCamera);environment=restoredEnvironment;simTime=environment.clocks.wave;resetPhases(simTime);foamFirst=true;

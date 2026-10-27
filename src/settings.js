@@ -1,3 +1,5 @@
+import {renderOptions} from './render-options.js';
+
 export const DEFAULTS = Object.freeze({
   windSpeed: 7, windDir: 118, fetchKm: 90, swellHs: 1.8, swellDir: 94,
   swellLength: 120, swellSpread: 48, choppy: 1.12, turbidity: 0.25, foam: 1,
@@ -63,8 +65,10 @@ export function fromURL(search) {
   if (q.has('config')) { try { config = sanitize(JSON.parse(q.get('config')), config); } catch {} }
   return sanitize(Object.fromEntries(q), config);
 }
-export function toURL(settings, camera, time, base, environment) {
+export function toURL(settings, camera, time, base, environment, rendering) {
+  const preserved=renderOptions(rendering??new URL(base).searchParams);
   const u = new URL(base); u.search = '';
+  for(const [key,value] of Object.entries(preserved))u.searchParams.set(key,value);
   u.searchParams.set('config',JSON.stringify(sanitize(settings)));
   u.searchParams.set('cam',[camera.x,camera.y,camera.z,camera.yaw*180/Math.PI,camera.pitch*180/Math.PI].map(v=>Number(v.toFixed(5))).join(','));
   u.searchParams.set('t',time.toFixed(4));
