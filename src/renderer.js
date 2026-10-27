@@ -6,7 +6,7 @@ import {phase1LightReadback} from '../tests/phase1-light-readback.js';
 // Large per-frame arrays are reused; diagnostics and browser API descriptors still allocate.
 import { N, CASCADES, SKY_W, SKY_H, ENV_SIZE, ENV_MIPS, CONFIG, Q } from './wgsl/common.js';
 import { sanitize, preset, scenePreset, PRESETS, QUALITY, toURL } from './settings.js';
-import {createEnvironment,commandEnvironment,advanceEnvironment,sampleEnvironment,environmentUniforms,environmentSnapshot,environmentControls,restoreEnvironment,WEATHER_KEYS,SEA_KEYS} from './environment.js';
+import {createEnvironment,commandEnvironment,previewLighting,advanceEnvironment,sampleEnvironment,environmentUniforms,environmentSnapshot,environmentControls,restoreEnvironment,WEATHER_KEYS,SEA_KEYS} from './environment.js';
 import { cosSpreadNorm, PATCHES, omega } from './numerics.js';
 import { swellAlpha } from './sea-spectrum.js';
 import { celestial } from './astronomy.js';
@@ -925,6 +925,7 @@ async function main() {
       if(P.environmentMode==='instant')envFull=1;
     },
     preset(name){applyConfig(scenePreset(name,P));},
+    lighting(name){previewLighting(environment,P,name);envFull=1;cameraHistory?.reset('lighting preview');},
     weather(name){commandEnvironment(environment,Object.fromEntries(WEATHER_KEYS.map(k=>[k,preset(name)[k]])),{weatherOnly:true});},
     developed(){commandEnvironment(environment,{}, {instant:true});Object.assign(P,environment.sea);needSpectrum=true;envFull=1;cameraHistory?.reset('targets applied');},
     quality(value){const url=toURL({...P,quality:value,resolution:QUALITY[value].scale},cam,simTime,location.href,environmentSnapshot(environment));location.href=url;},

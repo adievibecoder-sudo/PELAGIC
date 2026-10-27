@@ -1,4 +1,4 @@
-import {PRESETS,RANGES,toURL} from './settings.js';
+import {PRESETS,LIGHTING_PRESETS,RANGES,toURL} from './settings.js';
 import {renderOptions} from './render-options.js';
 const $=id=>document.getElementById(id);
 const descriptions={
@@ -78,6 +78,18 @@ export function setupUI(P,cam,api) {
   const transitionHint=document.createElement('p');transitionHint.className='hint';transitionHint.textContent='Choose a future target, then Evolve. Sun, swell and time stay as set. The regional front is a separate moving weather cell.';
   const conditions=document.createElement('p');conditions.className='conditions';conditions.id='conditions';
   transition.append(targetLabel,target,evolve,transitionHint,conditions);front.before(transition);
+  const lighting=document.createElement('div');lighting.className='weather-transition';
+  const lightLabel=document.createElement('label');lightLabel.htmlFor='lighting-target';lightLabel.textContent='Light only';
+  const lightTarget=document.createElement('select');lightTarget.id='lighting-target';
+  const lightPlaceholder=document.createElement('option');lightPlaceholder.value='';lightPlaceholder.textContent='Choose lighting';lightTarget.append(lightPlaceholder);
+  for(const [id,p]of Object.entries(LIGHTING_PRESETS)){const option=document.createElement('option');option.value=id;option.textContent=p.label;lightTarget.append(option);}
+  const preview=document.createElement('button');preview.textContent='Preview light';preview.disabled=true;
+  lightTarget.onchange=()=>{preview.disabled=!lightTarget.value;};
+  const lightHint=document.createElement('p');lightHint.className='hint';lightHint.id='lighting-hint';
+  lightHint.textContent='Changes illumination and exposure immediately. Water properties, weather and waves stay as set. Manual light keeps the Sun bearing; Moonlight uses 26 Oct 2026, 02:00 UTC at 32 N, 30 W.';
+  lightTarget.setAttribute('aria-describedby',lightHint.id);
+  preview.onclick=()=>{const id=lightTarget.value;api.lighting(id);sync();setScene(null);$('scene-title').textContent=LIGHTING_PRESETS[id].label;$('scene-note').textContent='Lighting preview on your current sea';toast('Lighting applied: '+LIGHTING_PRESETS[id].label);};
+  lighting.append(lightLabel,lightTarget,preview,lightHint);modeRow.before(lighting);
   function sync(){
     const state=api.controls(),values=state.values;
     for(const [k,set]of controls)set(values[k]);

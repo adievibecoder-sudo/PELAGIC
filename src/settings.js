@@ -31,6 +31,16 @@ export const PRESETS = Object.freeze({
   twilight:{label:'After the sun',note:'The blue interval',windSpeed:5,fetchKm:65,swellHs:1.5,swellLength:150,choppy:1.05,clouds:0.25,veil:0.18,haze:2,sunElev:-5,exposure:4,rain:0,spray:0.3},
   moonlit:{label:'Moon on the water',note:'Astronomical moonlight',windSpeed:5.5,fetchKm:70,swellHs:1.4,swellLength:135,choppy:1.08,clouds:0.16,veil:0.05,haze:1.2,astronomy:true,date:'2026-10-26',hour:2,latitude:32,longitude:-30,exposure:12,rain:0,spray:0.3},
 });
+// Lighting previews leave the water, sea history and weather targets intact.
+// Manual previews retain the chosen solar bearing; Moonlight is a dated sample.
+export const LIGHTING_PRESETS = Object.freeze({
+  morning:{label:'Morning',astronomy:false,astronomyRate:0,sunElev:12,exposure:1.05},
+  midday:{label:'Midday',astronomy:false,astronomyRate:0,sunElev:48,exposure:.95},
+  afternoon:{label:'Afternoon',astronomy:false,astronomyRate:0,sunElev:25,exposure:1.05},
+  golden:{label:'Golden hour',astronomy:false,astronomyRate:0,sunElev:5,exposure:1.3},
+  twilight:{label:'Twilight',astronomy:false,astronomyRate:0,sunElev:-5,exposure:4},
+  moonlit:{label:'Moonlight',astronomy:true,astronomyRate:0,date:'2026-10-26',hour:2,latitude:32,longitude:-30,exposure:12},
+});
 export const QUALITY = Object.freeze({
   Balanced:{env:128,foam:512,cloudSteps:64,cloudLightSteps:5,grid:24,scale:1},
   High:{env:256,foam:512,cloudSteps:80,cloudLightSteps:6,grid:32,scale:1},
@@ -56,8 +66,13 @@ export function preset(name) { return sanitize(PRESETS[name], DEFAULTS); }
 export function scenePreset(name, current) {
   if (!Object.hasOwn(PRESETS, name)) throw Error('Unknown scene preset: '+name);
   const next=preset(name);
-  for(const key of ['quality','resolution','adaptive','paused','cameraMode','cameraSpeed','fov','environmentMode'])next[key]=current[key];
+  for(const key of ['quality','resolution','adaptive','paused','cameraMode','cameraSpeed','fov','environmentMode',
+    'turbidity','dissolvedAbsorption','mineralScattering'])next[key]=current[key];
   return sanitize(next);
+}
+export function lightingPreset(name,current) {
+  if(!Object.hasOwn(LIGHTING_PRESETS,name))throw Error('Unknown lighting preset: '+name);
+  return sanitize(LIGHTING_PRESETS[name],current);
 }
 export function fromURL(search) {
   const q = new URLSearchParams(search);

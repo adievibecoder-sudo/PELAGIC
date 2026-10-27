@@ -1,4 +1,4 @@
-import {sanitize,RANGES} from './settings.js';
+import {sanitize,RANGES,lightingPreset} from './settings.js';
 
 export const WEATHER_KEYS=['clouds','veil','haze','rain','cloudDepth','cloudType','windSpeed','windDir'];
 export const SEA_KEYS=['windSpeed','windDir','fetchKm','swellHs','swellDir','swellLength'];
@@ -59,6 +59,16 @@ export function commandEnvironment(s,patch,{instant=false,weatherOnly=false}={})
   for(const [k,v]of Object.entries(map))if(k in patch)s.front[v]=p[k];
   if('frontWidth' in patch)s.front.width=p.frontWidth*500;
   if(instant){s.weather=copy(s.target);s.sea.windSpeed=s.target.windSpeed;s.sea.windDir=s.target.windDir;s.sea.fetchKm=s.fetchTarget;Object.assign(s.sea,s.swellTarget);}
+  s.revision++;
+}
+
+export function previewLighting(s,settings,name){
+  const next=lightingPreset(name,settings);
+  if(next.astronomy){
+    s.utcEpoch=Date.parse(next.date+'T00:00:00Z')+next.hour*3600000;
+    s.clocks.astronomy=0;
+  }
+  Object.assign(settings,next);
   s.revision++;
 }
 
