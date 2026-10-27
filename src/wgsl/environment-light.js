@@ -2,7 +2,8 @@ import {replaceShader} from './shader-patch.js';
 import {CLOUD_LIGHT_PATH} from './cloud-light-path.js';
 
 export function environmentLightShader(code,query){
-  const marine=query.get('abEnvironment')==='marine';
+  const diffusion=query.get('abEnvironment')==='marine-diffuse';
+  const marine=diffusion||query.get('abEnvironment')==='marine';
   if(!marine&&query.get('abEnvironment')!=='coupled')return code;
   if(code.includes('fn cloudDensityFiltered(')){
     code=replaceShader(code,'  let cover=clamp(coverage+(weather.a-0.5)*3.2+(cell.a-0.5)*0.65,0.0,1.0);',`  // An overcast storm must approach closed coverage. The old fixed-amplitude
@@ -55,6 +56,20 @@ fn cloudLayers(`);
         diffuseEscape=mix(diffuseEscape,stormDiffuseTransmission(p,sigma),stormLighting);
       }
       let light=ambient*diffuseEscape+sun*(direct+multi)+lunar;`);
+    if(diffusion){
+      // Direct beam attenuation follows the slanted Sun path. After scattering,
+      // diffuse transport follows the cloud column, not that same beam path.
+      code=replaceShader(code,'      let direct=exp(-optical)*phase;',`      var columnEscape=1.0;
+      if(stormLighting>0.001){columnEscape=stormDiffuseTransmission(p,sigma);}
+      let direct=exp(-optical)*phase;`);
+      code=replaceShader(code,'      let light=ambient*diffuseEscape+sun*(direct+multi)+lunar;',`      let diffuseSolar=max(F.sunDir.y,0.0)*(1.0-exp(-optical))*columnEscape/PI;
+      let scattered=mix(multi,diffuseSolar,stormLighting);
+      let light=ambient*diffuseEscape+sun*(direct+scattered)+lunar;`);
+      code=replaceShader(code,'          lunar=sampleTrans(radius,moonMu)*F.celestial.x*(exp(-moonOptical)*moonPhase+moonMulti);',`          let diffuseMoon=max(F.moonDir.y,0.0)*(1.0-exp(-moonOptical))*columnEscape/PI;
+          lunar=sampleTrans(radius,moonMu)*F.celestial.x*(exp(-moonOptical)*moonPhase+mix(moonMulti,diffuseMoon,stormLighting));`);
+      code=replaceShader(code,'diffuseEscape=mix(diffuseEscape,stormDiffuseTransmission(p,sigma),stormLighting);',
+        'diffuseEscape=mix(diffuseEscape,columnEscape,stormLighting);');
+    }
   }
   if(code.includes('fn reflectedEnvironment(')){
     // The near-sea haze sees cloud-covered radiance, not the clear-sky LUT

@@ -23,7 +23,7 @@ export function foamTransportShader(code,query){
     residualCoverage*(1.0-activeCoverage)*rr+activeCoverage*residualCoverage*together;
   let foamAlb=vec3f(1);
 `);
-  if(['handoff','population'].includes(query.get('abBreaking'))){
+  if(['handoff','population','phase-field'].includes(query.get('abBreaking'))){
     // The event field controls occupied area. Fresh patches retain their slab
     // thickness instead of becoming transparent again as coverage decreases.
     code=replaceShader(code,'let activeTau=5.0*freshK*bubbleThickness;',

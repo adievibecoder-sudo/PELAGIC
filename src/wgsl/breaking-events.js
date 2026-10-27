@@ -12,7 +12,7 @@ fn emissionProbability(referenceProbability:f32,dt:f32)->f32 {
 }
 `;
 export function breakingEventsShader(code,query) {
-  const population=query.get('abBreaking')==='population';
+  const population=['population','phase-field'].includes(query.get('abBreaking'));
   const handoff=query.get('abBreaking')==='handoff'||population;
   const mode=handoff?'gravity':query.get('maBreaking');
   if(!['events','onset','fold','crest','gravity'].includes(mode))return code;

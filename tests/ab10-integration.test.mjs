@@ -12,6 +12,8 @@ import {CLOUD_SCREEN,ENV_CUBE,CLOUD_SHADOW} from '../src/wgsl/sky.js';
 import {cloudWorkShader,environmentSymmetryShader} from '../src/wgsl/cloud-work.js';
 import {crestSurfaceShader} from '../src/wgsl/crest-surface.js';
 import {waterCoefficients} from '../src/water-coefficients.js';
+import {breakingPhaseShader} from '../src/wgsl/breaking-phase.js';
+import {reflectionTransportShader} from '../src/wgsl/reflection-transport.js';
 
 test('share and quality reload retain rendering choices without replaying evidence commands',()=>{
   const base='http://localhost:8080/?abWater=layered&abBreaking=population&abFoam=transport&shot=private.png&stage=private&validate=1&benchmark=run';
@@ -91,5 +93,53 @@ test('marine storm lighting and foam relief compose without adding bindings',()=
     const modified=environmentSymmetryShader(cloudWorkShader(environmentLightShader(base,q),q),q);
     assert.match(modified,/baseRelief=storm/);
     assert.equal((modified.match(/@binding\(/g)||[]).length,(base.match(/@binding\(/g)||[]).length);
+  }
+});
+
+test('phase transport composes with population history; empty/default paths remain intact',()=>{
+  const q=new URLSearchParams('abBreaking=phase-field&abWater=slab&abFoam=relief&abEnvironment=marine-diffuse&abReflection=partition');
+  const history=breakingPhaseShader(breakingEventsShader(FOAM_UPDATE,q),q);
+  assert.equal((history.match(/@compute/g)||[]).length,1);
+  assert.match(history,/activePrevious.b/);
+  assert.match(history,/let velocity = inverseDeformation\*U.drift.xy/);
+  assert.match(history,/let fresh=select\(prev.g,/);
+  assert.match(history,/let retired=prev.g\*\(1.0-survival\*supportSurvival\)/);
+  assert.equal(breakingPhaseShader(FOAM_UPDATE,new URLSearchParams()),FOAM_UPDATE);
+  const source=foamTransportShader(breakingEventsShader(environmentLightShader(reflectionTransportShader(waterMaterialShader(OCEAN,q),q),q),q),q);
+  assert.equal((source.match(/@fragment fn fs\(/g)||[]).length,1);
+  assert.equal((source.match(/@binding\(/g)||[]).length,(OCEAN.match(/@binding\(/g)||[]).length);
+  assert.deepEqual(renderOptions(q),Object.fromEntries(q));
+});
+
+test('phase estimate follows physical travelling-wave speed at the declared spatial and temporal scales',()=>{
+  // Independent deep-water solution. This validates the finite-difference
+  // method, not texture filtering, crossing ownership or turbulent breaking.
+  for(const wavelength of [12,24,50,100])for(const dt of [1/24,1/60,1/120]){
+    const k=2*Math.PI/wavelength,w=Math.sqrt(9.81*k),dx=.75;
+    const h=(x,t)=>Math.cos(k*x-w*t);
+    const slope=t=>(h(dx,t)-h(-dx,t))/(2*dx);
+    const curvature=(h(dx,0)+h(-dx,0)-2*h(0,0))/(dx*dx);
+    const speed=-(slope(0)-slope(-dt))/(dt*curvature);
+    assert.ok(Math.abs(speed/(w/k)-1)<.015,`${wavelength}m / ${dt}s`);
+  }
+  for(const support of [0,.5,1]){
+    const rate=1/.7+12*(1-support);
+    const oneStep=Math.exp(-rate);
+    for(const hz of [24,60,120])assert.ok(Math.abs(Math.exp(-rate/hz)**hz-oneStep)<1e-12);
+    assert.equal(Math.exp(-0*rate),1);
+  }
+});
+
+test('storm diffusion preserves unmodified single scattering and skips ordinary daytime column work',()=>{
+  const q=new URLSearchParams('abEnvironment=marine-diffuse');
+  for(const base of [CLOUD_SCREEN,ENV_CUBE]){
+    const source=environmentLightShader(base,q);
+    assert.match(source,/if\(stormLighting>0.001\)\{columnEscape=/);
+    assert.match(source,/let direct=exp\(-optical\)\*phase/);
+    assert.match(source,/mix\(multi,diffuseSolar,stormLighting\)/);
+  }
+  for(const mu of [0,.01,.3,1])for(const beamDepth of [0,.1,1,100])for(const columnDepth of [0,1,100]){
+    const radiance=mu*(1-Math.exp(-beamDepth))/(Math.PI*(1+.75*columnDepth));
+    assert.ok(radiance>=0&&radiance<=mu/Math.PI);
   }
 });

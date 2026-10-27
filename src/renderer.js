@@ -48,6 +48,8 @@ import {orderOceanNodes} from './ocean-order.js';
 import {roughnessUniforms} from './wind-roughness.js';
 import {waterTransportShader} from './wgsl/water-transport.js';
 import {waterMaterialShader} from './wgsl/water-material.js';
+import {reflectionTransportShader} from './wgsl/reflection-transport.js';
+import {breakingPhaseShader} from './wgsl/breaking-phase.js';
 import {displayTransformShader} from './wgsl/display-transform.js';
 import {environmentLightShader} from './wgsl/environment-light.js';
 import {finiteGlintsShader} from './wgsl/finite-glints.js';
@@ -180,11 +182,13 @@ async function main() {
     code=finiteGlintsShader(code,qs);
     code=footprintOpticsShader(code,qs);
     code=waterMaterialShader(code,qs);
+    code=reflectionTransportShader(code,qs);
     code=displayTransformShader(code,qs);
     code=environmentLightShader(code,qs);
     code=cloudTransportShader(code,qs);
     code=cloudAmbientShader(code,qs);
     code=breakingEventsShader(code,qs);
+    code=breakingPhaseShader(code,qs);
     code=foamTransportShader(code,qs);
     code=particleMotionShader(code,qs);
     code=whitewaterShader(code,qs);
@@ -488,7 +492,7 @@ async function main() {
   const lensPipe=await computePipe(LENS_MEDIUM,'near-plane surface inversion');
   const bgLens=bg(lensPipe,[{buffer:frameUBO},fullArr(dispTex),fullArr(derivTex),samplerSim,{buffer:probeOut},lensMedium.createView()]);
   // Coupled marine fog uses envCube; its shader no longer references skyLUT.
-  const oceanSkyView=['coupled','marine'].includes(qs.get('abEnvironment'))?null:skyView;
+  const oceanSkyView=['coupled','marine','marine-diffuse'].includes(qs.get('abEnvironment'))?null:skyView;
   const bgOcean = [0, 1].map((i) => bg(oceanPipe, [{ buffer: frameUBO }, transView, oceanSkyView, sampClamp,
     fullArr(dispTex), fullArr(derivTex), fullArr(momTex), foamTex.createView(), envCubeView, sampRepeat,
     fullArr(foamW[i]), shadowView,{buffer:probeOut},irradianceView,waveShadow.createView(),lensMedium.createView(),waveHeight.createView(),...(crestSurface?[{buffer:crestSurfaceBuf}]:[])], 'ocean' + i));
