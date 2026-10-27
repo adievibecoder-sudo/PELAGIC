@@ -423,3 +423,18 @@ Computer Use session through another driver. Use a fresh capture run name;
 confirm on-disk completion and current page state before navigating. Finish
 calm/moon regression, then several-second phase transport and a materially new
 water-light intervention. B1/B2/A+B remain open; no default promotion, C or release.
+
+#### Late capture completion (supersedes the missing-regression statements above)
+
+The already-running `phase-regress-01` lab completed calm24 and moon24 while
+browser control remained stopped; no browser action restarted or navigated it.
+Their records identify5bd729e and pass finite/nonnegative HDR, spectral and
+zero-error checks. All48 frames inspected as consecutive480px-wide timecoded
+sheets at30.000-30.958s: calm has smoothly moving small swells and silver glitter,
+without a visible whitewater blanket; moonlight has dim moving slopes beneath
+visible clouds, but the sea remains almost black. Calm regression PARTIAL;
+night visibility target still FAIL. No lifetime, crossing, control-UI or
+performance acceptance. `review-03/late-regression.json` retains provenance.
+Next action no longer repeats calm/moon: recover supported Chrome, validate
+Light only/control behaviour, then longer crossing/storm phase evidence and
+the unresolved directional water-light path. All six status rows remain valid.
