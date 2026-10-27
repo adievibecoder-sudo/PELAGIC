@@ -1,0 +1,79 @@
+{
+  "status": "experimental; motion unverified",
+  "cpuTests": {
+    "passed": 25,
+    "failed": 0
+  },
+  "captures": [
+    {
+      "path": "evidence\\v04-ma-ab4-ab10-integrated-02\\day-near-reference.json",
+      "time": 30.000000000007958,
+      "errors": [],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      },
+      "width": 1920,
+      "height": 1080,
+      "sourceChangesAfterCapture": [
+        "src/render-options.js"
+      ]
+    },
+    {
+      "path": "evidence\\v04-ma-ab4-ab10-integrated-02\\gold-near-reference.json",
+      "time": 30.000000000007958,
+      "errors": [],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      },
+      "width": 1920,
+      "height": 1080,
+      "sourceChangesAfterCapture": [
+        "src/render-options.js"
+      ]
+    },
+    {
+      "path": "evidence\\v04-ma-ab4-ab10-integrated-02\\storm-near-reference.json",
+      "time": 30.000000000007958,
+      "errors": [],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      },
+      "width": 1920,
+      "height": 1080,
+      "sourceChangesAfterCapture": [
+        "src/render-options.js"
+      ]
+    },
+    {
+      "path": "evidence\\v04-ma-ab4-ab10-integrated-02\\storm30-high-reference.json",
+      "time": 30.000000000007958,
+      "errors": [],
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": null
+      },
+      "width": 1920,
+      "height": 1080,
+      "sourceChangesAfterCapture": [
+        "src/render-options.js"
+      ]
+    }
+  ],
+  "inspection": "Four revised t30 stills inspected at full image resolution. No revised motion captured; no matched performance claim. Only render-options validation changed after these captures.",
+  "blocker": "Computer Use stopped: current browser URL could not be verified as allowed."
+}
