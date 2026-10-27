@@ -13,8 +13,33 @@ fn waterDiffuseAlbedo(absorption:vec3f,backscatter:vec3f)->vec3f {
 }
 `;
 
+export const WATER_LAYER = /* wgsl */`
+struct WaterLayer { reflection:vec3f, transmission:vec3f };
+fn waterFiniteLayer(absorption:vec3f,reduced:vec3f,depth:f32)->WaterLayer {
+  let rate=sqrt(absorption*(absorption+2.0*reduced));
+  let infinite=reduced/max(absorption+reduced+rate,vec3f(1e-8));
+  let attenuation=exp(-rate*depth);
+  let denominator=max(vec3f(1)-infinite*infinite*attenuation*attenuation,vec3f(1e-6));
+  let conservativeT=1.0/(1.0+reduced*depth);
+  return WaterLayer(select(infinite*(1.0-attenuation*attenuation)/denominator,1.0-conservativeT,absorption<vec3f(1e-8)),
+    select((1.0-infinite*infinite)*attenuation/denominator,conservativeT,absorption<vec3f(1e-8)));
+}
+fn waterLayerReflectance(absorption:vec3f,reduced:vec3f,bubbles:f32,depth:f32)->vec3f {
+  let deep=reduced/max(absorption+reduced+sqrt(absorption*(absorption+2.0*reduced)),vec3f(1e-8));
+  let layer=waterFiniteLayer(absorption,reduced+vec3f(bubbles),depth);
+  return layer.reflection+layer.transmission*layer.transmission*deep/
+    max(vec3f(1)-layer.reflection*deep,vec3f(1e-6));
+}
+fn waterEscapedRadiance(reflectance:vec3f,irradiance:vec3f)->vec3f {
+  // Diffuse internal Fresnel follows reciprocity with air-side mean F=.066.
+  // Sum returned diffuse flux before the final view-dependent interface exit.
+  let internalF=1.0-(1.0-.066)/(1.333*1.333);
+  return reflectance*irradiance/(PI*1.333*1.333*(vec3f(1)-reflectance*internalF));
+}
+`;
+
 export function waterMaterialShader(code,query){
-  if(!['body','layered'].includes(query.get('abWater'))||!code.includes('fn reflectedEnvironment('))return code;
+  if(!['body','layered','volume','slab'].includes(query.get('abWater'))||!code.includes('fn reflectedEnvironment('))return code;
   code=replaceShader(code,'fn reflectedEnvironment(',WATER_BODY+'fn reflectedEnvironment(');
   code=replaceShader(code,'  let downwelling=diffuseUp*0.94+sunE*max(Ld.y,0.0)*(1.0-fresnelWater(Ld.y))+moonE*max(F.moonDir.y,0.0)*(1.0-fresnelWater(F.moonDir.y));',/* wgsl */`
   // Volume photons integrate over metres. Use the same filtered displacement
@@ -42,7 +67,7 @@ export function waterMaterialShader(code,query){
     moonE*muMoon*(1.0-fresnelWater(muMoon));`);
   code=replaceShader(code,'  var body=subsurfaceReflectance*downwelling/(1.333*1.333);',
     '  var body=waterDiffuseAlbedo(aWater,bb)*downwelling/(PI*1.333*1.333);');
-  if(query.get('abWater')==='layered'){
+  if(['layered','volume'].includes(query.get('abWater'))){
     code=replaceShader(code,'  body += exp(-(aWater + bb*12.0)*crestPath) * sunE * k1 * 0.035;',/* wgsl */`
   // A finite aerated shoulder transmits light from the opposite flank. Its
   // optical path follows resolved gravity strain, never capillary compression.
@@ -66,6 +91,35 @@ export function waterMaterialShader(code,query){
     waterParticleScatter(bb)*(1.0-WATER_PARTICLE_G)+vec3f(.35*aeration));
   let bubbleBody=bubbleAlbedo*downwelling/(PI*1.333*1.333);
   body=mix(body,max(body,bubbleBody),aeration);`);
+  }
+  if(query.get('abWater')==='volume'){
+    code=replaceShader(code,'  let shoulder=smoothstep(.06,.30,gravityCompression);',
+      '  let shoulder=smoothstep(.015,.16,gravityCompression);');
+    code=replaceShader(code,'  body+=transmitted;',`  // Bounded crest-volume art direction: a reduced-scattering shoulder under
+  // a finite absorbing water path. This is not a simulated bubble population.
+  let reduced=waterMolecularScatter(bb)+waterParticleScatter(bb)*(1.0-WATER_PARTICLE_G);
+  let shoulderAlbedo=waterTransportAlbedo(aWater,reduced+vec3f(.18*shoulder));
+  let shoulderLight=volumeSky*.94+entryLight*max(Ld.y,.12)*waveT.x;
+  let shoulderBody=shoulderAlbedo*exp(-aWater*2.0)*shoulderLight/(PI*1.333*1.333);
+  body=mix(body,max(body,shoulderBody),shoulder)+transmitted;`);
+  }
+  if(query.get('abWater')==='slab'){
+    code=replaceShader(code,'fn reflectedEnvironment(',WATER_LAYER+'fn reflectedEnvironment(');
+    code=replaceShader(code,'  var body=waterDiffuseAlbedo(aWater,bb)*downwelling/(PI*1.333*1.333);',`  let reducedScatter=waterMolecularScatter(bb)+waterParticleScatter(bb)*(1.0-WATER_PARTICLE_G);
+  // The deep substrate retains the ocean backscatter closure. A diffuse
+  // two-flux infinite medium overestimates weak, forward-scattering water.
+  let deepReflectance=clamp(PI*subsurfaceReflectance,vec3f(0),vec3f(1));
+  var body=waterEscapedRadiance(deepReflectance,downwelling);`);
+    code=replaceShader(code,'  body += exp(-(aWater + bb*12.0)*crestPath) * sunE * k1 * 0.035;',
+      '  // Finite aerated-layer transport below replaces additive crest glow.');
+    code=replaceShader(code,'  body += exp(-aWater*0.65)*downwelling/PI*aeration*0.075;',`  let gravityCompression=-.5*(volumeStrain.x+volumeStrain.y-
+    length(vec2f(volumeStrain.x-volumeStrain.y,2.0*volumeStrain.z)))/max(F.windP[1].y,.1);
+  let shoulder=smoothstep(.12,.40,gravityCompression);
+  let bubbleStrength=clamp(.35*shoulder+aeration,0.0,1.0);
+  let bubbleLayer=waterFiniteLayer(aWater,reducedScatter+vec3f(.8*bubbleStrength),bubbleStrength*(.8+.4*bubbleStrength));
+  let layeredReflectance=bubbleLayer.reflection+bubbleLayer.transmission*bubbleLayer.transmission*deepReflectance/
+    max(vec3f(1)-bubbleLayer.reflection*deepReflectance,vec3f(1e-6));
+  body=waterEscapedRadiance(layeredReflectance,downwelling);`);
   }
   return code;
 }

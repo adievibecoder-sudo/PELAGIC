@@ -14,6 +14,7 @@ import { lunarLight, twilightExposure } from './celestial-light.js';
 import {localOrigin,cascadeOrigin,foamPatternOrigin,FRAME_BYTES,FRAME_FLOATS,FOAM_BYTES} from './spatial-origin.js';
 import { runtimeInput, validCamera } from './runtime-input.js';
 import {renderOptions,sameRenderOptions} from './render-options.js';
+import {waterCoefficients} from './water-coefficients.js';
 import { PARTICLE_COUNT, PARTICLE_UPDATE, PARTICLE_RENDER, particleMotionShader } from './wgsl/particles.js';
 import { spectralReadback } from '../tests/spectral-readback.js';
 import { foamReadback } from '../tests/foam-readback.js';
@@ -487,7 +488,7 @@ async function main() {
   const lensPipe=await computePipe(LENS_MEDIUM,'near-plane surface inversion');
   const bgLens=bg(lensPipe,[{buffer:frameUBO},fullArr(dispTex),fullArr(derivTex),samplerSim,{buffer:probeOut},lensMedium.createView()]);
   // Coupled marine fog uses envCube; its shader no longer references skyLUT.
-  const oceanSkyView=qs.get('abEnvironment')==='coupled'?null:skyView;
+  const oceanSkyView=['coupled','marine'].includes(qs.get('abEnvironment'))?null:skyView;
   const bgOcean = [0, 1].map((i) => bg(oceanPipe, [{ buffer: frameUBO }, transView, oceanSkyView, sampClamp,
     fullArr(dispTex), fullArr(derivTex), fullArr(momTex), foamTex.createView(), envCubeView, sampRepeat,
     fullArr(foamW[i]), shadowView,{buffer:probeOut},irradianceView,waveShadow.createView(),lensMedium.createView(),waveHeight.createView(),...(crestSurface?[{buffer:crestSurfaceBuf}]:[])], 'ocean' + i));
@@ -856,8 +857,7 @@ async function main() {
     f[68] = P.exposure; f[69] = P.bloom; f[70] = frameIndex; f[71] = P.debug || DBG;
     f[72] = weather.haze; f[73] = Math.max(cam.y, 10) * 0.001; f[74] = weather.veil; f[75] = 0.9;
     // Three-band absorption/backscatter proxies and declared unresolved slope variance.
-    const absorption=[0.340+0.015*P.turbidity,0.0565+0.025*P.turbidity,0.00922+0.065*P.turbidity];
-    const backscatter=[0.0007+0.006*P.turbidity,0.001+0.008*P.turbidity,0.0015+0.010*P.turbidity];
+    const {absorption,backscatter}=waterCoefficients(P.turbidity,P.dissolvedAbsorption,P.mineralScattering);
     for(let i=0;i<3;i++) {f[76+i]=0.33*backscatter[i]/(absorption[i]+backscatter[i]);f[96+i]=absorption[i];f[100+i]=backscatter[i];}
     f[79] = 0.00005; // declared residual molecular-scale floor, not a Cox-Munk target
     const surfaceDrift=0.03*P.windSpeed;

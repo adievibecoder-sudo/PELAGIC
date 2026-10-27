@@ -2,7 +2,7 @@ import {renderOptions} from './render-options.js';
 
 export const DEFAULTS = Object.freeze({
   windSpeed: 7, windDir: 118, fetchKm: 90, swellHs: 1.8, swellDir: 94,
-  swellLength: 120, swellSpread: 48, choppy: 1.12, turbidity: 0.25, foam: 1,
+  swellLength: 120, swellSpread: 48, choppy: 1.12, turbidity: 0.25, dissolvedAbsorption: 0, mineralScattering: 0, foam: 1,
   sunElev: 8, sunAzim: 4, exposure: 1.2, haze: 1.8, clouds: 0.32, veil: 0.14,
   bloom: 0.045, spray: 0.6, rain: 0, cloudDepth: 1.5, cloudType: 0,
   seed: 1307, quality: 'Balanced', resolution: 1, adaptive: true,
@@ -15,7 +15,7 @@ export const DEFAULTS = Object.freeze({
 
 export const RANGES = Object.freeze({
   windSpeed:[0.3,30],windDir:[0,360],fetchKm:[5,800],swellHs:[0,10],swellDir:[0,360],
-  swellLength:[25,500],swellSpread:[2,100],choppy:[0,1.6],turbidity:[0,2],foam:[0,3],
+  swellLength:[25,500],swellSpread:[2,100],choppy:[0,1.6],turbidity:[0,2],dissolvedAbsorption:[0,1],mineralScattering:[0,3],foam:[0,3],
   sunElev:[-30,89],sunAzim:[-180,180],exposure:[0.02,24],haze:[0.5,15],clouds:[0,1],veil:[0,1],
   bloom:[0,0.25],spray:[0,3],rain:[0,1],cloudDepth:[0.3,5],cloudType:[0,2],
   seed:[1,16777215],resolution:[0.5,1.5],timeScale:[0,20],weatherRate:[1,3600],

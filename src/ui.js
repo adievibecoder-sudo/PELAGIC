@@ -14,6 +14,8 @@ const descriptions={
   weatherRate:'Advances weather evolution and cloud advection. Does not accelerate the astronomical clock.',
   rain:'Rain potential under sufficiently dense clouds. Clear sky does not produce rain.',
   exposure:'Camera brightness multiplier, combined with twilight adaptation.',
+  dissolvedAbsorption:'Additional coloured dissolved matter absorption at 450 nm, in inverse metres. Absorbs blue light more strongly without adding scattering.',
+  mineralScattering:'Scattering at 550 nm from weakly absorbing suspended minerals, in inverse metres. Independent of dissolved absorption; higher values reduce underwater visibility.',
   sunElev:'Manual solar angle above the horizon. Disable astronomical light to edit.',
   sunAzim:'Manual solar direction. Disable astronomical light to edit.',
   frontWidth:'Width of the moving regional weather cell; enabled separately above.',
@@ -29,7 +31,7 @@ const groups=[
  ['choppy','Crest sharpness','',.01],['foam','Whitewater','',.05],['spray','Spindrift','',.05],
  ['currentSpeed','Surface current','m/s',.01],['currentDir','Current direction','deg',1],['seaRate','Sea development speed','x',1]]],
  ['Water & light',[
- ['turbidity','Particles & dissolved matter','',.01],['sunElev','Sun elevation','deg',.1],['sunAzim','Sun azimuth','deg',1],['exposure','Exposure','x',.01],['bloom','Lens bloom','',.005]]],
+ ['turbidity','Organic turbidity','',.01],['dissolvedAbsorption','Dissolved absorption (450 nm)','1/m',.005],['mineralScattering','Mineral scattering (550 nm)','1/m',.01],['sunElev','Sun elevation','deg',.1],['sunAzim','Sun azimuth','deg',1],['exposure','Exposure','x',.01],['bloom','Lens bloom','',.005]]],
  ['Atmosphere',[
  ['clouds','Cloud coverage','',.01],['cloudDepth','Cloud depth','km',.05],['veil','High ice cloud','',.01],['haze','Aerosol density','',.1],['rain','Rainfall','',.01],['weatherRate','Weather time compression','x',1],['frontWidth','Regional front width','km',1],['frontSpeed','Regional front speed','m/s',1]]],
  ['Time & place',[

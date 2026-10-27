@@ -6,6 +6,7 @@ import {verifyCoupling} from './tests/coupling-gpu.js';
 import {verifyWaveVisibility} from './tests/visibility-gpu.js';
 import {verifyLensMedium} from './tests/lens-gpu.js';
 import {verifyCoordinates} from './tests/coordinates-gpu.js';
+import {verifyWaterLayer} from './tests/water-layer-gpu.js';
 const out=document.querySelector('#results');
 try{
  if(!navigator.gpu)throw Error('WebGPU unavailable. No fallback.');
@@ -18,7 +19,9 @@ try{
  report.waveVisibility=await verifyWaveVisibility(device);
  report.lensMedium=await verifyLensMedium(device);
  report.coordinates=await verifyCoordinates(device);
+ if(new URLSearchParams(location.search).has('waterLayer'))report.waterLayer=await verifyWaterLayer(device);
  report.status=errors.length===0&&[report.irradiance,report.coupling,report.waveVisibility,report.lensMedium,report.coordinates].every(x=>x.status==='PASS')?'PASS':'FAIL';
+ if(report.waterLayer?.status==='FAIL')report.status='FAIL';
  out.textContent=JSON.stringify(report,null,2);document.title='OPTICS '+report.status;
  const stage=new URLSearchParams(location.search).get('stage')||'v03-local';
  await fetch('/__evidence?stage='+encodeURIComponent(stage)+'&name=gpu-optics.json',{method:'POST',body:out.textContent});device.destroy();
