@@ -1,0 +1,4229 @@
+{
+  "scope": "Existing consecutive captures; no new browser rendering or performance measurement",
+  "groups": [
+    {
+      "run": "diffuse-01",
+      "scene": "storm-near",
+      "baselineRun": "final-01",
+      "sourceManifest": "a976e7d055ac7cff931490397e59d8b050e567dedfcf5342d1d9c5334cea48a9",
+      "sourceFiles": [
+        {
+          "file": "ab-review.html",
+          "sha256": "ceecbc694396b4ddcf0be36cb41d0f9e705fbd75343723e1e1d4b30fea4f8e36"
+        },
+        {
+          "file": "ab10-review.html",
+          "sha256": "6d998115fab0c01ba37190436f660fc86b2095a559a3a9d1d6bd351b220f6284"
+        },
+        {
+          "file": "ab2-review.html",
+          "sha256": "1e7a5ce4a0d5e2058beba1176b5970e1ab7b7f1eaa65cc46125e8acbc33950c4"
+        },
+        {
+          "file": "ab3-review.html",
+          "sha256": "3672cd44ab073f1b50e676f5c849df03d4ac3fbe4e90716faf2971ace7b31c51"
+        },
+        {
+          "file": "ab4-lab.html",
+          "sha256": "6b7703f86fcf4d393ec6cf32d4518d2d5212ea23ae57f50d2ac8d30f68bdfdee"
+        },
+        {
+          "file": "ab4-review.html",
+          "sha256": "9c16e2b9f805b5bf98885d3be97434715cabffb0b3e045422b8d44845f43dee1"
+        },
+        {
+          "file": "ab5-review.html",
+          "sha256": "1655610d3fe7096f275f9069943facbed5a6309d57bf880eba1061db84607713"
+        },
+        {
+          "file": "ab6-review.html",
+          "sha256": "b6f4d944a0bf720aff2149f7c18ed8a3a579c6a3a623b69282a0c4213760ffe5"
+        },
+        {
+          "file": "ab8-review.html",
+          "sha256": "67c12d9ecdf4a9fdf2b371aea0d093617d90b6b6ba1b00ab9ab2c5693edee2c4"
+        },
+        {
+          "file": "ab9-review.html",
+          "sha256": "d9ff0d9fdbdb40a41d8cdbb24a373572639b1145f85fa0dbe6d81631d9832090"
+        },
+        {
+          "file": "appearance-tests.html",
+          "sha256": "94626b1e952cf94d54378a353e5325e5f28cc87dcd6e5abd87483c20cf9fd2f6"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/ORIGINAL-README.txt",
+          "sha256": "f79dddd6295fb9126027f03e32f69f0c14b9485725fdd663600a84f8371b44c0"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/density.r16f",
+          "sha256": "de6b21ad09686f1f0c6fd060213ab202fe375c9f15d46def99a6b7d262a750ca"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/metadata.json",
+          "sha256": "364740e6e13e835bf1f378dfbf5cbf68956fca847ec48d5e44a1b2d0498caae9"
+        },
+        {
+          "file": "dynamics.html",
+          "sha256": "51a28203fb90902ec049b7a2dd0fd5791dbc8042bec0643e6d4b1bc984f43238"
+        },
+        {
+          "file": "ensemble.html",
+          "sha256": "18c36227377f39d14c8ce6c9b728ac159fa34a6445d4ab01a5b3fcb971256ef8"
+        },
+        {
+          "file": "environment-tests.html",
+          "sha256": "e1d9c63c4cf00c1b09bb775a80ce8fdc29edce6d033158d925316715fc86b282"
+        },
+        {
+          "file": "gallery.html",
+          "sha256": "a717cbd34a57b97db470b7f21db3f07b384497d3d591ab973e584697ce59a725"
+        },
+        {
+          "file": "index.html",
+          "sha256": "077c3842373f50e058f953cc9a6393caeae1cd45e851666c710b5e28a1711025"
+        },
+        {
+          "file": "lab.html",
+          "sha256": "1dc677003c241cd4cd48dc14316852e54cf76951dd5f4ce1707942694cdc93bd"
+        },
+        {
+          "file": "matrix.html",
+          "sha256": "d5a7733712a90487e12525d724dfafb097aec52200a9a96bf36a874f8705e2c6"
+        },
+        {
+          "file": "milestone-a-review.html",
+          "sha256": "ea8c27d3710325f4ed2da2051415aee7ff7a0c545ab83af7c6c79c0a009040af"
+        },
+        {
+          "file": "milestone-a-waves-review.html",
+          "sha256": "c2e460e41ca081ca17f3b0a649161edc3fe9095576a0061352de6f06303d22ff"
+        },
+        {
+          "file": "milestone-a.html",
+          "sha256": "96bdf74592a6ac039b9e4e611f66b4ff444804d46a3ea249a808db23365d4c6e"
+        },
+        {
+          "file": "motion.html",
+          "sha256": "81b4b81dfdcf67e5e27e006ad10d526d5616c8aceead7258601ea8f6d733290f"
+        },
+        {
+          "file": "optics.html",
+          "sha256": "1fce820ada487062cf1da0a729453a7fae74a5324d3f9853738e4c20d0d194d1"
+        },
+        {
+          "file": "phase0-review.html",
+          "sha256": "77a45c55b2722b8d523346e116edb1d4f8c43dc0178145de08324dea3c97c378"
+        },
+        {
+          "file": "phase0.html",
+          "sha256": "c0b8023a95762da8370fc85ed605706a18dce043e4f77325cb3718bda231cd8d"
+        },
+        {
+          "file": "phase1-benchmark.html",
+          "sha256": "59ccd68d38599e91f82a1ddfb4a7df8623acba2d7d8eb9d56bed29997fec9d1a"
+        },
+        {
+          "file": "phase1-light.html",
+          "sha256": "f730abb4485f45b9c08f0e656349242961792301a760cf4ee7a1d5c441d57f2f"
+        },
+        {
+          "file": "phase1-motion-review.html",
+          "sha256": "697b255303a775df14e2296f7b754181f3f72cca7c9b177684027fe8f60e8f58"
+        },
+        {
+          "file": "phase1-review.html",
+          "sha256": "52e491dcfba25adc0d04551cebccf3d91dbafe2c4e1ccdb19dec1b40b7864926"
+        },
+        {
+          "file": "phase1.html",
+          "sha256": "135d3b188bc24e516cfb49440a179144db9bcd386104f61a30027a3f1f25e4c9"
+        },
+        {
+          "file": "reference-motion.html",
+          "sha256": "dc029686b696f6f846334189d31cf3664ba72b61021a5f3847d82ccb81f37799"
+        },
+        {
+          "file": "review-03.html",
+          "sha256": "9a232b4b3fe3bc56db051d1283b28c991717760e488360fad2ef26b43f378251"
+        },
+        {
+          "file": "server.mjs",
+          "sha256": "5cf3653eff37f95e5c8134eb2a418f26c7f4f9546555ec3107a626032ef753dd"
+        },
+        {
+          "file": "shader-audit-tests.html",
+          "sha256": "a44278e2ae48d1e221b896f1a3266f4087d2d6f7b9dac25edf9cd4e75f1a26be"
+        },
+        {
+          "file": "src/astronomy.js",
+          "sha256": "d8bec68ab1b0beb1014b5b8ae1b929fad103b244fd9b1c4881a72f1c6551c009"
+        },
+        {
+          "file": "src/celestial-light.js",
+          "sha256": "8fb00527413062c0a43188fad9c08df7007bbcc78c20257cb561cf88b52a0112"
+        },
+        {
+          "file": "src/cloud-volume-control.js",
+          "sha256": "290deec52c69fed965df3f989bc0db8353f4801830adad5cc60cc96073eb01b0"
+        },
+        {
+          "file": "src/environment.js",
+          "sha256": "1399188ac3bffd4ec57d0720b853b2ec9b7f9dc07b210a11f8b1dd4bb1cf3214"
+        },
+        {
+          "file": "src/foam-pattern.js",
+          "sha256": "f79bf8be59cff58b2a8ac7b71ad61eae873c77751d3a687fc35fac5f73be24ef"
+        },
+        {
+          "file": "src/glint-correlation.js",
+          "sha256": "3dcefc3ac82f7a10ea05bd93683799bdb6972eda60322c3af8268a8f1a1194cc"
+        },
+        {
+          "file": "src/gpu-ledger.js",
+          "sha256": "b0e929bffedae71fe47d4de1671edc3d6ad6b523ae3676d36ea23136ccf6c68c"
+        },
+        {
+          "file": "src/numerics.js",
+          "sha256": "a1bdb5e8c2c4346db412b461aa74885b70668c9e7f889f8f6c297a8aa775ab7e"
+        },
+        {
+          "file": "src/ocean-contracts.js",
+          "sha256": "9040a4c36ff563a5d836c3252660dc41087a6faaa2ba66308e2722339e248ccc"
+        },
+        {
+          "file": "src/ocean-order.js",
+          "sha256": "dde289b060fd0b021bc928d8b6cae5965140eea28f9503273fc34e46ddecfa4f"
+        },
+        {
+          "file": "src/render-options.js",
+          "sha256": "b06d438bdf37e51314b5cf84cfcc0bd3a2812bb5e36384013840154a8d6de27a"
+        },
+        {
+          "file": "src/renderer.js",
+          "sha256": "54728f21c347e985366333041e5429b13683e907993945bf4522e71ab57ae7b5"
+        },
+        {
+          "file": "src/runtime-input.js",
+          "sha256": "9e71659fad92b35ee05760bd85d25b231af2beaabed6cbeaa788c09efa8859a0"
+        },
+        {
+          "file": "src/sea-spectrum.js",
+          "sha256": "5f526c1eb6387be9064bd549ed2379ad32588bd4d9ea36156a83bad4faf9d422"
+        },
+        {
+          "file": "src/settings.js",
+          "sha256": "b575d0c1d8d6d4e4d529dcd164ccdf665bdc4ef6fb7dffef888d710337d962e6"
+        },
+        {
+          "file": "src/spatial-origin.js",
+          "sha256": "a7a6add81d7d21a73cd836aa74305d04a260efe4ff62c9f6ec4a9b7945cda2b2"
+        },
+        {
+          "file": "src/taa.js",
+          "sha256": "d67f9adfe83263f73e7668d9a7c1df5ea392cda34b48e2a3ced9bdeb0e8e0729"
+        },
+        {
+          "file": "src/temporal-camera.js",
+          "sha256": "b3e36560742418e647b6abfe6605b4c8e49167b0509d6408de4f6ea8193292f0"
+        },
+        {
+          "file": "src/ui.js",
+          "sha256": "a8abd6af7d9fe09c62a5687bbc0495c7667436a7bbc291a8f6c5be328f3c1390"
+        },
+        {
+          "file": "src/water-coefficients.js",
+          "sha256": "f3c526c65145d7d7d6e863daed460fc950e4a77ab5373fad612e81521594ba7b"
+        },
+        {
+          "file": "src/wgsl/breaking-events.js",
+          "sha256": "76eba02d02253604aaafb1d7e0e2b90657c5d7b3d5ef299ed345d8ade8cd9c55"
+        },
+        {
+          "file": "src/wgsl/cloud-ambient.js",
+          "sha256": "1b28c59f69ee67d02a7e1e0d1f64492d8a2ac6b567677144c5d514532dfd0c69"
+        },
+        {
+          "file": "src/wgsl/cloud-bank.js",
+          "sha256": "2ecb417a8d2a60db7467e56e29835cd58410dc520deca77e583785be2f85e2b7"
+        },
+        {
+          "file": "src/wgsl/cloud-condensate.js",
+          "sha256": "164bf5f8f870352d6b451e5b629dc80f9e9c21f30a69a96b723b34792ea9a4d5"
+        },
+        {
+          "file": "src/wgsl/cloud-convection.js",
+          "sha256": "7fc81a6c69b0ce6ca44a789aa063a6179f1d252ea24d5461fd00390f74460471"
+        },
+        {
+          "file": "src/wgsl/cloud-light-path.js",
+          "sha256": "d423e43bcbaf8c06c46cc655e55d2abd33e3b8bf05543dee75be153d9a51b3de"
+        },
+        {
+          "file": "src/wgsl/cloud-noise.js",
+          "sha256": "99d0ed409fe836805975a0b394ae22db5b8b2ebbb5c208c76393c3d5db387ef6"
+        },
+        {
+          "file": "src/wgsl/cloud-plumes.js",
+          "sha256": "1b48572e712885f55aa0838889b121a4e774d3223bc5bd69a52cdbcaeddae6dc"
+        },
+        {
+          "file": "src/wgsl/cloud-shadow.js",
+          "sha256": "701f3a66bc5248506113a44fd7ddff7db8a1fe1fe0a736553a40b4fa6c1addf3"
+        },
+        {
+          "file": "src/wgsl/cloud-transport.js",
+          "sha256": "4dcc00148ac7de3a4bf2afa00274994054366598be9dba217aef3f0952f62052"
+        },
+        {
+          "file": "src/wgsl/cloud-volume-control.js",
+          "sha256": "d4303f87165c850f40d76a9517c65061d25836ae529c5f829545ce139f1c9688"
+        },
+        {
+          "file": "src/wgsl/cloud-work.js",
+          "sha256": "ef2f5cf95199b814c72052d304af31414727e4c100de6185898ca0400ea350fb"
+        },
+        {
+          "file": "src/wgsl/clouds.js",
+          "sha256": "f2d853b834be0bfaf91762427fa1273a32b04ae6de4d3d0f55163160f16b9142"
+        },
+        {
+          "file": "src/wgsl/common.js",
+          "sha256": "7caf0e8f830c874241bb828a37f07fef2ae879e80c2a2625babc0967794fbd12"
+        },
+        {
+          "file": "src/wgsl/coordinates.js",
+          "sha256": "cbe1808c797aaf9532b6ff94baa752a19c6cb912777026ccd70547914447c53e"
+        },
+        {
+          "file": "src/wgsl/coupling.js",
+          "sha256": "bc90ba50e98f903d358713cc3f02617b2bcb09274cfc4b576ac8ff8aab86a9e6"
+        },
+        {
+          "file": "src/wgsl/crest-sheet.js",
+          "sha256": "f59e4baec2eae0b182c7dc1ef3f111801f72ed0b946751cffec3650d31773297"
+        },
+        {
+          "file": "src/wgsl/crest-support.js",
+          "sha256": "25ebacf0f0c1badba15435ebd96f6083ab7aaa89cf8c378e9ee5029ee09799b9"
+        },
+        {
+          "file": "src/wgsl/crest-surface.js",
+          "sha256": "012a66ecc8121e5cd3804c0358fd2356a97d77992d9d8989f4f3ae92016bcde9"
+        },
+        {
+          "file": "src/wgsl/crest-whitewater.js",
+          "sha256": "577b5f456c8e85127327af524f9efbc2f70a765b032db839bec766404a47a495"
+        },
+        {
+          "file": "src/wgsl/cube-filter.js",
+          "sha256": "ef80bcd94f1ceeb1ee0f251040a4e67075e6be196be00f34839a29e7e4b8b5cd"
+        },
+        {
+          "file": "src/wgsl/display-transform.js",
+          "sha256": "1475f4052762d422ba3be87eb77ff6af2164d8ff26799e3b1c25e61a262de311"
+        },
+        {
+          "file": "src/wgsl/environment-light.js",
+          "sha256": "dfcb0cd4afbf57aff444c3c2f79af79332252b2d156b34893ba887bc2eeb2d05"
+        },
+        {
+          "file": "src/wgsl/environment.js",
+          "sha256": "c51d50511622d857d0e02461b4269af7777518d20a080b7906a82f94fcc61def"
+        },
+        {
+          "file": "src/wgsl/finite-glints.js",
+          "sha256": "d064c82c8f481b01f1f83f9df97b6f238aeabe26f1e726773ebbc50bcd59e4e1"
+        },
+        {
+          "file": "src/wgsl/foam-transport.js",
+          "sha256": "4b51f28d37a492198bf9148b28bd5d594232b78718b6015aadf7c9d691d46385"
+        },
+        {
+          "file": "src/wgsl/footprint-optics.js",
+          "sha256": "e0e439431b2f7415bbae2549e34b8b6ea1a5118d6ac854b9957be220f3920951"
+        },
+        {
+          "file": "src/wgsl/immersion.js",
+          "sha256": "4dba3127c4f28701cc845f259aa9538095c97c78d77a6514629a89451a112761"
+        },
+        {
+          "file": "src/wgsl/irradiance.js",
+          "sha256": "f296385d1d84d3042cc7dc2d7759a771b9d9d6125a75be3fd86b933c4f4b2639"
+        },
+        {
+          "file": "src/wgsl/lens-medium.js",
+          "sha256": "9c25cb450aa5129c85e523637bd10958ac467f6be9e8b308e6d7bb4a9df960f1"
+        },
+        {
+          "file": "src/wgsl/ocean.js",
+          "sha256": "51926c1b345e4d1d25e07043f914ccd7a1f037a3db4ca38492b97419ccbefa0b"
+        },
+        {
+          "file": "src/wgsl/particles.js",
+          "sha256": "1953e1dc904ffc9e17ac7e24764ea92ee43ac2ecb6069d68c5450353ddd8ea7f"
+        },
+        {
+          "file": "src/wgsl/post.js",
+          "sha256": "8bd6eb2e65f2c9e5c85263a692da0188c50e94c68437c8445965d6e17c045df9"
+        },
+        {
+          "file": "src/wgsl/reflection-transport.js",
+          "sha256": "7a3795b283a44ca3262d1bd6803b6da11198f65bf6e0d3ac5149c8571b6cbd42"
+        },
+        {
+          "file": "src/wgsl/shader-patch.js",
+          "sha256": "1e92ac3e817424085a124f89865663e809c27c0a56c86ef296f353d674ae9ccf"
+        },
+        {
+          "file": "src/wgsl/sim.js",
+          "sha256": "088221138ffae1b0aec2e7ca5a877a8d667a2c5b9a5974417f3d92fb34748781"
+        },
+        {
+          "file": "src/wgsl/sky.js",
+          "sha256": "c84855f6880f3c0839ec5bf771c30f10706cc9209807ce211eab16384631287a"
+        },
+        {
+          "file": "src/wgsl/slope-precision.js",
+          "sha256": "b35780df2ffa40cbc3a364c7e60c923e76ffb108a72faa2d7d7d71b54b2d43e9"
+        },
+        {
+          "file": "src/wgsl/sun-disc.js",
+          "sha256": "6e8989b497043bdbf8684859186efd15ac87c9db9f521f873a9254eebecaa3a3"
+        },
+        {
+          "file": "src/wgsl/taa.js",
+          "sha256": "2a1c55fec200936599e50ce7ea437279bc19141ac7e64a3dd70d822eaa158828"
+        },
+        {
+          "file": "src/wgsl/water-material.js",
+          "sha256": "aec2706ad03ac6658f5b4df9498e361e39db8a243287ece229abed737eb4dd96"
+        },
+        {
+          "file": "src/wgsl/water-optics.js",
+          "sha256": "d0329f9871bdd03b8feb6ad039bf692469d9197fbe2d72cc28c1987510ae934f"
+        },
+        {
+          "file": "src/wgsl/water-transport.js",
+          "sha256": "d2d237cc27f763287b530c9be8b65edcd915208e9abfe0b72f1b067b5a0ed380"
+        },
+        {
+          "file": "src/wgsl/wave-visibility.js",
+          "sha256": "8a59b274de5bffc7dc6dafaca13260aec529f5cc5e15b6da9d2f0e48535d1dd8"
+        },
+        {
+          "file": "src/wgsl/whitewater.js",
+          "sha256": "bf788d275a8b31ecd462eb3e039678efb09a51a9e3fcd11fbe3fd2b45a8caf87"
+        },
+        {
+          "file": "src/wgsl/wind-roughness.js",
+          "sha256": "89361d84d891a510d714939a5ffaba416cfa61d991cd0af6f97807ec6cf37c68"
+        },
+        {
+          "file": "src/wind-roughness.js",
+          "sha256": "f31119f9cb79e5c96efb763349db057214ab6175ad5994e4f5b66e328e36a68c"
+        },
+        {
+          "file": "temporal-tests.html",
+          "sha256": "f564ae8c589e6fd795dfe5a15373de4a6cb1e09cf89ce611fa305ff0f80eca4d"
+        },
+        {
+          "file": "tests.html",
+          "sha256": "91e401a51eb5a35c8eb54c5443f5192ed3e3abbfcf383e1cb8aecfc78df7118a"
+        },
+        {
+          "file": "tests/ab10-integration.test.mjs",
+          "sha256": "bf674219d8a46941798a60f07ca8542c89edd2991faa9315a9e09e29fbd9fb38"
+        },
+        {
+          "file": "tests/appearance-gpu.js",
+          "sha256": "44fe2e596179690eceee716bb7ce49b510d7e36620a95aa26f89c5544c047902"
+        },
+        {
+          "file": "tests/celestial-light.test.mjs",
+          "sha256": "e54cbe66c71a52882fa549bdfa22d6a6f6c78e861ec0a77eaaa23b8abe784ca6"
+        },
+        {
+          "file": "tests/cloud-appearance-shaders.js",
+          "sha256": "795e86294cd582a2c5b9679ead0f1609388a6421b0a60df30dcb1453a93bba58"
+        },
+        {
+          "file": "tests/cloud-appearance.test.mjs",
+          "sha256": "0e2d1426887d51aec5e4cae93ea9dfa16596a7badb70df54eefe885de1f1b7f7"
+        },
+        {
+          "file": "tests/cloud-condensate.test.mjs",
+          "sha256": "c1ee48ee849a9c71f2ac82c2622bbedac32dbeda25093ec119ab49aaeb7b605a"
+        },
+        {
+          "file": "tests/cloud-convection-readback.js",
+          "sha256": "81987fee83dc12c8b1ffa85c29408b8b4b1e896e890dc114d6e829fda259e5f5"
+        },
+        {
+          "file": "tests/cloud-convection.test.mjs",
+          "sha256": "50f4c2bca31454b567e981a0205fd338b29fbee52fc9a96e35376441fa504f6f"
+        },
+        {
+          "file": "tests/cloud-light-path-readback.js",
+          "sha256": "f6bb223b97af71d9c171fe1483d9b51c93aa5b609646fd4e265313db93b9af94"
+        },
+        {
+          "file": "tests/cloud-light-path.test.mjs",
+          "sha256": "edce1fa083521373d9c335e67b437a528178dc542ce2a404161500972ea24850"
+        },
+        {
+          "file": "tests/cloud-shadow-diagnostic.js",
+          "sha256": "8743410b84a4616b21f843a5ab9f85d805c819ada309ea8a7d306a65022a0ef4"
+        },
+        {
+          "file": "tests/cloud-shadow-readback.js",
+          "sha256": "7a58a09b6083b29a35b7de3522817bcc3fc9f2dd255f137ee03a4ee722a9e335"
+        },
+        {
+          "file": "tests/cloud-view-readback.js",
+          "sha256": "6434cf8db7c3556a442f036bcb9c251eac190ef6ea20165eb2dc36dd71ac7022"
+        },
+        {
+          "file": "tests/cloud-volume-control.test.mjs",
+          "sha256": "5dcfb45d3284ab4349f69459ed0a0163e0e921f1df002090ec0a319808383b37"
+        },
+        {
+          "file": "tests/cloud-work-readback.js",
+          "sha256": "c66eb58473e5398a83908cd7a408bf5572cf27577a8d5cc00c27fea46177e357"
+        },
+        {
+          "file": "tests/cloud-work.test.mjs",
+          "sha256": "765fa68975e86b9b7f11f64afe50919961386bf19fa72a44b9a3195075dc87f9"
+        },
+        {
+          "file": "tests/contracts.test.mjs",
+          "sha256": "f3da56b718f9ab970b334b9603a6c982612cb25954ef3e7ed445d47124eb1108"
+        },
+        {
+          "file": "tests/coordinates-gpu.js",
+          "sha256": "15fe7e0d9c4e1fc3262ed6c60b83ead08f32d3640973e6faa58cc5666043be23"
+        },
+        {
+          "file": "tests/coupling-gpu.js",
+          "sha256": "94d449b80579ebd08012eb2ad3522423acf5a08b394069404dc2be671d5b6ffe"
+        },
+        {
+          "file": "tests/crest-sheet.test.mjs",
+          "sha256": "69099a27cb4029faec7ad6bd8bf1f86bf04f5b4194f50febd38e8d0920e729db"
+        },
+        {
+          "file": "tests/crest-support-readback.js",
+          "sha256": "3898861c5d22ff7f2ef51d4fa9b5241aa8eb8129bdbff8266e878a28c5ebc9e3"
+        },
+        {
+          "file": "tests/crest-surface-readback.js",
+          "sha256": "2daa670ef54246beb61533c76a1e082ec0815712e6714b31308bc1d01820750c"
+        },
+        {
+          "file": "tests/crest-whitewater.test.mjs",
+          "sha256": "dfd1654c9a49b8ea63b2cabac53fd2806dbf45012d297bec2aaced9cad935c95"
+        },
+        {
+          "file": "tests/cube-mips-gpu.js",
+          "sha256": "15486dffce228e59b42428676de2649c46848f2dc646ca953b95b43532263929"
+        },
+        {
+          "file": "tests/deformed-slope-readback.js",
+          "sha256": "d57c5ccc8497264482cc965d1f13b6413489961302b1dda46f6ce9d9ea801a33"
+        },
+        {
+          "file": "tests/dynamics.js",
+          "sha256": "f8ed46514b217516692e9dd8bfa0edb3ab0db0c7d61ac8b7bffcd1ce57ecf9b1"
+        },
+        {
+          "file": "tests/ensemble.js",
+          "sha256": "2b7598201001f65262d5e951eac7b2c95e0986abb7679f5ff6511f870febb1d9"
+        },
+        {
+          "file": "tests/environment-controls.test.mjs",
+          "sha256": "ae7340e044dd589fdf01f40eca153c4cb39ce1fa23596d99f63618c42dbca9c4"
+        },
+        {
+          "file": "tests/environment-gpu.js",
+          "sha256": "ee42f2b33883efc7b8e825d351b3485685b4a217925163cdecb51c6f061ec4a8"
+        },
+        {
+          "file": "tests/environment.test.mjs",
+          "sha256": "f008c34b7f7d6ab0d3cf3b4687a716653414417eb80d8287a8991a96140eaae9"
+        },
+        {
+          "file": "tests/evidence.test.mjs",
+          "sha256": "2ae67b6769d8e1ff051885169db92f3388947610ccc19529cf3c995b828e9648"
+        },
+        {
+          "file": "tests/foam-readback.js",
+          "sha256": "b21398149d9472aeb31d7649421369913b5e03293df8e73dbe6b4ed31caf288f"
+        },
+        {
+          "file": "tests/gpu.js",
+          "sha256": "10468e0c01dfe6599847ff89ef976886741064488aab7f9a08150472bfe20256"
+        },
+        {
+          "file": "tests/hdr-readback.js",
+          "sha256": "3a4d5f3db04dfded8c239caeab2ce0131b37198afb99f6401801b383d6131f5a"
+        },
+        {
+          "file": "tests/inversion-readback.js",
+          "sha256": "456498f81db73fd50663ac1bd86d1d35533583ce8f01aaa62a12ee6e6c5ee080"
+        },
+        {
+          "file": "tests/irradiance-gpu.js",
+          "sha256": "2a0c62a511eae99edff7b170067ab2edd53d9347eb33cc8676e62dc5e4137b53"
+        },
+        {
+          "file": "tests/lens-gpu.js",
+          "sha256": "81f4c991bd1e8835779c1a5437a8c728388836c6466fd7b7ffcedc3aafe8e247"
+        },
+        {
+          "file": "tests/long-grid-study.mjs",
+          "sha256": "e09ff8cd428a304c7422a6641f6b39cafe3a750120e4f969760f48b5503c44b4"
+        },
+        {
+          "file": "tests/long-grid.test.mjs",
+          "sha256": "1093ac89f88fb365ed98c466a194c5ae154a00e3865804e417e6549a068443c0"
+        },
+        {
+          "file": "tests/milestone-a-manifest.mjs",
+          "sha256": "7d187aeb49cdcdb3f70eb2d76d3ee404e50c8e56965cdd4068dfeb79ddfc041b"
+        },
+        {
+          "file": "tests/milestone-a-publication.mjs",
+          "sha256": "1657057ecca00eb3b9b0e06353f2041636c429ab884b4f9c74eb8b1ca21da3f7"
+        },
+        {
+          "file": "tests/milestone-a-wave-shaders.js",
+          "sha256": "c190fdb3ff4b00eb0428b098c5389ed5d9b7d708e13ab123e02df9a3ec888796"
+        },
+        {
+          "file": "tests/milestone-a-wave.test.mjs",
+          "sha256": "0fcb404b32dd3d256399bb7ddf561d54d0c54a31ebaadbaf8d4735b69cf9864f"
+        },
+        {
+          "file": "tests/numerics.test.mjs",
+          "sha256": "ea351a2883ec392fad55bdb93fc0a56c12f63e6d0a2531637dd769c3fc9d7192"
+        },
+        {
+          "file": "tests/ocean-order.test.mjs",
+          "sha256": "2aaaa8fabe6c9c47dcb863889a47f5d661e7babb7105e8789c012c5f9da9df59"
+        },
+        {
+          "file": "tests/optics.test.mjs",
+          "sha256": "78ede7d0532d1add0b2ff1cb551cceae58498df66086a7e7c8cb545a8a4a8e8e"
+        },
+        {
+          "file": "tests/phase0-crest.mjs",
+          "sha256": "261446c3d2ff013d0c645f0a3f6cfd3ff7b5e8f65816e792c1af43dfed1369dc"
+        },
+        {
+          "file": "tests/phase0-manifest.mjs",
+          "sha256": "6d099326540b1b26f6e3846347980615219557ad7560beb74ef1cb74ea4d6819"
+        },
+        {
+          "file": "tests/phase0-optics.mjs",
+          "sha256": "b7d0f8a3cfb5992ae2326c13485ab759593341aff98bdec5a9407ed6927a47fe"
+        },
+        {
+          "file": "tests/phase0-readback.js",
+          "sha256": "f1f867692fa70a760ac61de7e1d19471158aa929d84984321fe839735a5a497b"
+        },
+        {
+          "file": "tests/phase0-science.mjs",
+          "sha256": "e404eb0bfe4b77a9d2cea5926c92879358a736edf0bfff137346e7813210207a"
+        },
+        {
+          "file": "tests/phase0-shaders.js",
+          "sha256": "a66d3df9ea1d50ba1a7c7e3e426458e321d9e12de4e268bbb393deb7e73e10c9"
+        },
+        {
+          "file": "tests/phase0.test.mjs",
+          "sha256": "5eff9a94200e3f603c028916787114e949e0353b1191ec73bd928c09e297d7b8"
+        },
+        {
+          "file": "tests/phase1-field-experiment.mjs",
+          "sha256": "96a912e3898d8e63c1ecf56d4c35ad8df9b4b172ef49acbe33eadf50756497f2"
+        },
+        {
+          "file": "tests/phase1-inventory.mjs",
+          "sha256": "3e6d17341f3308731823d4f9b301bc5d8a053dc6f4426da22e6c10b4bb08a480"
+        },
+        {
+          "file": "tests/phase1-light-readback.js",
+          "sha256": "7596345afc2d3916aa1dfe9938a247c9e9237c0b14fc2f4ffe272bbebbb4fe00"
+        },
+        {
+          "file": "tests/phase1-publication.mjs",
+          "sha256": "566bd225d34653f18e779b2514d06f2937edab7c6275afb199f28f33e0b5d1b6"
+        },
+        {
+          "file": "tests/runtime.test.mjs",
+          "sha256": "a1d4e74c7d7bb18a49aee37c4ae9e22b7c185ca245ef070b6d016c746c39373e"
+        },
+        {
+          "file": "tests/scene-preset.test.mjs",
+          "sha256": "04a9ba381a39404210d78e1524d931b58387d8dee47564427981143a749db8f1"
+        },
+        {
+          "file": "tests/sea-spectrum.test.mjs",
+          "sha256": "bfde7381fae9a05e01f2965ade67d909d49a3250f7d95dc789850397a468eead"
+        },
+        {
+          "file": "tests/shader-audit-gpu.js",
+          "sha256": "261bacc77ff2bca4e7cde0b82a8de608adfcfbc46b65671e9811e0e9ff598475"
+        },
+        {
+          "file": "tests/shader-corrections.test.mjs",
+          "sha256": "d0b0088816f103c69abd33f2d6b3f5f4c7edd3e71460a5618f305ea88a534464"
+        },
+        {
+          "file": "tests/slope-precision-readback.js",
+          "sha256": "0026b2781e33f5cb7048ca756dd7364307bd2b1f6eb7ca63b0e8a1301cee75df"
+        },
+        {
+          "file": "tests/slope-precision-reference.js",
+          "sha256": "c375da0851f0dc17a07238a6aeb0876ac6165c3d11af03fb0f2b060d80730bb7"
+        },
+        {
+          "file": "tests/slope-readback.js",
+          "sha256": "0e233db0982dd7524d9186f270b0dfb1882472131d5d80c279d92d3e3194b614"
+        },
+        {
+          "file": "tests/spatial-origin.test.mjs",
+          "sha256": "c905a023aebc8fb4dfaa2181a9568ad75f41539a1d8722dc61df085943d5a6c8"
+        },
+        {
+          "file": "tests/spectral-readback.js",
+          "sha256": "b5eecdaa3dbb83c3071b8d0d744ed09e35cd7c10524c562a1d39bb9733b63ff4"
+        },
+        {
+          "file": "tests/temporal-gpu.js",
+          "sha256": "8f613cb0eea54a70eafcdf2301f84eec74db86633140511aa380783e5d82076d"
+        },
+        {
+          "file": "tests/temporal.test.mjs",
+          "sha256": "91282bcc6207b948ad6529bb22d446c0dcdeb3e932457548b2234b5b31837fc8"
+        },
+        {
+          "file": "tests/texture-readback.js",
+          "sha256": "7c57732c938930d07aa28baa99235f95d4ea5afdc648895428564f9bda95f34c"
+        },
+        {
+          "file": "tests/visibility-gpu.js",
+          "sha256": "76530af8c213c0218081a306b372e42344de8873c4e32c41cdf4052af4e4f851"
+        },
+        {
+          "file": "tests/visible-slopes.test.mjs",
+          "sha256": "c46d9c28282c7819cc43b9135ad588de83dae784fefc66b3a3091df1e9ad888c"
+        },
+        {
+          "file": "tests/water-layer-gpu.js",
+          "sha256": "79cd906c6edae2b4c963c8b82d01f880d7c1167c2cc424f65dba5aeecacf68a2"
+        },
+        {
+          "file": "tests/water-transport.test.mjs",
+          "sha256": "842354906809db1af5217d7d7d8736cfd0302f349e2bd55e9548dabecebca089"
+        },
+        {
+          "file": "tests/webgpu-hardware-probe.html",
+          "sha256": "048c6ada5c67c19b25c36f5fad7b5a481fb0b961301f1369dacf88701a572f42"
+        },
+        {
+          "file": "tests/whitewater-readback.js",
+          "sha256": "6c1d9d3f857eff2312c2241f6be0ca29bbbb717381941e7f6bee712f3b8dcc05"
+        },
+        {
+          "file": "tests/whitewater.test.mjs",
+          "sha256": "08f97ca57a11e835b3aad7e8602cbff702c8e344dbf70a2f9f30a93a395bda52"
+        },
+        {
+          "file": "tests/wind-roughness.test.mjs",
+          "sha256": "3ddb3d0f82243744b1be1f38f55f8d3ee4c3ff528c62e3efb35ea45ddfda071e"
+        },
+        {
+          "file": "tools/analyze-ab-checkpoint.mjs",
+          "sha256": "fb6f4e1b38150f16ddeda27d4e96d375b96e1528a6a675c535bfb7c46f58c212"
+        },
+        {
+          "file": "tools/evidence-store.mjs",
+          "sha256": "10a1fd89543850ba9977d57e35fcaab60d9b75a8fa93d2c60705ba7f2e8cda0f"
+        },
+        {
+          "file": "tools/recover-ab3.mjs",
+          "sha256": "557df6f673d332bf71aa5bc9c4304454f491f929fd3ccab59f20b1876bea9f21"
+        }
+      ],
+      "settings": {
+        "windSpeed": 20,
+        "windDir": 118,
+        "fetchKm": 250,
+        "swellHs": 3.4,
+        "swellDir": 94,
+        "swellLength": 200,
+        "swellSpread": 48,
+        "choppy": 1.12,
+        "turbidity": 0.25,
+        "dissolvedAbsorption": 0.07,
+        "mineralScattering": 0.3,
+        "foam": 1,
+        "sunElev": 18,
+        "sunAzim": 4,
+        "exposure": 1.4,
+        "haze": 7,
+        "clouds": 0.92,
+        "veil": 0.8,
+        "bloom": 0.045,
+        "spray": 1.5,
+        "rain": 0.65,
+        "cloudDepth": 3.5,
+        "cloudType": 2,
+        "seed": 1307,
+        "quality": "High",
+        "resolution": 1,
+        "adaptive": false,
+        "timeScale": 1,
+        "weatherRate": 1,
+        "seaRate": 1,
+        "astronomyRate": 0,
+        "environmentMode": "natural",
+        "frontEnabled": false,
+        "frontX": 18000,
+        "frontZ": 0,
+        "frontWidth": 20,
+        "frontHeading": 180,
+        "frontSpeed": 12,
+        "electrified": false,
+        "paused": false,
+        "cameraMode": "free",
+        "astronomy": false,
+        "date": "2026-10-25",
+        "hour": 17,
+        "latitude": 32,
+        "longitude": -30,
+        "debug": 0,
+        "currentSpeed": 0.12,
+        "currentDir": 35,
+        "cameraSpeed": 6,
+        "fov": 58
+      },
+      "camera": {
+        "x": 0,
+        "y": 8,
+        "z": 0,
+        "yaw": 1.3788101090755203,
+        "pitch": -0.17453292519943295,
+        "fovY": 1.0122909661567112,
+        "speed": 6
+      },
+      "query": {
+        "preset": "storm",
+        "ma": "1",
+        "cam": "0,8,0,79,-10",
+        "cameraMode": "free",
+        "quality": "High",
+        "resolution": "1",
+        "w": "1920",
+        "h": "1080",
+        "seed": "1307",
+        "t": "20",
+        "frames": "240",
+        "ui": "0",
+        "adaptive": "0",
+        "stage": "v04-ma-ab4-ab10-diffuse-01",
+        "validate": "1",
+        "p0": "1",
+        "p0Profile": "1",
+        "weatherRate": "1",
+        "seaRate": "1",
+        "seq": "24",
+        "captureStep": "0.0416666666667",
+        "abWater": "slab",
+        "dissolvedAbsorption": "0.07",
+        "mineralScattering": "0.3",
+        "abDisplay": "linear",
+        "abEnvironment": "marine-diffuse",
+        "abBreaking": "population",
+        "abFoam": "relief",
+        "abRain": "velocity",
+        "shot": "storm-near-reference.png"
+      },
+      "frames": [
+        {
+          "frame": 0,
+          "time": 30.000000000007958,
+          "metadataSHA256": "9a15cfd8a60cfda5e3a09c6867a5760df661daaa12d8f82476daa20b7b50dea1",
+          "pngSHA256": "efdde8eb3528663f93ff8cc57dee6e6a6070de54f8dfb6709877903e9d78e22a"
+        },
+        {
+          "frame": 1,
+          "time": 30.041666666674658,
+          "metadataSHA256": "52e66fc2b34ff35b5c01d024cab73386e2e7eefdad57e44b9af2a729aff85cf2",
+          "pngSHA256": "5aa1ea84f638c7df0971ecf6c331c3027e06e8d73e54d6aecdca5d4eeaa8b4f5"
+        },
+        {
+          "frame": 2,
+          "time": 30.083333333341358,
+          "metadataSHA256": "c3f01f020b717df911ad064a5e6637e69ed9d7c89477661ceba140a842d67b4c",
+          "pngSHA256": "80e1e6e0bf003c2886a6df6f87f163fd0bc0595e9011b803d301e0fd6037d0a4"
+        },
+        {
+          "frame": 3,
+          "time": 30.125000000008058,
+          "metadataSHA256": "2d09f1cf2472a0393e973ac90a6fdf25bf28397d8a0759a003835a2ca84eccab",
+          "pngSHA256": "192c04f29c3cc0ae7e1209df331207208a6a8822a0a6e63d5c868a642559fac7"
+        },
+        {
+          "frame": 4,
+          "time": 30.166666666674757,
+          "metadataSHA256": "74f67bfe5fd8340879827457fcceea8cdce0cb19827b6cf5af343f7a2b8cbf5c",
+          "pngSHA256": "434542e496b7c605499053785d578e36643d6926c89d4c800f15b992e509f616"
+        },
+        {
+          "frame": 5,
+          "time": 30.208333333341457,
+          "metadataSHA256": "cf7dd0a29129d9f6aa879b237ce9b490ed9387fcae78c0b10fae3bcacbf7b3eb",
+          "pngSHA256": "ee0d213cb6ad92e5580536ffeb61a56c12bb4505f597f64e5554a97669e1dd29"
+        },
+        {
+          "frame": 6,
+          "time": 30.250000000008157,
+          "metadataSHA256": "4c94e46ec4a3502eb2f08d94a1f777385951503d2acef0ae12e903cb93580415",
+          "pngSHA256": "d0df4de48a7f670f98d2e3f1227932435ac6a911a3bf55688f701d26c240f801"
+        },
+        {
+          "frame": 7,
+          "time": 30.291666666674857,
+          "metadataSHA256": "4d7e5eef55408edfaf5eebb2971b41955af1af7a0d7c643558274f82611ec9c8",
+          "pngSHA256": "37d01a4aa85875b3eb6f189f8102be18e0991f2da42266440264e860aa3f520e"
+        },
+        {
+          "frame": 8,
+          "time": 30.333333333341557,
+          "metadataSHA256": "02c49b5d7ed619c42ad0df83048d07610e38d75a9ad386a0327180b00136f007",
+          "pngSHA256": "3a4eedf8ddf7e80ab78e524b01c37cf53611d1241362d14bb7637f87dcb8a2ce"
+        },
+        {
+          "frame": 9,
+          "time": 30.375000000008257,
+          "metadataSHA256": "ce61fd1bab3ce24a7ed9267328e3e06fccf7118391642ef29c15bfde260686d2",
+          "pngSHA256": "c37285e201d0538aa079ef134d5ddf65375767bbd5324be71659c71c14812172"
+        },
+        {
+          "frame": 10,
+          "time": 30.416666666674956,
+          "metadataSHA256": "47e63812401d3d114b77a5bd118c836b56d7ef42a65af75fc6437d586da90e28",
+          "pngSHA256": "37bc63b788ec5dd4ae1da8818d38615aa673f1f7083c09af241d4d7d1b38a675"
+        },
+        {
+          "frame": 11,
+          "time": 30.458333333341656,
+          "metadataSHA256": "e32e6e8a64003847036b07b29ce435ae9bf257beb3625db2893e193a6935965f",
+          "pngSHA256": "191403fa0e42147e811890396e25bfc0dd75a93e96be0d63477588d4e569bed1"
+        },
+        {
+          "frame": 12,
+          "time": 30.500000000008356,
+          "metadataSHA256": "7b011bfa5614545423a7f164847fee36eb1b84d9e5c7c57a7c04485a87c09a7e",
+          "pngSHA256": "87e58e7f462346a4ea6e1bc5961aead5bb2c771e57d205cf5c38df2edeb6ecd8"
+        },
+        {
+          "frame": 13,
+          "time": 30.541666666675056,
+          "metadataSHA256": "941dc07ba58e1b1e66a1b6eeb8a10fbe66d1570f2919b024013f8239c105888b",
+          "pngSHA256": "bbf5f8dd938a3363eb61c3233da3a0654315875e251cc9c91abcdc91b8209fb1"
+        },
+        {
+          "frame": 14,
+          "time": 30.583333333341756,
+          "metadataSHA256": "c55b6553f47bd908c29b59749ebdebbe61afc665a872f291f129d4f56b3b3bba",
+          "pngSHA256": "aeb00acdaff5c89a76448e414d32536fa1a8cec5d8a10e45f004fa493c7e6baa"
+        },
+        {
+          "frame": 15,
+          "time": 30.625000000008455,
+          "metadataSHA256": "1b162c2c475c52f5c140e68b127e86a24b8dda400763d48c09eaf08799737f69",
+          "pngSHA256": "5117ce7c8c8acb0b3d0c26c59a153ab6c5d6c086c522d0c0dfcf27ab046dbbb7"
+        },
+        {
+          "frame": 16,
+          "time": 30.666666666675155,
+          "metadataSHA256": "4b9783caabe40599d0fc91146146463e872f81f46f54dd461da8d73fb624ff6a",
+          "pngSHA256": "c8f00de9cdaadab2ec5614848011d0d3dd8b60491a3482c977d07f3b14b9445b"
+        },
+        {
+          "frame": 17,
+          "time": 30.708333333341855,
+          "metadataSHA256": "cb0ab06ae457e7888e43c196a54a53edcc54ac50b71da1d4af306ebc932e00e5",
+          "pngSHA256": "b07a3ff9b6a74348108ba7b8892c0ff42ab4f8087b95615aab5f8338be4bc3c1"
+        },
+        {
+          "frame": 18,
+          "time": 30.750000000008555,
+          "metadataSHA256": "d942f733d92e756611317560e98f66d3d3db695f2818ef12a2bfd1ff07ba730d",
+          "pngSHA256": "3f0c2d8152801e8139ec2d55245607f62f354e8e56570401a550dab3c4c22638"
+        },
+        {
+          "frame": 19,
+          "time": 30.791666666675255,
+          "metadataSHA256": "cb80b2ee79aadbf5d441a6fd607f6a0e5c227ff89587f50a6db7f197c8447dd2",
+          "pngSHA256": "02e2f69cf772f39371eca9fab4c256b1d88519fbdde5c266363408e905f54d74"
+        },
+        {
+          "frame": 20,
+          "time": 30.833333333341955,
+          "metadataSHA256": "eaef8e958174547c67f52d27b5b06e0ba1cc54a6dcf89d028b0a02b786a8d4b5",
+          "pngSHA256": "d107201a34b703fc06291a5977779c78ee0a7faeb0254a4e86df3e1e18c82f0d"
+        },
+        {
+          "frame": 21,
+          "time": 30.875000000008654,
+          "metadataSHA256": "28bf8a89dc262f576071bad0b29a0831a3421eb1feb8ca0624fd21c1927c655a",
+          "pngSHA256": "819dd355b1f12db7551112c9e546645a8595147d9d52fd8ce96cbf7811fbe269"
+        },
+        {
+          "frame": 22,
+          "time": 30.916666666675354,
+          "metadataSHA256": "f05d924941d7a9c07822acc58138cf70e0ede9bd7f1bceea216c9cd31a131c32",
+          "pngSHA256": "9fc588d0bb2510129e15876f827ccbb13c9f2178f6fc68b4beb5b1e396aff222"
+        },
+        {
+          "frame": 23,
+          "time": 30.958333333342054,
+          "metadataSHA256": "8142b671c8afbad598c6f201ecbbbe2dc0cc3ba9bce81b9e646f3bde62f63c5c",
+          "pngSHA256": "437b0c9dcbd9fbe5ee8d0497ff1702bf6262abf08b9bf1864221fe0bd737cb26"
+        }
+      ],
+      "nativeHDRAndSpectrum": "24/24 PASS",
+      "video": {
+        "path": "evidence/v04-ma-ab4-ab10-diffuse-01/storm-near-reference.webm",
+        "sha256": "bf5430cc002f017516a56aa569a2ee635dc411838108aef728496d7c94b6dacf",
+        "decodedRGBMatchesAllPNGFrames": true,
+        "frames": 24
+      }
+    },
+    {
+      "run": "phase-01",
+      "scene": "storm-near",
+      "baselineRun": "diffuse-01",
+      "sourceManifest": "676ffac7582a3ca1e6f4fd7c25382f944513466bb5ba8e06dc73b6b234a693e4",
+      "sourceFiles": [
+        {
+          "file": "ab-review.html",
+          "sha256": "ceecbc694396b4ddcf0be36cb41d0f9e705fbd75343723e1e1d4b30fea4f8e36"
+        },
+        {
+          "file": "ab10-review.html",
+          "sha256": "6d998115fab0c01ba37190436f660fc86b2095a559a3a9d1d6bd351b220f6284"
+        },
+        {
+          "file": "ab2-review.html",
+          "sha256": "1e7a5ce4a0d5e2058beba1176b5970e1ab7b7f1eaa65cc46125e8acbc33950c4"
+        },
+        {
+          "file": "ab3-review.html",
+          "sha256": "3672cd44ab073f1b50e676f5c849df03d4ac3fbe4e90716faf2971ace7b31c51"
+        },
+        {
+          "file": "ab4-lab.html",
+          "sha256": "6b7703f86fcf4d393ec6cf32d4518d2d5212ea23ae57f50d2ac8d30f68bdfdee"
+        },
+        {
+          "file": "ab4-review.html",
+          "sha256": "9c16e2b9f805b5bf98885d3be97434715cabffb0b3e045422b8d44845f43dee1"
+        },
+        {
+          "file": "ab5-review.html",
+          "sha256": "1655610d3fe7096f275f9069943facbed5a6309d57bf880eba1061db84607713"
+        },
+        {
+          "file": "ab6-review.html",
+          "sha256": "b6f4d944a0bf720aff2149f7c18ed8a3a579c6a3a623b69282a0c4213760ffe5"
+        },
+        {
+          "file": "ab8-review.html",
+          "sha256": "67c12d9ecdf4a9fdf2b371aea0d093617d90b6b6ba1b00ab9ab2c5693edee2c4"
+        },
+        {
+          "file": "ab9-review.html",
+          "sha256": "d9ff0d9fdbdb40a41d8cdbb24a373572639b1145f85fa0dbe6d81631d9832090"
+        },
+        {
+          "file": "appearance-tests.html",
+          "sha256": "94626b1e952cf94d54378a353e5325e5f28cc87dcd6e5abd87483c20cf9fd2f6"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/ORIGINAL-README.txt",
+          "sha256": "f79dddd6295fb9126027f03e32f69f0c14b9485725fdd663600a84f8371b44c0"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/density.r16f",
+          "sha256": "de6b21ad09686f1f0c6fd060213ab202fe375c9f15d46def99a6b7d262a750ca"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/metadata.json",
+          "sha256": "364740e6e13e835bf1f378dfbf5cbf68956fca847ec48d5e44a1b2d0498caae9"
+        },
+        {
+          "file": "dynamics.html",
+          "sha256": "51a28203fb90902ec049b7a2dd0fd5791dbc8042bec0643e6d4b1bc984f43238"
+        },
+        {
+          "file": "ensemble.html",
+          "sha256": "18c36227377f39d14c8ce6c9b728ac159fa34a6445d4ab01a5b3fcb971256ef8"
+        },
+        {
+          "file": "environment-tests.html",
+          "sha256": "e1d9c63c4cf00c1b09bb775a80ce8fdc29edce6d033158d925316715fc86b282"
+        },
+        {
+          "file": "gallery.html",
+          "sha256": "a717cbd34a57b97db470b7f21db3f07b384497d3d591ab973e584697ce59a725"
+        },
+        {
+          "file": "index.html",
+          "sha256": "077c3842373f50e058f953cc9a6393caeae1cd45e851666c710b5e28a1711025"
+        },
+        {
+          "file": "lab.html",
+          "sha256": "1dc677003c241cd4cd48dc14316852e54cf76951dd5f4ce1707942694cdc93bd"
+        },
+        {
+          "file": "matrix.html",
+          "sha256": "d5a7733712a90487e12525d724dfafb097aec52200a9a96bf36a874f8705e2c6"
+        },
+        {
+          "file": "milestone-a-review.html",
+          "sha256": "ea8c27d3710325f4ed2da2051415aee7ff7a0c545ab83af7c6c79c0a009040af"
+        },
+        {
+          "file": "milestone-a-waves-review.html",
+          "sha256": "c2e460e41ca081ca17f3b0a649161edc3fe9095576a0061352de6f06303d22ff"
+        },
+        {
+          "file": "milestone-a.html",
+          "sha256": "96bdf74592a6ac039b9e4e611f66b4ff444804d46a3ea249a808db23365d4c6e"
+        },
+        {
+          "file": "motion.html",
+          "sha256": "81b4b81dfdcf67e5e27e006ad10d526d5616c8aceead7258601ea8f6d733290f"
+        },
+        {
+          "file": "optics.html",
+          "sha256": "1fce820ada487062cf1da0a729453a7fae74a5324d3f9853738e4c20d0d194d1"
+        },
+        {
+          "file": "phase0-review.html",
+          "sha256": "77a45c55b2722b8d523346e116edb1d4f8c43dc0178145de08324dea3c97c378"
+        },
+        {
+          "file": "phase0.html",
+          "sha256": "c0b8023a95762da8370fc85ed605706a18dce043e4f77325cb3718bda231cd8d"
+        },
+        {
+          "file": "phase1-benchmark.html",
+          "sha256": "59ccd68d38599e91f82a1ddfb4a7df8623acba2d7d8eb9d56bed29997fec9d1a"
+        },
+        {
+          "file": "phase1-light.html",
+          "sha256": "f730abb4485f45b9c08f0e656349242961792301a760cf4ee7a1d5c441d57f2f"
+        },
+        {
+          "file": "phase1-motion-review.html",
+          "sha256": "697b255303a775df14e2296f7b754181f3f72cca7c9b177684027fe8f60e8f58"
+        },
+        {
+          "file": "phase1-review.html",
+          "sha256": "52e491dcfba25adc0d04551cebccf3d91dbafe2c4e1ccdb19dec1b40b7864926"
+        },
+        {
+          "file": "phase1.html",
+          "sha256": "135d3b188bc24e516cfb49440a179144db9bcd386104f61a30027a3f1f25e4c9"
+        },
+        {
+          "file": "reference-motion.html",
+          "sha256": "dc029686b696f6f846334189d31cf3664ba72b61021a5f3847d82ccb81f37799"
+        },
+        {
+          "file": "review-03.html",
+          "sha256": "9a232b4b3fe3bc56db051d1283b28c991717760e488360fad2ef26b43f378251"
+        },
+        {
+          "file": "server.mjs",
+          "sha256": "5cf3653eff37f95e5c8134eb2a418f26c7f4f9546555ec3107a626032ef753dd"
+        },
+        {
+          "file": "shader-audit-tests.html",
+          "sha256": "a44278e2ae48d1e221b896f1a3266f4087d2d6f7b9dac25edf9cd4e75f1a26be"
+        },
+        {
+          "file": "src/astronomy.js",
+          "sha256": "d8bec68ab1b0beb1014b5b8ae1b929fad103b244fd9b1c4881a72f1c6551c009"
+        },
+        {
+          "file": "src/celestial-light.js",
+          "sha256": "8fb00527413062c0a43188fad9c08df7007bbcc78c20257cb561cf88b52a0112"
+        },
+        {
+          "file": "src/cloud-volume-control.js",
+          "sha256": "290deec52c69fed965df3f989bc0db8353f4801830adad5cc60cc96073eb01b0"
+        },
+        {
+          "file": "src/environment.js",
+          "sha256": "1399188ac3bffd4ec57d0720b853b2ec9b7f9dc07b210a11f8b1dd4bb1cf3214"
+        },
+        {
+          "file": "src/foam-pattern.js",
+          "sha256": "f79bf8be59cff58b2a8ac7b71ad61eae873c77751d3a687fc35fac5f73be24ef"
+        },
+        {
+          "file": "src/glint-correlation.js",
+          "sha256": "3dcefc3ac82f7a10ea05bd93683799bdb6972eda60322c3af8268a8f1a1194cc"
+        },
+        {
+          "file": "src/gpu-ledger.js",
+          "sha256": "b0e929bffedae71fe47d4de1671edc3d6ad6b523ae3676d36ea23136ccf6c68c"
+        },
+        {
+          "file": "src/numerics.js",
+          "sha256": "a1bdb5e8c2c4346db412b461aa74885b70668c9e7f889f8f6c297a8aa775ab7e"
+        },
+        {
+          "file": "src/ocean-contracts.js",
+          "sha256": "9040a4c36ff563a5d836c3252660dc41087a6faaa2ba66308e2722339e248ccc"
+        },
+        {
+          "file": "src/ocean-order.js",
+          "sha256": "dde289b060fd0b021bc928d8b6cae5965140eea28f9503273fc34e46ddecfa4f"
+        },
+        {
+          "file": "src/render-options.js",
+          "sha256": "51ef8ff5bd4cd7c6b3332204c661cbbfe70ca1a483b7b5d325e95c8d7d59d6c9"
+        },
+        {
+          "file": "src/renderer.js",
+          "sha256": "d1d6776a15fb15d0d7b321a5b6ef07f6ff28de0ad8c2f9887d83deff4fd2ff1f"
+        },
+        {
+          "file": "src/runtime-input.js",
+          "sha256": "9e71659fad92b35ee05760bd85d25b231af2beaabed6cbeaa788c09efa8859a0"
+        },
+        {
+          "file": "src/sea-spectrum.js",
+          "sha256": "5f526c1eb6387be9064bd549ed2379ad32588bd4d9ea36156a83bad4faf9d422"
+        },
+        {
+          "file": "src/settings.js",
+          "sha256": "b575d0c1d8d6d4e4d529dcd164ccdf665bdc4ef6fb7dffef888d710337d962e6"
+        },
+        {
+          "file": "src/spatial-origin.js",
+          "sha256": "a7a6add81d7d21a73cd836aa74305d04a260efe4ff62c9f6ec4a9b7945cda2b2"
+        },
+        {
+          "file": "src/taa.js",
+          "sha256": "d67f9adfe83263f73e7668d9a7c1df5ea392cda34b48e2a3ced9bdeb0e8e0729"
+        },
+        {
+          "file": "src/temporal-camera.js",
+          "sha256": "b3e36560742418e647b6abfe6605b4c8e49167b0509d6408de4f6ea8193292f0"
+        },
+        {
+          "file": "src/ui.js",
+          "sha256": "a8abd6af7d9fe09c62a5687bbc0495c7667436a7bbc291a8f6c5be328f3c1390"
+        },
+        {
+          "file": "src/water-coefficients.js",
+          "sha256": "f3c526c65145d7d7d6e863daed460fc950e4a77ab5373fad612e81521594ba7b"
+        },
+        {
+          "file": "src/wgsl/breaking-events.js",
+          "sha256": "2cdb411d147dfc344faad27f9c1b932141e089d51bf0f7e019bda2ca2e26e6e3"
+        },
+        {
+          "file": "src/wgsl/breaking-phase.js",
+          "sha256": "6cdaf1b057e4abc5ba2f43f4c0ac29d07fc90036cf9ffb71dfd8e61fd3390d7c"
+        },
+        {
+          "file": "src/wgsl/cloud-ambient.js",
+          "sha256": "1b28c59f69ee67d02a7e1e0d1f64492d8a2ac6b567677144c5d514532dfd0c69"
+        },
+        {
+          "file": "src/wgsl/cloud-bank.js",
+          "sha256": "2ecb417a8d2a60db7467e56e29835cd58410dc520deca77e583785be2f85e2b7"
+        },
+        {
+          "file": "src/wgsl/cloud-condensate.js",
+          "sha256": "164bf5f8f870352d6b451e5b629dc80f9e9c21f30a69a96b723b34792ea9a4d5"
+        },
+        {
+          "file": "src/wgsl/cloud-convection.js",
+          "sha256": "7fc81a6c69b0ce6ca44a789aa063a6179f1d252ea24d5461fd00390f74460471"
+        },
+        {
+          "file": "src/wgsl/cloud-light-path.js",
+          "sha256": "d423e43bcbaf8c06c46cc655e55d2abd33e3b8bf05543dee75be153d9a51b3de"
+        },
+        {
+          "file": "src/wgsl/cloud-noise.js",
+          "sha256": "99d0ed409fe836805975a0b394ae22db5b8b2ebbb5c208c76393c3d5db387ef6"
+        },
+        {
+          "file": "src/wgsl/cloud-plumes.js",
+          "sha256": "1b48572e712885f55aa0838889b121a4e774d3223bc5bd69a52cdbcaeddae6dc"
+        },
+        {
+          "file": "src/wgsl/cloud-shadow.js",
+          "sha256": "701f3a66bc5248506113a44fd7ddff7db8a1fe1fe0a736553a40b4fa6c1addf3"
+        },
+        {
+          "file": "src/wgsl/cloud-transport.js",
+          "sha256": "4dcc00148ac7de3a4bf2afa00274994054366598be9dba217aef3f0952f62052"
+        },
+        {
+          "file": "src/wgsl/cloud-volume-control.js",
+          "sha256": "d4303f87165c850f40d76a9517c65061d25836ae529c5f829545ce139f1c9688"
+        },
+        {
+          "file": "src/wgsl/cloud-work.js",
+          "sha256": "ef2f5cf95199b814c72052d304af31414727e4c100de6185898ca0400ea350fb"
+        },
+        {
+          "file": "src/wgsl/clouds.js",
+          "sha256": "f2d853b834be0bfaf91762427fa1273a32b04ae6de4d3d0f55163160f16b9142"
+        },
+        {
+          "file": "src/wgsl/common.js",
+          "sha256": "7caf0e8f830c874241bb828a37f07fef2ae879e80c2a2625babc0967794fbd12"
+        },
+        {
+          "file": "src/wgsl/coordinates.js",
+          "sha256": "cbe1808c797aaf9532b6ff94baa752a19c6cb912777026ccd70547914447c53e"
+        },
+        {
+          "file": "src/wgsl/coupling.js",
+          "sha256": "bc90ba50e98f903d358713cc3f02617b2bcb09274cfc4b576ac8ff8aab86a9e6"
+        },
+        {
+          "file": "src/wgsl/crest-sheet.js",
+          "sha256": "f59e4baec2eae0b182c7dc1ef3f111801f72ed0b946751cffec3650d31773297"
+        },
+        {
+          "file": "src/wgsl/crest-support.js",
+          "sha256": "25ebacf0f0c1badba15435ebd96f6083ab7aaa89cf8c378e9ee5029ee09799b9"
+        },
+        {
+          "file": "src/wgsl/crest-surface.js",
+          "sha256": "012a66ecc8121e5cd3804c0358fd2356a97d77992d9d8989f4f3ae92016bcde9"
+        },
+        {
+          "file": "src/wgsl/crest-whitewater.js",
+          "sha256": "577b5f456c8e85127327af524f9efbc2f70a765b032db839bec766404a47a495"
+        },
+        {
+          "file": "src/wgsl/cube-filter.js",
+          "sha256": "ef80bcd94f1ceeb1ee0f251040a4e67075e6be196be00f34839a29e7e4b8b5cd"
+        },
+        {
+          "file": "src/wgsl/display-transform.js",
+          "sha256": "1475f4052762d422ba3be87eb77ff6af2164d8ff26799e3b1c25e61a262de311"
+        },
+        {
+          "file": "src/wgsl/environment-light.js",
+          "sha256": "dfcb0cd4afbf57aff444c3c2f79af79332252b2d156b34893ba887bc2eeb2d05"
+        },
+        {
+          "file": "src/wgsl/environment.js",
+          "sha256": "c51d50511622d857d0e02461b4269af7777518d20a080b7906a82f94fcc61def"
+        },
+        {
+          "file": "src/wgsl/finite-glints.js",
+          "sha256": "d064c82c8f481b01f1f83f9df97b6f238aeabe26f1e726773ebbc50bcd59e4e1"
+        },
+        {
+          "file": "src/wgsl/foam-transport.js",
+          "sha256": "429bf7e0a719997865e9cd9d2751110bdb0e55c6767fd1d1790a869482a4c1b9"
+        },
+        {
+          "file": "src/wgsl/footprint-optics.js",
+          "sha256": "e0e439431b2f7415bbae2549e34b8b6ea1a5118d6ac854b9957be220f3920951"
+        },
+        {
+          "file": "src/wgsl/immersion.js",
+          "sha256": "4dba3127c4f28701cc845f259aa9538095c97c78d77a6514629a89451a112761"
+        },
+        {
+          "file": "src/wgsl/irradiance.js",
+          "sha256": "f296385d1d84d3042cc7dc2d7759a771b9d9d6125a75be3fd86b933c4f4b2639"
+        },
+        {
+          "file": "src/wgsl/lens-medium.js",
+          "sha256": "9c25cb450aa5129c85e523637bd10958ac467f6be9e8b308e6d7bb4a9df960f1"
+        },
+        {
+          "file": "src/wgsl/ocean.js",
+          "sha256": "51926c1b345e4d1d25e07043f914ccd7a1f037a3db4ca38492b97419ccbefa0b"
+        },
+        {
+          "file": "src/wgsl/particles.js",
+          "sha256": "1953e1dc904ffc9e17ac7e24764ea92ee43ac2ecb6069d68c5450353ddd8ea7f"
+        },
+        {
+          "file": "src/wgsl/post.js",
+          "sha256": "8bd6eb2e65f2c9e5c85263a692da0188c50e94c68437c8445965d6e17c045df9"
+        },
+        {
+          "file": "src/wgsl/reflection-transport.js",
+          "sha256": "7a3795b283a44ca3262d1bd6803b6da11198f65bf6e0d3ac5149c8571b6cbd42"
+        },
+        {
+          "file": "src/wgsl/shader-patch.js",
+          "sha256": "1e92ac3e817424085a124f89865663e809c27c0a56c86ef296f353d674ae9ccf"
+        },
+        {
+          "file": "src/wgsl/sim.js",
+          "sha256": "088221138ffae1b0aec2e7ca5a877a8d667a2c5b9a5974417f3d92fb34748781"
+        },
+        {
+          "file": "src/wgsl/sky.js",
+          "sha256": "c84855f6880f3c0839ec5bf771c30f10706cc9209807ce211eab16384631287a"
+        },
+        {
+          "file": "src/wgsl/slope-precision.js",
+          "sha256": "b35780df2ffa40cbc3a364c7e60c923e76ffb108a72faa2d7d7d71b54b2d43e9"
+        },
+        {
+          "file": "src/wgsl/sun-disc.js",
+          "sha256": "6e8989b497043bdbf8684859186efd15ac87c9db9f521f873a9254eebecaa3a3"
+        },
+        {
+          "file": "src/wgsl/taa.js",
+          "sha256": "2a1c55fec200936599e50ce7ea437279bc19141ac7e64a3dd70d822eaa158828"
+        },
+        {
+          "file": "src/wgsl/water-material.js",
+          "sha256": "aec2706ad03ac6658f5b4df9498e361e39db8a243287ece229abed737eb4dd96"
+        },
+        {
+          "file": "src/wgsl/water-optics.js",
+          "sha256": "d0329f9871bdd03b8feb6ad039bf692469d9197fbe2d72cc28c1987510ae934f"
+        },
+        {
+          "file": "src/wgsl/water-transport.js",
+          "sha256": "d2d237cc27f763287b530c9be8b65edcd915208e9abfe0b72f1b067b5a0ed380"
+        },
+        {
+          "file": "src/wgsl/wave-visibility.js",
+          "sha256": "8a59b274de5bffc7dc6dafaca13260aec529f5cc5e15b6da9d2f0e48535d1dd8"
+        },
+        {
+          "file": "src/wgsl/whitewater.js",
+          "sha256": "bf788d275a8b31ecd462eb3e039678efb09a51a9e3fcd11fbe3fd2b45a8caf87"
+        },
+        {
+          "file": "src/wgsl/wind-roughness.js",
+          "sha256": "89361d84d891a510d714939a5ffaba416cfa61d991cd0af6f97807ec6cf37c68"
+        },
+        {
+          "file": "src/wind-roughness.js",
+          "sha256": "f31119f9cb79e5c96efb763349db057214ab6175ad5994e4f5b66e328e36a68c"
+        },
+        {
+          "file": "temporal-tests.html",
+          "sha256": "f564ae8c589e6fd795dfe5a15373de4a6cb1e09cf89ce611fa305ff0f80eca4d"
+        },
+        {
+          "file": "tests.html",
+          "sha256": "91e401a51eb5a35c8eb54c5443f5192ed3e3abbfcf383e1cb8aecfc78df7118a"
+        },
+        {
+          "file": "tests/ab10-integration.test.mjs",
+          "sha256": "bf674219d8a46941798a60f07ca8542c89edd2991faa9315a9e09e29fbd9fb38"
+        },
+        {
+          "file": "tests/appearance-gpu.js",
+          "sha256": "44fe2e596179690eceee716bb7ce49b510d7e36620a95aa26f89c5544c047902"
+        },
+        {
+          "file": "tests/celestial-light.test.mjs",
+          "sha256": "e54cbe66c71a52882fa549bdfa22d6a6f6c78e861ec0a77eaaa23b8abe784ca6"
+        },
+        {
+          "file": "tests/cloud-appearance-shaders.js",
+          "sha256": "795e86294cd582a2c5b9679ead0f1609388a6421b0a60df30dcb1453a93bba58"
+        },
+        {
+          "file": "tests/cloud-appearance.test.mjs",
+          "sha256": "0e2d1426887d51aec5e4cae93ea9dfa16596a7badb70df54eefe885de1f1b7f7"
+        },
+        {
+          "file": "tests/cloud-condensate.test.mjs",
+          "sha256": "c1ee48ee849a9c71f2ac82c2622bbedac32dbeda25093ec119ab49aaeb7b605a"
+        },
+        {
+          "file": "tests/cloud-convection-readback.js",
+          "sha256": "81987fee83dc12c8b1ffa85c29408b8b4b1e896e890dc114d6e829fda259e5f5"
+        },
+        {
+          "file": "tests/cloud-convection.test.mjs",
+          "sha256": "50f4c2bca31454b567e981a0205fd338b29fbee52fc9a96e35376441fa504f6f"
+        },
+        {
+          "file": "tests/cloud-light-path-readback.js",
+          "sha256": "f6bb223b97af71d9c171fe1483d9b51c93aa5b609646fd4e265313db93b9af94"
+        },
+        {
+          "file": "tests/cloud-light-path.test.mjs",
+          "sha256": "edce1fa083521373d9c335e67b437a528178dc542ce2a404161500972ea24850"
+        },
+        {
+          "file": "tests/cloud-shadow-diagnostic.js",
+          "sha256": "8743410b84a4616b21f843a5ab9f85d805c819ada309ea8a7d306a65022a0ef4"
+        },
+        {
+          "file": "tests/cloud-shadow-readback.js",
+          "sha256": "7a58a09b6083b29a35b7de3522817bcc3fc9f2dd255f137ee03a4ee722a9e335"
+        },
+        {
+          "file": "tests/cloud-view-readback.js",
+          "sha256": "6434cf8db7c3556a442f036bcb9c251eac190ef6ea20165eb2dc36dd71ac7022"
+        },
+        {
+          "file": "tests/cloud-volume-control.test.mjs",
+          "sha256": "5dcfb45d3284ab4349f69459ed0a0163e0e921f1df002090ec0a319808383b37"
+        },
+        {
+          "file": "tests/cloud-work-readback.js",
+          "sha256": "c66eb58473e5398a83908cd7a408bf5572cf27577a8d5cc00c27fea46177e357"
+        },
+        {
+          "file": "tests/cloud-work.test.mjs",
+          "sha256": "765fa68975e86b9b7f11f64afe50919961386bf19fa72a44b9a3195075dc87f9"
+        },
+        {
+          "file": "tests/contracts.test.mjs",
+          "sha256": "f3da56b718f9ab970b334b9603a6c982612cb25954ef3e7ed445d47124eb1108"
+        },
+        {
+          "file": "tests/coordinates-gpu.js",
+          "sha256": "15fe7e0d9c4e1fc3262ed6c60b83ead08f32d3640973e6faa58cc5666043be23"
+        },
+        {
+          "file": "tests/coupling-gpu.js",
+          "sha256": "94d449b80579ebd08012eb2ad3522423acf5a08b394069404dc2be671d5b6ffe"
+        },
+        {
+          "file": "tests/crest-sheet.test.mjs",
+          "sha256": "69099a27cb4029faec7ad6bd8bf1f86bf04f5b4194f50febd38e8d0920e729db"
+        },
+        {
+          "file": "tests/crest-support-readback.js",
+          "sha256": "3898861c5d22ff7f2ef51d4fa9b5241aa8eb8129bdbff8266e878a28c5ebc9e3"
+        },
+        {
+          "file": "tests/crest-surface-readback.js",
+          "sha256": "2daa670ef54246beb61533c76a1e082ec0815712e6714b31308bc1d01820750c"
+        },
+        {
+          "file": "tests/crest-whitewater.test.mjs",
+          "sha256": "dfd1654c9a49b8ea63b2cabac53fd2806dbf45012d297bec2aaced9cad935c95"
+        },
+        {
+          "file": "tests/cube-mips-gpu.js",
+          "sha256": "15486dffce228e59b42428676de2649c46848f2dc646ca953b95b43532263929"
+        },
+        {
+          "file": "tests/deformed-slope-readback.js",
+          "sha256": "d57c5ccc8497264482cc965d1f13b6413489961302b1dda46f6ce9d9ea801a33"
+        },
+        {
+          "file": "tests/dynamics.js",
+          "sha256": "f8ed46514b217516692e9dd8bfa0edb3ab0db0c7d61ac8b7bffcd1ce57ecf9b1"
+        },
+        {
+          "file": "tests/ensemble.js",
+          "sha256": "2b7598201001f65262d5e951eac7b2c95e0986abb7679f5ff6511f870febb1d9"
+        },
+        {
+          "file": "tests/environment-controls.test.mjs",
+          "sha256": "ae7340e044dd589fdf01f40eca153c4cb39ce1fa23596d99f63618c42dbca9c4"
+        },
+        {
+          "file": "tests/environment-gpu.js",
+          "sha256": "ee42f2b33883efc7b8e825d351b3485685b4a217925163cdecb51c6f061ec4a8"
+        },
+        {
+          "file": "tests/environment.test.mjs",
+          "sha256": "f008c34b7f7d6ab0d3cf3b4687a716653414417eb80d8287a8991a96140eaae9"
+        },
+        {
+          "file": "tests/evidence.test.mjs",
+          "sha256": "2ae67b6769d8e1ff051885169db92f3388947610ccc19529cf3c995b828e9648"
+        },
+        {
+          "file": "tests/foam-readback.js",
+          "sha256": "b21398149d9472aeb31d7649421369913b5e03293df8e73dbe6b4ed31caf288f"
+        },
+        {
+          "file": "tests/gpu.js",
+          "sha256": "10468e0c01dfe6599847ff89ef976886741064488aab7f9a08150472bfe20256"
+        },
+        {
+          "file": "tests/hdr-readback.js",
+          "sha256": "3a4d5f3db04dfded8c239caeab2ce0131b37198afb99f6401801b383d6131f5a"
+        },
+        {
+          "file": "tests/inversion-readback.js",
+          "sha256": "456498f81db73fd50663ac1bd86d1d35533583ce8f01aaa62a12ee6e6c5ee080"
+        },
+        {
+          "file": "tests/irradiance-gpu.js",
+          "sha256": "2a0c62a511eae99edff7b170067ab2edd53d9347eb33cc8676e62dc5e4137b53"
+        },
+        {
+          "file": "tests/lens-gpu.js",
+          "sha256": "81f4c991bd1e8835779c1a5437a8c728388836c6466fd7b7ffcedc3aafe8e247"
+        },
+        {
+          "file": "tests/long-grid-study.mjs",
+          "sha256": "e09ff8cd428a304c7422a6641f6b39cafe3a750120e4f969760f48b5503c44b4"
+        },
+        {
+          "file": "tests/long-grid.test.mjs",
+          "sha256": "1093ac89f88fb365ed98c466a194c5ae154a00e3865804e417e6549a068443c0"
+        },
+        {
+          "file": "tests/milestone-a-manifest.mjs",
+          "sha256": "7d187aeb49cdcdb3f70eb2d76d3ee404e50c8e56965cdd4068dfeb79ddfc041b"
+        },
+        {
+          "file": "tests/milestone-a-publication.mjs",
+          "sha256": "1657057ecca00eb3b9b0e06353f2041636c429ab884b4f9c74eb8b1ca21da3f7"
+        },
+        {
+          "file": "tests/milestone-a-wave-shaders.js",
+          "sha256": "c190fdb3ff4b00eb0428b098c5389ed5d9b7d708e13ab123e02df9a3ec888796"
+        },
+        {
+          "file": "tests/milestone-a-wave.test.mjs",
+          "sha256": "0fcb404b32dd3d256399bb7ddf561d54d0c54a31ebaadbaf8d4735b69cf9864f"
+        },
+        {
+          "file": "tests/numerics.test.mjs",
+          "sha256": "ea351a2883ec392fad55bdb93fc0a56c12f63e6d0a2531637dd769c3fc9d7192"
+        },
+        {
+          "file": "tests/ocean-order.test.mjs",
+          "sha256": "2aaaa8fabe6c9c47dcb863889a47f5d661e7babb7105e8789c012c5f9da9df59"
+        },
+        {
+          "file": "tests/optics.test.mjs",
+          "sha256": "78ede7d0532d1add0b2ff1cb551cceae58498df66086a7e7c8cb545a8a4a8e8e"
+        },
+        {
+          "file": "tests/phase0-crest.mjs",
+          "sha256": "261446c3d2ff013d0c645f0a3f6cfd3ff7b5e8f65816e792c1af43dfed1369dc"
+        },
+        {
+          "file": "tests/phase0-manifest.mjs",
+          "sha256": "6d099326540b1b26f6e3846347980615219557ad7560beb74ef1cb74ea4d6819"
+        },
+        {
+          "file": "tests/phase0-optics.mjs",
+          "sha256": "b7d0f8a3cfb5992ae2326c13485ab759593341aff98bdec5a9407ed6927a47fe"
+        },
+        {
+          "file": "tests/phase0-readback.js",
+          "sha256": "f1f867692fa70a760ac61de7e1d19471158aa929d84984321fe839735a5a497b"
+        },
+        {
+          "file": "tests/phase0-science.mjs",
+          "sha256": "e404eb0bfe4b77a9d2cea5926c92879358a736edf0bfff137346e7813210207a"
+        },
+        {
+          "file": "tests/phase0-shaders.js",
+          "sha256": "a66d3df9ea1d50ba1a7c7e3e426458e321d9e12de4e268bbb393deb7e73e10c9"
+        },
+        {
+          "file": "tests/phase0.test.mjs",
+          "sha256": "5eff9a94200e3f603c028916787114e949e0353b1191ec73bd928c09e297d7b8"
+        },
+        {
+          "file": "tests/phase1-field-experiment.mjs",
+          "sha256": "96a912e3898d8e63c1ecf56d4c35ad8df9b4b172ef49acbe33eadf50756497f2"
+        },
+        {
+          "file": "tests/phase1-inventory.mjs",
+          "sha256": "3e6d17341f3308731823d4f9b301bc5d8a053dc6f4426da22e6c10b4bb08a480"
+        },
+        {
+          "file": "tests/phase1-light-readback.js",
+          "sha256": "7596345afc2d3916aa1dfe9938a247c9e9237c0b14fc2f4ffe272bbebbb4fe00"
+        },
+        {
+          "file": "tests/phase1-publication.mjs",
+          "sha256": "566bd225d34653f18e779b2514d06f2937edab7c6275afb199f28f33e0b5d1b6"
+        },
+        {
+          "file": "tests/runtime.test.mjs",
+          "sha256": "a1d4e74c7d7bb18a49aee37c4ae9e22b7c185ca245ef070b6d016c746c39373e"
+        },
+        {
+          "file": "tests/scene-preset.test.mjs",
+          "sha256": "04a9ba381a39404210d78e1524d931b58387d8dee47564427981143a749db8f1"
+        },
+        {
+          "file": "tests/sea-spectrum.test.mjs",
+          "sha256": "bfde7381fae9a05e01f2965ade67d909d49a3250f7d95dc789850397a468eead"
+        },
+        {
+          "file": "tests/shader-audit-gpu.js",
+          "sha256": "261bacc77ff2bca4e7cde0b82a8de608adfcfbc46b65671e9811e0e9ff598475"
+        },
+        {
+          "file": "tests/shader-corrections.test.mjs",
+          "sha256": "d0b0088816f103c69abd33f2d6b3f5f4c7edd3e71460a5618f305ea88a534464"
+        },
+        {
+          "file": "tests/slope-precision-readback.js",
+          "sha256": "0026b2781e33f5cb7048ca756dd7364307bd2b1f6eb7ca63b0e8a1301cee75df"
+        },
+        {
+          "file": "tests/slope-precision-reference.js",
+          "sha256": "c375da0851f0dc17a07238a6aeb0876ac6165c3d11af03fb0f2b060d80730bb7"
+        },
+        {
+          "file": "tests/slope-readback.js",
+          "sha256": "0e233db0982dd7524d9186f270b0dfb1882472131d5d80c279d92d3e3194b614"
+        },
+        {
+          "file": "tests/spatial-origin.test.mjs",
+          "sha256": "c905a023aebc8fb4dfaa2181a9568ad75f41539a1d8722dc61df085943d5a6c8"
+        },
+        {
+          "file": "tests/spectral-readback.js",
+          "sha256": "b5eecdaa3dbb83c3071b8d0d744ed09e35cd7c10524c562a1d39bb9733b63ff4"
+        },
+        {
+          "file": "tests/temporal-gpu.js",
+          "sha256": "8f613cb0eea54a70eafcdf2301f84eec74db86633140511aa380783e5d82076d"
+        },
+        {
+          "file": "tests/temporal.test.mjs",
+          "sha256": "91282bcc6207b948ad6529bb22d446c0dcdeb3e932457548b2234b5b31837fc8"
+        },
+        {
+          "file": "tests/texture-readback.js",
+          "sha256": "7c57732c938930d07aa28baa99235f95d4ea5afdc648895428564f9bda95f34c"
+        },
+        {
+          "file": "tests/visibility-gpu.js",
+          "sha256": "76530af8c213c0218081a306b372e42344de8873c4e32c41cdf4052af4e4f851"
+        },
+        {
+          "file": "tests/visible-slopes.test.mjs",
+          "sha256": "c46d9c28282c7819cc43b9135ad588de83dae784fefc66b3a3091df1e9ad888c"
+        },
+        {
+          "file": "tests/water-layer-gpu.js",
+          "sha256": "79cd906c6edae2b4c963c8b82d01f880d7c1167c2cc424f65dba5aeecacf68a2"
+        },
+        {
+          "file": "tests/water-transport.test.mjs",
+          "sha256": "842354906809db1af5217d7d7d8736cfd0302f349e2bd55e9548dabecebca089"
+        },
+        {
+          "file": "tests/webgpu-hardware-probe.html",
+          "sha256": "048c6ada5c67c19b25c36f5fad7b5a481fb0b961301f1369dacf88701a572f42"
+        },
+        {
+          "file": "tests/whitewater-readback.js",
+          "sha256": "6c1d9d3f857eff2312c2241f6be0ca29bbbb717381941e7f6bee712f3b8dcc05"
+        },
+        {
+          "file": "tests/whitewater.test.mjs",
+          "sha256": "08f97ca57a11e835b3aad7e8602cbff702c8e344dbf70a2f9f30a93a395bda52"
+        },
+        {
+          "file": "tests/wind-roughness.test.mjs",
+          "sha256": "3ddb3d0f82243744b1be1f38f55f8d3ee4c3ff528c62e3efb35ea45ddfda071e"
+        },
+        {
+          "file": "tools/analyze-ab-checkpoint.mjs",
+          "sha256": "fb6f4e1b38150f16ddeda27d4e96d375b96e1528a6a675c535bfb7c46f58c212"
+        },
+        {
+          "file": "tools/evidence-store.mjs",
+          "sha256": "10a1fd89543850ba9977d57e35fcaab60d9b75a8fa93d2c60705ba7f2e8cda0f"
+        },
+        {
+          "file": "tools/recover-ab3.mjs",
+          "sha256": "557df6f673d332bf71aa5bc9c4304454f491f929fd3ccab59f20b1876bea9f21"
+        }
+      ],
+      "settings": {
+        "windSpeed": 20,
+        "windDir": 118,
+        "fetchKm": 250,
+        "swellHs": 3.4,
+        "swellDir": 94,
+        "swellLength": 200,
+        "swellSpread": 48,
+        "choppy": 1.12,
+        "turbidity": 0.25,
+        "dissolvedAbsorption": 0.07,
+        "mineralScattering": 0.3,
+        "foam": 1,
+        "sunElev": 18,
+        "sunAzim": 4,
+        "exposure": 1.4,
+        "haze": 7,
+        "clouds": 0.92,
+        "veil": 0.8,
+        "bloom": 0.045,
+        "spray": 1.5,
+        "rain": 0.65,
+        "cloudDepth": 3.5,
+        "cloudType": 2,
+        "seed": 1307,
+        "quality": "High",
+        "resolution": 1,
+        "adaptive": false,
+        "timeScale": 1,
+        "weatherRate": 1,
+        "seaRate": 1,
+        "astronomyRate": 0,
+        "environmentMode": "natural",
+        "frontEnabled": false,
+        "frontX": 18000,
+        "frontZ": 0,
+        "frontWidth": 20,
+        "frontHeading": 180,
+        "frontSpeed": 12,
+        "electrified": false,
+        "paused": false,
+        "cameraMode": "free",
+        "astronomy": false,
+        "date": "2026-10-25",
+        "hour": 17,
+        "latitude": 32,
+        "longitude": -30,
+        "debug": 0,
+        "currentSpeed": 0.12,
+        "currentDir": 35,
+        "cameraSpeed": 6,
+        "fov": 58
+      },
+      "camera": {
+        "x": 0,
+        "y": 8,
+        "z": 0,
+        "yaw": 1.3788101090755203,
+        "pitch": -0.17453292519943295,
+        "fovY": 1.0122909661567112,
+        "speed": 6
+      },
+      "query": {
+        "preset": "storm",
+        "ma": "1",
+        "cam": "0,8,0,79,-10",
+        "cameraMode": "free",
+        "quality": "High",
+        "resolution": "1",
+        "w": "1920",
+        "h": "1080",
+        "seed": "1307",
+        "t": "20",
+        "frames": "240",
+        "ui": "0",
+        "adaptive": "0",
+        "stage": "v04-ma-ab4-ab10-phase-01",
+        "validate": "1",
+        "p0": "1",
+        "p0Profile": "1",
+        "weatherRate": "1",
+        "seaRate": "1",
+        "seq": "24",
+        "captureStep": "0.0416666666667",
+        "abWater": "slab",
+        "dissolvedAbsorption": "0.07",
+        "mineralScattering": "0.3",
+        "abDisplay": "linear",
+        "abEnvironment": "marine-diffuse",
+        "abBreaking": "phase-field",
+        "abFoam": "relief",
+        "abRain": "velocity",
+        "shot": "storm-near-reference.png"
+      },
+      "frames": [
+        {
+          "frame": 0,
+          "time": 30.000000000007958,
+          "metadataSHA256": "5ba426d0d9f13aa81f4407dc3395a5de510d55fe174d49dcaab5d35c15cba62d",
+          "pngSHA256": "750bcc93b52290c74544c1aa35f9d5806b5ea7bf55645f4cd5c576bbca667e45"
+        },
+        {
+          "frame": 1,
+          "time": 30.041666666674658,
+          "metadataSHA256": "ca373cb69f504f484d657939006e5a9d5ed1f84074e679300b89f7f1e8d4ac8c",
+          "pngSHA256": "f7363d4beea87f79a70694a843e66100f6164d6b3ceceaf390621221e6b6a521"
+        },
+        {
+          "frame": 2,
+          "time": 30.083333333341358,
+          "metadataSHA256": "1f3479e0bda5751d840f229ae0f43fb7c44d28a8c9a805b3f077fffea4540b95",
+          "pngSHA256": "c7a6587d91131926e8c237ce65594584aca573202f4f6c3ba67dea476dfc03df"
+        },
+        {
+          "frame": 3,
+          "time": 30.125000000008058,
+          "metadataSHA256": "66972b29f8073c1a93e191eb5f883f1baa6cd893906424ceec94fffe3cd6ea70",
+          "pngSHA256": "ad92ca8f48d6489a7cd4072f494e6edfba0622eaac098a2dbd509501c4d7eb82"
+        },
+        {
+          "frame": 4,
+          "time": 30.166666666674757,
+          "metadataSHA256": "000d0c951796afd38c33d0a19be0a37a12a835bb0333bc5b61396801b08517fe",
+          "pngSHA256": "3b51ffaad8017a1489ea35844d1349db37dc8990a96a8c74d8f3ec177c73010e"
+        },
+        {
+          "frame": 5,
+          "time": 30.208333333341457,
+          "metadataSHA256": "dfd37dfa7f94b0131a0093c55d781c78ff2684d89da6f05d0d3df19d94e6ea97",
+          "pngSHA256": "17105a2ce17caeb7fd0d6eb0b2d6809ef356773a147a8d6ef0a6fd7978230d44"
+        },
+        {
+          "frame": 6,
+          "time": 30.250000000008157,
+          "metadataSHA256": "d87c5c531b9372fcdbaf32eae1a7bc5173fbe57caa9bc5d685208617889e3666",
+          "pngSHA256": "f233535dde7f7750d2827a24ccc4e298f092a05595282ea4cd63bbfff3dfef5f"
+        },
+        {
+          "frame": 7,
+          "time": 30.291666666674857,
+          "metadataSHA256": "4ad377ed182be27fb6fba878296747425e0e2de690cd02f88fc9d3a32aee4e1d",
+          "pngSHA256": "8c58ac11e7069dc970dfcf4d7d18f6097177d70f332206e204a1152301b883ce"
+        },
+        {
+          "frame": 8,
+          "time": 30.333333333341557,
+          "metadataSHA256": "4d2015870d242cdd338d9f217814661e567f0544c9eea8c1ad38fcac928b75a4",
+          "pngSHA256": "d30d21c9d7e4b58dc5dc24ecc81a95c5b4dbcc0a13418e598febb354d664712c"
+        },
+        {
+          "frame": 9,
+          "time": 30.375000000008257,
+          "metadataSHA256": "7a8108a2d0bb3e375d2ddd724a9644c006337c9021973744b3c07fa3de0378a0",
+          "pngSHA256": "f76719c05fc75d2bfe2e650a111aaa1def755a3bdc3bb1505064de49aed89f6f"
+        },
+        {
+          "frame": 10,
+          "time": 30.416666666674956,
+          "metadataSHA256": "91a89b6035a17f0abcc558845867dca458a191d33f586cea84cffd8fbf379595",
+          "pngSHA256": "ab37a30018a541e4881b35fd1efea392978782839fc9834e22a6a5e8bda6128a"
+        },
+        {
+          "frame": 11,
+          "time": 30.458333333341656,
+          "metadataSHA256": "b6e7dcd1735ef1d1351e69a44d2a1148e377fd97e36fa0d2a8c23c2077b4d5f6",
+          "pngSHA256": "9f05257cfeb191aa0264a696cefd31a5cedb75b8cebfa800d6e369f7a78e7d35"
+        },
+        {
+          "frame": 12,
+          "time": 30.500000000008356,
+          "metadataSHA256": "0e6f5008bf4faf9e52e152822dbbdf8bbb4f9d3b719e57ae5ed199c33ab50dd2",
+          "pngSHA256": "0867cdd8034fd19aea7adee0037199c1dd5bd955fa1ee2a9b0deb4f23eb64240"
+        },
+        {
+          "frame": 13,
+          "time": 30.541666666675056,
+          "metadataSHA256": "5daca5793c8dd91aa05baa0aa4ecb24a4ada14e66153d75fea70a4c6cf094b52",
+          "pngSHA256": "306c8fc2383af330bd76267c62cff75bbb390270728c2fcf54bace61ed346adf"
+        },
+        {
+          "frame": 14,
+          "time": 30.583333333341756,
+          "metadataSHA256": "8e7c61ebaaadceb0f981cf34120cb8f77908a414d38b8f0182180b2565a2cfc1",
+          "pngSHA256": "7dac170ed8cb1958f2bb1db2f411688dd3ddb56609ea7c02af308da08703b98b"
+        },
+        {
+          "frame": 15,
+          "time": 30.625000000008455,
+          "metadataSHA256": "e757946809c6f033c9785fab6229f90f0eb76428ab5952cedd6e70cd43a8d088",
+          "pngSHA256": "c9f4362114d12668d19b27363f5e3ba11df67bf16836b0fa2ee7b1395871d7aa"
+        },
+        {
+          "frame": 16,
+          "time": 30.666666666675155,
+          "metadataSHA256": "cfd4500e1691d83b942e4c99118addee9a6a198fad6c98ae01604c1d770a1ac7",
+          "pngSHA256": "fb679fa8fc0c5dff09a3ae53b55b7a27d21c46e38ce834429662a34c278eee25"
+        },
+        {
+          "frame": 17,
+          "time": 30.708333333341855,
+          "metadataSHA256": "a7181d7c5b9685b922f155a5af922097ac6456fa20d01d1f00065f8402834bc2",
+          "pngSHA256": "5ee8ab75a2eddf16ee25bfc2870650eca7151bdb2785579b6e74da73b0f6b357"
+        },
+        {
+          "frame": 18,
+          "time": 30.750000000008555,
+          "metadataSHA256": "823db017c1d0427880c9167ae49e9754e2a01a4df86cb00405b3c01d1013a049",
+          "pngSHA256": "4fa100909fdcb89dd73ab966184162871b37ae788e7179dc31786c71681a3acb"
+        },
+        {
+          "frame": 19,
+          "time": 30.791666666675255,
+          "metadataSHA256": "79eeb40a851a539912fc6920449f9bcbf25c655f9e012c1eb8649791b43ac33c",
+          "pngSHA256": "7432392ec1230e757997f06c516bf9c19110d0d6ffcc2ed0291854a9dbbe7d97"
+        },
+        {
+          "frame": 20,
+          "time": 30.833333333341955,
+          "metadataSHA256": "cdd449a5c9e45ad7fc1ec43947ff97171e120539ecbcc3f7cec3700dbc167769",
+          "pngSHA256": "dd1dd6f03fd57e126d7f68fac199a81f637542ccba3526de36cad6928b3d84c8"
+        },
+        {
+          "frame": 21,
+          "time": 30.875000000008654,
+          "metadataSHA256": "8b152cedf1d63941a7addfd8d3b4565f39997c11c388461339cbba6b8b357537",
+          "pngSHA256": "9dcb73407fd04d6d723e15148e25cd73bcdaa87d9e76ab71e75757a1e906daa0"
+        },
+        {
+          "frame": 22,
+          "time": 30.916666666675354,
+          "metadataSHA256": "426cee7638537ebc1cda4a2c3dd0b2fd208487a05846f87e87f1a1a7700c887b",
+          "pngSHA256": "4559b7b1c4216ff27e1638fb0b1422de2dca6ad68da5046bae8149bc7aac88cb"
+        },
+        {
+          "frame": 23,
+          "time": 30.958333333342054,
+          "metadataSHA256": "4319db84674ef11bbf3a9be7e39a5796e82f864425ba43f17a6b9d336a2b2001",
+          "pngSHA256": "b9c47056054b75bd6ec67d095c4576178d657480c4b65545553950d926f6bc90"
+        }
+      ],
+      "nativeHDRAndSpectrum": "24/24 PASS",
+      "video": {
+        "path": "evidence/v04-ma-ab4-ab10-phase-01/storm-near-reference.webm",
+        "sha256": "547580776df74d7de2498210cd37a47f5229d276e6b4c78c4f780d0b52947d11",
+        "decodedRGBMatchesAllPNGFrames": true,
+        "frames": 24
+      }
+    },
+    {
+      "run": "phase-01",
+      "scene": "storm30-high",
+      "baselineRun": "final-01",
+      "sourceManifest": "676ffac7582a3ca1e6f4fd7c25382f944513466bb5ba8e06dc73b6b234a693e4",
+      "sourceFiles": [
+        {
+          "file": "ab-review.html",
+          "sha256": "ceecbc694396b4ddcf0be36cb41d0f9e705fbd75343723e1e1d4b30fea4f8e36"
+        },
+        {
+          "file": "ab10-review.html",
+          "sha256": "6d998115fab0c01ba37190436f660fc86b2095a559a3a9d1d6bd351b220f6284"
+        },
+        {
+          "file": "ab2-review.html",
+          "sha256": "1e7a5ce4a0d5e2058beba1176b5970e1ab7b7f1eaa65cc46125e8acbc33950c4"
+        },
+        {
+          "file": "ab3-review.html",
+          "sha256": "3672cd44ab073f1b50e676f5c849df03d4ac3fbe4e90716faf2971ace7b31c51"
+        },
+        {
+          "file": "ab4-lab.html",
+          "sha256": "6b7703f86fcf4d393ec6cf32d4518d2d5212ea23ae57f50d2ac8d30f68bdfdee"
+        },
+        {
+          "file": "ab4-review.html",
+          "sha256": "9c16e2b9f805b5bf98885d3be97434715cabffb0b3e045422b8d44845f43dee1"
+        },
+        {
+          "file": "ab5-review.html",
+          "sha256": "1655610d3fe7096f275f9069943facbed5a6309d57bf880eba1061db84607713"
+        },
+        {
+          "file": "ab6-review.html",
+          "sha256": "b6f4d944a0bf720aff2149f7c18ed8a3a579c6a3a623b69282a0c4213760ffe5"
+        },
+        {
+          "file": "ab8-review.html",
+          "sha256": "67c12d9ecdf4a9fdf2b371aea0d093617d90b6b6ba1b00ab9ab2c5693edee2c4"
+        },
+        {
+          "file": "ab9-review.html",
+          "sha256": "d9ff0d9fdbdb40a41d8cdbb24a373572639b1145f85fa0dbe6d81631d9832090"
+        },
+        {
+          "file": "appearance-tests.html",
+          "sha256": "94626b1e952cf94d54378a353e5325e5f28cc87dcd6e5abd87483c20cf9fd2f6"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/ORIGINAL-README.txt",
+          "sha256": "f79dddd6295fb9126027f03e32f69f0c14b9485725fdd663600a84f8371b44c0"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/density.r16f",
+          "sha256": "de6b21ad09686f1f0c6fd060213ab202fe375c9f15d46def99a6b7d262a750ca"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/metadata.json",
+          "sha256": "364740e6e13e835bf1f378dfbf5cbf68956fca847ec48d5e44a1b2d0498caae9"
+        },
+        {
+          "file": "dynamics.html",
+          "sha256": "51a28203fb90902ec049b7a2dd0fd5791dbc8042bec0643e6d4b1bc984f43238"
+        },
+        {
+          "file": "ensemble.html",
+          "sha256": "18c36227377f39d14c8ce6c9b728ac159fa34a6445d4ab01a5b3fcb971256ef8"
+        },
+        {
+          "file": "environment-tests.html",
+          "sha256": "e1d9c63c4cf00c1b09bb775a80ce8fdc29edce6d033158d925316715fc86b282"
+        },
+        {
+          "file": "gallery.html",
+          "sha256": "a717cbd34a57b97db470b7f21db3f07b384497d3d591ab973e584697ce59a725"
+        },
+        {
+          "file": "index.html",
+          "sha256": "077c3842373f50e058f953cc9a6393caeae1cd45e851666c710b5e28a1711025"
+        },
+        {
+          "file": "lab.html",
+          "sha256": "1dc677003c241cd4cd48dc14316852e54cf76951dd5f4ce1707942694cdc93bd"
+        },
+        {
+          "file": "matrix.html",
+          "sha256": "d5a7733712a90487e12525d724dfafb097aec52200a9a96bf36a874f8705e2c6"
+        },
+        {
+          "file": "milestone-a-review.html",
+          "sha256": "ea8c27d3710325f4ed2da2051415aee7ff7a0c545ab83af7c6c79c0a009040af"
+        },
+        {
+          "file": "milestone-a-waves-review.html",
+          "sha256": "c2e460e41ca081ca17f3b0a649161edc3fe9095576a0061352de6f06303d22ff"
+        },
+        {
+          "file": "milestone-a.html",
+          "sha256": "96bdf74592a6ac039b9e4e611f66b4ff444804d46a3ea249a808db23365d4c6e"
+        },
+        {
+          "file": "motion.html",
+          "sha256": "81b4b81dfdcf67e5e27e006ad10d526d5616c8aceead7258601ea8f6d733290f"
+        },
+        {
+          "file": "optics.html",
+          "sha256": "1fce820ada487062cf1da0a729453a7fae74a5324d3f9853738e4c20d0d194d1"
+        },
+        {
+          "file": "phase0-review.html",
+          "sha256": "77a45c55b2722b8d523346e116edb1d4f8c43dc0178145de08324dea3c97c378"
+        },
+        {
+          "file": "phase0.html",
+          "sha256": "c0b8023a95762da8370fc85ed605706a18dce043e4f77325cb3718bda231cd8d"
+        },
+        {
+          "file": "phase1-benchmark.html",
+          "sha256": "59ccd68d38599e91f82a1ddfb4a7df8623acba2d7d8eb9d56bed29997fec9d1a"
+        },
+        {
+          "file": "phase1-light.html",
+          "sha256": "f730abb4485f45b9c08f0e656349242961792301a760cf4ee7a1d5c441d57f2f"
+        },
+        {
+          "file": "phase1-motion-review.html",
+          "sha256": "697b255303a775df14e2296f7b754181f3f72cca7c9b177684027fe8f60e8f58"
+        },
+        {
+          "file": "phase1-review.html",
+          "sha256": "52e491dcfba25adc0d04551cebccf3d91dbafe2c4e1ccdb19dec1b40b7864926"
+        },
+        {
+          "file": "phase1.html",
+          "sha256": "135d3b188bc24e516cfb49440a179144db9bcd386104f61a30027a3f1f25e4c9"
+        },
+        {
+          "file": "reference-motion.html",
+          "sha256": "dc029686b696f6f846334189d31cf3664ba72b61021a5f3847d82ccb81f37799"
+        },
+        {
+          "file": "review-03.html",
+          "sha256": "9a232b4b3fe3bc56db051d1283b28c991717760e488360fad2ef26b43f378251"
+        },
+        {
+          "file": "server.mjs",
+          "sha256": "5cf3653eff37f95e5c8134eb2a418f26c7f4f9546555ec3107a626032ef753dd"
+        },
+        {
+          "file": "shader-audit-tests.html",
+          "sha256": "a44278e2ae48d1e221b896f1a3266f4087d2d6f7b9dac25edf9cd4e75f1a26be"
+        },
+        {
+          "file": "src/astronomy.js",
+          "sha256": "d8bec68ab1b0beb1014b5b8ae1b929fad103b244fd9b1c4881a72f1c6551c009"
+        },
+        {
+          "file": "src/celestial-light.js",
+          "sha256": "8fb00527413062c0a43188fad9c08df7007bbcc78c20257cb561cf88b52a0112"
+        },
+        {
+          "file": "src/cloud-volume-control.js",
+          "sha256": "290deec52c69fed965df3f989bc0db8353f4801830adad5cc60cc96073eb01b0"
+        },
+        {
+          "file": "src/environment.js",
+          "sha256": "1399188ac3bffd4ec57d0720b853b2ec9b7f9dc07b210a11f8b1dd4bb1cf3214"
+        },
+        {
+          "file": "src/foam-pattern.js",
+          "sha256": "f79bf8be59cff58b2a8ac7b71ad61eae873c77751d3a687fc35fac5f73be24ef"
+        },
+        {
+          "file": "src/glint-correlation.js",
+          "sha256": "3dcefc3ac82f7a10ea05bd93683799bdb6972eda60322c3af8268a8f1a1194cc"
+        },
+        {
+          "file": "src/gpu-ledger.js",
+          "sha256": "b0e929bffedae71fe47d4de1671edc3d6ad6b523ae3676d36ea23136ccf6c68c"
+        },
+        {
+          "file": "src/numerics.js",
+          "sha256": "a1bdb5e8c2c4346db412b461aa74885b70668c9e7f889f8f6c297a8aa775ab7e"
+        },
+        {
+          "file": "src/ocean-contracts.js",
+          "sha256": "9040a4c36ff563a5d836c3252660dc41087a6faaa2ba66308e2722339e248ccc"
+        },
+        {
+          "file": "src/ocean-order.js",
+          "sha256": "dde289b060fd0b021bc928d8b6cae5965140eea28f9503273fc34e46ddecfa4f"
+        },
+        {
+          "file": "src/render-options.js",
+          "sha256": "51ef8ff5bd4cd7c6b3332204c661cbbfe70ca1a483b7b5d325e95c8d7d59d6c9"
+        },
+        {
+          "file": "src/renderer.js",
+          "sha256": "d1d6776a15fb15d0d7b321a5b6ef07f6ff28de0ad8c2f9887d83deff4fd2ff1f"
+        },
+        {
+          "file": "src/runtime-input.js",
+          "sha256": "9e71659fad92b35ee05760bd85d25b231af2beaabed6cbeaa788c09efa8859a0"
+        },
+        {
+          "file": "src/sea-spectrum.js",
+          "sha256": "5f526c1eb6387be9064bd549ed2379ad32588bd4d9ea36156a83bad4faf9d422"
+        },
+        {
+          "file": "src/settings.js",
+          "sha256": "b575d0c1d8d6d4e4d529dcd164ccdf665bdc4ef6fb7dffef888d710337d962e6"
+        },
+        {
+          "file": "src/spatial-origin.js",
+          "sha256": "a7a6add81d7d21a73cd836aa74305d04a260efe4ff62c9f6ec4a9b7945cda2b2"
+        },
+        {
+          "file": "src/taa.js",
+          "sha256": "d67f9adfe83263f73e7668d9a7c1df5ea392cda34b48e2a3ced9bdeb0e8e0729"
+        },
+        {
+          "file": "src/temporal-camera.js",
+          "sha256": "b3e36560742418e647b6abfe6605b4c8e49167b0509d6408de4f6ea8193292f0"
+        },
+        {
+          "file": "src/ui.js",
+          "sha256": "a8abd6af7d9fe09c62a5687bbc0495c7667436a7bbc291a8f6c5be328f3c1390"
+        },
+        {
+          "file": "src/water-coefficients.js",
+          "sha256": "f3c526c65145d7d7d6e863daed460fc950e4a77ab5373fad612e81521594ba7b"
+        },
+        {
+          "file": "src/wgsl/breaking-events.js",
+          "sha256": "2cdb411d147dfc344faad27f9c1b932141e089d51bf0f7e019bda2ca2e26e6e3"
+        },
+        {
+          "file": "src/wgsl/breaking-phase.js",
+          "sha256": "6cdaf1b057e4abc5ba2f43f4c0ac29d07fc90036cf9ffb71dfd8e61fd3390d7c"
+        },
+        {
+          "file": "src/wgsl/cloud-ambient.js",
+          "sha256": "1b28c59f69ee67d02a7e1e0d1f64492d8a2ac6b567677144c5d514532dfd0c69"
+        },
+        {
+          "file": "src/wgsl/cloud-bank.js",
+          "sha256": "2ecb417a8d2a60db7467e56e29835cd58410dc520deca77e583785be2f85e2b7"
+        },
+        {
+          "file": "src/wgsl/cloud-condensate.js",
+          "sha256": "164bf5f8f870352d6b451e5b629dc80f9e9c21f30a69a96b723b34792ea9a4d5"
+        },
+        {
+          "file": "src/wgsl/cloud-convection.js",
+          "sha256": "7fc81a6c69b0ce6ca44a789aa063a6179f1d252ea24d5461fd00390f74460471"
+        },
+        {
+          "file": "src/wgsl/cloud-light-path.js",
+          "sha256": "d423e43bcbaf8c06c46cc655e55d2abd33e3b8bf05543dee75be153d9a51b3de"
+        },
+        {
+          "file": "src/wgsl/cloud-noise.js",
+          "sha256": "99d0ed409fe836805975a0b394ae22db5b8b2ebbb5c208c76393c3d5db387ef6"
+        },
+        {
+          "file": "src/wgsl/cloud-plumes.js",
+          "sha256": "1b48572e712885f55aa0838889b121a4e774d3223bc5bd69a52cdbcaeddae6dc"
+        },
+        {
+          "file": "src/wgsl/cloud-shadow.js",
+          "sha256": "701f3a66bc5248506113a44fd7ddff7db8a1fe1fe0a736553a40b4fa6c1addf3"
+        },
+        {
+          "file": "src/wgsl/cloud-transport.js",
+          "sha256": "4dcc00148ac7de3a4bf2afa00274994054366598be9dba217aef3f0952f62052"
+        },
+        {
+          "file": "src/wgsl/cloud-volume-control.js",
+          "sha256": "d4303f87165c850f40d76a9517c65061d25836ae529c5f829545ce139f1c9688"
+        },
+        {
+          "file": "src/wgsl/cloud-work.js",
+          "sha256": "ef2f5cf95199b814c72052d304af31414727e4c100de6185898ca0400ea350fb"
+        },
+        {
+          "file": "src/wgsl/clouds.js",
+          "sha256": "f2d853b834be0bfaf91762427fa1273a32b04ae6de4d3d0f55163160f16b9142"
+        },
+        {
+          "file": "src/wgsl/common.js",
+          "sha256": "7caf0e8f830c874241bb828a37f07fef2ae879e80c2a2625babc0967794fbd12"
+        },
+        {
+          "file": "src/wgsl/coordinates.js",
+          "sha256": "cbe1808c797aaf9532b6ff94baa752a19c6cb912777026ccd70547914447c53e"
+        },
+        {
+          "file": "src/wgsl/coupling.js",
+          "sha256": "bc90ba50e98f903d358713cc3f02617b2bcb09274cfc4b576ac8ff8aab86a9e6"
+        },
+        {
+          "file": "src/wgsl/crest-sheet.js",
+          "sha256": "f59e4baec2eae0b182c7dc1ef3f111801f72ed0b946751cffec3650d31773297"
+        },
+        {
+          "file": "src/wgsl/crest-support.js",
+          "sha256": "25ebacf0f0c1badba15435ebd96f6083ab7aaa89cf8c378e9ee5029ee09799b9"
+        },
+        {
+          "file": "src/wgsl/crest-surface.js",
+          "sha256": "012a66ecc8121e5cd3804c0358fd2356a97d77992d9d8989f4f3ae92016bcde9"
+        },
+        {
+          "file": "src/wgsl/crest-whitewater.js",
+          "sha256": "577b5f456c8e85127327af524f9efbc2f70a765b032db839bec766404a47a495"
+        },
+        {
+          "file": "src/wgsl/cube-filter.js",
+          "sha256": "ef80bcd94f1ceeb1ee0f251040a4e67075e6be196be00f34839a29e7e4b8b5cd"
+        },
+        {
+          "file": "src/wgsl/display-transform.js",
+          "sha256": "1475f4052762d422ba3be87eb77ff6af2164d8ff26799e3b1c25e61a262de311"
+        },
+        {
+          "file": "src/wgsl/environment-light.js",
+          "sha256": "dfcb0cd4afbf57aff444c3c2f79af79332252b2d156b34893ba887bc2eeb2d05"
+        },
+        {
+          "file": "src/wgsl/environment.js",
+          "sha256": "c51d50511622d857d0e02461b4269af7777518d20a080b7906a82f94fcc61def"
+        },
+        {
+          "file": "src/wgsl/finite-glints.js",
+          "sha256": "d064c82c8f481b01f1f83f9df97b6f238aeabe26f1e726773ebbc50bcd59e4e1"
+        },
+        {
+          "file": "src/wgsl/foam-transport.js",
+          "sha256": "429bf7e0a719997865e9cd9d2751110bdb0e55c6767fd1d1790a869482a4c1b9"
+        },
+        {
+          "file": "src/wgsl/footprint-optics.js",
+          "sha256": "e0e439431b2f7415bbae2549e34b8b6ea1a5118d6ac854b9957be220f3920951"
+        },
+        {
+          "file": "src/wgsl/immersion.js",
+          "sha256": "4dba3127c4f28701cc845f259aa9538095c97c78d77a6514629a89451a112761"
+        },
+        {
+          "file": "src/wgsl/irradiance.js",
+          "sha256": "f296385d1d84d3042cc7dc2d7759a771b9d9d6125a75be3fd86b933c4f4b2639"
+        },
+        {
+          "file": "src/wgsl/lens-medium.js",
+          "sha256": "9c25cb450aa5129c85e523637bd10958ac467f6be9e8b308e6d7bb4a9df960f1"
+        },
+        {
+          "file": "src/wgsl/ocean.js",
+          "sha256": "51926c1b345e4d1d25e07043f914ccd7a1f037a3db4ca38492b97419ccbefa0b"
+        },
+        {
+          "file": "src/wgsl/particles.js",
+          "sha256": "1953e1dc904ffc9e17ac7e24764ea92ee43ac2ecb6069d68c5450353ddd8ea7f"
+        },
+        {
+          "file": "src/wgsl/post.js",
+          "sha256": "8bd6eb2e65f2c9e5c85263a692da0188c50e94c68437c8445965d6e17c045df9"
+        },
+        {
+          "file": "src/wgsl/reflection-transport.js",
+          "sha256": "7a3795b283a44ca3262d1bd6803b6da11198f65bf6e0d3ac5149c8571b6cbd42"
+        },
+        {
+          "file": "src/wgsl/shader-patch.js",
+          "sha256": "1e92ac3e817424085a124f89865663e809c27c0a56c86ef296f353d674ae9ccf"
+        },
+        {
+          "file": "src/wgsl/sim.js",
+          "sha256": "088221138ffae1b0aec2e7ca5a877a8d667a2c5b9a5974417f3d92fb34748781"
+        },
+        {
+          "file": "src/wgsl/sky.js",
+          "sha256": "c84855f6880f3c0839ec5bf771c30f10706cc9209807ce211eab16384631287a"
+        },
+        {
+          "file": "src/wgsl/slope-precision.js",
+          "sha256": "b35780df2ffa40cbc3a364c7e60c923e76ffb108a72faa2d7d7d71b54b2d43e9"
+        },
+        {
+          "file": "src/wgsl/sun-disc.js",
+          "sha256": "6e8989b497043bdbf8684859186efd15ac87c9db9f521f873a9254eebecaa3a3"
+        },
+        {
+          "file": "src/wgsl/taa.js",
+          "sha256": "2a1c55fec200936599e50ce7ea437279bc19141ac7e64a3dd70d822eaa158828"
+        },
+        {
+          "file": "src/wgsl/water-material.js",
+          "sha256": "aec2706ad03ac6658f5b4df9498e361e39db8a243287ece229abed737eb4dd96"
+        },
+        {
+          "file": "src/wgsl/water-optics.js",
+          "sha256": "d0329f9871bdd03b8feb6ad039bf692469d9197fbe2d72cc28c1987510ae934f"
+        },
+        {
+          "file": "src/wgsl/water-transport.js",
+          "sha256": "d2d237cc27f763287b530c9be8b65edcd915208e9abfe0b72f1b067b5a0ed380"
+        },
+        {
+          "file": "src/wgsl/wave-visibility.js",
+          "sha256": "8a59b274de5bffc7dc6dafaca13260aec529f5cc5e15b6da9d2f0e48535d1dd8"
+        },
+        {
+          "file": "src/wgsl/whitewater.js",
+          "sha256": "bf788d275a8b31ecd462eb3e039678efb09a51a9e3fcd11fbe3fd2b45a8caf87"
+        },
+        {
+          "file": "src/wgsl/wind-roughness.js",
+          "sha256": "89361d84d891a510d714939a5ffaba416cfa61d991cd0af6f97807ec6cf37c68"
+        },
+        {
+          "file": "src/wind-roughness.js",
+          "sha256": "f31119f9cb79e5c96efb763349db057214ab6175ad5994e4f5b66e328e36a68c"
+        },
+        {
+          "file": "temporal-tests.html",
+          "sha256": "f564ae8c589e6fd795dfe5a15373de4a6cb1e09cf89ce611fa305ff0f80eca4d"
+        },
+        {
+          "file": "tests.html",
+          "sha256": "91e401a51eb5a35c8eb54c5443f5192ed3e3abbfcf383e1cb8aecfc78df7118a"
+        },
+        {
+          "file": "tests/ab10-integration.test.mjs",
+          "sha256": "bf674219d8a46941798a60f07ca8542c89edd2991faa9315a9e09e29fbd9fb38"
+        },
+        {
+          "file": "tests/appearance-gpu.js",
+          "sha256": "44fe2e596179690eceee716bb7ce49b510d7e36620a95aa26f89c5544c047902"
+        },
+        {
+          "file": "tests/celestial-light.test.mjs",
+          "sha256": "e54cbe66c71a52882fa549bdfa22d6a6f6c78e861ec0a77eaaa23b8abe784ca6"
+        },
+        {
+          "file": "tests/cloud-appearance-shaders.js",
+          "sha256": "795e86294cd582a2c5b9679ead0f1609388a6421b0a60df30dcb1453a93bba58"
+        },
+        {
+          "file": "tests/cloud-appearance.test.mjs",
+          "sha256": "0e2d1426887d51aec5e4cae93ea9dfa16596a7badb70df54eefe885de1f1b7f7"
+        },
+        {
+          "file": "tests/cloud-condensate.test.mjs",
+          "sha256": "c1ee48ee849a9c71f2ac82c2622bbedac32dbeda25093ec119ab49aaeb7b605a"
+        },
+        {
+          "file": "tests/cloud-convection-readback.js",
+          "sha256": "81987fee83dc12c8b1ffa85c29408b8b4b1e896e890dc114d6e829fda259e5f5"
+        },
+        {
+          "file": "tests/cloud-convection.test.mjs",
+          "sha256": "50f4c2bca31454b567e981a0205fd338b29fbee52fc9a96e35376441fa504f6f"
+        },
+        {
+          "file": "tests/cloud-light-path-readback.js",
+          "sha256": "f6bb223b97af71d9c171fe1483d9b51c93aa5b609646fd4e265313db93b9af94"
+        },
+        {
+          "file": "tests/cloud-light-path.test.mjs",
+          "sha256": "edce1fa083521373d9c335e67b437a528178dc542ce2a404161500972ea24850"
+        },
+        {
+          "file": "tests/cloud-shadow-diagnostic.js",
+          "sha256": "8743410b84a4616b21f843a5ab9f85d805c819ada309ea8a7d306a65022a0ef4"
+        },
+        {
+          "file": "tests/cloud-shadow-readback.js",
+          "sha256": "7a58a09b6083b29a35b7de3522817bcc3fc9f2dd255f137ee03a4ee722a9e335"
+        },
+        {
+          "file": "tests/cloud-view-readback.js",
+          "sha256": "6434cf8db7c3556a442f036bcb9c251eac190ef6ea20165eb2dc36dd71ac7022"
+        },
+        {
+          "file": "tests/cloud-volume-control.test.mjs",
+          "sha256": "5dcfb45d3284ab4349f69459ed0a0163e0e921f1df002090ec0a319808383b37"
+        },
+        {
+          "file": "tests/cloud-work-readback.js",
+          "sha256": "c66eb58473e5398a83908cd7a408bf5572cf27577a8d5cc00c27fea46177e357"
+        },
+        {
+          "file": "tests/cloud-work.test.mjs",
+          "sha256": "765fa68975e86b9b7f11f64afe50919961386bf19fa72a44b9a3195075dc87f9"
+        },
+        {
+          "file": "tests/contracts.test.mjs",
+          "sha256": "f3da56b718f9ab970b334b9603a6c982612cb25954ef3e7ed445d47124eb1108"
+        },
+        {
+          "file": "tests/coordinates-gpu.js",
+          "sha256": "15fe7e0d9c4e1fc3262ed6c60b83ead08f32d3640973e6faa58cc5666043be23"
+        },
+        {
+          "file": "tests/coupling-gpu.js",
+          "sha256": "94d449b80579ebd08012eb2ad3522423acf5a08b394069404dc2be671d5b6ffe"
+        },
+        {
+          "file": "tests/crest-sheet.test.mjs",
+          "sha256": "69099a27cb4029faec7ad6bd8bf1f86bf04f5b4194f50febd38e8d0920e729db"
+        },
+        {
+          "file": "tests/crest-support-readback.js",
+          "sha256": "3898861c5d22ff7f2ef51d4fa9b5241aa8eb8129bdbff8266e878a28c5ebc9e3"
+        },
+        {
+          "file": "tests/crest-surface-readback.js",
+          "sha256": "2daa670ef54246beb61533c76a1e082ec0815712e6714b31308bc1d01820750c"
+        },
+        {
+          "file": "tests/crest-whitewater.test.mjs",
+          "sha256": "dfd1654c9a49b8ea63b2cabac53fd2806dbf45012d297bec2aaced9cad935c95"
+        },
+        {
+          "file": "tests/cube-mips-gpu.js",
+          "sha256": "15486dffce228e59b42428676de2649c46848f2dc646ca953b95b43532263929"
+        },
+        {
+          "file": "tests/deformed-slope-readback.js",
+          "sha256": "d57c5ccc8497264482cc965d1f13b6413489961302b1dda46f6ce9d9ea801a33"
+        },
+        {
+          "file": "tests/dynamics.js",
+          "sha256": "f8ed46514b217516692e9dd8bfa0edb3ab0db0c7d61ac8b7bffcd1ce57ecf9b1"
+        },
+        {
+          "file": "tests/ensemble.js",
+          "sha256": "2b7598201001f65262d5e951eac7b2c95e0986abb7679f5ff6511f870febb1d9"
+        },
+        {
+          "file": "tests/environment-controls.test.mjs",
+          "sha256": "ae7340e044dd589fdf01f40eca153c4cb39ce1fa23596d99f63618c42dbca9c4"
+        },
+        {
+          "file": "tests/environment-gpu.js",
+          "sha256": "ee42f2b33883efc7b8e825d351b3485685b4a217925163cdecb51c6f061ec4a8"
+        },
+        {
+          "file": "tests/environment.test.mjs",
+          "sha256": "f008c34b7f7d6ab0d3cf3b4687a716653414417eb80d8287a8991a96140eaae9"
+        },
+        {
+          "file": "tests/evidence.test.mjs",
+          "sha256": "2ae67b6769d8e1ff051885169db92f3388947610ccc19529cf3c995b828e9648"
+        },
+        {
+          "file": "tests/foam-readback.js",
+          "sha256": "b21398149d9472aeb31d7649421369913b5e03293df8e73dbe6b4ed31caf288f"
+        },
+        {
+          "file": "tests/gpu.js",
+          "sha256": "10468e0c01dfe6599847ff89ef976886741064488aab7f9a08150472bfe20256"
+        },
+        {
+          "file": "tests/hdr-readback.js",
+          "sha256": "3a4d5f3db04dfded8c239caeab2ce0131b37198afb99f6401801b383d6131f5a"
+        },
+        {
+          "file": "tests/inversion-readback.js",
+          "sha256": "456498f81db73fd50663ac1bd86d1d35533583ce8f01aaa62a12ee6e6c5ee080"
+        },
+        {
+          "file": "tests/irradiance-gpu.js",
+          "sha256": "2a0c62a511eae99edff7b170067ab2edd53d9347eb33cc8676e62dc5e4137b53"
+        },
+        {
+          "file": "tests/lens-gpu.js",
+          "sha256": "81f4c991bd1e8835779c1a5437a8c728388836c6466fd7b7ffcedc3aafe8e247"
+        },
+        {
+          "file": "tests/long-grid-study.mjs",
+          "sha256": "e09ff8cd428a304c7422a6641f6b39cafe3a750120e4f969760f48b5503c44b4"
+        },
+        {
+          "file": "tests/long-grid.test.mjs",
+          "sha256": "1093ac89f88fb365ed98c466a194c5ae154a00e3865804e417e6549a068443c0"
+        },
+        {
+          "file": "tests/milestone-a-manifest.mjs",
+          "sha256": "7d187aeb49cdcdb3f70eb2d76d3ee404e50c8e56965cdd4068dfeb79ddfc041b"
+        },
+        {
+          "file": "tests/milestone-a-publication.mjs",
+          "sha256": "1657057ecca00eb3b9b0e06353f2041636c429ab884b4f9c74eb8b1ca21da3f7"
+        },
+        {
+          "file": "tests/milestone-a-wave-shaders.js",
+          "sha256": "c190fdb3ff4b00eb0428b098c5389ed5d9b7d708e13ab123e02df9a3ec888796"
+        },
+        {
+          "file": "tests/milestone-a-wave.test.mjs",
+          "sha256": "0fcb404b32dd3d256399bb7ddf561d54d0c54a31ebaadbaf8d4735b69cf9864f"
+        },
+        {
+          "file": "tests/numerics.test.mjs",
+          "sha256": "ea351a2883ec392fad55bdb93fc0a56c12f63e6d0a2531637dd769c3fc9d7192"
+        },
+        {
+          "file": "tests/ocean-order.test.mjs",
+          "sha256": "2aaaa8fabe6c9c47dcb863889a47f5d661e7babb7105e8789c012c5f9da9df59"
+        },
+        {
+          "file": "tests/optics.test.mjs",
+          "sha256": "78ede7d0532d1add0b2ff1cb551cceae58498df66086a7e7c8cb545a8a4a8e8e"
+        },
+        {
+          "file": "tests/phase0-crest.mjs",
+          "sha256": "261446c3d2ff013d0c645f0a3f6cfd3ff7b5e8f65816e792c1af43dfed1369dc"
+        },
+        {
+          "file": "tests/phase0-manifest.mjs",
+          "sha256": "6d099326540b1b26f6e3846347980615219557ad7560beb74ef1cb74ea4d6819"
+        },
+        {
+          "file": "tests/phase0-optics.mjs",
+          "sha256": "b7d0f8a3cfb5992ae2326c13485ab759593341aff98bdec5a9407ed6927a47fe"
+        },
+        {
+          "file": "tests/phase0-readback.js",
+          "sha256": "f1f867692fa70a760ac61de7e1d19471158aa929d84984321fe839735a5a497b"
+        },
+        {
+          "file": "tests/phase0-science.mjs",
+          "sha256": "e404eb0bfe4b77a9d2cea5926c92879358a736edf0bfff137346e7813210207a"
+        },
+        {
+          "file": "tests/phase0-shaders.js",
+          "sha256": "a66d3df9ea1d50ba1a7c7e3e426458e321d9e12de4e268bbb393deb7e73e10c9"
+        },
+        {
+          "file": "tests/phase0.test.mjs",
+          "sha256": "5eff9a94200e3f603c028916787114e949e0353b1191ec73bd928c09e297d7b8"
+        },
+        {
+          "file": "tests/phase1-field-experiment.mjs",
+          "sha256": "96a912e3898d8e63c1ecf56d4c35ad8df9b4b172ef49acbe33eadf50756497f2"
+        },
+        {
+          "file": "tests/phase1-inventory.mjs",
+          "sha256": "3e6d17341f3308731823d4f9b301bc5d8a053dc6f4426da22e6c10b4bb08a480"
+        },
+        {
+          "file": "tests/phase1-light-readback.js",
+          "sha256": "7596345afc2d3916aa1dfe9938a247c9e9237c0b14fc2f4ffe272bbebbb4fe00"
+        },
+        {
+          "file": "tests/phase1-publication.mjs",
+          "sha256": "566bd225d34653f18e779b2514d06f2937edab7c6275afb199f28f33e0b5d1b6"
+        },
+        {
+          "file": "tests/runtime.test.mjs",
+          "sha256": "a1d4e74c7d7bb18a49aee37c4ae9e22b7c185ca245ef070b6d016c746c39373e"
+        },
+        {
+          "file": "tests/scene-preset.test.mjs",
+          "sha256": "04a9ba381a39404210d78e1524d931b58387d8dee47564427981143a749db8f1"
+        },
+        {
+          "file": "tests/sea-spectrum.test.mjs",
+          "sha256": "bfde7381fae9a05e01f2965ade67d909d49a3250f7d95dc789850397a468eead"
+        },
+        {
+          "file": "tests/shader-audit-gpu.js",
+          "sha256": "261bacc77ff2bca4e7cde0b82a8de608adfcfbc46b65671e9811e0e9ff598475"
+        },
+        {
+          "file": "tests/shader-corrections.test.mjs",
+          "sha256": "d0b0088816f103c69abd33f2d6b3f5f4c7edd3e71460a5618f305ea88a534464"
+        },
+        {
+          "file": "tests/slope-precision-readback.js",
+          "sha256": "0026b2781e33f5cb7048ca756dd7364307bd2b1f6eb7ca63b0e8a1301cee75df"
+        },
+        {
+          "file": "tests/slope-precision-reference.js",
+          "sha256": "c375da0851f0dc17a07238a6aeb0876ac6165c3d11af03fb0f2b060d80730bb7"
+        },
+        {
+          "file": "tests/slope-readback.js",
+          "sha256": "0e233db0982dd7524d9186f270b0dfb1882472131d5d80c279d92d3e3194b614"
+        },
+        {
+          "file": "tests/spatial-origin.test.mjs",
+          "sha256": "c905a023aebc8fb4dfaa2181a9568ad75f41539a1d8722dc61df085943d5a6c8"
+        },
+        {
+          "file": "tests/spectral-readback.js",
+          "sha256": "b5eecdaa3dbb83c3071b8d0d744ed09e35cd7c10524c562a1d39bb9733b63ff4"
+        },
+        {
+          "file": "tests/temporal-gpu.js",
+          "sha256": "8f613cb0eea54a70eafcdf2301f84eec74db86633140511aa380783e5d82076d"
+        },
+        {
+          "file": "tests/temporal.test.mjs",
+          "sha256": "91282bcc6207b948ad6529bb22d446c0dcdeb3e932457548b2234b5b31837fc8"
+        },
+        {
+          "file": "tests/texture-readback.js",
+          "sha256": "7c57732c938930d07aa28baa99235f95d4ea5afdc648895428564f9bda95f34c"
+        },
+        {
+          "file": "tests/visibility-gpu.js",
+          "sha256": "76530af8c213c0218081a306b372e42344de8873c4e32c41cdf4052af4e4f851"
+        },
+        {
+          "file": "tests/visible-slopes.test.mjs",
+          "sha256": "c46d9c28282c7819cc43b9135ad588de83dae784fefc66b3a3091df1e9ad888c"
+        },
+        {
+          "file": "tests/water-layer-gpu.js",
+          "sha256": "79cd906c6edae2b4c963c8b82d01f880d7c1167c2cc424f65dba5aeecacf68a2"
+        },
+        {
+          "file": "tests/water-transport.test.mjs",
+          "sha256": "842354906809db1af5217d7d7d8736cfd0302f349e2bd55e9548dabecebca089"
+        },
+        {
+          "file": "tests/webgpu-hardware-probe.html",
+          "sha256": "048c6ada5c67c19b25c36f5fad7b5a481fb0b961301f1369dacf88701a572f42"
+        },
+        {
+          "file": "tests/whitewater-readback.js",
+          "sha256": "6c1d9d3f857eff2312c2241f6be0ca29bbbb717381941e7f6bee712f3b8dcc05"
+        },
+        {
+          "file": "tests/whitewater.test.mjs",
+          "sha256": "08f97ca57a11e835b3aad7e8602cbff702c8e344dbf70a2f9f30a93a395bda52"
+        },
+        {
+          "file": "tests/wind-roughness.test.mjs",
+          "sha256": "3ddb3d0f82243744b1be1f38f55f8d3ee4c3ff528c62e3efb35ea45ddfda071e"
+        },
+        {
+          "file": "tools/analyze-ab-checkpoint.mjs",
+          "sha256": "fb6f4e1b38150f16ddeda27d4e96d375b96e1528a6a675c535bfb7c46f58c212"
+        },
+        {
+          "file": "tools/evidence-store.mjs",
+          "sha256": "10a1fd89543850ba9977d57e35fcaab60d9b75a8fa93d2c60705ba7f2e8cda0f"
+        },
+        {
+          "file": "tools/recover-ab3.mjs",
+          "sha256": "557df6f673d332bf71aa5bc9c4304454f491f929fd3ccab59f20b1876bea9f21"
+        }
+      ],
+      "settings": {
+        "windSpeed": 30,
+        "windDir": 118,
+        "fetchKm": 250,
+        "swellHs": 3.4,
+        "swellDir": 94,
+        "swellLength": 200,
+        "swellSpread": 48,
+        "choppy": 1.12,
+        "turbidity": 0.25,
+        "dissolvedAbsorption": 0.07,
+        "mineralScattering": 0.3,
+        "foam": 1,
+        "sunElev": 18,
+        "sunAzim": 4,
+        "exposure": 1.4,
+        "haze": 7,
+        "clouds": 0.92,
+        "veil": 0.8,
+        "bloom": 0.045,
+        "spray": 1.5,
+        "rain": 0.65,
+        "cloudDepth": 3.5,
+        "cloudType": 2,
+        "seed": 1307,
+        "quality": "High",
+        "resolution": 1,
+        "adaptive": false,
+        "timeScale": 1,
+        "weatherRate": 1,
+        "seaRate": 1,
+        "astronomyRate": 0,
+        "environmentMode": "natural",
+        "frontEnabled": false,
+        "frontX": 18000,
+        "frontZ": 0,
+        "frontWidth": 20,
+        "frontHeading": 180,
+        "frontSpeed": 12,
+        "electrified": false,
+        "paused": false,
+        "cameraMode": "free",
+        "astronomy": false,
+        "date": "2026-10-25",
+        "hour": 17,
+        "latitude": 32,
+        "longitude": -30,
+        "debug": 0,
+        "currentSpeed": 0.12,
+        "currentDir": 35,
+        "cameraSpeed": 6,
+        "fov": 58
+      },
+      "camera": {
+        "x": 0,
+        "y": 18,
+        "z": 0,
+        "yaw": 1.3788101090755203,
+        "pitch": -0.6108652381980153,
+        "fovY": 1.0122909661567112,
+        "speed": 6
+      },
+      "query": {
+        "preset": "storm",
+        "ma": "1",
+        "cam": "0,18,0,79,-35",
+        "cameraMode": "free",
+        "quality": "High",
+        "resolution": "1",
+        "w": "1920",
+        "h": "1080",
+        "seed": "1307",
+        "t": "20",
+        "frames": "240",
+        "ui": "0",
+        "adaptive": "0",
+        "stage": "v04-ma-ab4-ab10-phase-01",
+        "validate": "1",
+        "p0": "1",
+        "p0Profile": "1",
+        "weatherRate": "1",
+        "seaRate": "1",
+        "windSpeed": "30",
+        "seq": "24",
+        "captureStep": "0.0416666666667",
+        "abWater": "slab",
+        "dissolvedAbsorption": "0.07",
+        "mineralScattering": "0.3",
+        "abDisplay": "linear",
+        "abEnvironment": "marine-diffuse",
+        "abBreaking": "phase-field",
+        "abFoam": "relief",
+        "abRain": "velocity",
+        "shot": "storm30-high-reference.png"
+      },
+      "frames": [
+        {
+          "frame": 0,
+          "time": 30.000000000007958,
+          "metadataSHA256": "45c0fb54036da64116bba642bbc608f06234b69a4256f403ebce514d3fe7df0f",
+          "pngSHA256": "b3a02c12652d017f1b1a47330937b4d2f470a817f1e5a938cc0672b24f47f6ac"
+        },
+        {
+          "frame": 1,
+          "time": 30.041666666674658,
+          "metadataSHA256": "6b78c527e0d96e8a1699cab1f3970d56c178f08dc02bd01e861070bde386d601",
+          "pngSHA256": "5d3559b9c50a47340056245faa21e7873d4e246058cfd14e4c5db401adcfac83"
+        },
+        {
+          "frame": 2,
+          "time": 30.083333333341358,
+          "metadataSHA256": "100a39e68f36610f397f3db62e9a07955b123f774eeebff67c37b8daa442af1e",
+          "pngSHA256": "ff4eb3666f01446f10376afdc5e7e9e30753e9fb7878b1f8c53fc97414b54ada"
+        },
+        {
+          "frame": 3,
+          "time": 30.125000000008058,
+          "metadataSHA256": "4fbb9f55f8d32346cd91e74c6c087c6f4fd5d6b94864b113dfd7f20cf9917f5d",
+          "pngSHA256": "5afe5a009e51f6e7e3e23424ac34767730e962d7851e6ec0b9efaa9272309085"
+        },
+        {
+          "frame": 4,
+          "time": 30.166666666674757,
+          "metadataSHA256": "607faccde31eff6c6852ec484023144a5096f211121c9964a75f1e65631dfd99",
+          "pngSHA256": "cbdfa18e2c1badf19a0c98c7c4b7d2b1366598bbe51ca67c4f556c5919be8493"
+        },
+        {
+          "frame": 5,
+          "time": 30.208333333341457,
+          "metadataSHA256": "1d6693b143294006c7625f49010e8018bc7af18b37426a888be7014a298be7e0",
+          "pngSHA256": "5a7c36c0d6f7e8f78b8a30fca242b83a7b70db4098e7134aa0460410574dc08c"
+        },
+        {
+          "frame": 6,
+          "time": 30.250000000008157,
+          "metadataSHA256": "f987297ec0b75da651e9b83f4c4e4eff558abb06818640778dfd5386c5664e6a",
+          "pngSHA256": "02a0faaada2c647ebca7e4c3ca64151484afe952edf155ac8d3b9984837bf085"
+        },
+        {
+          "frame": 7,
+          "time": 30.291666666674857,
+          "metadataSHA256": "3f14697308c174b6f9a8c1d331223d56b541352aecebd955a656dcbeb285c433",
+          "pngSHA256": "5a630d59d7280efe0c91eb551064cd0b9f6eab0a023babcec523ca3ef1eba7c7"
+        },
+        {
+          "frame": 8,
+          "time": 30.333333333341557,
+          "metadataSHA256": "65347dd084b40578e1074d97b1e912bb63986c15f3913fb86a3d7d386c5a2548",
+          "pngSHA256": "bca53de5133221637a35158f03f38f8dd37afd6e93fad4bc9c7625b3eb9f7798"
+        },
+        {
+          "frame": 9,
+          "time": 30.375000000008257,
+          "metadataSHA256": "b4a51278f7cccfc8309075811364339ffb7324aea99076bc72ce181ae95fdd9c",
+          "pngSHA256": "b36be94e129cc5e59e85e5fde4ddf319d3bfc673f2d9407473b7d66c0bf7f7c7"
+        },
+        {
+          "frame": 10,
+          "time": 30.416666666674956,
+          "metadataSHA256": "843c9fc3c7d345a96a6c4666641d5e49cf9f648edd477dac1edf4be988018aa0",
+          "pngSHA256": "a0a55d89eef7561512d77469f0b9c3a2a77c68bb46c18594dc619f95032d290b"
+        },
+        {
+          "frame": 11,
+          "time": 30.458333333341656,
+          "metadataSHA256": "1c1c80925f5de4b794c883b58b65d85aa198104c2f7ee86db545a0ae21307697",
+          "pngSHA256": "aa0944f0e708dd25a05c6c829aaef6eb1530ba8df802654bab15ee6c93788ecc"
+        },
+        {
+          "frame": 12,
+          "time": 30.500000000008356,
+          "metadataSHA256": "ad6fa079cf27844488f5f82b3e12d1694423fb07f91cfca03c05ca98e52f2d9a",
+          "pngSHA256": "e366e3111402386cf41540d158877c39f318b44b52bb8291113be89d0d2b3871"
+        },
+        {
+          "frame": 13,
+          "time": 30.541666666675056,
+          "metadataSHA256": "643545d2db15afc7708c40df6544e20251ecbabcad89e1a0f6c3c0b86a5997e2",
+          "pngSHA256": "8e8f5d4d28a1e9cf66f689d147c6b9e93de610c6856d48ae8119a579e0b069b0"
+        },
+        {
+          "frame": 14,
+          "time": 30.583333333341756,
+          "metadataSHA256": "78f249cfc8be35ffb63475ea32afd88742d0367dd3700b1bf853a9b25ce58f60",
+          "pngSHA256": "76efb52228d3ec4ad07437df235f5269d5f879cf18e656cec9b5781d2f465546"
+        },
+        {
+          "frame": 15,
+          "time": 30.625000000008455,
+          "metadataSHA256": "18fdea707702370a3f704057950727d584fc7523ff14ce8a15a41bbd82936183",
+          "pngSHA256": "6c487884a5bde4c2043e5e752640ad1d95b01282ff17e54d0f72f065dd1779e0"
+        },
+        {
+          "frame": 16,
+          "time": 30.666666666675155,
+          "metadataSHA256": "83986f3c47b8c1347a7f3457e2ecab84b1f09541dc9aeef7836e02a836080f36",
+          "pngSHA256": "1b7664d5c41d21eb5038cdc247c881775fd9f01c34b8d32766c046a2733079af"
+        },
+        {
+          "frame": 17,
+          "time": 30.708333333341855,
+          "metadataSHA256": "988125cccb33a7ed63e395c12ad1abb395096cd66754dfc582783e1a51d05097",
+          "pngSHA256": "aae2b4e4c2c618858d1c8302c305c3deab9ab7e985b4684cfb579a2554ba95ad"
+        },
+        {
+          "frame": 18,
+          "time": 30.750000000008555,
+          "metadataSHA256": "58b897f1975061129322c47027e755fd96f851eaca9abfff30de24692d490103",
+          "pngSHA256": "109031191c2094c8422ddb3006b237f7710b362984a7c12020f32631f6875ea0"
+        },
+        {
+          "frame": 19,
+          "time": 30.791666666675255,
+          "metadataSHA256": "749a15d87aa324ccef366d56d74fa3f488035c51cb69458fd307b9653c3eec75",
+          "pngSHA256": "d2b021af92a7aa2eb8a0e26d1b1ea5e237820a4b3338c781c7c0cb793b19e10a"
+        },
+        {
+          "frame": 20,
+          "time": 30.833333333341955,
+          "metadataSHA256": "1ba47281820b0e3d568a1da0d0910911297875bccb905eb3fc37af8721f91b97",
+          "pngSHA256": "110224979b281dcc5853ce98e09f91ab6bbcdda1567d232de3957b886bb3bab1"
+        },
+        {
+          "frame": 21,
+          "time": 30.875000000008654,
+          "metadataSHA256": "28fdff18f81e39e08fe1e95b277012fae2b8bd43d3961e1a68f846b33b650cd6",
+          "pngSHA256": "1ad36248601aee8bf8b1b0ade5f0f76d58a912be3db91f22dfb9eeb7ce8d2dcc"
+        },
+        {
+          "frame": 22,
+          "time": 30.916666666675354,
+          "metadataSHA256": "726fe5d98d06a206315e53b9820df1e83f944853b96d1ad9757a6e57a8a44077",
+          "pngSHA256": "390fb61c80cf1b9a5cec5f1e4a27a7dc913deb7cba043e448eeffcc5d0cb174b"
+        },
+        {
+          "frame": 23,
+          "time": 30.958333333342054,
+          "metadataSHA256": "b74762a6c8e146ac81167f84c3331de64830ceb04d3ba2b03c4458a2d91c604a",
+          "pngSHA256": "83279fdbc316aa8019ec54a131bfb210c808a009a1a19d8ebbebe98fbbb7aec7"
+        }
+      ],
+      "nativeHDRAndSpectrum": "24/24 PASS",
+      "video": {
+        "path": "evidence/v04-ma-ab4-ab10-phase-01/storm30-high-reference.webm",
+        "sha256": "47ad4fde03691f8045213045d034a0046044e82071bf9ae36b01a6363b132f51",
+        "decodedRGBMatchesAllPNGFrames": true,
+        "frames": 24
+      }
+    },
+    {
+      "run": "phase-regress-01",
+      "scene": "day-near",
+      "baselineRun": "final-01",
+      "sourceManifest": "bec284b91d505372de916782e170a9589a852ac488a1dff72bd5f46ff4d84bb6",
+      "sourceFiles": [
+        {
+          "file": "ab-review.html",
+          "sha256": "ceecbc694396b4ddcf0be36cb41d0f9e705fbd75343723e1e1d4b30fea4f8e36"
+        },
+        {
+          "file": "ab10-review.html",
+          "sha256": "6d998115fab0c01ba37190436f660fc86b2095a559a3a9d1d6bd351b220f6284"
+        },
+        {
+          "file": "ab2-review.html",
+          "sha256": "1e7a5ce4a0d5e2058beba1176b5970e1ab7b7f1eaa65cc46125e8acbc33950c4"
+        },
+        {
+          "file": "ab3-review.html",
+          "sha256": "3672cd44ab073f1b50e676f5c849df03d4ac3fbe4e90716faf2971ace7b31c51"
+        },
+        {
+          "file": "ab4-lab.html",
+          "sha256": "6b7703f86fcf4d393ec6cf32d4518d2d5212ea23ae57f50d2ac8d30f68bdfdee"
+        },
+        {
+          "file": "ab4-review.html",
+          "sha256": "9c16e2b9f805b5bf98885d3be97434715cabffb0b3e045422b8d44845f43dee1"
+        },
+        {
+          "file": "ab5-review.html",
+          "sha256": "1655610d3fe7096f275f9069943facbed5a6309d57bf880eba1061db84607713"
+        },
+        {
+          "file": "ab6-review.html",
+          "sha256": "b6f4d944a0bf720aff2149f7c18ed8a3a579c6a3a623b69282a0c4213760ffe5"
+        },
+        {
+          "file": "ab8-review.html",
+          "sha256": "67c12d9ecdf4a9fdf2b371aea0d093617d90b6b6ba1b00ab9ab2c5693edee2c4"
+        },
+        {
+          "file": "ab9-review.html",
+          "sha256": "d9ff0d9fdbdb40a41d8cdbb24a373572639b1145f85fa0dbe6d81631d9832090"
+        },
+        {
+          "file": "appearance-tests.html",
+          "sha256": "94626b1e952cf94d54378a353e5325e5f28cc87dcd6e5abd87483c20cf9fd2f6"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/ORIGINAL-README.txt",
+          "sha256": "f79dddd6295fb9126027f03e32f69f0c14b9485725fdd663600a84f8371b44c0"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/density.r16f",
+          "sha256": "de6b21ad09686f1f0c6fd060213ab202fe375c9f15d46def99a6b7d262a750ca"
+        },
+        {
+          "file": "assets/experiments/wdas-cloud/metadata.json",
+          "sha256": "364740e6e13e835bf1f378dfbf5cbf68956fca847ec48d5e44a1b2d0498caae9"
+        },
+        {
+          "file": "dynamics.html",
+          "sha256": "51a28203fb90902ec049b7a2dd0fd5791dbc8042bec0643e6d4b1bc984f43238"
+        },
+        {
+          "file": "ensemble.html",
+          "sha256": "18c36227377f39d14c8ce6c9b728ac159fa34a6445d4ab01a5b3fcb971256ef8"
+        },
+        {
+          "file": "environment-tests.html",
+          "sha256": "e1d9c63c4cf00c1b09bb775a80ce8fdc29edce6d033158d925316715fc86b282"
+        },
+        {
+          "file": "gallery.html",
+          "sha256": "a717cbd34a57b97db470b7f21db3f07b384497d3d591ab973e584697ce59a725"
+        },
+        {
+          "file": "index.html",
+          "sha256": "077c3842373f50e058f953cc9a6393caeae1cd45e851666c710b5e28a1711025"
+        },
+        {
+          "file": "lab.html",
+          "sha256": "1dc677003c241cd4cd48dc14316852e54cf76951dd5f4ce1707942694cdc93bd"
+        },
+        {
+          "file": "matrix.html",
+          "sha256": "d5a7733712a90487e12525d724dfafb097aec52200a9a96bf36a874f8705e2c6"
+        },
+        {
+          "file": "milestone-a-review.html",
+          "sha256": "ea8c27d3710325f4ed2da2051415aee7ff7a0c545ab83af7c6c79c0a009040af"
+        },
+        {
+          "file": "milestone-a-waves-review.html",
+          "sha256": "c2e460e41ca081ca17f3b0a649161edc3fe9095576a0061352de6f06303d22ff"
+        },
+        {
+          "file": "milestone-a.html",
+          "sha256": "96bdf74592a6ac039b9e4e611f66b4ff444804d46a3ea249a808db23365d4c6e"
+        },
+        {
+          "file": "motion.html",
+          "sha256": "81b4b81dfdcf67e5e27e006ad10d526d5616c8aceead7258601ea8f6d733290f"
+        },
+        {
+          "file": "optics.html",
+          "sha256": "1fce820ada487062cf1da0a729453a7fae74a5324d3f9853738e4c20d0d194d1"
+        },
+        {
+          "file": "phase0-review.html",
+          "sha256": "77a45c55b2722b8d523346e116edb1d4f8c43dc0178145de08324dea3c97c378"
+        },
+        {
+          "file": "phase0.html",
+          "sha256": "c0b8023a95762da8370fc85ed605706a18dce043e4f77325cb3718bda231cd8d"
+        },
+        {
+          "file": "phase1-benchmark.html",
+          "sha256": "59ccd68d38599e91f82a1ddfb4a7df8623acba2d7d8eb9d56bed29997fec9d1a"
+        },
+        {
+          "file": "phase1-light.html",
+          "sha256": "f730abb4485f45b9c08f0e656349242961792301a760cf4ee7a1d5c441d57f2f"
+        },
+        {
+          "file": "phase1-motion-review.html",
+          "sha256": "697b255303a775df14e2296f7b754181f3f72cca7c9b177684027fe8f60e8f58"
+        },
+        {
+          "file": "phase1-review.html",
+          "sha256": "52e491dcfba25adc0d04551cebccf3d91dbafe2c4e1ccdb19dec1b40b7864926"
+        },
+        {
+          "file": "phase1.html",
+          "sha256": "135d3b188bc24e516cfb49440a179144db9bcd386104f61a30027a3f1f25e4c9"
+        },
+        {
+          "file": "reference-motion.html",
+          "sha256": "dc029686b696f6f846334189d31cf3664ba72b61021a5f3847d82ccb81f37799"
+        },
+        {
+          "file": "review-03.html",
+          "sha256": "9a232b4b3fe3bc56db051d1283b28c991717760e488360fad2ef26b43f378251"
+        },
+        {
+          "file": "server.mjs",
+          "sha256": "5cf3653eff37f95e5c8134eb2a418f26c7f4f9546555ec3107a626032ef753dd"
+        },
+        {
+          "file": "shader-audit-tests.html",
+          "sha256": "a44278e2ae48d1e221b896f1a3266f4087d2d6f7b9dac25edf9cd4e75f1a26be"
+        },
+        {
+          "file": "src/astronomy.js",
+          "sha256": "d8bec68ab1b0beb1014b5b8ae1b929fad103b244fd9b1c4881a72f1c6551c009"
+        },
+        {
+          "file": "src/celestial-light.js",
+          "sha256": "8fb00527413062c0a43188fad9c08df7007bbcc78c20257cb561cf88b52a0112"
+        },
+        {
+          "file": "src/cloud-volume-control.js",
+          "sha256": "290deec52c69fed965df3f989bc0db8353f4801830adad5cc60cc96073eb01b0"
+        },
+        {
+          "file": "src/environment.js",
+          "sha256": "1399188ac3bffd4ec57d0720b853b2ec9b7f9dc07b210a11f8b1dd4bb1cf3214"
+        },
+        {
+          "file": "src/foam-pattern.js",
+          "sha256": "f79bf8be59cff58b2a8ac7b71ad61eae873c77751d3a687fc35fac5f73be24ef"
+        },
+        {
+          "file": "src/glint-correlation.js",
+          "sha256": "3dcefc3ac82f7a10ea05bd93683799bdb6972eda60322c3af8268a8f1a1194cc"
+        },
+        {
+          "file": "src/gpu-ledger.js",
+          "sha256": "b0e929bffedae71fe47d4de1671edc3d6ad6b523ae3676d36ea23136ccf6c68c"
+        },
+        {
+          "file": "src/numerics.js",
+          "sha256": "a1bdb5e8c2c4346db412b461aa74885b70668c9e7f889f8f6c297a8aa775ab7e"
+        },
+        {
+          "file": "src/ocean-contracts.js",
+          "sha256": "9040a4c36ff563a5d836c3252660dc41087a6faaa2ba66308e2722339e248ccc"
+        },
+        {
+          "file": "src/ocean-order.js",
+          "sha256": "dde289b060fd0b021bc928d8b6cae5965140eea28f9503273fc34e46ddecfa4f"
+        },
+        {
+          "file": "src/render-options.js",
+          "sha256": "51ef8ff5bd4cd7c6b3332204c661cbbfe70ca1a483b7b5d325e95c8d7d59d6c9"
+        },
+        {
+          "file": "src/renderer.js",
+          "sha256": "d1d6776a15fb15d0d7b321a5b6ef07f6ff28de0ad8c2f9887d83deff4fd2ff1f"
+        },
+        {
+          "file": "src/runtime-input.js",
+          "sha256": "9e71659fad92b35ee05760bd85d25b231af2beaabed6cbeaa788c09efa8859a0"
+        },
+        {
+          "file": "src/sea-spectrum.js",
+          "sha256": "5f526c1eb6387be9064bd549ed2379ad32588bd4d9ea36156a83bad4faf9d422"
+        },
+        {
+          "file": "src/settings.js",
+          "sha256": "b575d0c1d8d6d4e4d529dcd164ccdf665bdc4ef6fb7dffef888d710337d962e6"
+        },
+        {
+          "file": "src/spatial-origin.js",
+          "sha256": "a7a6add81d7d21a73cd836aa74305d04a260efe4ff62c9f6ec4a9b7945cda2b2"
+        },
+        {
+          "file": "src/taa.js",
+          "sha256": "d67f9adfe83263f73e7668d9a7c1df5ea392cda34b48e2a3ced9bdeb0e8e0729"
+        },
+        {
+          "file": "src/temporal-camera.js",
+          "sha256": "b3e36560742418e647b6abfe6605b4c8e49167b0509d6408de4f6ea8193292f0"
+        },
+        {
+          "file": "src/ui.js",
+          "sha256": "a8abd6af7d9fe09c62a5687bbc0495c7667436a7bbc291a8f6c5be328f3c1390"
+        },
+        {
+          "file": "src/water-coefficients.js",
+          "sha256": "f3c526c65145d7d7d6e863daed460fc950e4a77ab5373fad612e81521594ba7b"
+        },
+        {
+          "file": "src/wgsl/breaking-events.js",
+          "sha256": "2cdb411d147dfc344faad27f9c1b932141e089d51bf0f7e019bda2ca2e26e6e3"
+        },
+        {
+          "file": "src/wgsl/breaking-phase.js",
+          "sha256": "6cdaf1b057e4abc5ba2f43f4c0ac29d07fc90036cf9ffb71dfd8e61fd3390d7c"
+        },
+        {
+          "file": "src/wgsl/cloud-ambient.js",
+          "sha256": "1b28c59f69ee67d02a7e1e0d1f64492d8a2ac6b567677144c5d514532dfd0c69"
+        },
+        {
+          "file": "src/wgsl/cloud-bank.js",
+          "sha256": "2ecb417a8d2a60db7467e56e29835cd58410dc520deca77e583785be2f85e2b7"
+        },
+        {
+          "file": "src/wgsl/cloud-condensate.js",
+          "sha256": "164bf5f8f870352d6b451e5b629dc80f9e9c21f30a69a96b723b34792ea9a4d5"
+        },
+        {
+          "file": "src/wgsl/cloud-convection.js",
+          "sha256": "7fc81a6c69b0ce6ca44a789aa063a6179f1d252ea24d5461fd00390f74460471"
+        },
+        {
+          "file": "src/wgsl/cloud-light-path.js",
+          "sha256": "d423e43bcbaf8c06c46cc655e55d2abd33e3b8bf05543dee75be153d9a51b3de"
+        },
+        {
+          "file": "src/wgsl/cloud-noise.js",
+          "sha256": "99d0ed409fe836805975a0b394ae22db5b8b2ebbb5c208c76393c3d5db387ef6"
+        },
+        {
+          "file": "src/wgsl/cloud-plumes.js",
+          "sha256": "1b48572e712885f55aa0838889b121a4e774d3223bc5bd69a52cdbcaeddae6dc"
+        },
+        {
+          "file": "src/wgsl/cloud-shadow.js",
+          "sha256": "701f3a66bc5248506113a44fd7ddff7db8a1fe1fe0a736553a40b4fa6c1addf3"
+        },
+        {
+          "file": "src/wgsl/cloud-transport.js",
+          "sha256": "4dcc00148ac7de3a4bf2afa00274994054366598be9dba217aef3f0952f62052"
+        },
+        {
+          "file": "src/wgsl/cloud-volume-control.js",
+          "sha256": "d4303f87165c850f40d76a9517c65061d25836ae529c5f829545ce139f1c9688"
+        },
+        {
+          "file": "src/wgsl/cloud-work.js",
+          "sha256": "ef2f5cf95199b814c72052d304af31414727e4c100de6185898ca0400ea350fb"
+        },
+        {
+          "file": "src/wgsl/clouds.js",
+          "sha256": "f2d853b834be0bfaf91762427fa1273a32b04ae6de4d3d0f55163160f16b9142"
+        },
+        {
+          "file": "src/wgsl/common.js",
+          "sha256": "7caf0e8f830c874241bb828a37f07fef2ae879e80c2a2625babc0967794fbd12"
+        },
+        {
+          "file": "src/wgsl/coordinates.js",
+          "sha256": "cbe1808c797aaf9532b6ff94baa752a19c6cb912777026ccd70547914447c53e"
+        },
+        {
+          "file": "src/wgsl/coupling.js",
+          "sha256": "bc90ba50e98f903d358713cc3f02617b2bcb09274cfc4b576ac8ff8aab86a9e6"
+        },
+        {
+          "file": "src/wgsl/crest-sheet.js",
+          "sha256": "f59e4baec2eae0b182c7dc1ef3f111801f72ed0b946751cffec3650d31773297"
+        },
+        {
+          "file": "src/wgsl/crest-support.js",
+          "sha256": "25ebacf0f0c1badba15435ebd96f6083ab7aaa89cf8c378e9ee5029ee09799b9"
+        },
+        {
+          "file": "src/wgsl/crest-surface.js",
+          "sha256": "012a66ecc8121e5cd3804c0358fd2356a97d77992d9d8989f4f3ae92016bcde9"
+        },
+        {
+          "file": "src/wgsl/crest-whitewater.js",
+          "sha256": "577b5f456c8e85127327af524f9efbc2f70a765b032db839bec766404a47a495"
+        },
+        {
+          "file": "src/wgsl/cube-filter.js",
+          "sha256": "ef80bcd94f1ceeb1ee0f251040a4e67075e6be196be00f34839a29e7e4b8b5cd"
+        },
+        {
+          "file": "src/wgsl/display-transform.js",
+          "sha256": "1475f4052762d422ba3be87eb77ff6af2164d8ff26799e3b1c25e61a262de311"
+        },
+        {
+          "file": "src/wgsl/environment-light.js",
+          "sha256": "79993cfc255a23cc05ea82920af1148fb4d5f1b310059e8f907a885de1534946"
+        },
+        {
+          "file": "src/wgsl/environment.js",
+          "sha256": "c51d50511622d857d0e02461b4269af7777518d20a080b7906a82f94fcc61def"
+        },
+        {
+          "file": "src/wgsl/finite-glints.js",
+          "sha256": "d064c82c8f481b01f1f83f9df97b6f238aeabe26f1e726773ebbc50bcd59e4e1"
+        },
+        {
+          "file": "src/wgsl/foam-transport.js",
+          "sha256": "429bf7e0a719997865e9cd9d2751110bdb0e55c6767fd1d1790a869482a4c1b9"
+        },
+        {
+          "file": "src/wgsl/footprint-optics.js",
+          "sha256": "e0e439431b2f7415bbae2549e34b8b6ea1a5118d6ac854b9957be220f3920951"
+        },
+        {
+          "file": "src/wgsl/immersion.js",
+          "sha256": "4dba3127c4f28701cc845f259aa9538095c97c78d77a6514629a89451a112761"
+        },
+        {
+          "file": "src/wgsl/irradiance.js",
+          "sha256": "f296385d1d84d3042cc7dc2d7759a771b9d9d6125a75be3fd86b933c4f4b2639"
+        },
+        {
+          "file": "src/wgsl/lens-medium.js",
+          "sha256": "9c25cb450aa5129c85e523637bd10958ac467f6be9e8b308e6d7bb4a9df960f1"
+        },
+        {
+          "file": "src/wgsl/ocean.js",
+          "sha256": "51926c1b345e4d1d25e07043f914ccd7a1f037a3db4ca38492b97419ccbefa0b"
+        },
+        {
+          "file": "src/wgsl/particles.js",
+          "sha256": "1953e1dc904ffc9e17ac7e24764ea92ee43ac2ecb6069d68c5450353ddd8ea7f"
+        },
+        {
+          "file": "src/wgsl/post.js",
+          "sha256": "8bd6eb2e65f2c9e5c85263a692da0188c50e94c68437c8445965d6e17c045df9"
+        },
+        {
+          "file": "src/wgsl/reflection-transport.js",
+          "sha256": "7a3795b283a44ca3262d1bd6803b6da11198f65bf6e0d3ac5149c8571b6cbd42"
+        },
+        {
+          "file": "src/wgsl/shader-patch.js",
+          "sha256": "1e92ac3e817424085a124f89865663e809c27c0a56c86ef296f353d674ae9ccf"
+        },
+        {
+          "file": "src/wgsl/sim.js",
+          "sha256": "088221138ffae1b0aec2e7ca5a877a8d667a2c5b9a5974417f3d92fb34748781"
+        },
+        {
+          "file": "src/wgsl/sky.js",
+          "sha256": "c84855f6880f3c0839ec5bf771c30f10706cc9209807ce211eab16384631287a"
+        },
+        {
+          "file": "src/wgsl/slope-precision.js",
+          "sha256": "b35780df2ffa40cbc3a364c7e60c923e76ffb108a72faa2d7d7d71b54b2d43e9"
+        },
+        {
+          "file": "src/wgsl/sun-disc.js",
+          "sha256": "6e8989b497043bdbf8684859186efd15ac87c9db9f521f873a9254eebecaa3a3"
+        },
+        {
+          "file": "src/wgsl/taa.js",
+          "sha256": "2a1c55fec200936599e50ce7ea437279bc19141ac7e64a3dd70d822eaa158828"
+        },
+        {
+          "file": "src/wgsl/water-material.js",
+          "sha256": "aec2706ad03ac6658f5b4df9498e361e39db8a243287ece229abed737eb4dd96"
+        },
+        {
+          "file": "src/wgsl/water-optics.js",
+          "sha256": "d0329f9871bdd03b8feb6ad039bf692469d9197fbe2d72cc28c1987510ae934f"
+        },
+        {
+          "file": "src/wgsl/water-transport.js",
+          "sha256": "d2d237cc27f763287b530c9be8b65edcd915208e9abfe0b72f1b067b5a0ed380"
+        },
+        {
+          "file": "src/wgsl/wave-visibility.js",
+          "sha256": "8a59b274de5bffc7dc6dafaca13260aec529f5cc5e15b6da9d2f0e48535d1dd8"
+        },
+        {
+          "file": "src/wgsl/whitewater.js",
+          "sha256": "bf788d275a8b31ecd462eb3e039678efb09a51a9e3fcd11fbe3fd2b45a8caf87"
+        },
+        {
+          "file": "src/wgsl/wind-roughness.js",
+          "sha256": "89361d84d891a510d714939a5ffaba416cfa61d991cd0af6f97807ec6cf37c68"
+        },
+        {
+          "file": "src/wind-roughness.js",
+          "sha256": "f31119f9cb79e5c96efb763349db057214ab6175ad5994e4f5b66e328e36a68c"
+        },
+        {
+          "file": "temporal-tests.html",
+          "sha256": "f564ae8c589e6fd795dfe5a15373de4a6cb1e09cf89ce611fa305ff0f80eca4d"
+        },
+        {
+          "file": "tests.html",
+          "sha256": "91e401a51eb5a35c8eb54c5443f5192ed3e3abbfcf383e1cb8aecfc78df7118a"
+        },
+        {
+          "file": "tests/ab10-integration.test.mjs",
+          "sha256": "e36cce98a0fc09179d3d0f1f461c86a2758c6745e36d761253ac4e33cc348656"
+        },
+        {
+          "file": "tests/appearance-gpu.js",
+          "sha256": "44fe2e596179690eceee716bb7ce49b510d7e36620a95aa26f89c5544c047902"
+        },
+        {
+          "file": "tests/celestial-light.test.mjs",
+          "sha256": "e54cbe66c71a52882fa549bdfa22d6a6f6c78e861ec0a77eaaa23b8abe784ca6"
+        },
+        {
+          "file": "tests/cloud-appearance-shaders.js",
+          "sha256": "795e86294cd582a2c5b9679ead0f1609388a6421b0a60df30dcb1453a93bba58"
+        },
+        {
+          "file": "tests/cloud-appearance.test.mjs",
+          "sha256": "0e2d1426887d51aec5e4cae93ea9dfa16596a7badb70df54eefe885de1f1b7f7"
+        },
+        {
+          "file": "tests/cloud-condensate.test.mjs",
+          "sha256": "c1ee48ee849a9c71f2ac82c2622bbedac32dbeda25093ec119ab49aaeb7b605a"
+        },
+        {
+          "file": "tests/cloud-convection-readback.js",
+          "sha256": "81987fee83dc12c8b1ffa85c29408b8b4b1e896e890dc114d6e829fda259e5f5"
+        },
+        {
+          "file": "tests/cloud-convection.test.mjs",
+          "sha256": "50f4c2bca31454b567e981a0205fd338b29fbee52fc9a96e35376441fa504f6f"
+        },
+        {
+          "file": "tests/cloud-light-path-readback.js",
+          "sha256": "f6bb223b97af71d9c171fe1483d9b51c93aa5b609646fd4e265313db93b9af94"
+        },
+        {
+          "file": "tests/cloud-light-path.test.mjs",
+          "sha256": "edce1fa083521373d9c335e67b437a528178dc542ce2a404161500972ea24850"
+        },
+        {
+          "file": "tests/cloud-shadow-diagnostic.js",
+          "sha256": "8743410b84a4616b21f843a5ab9f85d805c819ada309ea8a7d306a65022a0ef4"
+        },
+        {
+          "file": "tests/cloud-shadow-readback.js",
+          "sha256": "7a58a09b6083b29a35b7de3522817bcc3fc9f2dd255f137ee03a4ee722a9e335"
+        },
+        {
+          "file": "tests/cloud-view-readback.js",
+          "sha256": "6434cf8db7c3556a442f036bcb9c251eac190ef6ea20165eb2dc36dd71ac7022"
+        },
+        {
+          "file": "tests/cloud-volume-control.test.mjs",
+          "sha256": "5dcfb45d3284ab4349f69459ed0a0163e0e921f1df002090ec0a319808383b37"
+        },
+        {
+          "file": "tests/cloud-work-readback.js",
+          "sha256": "c66eb58473e5398a83908cd7a408bf5572cf27577a8d5cc00c27fea46177e357"
+        },
+        {
+          "file": "tests/cloud-work.test.mjs",
+          "sha256": "765fa68975e86b9b7f11f64afe50919961386bf19fa72a44b9a3195075dc87f9"
+        },
+        {
+          "file": "tests/contracts.test.mjs",
+          "sha256": "f3da56b718f9ab970b334b9603a6c982612cb25954ef3e7ed445d47124eb1108"
+        },
+        {
+          "file": "tests/coordinates-gpu.js",
+          "sha256": "15fe7e0d9c4e1fc3262ed6c60b83ead08f32d3640973e6faa58cc5666043be23"
+        },
+        {
+          "file": "tests/coupling-gpu.js",
+          "sha256": "94d449b80579ebd08012eb2ad3522423acf5a08b394069404dc2be671d5b6ffe"
+        },
+        {
+          "file": "tests/crest-sheet.test.mjs",
+          "sha256": "69099a27cb4029faec7ad6bd8bf1f86bf04f5b4194f50febd38e8d0920e729db"
+        },
+        {
+          "file": "tests/crest-support-readback.js",
+          "sha256": "3898861c5d22ff7f2ef51d4fa9b5241aa8eb8129bdbff8266e878a28c5ebc9e3"
+        },
+        {
+          "file": "tests/crest-surface-readback.js",
+          "sha256": "2daa670ef54246beb61533c76a1e082ec0815712e6714b31308bc1d01820750c"
+        },
+        {
+          "file": "tests/crest-whitewater.test.mjs",
+          "sha256": "dfd1654c9a49b8ea63b2cabac53fd2806dbf45012d297bec2aaced9cad935c95"
+        },
+        {
+          "file": "tests/cube-mips-gpu.js",
+          "sha256": "15486dffce228e59b42428676de2649c46848f2dc646ca953b95b43532263929"
+        },
+        {
+          "file": "tests/deformed-slope-readback.js",
+          "sha256": "d57c5ccc8497264482cc965d1f13b6413489961302b1dda46f6ce9d9ea801a33"
+        },
+        {
+          "file": "tests/dynamics.js",
+          "sha256": "f8ed46514b217516692e9dd8bfa0edb3ab0db0c7d61ac8b7bffcd1ce57ecf9b1"
+        },
+        {
+          "file": "tests/ensemble.js",
+          "sha256": "2b7598201001f65262d5e951eac7b2c95e0986abb7679f5ff6511f870febb1d9"
+        },
+        {
+          "file": "tests/environment-controls.test.mjs",
+          "sha256": "ae7340e044dd589fdf01f40eca153c4cb39ce1fa23596d99f63618c42dbca9c4"
+        },
+        {
+          "file": "tests/environment-gpu.js",
+          "sha256": "ee42f2b33883efc7b8e825d351b3485685b4a217925163cdecb51c6f061ec4a8"
+        },
+        {
+          "file": "tests/environment.test.mjs",
+          "sha256": "f008c34b7f7d6ab0d3cf3b4687a716653414417eb80d8287a8991a96140eaae9"
+        },
+        {
+          "file": "tests/evidence.test.mjs",
+          "sha256": "2ae67b6769d8e1ff051885169db92f3388947610ccc19529cf3c995b828e9648"
+        },
+        {
+          "file": "tests/foam-readback.js",
+          "sha256": "b21398149d9472aeb31d7649421369913b5e03293df8e73dbe6b4ed31caf288f"
+        },
+        {
+          "file": "tests/gpu.js",
+          "sha256": "10468e0c01dfe6599847ff89ef976886741064488aab7f9a08150472bfe20256"
+        },
+        {
+          "file": "tests/hdr-readback.js",
+          "sha256": "3a4d5f3db04dfded8c239caeab2ce0131b37198afb99f6401801b383d6131f5a"
+        },
+        {
+          "file": "tests/inversion-readback.js",
+          "sha256": "456498f81db73fd50663ac1bd86d1d35533583ce8f01aaa62a12ee6e6c5ee080"
+        },
+        {
+          "file": "tests/irradiance-gpu.js",
+          "sha256": "2a0c62a511eae99edff7b170067ab2edd53d9347eb33cc8676e62dc5e4137b53"
+        },
+        {
+          "file": "tests/lens-gpu.js",
+          "sha256": "81f4c991bd1e8835779c1a5437a8c728388836c6466fd7b7ffcedc3aafe8e247"
+        },
+        {
+          "file": "tests/long-grid-study.mjs",
+          "sha256": "e09ff8cd428a304c7422a6641f6b39cafe3a750120e4f969760f48b5503c44b4"
+        },
+        {
+          "file": "tests/long-grid.test.mjs",
+          "sha256": "1093ac89f88fb365ed98c466a194c5ae154a00e3865804e417e6549a068443c0"
+        },
+        {
+          "file": "tests/milestone-a-manifest.mjs",
+          "sha256": "7d187aeb49cdcdb3f70eb2d76d3ee404e50c8e56965cdd4068dfeb79ddfc041b"
+        },
+        {
+          "file": "tests/milestone-a-publication.mjs",
+          "sha256": "1657057ecca00eb3b9b0e06353f2041636c429ab884b4f9c74eb8b1ca21da3f7"
+        },
+        {
+          "file": "tests/milestone-a-wave-shaders.js",
+          "sha256": "c190fdb3ff4b00eb0428b098c5389ed5d9b7d708e13ab123e02df9a3ec888796"
+        },
+        {
+          "file": "tests/milestone-a-wave.test.mjs",
+          "sha256": "0fcb404b32dd3d256399bb7ddf561d54d0c54a31ebaadbaf8d4735b69cf9864f"
+        },
+        {
+          "file": "tests/numerics.test.mjs",
+          "sha256": "ea351a2883ec392fad55bdb93fc0a56c12f63e6d0a2531637dd769c3fc9d7192"
+        },
+        {
+          "file": "tests/ocean-order.test.mjs",
+          "sha256": "2aaaa8fabe6c9c47dcb863889a47f5d661e7babb7105e8789c012c5f9da9df59"
+        },
+        {
+          "file": "tests/optics.test.mjs",
+          "sha256": "78ede7d0532d1add0b2ff1cb551cceae58498df66086a7e7c8cb545a8a4a8e8e"
+        },
+        {
+          "file": "tests/phase0-crest.mjs",
+          "sha256": "261446c3d2ff013d0c645f0a3f6cfd3ff7b5e8f65816e792c1af43dfed1369dc"
+        },
+        {
+          "file": "tests/phase0-manifest.mjs",
+          "sha256": "6d099326540b1b26f6e3846347980615219557ad7560beb74ef1cb74ea4d6819"
+        },
+        {
+          "file": "tests/phase0-optics.mjs",
+          "sha256": "b7d0f8a3cfb5992ae2326c13485ab759593341aff98bdec5a9407ed6927a47fe"
+        },
+        {
+          "file": "tests/phase0-readback.js",
+          "sha256": "f1f867692fa70a760ac61de7e1d19471158aa929d84984321fe839735a5a497b"
+        },
+        {
+          "file": "tests/phase0-science.mjs",
+          "sha256": "e404eb0bfe4b77a9d2cea5926c92879358a736edf0bfff137346e7813210207a"
+        },
+        {
+          "file": "tests/phase0-shaders.js",
+          "sha256": "a66d3df9ea1d50ba1a7c7e3e426458e321d9e12de4e268bbb393deb7e73e10c9"
+        },
+        {
+          "file": "tests/phase0.test.mjs",
+          "sha256": "5eff9a94200e3f603c028916787114e949e0353b1191ec73bd928c09e297d7b8"
+        },
+        {
+          "file": "tests/phase1-field-experiment.mjs",
+          "sha256": "96a912e3898d8e63c1ecf56d4c35ad8df9b4b172ef49acbe33eadf50756497f2"
+        },
+        {
+          "file": "tests/phase1-inventory.mjs",
+          "sha256": "3e6d17341f3308731823d4f9b301bc5d8a053dc6f4426da22e6c10b4bb08a480"
+        },
+        {
+          "file": "tests/phase1-light-readback.js",
+          "sha256": "7596345afc2d3916aa1dfe9938a247c9e9237c0b14fc2f4ffe272bbebbb4fe00"
+        },
+        {
+          "file": "tests/phase1-publication.mjs",
+          "sha256": "566bd225d34653f18e779b2514d06f2937edab7c6275afb199f28f33e0b5d1b6"
+        },
+        {
+          "file": "tests/runtime.test.mjs",
+          "sha256": "a1d4e74c7d7bb18a49aee37c4ae9e22b7c185ca245ef070b6d016c746c39373e"
+        },
+        {
+          "file": "tests/scene-preset.test.mjs",
+          "sha256": "04a9ba381a39404210d78e1524d931b58387d8dee47564427981143a749db8f1"
+        },
+        {
+          "file": "tests/sea-spectrum.test.mjs",
+          "sha256": "bfde7381fae9a05e01f2965ade67d909d49a3250f7d95dc789850397a468eead"
+        },
+        {
+          "file": "tests/shader-audit-gpu.js",
+          "sha256": "261bacc77ff2bca4e7cde0b82a8de608adfcfbc46b65671e9811e0e9ff598475"
+        },
+        {
+          "file": "tests/shader-corrections.test.mjs",
+          "sha256": "d0b0088816f103c69abd33f2d6b3f5f4c7edd3e71460a5618f305ea88a534464"
+        },
+        {
+          "file": "tests/slope-precision-readback.js",
+          "sha256": "0026b2781e33f5cb7048ca756dd7364307bd2b1f6eb7ca63b0e8a1301cee75df"
+        },
+        {
+          "file": "tests/slope-precision-reference.js",
+          "sha256": "c375da0851f0dc17a07238a6aeb0876ac6165c3d11af03fb0f2b060d80730bb7"
+        },
+        {
+          "file": "tests/slope-readback.js",
+          "sha256": "0e233db0982dd7524d9186f270b0dfb1882472131d5d80c279d92d3e3194b614"
+        },
+        {
+          "file": "tests/spatial-origin.test.mjs",
+          "sha256": "c905a023aebc8fb4dfaa2181a9568ad75f41539a1d8722dc61df085943d5a6c8"
+        },
+        {
+          "file": "tests/spectral-readback.js",
+          "sha256": "b5eecdaa3dbb83c3071b8d0d744ed09e35cd7c10524c562a1d39bb9733b63ff4"
+        },
+        {
+          "file": "tests/temporal-gpu.js",
+          "sha256": "8f613cb0eea54a70eafcdf2301f84eec74db86633140511aa380783e5d82076d"
+        },
+        {
+          "file": "tests/temporal.test.mjs",
+          "sha256": "91282bcc6207b948ad6529bb22d446c0dcdeb3e932457548b2234b5b31837fc8"
+        },
+        {
+          "file": "tests/texture-readback.js",
+          "sha256": "7c57732c938930d07aa28baa99235f95d4ea5afdc648895428564f9bda95f34c"
+        },
+        {
+          "file": "tests/visibility-gpu.js",
+          "sha256": "76530af8c213c0218081a306b372e42344de8873c4e32c41cdf4052af4e4f851"
+        },
+        {
+          "file": "tests/visible-slopes.test.mjs",
+          "sha256": "c46d9c28282c7819cc43b9135ad588de83dae784fefc66b3a3091df1e9ad888c"
+        },
+        {
+          "file": "tests/water-layer-gpu.js",
+          "sha256": "79cd906c6edae2b4c963c8b82d01f880d7c1167c2cc424f65dba5aeecacf68a2"
+        },
+        {
+          "file": "tests/water-transport.test.mjs",
+          "sha256": "842354906809db1af5217d7d7d8736cfd0302f349e2bd55e9548dabecebca089"
+        },
+        {
+          "file": "tests/webgpu-hardware-probe.html",
+          "sha256": "048c6ada5c67c19b25c36f5fad7b5a481fb0b961301f1369dacf88701a572f42"
+        },
+        {
+          "file": "tests/whitewater-readback.js",
+          "sha256": "6c1d9d3f857eff2312c2241f6be0ca29bbbb717381941e7f6bee712f3b8dcc05"
+        },
+        {
+          "file": "tests/whitewater.test.mjs",
+          "sha256": "08f97ca57a11e835b3aad7e8602cbff702c8e344dbf70a2f9f30a93a395bda52"
+        },
+        {
+          "file": "tests/wind-roughness.test.mjs",
+          "sha256": "3ddb3d0f82243744b1be1f38f55f8d3ee4c3ff528c62e3efb35ea45ddfda071e"
+        },
+        {
+          "file": "tools/analyze-ab-checkpoint.mjs",
+          "sha256": "fb6f4e1b38150f16ddeda27d4e96d375b96e1528a6a675c535bfb7c46f58c212"
+        },
+        {
+          "file": "tools/evidence-store.mjs",
+          "sha256": "10a1fd89543850ba9977d57e35fcaab60d9b75a8fa93d2c60705ba7f2e8cda0f"
+        },
+        {
+          "file": "tools/recover-ab3.mjs",
+          "sha256": "557df6f673d332bf71aa5bc9c4304454f491f929fd3ccab59f20b1876bea9f21"
+        }
+      ],
+      "settings": {
+        "windSpeed": 8,
+        "windDir": 118,
+        "fetchKm": 110,
+        "swellHs": 2,
+        "swellDir": 94,
+        "swellLength": 135,
+        "swellSpread": 48,
+        "choppy": 1.12,
+        "turbidity": 0.25,
+        "dissolvedAbsorption": 0.07,
+        "mineralScattering": 0.3,
+        "foam": 1,
+        "sunElev": 48,
+        "sunAzim": 4,
+        "exposure": 0.95,
+        "haze": 1.4,
+        "clouds": 0.5,
+        "veil": 0,
+        "bloom": 0.045,
+        "spray": 0.65,
+        "rain": 0,
+        "cloudDepth": 1.5,
+        "cloudType": 0,
+        "seed": 1307,
+        "quality": "High",
+        "resolution": 1,
+        "adaptive": false,
+        "timeScale": 1,
+        "weatherRate": 1,
+        "seaRate": 1,
+        "astronomyRate": 0,
+        "environmentMode": "natural",
+        "frontEnabled": false,
+        "frontX": 18000,
+        "frontZ": 0,
+        "frontWidth": 20,
+        "frontHeading": 180,
+        "frontSpeed": 12,
+        "electrified": false,
+        "paused": false,
+        "cameraMode": "free",
+        "astronomy": false,
+        "date": "2026-10-25",
+        "hour": 17,
+        "latitude": 32,
+        "longitude": -30,
+        "debug": 0,
+        "currentSpeed": 0.12,
+        "currentDir": 35,
+        "cameraSpeed": 6,
+        "fov": 58
+      },
+      "camera": {
+        "x": 0,
+        "y": 2,
+        "z": 0,
+        "yaw": 0.06981317007977318,
+        "pitch": -0.09599310885968812,
+        "fovY": 1.0122909661567112,
+        "speed": 6
+      },
+      "query": {
+        "preset": "midday",
+        "ma": "1",
+        "cam": "0,2,0,4,-5.5",
+        "cameraMode": "free",
+        "quality": "High",
+        "resolution": "1",
+        "w": "1920",
+        "h": "1080",
+        "seed": "1307",
+        "t": "20",
+        "frames": "240",
+        "ui": "0",
+        "adaptive": "0",
+        "stage": "v04-ma-ab4-ab10-phase-regress-01",
+        "validate": "1",
+        "p0": "1",
+        "p0Profile": "1",
+        "clouds": "0.5",
+        "veil": "0",
+        "haze": "1.4",
+        "cloudType": "0",
+        "sunElev": "48",
+        "exposure": "0.95",
+        "weatherRate": "1",
+        "seaRate": "1",
+        "seq": "24",
+        "captureStep": "0.0416666666667",
+        "abWater": "slab",
+        "dissolvedAbsorption": "0.07",
+        "mineralScattering": "0.3",
+        "abDisplay": "linear",
+        "abEnvironment": "marine-diffuse",
+        "abBreaking": "phase-field",
+        "abFoam": "relief",
+        "abRain": "velocity",
+        "shot": "day-near-reference.png"
+      },
+      "frames": [
+        {
+          "frame": 0,
+          "time": 30.000000000007958,
+          "metadataSHA256": "7a5ee6da29b7553ba50ff44c25fbb16a836e9e345fa152d7357019e670821b3a",
+          "pngSHA256": "b744ee7489efbec388f2182a34c3d6a8ba63b0e83667297a56852fea8b4899b3"
+        },
+        {
+          "frame": 1,
+          "time": 30.041666666674658,
+          "metadataSHA256": "4cb607ebeb6f9ca11c2026c5eedf5b1f75720641606482e8dc8fcbb66808bbf1",
+          "pngSHA256": "c3b0dc2b21e29737f978411e726de06d3e43d9680658c0f03ff93815e9a86d4d"
+        },
+        {
+          "frame": 2,
+          "time": 30.083333333341358,
+          "metadataSHA256": "1aae55ea00b942ab4013a286ac4d1c4f485d26fc7b70298eb1ee4b193f552829",
+          "pngSHA256": "ee5f022353e39abf01ce602f8cb926f667d1d6730e50855fc80273e594f2aa20"
+        },
+        {
+          "frame": 3,
+          "time": 30.125000000008058,
+          "metadataSHA256": "31a41c3c222389c3d86abd6b3c293b433a5cada949672201c3e5eb94d8eb820d",
+          "pngSHA256": "a3bcc47d46717e52350597f3f12992836b967417cfa913ef038a0ac6beafc684"
+        },
+        {
+          "frame": 4,
+          "time": 30.166666666674757,
+          "metadataSHA256": "5ad6095f86ac2789c22405ee5d8a2247edd04fcdfb1db4be3e0d96e8fe63ed2c",
+          "pngSHA256": "99a1d930cc23c0e5b0b2b39709746726a221f02d6a5b12df01cc923ec8784aaa"
+        },
+        {
+          "frame": 5,
+          "time": 30.208333333341457,
+          "metadataSHA256": "79ee99a9876108cc1cfc7b07fac066b3fef4aa8c519768706cd11b53b2c66699",
+          "pngSHA256": "508409c3af4991a5c68b72e84b51447ecf235b48d88a1683f44b00b3d92fbcc4"
+        },
+        {
+          "frame": 6,
+          "time": 30.250000000008157,
+          "metadataSHA256": "1f8de40ed3ac1fb1cf29d2a5a7261a66106018fc34d1d63c574d13b6f7be5127",
+          "pngSHA256": "9deb4283651718ebb5a60fec36b763a43ac149cff4180797a6e8bc842446514a"
+        },
+        {
+          "frame": 7,
+          "time": 30.291666666674857,
+          "metadataSHA256": "cc13632936c33701c801cefaebca17025cd91803159ddf802c18a1c20f799a52",
+          "pngSHA256": "aba52e07591c16dfe4990fd08b52eacb85359db7609530475d81448924532794"
+        },
+        {
+          "frame": 8,
+          "time": 30.333333333341557,
+          "metadataSHA256": "e0343475ce3347b67978d7e4223f375905d14cc2b44ba8d0a80cf51eff1fe4e6",
+          "pngSHA256": "09b0f9f50c4e9dae46432cc0d5e63d812164e941c941e9b8f45265c033b4e18e"
+        },
+        {
+          "frame": 9,
+          "time": 30.375000000008257,
+          "metadataSHA256": "e4ffe62d85796260368d9ed799bf35b9aa27460d878d30421cb24c4339ac8fdb",
+          "pngSHA256": "bfb4e9b6be1241dcbd650490eb44cb7df5d2b465907034783c7e5e3b32c10884"
+        },
+        {
+          "frame": 10,
+          "time": 30.416666666674956,
+          "metadataSHA256": "b718c1c3447c537e99d58343e17314b90e2e54a8628cd089c3aad60f56de48d4",
+          "pngSHA256": "7add3ba2318c6ab3fd049c4a873794f4f76c203541cecfc3f82104b1ea6fad5b"
+        },
+        {
+          "frame": 11,
+          "time": 30.458333333341656,
+          "metadataSHA256": "a6a7ee2cb1dcc6aa509dd5e90149efd59466e78d2a3a39861367ce4376f6b348",
+          "pngSHA256": "8652d8626432e2bf7d955c67b645452c9e85b97fde0d1ad0037fc85bdd04dbe9"
+        },
+        {
+          "frame": 12,
+          "time": 30.500000000008356,
+          "metadataSHA256": "a3584c405f9bacfd9f74e5d3270c023e3f6f13f7d68b43ebe62a687564abc0d6",
+          "pngSHA256": "0e1075759a277601083ac01ce5a1eb464002d30d175ca54a88d145c14e387255"
+        },
+        {
+          "frame": 13,
+          "time": 30.541666666675056,
+          "metadataSHA256": "42d722e643793b75b70abfab375f30e45fb63b644413271d9fafc9302c623aa1",
+          "pngSHA256": "94465416cf74af3f3f733f7d8d81e6b7039ae596dcaea74658654e9f4231521f"
+        },
+        {
+          "frame": 14,
+          "time": 30.583333333341756,
+          "metadataSHA256": "771dfdb0f4482df4b5e1b691dacfdbcea1a2db0c07165fa8560549bffb2b8769",
+          "pngSHA256": "a017219de833096dde078d06b52b876d53401b7c776723d2310af077e1a2fb22"
+        },
+        {
+          "frame": 15,
+          "time": 30.625000000008455,
+          "metadataSHA256": "fa659416667d78691fcd1397065023c1f26b3c33b421e953c8f48076ad7139bb",
+          "pngSHA256": "84104c6dd9053abe5d19691d36c0f4162a822b14c8b2e428dbae2117fd704e17"
+        },
+        {
+          "frame": 16,
+          "time": 30.666666666675155,
+          "metadataSHA256": "eb111649a7ba5d95a347f945dfa34a7f9c313a410bab8dafc302cb319c1f7d64",
+          "pngSHA256": "2c003ab89ceb422eec1bfd829ef9a436fb52d5f76e63e1992fa15e86f5d549e0"
+        },
+        {
+          "frame": 17,
+          "time": 30.708333333341855,
+          "metadataSHA256": "aafef6db456435d25529529a366859fe9195bd6c147ed3dcf3a62ef4f55c330e",
+          "pngSHA256": "0138bda43b92dc174126fef55baf0bc7e9ff5dbd9f4a090c856243ecdec1058f"
+        },
+        {
+          "frame": 18,
+          "time": 30.750000000008555,
+          "metadataSHA256": "ebb408a93ff4cde22ebc19db16b9e434908f191deb82aa64d34c142beab67642",
+          "pngSHA256": "26d888af62fd1e17ceb74a4058418e8c277164166005968396fa90774a78b11b"
+        },
+        {
+          "frame": 19,
+          "time": 30.791666666675255,
+          "metadataSHA256": "238ee9f052a0e9add3be6eabc37f92b13a62676511ba0819f4f9f932f63cebbb",
+          "pngSHA256": "4929559cf244077039ce687cf524600ddfc92f81ed8f9c920ec6d9af39fd5014"
+        },
+        {
+          "frame": 20,
+          "time": 30.833333333341955,
+          "metadataSHA256": "6d84995294d03429034718e232748bac6af0800167577978e71854348bf78716",
+          "pngSHA256": "89c3825306390271319b4bf251b1d41275cae127006de604c244ce5fc6c23928"
+        },
+        {
+          "frame": 21,
+          "time": 30.875000000008654,
+          "metadataSHA256": "84b917071ce3ad6fca6045ca1d9cf2cb4a29124fb0d4225d29590cfd0378fe37",
+          "pngSHA256": "a2ab7a749c8f3094a15add6a8d9c3b716123e3339aaf2759450f505b88bf1d0a"
+        },
+        {
+          "frame": 22,
+          "time": 30.916666666675354,
+          "metadataSHA256": "1d3f783d82aa0af8e66b34a6afb3a44e0afcbf0d2e7ea17c46bc433743efedb0",
+          "pngSHA256": "8d2110dcc7a4202f9c03d6afaf95fd036c2b19e6153b22403f2b01617b3c89b6"
+        },
+        {
+          "frame": 23,
+          "time": 30.958333333342054,
+          "metadataSHA256": "5f7ac08724f09f1367ba6a40172e6e864027f31bded9b766537595f010002adf",
+          "pngSHA256": "f0f00a935ef2c51a14d7d35f0a545390d2793841df5eb3e44db6956e2b242446"
+        }
+      ],
+      "nativeHDRAndSpectrum": "24/24 PASS"
+    }
+  ],
+  "protected": [
+    {
+      "path": "evidence/v04-p1-final-stills/broken.json",
+      "sha256": "5313223cb9747fe1ca4ed5f75189359d31d6ce10929df8a2493cb961ca16433a"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/broken.png",
+      "sha256": "7c50464f04d455bc63cd67613036ce1326abaa06140ec0f27f513749b0078aaa"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/covered.json",
+      "sha256": "1a9fd9600f8e8af0d79d475ec8fcf60006b11787e87808d93009da4773e83d40"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/covered.png",
+      "sha256": "b08aec41c8ed42acadcb53a0e7afd743d939d2267f97cc402687bc1e05f61c4d"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/golden.json",
+      "sha256": "9fdf965a64084910721642ae1bb22621aa90c78d282c25a48f512361ccefca68"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/moonlit.json",
+      "sha256": "5053cea394a9e63471c3ff1c7b0031886af7060fdc92558596e0f9bcd3808098"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/storm.json",
+      "sha256": "016e2d0633e380db0691630f9fb1673320c4421e2570678edffddf666966a31d"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/storm.png",
+      "sha256": "b4fe5f2bbc34fcf2a660c84cd9ed3c15177ee2430dbcd57f75b56a1e9bc016f2"
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/twilight.json",
+      "sha256": "48ba683b71a2daac5abf1b9978ea0eff01e2e562f6bb36b3025931a3c66fad7b"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "de745ade5b712e7dbc73bb4bebb3192be670b0f09cf80b2b02946b51ff1a0088"
+    }
+  ],
+  "daytimeSkyPreservation": {
+    "comparison": "final-01 versus phase-regress-01",
+    "crop": [
+      0,
+      0,
+      1920,
+      400
+    ],
+    "exactRGBPairs": 0,
+    "pairs": 24,
+    "differences": [
+      {
+        "frame": 0,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.00046223958333333333,
+        "changedPixels": 1064
+      },
+      {
+        "frame": 1,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.00044921875,
+        "changedPixels": 1035
+      },
+      {
+        "frame": 2,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0004822048611111111,
+        "changedPixels": 1109
+      },
+      {
+        "frame": 3,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0004505208333333333,
+        "changedPixels": 1038
+      },
+      {
+        "frame": 4,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.00044010416666666666,
+        "changedPixels": 1013
+      },
+      {
+        "frame": 5,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.00048177083333333335,
+        "changedPixels": 1110
+      },
+      {
+        "frame": 6,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0005086805555555555,
+        "changedPixels": 1171
+      },
+      {
+        "frame": 7,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0005217013888888889,
+        "changedPixels": 1202
+      },
+      {
+        "frame": 8,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0005533854166666667,
+        "changedPixels": 1274
+      },
+      {
+        "frame": 9,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0005008680555555555,
+        "changedPixels": 1153
+      },
+      {
+        "frame": 10,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.00051953125,
+        "changedPixels": 1196
+      },
+      {
+        "frame": 11,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0004752604166666667,
+        "changedPixels": 1092
+      },
+      {
+        "frame": 12,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.00047960069444444444,
+        "changedPixels": 1103
+      },
+      {
+        "frame": 13,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0005069444444444444,
+        "changedPixels": 1168
+      },
+      {
+        "frame": 14,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0004982638888888889,
+        "changedPixels": 1147
+      },
+      {
+        "frame": 15,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0004926215277777778,
+        "changedPixels": 1134
+      },
+      {
+        "frame": 16,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.00047048611111111114,
+        "changedPixels": 1083
+      },
+      {
+        "frame": 17,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0005104166666666666,
+        "changedPixels": 1175
+      },
+      {
+        "frame": 18,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0004969618055555555,
+        "changedPixels": 1145
+      },
+      {
+        "frame": 19,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0004782986111111111,
+        "changedPixels": 1099
+      },
+      {
+        "frame": 20,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0005221354166666666,
+        "changedPixels": 1200
+      },
+      {
+        "frame": 21,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.0005681423611111111,
+        "changedPixels": 1308
+      },
+      {
+        "frame": 22,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.00042447916666666665,
+        "changedPixels": 977
+      },
+      {
+        "frame": 23,
+        "maxChannelDifference": 1,
+        "meanChannelDifference": 0.00042881944444444445,
+        "changedPixels": 987
+      }
+    ]
+  }
+}
