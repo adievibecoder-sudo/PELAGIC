@@ -1,5 +1,12 @@
 # PELAGIC 0.4 — Persistent Verified State
 
+**Resume09 publication verified:** Renderer `e4d5f3c`, review/evidence `bb59e1a`
+published on development/pelagic-0.4. Four new LFS objects360282375bytes freshly
+downloaded and SHA256 checked; main/0.3/frozen refs unchanged. Proof:
+`evidence/v04-ma-ab10-publication-04/publication.json`. Both96-frame dusk videos
+play through at1080p with zero dropped playback frames; this is video playback,
+not renderer FPS. Ten protected files match. No milestone acceptance.
+
 **28 October Resume09, light continuity integrated:** Normal development now
 also enables scaled lunar storage and responsive celestial cache updates.
 Production TAA had fixed stored-radiance thresholds: identical physical dim

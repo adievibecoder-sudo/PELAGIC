@@ -917,3 +917,17 @@ Current renderer source changes: src/wgsl/taa.js, src/light-cache.js,
 src/render-options.js, src/renderer.js; native/CPU checks in temporal-gpu.js,
 light-cache.test.mjs and render-defaults.test.mjs. Use Chrome DevTools MCP.
 No C, release or protected-branch changes.
+
+Resume09 final publication: renderer e4d5f3c; review/evidence bb59e1a. Four new
+LFS objects360282375bytes freshly downloaded/hash verified, frozen refs unchanged:
+v04-ma-ab10-publication-04/publication.json. The earlier foam publication proof
+remains publication-03. Both dusk clips play96/96 at1080p with zero dropped
+playback frames; this is not rendered/presented FPS. Ten protected files match;
+only the nine inherited evidence edits and untracked lockfile remain dirty.
+All source is committed. Next source work: crest phase/tangent event persistence
+through crossings, and direct/sky reflection balance using the existing physical
+contribution budget. Do not repeat failed skin/shell or angular water trials.
+References unchanged; wave grouping/B1/optics unmet; night/cache improved but
+regional weather deferred; integration/performance/U1/G1 still open. Preserve
+all six workstreams and obtain owner visual acceptance at the actual B1/B2/A+B
+review gates. This handoff adds publication proof, not another renderer revision.
