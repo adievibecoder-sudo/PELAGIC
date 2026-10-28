@@ -4,7 +4,8 @@ const OPTIONS=Object.freeze({
   abDefaults:['legacy'],
   aa:['taa','msaa'], abWater:['body','layered','volume','slab','transport','angular','off'], abDisplay:['linear','luminance','off'],
   abReflection:['partition'],
-  abRadiance:['scaled'],
+  abRadiance:['scaled','legacy'],
+  abLightCache:['responsive','legacy'],
   abEnvironment:['coupled','marine','marine-diffuse','marine-sunset','off'], maBreaking:['gravity','events','onset','fold','crest'],
   abBreaking:['handoff','population','phase-field','phase-resident'], abFoam:['transport','relief','skin','volume'], abFoamPattern:['bubbles'],
   abRain:['velocity'], abWhitewater:['parcels'], abCrest:['phase'],
@@ -15,11 +16,16 @@ const OPTIONS=Object.freeze({
 // Normal development uses the reviewed phase-resident active/residual pair.
 export function withRenderDefaults(input){
   const query=new URLSearchParams(input);
+  const historical=[...query.keys()].some(key=>(key.startsWith('ab')&&key!=='abDefaults')||/^ma[A-Z]/.test(key));
   const explicit=[...query.keys()].some(key=>key==='maBreaking'||
     key==='abBreaking'||key.startsWith('abFoam')||key==='abWhitewater'||key.startsWith('abCrest'));
   if(query.get('abDefaults')!=='legacy'&&!explicit){
     query.set('abBreaking','phase-resident');
     query.set('abFoam','relief');
+  }
+  if(query.get('abDefaults')!=='legacy'&&!historical){
+    query.set('abRadiance','scaled');
+    query.set('abLightCache','responsive');
   }
   return query;
 }

@@ -129,11 +129,13 @@ fn sampleHistory(uv:vec2f)->vec4f{
   let sigma=sqrt(max(square-mean*mean,vec3f(0)));
   lo=max(lo,mean-sigma*1.25);hi=min(hi,mean+sigma*1.25);
   let previous=ycocg(old.rgb*F.temporal.y);
-  let centre=(lo+hi)*.5;let extent=max((hi-lo)*.5,vec3f(1e-7));
+  // Radiance floors use physical scene units, independent of HDR storage gain.
+  let radianceUnits=1.0/F.windP[1].x;
+  let centre=(lo+hi)*.5;let extent=max((hi-lo)*.5,vec3f(1e-7*radianceUnits));
   let delta=previous-centre;let ratio=abs(delta)/extent;
   let clipped=centre+delta/max(1.0,max(ratio.x,max(ratio.y,ratio.z)));
   let lum=ycocg(now.rgb).x;
-  let disagreement=abs(previous.x-lum)/max(max(abs(previous.x),abs(lum)),1e-5);
+  let disagreement=abs(previous.x-lum)/max(max(abs(previous.x),abs(lum)),1e-5*radianceUnits);
   let speed=length((oldUV-uv)*vec2f(dims));
   let reactive=max(now.a,old.a);
   // Wave geometry motion does not transport a changing reflected environment.

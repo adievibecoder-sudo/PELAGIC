@@ -817,3 +817,103 @@ and sky or amplified lighting. Night visibility is expected to remain inadequate
 this does not aim to solve A1 beauty. Existing day/moon evidence and native
 quantization bound are reused. No new performance claim. Transition coverage
 must be added before a default promotion; fixed scenes alone are insufficient.
+
+Resume08 numerical follow-up predeclaration: source inspection finds TAA history
+rescaling is correct but its absolute clipping/disagreement floors remain in
+stored HDR units (1e-7/1e-5). Encoding the same physical scene differently may
+change history rejection. Reproduce with production TAA on exact binary16 inputs
+and diagnostic output of its weight/clipped value, before editing shader logic.
+Hypothesis: expressing these floors in physical radiance units (dividing by the
+current storage divisor) restores covariance. Falsifier: native results already
+agree, or the correction changes decoded lighting beyond storage uncertainty.
+Use existing bright temporal cases and moving lunar hybrid/underwater/twilight
+controls. This is a units correction, not a claim that TAA beauty is solved.
+
+Native TAA reproduction: before correction, the same 2^-20 physical luminance
+produced history weights .449951 versus .333252 at storage divisors1 and1/256.
+Flat-neighbour clipping likewise differed (ratio1.104492 versus1). After both
+absolute radiance floors are converted to current storage units, all five native
+covariance probes agree exactly; nine original temporal GPU cases PASS and ten
+focused CPU cases PASS. Original failed probe is retained. This does not change
+the default MSAA path or make hybrid/night-storage defaults.
+
+Capture correction: the first fixed-light and TAA-unit captures used the harness
+100-frame/1/60 defaults, because fps is not captureStep. Their actual inspected
+window is21.6667-22.0500 (24 frames at60Hz), not the predeclared30-30.958.
+Twilight: warm low horizon, dark cloud silhouettes and moving dim bronze facets,
+no gross brightness change. Moon: faint blue shifting wave ridges beneath cloud
+shapes, no visible flash; still too dark. All96 fixed-light frame checks PASS.
+These are short local regressions, not transition or one-second evidence.
+Underwater and accelerated astronomical transition now use explicit240 warmup,
+captureStep=1/24. Transition uses moonlit sea, UTC2026-10-26 17:00,32N/30W,
+astronomyRate960, 96 frames: Sun approximately-5.85 to-19.16deg. It is an
+accelerated lighting stress test, not natural-speed weather evidence.
+
+Normal foam publication verified at b72f876: all8 media objects653852804 bytes
+freshly downloaded and hashed; main/0.3/frozen refs unchanged. Proof in
+v04-ma-ab10-publication-03/publication.json. All six previous statuses remain;
+this follow-up advances numerical night/TAA integration, not optics/roller art.
+
+Dusk observation, all192 frames inspected at400px,30.000-33.958: orange horizon
+fades into blue night; lunar reflections emerge on changing ridges. Both versions
+visibly pulse during early twilight in six-frame groups. No new scaled-storage
+flash, but transition continuity FAIL from the shared baseline defect. All192
+native checks pass; maximum paired display difference14, mean.784. Underwater48
+at30-30.958 is near-black with dim moving ceiling facets; difference<=3, mean.981,
+all checks pass. Hybrid-unit48 at21.667-22.05 retains dark ridges, no obvious new
+flash; max33 localized, mean.143, all checks pass. A1/U1 remain unresolved.
+
+Next predeclared cache intervention: sky/direct/exposure update each frame, while
+reflected environment snapshots publish every6 frames. At astronomyRate960 this
+holds several minutes of celestial evolution and produces the observed pulses.
+Test opt-in responsive whole-cache refresh when six-frame predicted Sun/Moon
+motion exceeds half a solar radius or twilight adaptation changes by>2% in that
+window. Keep exact static six-frame path. Baseline light-dusk-after96, identical
+High1080p capture and astronomical clock; pass: no six-frame sawtooth in visible
+water/sky light, coherent dimming; fail: same pulses, new flashes, cloud shape
+changes, stale faces or static-day changes. Full refresh increases work during
+fast time changes; no optimization/performance claim. Fixed daylight regression
+plus bounded scheduling tests; no lower-quality cache or resolution change.
+
+### Resume 09: normal foam and coherent changing light
+
+28 October, same development checkout. Published normal foam source cd54d34,
+evidence b72f876, fresh remote/LFS proof v04-ma-ab10-publication-03. Native TAA
+units correction and responsive cache are now integrated locally with normal
+scaled storage. Explicit historical AB/MA render choices retain their paths;
+abDefaults=legacy bypasses normal additions. Share/export records actual choices.
+MSAA remains normal antialiasing; hybrid TAA is still opt-in.
+
+Observed cache-after30.000-33.958: first-second warm dimming is continuous rather
+than six-frame bright/dark cycles; later lunar reflection shifts over wave ridges,
+cloud silhouettes retain their form. All96 inspected as consecutive400px views.
+Continuity target PRESENT; night beauty FAIL. Strongest objection: still very
+dark water and repetitive compact cloud forms. Fixed day24 RGB exact against
+normal foam baseline; no-option dusk24 RGB exact against explicit cache candidate.
+Current cache publication occurs in the same frame for all96 accelerated samples;
+fixed day stays amortized. All528 focused native frames pass HDR/spectrum/errors/
+source stability;92 CPU tests and14 native temporal cases pass. Original lossless
+96-frame before/after clips decode exactly to every source PNG. Full natural-speed
+transitions, sunrise, convective weather and waterline motion are unobserved here.
+GPU cost at rapid celestial rates increases (six faces instead of one); no valid
+matched presented pacing or performance gain. Never substitute capture timing.
+
+Normal defaults: phase-resident/relief plus scaled radiance/responsive light cache.
+Still experimental: angular/slab/transport optics, display looks, raised skin and
+shell, hybrid TAA. Failed appearance targets remain failed; no owner acceptance.
+All prior original/private/protected files remain intact.
+
+| Workstream | Status | Exact next action |
+|---|---|---|
+| 1 References | Internally sufficient; reused prior findings | Revisit only a specific crest/optics question. |
+| 2 Waves | Experimental; FFT retained, crossing support observed3s | Quantify crest tangent/phase event persistence through crossings before another roller representation; grouping/long-wave naturalism still open. |
+| 3 Whitewater | Narrow default improvement; B1 partial | Develop turbulent front after support ownership check; avoid repeating failed raised skin/shell. |
+| 4 Water optics | Active/unmet | Use saved body/reflection/direct budgets to isolate sun-lobe and environment-reflection appearance; do not repeat angular redistribution or finite crest transport without new cause. |
+| 5 Atmosphere/weather | Numerical night/cache progress; morphology and regional work deferred | Validate sunrise/current cache cost, then regional precipitation/lightning and varied cloud organization; preserve daytime quality. |
+| 6 Integration | Defaults/UI/provenance improved, performance and U1/G1 open | Publish these source/evidence changes, retain comparison controls, then investigate presented pacing and continuous waterline crossing. |
+
+Resume from Resume09 and the actual working source, never reconstruct Resume07.
+Current renderer source changes: src/wgsl/taa.js, src/light-cache.js,
+src/render-options.js, src/renderer.js; native/CPU checks in temporal-gpu.js,
+light-cache.test.mjs and render-defaults.test.mjs. Use Chrome DevTools MCP.
+No C, release or protected-branch changes.

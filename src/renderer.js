@@ -74,6 +74,7 @@ import {foamTransportShader} from './wgsl/foam-transport.js';
 import {frothSurfaceShader,frothSurfaceCode} from './wgsl/froth-surface.js';
 import {waterSkyTransportShader} from './wgsl/water-sky-transport.js';
 import {hdrStorageDivisor,lightStorageShader,LIGHT_STORAGE_SCALE} from './wgsl/light-storage.js';
+import {needsCurrentLightCache} from './light-cache.js';
 import {whitewaterShader,WHITEWATER_COUNT} from './wgsl/whitewater.js';
 import {whitewaterChecks} from '../tests/whitewater-readback.js';
 import {crestSupportChecks,crestTextureChecks,crestSheetReadback} from '../tests/crest-support-readback.js';
@@ -388,6 +389,7 @@ async function main() {
   const envFrame=mkBuf(FRAME_BYTES,GU.UNIFORM|GU.COPY_DST,'environment state snapshot');
   let cacheFace=0,cacheVersion=0,cachePending=null,cachePublished=null;
   const cacheF=new Float32Array(FRAME_FLOATS),cacheHistory=[];
+  let previousLightFrame=null;
   const irradianceTex=allocations.texture({label:'hemispherical irradiance',size:[IRRADIANCE_SIZE,IRRADIANCE_SIZE,6],format:'rgba16float',usage:TU.TEXTURE_BINDING|TU.STORAGE_BINDING|TU.COPY_SRC});
   const irradianceView=irradianceTex.createView({dimension:'cube'});
   const irradiancePipe=await computePipe(ENV_IRRADIANCE,'cosine irradiance');
@@ -1222,12 +1224,14 @@ async function main() {
       cp.setPipeline(crestSurfaceBuild);cp.setBindGroup(0,crestSurfaceBuildBG);cp.dispatchWorkgroups(Math.ceil(CREST_SHEET_COUNT/64));
     }
     cp.end();
-    const fullCache=envFull>0;
+    const responsiveCache=qs.get('abLightCache')==='responsive'&&needsCurrentLightCache(previousLightFrame,frameF);
+    const fullCache=envFull>0||responsiveCache;
+    if(qs.get('abLightCache')==='responsive')previousLightFrame=frameF.slice();
     if(fullCache)cacheFace=0;
     if(cacheFace===0){
       cacheF.set(frameF);
       cachePending={version:++cacheVersion,frame:frameIndex,weather:environment.clocks.weather,astronomy:environment.clocks.astronomy,
-        commandRevision:environment.revision,camera:[cam.x,cam.y,cam.z],origin:[...origin]};
+        commandRevision:environment.revision,camera:[cam.x,cam.y,cam.z],origin:[...origin],responsive:responsiveCache};
       enc.copyTextureToTexture({texture:transLUT},{texture:envTrans},[256,64]);
       enc.copyTextureToTexture({texture:skyLUT},{texture:envSky},[SKY_W,SKY_H,2]);
     }
@@ -1369,7 +1373,7 @@ async function main() {
   }
 
   function evidenceReport(){return {version:qs.get('ma')==='1'?'0.4-milestone-a':'0.4-phase1',sourceStart,sourceCheckpoint:qs.get('revision')||'development',adapter:adapterInfo,backend:'native-webgpu',timestampQuery:hasTS,settings:{...P},camera:{...cam},simulationTime:simTime,frameIndex,width:W,height:H,nodes:nodeCount,errors,measurements,frameRecords,
-    allocations:allocations.report(),environment:environmentSnapshot(environment),rendering:{requested:requestedRendering,effective:renderOptions(qs),defaults:'AB10 phase-resident foam'},lightCache:{published:cachePublished,history:cacheHistory,units:'relative scene-linear RGB radiance / irradiance; not absolute SI calibrated',latency:'complete snapshot, six-frame angular build; direct shadow current frame'},browserTasks,
+    allocations:allocations.report(),environment:environmentSnapshot(environment),rendering:{requested:requestedRendering,effective:renderOptions(qs),defaults:'AB10 phase-resident foam and coherent light storage'},lightCache:{published:cachePublished,history:cacheHistory,units:'relative scene-linear RGB radiance / irradiance; not absolute SI calibrated',latency:'complete snapshot, six-frame build; responsive mode uses current-frame builds for fast celestial changes; direct shadow current frame'},browserTasks,
     phase0:{query:Object.fromEntries(qs),profile:phase0Profile,note:'Experimental toggles are Phase 0 hypotheses, not accepted features.'},userAgent:navigator.userAgent,
     foamPatternCalibration,worldOrigin:origin,benchmarkStopReason,benchmarkWallSeconds:benchmarkStart===null?0:(performance.now()-benchmarkStart)/1000,
     surfaceProbe:{height:waterH,scope:'Asynchronous camera-point height; optical classification uses the current GPU near-plane map.'},

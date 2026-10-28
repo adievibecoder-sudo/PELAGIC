@@ -1,5 +1,17 @@
 # PELAGIC 0.4 acceptance and decision register
 
+**28 October Resume09, no milestone acceptance:** TAA storage-unit covariance
+corrected;5 native probes plus9 existing resolve cases pass. Shared six-frame
+environment-cache latency caused visible pulses in accelerated twilight; a
+responsive complete-cache path removes them in the inspected4s sequence.
+Scaled lunar precision and responsive updates now join normal startup. Fixed
+day24 is RGB-identical; no-option dusk24 exactly matches the reviewed candidate.
+92 CPU and528 focused native frames pass. A1 remains visually FAIL: dim night
+and near-black underwater are not solved. C1/regional E1-E6, B1 roller/spray,
+W1/W2, L1/L2, U1/G1, broader I1 and actual presented T1 remain open. Extra work
+during rapid celestial playback is acknowledged; no speedup or presented-FPS
+claim. All six workstreams and next actions are in continuation10 Resume09.
+
 **28 October Resume08, narrow normal-use improvement, no acceptance:**
 Phase-resident foam/relief is integrated into ordinary localhost after matched
 near/elevated storm48 comparisons: advancing strips, gaps and residue replace

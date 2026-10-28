@@ -1,5 +1,19 @@
 # PELAGIC 0.4 — Persistent Verified State
 
+**28 October Resume09, light continuity integrated:** Normal development now
+also enables scaled lunar storage and responsive celestial cache updates.
+Production TAA had fixed stored-radiance thresholds: identical physical dim
+light changed history weights under storage scaling. Native reproduction FAIL
+is preserved; corrected floors pass all5 covariance and9 existing GPU cases.
+Fast dusk exposed shared six-frame reflection pulses; current-frame cache builds
+remove them in96 inspected frames,30-33.958. Fixed day24 and no-option dusk24
+are RGB-identical to their controls.92 CPU /528 focused native frame checks PASS.
+Night and underwater remain too dark; A1/B1/B2/A+B unaccepted. Fast celestial
+playback incurs extra cache work, not an optimization; presented p95 unmeasured.
+Foam publication b72f876 verified:8 fresh LFS objects653852804bytes match, frozen
+refs unchanged. Exact all-six ledger, limits and next source actions: continuation10
+Resume09; original dusk comparisons in `ab10-review.html`.
+
 **28 October Resume08, normal-use integration:** Recovered Resume05-07 source
 is published as `b1d094c`, independently verified on GitHub. Normal startup now
 selects phase-resident active/residual foam plus relief; `abDefaults=legacy`
