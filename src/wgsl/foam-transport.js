@@ -8,7 +8,7 @@ export function foamTransportShader(code,query){
     code=replaceShader(code,'max(length(dpdx(uv)),length(dpdy(uv)))*10.0;',
       'max(length(dpdx(uv)),length(dpdy(uv)))*61.0;');
   }
-  const relief=query.get('abFoam')==='relief';
+  const relief=['relief','skin','volume'].includes(query.get('abFoam'));
   if(!relief&&query.get('abFoam')!=='transport'||!code.includes('fn reflectedEnvironment('))return code;
   code=replaceShader(code,'  let foamAlb = vec3f(mix(0.48,0.66,freshK)) * (0.85 + 0.15 * bub);',/* wgsl */`
   let bubbleThickness=0.85+0.15*bub;
@@ -23,14 +23,14 @@ export function foamTransportShader(code,query){
     residualCoverage*(1.0-activeCoverage)*rr+activeCoverage*residualCoverage*together;
   let foamAlb=vec3f(1);
 `);
-  if(['handoff','population','phase-field'].includes(query.get('abBreaking'))){
+  if(['handoff','population','phase-field','phase-resident'].includes(query.get('abBreaking'))){
     // The event field controls occupied area. Fresh patches retain their slab
     // thickness instead of becoming transparent again as coverage decreases.
     code=replaceShader(code,'let activeTau=5.0*freshK*bubbleThickness;',
       'let activeTau=5.0*bubbleThickness;');
   }
   if(relief){
-    const base=['body','layered','volume','slab'].includes(query.get('abWater'))?'volumeNormal':'select(-rasterNormal,rasterNormal,rasterNormal.y>=0.0)';
+    const base=['body','layered','volume','slab','transport','angular'].includes(query.get('abWater'))?'volumeNormal':'select(-rasterNormal,rasterNormal,rasterNormal.y>=0.0)';
     code=replaceShader(code,'  let foamAmb=diffuseN/PI;',/* wgsl */`
   // Fresh bubbly rafts damp capillary detail. Their relief is bounded shading,
   // not displaced geometry; residual films retain the underlying water normal.

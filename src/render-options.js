@@ -1,10 +1,11 @@
 // Only renderer choices survive sharing/reloading. Capture commands, file
 // names, diagnostics and benchmark controls must never be replayed by a link.
 const OPTIONS=Object.freeze({
-  aa:['taa','msaa'], abWater:['body','layered','volume','slab','off'], abDisplay:['linear','off'],
+  aa:['taa','msaa'], abWater:['body','layered','volume','slab','transport','angular','off'], abDisplay:['linear','luminance','off'],
   abReflection:['partition'],
-  abEnvironment:['coupled','marine','marine-diffuse','off'], maBreaking:['gravity','events','onset','fold','crest'],
-  abBreaking:['handoff','population','phase-field'], abFoam:['transport','relief'], abFoamPattern:['bubbles'],
+  abRadiance:['scaled'],
+  abEnvironment:['coupled','marine','marine-diffuse','marine-sunset','off'], maBreaking:['gravity','events','onset','fold','crest'],
+  abBreaking:['handoff','population','phase-field','phase-resident'], abFoam:['transport','relief','skin','volume'], abFoamPattern:['bubbles'],
   abRain:['velocity'], abWhitewater:['parcels'], abCrest:['phase'],
   abCrestShape:['sheet','elongated'], abCrestEvent:['shared'], abCrestSurface:['water'],
   abCrestEdge:['fade'], abCrestLife:['supported'], abShadow:['curved12','curved48','curved96'],

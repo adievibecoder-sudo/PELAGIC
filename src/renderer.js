@@ -71,6 +71,9 @@ import {createTAA} from './taa.js';
 import {cloudWorkShader,environmentSymmetryShader} from './wgsl/cloud-work.js';
 import {cloudWorkChecks} from '../tests/cloud-work-readback.js';
 import {foamTransportShader} from './wgsl/foam-transport.js';
+import {frothSurfaceShader,frothSurfaceCode} from './wgsl/froth-surface.js';
+import {waterSkyTransportShader} from './wgsl/water-sky-transport.js';
+import {hdrStorageDivisor,lightStorageShader,LIGHT_STORAGE_SCALE} from './wgsl/light-storage.js';
 import {whitewaterShader,WHITEWATER_COUNT} from './wgsl/whitewater.js';
 import {whitewaterChecks} from '../tests/whitewater-readback.js';
 import {crestSupportChecks,crestTextureChecks,crestSheetReadback} from '../tests/crest-support-readback.js';
@@ -182,6 +185,7 @@ async function main() {
     code=finiteGlintsShader(code,qs);
     code=footprintOpticsShader(code,qs);
     code=waterMaterialShader(code,qs);
+    code=waterSkyTransportShader(code,qs);
     code=reflectionTransportShader(code,qs);
     code=displayTransformShader(code,qs);
     code=environmentLightShader(code,qs);
@@ -190,6 +194,7 @@ async function main() {
     code=breakingEventsShader(code,qs);
     code=breakingPhaseShader(code,qs);
     code=foamTransportShader(code,qs);
+    code=frothSurfaceShader(code,qs);
     code=particleMotionShader(code,qs);
     code=whitewaterShader(code,qs);
     code=crestWhitewaterShader(code,qs);
@@ -199,6 +204,7 @@ async function main() {
     code=cloudShadowShader(code,qs);
     code=temporalShader(code,temporalEnabled);
     code=environmentSymmetryShader(cloudWorkShader(code,qs),qs);
+    code=lightStorageShader(code,qs);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
     const diagnostics=[];
@@ -492,10 +498,24 @@ async function main() {
   const lensPipe=await computePipe(LENS_MEDIUM,'near-plane surface inversion');
   const bgLens=bg(lensPipe,[{buffer:frameUBO},fullArr(dispTex),fullArr(derivTex),samplerSim,{buffer:probeOut},lensMedium.createView()]);
   // Coupled marine fog uses envCube; its shader no longer references skyLUT.
-  const oceanSkyView=['coupled','marine','marine-diffuse'].includes(qs.get('abEnvironment'))?null:skyView;
+  const oceanSkyView=['coupled','marine','marine-diffuse','marine-sunset'].includes(qs.get('abEnvironment'))?null:skyView;
   const bgOcean = [0, 1].map((i) => bg(oceanPipe, [{ buffer: frameUBO }, transView, oceanSkyView, sampClamp,
     fullArr(dispTex), fullArr(derivTex), fullArr(momTex), foamTex.createView(), envCubeView, sampRepeat,
     fullArr(foamW[i]), shadowView,{buffer:probeOut},irradianceView,waveShadow.createView(),lensMedium.createView(),waveHeight.createView(),...(crestSurface?[{buffer:crestSurfaceBuf}]:[])], 'ocean' + i));
+  let frothPipe=null,frothBG=null,frothInstances=null,frothBuffer=null,frothCount=0;
+  if(['skin','volume'].includes(qs.get('abFoam'))){
+    if(!['phase-resident','phase-field','population'].includes(qs.get('abBreaking')))throw Error('Raised froth requires an active breaking population');
+    if(qs.get('abFoamPattern')==='bubbles')throw Error('Raised froth currently requires the calibrated legacy pore pattern');
+    const module=await shader(frothSurfaceCode(temporalEnabled,qs.get('abFoam')==='volume'),'continuous raised froth');
+    frothPipe=await device.createRenderPipelineAsync({layout:'auto',
+      vertex:{module,entryPoint:'vs',buffers:[{arrayStride:16,stepMode:'instance',attributes:[{shaderLocation:0,offset:0,format:'float32x4'}]}]},
+      fragment:{module,entryPoint:'fs',targets:[{format:HDR,blend:{color:{srcFactor:'src-alpha',dstFactor:'one-minus-src-alpha'},alpha:{srcFactor:'one',dstFactor:'one-minus-src-alpha'}}}]},
+      primitive:{topology:'triangle-list',cullMode:'none'},
+      depthStencil:{format:'depth32float',depthWriteEnabled:false,depthCompare:'greater'},multisample:{count:MSAA}});
+    frothBG=[0,1].map(i=>bg(frothPipe,[{buffer:frameUBO},transView,null,sampClamp,
+      fullArr(dispTex),fullArr(derivTex),null,foamTex.createView(),null,sampRepeat,
+      fullArr(foamW[i]),shadowView,null,irradianceView,waveShadow.createView(),lensMedium.createView()]));
+  }
   let bgSky, bgCloud, cloudTex;
 
   // Water height under the camera (async readback, a few frames of latency) so the
@@ -537,6 +557,10 @@ async function main() {
   const orderedInstances=nearFirst?new Float32Array(instData.length):null;
   const nodeOrder=nearFirst?new Uint32Array(MAX_NODES):null;
   const nodeDistances=nearFirst?new Float64Array(MAX_NODES):null;
+  if(frothPipe){
+    frothInstances=new Float32Array(MAX_NODES*4);
+    frothBuffer=mkBuf(frothInstances.byteLength,GU.VERTEX|GU.COPY_DST,'near froth instances');
+  }
   const instBuf = mkBuf(instData.byteLength, GU.VERTEX | GU.COPY_DST, 'instances');
 
   // --------------------------------------------------------------------------------------
@@ -885,7 +909,7 @@ async function main() {
     const solarElevation=Math.asin(f[33])/D2R;
     const lunar=lunarLight(Array.from(f.subarray(32,35)),astro.moon,astro.moonDistanceKm);
     f[120]=P.astronomy?lunar.irradiance:0;f[121]=lunar.radius;f[122]=lunar.phase;f[123]=twilightExposure(solarElevation);
-    f[60]=1+31*Math.max(0,Math.min(1,(solarElevation+10)/10));
+    f[60]=hdrStorageDivisor(solarElevation,f[123],qs.get('abRadiance')==='scaled');
     f[61] = P.choppy;
     f[112]=weather.rain;f[113]=P.spray;f[114]=P.cloudType;f[115]=Math.max(environment.weather.cloudDepth,environment.front.enabled?3.5:0);
     f[116]=Q.cloudSteps;f[117]=Q.cloudLightSteps;f[118]=P.cameraMode==='surface'?0:1;f[119]=astro.sidereal%(2*Math.PI);
@@ -1125,6 +1149,16 @@ async function main() {
     if (nodeCount) {
       const instances=nearFirst?orderOceanNodes(instData,orderedInstances,nodeOrder,nodeDistances,nodeCount,cam.x-origin[0],cam.z-origin[1]):instData;
       device.queue.writeBuffer(instBuf, 0, instances, 0, nodeCount * 4);
+      if(frothPipe){
+        frothCount=0;
+        const x=cam.x-origin[0],z=cam.z-origin[1];
+        for(let i=0;i<nodeCount;i++){
+          const p=i*4,size=instances[p+2];
+          const distance=Math.max(instances[p]-x,x-instances[p]-size,instances[p+1]-z,z-instances[p+1]-size,0);
+          if(distance<54){frothInstances.set(instances.subarray(p,p+4),frothCount++*4);}
+        }
+        if(frothCount)device.queue.writeBuffer(frothBuffer,0,frothInstances,0,frothCount*4);
+      }
     }
 
     const enc = device.createCommandEncoder();
@@ -1233,6 +1267,11 @@ async function main() {
     rp.draw(3);
     rp.end();
     const particles=enc.beginRenderPass(transparentPass);
+    if(frothPipe&&nodeCount&&frothCount){
+      particles.setPipeline(frothPipe);particles.setBindGroup(0,frothBG[foamCur]);
+      particles.setVertexBuffer(0,frothBuffer);particles.setIndexBuffer(idxBuf,'uint16');
+      particles.drawIndexed(GRID*GRID*6,frothCount);
+    }
     if(P.spray>0 || P.rain>0 || whitewaterParcels){particles.setPipeline(particlePipe);particles.setBindGroup(0,particleDrawBG);particles.draw(6,crestSheets?PARTICLE_COUNT:particleCount);}
     if(crestSheetPipe){particles.setPipeline(crestSheetPipe);particles.setBindGroup(0,crestSheetBG);particles.draw(CREST_SHEET_VERTICES,CREST_SHEET_COUNT);}
     particles.end();
@@ -1380,7 +1419,7 @@ async function main() {
     if(qs.get('maSlopeChecks')==='1')report.deformedSlopes=await deformedSlopeChecks(device,frameUBO,dispTex.createView(),derivTex.createView(),momTex.createView(),sampRepeat);
     if(qs.get('validate')==='1')report.spectral=await spectralReadback(device,{h0:h0Buf,specA,disp:dispTex,deriv:derivTex,mom:momTex},P);
     if(qs.get('validate')==='1')report.foam=await foamReadback(device,foamW[foamCur]);
-    if(qs.get('validate')==='1'){report.hdr=await hdrReadback(device,taa?.output||hdrTex,frameF[60]);report.light=await phase1LightReadback(device,shadowTex,irradianceTex,envTex);}
+    if(qs.get('validate')==='1'){report.hdr=await hdrReadback(device,taa?.output||hdrTex,frameF[60]);report.light=await phase1LightReadback(device,shadowTex,irradianceTex,envTex,qs.get('abRadiance')==='scaled'?LIGHT_STORAGE_SCALE:1);}
     if(qs.get('contracts')==='1'){
       report.discreteSpectrum=discreteSpectrumLedger(P);
       report.slopeMipBudget=await slopeMipReadback(device,derivTex,momTex);

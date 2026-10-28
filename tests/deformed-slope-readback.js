@@ -22,6 +22,7 @@ fn random(seed:u32)->f32 {
   let amplitude=coupling.x;
   let gradient=coupling.yz;
   var s=vec2f(0);var j=vec3f(0);var shortDisp=vec3f(0);var cov=vec3f(0);
+  var carrierSlope=vec2f(0);var carrierStrain=vec3f(0);var strainEnergy=vec2f(0);
   for(var c=0u;c<6u;c++){
     let uv=cascadeUV(q,c,F.cascInvL[c>>2u][c&3u],F.waveOrigins);
     let g=select(1.0,amplitude,c>=3u);
@@ -29,6 +30,10 @@ fn random(seed:u32)->f32 {
     let m=textureSampleLevel(moments,repeatSampler,uv,c,0.0)*(g*g);
     let a=textureSampleLevel(displacement,repeatSampler,uv,c,0.0)*g;
     s+=d.xy;j+=vec3f(d.z,d.w,a.w);
+    let strain=vec3f(d.z,d.w,a.w);
+    let energy=dot(strain.xy,strain.xy)+2.0*strain.z*strain.z;
+    if(c<3u){carrierSlope+=d.xy;carrierStrain+=strain;strainEnergy.x+=energy;}
+    else{strainEnergy.y+=energy;}
     cov+=vec3f(max(m.x-d.x*d.x,0.0),max(m.y-d.y*d.y,0.0),m.z-d.x*d.y);
     if(c>=3u){shortDisp+=a.xyz/g;}
   }
@@ -38,15 +43,26 @@ fn random(seed:u32)->f32 {
   let jac=jx*jz-jxz*jzx;
   let A=mat2x2f(jz,-jxz,-jzx,jx)*(1.0/max(jac,0.18));
   let sl=A*s;let C=A*mat2x2f(cov.x,cov.z,cov.z,cov.y)*transpose(A);
-  result[index*3u]=vec4f(dot(s,s)+cov.x+cov.y,dot(sl,sl)+C[0][0]+C[1][1],jac,amplitude);
-  result[index*3u+1u]=vec4f(s,sl);
-  result[index*3u+2u]=vec4f(C[0][0],C[1][1],C[0][1],length(sl));
+  let cx=1.0+carrierStrain.x;let cz=1.0+carrierStrain.y;
+  let carrierJac=cx*cz-carrierStrain.z*carrierStrain.z;
+  let carrierA=mat2x2f(cz,-carrierStrain.z,-carrierStrain.z,cx)*(1.0/max(carrierJac,.18));
+  let carrier=carrierA*carrierSlope;let contaminated=A*carrierSlope;
+  let n0=normalize(vec3f(-carrier.x,1,-carrier.y));
+  let n1=normalize(vec3f(-contaminated.x,1,-contaminated.y));
+  let alternative=carrierA*s;
+  let n2=normalize(vec3f(-alternative.x,1,-alternative.y));
+  let n3=normalize(vec3f(-sl.x,1,-sl.y));
+  result[index*5u]=vec4f(dot(s,s)+cov.x+cov.y,dot(sl,sl)+C[0][0]+C[1][1],jac,amplitude);
+  result[index*5u+1u]=vec4f(s,sl);
+  result[index*5u+2u]=vec4f(C[0][0],C[1][1],C[0][1],length(sl));
+  result[index*5u+3u]=vec4f(acos(clamp(dot(n0,n1),-1.0,1.0)),acos(clamp(dot(n2,n3),-1.0,1.0)),carrierJac,0);
+  result[index*5u+4u]=vec4f(strainEnergy,carrierSlope);
 }`;
   const module=device.createShaderModule({code});
   const info=await module.getCompilationInfo();
   if(info.messages.some(m=>m.type==='error'))throw Error(info.messages.map(m=>m.message).join('\n'));
   const pipeline=await device.createComputePipelineAsync({layout:'auto',compute:{module,entryPoint:'main'}});
-  const size=128*128*48;
+  const size=128*128*80;
   const buffer=device.createBuffer({size,usage:GPUBufferUsage.STORAGE|GPUBufferUsage.COPY_SRC});
   const read=device.createBuffer({size,usage:GPUBufferUsage.COPY_DST|GPUBufferUsage.MAP_READ});
   try{
@@ -56,7 +72,8 @@ fn random(seed:u32)->f32 {
     pass.setPipeline(pipeline);pass.setBindGroup(0,bind);pass.dispatchWorkgroups(16,16);pass.end();
     enc.copyBufferToBuffer(buffer,0,read,0,size);device.queue.submit([enc.finish()]);
     await read.mapAsync(GPUMapMode.READ);const data=Array.from(new Float32Array(read.getMappedRange()));read.unmap();
-    const col=c=>data.filter((_,i)=>i%12===c),mean=v=>v.reduce((a,b)=>a+b,0)/v.length;
+    const col=c=>data.filter((_,i)=>i%20===c),mean=v=>v.reduce((a,b)=>a+b,0)/v.length;
+    const angles=c=>{const v=col(c).map(x=>x*180/Math.PI).sort((a,b)=>a-b);return {mean:mean(v),p50:v[Math.floor(v.length*.5)],p95:v[Math.floor(v.length*.95)],p99:v[Math.floor(v.length*.99)],max:v.at(-1)};};
     const j=col(2),weight=j.map(x=>Math.max(x,0)),mass=weight.reduce((a,b)=>a+b,0);
     const weighted=v=>v.reduce((a,b,i)=>a+b*weight[i],0)/mass;
     const variance=(a,b)=>weighted(a.map(x=>x*x))-weighted(a)**2+weighted(b.map(x=>x*x))-weighted(b)**2;
@@ -68,7 +85,10 @@ fn random(seed:u32)->f32 {
       deformedAreaSecondMoment:weighted(deformed),deformedAreaResolvedVariance:resolved,
       deformedAreaUnresolvedVariance:weighted(col(8))+weighted(col(9)),
       resolvedSlope:{p50:sorted[Math.floor(sorted.length*.5)],p95:sorted[Math.floor(sorted.length*.95)],p99:sorted[Math.floor(sorted.length*.99)],max:sorted.at(-1)},
+      shortStrainEffect:{carrierNormalDegrees:angles(12),fullNormalDegrees:angles(13),carrierFoldedFraction:col(14).filter(x=>x<=0).length/j.length,
+        meanGravityStrainEnergy:mean(col(16)),meanShortStrainEnergy:mean(col(17)),
+        scope:'Same height slopes; compare all-band versus cascades 0..2 deformation. Diagnostic ablation only; omitting short strain does not describe the actual full displaced surface.'},
       scope:'16384 stratified deterministic points over 4x4 km; level-0 bilinear first/second moments, current choppy inverse-Jacobian and short-wave coupling. Positive horizontal Jacobian area weights; folds invalidate the single-valued area interpretation. Moment transformation uses filtered mean Jacobian, not exact deformed microgeometry. One realization, not ensemble/observational calibration.',
-      columns:['parameter slope energy','deformed slope energy','horizontal Jacobian','short amplitude','sx','sz','deformed sx','deformed sz','cov xx','cov zz','cov xz','resolved slope magnitude'],values:data};
+      columns:['parameter slope energy','deformed slope energy','horizontal Jacobian','short amplitude','sx','sz','deformed sx','deformed sz','cov xx','cov zz','cov xz','resolved slope magnitude','carrier normal angle radians','full normal angle radians','carrier Jacobian','reserved','gravity strain energy','short strain energy','carrier sx','carrier sz'],values:data};
   }finally{read.destroy();buffer.destroy();}
 }

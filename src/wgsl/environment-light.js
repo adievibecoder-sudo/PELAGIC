@@ -2,7 +2,8 @@ import {replaceShader} from './shader-patch.js';
 import {CLOUD_LIGHT_PATH} from './cloud-light-path.js';
 
 export function environmentLightShader(code,query){
-  const diffusion=query.get('abEnvironment')==='marine-diffuse';
+  const sunset=query.get('abEnvironment')==='marine-sunset';
+  const diffusion=sunset||query.get('abEnvironment')==='marine-diffuse';
   const marine=diffusion||query.get('abEnvironment')==='marine';
   if(!marine&&query.get('abEnvironment')!=='coupled')return code;
   if(code.includes('fn cloudDensityFiltered(')){
@@ -69,6 +70,13 @@ fn cloudLayers(`);
           lunar=sampleTrans(radius,moonMu)*F.celestial.x*(exp(-moonOptical)*moonPhase+mix(moonMulti,diffuseMoon,stormLighting));`);
       code=replaceShader(code,'diffuseEscape=mix(diffuseEscape,stormDiffuseTransmission(p,sigma),stormLighting);',
         'diffuseEscape=mix(diffuseEscape,columnEscape,stormLighting);');
+    }
+    if(sunset){
+      code=replaceShader(code,'      let stormLighting=regionalTypes(p.xz).z*smoothstep(.65,.95,regionalCoverage(p.xz));',`      let stormBank=regionalTypes(p.xz).z*smoothstep(.65,.95,regionalCoverage(p.xz));
+      // Extend complete light paths and column transport to grazing sunlight.
+      // Preserve the verified ordinary daytime branch above 25 degrees.
+      let grazingSun=1.0-smoothstep(.173648178,.422618262,F.sunDir.y);
+      let stormLighting=max(stormBank,grazingSun);`);
     }
   }
   if(code.includes('fn reflectedEnvironment(')){

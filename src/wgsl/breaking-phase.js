@@ -4,7 +4,8 @@ import {replaceShader} from './shader-patch.js';
 // drift. The scalar occupancy field merges overlapping fronts without additive
 // brightness; this is phase transport, not persistent discrete event identity.
 export function breakingPhaseShader(code,query){
-  if(query.get('abBreaking')!=='phase-field'||!code.includes('struct FoamU {'))return code;
+  const resident=query.get('abBreaking')==='phase-resident';
+  if(!resident&&query.get('abBreaking')!=='phase-field'||!code.includes('struct FoamU {'))return code;
   code=replaceShader(code,'fn wrapIdx(',/* wgsl */`
 fn gravityHeightPair(q:vec2f,spacing:f32)->vec2f {
   var h=vec2f(0);
@@ -53,5 +54,16 @@ fn wrapIdx(`);
     'let supportSurvival=exp(-dt*12.0*(1.0-ridgeSupport));\n  let fresh=select(prev.g,1.0-(1.0-activePrevious.g*survival*supportSurvival)*exp(-U.p1.z*increment),dt>0.0);');
   code=replaceShader(code,'let retired=prev.g*(1.0-survival);',
     'let retired=prev.g*(1.0-survival*supportSurvival);');
+  if(resident){
+    code=replaceShader(code,'  var activePrevious=vec4f(0);var ridgeSupport=0.0;',`  // A rejected phase estimate retires material-carried history continuously.
+  // It must not erase the fraction which has not yet become residual foam.
+  var activePrevious=prev;var ridgeSupport=0.0;var phaseHistory=false;`);
+    code=replaceShader(code,'          activePrevious=textureSampleLevel(prevTex,sampPrev,',
+      '          phaseHistory=true;\n          activePrevious=textureSampleLevel(prevTex,sampPrev,');
+    code=replaceShader(code,'hasHistory&&dt>0.0)*ridgeSupport;',
+      'hasHistory&&phaseHistory&&dt>0.0)*ridgeSupport;');
+    code=replaceShader(code,'let retired=prev.g*(1.0-survival*supportSurvival);',
+      'let retired=activePrevious.g*(1.0-survival*supportSurvival);');
+  }
   return code;
 }

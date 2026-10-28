@@ -38,8 +38,44 @@ fn waterEscapedRadiance(reflectance:vec3f,irradiance:vec3f)->vec3f {
 }
 `;
 
+export const WATER_DIRECTIONAL = /* wgsl */`
+fn waterSingleFlux(muLight:f32,molecular:vec3f,particle:vec3f,extinction:vec3f)->vec3f {
+  // Integrate the first collision over the upward water hemisphere. The
+  // remaining diffuse budget must exclude these photons before adding them.
+  let nodes=array<f32,3>(.1127016654,.5,.8872983346);
+  let weights=array<f32,3>(.2777777778,.4444444444,.2777777778);
+  var flux=vec3f(0);
+  for(var ring=0u;ring<3u;ring++){
+    let mu=nodes[ring];
+    let lateral=sqrt(max((1.0-muLight*muLight)*(1.0-mu*mu),0.0));
+    for(var az=0u;az<8u;az++){
+      let cosine=-muLight*mu+lateral*cos((f32(az)+.5)*PI*.25);
+      flux+=waterPhase(cosine,molecular,particle)*mu/(muLight+mu)*(weights[ring]*PI*.25);
+    }
+  }
+  return flux/max(extinction,vec3f(1e-8));
+}
+fn waterDirectionalBody(light:vec3f,irradiance:vec3f,normal:vec3f,outgoing:vec3f,
+  molecular:vec3f,particle:vec3f,extinction:vec3f,reflectance:vec3f)->vec3f {
+  let muAir=max(dot(normal,light),0.0);
+  if(muAir<=0.0||max(irradiance.r,max(irradiance.g,irradiance.b))<=0.0){return vec3f(0);}
+  let inward=refract(-light,normal,1.0/1.333);
+  let muLight=max(-dot(inward,normal),.001);
+  let muView=max(dot(outgoing,normal),.001);
+  let entering=irradiance*muAir*(1.0-fresnelWater(muAir));
+  let first=waterPhase(dot(inward,outgoing),molecular,particle)/
+    max(extinction*(muLight+muView),vec3f(1e-8));
+  let firstFlux=waterSingleFlux(muLight,molecular,particle,extinction);
+  // The empirical deep reflectance includes multiple scattering. Preserve
+  // only its nonnegative remainder; never add two complete transport models.
+  let remainder=max(reflectance-firstFlux,vec3f(0));
+  return first*entering/(1.333*1.333)+waterEscapedRadiance(remainder,entering);
+}
+`;
+
 export function waterMaterialShader(code,query){
-  if(!['body','layered','volume','slab'].includes(query.get('abWater'))||!code.includes('fn reflectedEnvironment('))return code;
+  const directional=query.get('abWater')==='transport';
+  if(!['body','layered','volume','slab','transport'].includes(query.get('abWater'))||!code.includes('fn reflectedEnvironment('))return code;
   code=replaceShader(code,'fn reflectedEnvironment(',WATER_BODY+'fn reflectedEnvironment(');
   code=replaceShader(code,'  let downwelling=diffuseUp*0.94+sunE*max(Ld.y,0.0)*(1.0-fresnelWater(Ld.y))+moonE*max(F.moonDir.y,0.0)*(1.0-fresnelWater(F.moonDir.y));',/* wgsl */`
   // Volume photons integrate over metres. Use the same filtered displacement
@@ -103,7 +139,7 @@ export function waterMaterialShader(code,query){
   let shoulderBody=shoulderAlbedo*exp(-aWater*2.0)*shoulderLight/(PI*1.333*1.333);
   body=mix(body,max(body,shoulderBody),shoulder)+transmitted;`);
   }
-  if(query.get('abWater')==='slab'){
+  if(query.get('abWater')==='slab'||directional){
     code=replaceShader(code,'fn reflectedEnvironment(',WATER_LAYER+'fn reflectedEnvironment(');
     code=replaceShader(code,'  var body=waterDiffuseAlbedo(aWater,bb)*downwelling/(PI*1.333*1.333);',`  let reducedScatter=waterMolecularScatter(bb)+waterParticleScatter(bb)*(1.0-WATER_PARTICLE_G);
   // The deep substrate retains the ocean backscatter closure. A diffuse
@@ -120,6 +156,23 @@ export function waterMaterialShader(code,query){
   let layeredReflectance=bubbleLayer.reflection+bubbleLayer.transmission*bubbleLayer.transmission*deepReflectance/
     max(vec3f(1)-bubbleLayer.reflection*deepReflectance,vec3f(1e-6));
   body=waterEscapedRadiance(layeredReflectance,downwelling);`);
+  }
+  if(directional){
+    code=replaceShader(code,'fn reflectedEnvironment(',WATER_DIRECTIONAL+'fn reflectedEnvironment(');
+    code=replaceShader(code,'  var body=waterEscapedRadiance(deepReflectance,downwelling);',/* wgsl */`
+  let molecularScatter=waterMolecularScatter(bb);
+  let particleScatter=waterParticleScatter(bb);
+  let extinction=aWater+molecularScatter+particleScatter;
+  let outgoing=-refract(-V,volumeNormal,1.0/1.333);
+  var body=waterEscapedRadiance(deepReflectance,volumeSky*.94)+
+    waterDirectionalBody(Ld,sunE,volumeNormal,outgoing,molecularScatter,particleScatter,extinction,deepReflectance)+
+    waterDirectionalBody(F.moonDir.xyz,moonE,volumeNormal,outgoing,molecularScatter,particleScatter,extinction,deepReflectance);`);
+    code=replaceShader(code,'  let bubbleStrength=clamp(.35*shoulder+aeration,0.0,1.0);',
+      '  let bubbleStrength=aeration; // Compression alone does not entrain air.');
+    code=replaceShader(code,'  body=waterEscapedRadiance(layeredReflectance,downwelling);',/* wgsl */`
+  body=waterEscapedRadiance(bubbleLayer.reflection,downwelling)+
+    bubbleLayer.transmission*bubbleLayer.transmission*body/
+    max(vec3f(1)-bubbleLayer.reflection*deepReflectance,vec3f(1e-6));`);
   }
   return code;
 }
