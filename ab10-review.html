@@ -7,17 +7,20 @@
 </style>
 <main>
 <p class="label">PELAGIC 0.4 / A+B / AB10 CONTINUATION</p>
-<h1>Storm illumination and advancing crest foam.</h1>
+<h1>Advancing crest foam now in normal development.</h1>
+<p>The normal localhost renderer now uses the reviewed phase-resident foam and relief. Near and elevated storm comparisons show narrower moving crest strips, gaps and trailing fragments, with more readable dark wave faces. The fronts remain too smooth and flat: this is a continuity and coverage improvement, not accepted breaking.</p>
+<p><a href="/?preset=storm&amp;cam=0,8,0,79,-10&amp;cameraMode=free&amp;quality=High&amp;resolution=1&amp;adaptive=0&amp;seed=1307&amp;t=30">Open normal development</a> / <a href="/?preset=storm&amp;cam=0,8,0,79,-10&amp;cameraMode=free&amp;quality=High&amp;resolution=1&amp;adaptive=0&amp;seed=1307&amp;t=30&amp;abDefaults=legacy">Open legacy default</a> / <a href="evidence/v04-ma-ab10-resume-08/normal-review.json">Normal-use evidence and limits</a></p>
+<p>The new normal-use pair contains 48 original lossless 1080p frames per view, 30.000-31.958 s at 24 Hz. Daylight and calm regressions and a three-second crossing sequence support this narrow change. Water transport, display, raised skin/shell and lunar storage experiments remain opt-in. Pale daytime water, bronze sunset reflections and missing roller volume are unresolved.</p>
 <p>Finite aerated-layer transport replaces overlapping body-light terms. Dissolved absorption and mineral scattering now vary independently. Storm lighting follows the full cloud-layer path, removing observed bright patches beneath opaque banks. Active foam gains filtered shading relief, but still lacks convincing breaking volume.</p>
 <p><strong>Experimental. The requested visual transformation remains incomplete.</strong> Sunset retains broad bronze reflections; daytime water is too uniformly cyan in this optical sample. Dark storm faces, repetitive surface detail and flat whitewater remain objections. B1, B2 and combined A+B await owner acceptance.</p>
 <p>The latest storm experiment separates diffuse cloud transport from the direct beam and carries active foam with gravity-ridge phase motion. Shaded banks become lighter and selected crest fronts denser. Foam remains a surface field, without resolved breaking volume. Angular reflection filtering did not resolve sunset bronze and is excluded from these candidates.</p>
 <p><a id="live">Open selected live candidate</a> / <a href="docs/V04-AB-CONTINUATION-10.md">Decisions and all six workstreams</a> / <a href="evidence/v04-ma-ab10-review-02/manifest.json">Capture provenance and verification</a></p>
 <p><a href="evidence/v04-ma-ab10-review-03/manifest.json">Storm diffusion / phase-transport provenance</a>. New control code preserves water coefficients across scene presets and provides independent lighting previews. Browser interaction checks for these controls remain pending.</p>
 <h2>Matched consecutive motion</h2>
-<p>High, 1920 x 1080, seed 1307. Each original contains 24 consecutive frames, simulation 30.000-30.958 s, captured at 24 Hz after the same 240 warmup steps. Lossless videos preserve every decoded RGB pixel. This one-second window establishes local motion only; longer foam evolution and environmental transitions remain unverified.</p>
+<p>High, 1920 x 1080, seed 1307, captured at 24 Hz after 240 warmup steps. Normal-development pairs contain 48 frames; older optical/storm experiments contain 24. Lossless videos preserve every decoded RGB pixel. These short windows establish local motion only; full breaking lifetimes and environmental transitions remain unverified.</p>
 <p id="comparison-note"></p>
 <div class="controls">
-<label>Comparison <select id="comparison"><option value="water">Water / first integration</option><option value="diffuse">Storm diffuse lighting only</option><option value="crest">Crest phase transport only</option><option value="storm" selected>Integrated storm</option></select></label>
+<label>Comparison <select id="comparison"><option value="normal" selected>Normal development / phase residency</option><option value="water">Water / first integration</option><option value="diffuse">Storm diffuse lighting only</option><option value="crest">Crest phase transport only</option><option value="storm">Integrated storm experiment</option></select></label>
 <label>View <select id="view"><option value="gold-near">Sunset / 2 m</option><option value="day-near">Daylight / 2 m</option><option value="storm-near" selected>Storm / 20 m/s</option><option value="storm30-high">Storm / 30 m/s elevated</option></select></label>
 <label>Version <select id="version"><option value="before">Before</option><option value="after" selected>AB10 candidate</option></select></label>
 <label>Speed <select id="rate"><option value="1">Normal</option><option value="0.25">Quarter</option></select></label>
@@ -36,13 +39,14 @@
 <p>The water layer conserves reflected plus transmitted flux within its two-flux approximation. It uses the established deep-ocean backscatter substrate and a diffuse dielectric escape series. Three-band coefficients and bubble thickness remain approximations, not measured ocean-water calibration. Independent native GPU thin-sheet adding tests cover 48 cases; five existing optical groups pass. Thirteen focused CPU tests pass.</p>
 <p>Phase transport uses consecutive gravity heights and curvature to estimate ridge speed. Residual foam follows material drift. It changes active occupancy and retirement, but does not track discrete event identities or simulate overturning geometry. FFT and dispersion remain unchanged. No roller, entrainment or spray improvement is claimed. No valid paired foreground performance measurement; the historical AB8 GPU 43.09 ms / rAF p95 48.7 ms remains the reference.</p>
 <p>Storm clips precede the final conditional-work optimization in source 5bd729e. The already-running daylight/calm/moon regression completed that revision while browser control was blocked. All72 regression frames were inspected in consecutive reduced sheets: calm retains small swells without a foam blanket; moonlight remains too dark. The displayed records preserve their actual source hashes. No fresh browser playback is claimed for this review revision. <a href="evidence/v04-ma-ab10-review-03/late-regression.json">Late regression provenance</a>.</p>
-<p>Wave organization, persistent breaking ownership, sunset optics, night radiometry, regional weather/lightning, waterline consistency, long-distance integration and the broader control audit remain open. Private references remain untracked. No default promotion, Milestone C or release.</p>
+<p>Wave organization, persistent breaking ownership, sunset optics, night radiometry, regional weather/lightning, waterline consistency, long-distance integration and the broader control audit remain open. Private references remain untracked. Only the reviewed phase-resident foam/relief pair is promoted to normal development; no Milestone C or release.</p>
 </details>
 <footer><small>Original PELAGIC imagery. Before/after are development states, not accepted milestones.</small></footer>
 </main>
 <script type="module">
 const $=id=>document.getElementById(id),movie=$('movie'),view=$('view'),version=$('version'),rate=$('rate'),comparison=$('comparison');
 const comparisons={
+ normal:{before:'normal-before02',after:'normal-after01',views:['storm-near','storm30-high'],note:'Normal water, clouds, exposure and wave field remain matched. Phase-resident active foam and relief narrow broad face coverage into advancing strips and fragments. All 48 frames per version inspected; smooth painted fronts and missing rollers remain. No owner acceptance.'},
  water:{before:'recover-motion',after:'final-01',views:['gold-near','day-near','storm-near','storm30-high'],environment:'marine',breaking:'population',note:'Recovered unpublished volume experiment at 930b7fb versus finite-layer water, mineral scattering 0.3/m, full storm light paths and foam relief. Both use dissolved absorption 0.07/m. This integrated pair changes the optical constituent and multiple shader paths.'},
  diffuse:{before:'final-01',after:'diffuse-01',views:['storm-near'],environment:'marine-diffuse',breaking:'population',note:'Same water coefficients, wave field, camera and exposure. Only the storm diffuse-light closure changes. Observe lighter cloud undersides and their reflected contribution; smooth cloud structure remains.'},
  crest:{before:'diffuse-01',after:'phase-01',views:['storm-near'],environment:'marine-diffuse',breaking:'phase-field',note:'Same cloud lighting and water material. Active occupancy now follows estimated gravity-ridge phase speed; residual follows material drift. Selected fronts grow denser, with moving gaps and trailing fragments. Flat whitewater and longer-term continuity remain unresolved.'},
@@ -62,7 +66,11 @@ function select(reset=false){
  if(!group.views.includes(view.value))view.value=group.views[0];
  const s=scenes[view.value];$('comparison-note').textContent=group.note;
  const folder=version.value==='before'?group.before:group.after,base=`evidence/v04-ma-ab4-ab10-${folder}/${view.value}-reference`;
- movie.poster=base+'_0.png';movie.src=base+'.webm';$('scope').textContent=s.scope;$('observation').textContent=s.observation;
+ movie.poster=base+'_0.png';movie.src=comparison.value==='normal'?`evidence/v04-ma-ab10-resume-08/${view.value}-${version.value}-lossless.webm`:base+'.webm';$('scope').textContent=s.scope+(comparison.value==='normal'?' / 48 frames, 30.000-31.958 s.':' / Historical experiment: 24 frames, 30.000-30.958 s.');$('observation').textContent=s.observation;
+ if(comparison.value==='normal'){
+  const q=new URLSearchParams({preset:s.preset,cam:s.cam,cameraMode:'free',quality:'High',resolution:1,adaptive:0,seed:1307,t:30});
+  if(version.value==='before')q.set('abDefaults','legacy');if(s.windSpeed)q.set('windSpeed',s.windSpeed);$('live').href='/?'+q;return;
+ }
  const q=new URLSearchParams({preset:s.preset,cam:s.cam,cameraMode:'free',quality:'High',resolution:1,adaptive:0,seed:1307,t:20,abWater:'slab',dissolvedAbsorption:.07,mineralScattering:.3,abDisplay:'linear',abEnvironment:group.environment,abBreaking:group.breaking,abFoam:'relief',abRain:'velocity'});
  if(s.sunElev!==undefined){for(const [k,v]of Object.entries({sunElev:s.sunElev,exposure:s.exposure,clouds:.5,veil:0,haze:1.4,cloudType:0}))q.set(k,v);}
  if(s.windSpeed)q.set('windSpeed',s.windSpeed);$('live').href='/?'+q;

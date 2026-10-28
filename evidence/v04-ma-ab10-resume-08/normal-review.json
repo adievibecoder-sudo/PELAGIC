@@ -1,0 +1,221 @@
+{
+  "date": "2026-10-28",
+  "publishedRecoveredSource": "b1d094cb6b0439c9e58b44a66e9bd00f2e30de31",
+  "sourceManifest": "861835a8f486bbef29fee66acf9cdd2e996b1ecb64ee28c07dcd24eec199c7c4",
+  "normalRendering": {
+    "abBreaking": "phase-resident",
+    "abFoam": "relief"
+  },
+  "legacy": "abDefaults=legacy",
+  "visual": {
+    "near": "48 frames, 30.000-31.958: narrower advancing strips with readable dark faces; smooth painted fronts remain.",
+    "elevated": "48 frames, 30.000-31.958: moving connected crest bands with gaps/residue; no turbulent roller.",
+    "crossing": "72 frames, 30.000-32.958 at 400px: traveling and splitting strips; longer crossing and event identity unverified.",
+    "calm": "24 candidate frames: RGB-identical to baseline, no foam blanket.",
+    "day": "24 candidate frames: mean channel difference .259/.196/.122 display codes, localized foam changes; clouds/glitter retained.",
+    "scope": "Every selected frame inspected as reduced consecutive sheets; initial storm originals also inspected at native resolution. Not continuous real-time playback or owner acceptance."
+  },
+  "native": [
+    {
+      "run": "v04-ma-ab4-ab10-normal-before02",
+      "frames": 96,
+      "sourceHashes": [
+        "861835a8f486bbef29fee66acf9cdd2e996b1ecb64ee28c07dcd24eec199c7c4"
+      ],
+      "timeRange": [
+        30.000000000000284,
+        31.958333333333673
+      ],
+      "failures": []
+    },
+    {
+      "run": "v04-ma-ab4-ab10-normal-after01",
+      "frames": 96,
+      "sourceHashes": [
+        "861835a8f486bbef29fee66acf9cdd2e996b1ecb64ee28c07dcd24eec199c7c4"
+      ],
+      "timeRange": [
+        30.000000000000284,
+        31.958333333333673
+      ],
+      "failures": []
+    },
+    {
+      "run": "v04-ma-ab4-ab10-normal-regbase",
+      "frames": 48,
+      "sourceHashes": [
+        "861835a8f486bbef29fee66acf9cdd2e996b1ecb64ee28c07dcd24eec199c7c4"
+      ],
+      "timeRange": [
+        30.000000000000284,
+        30.958333333333645
+      ],
+      "failures": []
+    },
+    {
+      "run": "v04-ma-ab4-ab10-normal-regafter",
+      "frames": 48,
+      "sourceHashes": [
+        "861835a8f486bbef29fee66acf9cdd2e996b1ecb64ee28c07dcd24eec199c7c4"
+      ],
+      "timeRange": [
+        30.000000000000284,
+        30.958333333333645
+      ],
+      "failures": []
+    },
+    {
+      "run": "v04-ma-ab10-normal-crossing",
+      "frames": 72,
+      "sourceHashes": [
+        "861835a8f486bbef29fee66acf9cdd2e996b1ecb64ee28c07dcd24eec199c7c4"
+      ],
+      "timeRange": [
+        30.000000000000284,
+        32.95833333333362
+      ],
+      "failures": []
+    }
+  ],
+  "motion": [
+    {
+      "file": "evidence\\v04-ma-ab10-resume-08\\storm-near-before-lossless.webm",
+      "frames": 48,
+      "rgbExact": true,
+      "bytes": 141043903,
+      "sha256": "30e89e7ee5787e85eecff40ad4ba4cdcec019e5467ed88fe6b1770819504e01b"
+    },
+    {
+      "file": "evidence\\v04-ma-ab10-resume-08\\storm30-high-before-lossless.webm",
+      "frames": 48,
+      "rgbExact": true,
+      "bytes": 174143013,
+      "sha256": "d1e856d2a6c04bf6615a20e630f3aabed0088bdcd22fa221cdb84da5c837c3c6"
+    },
+    {
+      "file": "evidence\\v04-ma-ab10-resume-08\\storm-near-after-lossless.webm",
+      "frames": 48,
+      "rgbExact": true,
+      "bytes": 143694282,
+      "sha256": "8135c9816fcd900cb9242b02dcdd7200a9cac15e2ad1f1e1946fdc1624c89dc0"
+    },
+    {
+      "file": "evidence\\v04-ma-ab10-resume-08\\storm30-high-after-lossless.webm",
+      "frames": 48,
+      "rgbExact": true,
+      "bytes": 177366581,
+      "sha256": "c8bf8787179f76280b35c65dfdad0cd7a260c4270d438c81c0fa7c0c3a0fb0cd"
+    }
+  ],
+  "cpu": {
+    "passed": 90,
+    "log": "evidence/v04-ma-ab10-resume-08/cpu-default.tap"
+  },
+  "ui": {
+    "interface": "Chrome DevTools MCP",
+    "share": "effective pair serialized",
+    "save": "effective pair serialized",
+    "quality": "High to Balanced retains pair",
+    "restore": "Balanced to saved High retains pair, pause and time64.2873",
+    "priorSavedState": null,
+    "priorSavedStateRestored": true
+  },
+  "timing": {
+    "runs": [
+      {
+        "name": "legacy02",
+        "source": "d335eed328f3348251c35cd367e9dfe3f5736b030ca67bc2ce0c42f174fb4546",
+        "seconds": 120.19569999999963,
+        "gpuMs": {
+          "count": 370,
+          "mean": 46.0053863783784,
+          "p95": 55.967744,
+          "maximum": 63.307776
+        },
+        "rafMs": {
+          "count": 2586,
+          "mean": 45.9391724671307,
+          "p95": 55.60000000000582,
+          "maximum": 62.60000000000582
+        },
+        "hidden": 0,
+        "unfocused": 0,
+        "errors": []
+      },
+      {
+        "name": "current",
+        "source": "d335eed328f3348251c35cd367e9dfe3f5736b030ca67bc2ce0c42f174fb4546",
+        "seconds": 120.25040000000037,
+        "gpuMs": {
+          "count": 343,
+          "mean": 47.095545282798824,
+          "p95": 52.559872,
+          "maximum": 60.29312
+        },
+        "rafMs": {
+          "count": 2392,
+          "mean": 47.19728260869565,
+          "p95": 55.60000000000582,
+          "maximum": 63.5
+        },
+        "hidden": 0,
+        "unfocused": 0,
+        "errors": []
+      }
+    ],
+    "scope": "Application GPU timestamps and rAF intervals, not presented-frame timing. OS RTX3050 Laptop4GB; WebGPU NVIDIA/Ampere. Trace overhead/windows differ; no causal cost/speedup conclusion. Presented p95 unavailable."
+  },
+  "protectedFiles": [
+    {
+      "path": "evidence/v04-p1-final-stills/broken.json",
+      "sha256": "5313223cb9747fe1ca4ed5f75189359d31d6ce10929df8a2493cb961ca16433a",
+      "matches": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/broken.png",
+      "sha256": "7c50464f04d455bc63cd67613036ce1326abaa06140ec0f27f513749b0078aaa",
+      "matches": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/covered.json",
+      "sha256": "1a9fd9600f8e8af0d79d475ec8fcf60006b11787e87808d93009da4773e83d40",
+      "matches": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/covered.png",
+      "sha256": "b08aec41c8ed42acadcb53a0e7afd743d939d2267f97cc402687bc1e05f61c4d",
+      "matches": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/golden.json",
+      "sha256": "9fdf965a64084910721642ae1bb22621aa90c78d282c25a48f512361ccefca68",
+      "matches": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/moonlit.json",
+      "sha256": "5053cea394a9e63471c3ff1c7b0031886af7060fdc92558596e0f9bcd3808098",
+      "matches": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/storm.json",
+      "sha256": "016e2d0633e380db0691630f9fb1673320c4421e2570678edffddf666966a31d",
+      "matches": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/storm.png",
+      "sha256": "b4fe5f2bbc34fcf2a660c84cd9ed3c15177ee2430dbcd57f75b56a1e9bc016f2",
+      "matches": true
+    },
+    {
+      "path": "evidence/v04-p1-final-stills/twilight.json",
+      "sha256": "48ba683b71a2daac5abf1b9978ea0eff01e2e562f6bb36b3025931a3c66fad7b",
+      "matches": true
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "de745ade5b712e7dbc73bb4bebb3192be670b0f09cf80b2b02946b51ff1a0088",
+      "matches": true
+    }
+  ],
+  "acceptance": "B1/B2/A+B unaccepted; optics/raised foam/night beauty unresolved."
+}
