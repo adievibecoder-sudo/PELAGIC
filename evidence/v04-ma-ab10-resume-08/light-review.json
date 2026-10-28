@@ -1,0 +1,173 @@
+{
+  "date": "2026-10-28",
+  "normal": [
+    "phase-resident foam",
+    "relief",
+    "scaled light storage",
+    "responsive celestial cache"
+  ],
+  "native": [
+    {
+      "run": "evidence/v04-ma-ab4-ab10-light-regbase",
+      "frames": 48,
+      "range": [
+        21.666666666666572,
+        22.049999999999883
+      ],
+      "source": [
+        "79a7699498fa2ea041d1fe126f745b95a0653d799468e587acb0f1a731508988"
+      ],
+      "failures": 0
+    },
+    {
+      "run": "evidence/v04-ma-ab4-ab10-light-regafter",
+      "frames": 48,
+      "range": [
+        21.666666666666572,
+        22.049999999999883
+      ],
+      "source": [
+        "79a7699498fa2ea041d1fe126f745b95a0653d799468e587acb0f1a731508988"
+      ],
+      "failures": 0
+    },
+    {
+      "run": "evidence/v04-ma-ab4-ab10-taa-units-before",
+      "frames": 24,
+      "range": [
+        21.666666666666572,
+        22.049999999999883
+      ],
+      "source": [
+        "40341c574bfa7a423761302c3763319170d936e950b2c1399bf5032835516502"
+      ],
+      "failures": 0
+    },
+    {
+      "run": "evidence/v04-ma-ab4-ab10-taa-units-after",
+      "frames": 24,
+      "range": [
+        21.666666666666572,
+        22.049999999999883
+      ],
+      "source": [
+        "5597d805d6f6de01e30d8689fdcf1a1f384355bfd72331402360ce61491e281b"
+      ],
+      "failures": 0
+    },
+    {
+      "run": "evidence/v04-ma-ab4-ab10-light-under-before",
+      "frames": 24,
+      "range": [
+        30.000000000000284,
+        30.958333333333645
+      ],
+      "source": [
+        "5597d805d6f6de01e30d8689fdcf1a1f384355bfd72331402360ce61491e281b"
+      ],
+      "failures": 0
+    },
+    {
+      "run": "evidence/v04-ma-ab4-ab10-light-under-after",
+      "frames": 24,
+      "range": [
+        30.000000000000284,
+        30.958333333333645
+      ],
+      "source": [
+        "5597d805d6f6de01e30d8689fdcf1a1f384355bfd72331402360ce61491e281b"
+      ],
+      "failures": 0
+    },
+    {
+      "run": "evidence/v04-ma-ab4-ab10-light-dusk-before",
+      "frames": 96,
+      "range": [
+        30.000000000000284,
+        33.95833333333356
+      ],
+      "source": [
+        "5597d805d6f6de01e30d8689fdcf1a1f384355bfd72331402360ce61491e281b"
+      ],
+      "failures": 0
+    },
+    {
+      "run": "evidence/v04-ma-ab4-ab10-light-dusk-after",
+      "frames": 96,
+      "range": [
+        30.000000000000284,
+        33.95833333333356
+      ],
+      "source": [
+        "5597d805d6f6de01e30d8689fdcf1a1f384355bfd72331402360ce61491e281b"
+      ],
+      "failures": 0
+    },
+    {
+      "run": "evidence/v04-ma-ab4-ab10-dusk-cache-after",
+      "frames": 96,
+      "range": [
+        30.000000000000284,
+        33.95833333333356
+      ],
+      "source": [
+        "230b377a094e878a5049d655a03be712d7f76486086e02339871a39ad405841f"
+      ],
+      "failures": 0
+    },
+    {
+      "run": "evidence/v04-ma-ab4-ab10-cache-day",
+      "frames": 24,
+      "range": [
+        30.000000000000284,
+        30.958333333333645
+      ],
+      "source": [
+        "230b377a094e878a5049d655a03be712d7f76486086e02339871a39ad405841f"
+      ],
+      "failures": 0
+    },
+    {
+      "run": "evidence/v04-ma-ab4-ab10-light-default",
+      "frames": 24,
+      "range": [
+        30.000000000000284,
+        30.958333333333645
+      ],
+      "source": [
+        "763df8fc87bfda22aec86877107c9d829be056bbc54fc7a64f20eb312ee8d7cc"
+      ],
+      "failures": 0
+    }
+  ],
+  "cpu": {
+    "passed": 92,
+    "log": "evidence/v04-ma-ab10-resume-08/cpu-final.tap"
+  },
+  "gpu": {
+    "before": "evidence/v04-ma-ab10-temporal-units/before.json",
+    "after": "evidence/v04-ma-ab10-temporal-units/after.json",
+    "result": "Five TAA storage-covariance probes and nine existing resolve cases pass after radiance-floor correction."
+  },
+  "visual": {
+    "scope": "Every fixed/regression/cache frame inspected in consecutive400px sheets. Initial fixed/TAA intervals are only0.383s; under1s and transition4s. No continuous real-time viewing claim.",
+    "twilight": "Warm horizon/dark moving facets retained; not brighter or artistically solved.",
+    "underwater": "Dim ceiling facets over near-black body; no new discontinuity in the observed second.",
+    "duskBefore": "Six-frame pulse during rapid twilight in both storage modes.",
+    "duskAfter": "Pulse absent in96-frame responsive-cache sequence; coherent darkening and moving lunar reflection.",
+    "objection": "Water remains too dark and lacks convincing liquid depth; clouds retain repeated compact silhouettes."
+  },
+  "defaults": {
+    "frames": 24,
+    "rgbExact": true,
+    "settingsTimeMatch": true,
+    "share": "Browser Share includes all four effective choices"
+  },
+  "day": {
+    "frames": 24,
+    "rgbExact": true,
+    "responsiveFrames": 0
+  },
+  "cost": "Fast celestial playback rebuilds six cache faces instead of one. Extra work is real; capture timings are not a matched presentation benchmark. No performance gain or presented-FPS claim.",
+  "unresolved": "Full water optics, turbulent roller/spray, wave groups/event ownership, regional weather/lightning, waterline/long flight and actual presented pacing. B1/B2/A+B unaccepted."
+}

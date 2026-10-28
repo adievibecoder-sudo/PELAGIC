@@ -1,0 +1,562 @@
+TAP version 13
+# Subtest: share and quality reload retain rendering choices without replaying evidence commands
+ok 1 - share and quality reload retain rendering choices without replaying evidence commands
+  ---
+  duration_ms: 4.1103
+  type: 'test'
+  ...
+# Subtest: material, environment and populations compose without changing the FFT or legacy variants
+ok 2 - material, environment and populations compose without changing the FFT or legacy variants
+  ---
+  duration_ms: 1.9953
+  type: 'test'
+  ...
+# Subtest: integrated cloud lighting composes with shared shadow/cache paths and retained crest footprints
+ok 3 - integrated cloud lighting composes with shared shadow/cache paths and retained crest footprints
+  ---
+  duration_ms: 1.7636
+  type: 'test'
+  ...
+# Subtest: dissolved absorption changes spectral attenuation without creating scattering
+ok 4 - dissolved absorption changes spectral attenuation without creating scattering
+  ---
+  duration_ms: 0.5092
+  type: 'test'
+  ...
+# Subtest: independent mineral scattering preserves legacy water and shares optical coefficients
+ok 5 - independent mineral scattering preserves legacy water and shares optical coefficients
+  ---
+  duration_ms: 1.0616
+  type: 'test'
+  ...
+# Subtest: marine storm lighting and foam relief compose without adding bindings
+ok 6 - marine storm lighting and foam relief compose without adding bindings
+  ---
+  duration_ms: 1.9927
+  type: 'test'
+  ...
+# Subtest: phase transport composes with population history; empty/default paths remain intact
+ok 7 - phase transport composes with population history; empty/default paths remain intact
+  ---
+  duration_ms: 1.4836
+  type: 'test'
+  ...
+# Subtest: phase estimate follows physical travelling-wave speed at the declared spatial and temporal scales
+ok 8 - phase estimate follows physical travelling-wave speed at the declared spatial and temporal scales
+  ---
+  duration_ms: 0.3744
+  type: 'test'
+  ...
+# Subtest: storm diffusion preserves unmodified single scattering and skips ordinary daytime column work
+ok 9 - storm diffusion preserves unmodified single scattering and skips ordinary daytime column work
+  ---
+  duration_ms: 1.0807
+  type: 'test'
+  ...
+# Subtest: lunar disc irradiance follows independently integrated projected Lambert sphere
+ok 10 - lunar disc irradiance follows independently integrated projected Lambert sphere
+  ---
+  duration_ms: 37.3347
+  type: 'test'
+  ...
+# Subtest: twilight adaptation is continuous across the former minus-seven-degree switch
+ok 11 - twilight adaptation is continuous across the former minus-seven-degree switch
+  ---
+  duration_ms: 0.754
+  type: 'test'
+  ...
+# Subtest: cloud opacity probe replaces screen and environment composition
+ok 12 - cloud opacity probe replaces screen and environment composition
+  ---
+  duration_ms: 0.2507
+  type: 'test'
+  ...
+# Subtest: condensate trial preserves default, ocean and complete cloud transport
+ok 13 - condensate trial preserves default, ocean and complete cloud transport
+  ---
+  duration_ms: 0.2046
+  type: 'test'
+  ...
+# Subtest: cloud experiment is opt-in, leaves ocean and light transport source unchanged
+ok 14 - cloud experiment is opt-in, leaves ocean and light transport source unchanged
+  ---
+  duration_ms: 0.253
+  type: 'test'
+  ...
+# Subtest: curved layer coordinates preserve altitude during horizontal transport
+ok 15 - curved layer coordinates preserve altitude during horizontal transport
+  ---
+  duration_ms: 0.3924
+  type: 'test'
+  ...
+# Subtest: finite cloud-light quadrature preserves default and density source
+ok 16 - finite cloud-light quadrature preserves default and density source
+  ---
+  duration_ms: 0.226
+  type: 'test'
+  ...
+# Subtest: dense light reference changes only self-shadow quadrature
+ok 17 - dense light reference changes only self-shadow quadrature
+  ---
+  duration_ms: 0.288
+  type: 'test'
+  ...
+# Subtest: authored control preserves default, ocean, and light transport
+ok 18 - authored control preserves default, ocean, and light transport
+  ---
+  duration_ms: 0.1746
+  type: 'test'
+  ...
+# Subtest: licensed volume bytes, mip dimensions, and density mass remain valid
+ok 19 - licensed volume bytes, mip dimensions, and density mass remain valid
+  ---
+  duration_ms: 54.578
+  type: 'test'
+  ...
+# Subtest: cloud optimization retains explicit old path and skips incompatible density experiments
+ok 20 - cloud optimization retains explicit old path and skips incompatible density experiments
+  ---
+  duration_ms: 0.3758
+  type: 'test'
+  ...
+# Subtest: mirrored cube writes cover each texel once with the same reflected sky direction
+ok 21 - mirrored cube writes cover each texel once with the same reflected sky direction
+  ---
+  duration_ms: 2.4672
+  type: 'test'
+  ...
+# Subtest: cascade intervals partition the represented radial band without gaps or overlap
+ok 22 - cascade intervals partition the represented radial band without gaps or overlap
+  ---
+  duration_ms: 0.284
+  type: 'test'
+  ...
+# Subtest: directional wind spreading integrates to one over all supported frequency ratios
+ok 23 - directional wind spreading integrates to one over all supported frequency ratios
+  ---
+  duration_ms: 16.3007
+  type: 'test'
+  ...
+# Subtest: covariance transform agrees with independent transformed sample moments, including shear
+ok 24 - covariance transform agrees with independent transformed sample moments, including shear
+  ---
+  duration_ms: 0.3783
+  type: 'test'
+  ...
+# Subtest: discrete sea-state ledger has finite positive energy and positive semidefinite covariance
+ok 25 - discrete sea-state ledger has finite positive energy and positive semidefinite covariance
+  ---
+  duration_ms: 287.0707
+  type: 'test'
+  ...
+# Subtest: sheet option preserves default and AB7 generated source
+ok 26 - sheet option preserves default and AB7 generated source
+  ---
+  duration_ms: 0.7397
+  type: 'test'
+  ...
+# Subtest: surface fronts compose with handoff optics and preserve legacy source
+ok 27 - surface fronts compose with handoff optics and preserve legacy source
+  ---
+  duration_ms: 0.7595
+  type: 'test'
+  ...
+# Subtest: sheet integration retains one transport entry and rejects a changed patch contract
+ok 28 - sheet integration retains one transport entry and rejects a changed patch contract
+  ---
+  duration_ms: 0.365
+  type: 'test'
+  ...
+# Subtest: phase crests preserve default and AB6; reject missing upstream contract
+ok 29 - phase crests preserve default and AB6; reject missing upstream contract
+  ---
+  duration_ms: 0.2437
+  type: 'test'
+  ...
+# Subtest: crest patch composes with velocity rain and keeps unrelated ocean source
+ok 30 - crest patch composes with velocity rain and keeps unrelated ocean source
+  ---
+  duration_ms: 0.4605
+  type: 'test'
+  ...
+# Subtest: controls retain requested targets while weather and the sea evolve separately
+ok 31 - controls retain requested targets while weather and the sea evolve separately
+  ---
+  duration_ms: 1.4844
+  type: 'test'
+  ...
+# Subtest: explicit apply reports settled targets while paused, including cloud state
+ok 32 - explicit apply reports settled targets while paused, including cloud state
+  ---
+  duration_ms: 0.4719
+  type: 'test'
+  ...
+# Subtest: weather replay independent of render partition; swell history retained
+ok 33 - weather replay independent of render partition; swell history retained
+  ---
+  duration_ms: 8.6997
+  type: 'test'
+  ...
+# Subtest: snapshot preserves targets, clocks, fractional weather tick and drift
+ok 34 - snapshot preserves targets, clocks, fractional weather tick and drift
+  ---
+  duration_ms: 1.9005
+  type: 'test'
+  ...
+# Subtest: natural command preserves phase clock and drift; preview explicitly applies state
+ok 35 - natural command preserves phase clock and drift; preview explicitly applies state
+  ---
+  duration_ms: 0.4718
+  type: 'test'
+  ...
+# Subtest: regional support bounded, continuous, electrically active only by explicit flag
+ok 36 - regional support bounded, continuous, electrically active only by explicit flag
+  ---
+  duration_ms: 1.9959
+  type: 'test'
+  ...
+# Subtest: weather field invariant under camera origin rebasing, f32 bounded at 1000 km
+ok 37 - weather field invariant under camera origin rebasing, f32 bounded at 1000 km
+  ---
+  duration_ms: 0.4891
+  type: 'test'
+  ...
+# Subtest: astronomy, wave, weather and exposure clocks have independent pause/rates
+ok 38 - astronomy, wave, weather and exposure clocks have independent pause/rates
+  ---
+  duration_ms: 1.0432
+  type: 'test'
+  ...
+# Subtest: evidence writes reject collisions and traversal without altering originals
+ok 39 - evidence writes reject collisions and traversal without altering originals
+  ---
+  duration_ms: 26.1057
+  type: 'test'
+  ...
+# Subtest: ordinary fixed and natural-rate celestial lighting retain amortized cache work
+ok 40 - ordinary fixed and natural-rate celestial lighting retain amortized cache work
+  ---
+  duration_ms: 0.253
+  type: 'test'
+  ...
+# Subtest: fast Sun, Moon and twilight adaptation request a current snapshot
+ok 41 - fast Sun, Moon and twilight adaptation request a current snapshot
+  ---
+  duration_ms: 0.1563
+  type: 'test'
+  ...
+# Subtest: radiance storage preserves the physical/display product across twilight
+ok 42 - radiance storage preserves the physical/display product across twilight
+  ---
+  duration_ms: 1.2459
+  type: 'test'
+  ...
+# Subtest: cache encoding covers mirrored and full paths without scaling opacity
+ok 43 - cache encoding covers mirrored and full paths without scaling opacity
+  ---
+  duration_ms: 0.8141
+  type: 'test'
+  ...
+# Subtest: all ocean cache consumers decode nested texture expressions once
+ok 44 - all ocean cache consumers decode nested texture expressions once
+  ---
+  duration_ms: 0.3442
+  type: 'test'
+  ...
+# Subtest: long-grid probe keeps defaults and cascade boundary below Nyquist
+ok 45 - long-grid probe keeps defaults and cascade boundary below Nyquist
+  ---
+  duration_ms: 0.182
+  type: 'test'
+  ...
+# Subtest: wave isolation preserves default shaders and actual displaced vertex geometry
+ok 46 - wave isolation preserves default shaders and actual displaced vertex geometry
+  ---
+  duration_ms: 0.5426
+  type: 'test'
+  ...
+# Subtest: independent recursive inverse FFT agrees with direct DFT, including Parseval
+ok 47 - independent recursive inverse FFT agrees with direct DFT, including Parseval
+  ---
+  duration_ms: 0.9097
+  type: 'test'
+  ...
+# Subtest: JONSWAP normalized swell integrates to Hm0 at multiple peak periods
+ok 48 - JONSWAP normalized swell integrates to Hm0 at multiple peak periods
+  ---
+  duration_ms: 63.2813
+  type: 'test'
+  ...
+# Subtest: directional swell normalization and dispersion derivative
+ok 49 - directional swell normalization and dispersion derivative
+  ---
+  duration_ms: 2915.2703
+  type: 'test'
+  ...
+# Subtest: dielectric limits and underwater total internal reflection
+ok 50 - dielectric limits and underwater total internal reflection
+  ---
+  duration_ms: 0.2337
+  type: 'test'
+  ...
+# Subtest: configuration URL restores every setting; malformed input is bounded
+ok 51 - configuration URL restores every setting; malformed input is bounded
+  ---
+  duration_ms: 0.6571
+  type: 'test'
+  ...
+# Subtest: weather relaxation is timestep independent and wraps direction
+ok 52 - weather relaxation is timestep independent and wraps direction
+  ---
+  duration_ms: 0.4722
+  type: 'test'
+  ...
+# Subtest: astronomical vectors are normalized, equinox noon is overhead, lunar phase geometry changes
+ok 53 - astronomical vectors are normalized, equinox noon is overhead, lunar phase geometry changes
+  ---
+  duration_ms: 0.6562
+  type: 'test'
+  ...
+# Subtest: near-first patch order is an exact stable permutation, including rebased coordinates
+ok 54 - near-first patch order is an exact stable permutation, including rebased coordinates
+  ---
+  duration_ms: 0.3919
+  type: 'test'
+  ...
+# Subtest: linearized solar-disc covariance matches independent uniform-disc integration
+ok 55 - linearized solar-disc covariance matches independent uniform-disc integration
+  ---
+  duration_ms: 47.4957
+  type: 'test'
+  ...
+# Subtest: five-facet quadrature conserves input slope covariance
+ok 56 - five-facet quadrature conserves input slope covariance
+  ---
+  duration_ms: 0.3659
+  type: 'test'
+  ...
+# Subtest: radiance through a dielectric obeys n squared and homogeneous volume has zero path limit
+ok 57 - radiance through a dielectric obeys n squared and homogeneous volume has zero path limit
+  ---
+  duration_ms: 0.1356
+  type: 'test'
+  ...
+# Subtest: Phase 0 default and unknown switches preserve production shader bytes
+ok 58 - Phase 0 default and unknown switches preserve production shader bytes
+  ---
+  duration_ms: 0.2712
+  type: 'test'
+  ...
+# Subtest: Cloud experiment replaces density only, keeps shadow and lighting equations
+ok 59 - Cloud experiment replaces density only, keeps shadow and lighting equations
+  ---
+  duration_ms: 0.2967
+  type: 'test'
+  ...
+# Subtest: Desaturation and cloud-opacity diagnostics reach actual shader operations
+ok 60 - Desaturation and cloud-opacity diagnostics reach actual shader operations
+  ---
+  duration_ms: 0.1654
+  type: 'test'
+  ...
+# Subtest: normal development resolves to the reviewed pair without overriding historical comparisons
+ok 61 - normal development resolves to the reviewed pair without overriding historical comparisons
+  ---
+  duration_ms: 0.5208
+  type: 'test'
+  ...
+# Subtest: shared effective defaults and the legacy comparison survive reloads
+ok 62 - shared effective defaults and the legacy comparison survive reloads
+  ---
+  duration_ms: 1.5296
+  type: 'test'
+  ...
+# Subtest: default selection generates the exact reviewed shader paths
+ok 63 - default selection generates the exact reviewed shader paths
+  ---
+  duration_ms: 2.075
+  type: 'test'
+  ...
+# Subtest: capture URLs cannot upload invalid floats or allocate unbounded targets
+ok 64 - capture URLs cannot upload invalid floats or allocate unbounded targets
+  ---
+  duration_ms: 0.9508
+  type: 'test'
+  ...
+# Subtest: imported camera has finite bounded pose including across quality reload
+ok 65 - imported camera has finite bounded pose including across quality reload
+  ---
+  duration_ms: 0.3312
+  type: 'test'
+  ...
+# Subtest: full scenes preserve water properties and viewing preferences while replacing environmental state
+ok 66 - full scenes preserve water properties and viewing preferences while replacing environmental state
+  ---
+  duration_ms: 1.5445
+  type: 'test'
+  ...
+# Subtest: lighting previews preserve a developing crossing sea and pending weather in either edit mode
+ok 67 - lighting previews preserve a developing crossing sea and pending weather in either edit mode
+  ---
+  duration_ms: 11.2757
+  type: 'test'
+  ...
+# Subtest: explicit weather transition remains gradual even with immediate parameter editing
+ok 68 - explicit weather transition remains gradual even with immediate parameter editing
+  ---
+  duration_ms: 0.7343
+  type: 'test'
+  ...
+# Subtest: remote swell taper conserves Hm0, excludes wind-ripple tail
+ok 69 - remote swell taper conserves Hm0, excludes wind-ripple tail
+  ---
+  duration_ms: 128.3955
+  type: 'test'
+  ...
+# Subtest: hybrid wind spectrum is nonnegative, finite and continuous at branch boundaries
+ok 70 - hybrid wind spectrum is nonnegative, finite and continuous at branch boundaries
+  ---
+  duration_ms: 12.044
+  type: 'test'
+  ...
+# Subtest: spectral integration converges independently of log quadrature resolution
+ok 71 - spectral integration converges independently of log quadrature resolution
+  ---
+  duration_ms: 123.43
+  type: 'test'
+  ...
+# Subtest: binary16 cancellation is removed without changing slope energy
+ok 72 - binary16 cancellation is removed without changing slope energy
+  ---
+  duration_ms: 0.5957
+  type: 'test'
+  ...
+# Subtest: experimental shader marker changes fail loudly
+ok 73 - experimental shader marker changes fail loudly
+  ---
+  duration_ms: 0.551
+  type: 'test'
+  ...
+# Subtest: camera-local cascade phase remains accurate at distant global coordinates
+ok 74 - camera-local cascade phase remains accurate at distant global coordinates
+  ---
+  duration_ms: 0.3486
+  type: 'test'
+  ...
+# Subtest: rebasing preserves both foam toroidal phases and all four pattern coordinates
+ok 75 - rebasing preserves both foam toroidal phases and all four pattern coordinates
+  ---
+  duration_ms: 0.3926
+  type: 'test'
+  ...
+# Subtest: temporal Frame extension has the WGSL uniform byte layout
+ok 76 - temporal Frame extension has the WGSL uniform byte layout
+  ---
+  duration_ms: 0.2202
+  type: 'test'
+  ...
+# Subtest: finite jitter sequences are centred; inverse-ray and history signs agree
+ok 77 - finite jitter sequences are centred; inverse-ray and history signs agree
+  ---
+  duration_ms: 0.5019
+  type: 'test'
+  ...
+# Subtest: temporal snapshots retain old origins, chop, wind, exposure and reject cuts
+ok 78 - temporal snapshots retain old origins, chop, wind, exposure and reject cuts
+  ---
+  duration_ms: 0.4883
+  type: 'test'
+  ...
+# Subtest: MSAA shader is unchanged; motion reuses production geometry with sample interpolation
+ok 79 - MSAA shader is unchanged; motion reuses production geometry with sample interpolation
+  ---
+  duration_ms: 0.2058
+  type: 'test'
+  ...
+# Subtest: projected Gaussian visible-slope distribution integrates to one
+ok 80 - projected Gaussian visible-slope distribution integrates to one
+  ---
+  duration_ms: 4.6857
+  type: 'test'
+  ...
+# Subtest: conditional slope mixtures retain both within-cell and between-cell energy
+ok 81 - conditional slope mixtures retain both within-cell and between-cell energy
+  ---
+  duration_ms: 3.2299
+  type: 'test'
+  ...
+# Subtest: new optics preserve default shader and unrelated sky stages
+ok 82 - new optics preserve default shader and unrelated sky stages
+  ---
+  duration_ms: 0.2648
+  type: 'test'
+  ...
+# Subtest: cached first-collision flux agrees with independent angular integration
+ok 83 - cached first-collision flux agrees with independent angular integration
+  ---
+  duration_ms: 40.0787
+  type: 'test'
+  ...
+# Subtest: directional and diffuse budgets stay nonnegative across optical controls
+ok 84 - directional and diffuse budgets stay nonnegative across optical controls
+  ---
+  duration_ms: 1.6258
+  type: 'test'
+  ...
+# Subtest: angular sky variant preserves geometry and existing opt-in paths
+ok 85 - angular sky variant preserves geometry and existing opt-in paths
+  ---
+  duration_ms: 0.5615
+  type: 'test'
+  ...
+# Subtest: particle phase is normalized and matches the declared backscatter coefficient
+ok 86 - particle phase is normalized and matches the declared backscatter coefficient
+  ---
+  duration_ms: 1.8522
+  type: 'test'
+  ...
+# Subtest: semi-infinite direct scattering agrees with independent depth integration
+ok 87 - semi-infinite direct scattering agrees with independent depth integration
+  ---
+  duration_ms: 5.0949
+  type: 'test'
+  ...
+# Subtest: appearance candidates remain reversible and do not alter sky transport
+ok 88 - appearance candidates remain reversible and do not alter sky transport
+  ---
+  duration_ms: 0.3752
+  type: 'test'
+  ...
+# Subtest: whitewater preserves disabled shaders and requires the gravity event contract
+ok 89 - whitewater preserves disabled shaders and requires the gravity event contract
+  ---
+  duration_ms: 0.2248
+  type: 'test'
+  ...
+# Subtest: whitewater extends particle capacity without replacing existing spray or rain
+ok 90 - whitewater extends particle capacity without replacing existing spray or rain
+  ---
+  duration_ms: 0.5656
+  type: 'test'
+  ...
+# Subtest: roughness response remains finite and positive across supported winds
+ok 91 - roughness response remains finite and positive across supported winds
+  ---
+  duration_ms: 21.7129
+  type: 'test'
+  ...
+# Subtest: advected wind phase survives rebasing and disabled mode is exact identity
+ok 92 - advected wind phase survives rebasing and disabled mode is exact identity
+  ---
+  duration_ms: 2.2776
+  type: 'test'
+  ...
+1..92
+# tests 92
+# suites 0
+# pass 92
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4027.1196
