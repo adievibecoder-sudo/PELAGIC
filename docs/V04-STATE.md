@@ -1,5 +1,38 @@
 # PELAGIC 0.4 — Persistent Verified State
 
+**28 October Resume08, normal-use integration:** Recovered Resume05-07 source
+is published as `b1d094c`, independently verified on GitHub. Normal startup now
+selects phase-resident active/residual foam plus relief; `abDefaults=legacy`
+retains the old comparison and explicit foam experiments remain reproducible.
+Near/elevated storm48 pairs show narrower advancing strips and readable dark
+faces; fronts still look flat/painted, without rollers. Calm24 RGB identical;
+day24 retains cloud/glitter appearance; crossing72 inspected consecutively.
+360 native frame checks and90 CPU tests PASS. Effective choices survive live
+Share, save/restore and High-to-Balanced-to-High quality reload, including time.
+No optics/cloud/display/night-storage default promotion or B1/B2/A+B acceptance.
+Original48-frame lossless1080p comparisons: `ab10-review.html`. Resume08 in
+continuation10 records exact sources, all six statuses, limitations and next
+actions. GPU/rAF reports collected but presented-frame p95 remains unmeasured;
+no performance gain claimed. Protected files and private references preserved.
+
+**28 October Resume07, local/unpublished:** HEAD and live GitHub development
+ref remain `f6276ff`. Recovered all retained Resume05/06 source; ten protected
+files still match. Angular-water transport now compiles and has 96 matched
+High1080p native frames (four day/gold views, 30.000-30.958), all inspected in
+consecutive reduced sheets: body changes are small, pale day and bronze/dark
+sunset targets still FAIL. Retained phase-resident elevated motion additionally
+inspected at31.000-35.958: attached evolving strips/residue, still flat.
+New opt-in `abRadiance=scaled` protects lunar light-cache and HDR precision with
+power-of-two storage scaling and physical-unit decoding. 87 CPU tests PASS;
+native precision bound PASS.48 day/moon frames completed before/around the
+browser stop, all native integrity checks PASS. Day24 RGB exactly matches the
+existing baseline; moon changes by at most3 display codes and remains too dark.
+No beauty/performance claim or default promotion. Supported Chrome recovery
+again ended on URL-allowlist verification; no subsequent browser action or
+bypass. New source/evidence is saved locally, NOT committed or published.
+Exact source hashes, originals, all six statuses and next actions: continuation10
+Resume07 and ignored `evidence/v04-ma-ab10-resume-07/`. B1/B2/A+B unaccepted.
+
 **AB10 publication verified:** Development checkpoint `d12e28d` publishes renderer commits0c96675/5bd729e, control source6127989 and the original motion review. All33 selected LFS objects/869,150,518bytes freshly downloaded and SHA256 verified; main/0.3/frozen refs unchanged. Proof: `evidence/v04-ma-ab10-publication-02/publication.json`. Publication does not confer visual acceptance. Late calm/moon completion is recorded next; it requires no further renderer change.
 
 **27 October late AB10 regression completion:** The pre-existing automatic capture completed calm24 and moon24 at source5bd729e while browser control remained stopped. All48 frames pass native HDR/spectral/error checks and were inspected consecutively as reduced sheets. Calm retains small moving swells without a foam blanket; moonlight stays too dark. This supersedes the missing calm/moon status below. Control UI, longer breaking/crossing motion and new optical intervention still require URL-verified browser access. No new browser action, safety bypass or visual acceptance.

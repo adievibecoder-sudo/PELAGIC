@@ -13,7 +13,7 @@ import { celestial } from './astronomy.js';
 import { lunarLight, twilightExposure } from './celestial-light.js';
 import {localOrigin,cascadeOrigin,foamPatternOrigin,FRAME_BYTES,FRAME_FLOATS,FOAM_BYTES} from './spatial-origin.js';
 import { runtimeInput, validCamera } from './runtime-input.js';
-import {renderOptions,sameRenderOptions} from './render-options.js';
+import {renderOptions,sameRenderOptions,withRenderDefaults} from './render-options.js';
 import {waterCoefficients} from './water-coefficients.js';
 import { PARTICLE_COUNT, PARTICLE_UPDATE, PARTICLE_RENDER, particleMotionShader } from './wgsl/particles.js';
 import { spectralReadback } from '../tests/spectral-readback.js';
@@ -82,7 +82,8 @@ import {crestSheetShader,CREST_SHEET_RENDER,CREST_SHEET_COUNT,CREST_SHEET_NODES,
 import {crestSurfaceShader,CREST_SURFACE_SIZE,CREST_SURFACE_CLEAR,CREST_SURFACE_BUILD} from './wgsl/crest-surface.js';
 import {crestSurfaceChecks} from '../tests/crest-surface-readback.js';
 
-const qs = new URLSearchParams(location.search);
+const requestedRendering=renderOptions(new URLSearchParams(location.search));
+const qs = withRenderDefaults(location.search);
 const runtime=runtimeInput(location.search);
 const temporalEnabled=qs.get('aa')==='taa';
 const whitewaterParcels=qs.get('abWhitewater')==='parcels';
@@ -931,6 +932,7 @@ async function main() {
   function applyConfig(config){cameraHistory?.reset('configuration replaced');Object.assign(P,sanitize(config,P));environment=createEnvironment(P,simTime);needSpectrum=true;needLUT=true;envFull=1;foamFirst=true;sceneReset=true;cam.speed=P.cameraSpeed;cam.fovY=P.fov*D2R;}
   const ui=setupUI(P,cam,{
     adapter:adapterInfo,time:()=>simTime,snapshot:()=>environmentSnapshot(environment),
+    rendering:()=>renderOptions(qs),
     controls:()=>environmentControls(environment,P,cam.x,cam.z),
     change(key,value){
       // Seed, optics and celestial edits do not all increment environment.revision.
@@ -952,7 +954,7 @@ async function main() {
     lighting(name){previewLighting(environment,P,name);envFull=1;cameraHistory?.reset('lighting preview');},
     weather(name){commandEnvironment(environment,Object.fromEntries(WEATHER_KEYS.map(k=>[k,preset(name)[k]])),{weatherOnly:true});},
     developed(){commandEnvironment(environment,{}, {instant:true});Object.assign(P,environment.sea);needSpectrum=true;envFull=1;cameraHistory?.reset('targets applied');},
-    quality(value){const url=toURL({...P,quality:value,resolution:QUALITY[value].scale},cam,simTime,location.href,environmentSnapshot(environment));location.href=url;},
+    quality(value){const url=toURL({...P,quality:value,resolution:QUALITY[value].scale},cam,simTime,location.href,environmentSnapshot(environment),renderOptions(qs));location.href=url;},
     capture(){captureRequested=true;},
     record(){if(recorder?.state==='recording'){recorder.stop();return;}startRecording(false);},
     restore(state){
@@ -1367,7 +1369,7 @@ async function main() {
   }
 
   function evidenceReport(){return {version:qs.get('ma')==='1'?'0.4-milestone-a':'0.4-phase1',sourceStart,sourceCheckpoint:qs.get('revision')||'development',adapter:adapterInfo,backend:'native-webgpu',timestampQuery:hasTS,settings:{...P},camera:{...cam},simulationTime:simTime,frameIndex,width:W,height:H,nodes:nodeCount,errors,measurements,frameRecords,
-    allocations:allocations.report(),environment:environmentSnapshot(environment),lightCache:{published:cachePublished,history:cacheHistory,units:'relative scene-linear RGB radiance / irradiance; not absolute SI calibrated',latency:'complete snapshot, six-frame angular build; direct shadow current frame'},browserTasks,
+    allocations:allocations.report(),environment:environmentSnapshot(environment),rendering:{requested:requestedRendering,effective:renderOptions(qs),defaults:'AB10 phase-resident foam'},lightCache:{published:cachePublished,history:cacheHistory,units:'relative scene-linear RGB radiance / irradiance; not absolute SI calibrated',latency:'complete snapshot, six-frame angular build; direct shadow current frame'},browserTasks,
     phase0:{query:Object.fromEntries(qs),profile:phase0Profile,note:'Experimental toggles are Phase 0 hypotheses, not accepted features.'},userAgent:navigator.userAgent,
     foamPatternCalibration,worldOrigin:origin,benchmarkStopReason,benchmarkWallSeconds:benchmarkStart===null?0:(performance.now()-benchmarkStart)/1000,
     surfaceProbe:{height:waterH,scope:'Asynchronous camera-point height; optical classification uses the current GPU near-plane map.'},

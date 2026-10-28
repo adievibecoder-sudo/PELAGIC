@@ -1,5 +1,29 @@
 # PELAGIC 0.4 acceptance and decision register
 
+**28 October Resume08, narrow normal-use improvement, no acceptance:**
+Phase-resident foam/relief is integrated into ordinary localhost after matched
+near/elevated storm48 comparisons: advancing strips, gaps and residue replace
+broad face coverage. B1 continuity/coverage PARTIAL; energetic roller/spray
+still ABSENT. Calm24 exact RGB, day24 visually preserved, crossing72 inspected;
+360 native integrity checks and90 CPU tests PASS. Live Share/save/restore/quality
+retention PASS within this interaction, not the whole I1 audit. L1/L2/R1 remain
+FAIL: contribution isolation shows strong daytime direct glints and warm sunset
+environment reflection; no new optical improvement. A1 remains FAIL; scaled
+lunar storage still opt-in pending twilight/underwater/TAA. Current p95 actual
+presentation unavailable; T1 remains open. All six statuses in continuation10
+Resume08; owner B1/B2/A+B acceptance still required.
+
+**28 October Resume07, no acceptance:** Four-view angular-water motion remains
+L1/L2/R1 FAIL: pale daytime body, broad bronze sunset reflection and dark faces.
+Raised skin and shell remain failed B1 experiments; retained phase residency
+has longer near/elevated support but no roller/event-identity acceptance.
+Opt-in shared light-storage scaling removes manufactured lunar-range zeroing;
+day24 is RGB-identical and moon24 changes subtly, still A1 FAIL.87 CPU tests,
+native storage quantization bounds and144 new native frame-integrity checks
+PASS within scope. Browser URL safety verification stopped further UI work;
+no bypass, fresh foreground performance, publication or default promotion.
+All six workstreams remain recorded in continuation10 Resume07.
+
 **Late AB10 regression correction:** The already-running source5bd729e lab finished calm24 and moon24 independently of blocked browser control.48 additional native frames pass HDR/spectrum/error checks; all inspected consecutively in reduced sheets. Calm has no visible foam blanket in30.000-30.958s; moonlight remains nearly black and A1 stays FAIL. This supersedes the missing-regression status below, without closing longer B1 motion, control UI, U1/G1, performance or owner acceptance.
 
 **27 October AB10 source6127989 / shader5bd729e, no acceptance:** Storm column-diffusion light and crest-phase transport show partial bank/front improvement in matched30.000-30.958s sequences. Breaking remains flat; no lifetime, crossing, roller or spray acceptance. Angular-reflection trial failed sunset bronze; L1/L2/B1/R1 remain failed. Independent Light only previews and coefficient-preserving scene presets pass11 focused control/environment tests; browser interaction is UNVERIFIED after URL safety verification stopped control.96 existing frames and3 additional lossless clips verified; calm/moon regression missing. Daytime sky stays visually consistent in the inspected window, with at most1/255 channel difference in the top400 rows. No T1 performance claim, A1/E1-E6/U1/G1 closure, default promotion or B1/B2/A+B acceptance. All six workstreams and exact next actions remain in continuation10 Resume04.
