@@ -1,10 +1,20 @@
 import {decodeHalf} from '../src/numerics.js';
-export async function foamReadback(device,texture) {
+export async function foamReadback(device,texture,{bubbleStorage=0}={}) {
  const n=texture.width,layers=texture.depthOrArrayLayers;
  const buffer=device.createBuffer({size:n*n*layers*8,usage:GPUBufferUsage.COPY_DST|GPUBufferUsage.MAP_READ});
  const encoder=device.createCommandEncoder();encoder.copyTextureToBuffer({texture},{buffer,bytesPerRow:n*8,rowsPerImage:n},[n,n,layers]);device.queue.submit([encoder.finish()]);
  await buffer.mapAsync(GPUMapMode.READ);const data=new Uint16Array(buffer.getMappedRange());const result=[];
  for(let layer=0;layer<layers;layer++){
+  if(layer>=2&&bubbleStorage>0){
+   let gas=0,moment=0,maxGas=0,invalid=0;
+   for(let i=0;i<n*n;i++){
+    const o=(layer*n*n+i)*4,g=(decodeHalf(data[o])+decodeHalf(data[o+3]))/bubbleStorage;
+    const m=(decodeHalf(data[o+1])+decodeHalf(data[o+2]))/bubbleStorage;
+    gas+=g;moment+=m;maxGas=Math.max(maxGas,g);if(!Number.isFinite(g+m)||g<0||m<0)invalid++;
+   }
+   result.push({layer,meanGasColumnMetres:gas/(n*n),maxGasColumnMetres:maxGas,gasWeightedDepthMetres:gas?moment/gas:0,invalid});
+   continue;
+  }
   let mean=0,max=0,invalid=0;const count=[0,0,0];
   for(let i=0;i<n*n;i++){const offset=(layer*n*n+i)*4,v=decodeHalf(data[offset])+decodeHalf(data[offset+3]);mean+=v;max=Math.max(max,v);if(!Number.isFinite(v)||v<0)invalid++;[.05,.2,.5].forEach((t,k)=>{if(v>t)count[k]++;});}
   result.push({layer,meanDensity:mean/(n*n),maxDensity:max,invalid,densityThresholds:[.05,.2,.5],areaFractions:count.map(v=>v/(n*n))});

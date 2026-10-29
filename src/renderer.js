@@ -9,13 +9,15 @@ import { sanitize, preset, scenePreset, PRESETS, QUALITY, toURL } from './settin
 import {createEnvironment,commandEnvironment,previewLighting,advanceEnvironment,sampleEnvironment,environmentUniforms,environmentSnapshot,environmentControls,restoreEnvironment,WEATHER_KEYS,SEA_KEYS} from './environment.js';
 import { cosSpreadNorm, PATCHES, omega } from './numerics.js';
 import { swellAlpha } from './sea-spectrum.js';
+import {bubblePlumeShader} from './wgsl/bubble-plumes.js';
+import {cloudOrganizationShader} from './wgsl/cloud-organization.js';
 import { celestial } from './astronomy.js';
 import { lunarLight, twilightExposure } from './celestial-light.js';
 import {localOrigin,cascadeOrigin,foamPatternOrigin,FRAME_BYTES,FRAME_FLOATS,FOAM_BYTES} from './spatial-origin.js';
 import { runtimeInput, validCamera } from './runtime-input.js';
 import {renderOptions,sameRenderOptions,withRenderDefaults} from './render-options.js';
 import {waterCoefficients} from './water-coefficients.js';
-import { PARTICLE_COUNT, PARTICLE_UPDATE, PARTICLE_RENDER, particleMotionShader } from './wgsl/particles.js';
+import { PARTICLE_COUNT, PARTICLE_UPDATE, PARTICLE_RENDER, particleMotionShader, particleWindShader } from './wgsl/particles.js';
 import { spectralReadback } from '../tests/spectral-readback.js';
 import { foamReadback } from '../tests/foam-readback.js';
 import { hdrReadback } from '../tests/hdr-readback.js';
@@ -46,9 +48,11 @@ import {deformedSlopeChecks} from '../tests/deformed-slope-readback.js';
 import {waveDiagnosticShader} from '../tests/milestone-a-wave-shaders.js';
 import {orderOceanNodes} from './ocean-order.js';
 import {roughnessUniforms} from './wind-roughness.js';
+import {regionalSeaUniforms} from './regional-sea.js';
 import {waterTransportShader} from './wgsl/water-transport.js';
 import {waterMaterialShader} from './wgsl/water-material.js';
 import {reflectionTransportShader} from './wgsl/reflection-transport.js';
+import {visibleReflectionShader} from './wgsl/visible-reflection.js';
 import {breakingPhaseShader} from './wgsl/breaking-phase.js';
 import {displayTransformShader} from './wgsl/display-transform.js';
 import {environmentLightShader} from './wgsl/environment-light.js';
@@ -189,15 +193,18 @@ async function main() {
     code=waterMaterialShader(code,qs);
     code=waterSkyTransportShader(code,qs);
     code=reflectionTransportShader(code,qs);
+    code=visibleReflectionShader(code,qs);
     code=displayTransformShader(code,qs);
     code=environmentLightShader(code,qs);
     code=cloudTransportShader(code,qs);
     code=cloudAmbientShader(code,qs);
     code=breakingEventsShader(code,qs);
     code=breakingPhaseShader(code,qs);
+    code=bubblePlumeShader(code,qs);
     code=foamTransportShader(code,qs);
     code=frothSurfaceShader(code,qs);
     code=particleMotionShader(code,qs);
+    code=particleWindShader(code,qs);
     code=whitewaterShader(code,qs);
     code=crestWhitewaterShader(code,qs);
     code=crestSheetShader(code,qs);
@@ -206,6 +213,7 @@ async function main() {
     code=cloudShadowShader(code,qs);
     code=temporalShader(code,temporalEnabled);
     code=environmentSymmetryShader(cloudWorkShader(code,qs),qs);
+    code=cloudOrganizationShader(code,qs);
     code=lightStorageShader(code,qs);
     const m = device.createShaderModule({ code, label });
     const info = await m.getCompilationInfo();
@@ -345,9 +353,12 @@ async function main() {
 
   // World-space foam clipmaps (ping-pong)
   const FOAM_LEVEL_SIZE = [128.0, 1024.0];
+  const bubblePlumes=qs.get('abBubbles')==='plumes';
+  if(bubblePlumes&&qs.get('abBreaking')!=='phase-resident')throw Error('Bubble plumes require phase-resident breaking');
+  const foamLayers=bubblePlumes?4:2;
   const FOAMW_MIPS = Math.log2(FOAM_RES) + 1;
   const foamW = [0, 1].map((i) => allocations.texture({
-    label: 'foam world ' + i, size: [FOAM_RES, FOAM_RES, 2], format: 'rgba16float', mipLevelCount: FOAMW_MIPS,
+    label: 'foam world ' + i, size: [FOAM_RES, FOAM_RES, foamLayers], format: 'rgba16float', mipLevelCount: FOAMW_MIPS,
     usage: TU.TEXTURE_BINDING | TU.STORAGE_BINDING | TU.COPY_SRC,
   }));
   const foamUBO = mkBuf(FOAM_BYTES, GU.UNIFORM | GU.COPY_DST, 'foam ubo');
@@ -414,6 +425,7 @@ async function main() {
   const bgMS = bg(msPipe, [{ buffer: atmoUBO }, transView, sampClamp, msView], 'ms');
   const bgSkyView = bg(skyViewPipe, [{ buffer: frameUBO }, transView, msView, sampClamp, skyView], 'skyview');
   const particleBuf=mkBuf(particleCount*32,GU.STORAGE|GU.COPY_DST,'spray, rain and optional whitewater particles');
+  let particleTimeRemaining=0;
   const crestFrameBuf=crestTracking?mkBuf(WHITEWATER_COUNT*16,GU.STORAGE|GU.COPY_SRC|GU.COPY_DST,'phase crest frames'):null;
   const crestNodeBuf=crestSheets?mkBuf(CREST_SHEET_COUNT*CREST_SHEET_NODES*CREST_SHEET_NODE_BYTES,GU.STORAGE|GU.COPY_SRC|GU.COPY_DST,'connected crest sheet nodes'):null;
   const crestSurfaceBuf=crestSurface?mkBuf(CREST_SURFACE_SIZE*CREST_SURFACE_SIZE*4,GU.STORAGE,'surface crest activity'):null;
@@ -883,7 +895,6 @@ async function main() {
     f[36] = W; f[37] = H; f[38] = 1 / W; f[39] = 1 / H;
     for (let c = 0; c < C; c++) { f[40 + c] = CASC_L[c]; f[48 + c] = 1 / CASC_L[c]; }
     const weather=sampleEnvironment(environment,cam.x,cam.z);
-    f[56] = Math.cos(weather.windDir * D2R); f[57] = Math.sin(weather.windDir * D2R); f[58] = weather.windSpeed*weather.gust;
     f[64] = R0; f[65] = GRID; f[66] = FOAM_LEVEL_SIZE[0]; f[67] = FOAM_LEVEL_SIZE[1];
     f[68] = P.exposure; f[69] = P.bloom; f[70] = frameIndex; f[71] = P.debug || DBG;
     f[72] = weather.haze; f[73] = Math.max(cam.y, 10) * 0.001; f[74] = weather.veil; f[75] = 0.9;
@@ -918,9 +929,13 @@ async function main() {
     f[116]=Q.cloudSteps;f[117]=Q.cloudLightSteps;f[118]=P.cameraMode==='surface'?0:1;f[119]=astro.sidereal%(2*Math.PI);
     f.set([origin[0]*.001,origin[1]*.001,...originDelta],124);
     cascadeOrigin(origin,f,128);
-    foamPatternOrigin(origin,[f[56],f[57]],time,[f[80],f[81]],f,140);
     environmentUniforms(environment,cam,f);
+    if(qs.get('abWind')==='legacy'){
+      f.set([Math.cos(weather.windDir*D2R),Math.sin(weather.windDir*D2R),weather.windSpeed*weather.gust],56);
+    }
+    foamPatternOrigin(origin,[f[56],f[57]],time,[f[80],f[81]],f,140);
     roughnessUniforms(environment,origin,['wind','stress'].includes(qs.get('maRoughness')),f);
+    regionalSeaUniforms(environment,origin,qs.get('abSea')==='regional',f);
     if(cameraHistory){
       temporalState=cameraHistory.write(f,[cam.x,cam.y,cam.z],fixedDt||frameMs/1000,environment.revision);
       if(qs.get('taaHistory')==='off')f[224]=0;
@@ -1028,7 +1043,7 @@ async function main() {
     for (let m = 1; m < FOAMW_MIPS; m++) {
       const s = Math.max(1, FOAM_RES >> m);
       cp.setBindGroup(0, fm[m - 1]);
-      cp.dispatchWorkgroups(Math.ceil(s / 8), Math.ceil(s / 8), 2);
+      cp.dispatchWorkgroups(Math.ceil(s / 8), Math.ceil(s / 8), foamLayers);
     }
   }
 
@@ -1053,6 +1068,7 @@ async function main() {
     foamUF[34] = P.choppy;
     cascadeOrigin(origin,foamUF,36);
     roughnessUniforms(environment,origin,['wind','stress'].includes(qs.get('maRoughness')),foamUF,48);
+    regionalSeaUniforms(environment,origin,qs.get('abSea')==='regional',foamUF,56);
     device.queue.writeBuffer(foamUBO, 0, foamUArr);
   }
 
@@ -1132,6 +1148,11 @@ async function main() {
     // A scene cut has no meaningful velocity from the previous scene's FFT.
     dt = P.paused || sceneReset ? 0 : Math.min(dt*P.timeScale,0.1);
     nowDT=dt;
+    // Camera-local rain cannot gate sources elsewhere in the particle domain.
+    // Let existing populations expire after sources stop (longest life 4.5 s).
+    const particleSources=P.spray>0||environment.weather.rain>0||environment.front.enabled||whitewaterParcels;
+    particleTimeRemaining=particleSources?4.5:Math.max(0,particleTimeRemaining-Math.min(dt,.05));
+    const particlesActive=particleTimeRemaining>0;
     if(simTime-phaseEpoch>120) resetPhases(simTime);
     simTime = environment.clocks.wave;
     if(sceneReset)resetPhases(simTime);
@@ -1218,7 +1239,7 @@ async function main() {
     cloudControl?.bind(cp,shadowPipe);
     cp.setBindGroup(0,bgShadow);
     cp.dispatchWorkgroups(32,32);
-    if(P.spray>0 || P.rain>0 || whitewaterParcels || originDelta.some(x=>x!==0)){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(particleCount/64);}
+    if(particlesActive||originDelta.some(x=>x!==0)){cp.setPipeline(particleCompute);cp.setBindGroup(0,particleBG[foamCur]);cp.dispatchWorkgroups(particleCount/64);}
     if(crestSurface){
       cp.setPipeline(crestSurfaceClear);cp.setBindGroup(0,crestSurfaceClearBG);cp.dispatchWorkgroups(CREST_SURFACE_SIZE*CREST_SURFACE_SIZE/64);
       cp.setPipeline(crestSurfaceBuild);cp.setBindGroup(0,crestSurfaceBuildBG);cp.dispatchWorkgroups(Math.ceil(CREST_SHEET_COUNT/64));
@@ -1278,7 +1299,7 @@ async function main() {
       particles.setVertexBuffer(0,frothBuffer);particles.setIndexBuffer(idxBuf,'uint16');
       particles.drawIndexed(GRID*GRID*6,frothCount);
     }
-    if(P.spray>0 || P.rain>0 || whitewaterParcels){particles.setPipeline(particlePipe);particles.setBindGroup(0,particleDrawBG);particles.draw(6,crestSheets?PARTICLE_COUNT:particleCount);}
+    if(particlesActive){particles.setPipeline(particlePipe);particles.setBindGroup(0,particleDrawBG);particles.draw(6,crestSheets?PARTICLE_COUNT:particleCount);}
     if(crestSheetPipe){particles.setPipeline(crestSheetPipe);particles.setBindGroup(0,crestSheetBG);particles.draw(CREST_SHEET_VERTICES,CREST_SHEET_COUNT);}
     particles.end();
 
@@ -1359,7 +1380,7 @@ async function main() {
         const report=evidenceReport();
         if(qs.get('validate')==='1'){
           report.hdr=await hdrReadback(device,taa?.output||hdrTex,frameF[60]);
-          report.foam=await foamReadback(device,foamW[foamCur]);
+          report.foam=await foamReadback(device,foamW[foamCur],{bubbleStorage:bubblePlumes?1024:0});
         }
         await postEvidence('/__evidence?stage='+encodeURIComponent(qs.get('stage')||'v03-local')+'&name='+qs.get('benchmark')+'.json',JSON.stringify(report,null,2));document.title='BENCHMARK DONE';
         if(parent!==window)parent.postMessage({type:'pelagic-benchmark',name:qs.get('benchmark')},location.origin);
@@ -1424,7 +1445,7 @@ async function main() {
     if(qs.get('abWorkChecks')==='1')report.cloudWorkChecks=await cloudWorkChecks(device,frameUBO,cloudNoiseView,cloudSampler,qs.get('abCloudWork')||'bounded');
     if(qs.get('maSlopeChecks')==='1')report.deformedSlopes=await deformedSlopeChecks(device,frameUBO,dispTex.createView(),derivTex.createView(),momTex.createView(),sampRepeat);
     if(qs.get('validate')==='1')report.spectral=await spectralReadback(device,{h0:h0Buf,specA,disp:dispTex,deriv:derivTex,mom:momTex},P);
-    if(qs.get('validate')==='1')report.foam=await foamReadback(device,foamW[foamCur]);
+    if(qs.get('validate')==='1')report.foam=await foamReadback(device,foamW[foamCur],{bubbleStorage:bubblePlumes?1024:0});
     if(qs.get('validate')==='1'){report.hdr=await hdrReadback(device,taa?.output||hdrTex,frameF[60]);report.light=await phase1LightReadback(device,shadowTex,irradianceTex,envTex,qs.get('abRadiance')==='scaled'?LIGHT_STORAGE_SCALE:1);}
     if(qs.get('contracts')==='1'){
       report.discreteSpectrum=discreteSpectrumLedger(P);

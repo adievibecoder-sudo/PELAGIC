@@ -2,7 +2,7 @@ import {windSpectrumK} from './sea-spectrum.js';
 import {logIntegral,omega} from './numerics.js';
 import {modulo} from './spatial-origin.js';
 
-function shortEnergy(speed,fetch) {
+export function shortEnergy(speed,fetch) {
   return logIntegral(k=>k*k*windSpectrumK(k,speed,fetch),2*Math.PI/1.2383333,3011,512);
 }
 

@@ -3,7 +3,14 @@ import {SKY_RENDER_FUNCS} from './sky.js';
 import {SHORT_WAVE_COUPLING} from './coupling.js';
 import {EMISSION_HAZARD} from './breaking-events.js';
 import {replaceShader} from './shader-patch.js';
+import {REGIONAL_WEATHER} from './environment.js';
 export const PARTICLE_COUNT=CONFIG.quality==='Balanced'?24576:49152;
+export function particleWindShader(code,query){
+ if(query.get('abWind')!=='legacy'||!code.includes('fn regionalAirWind('))return code;
+ // Historical frames supplied one camera-local wind to the whole population.
+ return code.replace(/regionalAirWind\(\((?:xz|p\.p\.xz)-F\.camPos\.xz\)\*\.001\)/g,
+   '(F.windP[0].xy*F.windP[0].z)');
+}
 export function particleMotionShader(code,query){
  if(query.get('abRain')!=='velocity'||!code.includes('let stretch=select(1.0,12.0,rain);'))return code;
  code=replaceShader(code,' let world=p.p.xyz+right*uv.x*drawRadius+up*uv.y*drawRadius*stretch;',/* wgsl */`
@@ -23,7 +30,7 @@ export function particleMotionShader(code,query){
  return replaceShader(code,'radius*radius/max(drawRadius*drawRadius,0.000001)',
    'radius*halfLength/max(drawRadius*drawLength,0.000001)');
 }
-export const PARTICLE_UPDATE=FRAME_WGSL+NOISE_WGSL+SHORT_WAVE_COUPLING+EMISSION_HAZARD+/* wgsl */`
+export const PARTICLE_UPDATE=FRAME_WGSL+NOISE_WGSL+SHORT_WAVE_COUPLING+EMISSION_HAZARD+REGIONAL_WEATHER+/* wgsl */`
 struct Particle {p:vec4f,v:vec4f};
 @group(0) @binding(0) var<uniform> F:Frame;
 @group(0) @binding(1) var<storage,read_write> particles:array<Particle>;
@@ -47,24 +54,26 @@ fn rnd(v:u32)->f32{return f32(pcgHash(v)>>8u)/16777216.0;}
    let r=vec3f(rnd(seed+1u),rnd(seed+2u),rnd(seed+3u));
    // Source domain stays within the fine foam clipmap; no toroidal ghosts.
    let xz=F.camPos.xz+(r.xz-0.5)*select(116.0,70.0,rain);
-   let amplitude=surfaceAmplitude(derivatives,samp,xz,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset);
+   let amplitude=surfaceAmplitude(derivatives,samp,xz,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset,F.seaFront,F.seaFrontControl,F.seaEnergy);
    var d=vec3f(0);var last=vec3f(0);for(var c=0u;c<${CASCADES}u;c++){
      d+=textureSampleLevel(disp,samp,cascadeUV(xz,c,F.cascInvL[c>>2u][c&3u],F.waveOrigins),c,0.0).xyz*select(1.0,amplitude,c>=3u);
      last+=textureSampleLevel(previousDisplacement,samp,cascadeUV(xz,c,F.cascInvL[c>>2u][c&3u],F.waveOrigins),c,0.0).xyz*select(1.0,amplitude,c>=3u);
    }
    let fresh=textureSampleLevel(foam,samp,xz/F.lodP.z,0u,0.0).g;
-   let windGate=smoothstep(select(4.0,9.0,spindrift),select(12.0,19.0,spindrift),F.windP[0].z);
+   let wind=regionalAirWind((xz-F.camPos.xz)*.001);
+   let windGate=smoothstep(select(4.0,9.0,spindrift),select(12.0,19.0,spindrift),length(wind));
    let rainSupport=textureSampleLevel(weatherSupport,weatherSampler,(xz-F.camPos.xz)/40000.0+0.5,0.0).b;
    let spawn=select(fresh*fresh*F.weather.y*windGate,rainSupport,rain);
    if(rnd(seed+4u)>emissionProbability(spawn,dt)){p.p=vec4f(xz.x,-1000,xz.y,0);particles[k]=p;return;}
    let life=select(0.7+r.y*1.2,2.5+r.y*2.0,spindrift);
    p.p=vec4f(xz.x+d.x,select(d.y+0.12,F.camPos.y+8.0+r.y*25.0,rain),xz.y+d.z,select(life,4.0,rain));
    let orbital=clamp((d-last)/max(dt,0.001),vec3f(-8),vec3f(8));
-   let launch=orbital+vec3f(F.windP[0].x,0,F.windP[0].y)*F.windP[0].z*0.16+vec3f(0,1.0+r.y*3.0,0);
+   let launch=orbital+vec3f(wind.x,0,wind.y)*0.16+vec3f(0,1.0+r.y*3.0,0);
    let radius=select(0.015+r.y*0.045,0.26+r.y*0.4,spindrift);
-   p.v=vec4f(select(launch,vec3f(F.windP[0].x*F.windP[0].z*0.3,-7.0,F.windP[0].y*F.windP[0].z*0.3),rain),select(radius,0.012,rain));
+   p.v=vec4f(select(launch,vec3f(wind.x*0.3,-7.0,wind.y*0.3),rain),select(radius,0.012,rain));
  } else {
-   let air=vec3f(F.windP[0].x*F.windP[0].z*0.7,0,F.windP[0].y*F.windP[0].z*0.7);
+   let wind=regionalAirWind((p.p.xz-F.camPos.xz)*.001);
+   let air=vec3f(wind.x*0.7,0,wind.y*0.7);
    // Spindrift sprites are dilute droplet populations. Drag produces a small
    // terminal fall speed; ballistic froth retains much more inertia.
    let drag=select(1.2,8.0,spindrift);

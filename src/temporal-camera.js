@@ -29,6 +29,7 @@ export function temporalCamera(sequence='msaa4'){
       frame.set([old[16],old[17],old[18],old[61]],196);
       frame.set(old.subarray(128,140),200);
       frame.set(old.subarray(172,180),212);
+      frame.set(old.subarray(228,240),240);
       const jitter=cameraJitter(index++,frame[36],frame[37],sequence);
       frame.set([...jitter,...(previous?.jitter||jitter)],220);
       frame.set([previous?1:0,old[60]/frame[60],wallDt,1],224);

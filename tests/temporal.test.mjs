@@ -12,7 +12,7 @@ const frame=()=>{const f=new Float32Array(FRAME_FLOATS);f[0]=f[5]=1;f[11]=-1;f[1
 test('temporal Frame extension has the WGSL uniform byte layout',()=>{
   const members=[...FRAME_WGSL.matchAll(/\w+:\s*(mat4x4f|vec4f|array<vec4f,\s*(\d+)>)/g)];
   const floats=members.reduce((s,m)=>s+(m[1]==='mat4x4f'?16:m[2]?4*Number(m[2]):4),0);
-  assert.equal(floats,FRAME_FLOATS);assert.equal(FRAME_BYTES,floats*4);assert.equal(FRAME_FLOATS,TEMPORAL_OFFSET+TEMPORAL_FLOATS);
+  assert.equal(floats,FRAME_FLOATS);assert.equal(FRAME_BYTES,floats*4);assert.equal(FRAME_FLOATS,TEMPORAL_OFFSET+TEMPORAL_FLOATS+28);
 });
 
 test('finite jitter sequences are centred; inverse-ray and history signs agree',()=>{

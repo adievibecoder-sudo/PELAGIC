@@ -89,8 +89,10 @@ export function advanceEnvironment(s,dt,settings,x=0,z=0){
     }
     s.weather.weights=s.weather.weights.map((v,j)=>mix(v,s.target.weights[j],a));
     s.clocks.weather++;
-    const local=sampleEnvironment({...s,remainder:0},x,z),b=-Math.expm1(-settings.seaRate/1800),c=-Math.expm1(-settings.seaRate/10800);
-    s.sea.windSpeed=mix(s.sea.windSpeed,local.windSpeed,b);s.sea.windDir=angle(s.sea.windDir,local.windDir,b);
+    const b=-Math.expm1(-settings.seaRate/1800),c=-Math.expm1(-settings.seaRate/10800);
+    // This spectrum covers the entire ocean. Moving the observer through a
+    // regional front must not rewrite its wind-sea or swell history.
+    s.sea.windSpeed=mix(s.sea.windSpeed,s.weather.windSpeed,b);s.sea.windDir=angle(s.sea.windDir,s.weather.windDir,b);
     s.sea.fetchKm=mix(s.sea.fetchKm,s.fetchTarget,b);
     for(const k of Object.keys(s.swellTarget))s.sea[k]=k.endsWith('Dir')?angle(s.sea[k],s.swellTarget[k],c):mix(s.sea[k],s.swellTarget[k],c);
     const speed=.65*(oldWind+s.weather.windSpeed)*.5;
@@ -139,4 +141,9 @@ export function environmentUniforms(s,cam,out,offset=148){
   const driftRemainder=s.remainder*w.windSpeed*.65;
   out.set([(s.drift[0]+Math.cos(w.windDir*D)*driftRemainder)*.001,(s.drift[1]+Math.sin(w.windDir*D)*driftRemainder)*.001,t,s.revision],offset+16);
   out.set([local.wind[0],local.wind[1],local.gust,local.frontId],offset+20);
+  const phase=(cam.x*Math.cos(a)+cam.z*Math.sin(a))*.0013-t*.035+s.seed;
+  out.set([w.windSpeed,(((f.heading-w.windDir+540)%360)-180)*D,
+    ((phase%(2*Math.PI))+2*Math.PI)%(2*Math.PI),0],offset+104);
+  // Wave/foam consumers follow shared sea history; air is sampled spatially.
+  out.set([Math.cos(s.sea.windDir*D),Math.sin(s.sea.windDir*D),s.sea.windSpeed],56);
 }

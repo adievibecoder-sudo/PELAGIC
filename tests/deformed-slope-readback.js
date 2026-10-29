@@ -18,7 +18,7 @@ fn random(seed:u32)->f32 {
   if(any(id.xy>=vec2u(128))){return;}
   let index=id.y*128u+id.x;
   let q=(vec2f(id.xy)+vec2f(random(index*2u+17u),random(index*2u+18u)))/128.0*4000.0-2000.0;
-  let coupling=surfaceCoupling(derivatives,repeatSampler,q,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset);
+  let coupling=surfaceCoupling(derivatives,repeatSampler,q,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset,F.seaFront,F.seaFrontControl,F.seaEnergy);
   let amplitude=coupling.x;
   let gradient=coupling.yz;
   var s=vec2f(0);var j=vec3f(0);var shortDisp=vec3f(0);var cov=vec3f(0);

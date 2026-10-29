@@ -21,7 +21,7 @@ export function crestSheetShader(code,query){
 @group(0) @binding(10) var<storage,read_write> crestNodes:array<CrestNode>;
 fn sheetSurface(q:vec2f)->vec3f {
   var d=vec3f(0);
-  let amplitude=surfaceAmplitude(derivatives,samp,q,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset);
+  let amplitude=surfaceAmplitude(derivatives,samp,q,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset,F.seaFront,F.seaFrontControl,F.seaEnergy);
   for(var c=0u;c<6u;c++){
     d+=textureSampleLevel(disp,samp,cascadeUV(q,c,F.cascInvL[c>>2u][c&3u],F.waveOrigins),c,0.0).xyz*select(1.0,amplitude,c>=3u);
   }

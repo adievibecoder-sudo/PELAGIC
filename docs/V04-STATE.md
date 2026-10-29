@@ -1,5 +1,19 @@
 # PELAGIC 0.4 — Persistent Verified State
 
+**29 October AB11 recovered source checkpoint:** Same development checkout from
+76fb3d0, no reset or reconstruction. Shared sea history and wave/foam/cloud wind
+uniforms no longer depend on camera-local weather. Particle emission/drag samples
+the regional air field; dry-camera dispatch no longer freezes rainy-domain drops.
+Current-frame foam pattern ordering is corrected.19 focused CPU checks and128
+production particle trajectories across camera/rebase cases pass; retained native
+regional, plume lifecycle and cloud-support checks remain applicable. Normal day24
+before cloud integration matches its earlier baseline exactly (Resume13 evidence).
+Regional sea response, submerged plumes, seeded cloud organization and visible
+reflection quadrature remain optional and incomplete. Profile-only clouds soften
+bases in inspected day/gold/storm/second-position comparisons; integration is the
+next step. Source/evidence/limits and all six stages: continuation11 Resume14.
+No W1-G1 closure or B1/B2/A+B owner acceptance. Private and inherited files retained.
+
 **Resume09 publication verified:** Renderer `e4d5f3c`, review/evidence `bb59e1a`
 published on development/pelagic-0.4. Four new LFS objects360282375bytes freshly
 downloaded and SHA256 checked; main/0.3/frozen refs unchanged. Proof:

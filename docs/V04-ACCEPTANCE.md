@@ -1,5 +1,16 @@
 # PELAGIC 0.4 acceptance and decision register
 
+**29 October AB11, no acceptance:** Camera-independent shared sea forcing and
+spatial particle wind integration pass focused CPU/native checks, including128
+actual production shader trajectories across a1024m rebase. Optional regional
+short-wave response remains bounded but lacks general edited-front history and
+directional closure. Plume depth transport works numerically; convincing volume
+is ABSENT. Visible-facet reflection still fails the bronze target. Seeded cloud
+organization remains too costly; profile-only bases improve in matched short
+sequences with modest measured GPU cost. No complete cloud family, energetic
+breaking, water optics, U1/G1, T1 or integrated owner acceptance is implied.
+Full six-stage/defect accounting remains in continuation11 and the rows below.
+
 **28 October Resume09, no milestone acceptance:** TAA storage-unit covariance
 corrected;5 native probes plus9 existing resolve cases pass. Shared six-frame
 environment-cache latency caused visible pulses in accelerated twilight; a

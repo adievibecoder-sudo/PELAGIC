@@ -31,7 +31,7 @@ fn thermalShape(world:vec3f,altitude:f32,coverage:f32,storm:f32,layerDepth:f32)-
     let bottom=F.cloudP.x+layerDepth*(0.015+0.08*random.x);
     let h=(altitude-bottom)/max(depth,0.15);
     let radius=size*(0.17+0.29*random.x)*pow(strength,0.333333);
-    let bend=F.windP[0].xy*h*h*depth*0.18;
+    let bend=F.roughnessWind.xy*h*h*depth*0.18;
     let q=vec3f((world.xz-centre-bend)/radius,(h-0.30)/0.52);
     let core=1.0-length(q);
     let turret=1.0-length(vec3f((q.xy-(random.xy-0.5)*0.95)/(0.44+random.x*0.25),(h-0.52)/0.44));
@@ -64,7 +64,7 @@ fn cloudDensityFiltered(p: vec3f, detail: bool, footprint:f32) -> f32 {
   if(cover<0.001){return 0.0;}
   let profile=smoothstep(0.0,0.075,h)*(1.0-smoothstep(mix(0.6,0.7,storm),1.0,h));
   let scale=vec3f(mix(0.62,0.24,storm),mix(0.60,0.42,strat),mix(0.62,0.24,storm));
-  let shear=vec3f(F.windP[0].x,0,F.windP[0].y)*(h*h*0.13*layerDepth);
+  let shear=vec3f(F.roughnessWind.x,0,F.roughnessWind.y)*(h*h*0.13*layerDepth);
   let q=(world+shear)*scale;
   let lod=max(log2(max(footprint,0.001)*max(scale.x,scale.y)*128.0),0.0);
   let shape=textureSampleLevel(cloudNoise,cloudNoiseSampler,q,lod);

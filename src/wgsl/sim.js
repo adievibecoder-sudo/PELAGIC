@@ -380,6 +380,9 @@ struct FoamU {
   waveOrigins: array<vec4f,3>,
   roughnessWind: vec4f,
   roughnessOffset: vec4f,
+  seaFront: vec4f,
+  seaFrontControl: vec4f,
+  seaEnergy: vec4f,
 };
 @group(0) @binding(0) var<uniform> U: FoamU;
 @group(0) @binding(1) var prevTex: texture_2d_array<f32>;
@@ -405,7 +408,7 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
   var slope = vec2f(0.0);
   var orbital = vec2f(0.0);
   var growth = 0.0;
-  let coupling=surfaceCoupling(derivTex,samp,p,U.drift.z,U.waveOrigins,U.roughnessWind,U.roughnessOffset);
+  let coupling=surfaceCoupling(derivTex,samp,p,U.drift.z,U.waveOrigins,U.roughnessWind,U.roughnessOffset,U.seaFront,U.seaFrontControl,U.seaEnergy);
   let amplitude=coupling.x;
   let amplitudeGradient=coupling.yz;
   var shortDisp=vec3f(0);

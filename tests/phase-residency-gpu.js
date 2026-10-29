@@ -1,4 +1,5 @@
 import {FOAM_UPDATE,FOAM_RES} from '../src/wgsl/sim.js';
+import {FOAM_BYTES} from '../src/spatial-origin.js';
 import {breakingEventsShader} from '../src/wgsl/breaking-events.js';
 import {breakingPhaseShader} from '../src/wgsl/breaking-phase.js';
 import {decodeHalf} from '../src/numerics.js';
@@ -20,7 +21,7 @@ export async function verifyPhaseResidency(device){
   };
   const previous=tex(2,[0,0x3800,0,0]),empty=tex(6,[0,0,0,0]);
   const output=device.createTexture({size:[FOAM_RES,FOAM_RES,2],format:'rgba16float',usage:GPUTextureUsage.STORAGE_BINDING|GPUTextureUsage.COPY_SRC});
-  const frame=device.createBuffer({size:224,usage:GPUBufferUsage.UNIFORM|GPUBufferUsage.COPY_DST});
+  const frame=device.createBuffer({size:FOAM_BYTES,usage:GPUBufferUsage.UNIFORM|GPUBufferUsage.COPY_DST});
   const read=device.createBuffer({size:256,usage:GPUBufferUsage.COPY_DST|GPUBufferUsage.MAP_READ});
   resources.push(output,frame,read);
   const group=device.createBindGroup({layout:pipeline.getBindGroupLayout(0),entries:[
@@ -28,7 +29,7 @@ export async function verifyPhaseResidency(device){
     {binding:2,resource:output.createView({dimension:'2d-array'})},
     {binding:3,resource:empty},{binding:4,resource:empty},{binding:5,resource:sampler},
     {binding:6,resource:sampler},{binding:7,resource:empty}]});
-  const uniform=new Float32Array(56);uniform[8]=.25;uniform[9]=2;
+  const uniform=new Float32Array(FOAM_BYTES/4);uniform[8]=.25;uniform[9]=2;
   uniform[11]=.22;uniform[12]=.65;uniform[13]=3;uniform[14]=5;uniform[15]=1;uniform[34]=1;
   for(let c=0;c<6;c++){uniform[16+c]=128;uniform[24+c]=1/128;}
   try{

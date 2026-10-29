@@ -31,7 +31,7 @@ fn frothParcel(k:u32){
   q=crest.q;
   let fresh=textureSampleLevel(foam,samp,q/F.lodP.z,0u,0.0).g;
   var d=vec3f(0);var strain=vec3f(0);var slope=vec2f(0);
-  let amplitude=surfaceAmplitude(derivatives,samp,q,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset);
+  let amplitude=surfaceAmplitude(derivatives,samp,q,F.windP[1].y,F.waveOrigins,F.roughnessWind,F.roughnessOffset,F.seaFront,F.seaFrontControl,F.seaEnergy);
   for(var c=0u;c<6u;c++){
     let uv=cascadeUV(q,c,F.cascInvL[c>>2u][c&3u],F.waveOrigins);
     let a=textureSampleLevel(disp,samp,uv,c,0.0);

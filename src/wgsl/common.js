@@ -58,6 +58,13 @@ struct Frame {
   previousRoughnessOffset: vec4f,
   jitter: vec4f, // current/previous NDC; matrices remain unjittered
   temporal: vec4f, // valid history, previous/current storage divisor, wall dt, enabled
+  seaFront: vec4f, // front centre relative to wave origin, half axes [m]
+  seaFrontControl: vec4f, // direction, speed [m/s], response history [s]
+  seaEnergy: vec4f, // background/front short energy ratios, enabled, relaxation [s]
+  previousSeaFront: vec4f,
+  previousSeaFrontControl: vec4f,
+  previousSeaEnergy: vec4f,
+  airWind: vec4f, // background U10, shortest front rotation, camera gust phase, reserved
 };
 `;
 

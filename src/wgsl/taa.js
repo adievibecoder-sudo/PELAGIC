@@ -36,7 +36,7 @@ export function oceanMotionShader(ocean){
   @location(4) @interpolate(perspective,sample) currentClip:vec4f,`);
   vertex=vertex.replace('  var o: VSOut;',/* wgsl */`
   let oldXZ=xz+F.worldOrigin.zw;
-  let oldAmplitude=surfaceAmplitude(oldDerivatives,sampR,oldXZ,F.previousCamera.w,F.previousWaveOrigins,F.previousRoughnessWind,F.previousRoughnessOffset);
+  let oldAmplitude=surfaceAmplitude(oldDerivatives,sampR,oldXZ,F.previousCamera.w,F.previousWaveOrigins,F.previousRoughnessWind,F.previousRoughnessOffset,F.previousSeaFront,F.previousSeaFrontControl,F.previousSeaEnergy);
   var oldDisp=vec3f(0);
   for(var c=0u;c<6u;c++){
     let texel=F.cascL[c>>2u][c&3u]/TEX_N;
