@@ -28,6 +28,7 @@ export function withRenderDefaults(input){
   if(query.get('abDefaults')!=='legacy'&&!historical){
     query.set('abRadiance','scaled');
     query.set('abLightCache','responsive');
+    query.set('abClouds','profile');
   }
   return query;
 }

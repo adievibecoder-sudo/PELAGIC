@@ -8,10 +8,13 @@ import {breakingEventsShader} from '../src/wgsl/breaking-events.js';
 import {breakingPhaseShader} from '../src/wgsl/breaking-phase.js';
 import {foamTransportShader} from '../src/wgsl/foam-transport.js';
 import {lightStorageShader} from '../src/wgsl/light-storage.js';
+import {CLOUD_VOLUME} from '../src/wgsl/clouds.js';
+import {cloudWorkShader} from '../src/wgsl/cloud-work.js';
+import {cloudOrganizationShader} from '../src/wgsl/cloud-organization.js';
 
 test('normal development resolves to the reviewed pair without overriding historical comparisons',()=>{
   const normal=withRenderDefaults('preset=storm&seed=1307');
-  assert.deepEqual(renderOptions(normal),{abBreaking:'phase-resident',abFoam:'relief',abRadiance:'scaled',abLightCache:'responsive'});
+  assert.deepEqual(renderOptions(normal),{abBreaking:'phase-resident',abFoam:'relief',abRadiance:'scaled',abLightCache:'responsive',abClouds:'profile'});
   assert.equal(normal.get('seed'),'1307');
   for(const choice of ['abDefaults=legacy','maBreaking=gravity','abBreaking=phase-field',
     'abFoam=volume','abWhitewater=parcels','abCrestLife=supported','abFoamPattern=bubbles']){
@@ -37,10 +40,12 @@ test('shared effective defaults and the legacy comparison survive reloads',()=>{
 });
 
 test('default selection generates the exact reviewed shader paths',()=>{
-  const normal=withRenderDefaults(''),reviewed=new URLSearchParams('abBreaking=phase-resident&abFoam=relief&abRadiance=scaled&abLightCache=responsive');
+  const normal=withRenderDefaults(''),reviewed=new URLSearchParams('abBreaking=phase-resident&abFoam=relief&abRadiance=scaled&abLightCache=responsive&abClouds=profile');
   const foam=q=>breakingPhaseShader(breakingEventsShader(FOAM_UPDATE,q),q);
   const ocean=q=>lightStorageShader(foamTransportShader(breakingEventsShader(OCEAN,q),q),q);
   assert.equal(foam(normal),foam(reviewed));assert.equal(ocean(normal),ocean(reviewed));
+  const clouds=q=>cloudOrganizationShader(cloudWorkShader(CLOUD_VOLUME,q),q);
+  assert.equal(clouds(normal),clouds(reviewed));
   const legacy=withRenderDefaults('abDefaults=legacy');
   assert.equal(foam(legacy),FOAM_UPDATE);assert.equal(ocean(legacy),OCEAN);
 });

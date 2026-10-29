@@ -1,5 +1,15 @@
 # PELAGIC 0.4 — Persistent Verified State
 
+**29 October Resume15, normal cloud-base integration:** Recovered published
+source591b65b and pending defaults. Normal day72/storm24 at1080p contain no
+renderer errors; all were inspected in dense reduced sequences. Softer cloud
+undersides retain crowns, gaps and the connected storm deck. Normal startup
+now selects profile-only clouds. Seeded organization, regional energy, plumes
+and visible-reflection experiments stay optional. Actual presentation p95,
+natural cloud families, wet/coloured water, bronze reflections and energetic
+breaking remain unresolved. All six stages and exact next work are recorded
+in continuation11 Resume15; no B1/B2/A+B owner acceptance or W1-G1 closure.
+
 **29 October AB11 recovered source checkpoint:** Same development checkout from
 76fb3d0, no reset or reconstruction. Shared sea history and wave/foam/cloud wind
 uniforms no longer depend on camera-local weather. Particle emission/drag samples

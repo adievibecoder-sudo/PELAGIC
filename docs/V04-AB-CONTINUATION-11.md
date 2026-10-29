@@ -343,3 +343,35 @@ day/gold/storm comparisons and second-position pair are in clouds05; final
 no-option day72 and storm24 must verify the normal path before publication of
 the default change. All15 defects remain PARTIAL/ABSENT/VISUAL UNVERIFIED as
 their original acceptance rows describe; none is completed by these checks.
+
+### Resume 15 - recovered normal integration
+
+Recovered published source591b65b and the three pending default-integration
+edits, without reconstruction. Both complete owner prompts and the master TXT
+were reread. DevTools page1 and the existing8080 server remained available.
+All96 normal-path originals in v04-ma-ab11-integration-03 decode at1920x1080
+and record zero renderer errors. Day72 sky pairs were inspected consecutively
+30.000-32.958s: undersides are softer, crowns and clear gaps remain stable.
+Storm24 full-frame reduced sheets,30.000-30.958s, retain the connected dark
+deck, advancing crest strips and dark wave faces. No new flashes or boundary
+seams are visible in these windows. Cloud-base improvement PRESENT; regional
+cloud families PARTIAL. The strongest objection remains compact sculpted
+clouds, flat whitewater and weak rain/spray. Full-resolution originals remain;
+these observations are dense frame inspection, not continuous playback.
+
+Normal startup now selects profile-only clouds with the already integrated
+world-space wind corrections. Reuse Resume14's matched GPU57.635/55.515ms
+profile/legacy evidence; actual presented-frame p95 remains unavailable. No
+promotion of seeded clouds, regional sea-energy modulation, plumes, visible
+reflection or velocity-streak rain. No owner acceptance or defect closure.
+
+Six-stage ledger:1 references internally sufficient/reused;2 waves active,
+regional forcing corrected but grouping/history unresolved;3 whitewater
+experimental, volume and persistent event ownership unresolved;4 optics active,
+bronze/body-depth targets unmet;5 atmosphere active, cloud-base and local-air
+integration supported within the inspected windows;6 integration active,
+publication and focused optical work next. U1/G1 retain their original open
+requirements; no waterline or long-flight work in this recovery interval.
+I1/T1/R1 remain open. Next: publish this normal integration, then investigate
+the source of reflection/body imbalance without repeating scattering gains or
+the failed unconditioned/visible-facet redistribution experiments.
