@@ -6,7 +6,7 @@ import {phase1LightReadback} from '../tests/phase1-light-readback.js';
 // Large per-frame arrays are reused; diagnostics and browser API descriptors still allocate.
 import { N, CASCADES, SKY_W, SKY_H, ENV_SIZE, ENV_MIPS, CONFIG, Q } from './wgsl/common.js';
 import { sanitize, preset, scenePreset, PRESETS, QUALITY, toURL } from './settings.js';
-import {createEnvironment,commandEnvironment,previewLighting,advanceEnvironment,sampleEnvironment,environmentUniforms,environmentSnapshot,environmentControls,restoreEnvironment,WEATHER_KEYS,SEA_KEYS} from './environment.js';
+import {createEnvironment,commandEnvironment,previewLighting,advanceEnvironment,sampleEnvironment,environmentUniforms,airWindUniforms,environmentSnapshot,environmentControls,restoreEnvironment,WEATHER_KEYS,SEA_KEYS} from './environment.js';
 import { cosSpreadNorm, PATCHES, omega } from './numerics.js';
 import { swellAlpha } from './sea-spectrum.js';
 import {bubblePlumeShader} from './wgsl/bubble-plumes.js';
@@ -372,7 +372,7 @@ async function main() {
     magFilter: 'linear', minFilter: 'linear', mipmapFilter: 'linear', addressModeU: 'repeat', addressModeV: 'repeat',
   });
   const bgFoamUpd = [0, 1].map((i) => bg(foamUpdPipe, [{ buffer: foamUBO }, lvl(foamW[1 - i], 0), lvl(foamW[i], 0),
-    fullArr(dispTex), fullArr(derivTex), samplerSim, samplerSim, fullArr(lastDisp)], 'foamupd' + i));
+    fullArr(dispTex), fullArr(derivTex), samplerSim, fullArr(lastDisp)], 'foamupd' + i));
   const bgFoamMips = [0, 1].map((i) => {
     const out = [];
     for (let m = 1; m < FOAMW_MIPS; m++) out.push(bg(arr16MipPipe, [lvl(foamW[i], m - 1), lvl(foamW[i], m)]));
@@ -1062,13 +1062,16 @@ async function main() {
     foamUF[10] = dt; foamUF[11] = 0.22;          // decay 1/s
     foamUF[12] = 0.65+0.009*Math.min(P.windSpeed,25); foamUF[13] = 3.0; foamUF[14] = 5.0; foamUF[15] = Math.min(P.foam,1);
     for (let c = 0; c < C; c++) { foamUF[16 + c] = CASC_L[c]; foamUF[24 + c] = 1 / CASC_L[c]; }
-    const drift = 0.03 * P.windSpeed;
-    foamUF[32] = Math.cos(P.windDir * D2R) * drift + Math.cos(P.currentDir*D2R)*P.currentSpeed;
-    foamUF[33] = Math.sin(P.windDir * D2R) * drift + Math.sin(P.currentDir*D2R)*P.currentSpeed;
+    const regionalDrift=!['legacy','particles'].includes(qs.get('abWind'));
+    const air=regionalDrift?environment.weather:environment.sea;
+    const drift = 0.03 * air.windSpeed;
+    foamUF[32] = Math.cos(air.windDir * D2R) * drift + Math.cos(P.currentDir*D2R)*P.currentSpeed;
+    foamUF[33] = Math.sin(air.windDir * D2R) * drift + Math.sin(P.currentDir*D2R)*P.currentSpeed;
     foamUF[34] = P.choppy;
     cascadeOrigin(origin,foamUF,36);
     roughnessUniforms(environment,origin,['wind','stress'].includes(qs.get('maRoughness')),foamUF,48);
     regionalSeaUniforms(environment,origin,qs.get('abSea')==='regional',foamUF,56);
+    if(regionalDrift)airWindUniforms(environment,origin[0],origin[1],foamUF,68);
     device.queue.writeBuffer(foamUBO, 0, foamUArr);
   }
 

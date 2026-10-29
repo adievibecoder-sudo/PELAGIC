@@ -3,7 +3,7 @@ import {PATCHES} from './numerics.js';
 export const ORIGIN_BLOCK=1024;
 export const FRAME_FLOATS=256;
 export const FRAME_BYTES=FRAME_FLOATS*4;
-export const FOAM_BYTES=272;
+export const FOAM_BYTES=288;
 export const modulo=(x,period)=>((x%period)+period)%period;
 
 export function localOrigin(x,z) {

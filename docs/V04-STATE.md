@@ -1,5 +1,16 @@
 # PELAGIC 0.4 — Persistent Verified State
 
+**29 October Resume16, regional material transport:** Recovered d84009a plus
+unpublished source. Foam residue and optional bubbles now use the same local
+air field as airborne particles. Explicit f32 history interpolation preserves
+small drift before compensated half-float storage. Native768 transport samples,
+four bubble/four phase cases and16 focused CPU checks pass. All72 paired storm
+water crops inspected at24Hz,30.000-32.958: subtle residual changes, attached
+strips and no visible front seam. Spray/volume still inadequate. Day24 remains
+visually consistent, not RGB-identical. No presented-p95 or performance gain
+claim. Continuation11 Resume16 records all six stages, optical/plume next work
+and every open defect. No owner milestone acceptance.
+
 **29 October Resume15, normal cloud-base integration:** Recovered published
 source591b65b and pending defaults. Normal day72/storm24 at1080p contain no
 renderer errors; all were inspected in dense reduced sequences. Softer cloud

@@ -28,7 +28,7 @@ export async function verifyPhaseResidency(device){
     {binding:0,resource:{buffer:frame}},{binding:1,resource:previous},
     {binding:2,resource:output.createView({dimension:'2d-array'})},
     {binding:3,resource:empty},{binding:4,resource:empty},{binding:5,resource:sampler},
-    {binding:6,resource:sampler},{binding:7,resource:empty}]});
+    {binding:6,resource:empty}]});
   const uniform=new Float32Array(FOAM_BYTES/4);uniform[8]=.25;uniform[9]=2;
   uniform[11]=.22;uniform[12]=.65;uniform[13]=3;uniform[14]=5;uniform[15]=1;uniform[34]=1;
   for(let c=0;c<6;c++){uniform[16+c]=128;uniform[24+c]=1/128;}

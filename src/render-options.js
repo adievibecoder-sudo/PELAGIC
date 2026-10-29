@@ -7,7 +7,7 @@ const OPTIONS=Object.freeze({
   abRadiance:['scaled','legacy'],
   abLightCache:['responsive','legacy'],
   abSea:['regional','off'], abBubbles:['plumes','off'], abClouds:['regional','condensate','profile','legacy'],
-  abWind:['legacy','regional'],
+  abWind:['legacy','regional','particles'],
   abEnvironment:['coupled','marine','marine-diffuse','marine-sunset','off'], maBreaking:['gravity','events','onset','fold','crest'],
   abBreaking:['handoff','population','phase-field','phase-resident'], abFoam:['transport','relief','skin','volume'], abFoamPattern:['bubbles'],
   abRain:['velocity'], abWhitewater:['parcels'], abCrest:['phase'],

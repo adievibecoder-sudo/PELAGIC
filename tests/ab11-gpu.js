@@ -11,7 +11,8 @@ import {FOAM_UPDATE} from '../src/wgsl/sim.js';
 import {FOAM_BYTES} from '../src/spatial-origin.js';
 import {PATCHES,decodeHalf} from '../src/numerics.js';
 import {REGIONAL_WEATHER} from '../src/wgsl/environment.js';
-import {createEnvironment,environmentUniforms,sampleEnvironment} from '../src/environment.js';
+import {createEnvironment,environmentUniforms,airWindUniforms,sampleEnvironment} from '../src/environment.js';
+import {regionalSeaUniforms} from '../src/regional-sea.js';
 import {DEFAULTS} from '../src/settings.js';
 import {FRAME_FLOATS} from '../src/spatial-origin.js';
 import {roughnessUniforms} from '../src/wind-roughness.js';
@@ -64,6 +65,70 @@ export async function regionalParticleChecks(device){
     }
     return {status:reports.every(r=>r.status==='PASS')?'PASS':'FAIL',cases:reports,
       scope:'128 existing rain, spray and spindrift trajectories through the production compute shader, local front wind, camera travel and 1024m rebase. Flat zero source fields; not visual or emission-rate acceptance.'};
+  }finally{resources.forEach(r=>r.destroy());}
+}
+
+export async function regionalFoamChecks(device){
+  const n=64,B=GPUBufferUsage,T=GPUTextureUsage,resources=[];
+  const buffer=(size,usage)=>{const b=device.createBuffer({size,usage});resources.push(b);return b;};
+  const texture=(layers)=>{const t=device.createTexture({size:[n,n,layers],format:'rgba16float',usage:T.TEXTURE_BINDING|T.STORAGE_BINDING|T.COPY_SRC|T.COPY_DST});resources.push(t);return t;};
+  const previous=texture(2),destination=texture(2),fields=texture(6);
+  const uniform=buffer(FOAM_BYTES,B.UNIFORM|B.COPY_DST),read=buffer(n*n*2*8,B.COPY_DST|B.MAP_READ);
+  const query=new URLSearchParams('abBreaking=phase-resident');
+  const code=breakingPhaseShader(breakingEventsShader(FOAM_UPDATE,query),query).replace(/const RES: i32 = \d+;/,'const RES: i32 = 64;');
+  const module=device.createShaderModule({code});
+  const info=await module.getCompilationInfo();
+  if(info.messages.some(m=>m.type==='error'))throw Error(info.messages.map(m=>m.message).join('\n'));
+  const pipeline=await device.createComputePipelineAsync({layout:'auto',compute:{module,entryPoint:'main'}});
+  const sampler=device.createSampler({minFilter:'linear',magFilter:'linear',addressModeU:'repeat',addressModeV:'repeat'});
+  const group=device.createBindGroup({layout:pipeline.getBindGroupLayout(0),entries:[{buffer:uniform},previous.createView(),destination.createView(),fields.createView(),fields.createView(),sampler,fields.createView()].map((resource,binding)=>({binding,resource}))});
+  // Exactly representable affine residual coverage; bilinear advection has an
+  // independent analytic answer. Empty wave fields isolate windage/current.
+  const initial=new Uint16Array(n*n*2*4);
+  for(let layer=0;layer<2;layer++)for(let y=0;y<n;y++)for(let x=0;x<n;x++){
+    const value=.25+x/256+y/512;
+    initial[((layer*n+y)*n+x)*4]=value<.5?0x3400+(value-.25)*4096:0x3800+(value-.5)*2048;
+  }
+  device.queue.writeTexture({texture:previous},initial,{bytesPerRow:n*8,rowsPerImage:n},[n,n,2]);
+  const state=createEnvironment({...DEFAULTS,windSpeed:7,windDir:118,frontEnabled:true,frontX:0,frontZ:0,frontWidth:2,frontHeading:0,frontSpeed:0},30);
+  const reports=[];let reference;
+  try{
+    for(const [cameraX,originX,enabled] of [[510,0,true],[514,1024,true],[514,1024,false]]){
+      state.front.enabled=enabled;
+      const bytes=new ArrayBuffer(FOAM_BYTES),f=new Float32Array(bytes),ii=new Int32Array(bytes),dt=Math.fround(1/24);
+      for(let layer=0;layer<2;layer++){
+        const spacing=layer===0?2:16,snap=Math.floor((cameraX-originX)/spacing);
+        ii.set([snap,0,snap,0],layer*4);f[8+layer]=spacing;
+      }
+      f[10]=dt;f[12]=.83;f[13]=3;f[14]=5;f[15]=0;
+      f.set(PATCHES,16);f.set(PATCHES.map(x=>1/x),24);
+      const a=state.weather.windDir*Math.PI/180;
+      const base=[Math.cos(a)*7*.03+.12,Math.sin(a)*7*.03-.04];
+      f.set([...base,1],32);
+      roughnessUniforms(state,[originX,0],false,f,48);
+      regionalSeaUniforms(state,[originX,0],false,f,56);
+      airWindUniforms(state,originX,0,f,68);device.queue.writeBuffer(uniform,0,bytes);
+      const enc=device.createCommandEncoder(),pass=enc.beginComputePass();pass.setPipeline(pipeline);pass.setBindGroup(0,group);pass.dispatchWorkgroups(8,8,2);pass.end();
+      enc.copyTextureToBuffer({texture:destination},{buffer:read,bytesPerRow:n*8,rowsPerImage:n},[n,n,2]);device.queue.submit([enc.finish()]);
+      await read.mapAsync(GPUMapMode.READ);const raw=new Uint16Array(read.getMappedRange()).slice();read.unmap();
+      let error=0,rebaseError=0,localEffect=0,count=0;
+      for(let y=8;y<24;y++)for(let x=8;x<24;x++){
+        const layer=0,spacing=f[8],lo=ii[0]-32;
+        const gx=lo+((x-lo)%64+64)%64,gz=-32+((y+32)%64+64)%64;
+        const point=[originX+(gx+.5)*spacing,(gz+.5)*spacing];
+        const wind=sampleEnvironment(state,...point).wind;
+        const velocity=[.12+.03*wind[0],-.04+.03*wind[1]];
+        const expected=.25+x/256+y/512-(velocity[0]/256+velocity[1]/512)*dt/spacing;
+        const offset=((layer*n+y)*n+x)*4,actual=decodeHalf(raw[offset])+decodeHalf(raw[offset+3]);
+        error=Math.max(error,Math.abs(actual-expected));
+        localEffect=Math.max(localEffect,Math.hypot(velocity[0]-base[0],velocity[1]-base[1]));
+        if(reference&&enabled){const other=decodeHalf(reference[offset])+decodeHalf(reference[offset+3]);rebaseError=Math.max(rebaseError,Math.abs(actual-other));}
+        count++;
+      }
+      if(!reference)reference=raw;
+      reports.push({cameraX,originX,enabled,count,error,rebaseError,localDriftChange:localEffect,status:error<2e-7&&rebaseError<2e-7&&(!enabled||localEffect>.01)?'PASS':'FAIL'});
+    }
+    return {status:reports.every(r=>r.status==='PASS')?'PASS':'FAIL',cases:reports,scope:'Production residual advection versus analytic affine transport; same world points at camera510/514 and origin0/1024, nonempty front and no-front controls. Not a mass-conservation or visual naturalism claim.'};
   }finally{resources.forEach(r=>r.destroy());}
 }
 
@@ -223,7 +288,7 @@ export async function bubbleClipmapChecks(device){
   const pipe=await device.createComputePipelineAsync({layout:'auto',compute:{module,entryPoint:'main'}});
   const sampler=device.createSampler({magFilter:'linear',minFilter:'linear',addressModeU:'repeat',addressModeV:'repeat'});
   const groups=history.map((t,i)=>device.createBindGroup({layout:pipe.getBindGroupLayout(0),entries:
-    [{buffer:ubo},history[1-i].createView(),t.createView(),fields.createView(),fields.createView(),sampler,sampler,fields.createView()].map((resource,binding)=>({binding,resource}))}));
+    [{buffer:ubo},history[1-i].createView(),t.createView(),fields.createView(),fields.createView(),sampler,fields.createView()].map((resource,binding)=>({binding,resource}))}));
   // Exact half values: gas=2/1024 m, depth=.75 m. Residual channels start zero.
   const initial=new Uint16Array(n*n*4*4);
   for(let layer=2;layer<4;layer++)for(let y=20;y<44;y++)for(let x=16;x<28;x++){

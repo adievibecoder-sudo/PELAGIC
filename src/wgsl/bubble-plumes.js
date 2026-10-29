@@ -37,7 +37,7 @@ export function bubblePlumeShader(code,query){
     let offset=vec2f(cos(angle),sin(angle))*radius;
     let samplePoint=source+offset;
     if(all(samplePoint>=vec2f(plo))&&all(samplePoint<vec2f(plo+vec2i(RES-1)))){
-      plume+=textureSampleLevel(prevTex,sampPrev,back+offset/f32(RES),lvl+2u,0.0)*.25;
+      plume+=sampleFoamHistory(back+offset/f32(RES),lvl+2u)*.25;
     }
   }
   textureStore(dst,id.xy,lvl+2u,advanceBubbleColumn(plume,fresh,dt));`);

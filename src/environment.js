@@ -102,6 +102,15 @@ export function advanceEnvironment(s,dt,settings,x=0,z=0){
 
 export function environmentSnapshot(s){return copy(s);}
 
+// Air phase is reduced before f32 upload, at the coordinate system's anchor.
+// Particles use the camera; material clipmaps use the wave origin.
+export function airWindUniforms(s,x,z,out,offset){
+  const a=s.front.heading*D,t=s.clocks.weather+s.remainder,w=s.weather;
+  const phase=(x*Math.cos(a)+z*Math.sin(a))*.0013-t*.035+s.seed;
+  out.set([w.windSpeed,(((s.front.heading-w.windDir+540)%360)-180)*D,
+    ((phase%(2*Math.PI))+2*Math.PI)%(2*Math.PI),+s.front.enabled],offset);
+}
+
 // UI edits are commands. Keep their targets stable while rendered conditions evolve.
 export function environmentControls(s,settings,x=0,z=0){
   const local=sampleEnvironment(s,x,z);
@@ -141,9 +150,7 @@ export function environmentUniforms(s,cam,out,offset=148){
   const driftRemainder=s.remainder*w.windSpeed*.65;
   out.set([(s.drift[0]+Math.cos(w.windDir*D)*driftRemainder)*.001,(s.drift[1]+Math.sin(w.windDir*D)*driftRemainder)*.001,t,s.revision],offset+16);
   out.set([local.wind[0],local.wind[1],local.gust,local.frontId],offset+20);
-  const phase=(cam.x*Math.cos(a)+cam.z*Math.sin(a))*.0013-t*.035+s.seed;
-  out.set([w.windSpeed,(((f.heading-w.windDir+540)%360)-180)*D,
-    ((phase%(2*Math.PI))+2*Math.PI)%(2*Math.PI),0],offset+104);
+  airWindUniforms(s,cam.x,cam.z,out,offset+104);
   // Wave/foam consumers follow shared sea history; air is sampled spatially.
   out.set([Math.cos(s.sea.windDir*D),Math.sin(s.sea.windDir*D),s.sea.windSpeed],56);
 }

@@ -64,7 +64,7 @@ struct Frame {
   previousSeaFront: vec4f,
   previousSeaFrontControl: vec4f,
   previousSeaEnergy: vec4f,
-  airWind: vec4f, // background U10, shortest front rotation, camera gust phase, reserved
+  airWind: vec4f, // background U10, shortest front rotation, camera gust phase, front enabled
 };
 `;
 

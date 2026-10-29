@@ -375,3 +375,70 @@ requirements; no waterline or long-flight work in this recovery interval.
 I1/T1/R1 remain open. Next: publish this normal integration, then investigate
 the source of reflection/body imbalance without repeating scattering gains or
 the failed unconditioned/visible-facet redistribution experiments.
+
+Regional transport follow-through: residual foam still uses one shared drift
+while airborne particles sample regional air. Reuse regional-wind03 and the
+storm-front72 baseline; camera0,8,0,79,-5.5, frontX-360/width2km/speed12,
+seed1307,High1080p,t30. New hypothesis: the existing3% windage closure can use
+that same air field at the displaced material location, including bubbles,
+without changing gravity-crest phase transport or FFT energy. Pass: smooth
+front-dependent residual drift and camera/rebase covariance; fixed no-front
+weather unchanged. Fail: seams, phase resets, changed calm source or moving
+camera changing transport. Native manufactured drift plus storm72/day control;
+this does not claim calibrated windage, mass conservation or energetic breaking.
+
+The native affine-transport test exposed half-float sampler rounding before
+compensation: max residual error4.075e-5, including suppressed small windage.
+Explicit f32 bilinear interpolation of decoded history reduces it to7.52e-8;
+768 source-kernel samples pass, with exact tested1024m rebase covariance.
+Four bubble clipmap and four phase-residency cases pass. The128 production
+particle trajectories retain their prior bounds. Original failure is retained
+in ab12-drift/transport-checks.json. No appearance claim follows from this.
+`abWind=particles` retains the previously integrated airborne-only wind path
+for a focused residual-drift comparison. Manual interpolation also applies to
+phase history and optional bubbles, preserving small advective motion in both.
+
+### Resume 16 - transport review completed after interrupted handoff
+
+Recovered HEAD d84009a and the complete unpublished material-transport patch;
+the full master TXT and supplemental owner requirements remain active.
+No older checkpoint restored. Native DevTools page1 remained connected. Stopped
+the inherited performance trace successfully; the summary alone contains no
+presented-frame p95, so no presentation claim is made.
+
+Inspected all72 paired storm water crops,30.000-32.958s at24Hz, in local-drift-0
+through5: attached strips progress along the ridges and leave sparse residue;
+the residual differences are small, with no visible seam or phase jump. Smooth
+local transport is PRESENT within this short view, energetic spray/volume ABSENT.
+Strongest owner objection: this is still thin surface whitewater. Day24 records
+match scene/time and remain error-free; mean absolute difference0.006365/255
+comes from the history-interpolation change, so RGB identity is NOT claimed.
+Reuse the768 analytic transport, four bubble and four phase checks already
+passed in transport-checks-f32.json.16 focused CPU checks pass on recovery.
+Saved High1080p transport run:723 frames/100 GPU samples, mean62.469ms,
+simulation1.664ms; not a controlled speed comparison or presented FPS.
+
+Normal development retains local material drift plus f32 history interpolation.
+The prior airborne-only forcing remains selectable with abWind=particles.
+Shared FFT phases, gravity-crest tracking and current remain intact. This is
+not a calibrated windage or conserved gas/foam mass model.
+
+Next plume hypothesis (before editing): replace the one sampled finite slab
+with integration through the existing transported gas/depth field along the
+refracted view ray. A normalized vertical distribution must preserve the stored
+gas column and depth moment; absorption and bubble extinction must attenuate
+the same incident/background budget. No extra gas, tint, unrelated noise or
+new shell geometry. Existing plume storm-profile baseline, seed1307/High1080p,
+fixed24Hz/t30, plus a near oblique view and calm control. Pass: distinguishable
+submerged depth and fading aeration behind advancing crests. Fail: another
+unchanged pale overlay, dark holes, blanket glow, depth-dependent gas gain or
+unacceptable surface cost. Inspect consecutive frames; keep optional if unmet.
+
+Six stages:1 references internally sufficient/reused;2 waves active, grouping
+and regional history incomplete;3 whitewater active/experimental, volume and
+event identity unresolved;4 optics active/unmet, bronze and water-body depth
+still fail;5 atmosphere active, supported base profile retained, organization
+and broad weather validation incomplete;6 integration active, coherent transport
+publication then plume/optical work. All W1/W2/L1/L2/B1/C1/A1/E1/E2/E3/E4/E5/E6/
+U1/G1 and I1/T1/R1 remain open; U1 and long-flight G1 receive no new work in this
+interval. Owner B1/B2/A+B acceptance remains pending.

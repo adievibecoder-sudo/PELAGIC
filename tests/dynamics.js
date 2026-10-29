@@ -49,7 +49,7 @@ export async function verifyDynamics(device,progress=()=>{}) {
   const fu=buffer(FOAM_BYTES,B.UNIFORM|B.COPY_DST),fr=buffer(res*res*2*8,B.MAP_READ|B.COPY_DST);
   const fp=await pipeline(FOAM_UPDATE.replace(/const RES: i32 = \d+;/,'const RES: i32 = 64;'));
   const samp=device.createSampler({magFilter:'linear',minFilter:'linear',addressModeU:'repeat',addressModeV:'repeat'});
-  const fbg=foam.map((t,i)=>group(fp,[{buffer:fu},foam[1-i].createView(),t.createView(),displaced.createView(),field.createView(),samp,samp,field.createView()]));
+  const fbg=foam.map((t,i)=>group(fp,[{buffer:fu},foam[1-i].createView(),t.createView(),displaced.createView(),field.createView(),samp,field.createView()]));
   const data=new Uint16Array(res*res*2*4),original=new Float64Array(res*res);
   for(let y=0;y<res;y++)for(let x=0;x<res;x++){
     const v=(x>12&&x<28&&y>20&&y<44)?0.75:0;original[y*res+x]=v;

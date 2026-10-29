@@ -43,8 +43,7 @@ fn wrapIdx(`);
         ridgeSupport=1.0-smoothstep(spacing,3.0*spacing,ridgeDistance);
         let activeSource=vec2f(g)-axis*travel/ts;
         if(all(activeSource>=vec2f(plo))&&all(activeSource<vec2f(plo+vec2i(RES-1)))){
-          activePrevious=textureSampleLevel(prevTex,sampPrev,
-            (vec2f(id.xy)+.5-axis*travel/ts)/f32(RES),lvl,0.0);
+          activePrevious=sampleFoamHistory((vec2f(id.xy)+.5-axis*travel/ts)/f32(RES),lvl);
         }
       }
     }
@@ -58,8 +57,8 @@ fn wrapIdx(`);
     code=replaceShader(code,'  var activePrevious=vec4f(0);var ridgeSupport=0.0;',`  // A rejected phase estimate retires material-carried history continuously.
   // It must not erase the fraction which has not yet become residual foam.
   var activePrevious=prev;var ridgeSupport=0.0;var phaseHistory=false;`);
-    code=replaceShader(code,'          activePrevious=textureSampleLevel(prevTex,sampPrev,',
-      '          phaseHistory=true;\n          activePrevious=textureSampleLevel(prevTex,sampPrev,');
+    code=replaceShader(code,'          activePrevious=sampleFoamHistory(',
+      '          phaseHistory=true;\n          activePrevious=sampleFoamHistory(');
     code=replaceShader(code,'hasHistory&&dt>0.0)*ridgeSupport;',
       'hasHistory&&phaseHistory&&dt>0.0)*ridgeSupport;');
     code=replaceShader(code,'let retired=prev.g*(1.0-survival*supportSurvival);',

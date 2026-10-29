@@ -1,6 +1,7 @@
 // FFT ocean simulation (Tessendorf): six cascades of 256^2.
 import { N, LOGN, CASCADES, NOISE_WGSL, PERIODIC_WGSL, Q } from './common.js';
 import { SHORT_WAVE_COUPLING } from './coupling.js';
+import { REGIONAL_AIR } from './environment.js';
 
 const SIM_STRUCT = /* wgsl */ `
 const N: u32 = ${N}u;
@@ -368,7 +369,7 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
 // World-space foam clipmaps (toroidally addressed, centred on the camera).
 // Foam is injected where the TOTAL surface Jacobian (all cascades) folds, then decays.
 export const FOAM_RES = Q.foam;
-export const FOAM_UPDATE = SHORT_WAVE_COUPLING + /* wgsl */ `
+export const FOAM_UPDATE = SHORT_WAVE_COUPLING + REGIONAL_AIR + /* wgsl */ `
 const RES: i32 = ${FOAM_RES};
 struct FoamU {
   snap: array<vec4i, 2>,     // per level: current camera texel (x, z), previous (x, z)
@@ -383,6 +384,7 @@ struct FoamU {
   seaFront: vec4f,
   seaFrontControl: vec4f,
   seaEnergy: vec4f,
+  airWind: vec4f,            // U10, front rotation, origin-anchored gust phase, enabled
 };
 @group(0) @binding(0) var<uniform> U: FoamU;
 @group(0) @binding(1) var prevTex: texture_2d_array<f32>;
@@ -390,10 +392,19 @@ struct FoamU {
 @group(0) @binding(3) var dispTex: texture_2d_array<f32>;
 @group(0) @binding(4) var derivTex: texture_2d_array<f32>;
 @group(0) @binding(5) var samp: sampler;
-@group(0) @binding(6) var sampPrev: sampler;
-@group(0) @binding(7) var lastDisp: texture_2d_array<f32>;
+@group(0) @binding(6) var lastDisp: texture_2d_array<f32>;
 
 fn wrapIdx(i: i32, lo: i32) -> i32 { return lo + (((i - lo) % RES) + RES) % RES; }
+
+fn sampleFoamHistory(uv:vec2f,layer:u32)->vec4f {
+  // Filtering rgba16float can round away slow windage before the residual
+  // channel compensates it. Interpolate decoded half values in f32 instead.
+  let size=vec2i(textureDimensions(prevTex));
+  let texel=uv*vec2f(size)-.5;let base=vec2i(floor(texel));let weight=fract(texel);
+  let p=(base%size+size)%size;let next=(p+vec2i(1))%size;
+  return mix(mix(textureLoad(prevTex,p,layer,0),textureLoad(prevTex,vec2i(next.x,p.y),layer,0),weight.x),
+    mix(textureLoad(prevTex,vec2i(p.x,next.y),layer,0),textureLoad(prevTex,next,layer,0),weight.x),weight.y);
+}
 
 @compute @workgroup_size(8, 8, 1)
 fn main(@builtin(global_invocation_id) id: vec3u) {
@@ -412,6 +423,7 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
   let amplitude=coupling.x;
   let amplitudeGradient=coupling.yz;
   var shortDisp=vec3f(0);
+  var surfaceOffset=vec2f(0);
   for (var c = 0u; c < ${CASCADES}u; c++) {
     let texel = U.cascL[c >> 2u][c & 3u] / ${N}.0;
     let lod = log2(max(ts / texel, 1.0));
@@ -420,6 +432,7 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
       let gain=select(1.0,amplitude,c>=3u);
       let d = textureSampleLevel(derivTex, samp, uv, c, lod)*gain;
       let a = textureSampleLevel(dispTex, samp, uv, c, lod)*gain;
+      surfaceOffset+=a.xz;
       let previous = textureSampleLevel(lastDisp, samp, uv, c, lod)*gain;
       slope += d.xy;
       orbital += (a.xz - previous.xz) / max(U.p0.z, 0.001);
@@ -436,12 +449,17 @@ fn main(@builtin(global_invocation_id) id: vec3u) {
   // Texture coordinates label material points. Orbital displacement is already
   // applied by the mesh; adding it here transported foam through the wave twice.
   let inverseDeformation=mat2x2f(1.0+jzz,-jzx,-jxz,1.0+jxx)*(1.0/max(J,0.3));
-  let velocity = inverseDeformation*U.drift.xy;
+  let localAir=regionalFieldWind((p+surfaceOffset)*.001,U.seaFront*.001,
+    vec4f(U.seaFrontControl.xy,U.airWind.w,0),U.roughnessWind.xy,U.airWind);
+  // Preserve the existing 3% windage closure and current. Only its forcing
+  // becomes local; crest-phase tracking below remains independent of drift.
+  let localDrift=U.drift.xy+.03*(localAir-U.roughnessWind.xy*U.airWind.x);
+  let velocity = inverseDeformation*localDrift;
   let source=vec2f(g)-velocity*U.p0.z/ts;
   // Require the complete bilinear footprint inside the previous clipmap window.
   if (all(source>=vec2f(plo)) && all(source<vec2f(plo+vec2i(RES-1)))) {
     let back = (vec2f(id.xy) + 0.5 - velocity * U.p0.z / ts) / f32(RES);
-    prev = textureSampleLevel(prevTex, sampPrev, back, lvl, 0.0);
+    prev = sampleFoamHistory(back,lvl);
   }
   let dt = U.p0.z;
   let eigen=1.0+0.5*(jxx+jzz-sqrt((jxx-jzz)*(jxx-jzz)+(jxz+jzx)*(jxz+jzx)));
