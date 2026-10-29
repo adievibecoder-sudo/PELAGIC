@@ -11,9 +11,12 @@ folder = Path(sys.argv[1])
 scene = sys.argv[2]
 count = int(sys.argv[3])
 verification = sys.argv[4] if len(sys.argv) > 4 else 'lossless-verification.json'
+fps = float(sys.argv[5]) if len(sys.argv) > 5 else 24
+if not 0 < fps <= 240:
+    raise ValueError('Capture frame rate must be in (0, 240]')
 ffmpeg = 'C:/Users/adity/AppData/Local/Microsoft/WinGet/Links/ffmpeg.exe'
 video = folder / (scene+'.webm')
-subprocess.run([ffmpeg, '-hide_banner', '-loglevel', 'error', '-n', '-framerate', '24',
+subprocess.run([ffmpeg, '-hide_banner', '-loglevel', 'error', '-n', '-framerate', str(fps),
     '-i', str(folder/(scene+'_%d.png')), '-frames:v', str(count), '-c:v', 'libvpx-vp9',
     '-lossless', '1', '-pix_fmt', 'gbrp', '-cpu-used', '4', '-row-mt', '1', '-threads', '4', str(video)], check=True)
 process = subprocess.Popen([ffmpeg, '-hide_banner', '-loglevel', 'error', '-i', str(video),
@@ -27,7 +30,7 @@ for i in range(count):
     hashes.append(hashlib.sha256(decoded).hexdigest())
 assert not process.stdout.read(1)
 assert process.wait() == 0
-report = dict(frames=count, fps=24, seconds=count/24, dimensions=[1920, 1080],
+report = dict(frames=count, fps=fps, seconds=count/fps, dimensions=[1920, 1080],
               codec='VP9 lossless gbrp', decodedRGBMatchesAllPNGFrames=True, rgbSHA256=hashes)
 with (folder/verification).open('x') as f:
     json.dump(report, f, indent=2)

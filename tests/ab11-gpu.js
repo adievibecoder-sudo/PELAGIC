@@ -37,34 +37,43 @@ export async function regionalParticleChecks(device){
   const state=createEnvironment({...DEFAULTS,frontEnabled:true,frontX:0,frontWidth:2,frontHeading:180,frontSpeed:0},30);
   const reports=[];
   try{
-    // The same physical drops straddle an origin boundary. No source is active;
-    // compare the production drag/position update against its analytic ODE step.
-    for(const [cameraX,originX,deltaX] of [[510,0,0],[514,1024,1024]]){
-      const f=new Float32Array(FRAME_FLOATS),data=new Float32Array(64*8),dt=Math.fround(1/60);
+    // Frozen wind has an independent closed-form trajectory at every rate.
+    // The regional one-step cases additionally exercise the production field.
+    const schedules=[{regional:true,rate:60,steps:1},
+      ...[120,60,24,20,15,10].map(rate=>({regional:false,rate,steps:rate})),
+      {regional:false,rate:0,steps:1}];
+    for(const {regional,rate,steps} of schedules)for(const [cameraX,originX,deltaX] of [[510,0,0],[514,1024,1024]]){
+      state.front.enabled=regional;
+      const f=new Float32Array(FRAME_FLOATS),data=new Float32Array(64*8),dt=Math.fround(rate?1/rate:0);
       environmentUniforms(state,{x:cameraX,z:0},f);roughnessUniforms(state,[originX,0],false,f);
       f.set([cameraX-originX,2,0,30],16);f[103]=dt;f.set([originX*.001,0,deltaX,0],124);
       f.set([128,1024],66);
-      for(let k=0;k<64;k++)data.set([440+k*2,20,0,1,1,-2,.5,.02],k*8);
+      for(let k=0;k<64;k++)data.set([440+k*2,20,0,4,1,-2,.5,.02],k*8);
       device.queue.writeBuffer(uniform,0,f);device.queue.writeBuffer(particles,0,data);
+      for(let step=1;step<steps;step++){
+        const e=device.createCommandEncoder(),p=e.beginComputePass();p.setPipeline(pipe);p.setBindGroup(0,bg);p.dispatchWorkgroups(1);p.end();device.queue.submit([e.finish()]);
+        if(step===1){f[126]=0;device.queue.writeBuffer(uniform,0,f);}
+      }
       const enc=device.createCommandEncoder(),pass=enc.beginComputePass();pass.setPipeline(pipe);pass.setBindGroup(0,bg);pass.dispatchWorkgroups(1);pass.end();
       enc.copyBufferToBuffer(particles,0,read,0,data.byteLength);device.queue.submit([enc.finish()]);
       await read.mapAsync(GPUMapMode.READ);const actual=new Float32Array(read.getMappedRange()).slice();read.unmap();
       let velocityError=0,positionError=0,lifetimeError=0;
       for(let k=0;k<64;k++){
-        const wind=sampleEnvironment(state,data[k*8],0).wind,drag=k%4===1?8:1.2,a=1-Math.exp(-dt*drag);
+        const time=dt*steps,wind=sampleEnvironment(state,data[k*8],0).wind,drag=k%4===1?8:1.2,a=-Math.expm1(-time*drag);
         const target=[wind[0]*.7,-9.81/drag,wind[1]*.7];
         for(let j=0;j<3;j++){
           const expected=data[k*8+4+j]+(target[j]-data[k*8+4+j])*a;
           velocityError=Math.max(velocityError,Math.abs(actual[k*8+4+j]-expected));
-          positionError=Math.max(positionError,Math.abs(actual[k*8+j]-(data[k*8+j]-(j===0?deltaX:0)+expected*dt)));
+          const displacement=target[j]*time+(data[k*8+4+j]-target[j])*a/drag;
+          positionError=Math.max(positionError,Math.abs(actual[k*8+j]-(data[k*8+j]-(j===0?deltaX:0)+displacement)));
         }
-        lifetimeError=Math.max(lifetimeError,Math.abs(actual[k*8+3]-(1-dt)));
+        lifetimeError=Math.max(lifetimeError,Math.abs(actual[k*8+3]-(4-dt*steps)));
       }
-      reports.push({cameraX,originX,velocityError,positionError,lifetimeError,
-        status:velocityError<2e-5&&positionError<5e-5&&lifetimeError<1e-6?'PASS':'FAIL'});
+      reports.push({cameraX,originX,regional,rate,steps,velocityError,positionError,lifetimeError,
+        status:velocityError<3e-5&&positionError<.004&&lifetimeError<3e-5?'PASS':'FAIL'});
     }
     return {status:reports.every(r=>r.status==='PASS')?'PASS':'FAIL',cases:reports,
-      scope:'128 existing rain, spray and spindrift trajectories through the production compute shader, local front wind, camera travel and 1024m rebase. Flat zero source fields; not visual or emission-rate acceptance.'};
+      scope:'1024 production rain/spray/spindrift trajectories: regional one-step, one-second constant-wind trajectories at 10/15/20/24/60/120Hz, paused rebase. Position bound .004m covers 120 sequential f32 additions near 500m. Flat zero source fields; not visual or emission-rate acceptance.'};
   }finally{resources.forEach(r=>r.destroy());}
 }
 

@@ -45,7 +45,7 @@ fn rnd(v:u32)->f32{return f32(pcgHash(v)>>8u)/16777216.0;}
 @compute @workgroup_size(64) fn main(@builtin(global_invocation_id) id:vec3u){
  let k=id.x;if(k>=${PARTICLE_COUNT}u){return;}
  let rain=k%4u==0u;let spindrift=k%4u==1u;
- var p=particles[k];let dt=min(F.backscatter.w,0.05);
+ var p=particles[k];let dt=clamp(F.backscatter.w,0.0,0.1);
  p.p.x-=F.worldOrigin.z;p.p.z-=F.worldOrigin.w;
  if(dt<=0.0){particles[k]=p;return;}
  p.p.w-=dt;
@@ -77,8 +77,13 @@ fn rnd(v:u32)->f32{return f32(pcgHash(v)>>8u)/16777216.0;}
    // Spindrift sprites are dilute droplet populations. Drag produces a small
    // terminal fall speed; ballistic froth retains much more inertia.
    let drag=select(1.2,8.0,spindrift);
-   p.v=vec4f(mix(p.v.xyz,air+vec3f(0,-9.81/drag,0),1.0-exp(-dt*drag)),p.v.w);
-   p.p=vec4f(p.p.xyz+p.v.xyz*dt,p.p.w);
+   let terminal=air+vec3f(0,-9.81/drag,0);
+   let decay=dt*drag;
+   let response=select(1.0-exp(-decay),decay*(1.0-.5*decay+decay*decay/6.0),decay<.001);
+   // Integrate position and velocity over the same wave step. Using the final
+   // velocity for the whole interval makes drift depend on presentation rate.
+   p.p=vec4f(p.p.xyz+terminal*dt+(p.v.xyz-terminal)*(response/drag),p.p.w);
+   p.v=vec4f(mix(p.v.xyz,terminal,response),p.v.w);
    var q=p.p.xz;var surface=vec3f(0);
    for(var iteration=0u;iteration<2u;iteration++){
      surface=vec3f(0);for(var c=0u;c<3u;c++){surface+=textureSampleLevel(disp,samp,cascadeUV(q,c,F.cascInvL[c>>2u][c&3u],F.waveOrigins),c,0.0).xyz;}

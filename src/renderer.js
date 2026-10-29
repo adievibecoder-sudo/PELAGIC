@@ -912,7 +912,7 @@ async function main() {
     f[90] = (33.1e-3 + 4.40e-3 * P.haze) * 1e-3;
     f[91] = 1.5e-5+P.rain*0.00035;
     f[92] = 1.1; f[93] = P.clouds; f[94] = 2.2; f[95] = time;
-    f[99]=waterH;f[103]=Math.min(0.05,nowDT);
+    f[99]=waterH;f[103]=nowDT;
     const astro=celestial(new Date(environment.utcEpoch+environment.clocks.astronomy*1000),P.latitude,P.longitude);
     f.set(astro.moon,104);f[107]=astro.phase;f.set(astro.sun,108);f[111]=0;
     if(P.astronomy) {
@@ -1154,7 +1154,7 @@ async function main() {
     // Camera-local rain cannot gate sources elsewhere in the particle domain.
     // Let existing populations expire after sources stop (longest life 4.5 s).
     const particleSources=P.spray>0||environment.weather.rain>0||environment.front.enabled||whitewaterParcels;
-    particleTimeRemaining=particleSources?4.5:Math.max(0,particleTimeRemaining-Math.min(dt,.05));
+    particleTimeRemaining=particleSources?4.5:Math.max(0,particleTimeRemaining-dt);
     const particlesActive=particleTimeRemaining>0;
     if(simTime-phaseEpoch>120) resetPhases(simTime);
     simTime = environment.clocks.wave;
