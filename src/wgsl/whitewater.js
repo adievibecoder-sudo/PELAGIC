@@ -36,7 +36,7 @@ export function whitewaterShader(code,query){
     code=replaceShader(code,`if(k>=${PARTICLE_COUNT}u)`,`if(k>=${PARTICLE_COUNT+WHITEWATER_COUNT}u)`);
     code=replaceShader(code,'@compute @workgroup_size(64)',/* wgsl */`
 fn frothParcel(k:u32){
-  var p=particles[k];let dt=min(F.backscatter.w,0.05);
+  var p=particles[k];let dt=F.backscatter.w; // Already bounded on the wave clock.
   // v.xz stores the material anchor, v.y the event amplitude, v.w the radius.
   p.v.x-=F.worldOrigin.z;p.v.z-=F.worldOrigin.w;
   p.p.x-=F.worldOrigin.z;p.p.z-=F.worldOrigin.w;

@@ -21,6 +21,18 @@ test('sheet option preserves default and AB7 generated source',()=>{
   assert.throws(()=>crestSheetShader(PARTICLE_UPDATE,new URLSearchParams('abCrestShape=sheet')),/require phase/);
 });
 
+test('parcel lifetime, phase search and sheet age consume the supplied wave step',()=>{
+  for(const suffix of ['', '&abCrest=phase', '&abCrest=phase&abCrestShape=sheet']){
+    const q=new URLSearchParams('abWhitewater=parcels&maBreaking=gravity'+suffix);
+    const generated=crestSheetShader(crestWhitewaterShader(whitewaterShader(PARTICLE_UPDATE,q),q),q);
+    const parcel=generated.slice(generated.indexOf('fn frothParcel('),generated.indexOf('@compute @workgroup_size(64)'));
+    assert.match(parcel,/let dt=F\.backscatter\.w;/);
+    assert.match(parcel,/if\(dt<=0\.0\)\{particles\[k\]=p;return;\}[\s\S]*?p\.p\.w-=dt;/);
+    if(q.has('abCrest'))assert.match(parcel,/projectGravityCrest\(q,select\(\.08\+20\.0\*dt/);
+    if(q.has('abCrestShape'))assert.match(generated,/let age=select\([^;]+\)\+F\.backscatter\.w;/);
+  }
+});
+
 test('surface fronts compose with handoff optics and preserve legacy source',()=>{
   assert.equal(crestSurfaceShader(OCEAN,new URLSearchParams()),OCEAN);
   const q=new URLSearchParams('maBreaking=gravity&abBreaking=handoff&abFoam=transport&abWhitewater=parcels&abCrest=phase&abCrestShape=sheet&abCrestEvent=shared&abCrestSurface=water&abCrestEdge=fade&abCrestLife=supported');

@@ -12,7 +12,7 @@ export function crestWhitewaterShader(code,query){
 @group(0) @binding(9) var<storage,read_write> crestFrames:array<vec4f>;
 fn frothParcel(k:u32){
   let index=k-${PARTICLE_COUNT}u;
-  var p=particles[k];let dt=min(F.backscatter.w,.05);
+  var p=particles[k];let dt=F.backscatter.w; // Current and previous FFT frames span this interval.
   p.v.x-=F.worldOrigin.z;p.v.z-=F.worldOrigin.w;
   p.p.x-=F.worldOrigin.z;p.p.z-=F.worldOrigin.w;
   if(dt<=0.0){particles[k]=p;return;}

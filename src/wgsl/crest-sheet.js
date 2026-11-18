@@ -37,7 +37,7 @@ fn sheetNode(index:u32,q:vec2f,axis:vec2f,radius:f32,activity:f32,age:f32){
 }
 fn buildCrestSheet(index:u32,crest:CrestSupport,oldQ:vec2f,radius:f32,activity:f32,spawn:bool){
   let base=index*9u;
-  let age=select(crestNodes[base+4u].front.w,0.0,spawn)+min(F.backscatter.w,.05);
+  let age=select(crestNodes[base+4u].front.w,0.0,spawn)+F.backscatter.w;
   let birth=smoothstep(0.0,.12,age);
   var axis=crest.axis;
   // Direction from actual phase continuation; wind is only the birth fallback.
