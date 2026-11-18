@@ -5,6 +5,7 @@ import {phase1LightReadback} from '../tests/phase1-light-readback.js';
 // FFT ocean (6 cascades) + CDLOD surface mesh + physically based sky + HDR post.
 // Large per-frame arrays are reused; diagnostics and browser API descriptors still allocate.
 import { N, CASCADES, SKY_W, SKY_H, ENV_SIZE, ENV_MIPS, CONFIG, Q } from './wgsl/common.js';
+import {windDirectionShader} from './wgsl/wind-direction.js';
 import { sanitize, preset, scenePreset, PRESETS, QUALITY, toURL } from './settings.js';
 import {createEnvironment,commandEnvironment,previewLighting,advanceEnvironment,sampleEnvironment,environmentUniforms,airWindUniforms,environmentSnapshot,environmentControls,restoreEnvironment,WEATHER_KEYS,SEA_KEYS} from './environment.js';
 import { cosSpreadNorm, PATCHES, omega } from './numerics.js';
@@ -22,7 +23,7 @@ import { spectralReadback } from '../tests/spectral-readback.js';
 import { foamReadback } from '../tests/foam-readback.js';
 import { hdrReadback } from '../tests/hdr-readback.js';
 import { slopeMipReadback } from '../tests/slope-readback.js';
-import { discreteSpectrumLedger } from './ocean-contracts.js';
+import { cascadeBands, discreteSpectrumLedger } from './ocean-contracts.js';
 import { equalizeFoamPattern } from './foam-pattern.js';
 import { SIM_INIT, SIM_EVOLVE, FFT_ROWS, FFT_COLS, SIM_MIPS, FOAM_TEX, RGBA8_MIPS, FOAM_UPDATE, ARRAY16_MIPS, FOAM_RES } from './wgsl/sim.js';
 import { TRANS_LUT, MS_LUT, SKYVIEW_LUT, ENV_CUBE, CUBE_MIPS, SUN_VIS, CLOUD_SCREEN, CLOUD_SHADOW } from './wgsl/sky.js';
@@ -111,6 +112,7 @@ export const P = {...CONFIG};
 let environment=createEnvironment(P,runtime.time);
 if(qs.has('environment'))environment=restoreEnvironment(JSON.parse(qs.get('environment')),P);
 const CASC_L = PATCHES;
+const simBands = cascadeBands(N,qs); // Static layout, not per-frame work.
 
 function fail(msg) {
   const el = document.getElementById('err');
@@ -182,6 +184,7 @@ async function main() {
   ctx.configure({ device, format: swapFormat, alphaMode: 'opaque', usage: TU.RENDER_ATTACHMENT | TU.COPY_SRC });
 
   async function shader(code, label) {
+    code=windDirectionShader(code,qs);
     code=slopePrecisionShader(code,preciseSlopes);
     code=stressRoughnessShader(code,qs);
     code=cloudAppearanceShader(cloudLightPathShader(waveDiagnosticShader(cloudConvectionShader(cloudBankShader(phase0Shader(code,qs),qs),qs),qs),qs),qs);
@@ -353,7 +356,7 @@ async function main() {
 
   // World-space foam clipmaps (ping-pong)
   const FOAM_LEVEL_SIZE = [128.0, 1024.0];
-  const bubblePlumes=qs.get('abBubbles')==='plumes';
+  const bubblePlumes=['plumes','volume'].includes(qs.get('abBubbles'));
   if(bubblePlumes&&qs.get('abBreaking')!=='phase-resident')throw Error('Bubble plumes require phase-resident breaking');
   const foamLayers=bubblePlumes?4:2;
   const FOAMW_MIPS = Math.log2(FOAM_RES) + 1;
@@ -709,12 +712,10 @@ async function main() {
 
   function writeSimStatic() {
     for (let c = 0; c < C; c++) {
-      const L = CASC_L[c];
-      simF[c] = L;
-      simF[8 + c] = c === 0 ? Math.PI / L : (2 * Math.PI * 6) / L;            // kMin
-      simF[16 + c] = c < C - 1 ? (2 * Math.PI * 6) / CASC_L[c + 1] : (Math.PI * N / L) * 0.98; // kMax
+      simF[c] = simBands[c].length;
+      simF[8 + c] = simBands[c].min;
+      simF[16 + c] = simBands[c].max;
     }
-    for (let c = 1; c < C; c++) simF[8 + c] = simF[16 + c - 1];
     simF[40] = P.windSpeed; simF[41] = P.windDir * D2R; simF[42] = P.fetchKm * 1000; simF[43] = 3.3;
     const ks = 2 * Math.PI / P.swellLength;
     simF[44] = P.swellHs; simF[45] = P.swellDir * D2R; simF[46] = Math.sqrt(9.81 * ks); simF[47] = P.swellSpread;
@@ -1451,7 +1452,7 @@ async function main() {
     if(qs.get('validate')==='1')report.foam=await foamReadback(device,foamW[foamCur],{bubbleStorage:bubblePlumes?1024:0});
     if(qs.get('validate')==='1'){report.hdr=await hdrReadback(device,taa?.output||hdrTex,frameF[60]);report.light=await phase1LightReadback(device,shadowTex,irradianceTex,envTex,qs.get('abRadiance')==='scaled'?LIGHT_STORAGE_SCALE:1);}
     if(qs.get('contracts')==='1'){
-      report.discreteSpectrum=discreteSpectrumLedger(P);
+      report.discreteSpectrum=discreteSpectrumLedger(P,N,qs);
       report.slopeMipBudget=await slopeMipReadback(device,derivTex,momTex);
     }
     await postEvidence('/__evidence?stage='+stage+'&name='+encodeURIComponent(nm.replace('.png','.json')),JSON.stringify(report,null,2));

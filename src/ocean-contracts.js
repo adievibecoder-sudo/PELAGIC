@@ -1,11 +1,17 @@
-import {PATCHES, G, omega, groupVelocity, jonswap, cosSpreadNorm, logIntegral} from './numerics.js';
-import {windParameters, windSpectrumK, swellAlpha, swellWindow} from './sea-spectrum.js';
+import {wavePatchLengths, G, omega, groupVelocity, jonswap, cosSpreadNorm, logIntegral} from './numerics.js';
+import {windParameters, windSpectrumK, swellAlpha, swellWindow, hybridWindDirection} from './sea-spectrum.js';
 
-export function cascadeBands(n=256) {
-  return PATCHES.map((length,c)=>({
+const currentQuery=()=>new URLSearchParams(globalThis.location?.search);
+
+export function cascadeBands(n=256,query=currentQuery()) {
+  const patches=wavePatchLengths(query);
+  // A wider long-wave domain needs a longer short edge. The next cascade
+  // carries that band at its existing finer texel spacing, without energy gain.
+  const firstSplit=query.get('abWaves')==='groups'?3:6;
+  return patches.map((length,c)=>({
     length,
-    min:Math.fround(c===0?Math.PI/length:2*Math.PI*6/length),
-    max:Math.fround(c<PATCHES.length-1?2*Math.PI*6/PATCHES[c+1]:Math.PI*n/length*.98),
+    min:Math.fround(c===0?Math.PI/length:2*Math.PI*(c===1?firstSplit:6)/length),
+    max:Math.fround(c<patches.length-1?2*Math.PI*(c===0?firstSplit:6)/patches[c+1]:Math.PI*n/length*.98),
   }));
 }
 
@@ -18,7 +24,8 @@ export function directionalWind(theta,w,wp) {
 }
 
 // E(k,theta) dk dtheta is elevation variance; Cartesian density divides by k.
-export function spectrumDensity(settings) {
+export function spectrumDensity(settings,query=currentQuery()) {
+  const equilibrium=query.get('abDirection')==='equilibrium';
   const wind=windParameters(settings.windSpeed,settings.fetchKm*1000);
   const wp=Math.sqrt(G*2*Math.PI/settings.swellLength);
   const alpha=swellAlpha(settings.swellHs,wp),norm=cosSpreadNorm(settings.swellSpread);
@@ -27,16 +34,19 @@ export function spectrumDensity(settings) {
     const k=Math.hypot(kx,kz);
     if(k===0)return 0;
     const theta=Math.atan2(kz,kx),w=omega(k);
-    const windK=windSpectrumK(k,settings.windSpeed,settings.fetchKm*1000)*directionalWind(theta-windAngle,w,wind.wp);
+    const direction=equilibrium&&k>1?
+      hybridWindDirection(k,theta-windAngle,settings.windSpeed,settings.fetchKm*1000):
+      directionalWind(theta-windAngle,w,wind.wp);
+    const windK=windSpectrumK(k,settings.windSpeed,settings.fetchKm*1000)*direction;
     const swellK=jonswap(w,wp,alpha,6)*swellWindow(w/wp)*groupVelocity(k)*
       norm*Math.abs(Math.cos((theta-swellAngle)*.5))**(2*settings.swellSpread)*Math.exp(-((k*.0012)**2));
     return (windK+swellK)/k;
   };
 }
 
-export function discreteSpectrumLedger(settings,n=256) {
-  const density=spectrumDensity(settings);
-  const cascades=cascadeBands(n).map(band=>{
+export function discreteSpectrumLedger(settings,n=256,query=currentQuery()) {
+  const density=spectrumDensity(settings,query);
+  const cascades=cascadeBands(n,query).map(band=>{
     const dk=2*Math.PI/band.length;
     let m0=0,xx=0,zz=0,xz=0,phaseMeanVariance=0,occupied=0;
     for(let y=0;y<n;y++)for(let x=0;x<n;x++){

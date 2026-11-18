@@ -13,6 +13,26 @@ export function windParameters(U,fetch) {
   const friction=.41*U/Math.log(10/Math.max(z0,1e-8));
   return {wp,kp,cp,age,friction,alpha:.076*(U*U/(fetch*G))**.22};
 }
+// Elfouhaily et al. (1997), centrosymmetric spreading. A separate travelling
+// density retains the pre-existing ratio between opposing propagation directions.
+export function equilibriumDirection(k,theta,U,fetch){
+  const p=windParameters(U,fetch),c=omega(k)/k,km=Math.sqrt(G/CAPILLARY),cm=omega(km)/km;
+  const delta=Math.tanh(Math.log(2)/4+4*(c/p.cp)**2.5+.13*p.friction/cm*(cm/c)**2.5);
+  return (1+delta*Math.cos(2*theta))/(2*Math.PI);
+}
+export function hybridWindDirection(k,theta,U,fetch){
+  const {wp}=windParameters(U,fetch),ratio=omega(k)/wp;
+  const beta=ratio<.95?2.61*ratio**1.3:ratio<1.6?2.28*ratio**-1.3:
+    10**(-.4+.8393*Math.exp(-.567*Math.log(ratio*ratio)));
+  const density=a=>{
+    const wrapped=a-2*Math.PI*Math.floor((a+Math.PI)/(2*Math.PI));
+    return beta/(2*Math.tanh(beta*Math.PI))/Math.cosh(beta*wrapped)**2;
+  };
+  const forward=density(theta),backward=density(theta+Math.PI);
+  const travelling=2*equilibriumDirection(k,theta,U,fetch)*forward/(forward+backward);
+  const blend=smooth(0,Math.log(8),Math.log(k));
+  return forward*(1-blend)+travelling*blend;
+}
 // Hybrid: fetch-limited JONSWAP at long scales, Elfouhaily equilibrium branches
 // at short scales. A log-k crossfade (1..8 rad/m) is explicit, not a measured law.
 export function windSpectrumK(k,U,fetch) {

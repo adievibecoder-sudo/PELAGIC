@@ -1,5 +1,64 @@
 import {replaceShader} from './shader-patch.js';
 
+function waterBoundaryShader(code){
+  code=replaceShader(code,'fn reflectedEnvironment(',/* wgsl */`
+fn boundaryNormal(point:vec2f,layer:u32)->vec3f {
+  let stepSize=waveMapSpan(layer)/256.0;
+  let dx=atlasHeight(gravityHeight,sampC,point+vec2f(stepSize,0),F.camPos.xz,layer).x-
+    atlasHeight(gravityHeight,sampC,point-vec2f(stepSize,0),F.camPos.xz,layer).x;
+  let dz=atlasHeight(gravityHeight,sampC,point+vec2f(0,stepSize),F.camPos.xz,layer).x-
+    atlasHeight(gravityHeight,sampC,point-vec2f(0,stepSize),F.camPos.xz,layer).x;
+  return normalize(vec3f(-dx,2.0*stepSize,-dz));
+}
+// First water-to-air exit. Missing atlas support keeps the deep-water limit.
+fn waterBoundaryExit(point:vec3f,ray:vec3f,layer:u32)->vec4f {
+  var previous=0.0;var distance=.25;var submerged=false;
+  for(var step=0u;step<16u;step++){
+    let q=point+ray*distance;
+    let surface=atlasHeight(gravityHeight,sampC,q.xz,F.camPos.xz,layer);
+    if(surface.y<=0.0){return vec4f(0);}
+    let difference=q.y-surface.x;
+    if(difference<-.025){submerged=true;}
+    if(submerged&&difference>0.0){
+      var low=previous;var high=distance;
+      for(var refinement=0u;refinement<6u;refinement++){
+        let t=.5*(low+high);let p=point+ray*t;
+        if(p.y>atlasHeight(gravityHeight,sampC,p.xz,F.camPos.xz,layer).x){high=t;}else{low=t;}
+      }
+      let path=.5*(low+high);
+      return vec4f(point+ray*path,path);
+    }
+    previous=distance;distance*=1.5;
+  }
+  return vec4f(0);
+}
+fn reflectedEnvironment(`);
+  code=replaceShader(code,'  body += exp(-(aWater + bb*12.0)*crestPath) * sunE * k1 * 0.035;',/* wgsl */`
+  let layer=select(0u,1u,max(abs(displacedXZ.x-F.camPos.x),abs(displacedXZ.y-F.camPos.z))>48.0);
+  let boundary=atlasHeight(gravityHeight,sampC,displacedXZ,F.camPos.xz,layer);
+  let transportNormal=boundaryNormal(displacedXZ,layer);
+  let viewRay=refract(-V,transportNormal,1.0/1.333);
+  var transmitted=vec3f(0);var beam=vec3f(0);var boundarySupport=0.0;
+  if(boundary.y>0.0&&dot(transportNormal,V)>0.0){
+    let exit=waterBoundaryExit(vec3f(displacedXZ.x,boundary.x,displacedXZ.y),viewRay,layer);
+    if(exit.w>0.0){
+      let normal=boundaryNormal(exit.xz,layer);
+      let outward=refract(viewRay,-normal,1.333);
+      if(dot(outward,outward)>.5){
+        // Reciprocity: the two radiance eta-squared factors cancel across
+        // the air/water/air path. The near-interface exit is applied by Fr.
+        let extinction=aWater+waterMolecularScatter(bb)+waterParticleScatter(bb);
+        beam=exp(-extinction*exit.w);
+        transmitted=textureSampleLevel(envCube,sampC,outward,envLod).rgb*(1.0-fresnelWater(dot(outward,normal)));
+        boundarySupport=1.0;
+      }
+    }
+  }
+  body=body*(1.0-beam)+transmitted*beam;`);
+  return replaceShader(code,'    if (F.post.w > 11.5)',
+    '    if (F.post.w > 12.5) { return vec4f(vec3f(boundarySupport,beam.g,beam.b)/F.windP[1].x,1); }\n    if (F.post.w > 11.5)');
+}
+
 // Semi-infinite two-flux closure with transport (reduced) scattering. This is
 // a bounded three-band approximation, not a spectral ocean-colour inversion.
 export const WATER_BODY = /* wgsl */`
@@ -74,6 +133,7 @@ fn waterDirectionalBody(light:vec3f,irradiance:vec3f,normal:vec3f,outgoing:vec3f
 `;
 
 export function waterMaterialShader(code,query){
+  if(query.get('abWater')==='boundary'&&code.includes('fn reflectedEnvironment('))return waterBoundaryShader(code);
   const directional=query.get('abWater')==='transport';
   if(!['body','layered','volume','slab','transport'].includes(query.get('abWater'))||!code.includes('fn reflectedEnvironment('))return code;
   code=replaceShader(code,'fn reflectedEnvironment(',WATER_BODY+'fn reflectedEnvironment(');

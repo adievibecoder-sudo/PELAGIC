@@ -1,18 +1,16 @@
 // CPU quadrature/reconstruction diagnostic; no observational acceptance claim.
 import fs from 'node:fs';
 import path from 'node:path';
-import {PATCHES} from '../src/numerics.js';
-import {spectrumDensity,cascadeBands,discreteSpectrumLedger} from '../src/ocean-contracts.js';
+import {spectrumDensity,discreteSpectrumLedger} from '../src/ocean-contracts.js';
 import {spectrumLedger} from '../src/sea-spectrum.js';
 
 const [input,output]=process.argv.slice(2);
 if(!input||!output)throw Error('Usage: node tests/long-grid-study.mjs <capture.json> <new-output.json>');
-const settings=JSON.parse(fs.readFileSync(input)).settings,density=spectrumDensity(settings),rows=[];
-const original=PATCHES[0];
-try{
-  for(const length of [1103,2207,4093]){
-    PATCHES[0]=length;
-    const ledger=discreteSpectrumLedger(settings),band=cascadeBands()[0],dk=2*Math.PI/length,dx=length/256;
+const settings=JSON.parse(fs.readFileSync(input)).settings,rows=[];
+for(const length of [1103,2207,4093]){
+    const query=new URLSearchParams({maLongGrid:String(length)});
+    const density=spectrumDensity(settings,query),ledger=discreteSpectrumLedger(settings,256,query);
+    const band=ledger.cascades[0],dk=2*Math.PI/band.length,dx=band.length/256;
     let height=0,filteredHeight=0,slope=0,filteredSlope=0,energy=0,squares=0,correlation=0;
     const pairs=[];
     for(let y=-128;y<128;y++)for(let x=-128;x<128;x++){
@@ -30,8 +28,7 @@ try{
     rows.push({length,texel:dx,expectedHs:ledger.expectedHs,slopeTensor:ledger.linearSlopeCovariance,
       effectivePairs:energy*energy/squares,pairs50,correlationAt1103:correlation/energy,
       baseLevelReconstruction:{height,filteredHeight,heightRatio:filteredHeight/height,slope,filteredSlope,slopeRatio:filteredSlope/slope}});
-  }
-}finally{PATCHES[0]=original;}
+}
 fs.mkdirSync(path.dirname(output),{recursive:true});
 fs.writeFileSync(output,JSON.stringify({input,settings,continuous:spectrumLedger(settings),rows,
   scope:'Expected Gaussian spectral energy and uniform-cell bilinear reconstruction. Excludes vertex LOD, choppy map, pixel filtering and temporal ensemble uncertainty.'},null,2)+'\n',{flag:'wx'});

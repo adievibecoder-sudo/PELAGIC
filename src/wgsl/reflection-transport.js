@@ -1,8 +1,49 @@
 import {replaceShader} from './shader-patch.js';
 
+// Preserve the atlas coverage estimate, but shade at the first bracketed
+// surface crossing rather than at an arbitrarily submerged march sample.
+export function reflectionIntersectionShader(code){
+  const start=code.indexOf('fn gravityReflectionHit(');
+  if(start<0)return code;
+  const end=code.indexOf('\n}',start)+2;
+  let body=code.slice(start,end);
+  body=replaceShader(body,'  var result=vec4f(0);',`  var result=vec4f(0);
+  var previousDistance=0.0;var bracket=vec2f(0);var crossed=false;`);
+  body=replaceShader(body,'    let hit=smoothstep(-width,width,difference);',`    if(!crossed && difference>=0.0){
+      bracket=vec2f(previousDistance,distance);crossed=true;
+    }
+    let hit=smoothstep(-width,width,difference);`);
+  body=replaceShader(body,'    distance*=1.35;','    previousDistance=distance;\n    distance*=1.35;');
+  body=replaceShader(body,'  return result;',`  if(crossed){
+    for(var refinement=0u;refinement<6u;refinement++){
+      let middle=.5*(bracket.x+bracket.y);
+      let h=atlasHeight(heights,linearClamp,point.xz+direction*middle,camera,layer);
+      if(h.x>=originHeight+middle*tangent){bracket.y=middle;}else{bracket.x=middle;}
+    }
+    let distance=.5*(bracket.x+bracket.y);
+    result=vec4f(point.xz+direction*distance,distance,result.w);
+  }
+  return result;`);
+  return code.slice(0,start)+body+code.slice(end);
+}
+
 // Integrate the slope distribution once. Cubemap mips cover a quadrature cell,
 // while the quadrature covers the remaining covariance; neither changes the FFT.
 export function reflectionTransportShader(code,query){
+  if(query.get('abReflection')==='intersection')return reflectionIntersectionShader(code);
+  if(query.get('abReflection')==='energy'&&code.includes('fn reflectedEnvironment(')){
+    code=replaceShader(code,'  var reflected=vec3f(0);var fresnelSum=0.0;var weights=0.0;',
+      '  var reflected=vec3f(0);var fresnelSum=0.0;var escapedFresnel=0.0;var weights=0.0;');
+    code=replaceShader(code,'    fresnelSum+=f*w;weights+=w;',
+      '    fresnelSum+=f*w;escapedFresnel+=f*w*visible;weights+=w;');
+    code=replaceShader(code,'    fresnelSum=f;weights=1.0;',
+      '    fresnelSum=f;escapedFresnel=f;weights=1.0;');
+    code=replaceShader(code,'  let Fr=clamp(fresnelSum/max(weights,1e-6),0.0,1.0);',`  let Fr=clamp(fresnelSum/max(weights,1e-6),0.0,1.0);
+  // Bounded cavity closure: blocked first-bounce reflection enters the water
+  // budget. Secondary reflected escape is omitted; the primary lobe is intact.
+  let bodyTransmission=1.0-clamp(escapedFresnel/max(weights,1e-6),0.0,1.0);`);
+    return replaceShader(code,'body * (1.0 - Fr)','body * bodyTransmission',2);
+  }
   if(query.get('abReflection')!=='partition'||!code.includes('fn reflectedEnvironment('))return code;
   code=replaceShader(code,'  let sky=textureSampleLevel(envCube,sampC,ray,lod).rgb;',/* wgsl */`
   var sky=textureSampleLevel(envCube,sampC,ray,lod).rgb;

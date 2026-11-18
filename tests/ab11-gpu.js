@@ -3,7 +3,7 @@ import {CLOUD_VOLUME} from '../src/wgsl/clouds.js';
 import {cloudWorkShader} from '../src/wgsl/cloud-work.js';
 import {cloudOrganizationShader} from '../src/wgsl/cloud-organization.js';
 import {REGIONAL_SEA} from '../src/wgsl/regional-sea.js';
-import {BUBBLE_TRANSPORT} from '../src/wgsl/bubble-plumes.js';
+import {BUBBLE_TRANSPORT,BUBBLE_VOLUME} from '../src/wgsl/bubble-plumes.js';
 import {bubblePlumeShader} from '../src/wgsl/bubble-plumes.js';
 import {breakingEventsShader} from '../src/wgsl/breaking-events.js';
 import {breakingPhaseShader} from '../src/wgsl/breaking-phase.js';
@@ -187,6 +187,43 @@ async function compute(device,code,count){
   }finally{result.destroy();read.destroy();}
 }
 const output='@group(0) @binding(0) var<storage,read_write> result:array<vec4f>;';
+
+export async function bubbleVolumeChecks(device){
+  const count=64;
+  const values=await compute(device,BUBBLE_VOLUME+output+/* wgsl */`
+@compute @workgroup_size(64) fn main(@builtin(global_invocation_id) id:vec3u){
+  let k=id.x;let depth=mix(.03,2.5,f32(k%16u)/15.0);
+  let gas=select(.00001*pow(2.0,f32(k%12u)),0.0,k%8u==0u);
+  let mu=mix(.66,1.0,f32(k/16u)/3.0);
+  var centroid=0.0;
+  for(var i=0u;i<256u;i++){
+    let a=2.0*depth*f32(i)/256.0;let b=2.0*depth*f32(i+1u)/256.0;
+    centroid+=.5*(a+b)*(bubbleColumnFraction(b,depth)-bubbleColumnFraction(a,depth));
+  }
+  var sum=0.0;var through=1.0;var source=0.0;var bounded=0.0;
+  for(var i=0u;i<12u;i++){
+    let a=5.0*pow(f32(i)/12.0,2.0);let b=5.0*pow(f32(i+1u)/12.0,2.0);
+    let integral=gas*(bubbleColumnFraction(b,depth)-bubbleColumnFraction(a,depth))/mu;
+    let tau=225.0*integral;sum+=integral;
+    let weight=bubbleSegmentWeight(vec3f(0),tau).x;
+    source+=through*weight;through*=exp(-tau);
+    let absorbed=bubbleSegmentWeight(vec3f(.3,.05,.01)*(b-a)/mu,tau);
+    bounded=max(bounded,max(max(absorbed.r,absorbed.g),absorbed.b));
+  }
+  result[k]=vec4f(sum,centroid,source,bounded);
+}`,count);
+  let massError=0,depthError=0,radianceError=0,invalid=0,emptyError=0;
+  for(let k=0;k<count;k++){
+    const depth=.03+(2.5-.03)*(k%16)/15,gas=k%8===0?0:.00001*2**(k%12),mu=.66+.34*Math.floor(k/16)/3;
+    const a=values.slice(k*4,k*4+4);
+    massError=Math.max(massError,Math.abs(a[0]-gas/mu));depthError=Math.max(depthError,Math.abs(a[1]-depth));
+    radianceError=Math.max(radianceError,Math.abs(a[2]+Math.expm1(-225*gas/mu)));
+    invalid+=a.some(x=>!Number.isFinite(x))||a[2]<0||a[2]>1.000001||a[3]<0||a[3]>1;
+    if(gas===0)emptyError=Math.max(emptyError,Math.abs(a[2]));
+  }
+  return {status:massError<1e-8&&depthError<3e-6&&radianceError<1e-6&&!invalid&&emptyError===0?'PASS':'FAIL',count,massError,depthError,radianceError,invalid,emptyError,
+    scope:'Production vertical column/centroid and homogeneous ray integral versus analytic mass and Beer transmission, 0.03-2.5m depth, normal/oblique rays, empty and absorbing controls. Does not establish heterogeneous-ray convergence or visual depth.'};
+}
 
 export async function cloudOrganizationChecks(device,mode='regional'){
   const query=new URLSearchParams({abClouds:mode});

@@ -2,12 +2,14 @@
 // names, diagnostics and benchmark controls must never be replayed by a link.
 const OPTIONS=Object.freeze({
   abDefaults:['legacy'],
-  aa:['taa','msaa'], abWater:['body','layered','volume','slab','transport','angular','off'], abDisplay:['linear','luminance','off'],
-  abReflection:['partition','visible'],
+  aa:['taa','msaa'], abWater:['body','layered','volume','slab','transport','angular','boundary','off'], abDisplay:['linear','luminance','off'],
+  abReflection:['partition','visible','intersection','energy'],
   abRadiance:['scaled','legacy'],
   abLightCache:['responsive','legacy'],
-  abSea:['regional','off'], abBubbles:['plumes','off'], abClouds:['regional','condensate','profile','legacy'],
+  abSea:['regional','off'], abBubbles:['plumes','volume','off'], abClouds:['regional','condensate','profile','legacy'],
   abWind:['legacy','regional','particles'],
+  abDirection:['equilibrium','legacy'],
+  abWaves:['groups','legacy'],
   abEnvironment:['coupled','marine','marine-diffuse','marine-sunset','off'], maBreaking:['gravity','events','onset','fold','crest'],
   abBreaking:['handoff','population','phase-field','phase-resident'], abFoam:['transport','relief','skin','volume'], abFoamPattern:['bubbles'],
   abRain:['velocity'], abWhitewater:['parcels'], abCrest:['phase'],

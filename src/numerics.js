@@ -1,7 +1,7 @@
 export const G = 9.81, CAPILLARY = 7.4e-5;
 export function wavePatchLengths(query=new URLSearchParams()) {
   const length=query.get('maLongGrid');
-  return [length==='2207'?2207:length==='4093'?4093:1103,211.3,39.7,7.43,1.393,0.2617];
+  return [query.get('abWaves')==='groups'?2207:length==='2207'?2207:length==='4093'?4093:1103,211.3,39.7,7.43,1.393,0.2617];
 }
 export const PATCHES = wavePatchLengths(new URLSearchParams(typeof location==='undefined'?'':location.search));
 export const omega = k => Math.sqrt(G*k+CAPILLARY*k*k*k);

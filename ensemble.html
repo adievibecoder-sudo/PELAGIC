@@ -1,4 +1,17 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><title>Pelagic spectrum ensemble</title><style>body{background:#101b20;color:#e6ede7;font:15px/1.6 Consolas,monospace;padding:40px}pre{white-space:pre-wrap}</style><h1>Native WebGPU spectrum ensemble</h1><pre id="results">Preparing...</pre><script type="module">
-import {verifyEnsemble} from './tests/ensemble.js';const out=document.querySelector('#results');
-try{const adapter=await navigator.gpu.requestAdapter({powerPreference:'high-performance'});const device=await adapter.requestDevice();const errors=[];device.onuncapturederror=e=>errors.push(e.error.message);const result=await verifyEnsemble(device,s=>out.textContent=s);const report={adapter:{vendor:adapter.info.vendor,architecture:adapter.info.architecture},...result,errors};out.textContent=JSON.stringify(report,null,2);await fetch('/__evidence?stage=v03-local&name=gpu-ensemble.json',{method:'POST',body:out.textContent});document.title='ENSEMBLE '+report.status;device.destroy();}catch(e){out.textContent=e.stack;document.title='ENSEMBLE FAIL';}
+import {verifyEnsemble} from './tests/ensemble.js';
+const out=document.querySelector('#results'),query=new URLSearchParams(location.search);
+let device;
+try{
+ const adapter=await navigator.gpu.requestAdapter({powerPreference:'high-performance'});
+ if(!adapter||adapter.isFallbackAdapter||/swiftshader|llvmpipe|software/i.test(JSON.stringify([adapter.info.vendor,adapter.info.architecture,adapter.info.description])))throw Error('Native hardware required');
+ device=await adapter.requestDevice();const errors=[];device.onuncapturederror=e=>errors.push(e.error.message);
+ const result=await verifyEnsemble(device,s=>out.textContent=s,query);
+ const report={adapter:{vendor:adapter.info.vendor,architecture:adapter.info.architecture},...result,errors};
+ if(errors.length)report.status='FAIL';
+ out.textContent=JSON.stringify(report,null,2);document.title='ENSEMBLE '+report.status;
+ const stage=query.get('stage')||'v03-local';
+ const saved=await fetch('/__evidence?stage='+encodeURIComponent(stage)+'&name=gpu-ensemble.json',{method:'POST',body:out.textContent});
+ if(!saved.ok){out.textContent+='\nEvidence not saved: '+saved.status+' (use a new stage for each run).';document.title+=' / UNSAVED';}
+}catch(e){out.textContent=e.stack;document.title='ENSEMBLE FAIL';}finally{device?.destroy();}
 </script></html>

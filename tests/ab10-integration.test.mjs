@@ -101,7 +101,8 @@ test('phase transport composes with population history; empty/default paths rema
   const history=breakingPhaseShader(breakingEventsShader(FOAM_UPDATE,q),q);
   assert.equal((history.match(/@compute/g)||[]).length,1);
   assert.match(history,/activePrevious.b/);
-  assert.match(history,/let velocity = inverseDeformation\*U.drift.xy/);
+  assert.match(history,/let velocity = inverseDeformation\*localDrift/);
+  assert.match(history,/regionalFieldWind\(\(p\+surfaceOffset\)/);
   assert.match(history,/let fresh=select\(prev.g,/);
   assert.match(history,/let retired=prev.g\*\(1.0-survival\*supportSurvival\)/);
   assert.equal(breakingPhaseShader(FOAM_UPDATE,new URLSearchParams()),FOAM_UPDATE);
